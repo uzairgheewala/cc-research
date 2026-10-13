@@ -1,0 +1,47 @@
+{
+ "per_agent": {
+  "causaliq": {
+   "runs": 30,
+   "est_usd": 0.35,
+   "cap_usd": 1.5
+  },
+  "pywhyllm": {
+   "runs": 30,
+   "est_usd": 30.51,
+   "cap_usd": 45.87
+  },
+  "matmcd": {
+   "runs": 30,
+   "est_usd": 6.58,
+   "cap_usd": 10.08
+  },
+  "vashishtha": {
+   "runs": 30,
+   "est_usd": 20.53,
+   "cap_usd": 30.96
+  }
+ },
+ "total": {
+  "runs": 120,
+  "est_usd": 57.97,
+  "cap_usd": 88.41
+ },
+ "models": {
+  "causaliq": "gpt-4o",
+  "pywhyllm": "gpt-4o",
+  "matmcd": "gpt-4o-mini",
+  "vashishtha": "gpt-4o"
+ },
+ "scenarios": [
+  "apartment_heat_exposure_shading_ac",
+  "backup_frequency_ransomware_loss",
+  "bike_share_rebalancing_spatial_demand",
+  "conveyor_vibration_package_damage",
+  "curb_pricing_delivery_dwell",
+  "green_roof_runoff_retention",
+  "injection_molding_cooling_warp",
+  "insurance_deductible_claim_reporting",
+  "library_fine_elimination_returns",
+  "medication_titration_cgm_meal_timing"
+ ]
+}

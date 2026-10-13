@@ -1,0 +1,4065 @@
+{
+ "tickets": [
+  "AUD-29",
+  "BEN-07"
+ ],
+ "definition": "Varsortability (Reisach, Seiler, Weichwald, NeurIPS 2021) and R2-sortability (Reisach et al., NeurIPS 2023), both in the\npath-weighted form of the CausalDisco reference code: over every directed path i ~> j of length 1..d-1 (counted with\nmultiplicity, A^k), the share where the statistic of the cause is smaller than that of the effect; ties count half.\n0.5 = no order information; 1 = the statistic sorts the order perfectly. Edge-only versions (k = 1) are given too.\nValues are computed on the observational rows exactly as released (the release stores standardised columns, so\nvarsortability is expected near 0.5 by construction; R2 is scale-invariant).",
+ "families": {
+  "semantic": {
+   "summary": {
+    "var_paths": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5
+    },
+    "var_edges": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5
+    },
+    "r2_paths": {
+     "mean": 0.5446,
+     "min": 0.1381,
+     "max": 0.9103
+    },
+    "r2_edges": {
+     "mean": 0.5697,
+     "min": 0.3021,
+     "max": 0.8056
+    },
+    "files": 250,
+    "max_column_var_spread": 0.0
+   },
+   "rows": [
+    {
+     "file": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7666290868094702,
+     "r2_edges": 0.6865671641791045,
+     "column_var_spread": 6.137051755672474e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7643742953776775,
+     "r2_edges": 0.7164179104477612,
+     "column_var_spread": 3.440921936270769e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7609921082299888,
+     "r2_edges": 0.6865671641791045,
+     "column_var_spread": 9.697790515073024e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7542277339346111,
+     "r2_edges": 0.6716417910447762,
+     "column_var_spread": 2.6328812796627687e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7519729425028185,
+     "r2_edges": 0.6716417910447762,
+     "column_var_spread": 6.32196287542186e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7910447761194029,
+     "r2_edges": 0.6744186046511628,
+     "column_var_spread": 6.352925241426277e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8059701492537313,
+     "r2_edges": 0.6976744186046512,
+     "column_var_spread": 9.957184543551989e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7985074626865671,
+     "r2_edges": 0.6744186046511628,
+     "column_var_spread": 1.1687437651008992e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8022388059701493,
+     "r2_edges": 0.6744186046511628,
+     "column_var_spread": 9.632843178675188e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7910447761194029,
+     "r2_edges": 0.6511627906976745,
+     "column_var_spread": 1.4017221805495694e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7016129032258065,
+     "r2_edges": 0.5425531914893617,
+     "column_var_spread": 9.012308477274189e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7016129032258065,
+     "r2_edges": 0.5425531914893617,
+     "column_var_spread": 8.640239490542712e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7016129032258065,
+     "r2_edges": 0.5425531914893617,
+     "column_var_spread": 1.0955222251585184e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7016129032258065,
+     "r2_edges": 0.5425531914893617,
+     "column_var_spread": 1.2500002166682123e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7016129032258065,
+     "r2_edges": 0.5425531914893617,
+     "column_var_spread": 9.081248164566347e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6424870466321243,
+     "r2_edges": 0.7647058823529411,
+     "column_var_spread": 9.134592737769509e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6269430051813472,
+     "r2_edges": 0.7352941176470589,
+     "column_var_spread": 7.862145257053754e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6088082901554405,
+     "r2_edges": 0.7205882352941176,
+     "column_var_spread": 7.200056817424638e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5932642487046632,
+     "r2_edges": 0.75,
+     "column_var_spread": 6.971735677652191e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5932642487046632,
+     "r2_edges": 0.6911764705882353,
+     "column_var_spread": 1.0058401511692239e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7234513274336283,
+     "r2_edges": 0.6888888888888889,
+     "column_var_spread": 1.1687869450049959e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.745575221238938,
+     "r2_edges": 0.7333333333333333,
+     "column_var_spread": 8.764996684007542e-08
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7123893805309734,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 1.0383697235383238e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7300884955752213,
+     "r2_edges": 0.7111111111111111,
+     "column_var_spread": 1.5219515991926613e-07
+    },
+    {
+     "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7212389380530974,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 1.2811797789336055e-07
+    },
+    {
+     "file": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5245901639344263,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 6.452839651505116e-08
+    },
+    {
+     "file": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5081967213114754,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 4.651887719475667e-08
+    },
+    {
+     "file": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5286885245901639,
+     "r2_edges": 0.5,
+     "column_var_spread": 3.318009322850202e-08
+    },
+    {
+     "file": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5245901639344263,
+     "r2_edges": 0.5,
+     "column_var_spread": 4.790110219587973e-08
+    },
+    {
+     "file": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5081967213114754,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 4.716750989786078e-08
+    },
+    {
+     "file": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7836990595611285,
+     "r2_edges": 0.775,
+     "column_var_spread": 3.9388662109729466e-08
+    },
+    {
+     "file": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8181818181818182,
+     "r2_edges": 0.775,
+     "column_var_spread": 3.3053237702418414e-08
+    },
+    {
+     "file": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7899686520376176,
+     "r2_edges": 0.75,
+     "column_var_spread": 7.425885262257736e-08
+    },
+    {
+     "file": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.799373040752351,
+     "r2_edges": 0.775,
+     "column_var_spread": 7.925455447477248e-08
+    },
+    {
+     "file": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8119122257053292,
+     "r2_edges": 0.75,
+     "column_var_spread": 5.168617567274936e-08
+    },
+    {
+     "file": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4188034188034188,
+     "r2_edges": 0.5833333333333334,
+     "column_var_spread": 1.257786774733205e-07
+    },
+    {
+     "file": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4045584045584046,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 1.3936730947072817e-07
+    },
+    {
+     "file": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.42450142450142453,
+     "r2_edges": 0.5833333333333334,
+     "column_var_spread": 1.2210314059846183e-07
+    },
+    {
+     "file": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.39886039886039887,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 8.613797874978957e-08
+    },
+    {
+     "file": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.42450142450142453,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 9.921720200978257e-08
+    },
+    {
+     "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5188679245283019,
+     "r2_edges": 0.5,
+     "column_var_spread": 1.0950977191725997e-07
+    },
+    {
+     "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5157232704402516,
+     "r2_edges": 0.5,
+     "column_var_spread": 1.0066884559289946e-07
+    },
+    {
+     "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5471698113207547,
+     "r2_edges": 0.5263157894736842,
+     "column_var_spread": 8.024220299329698e-08
+    },
+    {
+     "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5377358490566038,
+     "r2_edges": 0.5,
+     "column_var_spread": 9.406415790724765e-08
+    },
+    {
+     "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5188679245283019,
+     "r2_edges": 0.5,
+     "column_var_spread": 1.0862797339417085e-07
+    },
+    {
+     "file": "semantic_education_textbook_cost_course_load__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.22842105263157894,
+     "r2_edges": 0.4342105263157895,
+     "column_var_spread": 9.061166073021099e-08
+    },
+    {
+     "file": "semantic_education_textbook_cost_course_load__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.26,
+     "r2_edges": 0.3815789473684211,
+     "column_var_spread": 5.6954592375646484e-08
+    },
+    {
+     "file": "semantic_education_textbook_cost_course_load__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.25157894736842107,
+     "r2_edges": 0.40789473684210525,
+     "column_var_spread": 9.980391246777742e-08
+    },
+    {
+     "file": "semantic_education_textbook_cost_course_load__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.20526315789473684,
+     "r2_edges": 0.4342105263157895,
+     "column_var_spread": 1.1698026147755058e-07
+    },
+    {
+     "file": "semantic_education_textbook_cost_course_load__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.25157894736842107,
+     "r2_edges": 0.4342105263157895,
+     "column_var_spread": 6.887925663168204e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3812154696132597,
+     "r2_edges": 0.5612244897959183,
+     "column_var_spread": 7.218631525862662e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3660220994475138,
+     "r2_edges": 0.5408163265306123,
+     "column_var_spread": 4.8084635495548866e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3674033149171271,
+     "r2_edges": 0.5204081632653061,
+     "column_var_spread": 1.1026073654107904e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3660220994475138,
+     "r2_edges": 0.5408163265306123,
+     "column_var_spread": 5.8259691959605675e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3812154696132597,
+     "r2_edges": 0.5612244897959183,
+     "column_var_spread": 7.666136669914891e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6996047430830039,
+     "r2_edges": 0.6730769230769231,
+     "column_var_spread": 1.223450200038556e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6897233201581028,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 1.0045689846638339e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7055335968379447,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 9.985617854813e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6877470355731226,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 9.896464570058328e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6877470355731226,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 1.261622734061163e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7286729857819905,
+     "r2_edges": 0.6022727272727273,
+     "column_var_spread": 9.177109427938035e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7476303317535545,
+     "r2_edges": 0.6477272727272727,
+     "column_var_spread": 1.543922953928245e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.768957345971564,
+     "r2_edges": 0.6477272727272727,
+     "column_var_spread": 1.082591091217111e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.735781990521327,
+     "r2_edges": 0.625,
+     "column_var_spread": 1.2289746109672706e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.735781990521327,
+     "r2_edges": 0.625,
+     "column_var_spread": 1.0845901399214597e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.1992619926199262,
+     "r2_edges": 0.5370370370370371,
+     "column_var_spread": 8.909305315718541e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.21033210332103322,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 1.0004402717367356e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2017220172201722,
+     "r2_edges": 0.5740740740740741,
+     "column_var_spread": 1.3001467280560064e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2134071340713407,
+     "r2_edges": 0.5648148148148148,
+     "column_var_spread": 7.796024270589896e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2004920049200492,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 1.010198292794584e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3790322580645161,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 6.72968376580485e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3844086021505376,
+     "r2_edges": 0.4868421052631579,
+     "column_var_spread": 9.21772032036472e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3790322580645161,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 1.031933457573686e-07
+    },
+    {
+     "file": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3790322580645161,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 5.8524771917589646e-08
+    },
+    {
+     "file": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3790322580645161,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 7.125725187684395e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5529411764705883,
+     "r2_edges": 0.56,
+     "column_var_spread": 8.919059257816997e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5505882352941176,
+     "r2_edges": 0.54,
+     "column_var_spread": 6.193590262881798e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5694117647058824,
+     "r2_edges": 0.58,
+     "column_var_spread": 9.711655457600443e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5741176470588235,
+     "r2_edges": 0.58,
+     "column_var_spread": 1.1502647556671519e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5552941176470588,
+     "r2_edges": 0.54,
+     "column_var_spread": 1.0634909175522012e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7491638795986622,
+     "r2_edges": 0.7586206896551724,
+     "column_var_spread": 1.1097208074684062e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7357859531772575,
+     "r2_edges": 0.7586206896551724,
+     "column_var_spread": 1.3005958321432587e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7357859531772575,
+     "r2_edges": 0.7413793103448276,
+     "column_var_spread": 1.169354025831737e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7335562987736901,
+     "r2_edges": 0.7586206896551724,
+     "column_var_spread": 1.1268806898723227e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7547380156075808,
+     "r2_edges": 0.7586206896551724,
+     "column_var_spread": 8.214080504664878e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8880208333333334,
+     "r2_edges": 0.6829268292682927,
+     "column_var_spread": 9.035835779602763e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8854166666666666,
+     "r2_edges": 0.6585365853658537,
+     "column_var_spread": 1.1445069503235317e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8828125,
+     "r2_edges": 0.6585365853658537,
+     "column_var_spread": 1.4132284897883096e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8802083333333334,
+     "r2_edges": 0.6341463414634146,
+     "column_var_spread": 7.382228328634e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8854166666666666,
+     "r2_edges": 0.6585365853658537,
+     "column_var_spread": 1.456648978104269e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7717717717717718,
+     "r2_edges": 0.6170212765957447,
+     "column_var_spread": 2.4092138506404126e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7957957957957958,
+     "r2_edges": 0.6170212765957447,
+     "column_var_spread": 8.384473837441675e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7972972972972973,
+     "r2_edges": 0.6063829787234043,
+     "column_var_spread": 4.705696332596432e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7927927927927928,
+     "r2_edges": 0.5957446808510638,
+     "column_var_spread": 5.019232818259667e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7717717717717718,
+     "r2_edges": 0.6170212765957447,
+     "column_var_spread": 3.196936693150576e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4956896551724138,
+     "r2_edges": 0.5116279069767442,
+     "column_var_spread": 1.470281798532369e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47413793103448276,
+     "r2_edges": 0.4883720930232558,
+     "column_var_spread": 1.0046251341933043e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4827586206896552,
+     "r2_edges": 0.5116279069767442,
+     "column_var_spread": 1.1601750915524178e-07
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4956896551724138,
+     "r2_edges": 0.5116279069767442,
+     "column_var_spread": 7.90438287046058e-08
+    },
+    {
+     "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4956896551724138,
+     "r2_edges": 0.5116279069767442,
+     "column_var_spread": 1.334864392354973e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5358361774744027,
+     "r2_edges": 0.6170212765957447,
+     "column_var_spread": 1.0263124894382969e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6151877133105802,
+     "r2_edges": 0.6382978723404256,
+     "column_var_spread": 6.796126950092685e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6151877133105802,
+     "r2_edges": 0.6382978723404256,
+     "column_var_spread": 8.450860211617339e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5622866894197952,
+     "r2_edges": 0.6382978723404256,
+     "column_var_spread": 1.1252075160506081e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5656996587030717,
+     "r2_edges": 0.6170212765957447,
+     "column_var_spread": 8.759362279953109e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14144736842105263,
+     "r2_edges": 0.4857142857142857,
+     "column_var_spread": 5.835727168168603e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.13815789473684212,
+     "r2_edges": 0.4857142857142857,
+     "column_var_spread": 4.790342511551415e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.13815789473684212,
+     "r2_edges": 0.45714285714285713,
+     "column_var_spread": 8.214227265046503e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14144736842105263,
+     "r2_edges": 0.4857142857142857,
+     "column_var_spread": 9.014436208598653e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14144736842105263,
+     "r2_edges": 0.45714285714285713,
+     "column_var_spread": 8.811319207602253e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.27607361963190186,
+     "r2_edges": 0.425,
+     "column_var_spread": 4.1179194054663526e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3098159509202454,
+     "r2_edges": 0.3875,
+     "column_var_spread": 5.661351532015857e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3067484662576687,
+     "r2_edges": 0.4,
+     "column_var_spread": 7.375802979492363e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3067484662576687,
+     "r2_edges": 0.4,
+     "column_var_spread": 5.7696999289369444e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3067484662576687,
+     "r2_edges": 0.4,
+     "column_var_spread": 3.9740882029626334e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2949061662198391,
+     "r2_edges": 0.5333333333333333,
+     "column_var_spread": 1.1884779782533883e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2868632707774799,
+     "r2_edges": 0.5111111111111111,
+     "column_var_spread": 1.421287070257904e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3324396782841823,
+     "r2_edges": 0.4888888888888889,
+     "column_var_spread": 9.526114574942568e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.27882037533512066,
+     "r2_edges": 0.4444444444444444,
+     "column_var_spread": 8.123233030676857e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2868632707774799,
+     "r2_edges": 0.5333333333333333,
+     "column_var_spread": 1.260691953053339e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44401330376940135,
+     "r2_edges": 0.46153846153846156,
+     "column_var_spread": 1.1178009351464624e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.41851441241685144,
+     "r2_edges": 0.46153846153846156,
+     "column_var_spread": 1.1947775269138816e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.43957871396895787,
+     "r2_edges": 0.41025641025641024,
+     "column_var_spread": 1.1626708951162357e-07
+    },
+    {
+     "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.40853658536585363,
+     "r2_edges": 0.4358974358974359,
+     "column_var_spread": 8.970581399925237e-08
+    },
+    {
+     "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4107538802660754,
+     "r2_edges": 0.4358974358974359,
+     "column_var_spread": 1.2452241093807714e-07
+    },
+    {
+     "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4880952380952381,
+     "r2_edges": 0.41379310344827586,
+     "column_var_spread": 4.536286046796789e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4880952380952381,
+     "r2_edges": 0.41379310344827586,
+     "column_var_spread": 3.6419242621654746e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4880952380952381,
+     "r2_edges": 0.41379310344827586,
+     "column_var_spread": 4.8373639649490485e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48214285714285715,
+     "r2_edges": 0.41379310344827586,
+     "column_var_spread": 2.973033075281961e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48214285714285715,
+     "r2_edges": 0.41379310344827586,
+     "column_var_spread": 1.0498870761654899e-07
+    },
+    {
+     "file": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8867924528301887,
+     "r2_edges": 0.6,
+     "column_var_spread": 6.069352287418894e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8905660377358491,
+     "r2_edges": 0.6,
+     "column_var_spread": 6.568457822098139e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8867924528301887,
+     "r2_edges": 0.6,
+     "column_var_spread": 9.917470433773445e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8905660377358491,
+     "r2_edges": 0.6,
+     "column_var_spread": 7.507403299022997e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8943396226415095,
+     "r2_edges": 0.6,
+     "column_var_spread": 7.558792991524399e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5042016806722689,
+     "r2_edges": 0.6129032258064516,
+     "column_var_spread": 5.532949443054491e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48739495798319327,
+     "r2_edges": 0.6451612903225806,
+     "column_var_spread": 6.434027910451334e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5462184873949579,
+     "r2_edges": 0.6451612903225806,
+     "column_var_spread": 4.843797329900923e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47058823529411764,
+     "r2_edges": 0.6129032258064516,
+     "column_var_spread": 5.954833026677875e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5798319327731093,
+     "r2_edges": 0.6129032258064516,
+     "column_var_spread": 3.9138113971937116e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3414127423822715,
+     "r2_edges": 0.47560975609756095,
+     "column_var_spread": 1.1357705964609721e-07
+    },
+    {
+     "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.35318559556786705,
+     "r2_edges": 0.5121951219512195,
+     "column_var_spread": 1.0600897371038087e-07
+    },
+    {
+     "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.36426592797783935,
+     "r2_edges": 0.5121951219512195,
+     "column_var_spread": 7.269970447865148e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.40443213296398894,
+     "r2_edges": 0.5121951219512195,
+     "column_var_spread": 6.015053877206356e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.35318559556786705,
+     "r2_edges": 0.4878048780487805,
+     "column_var_spread": 4.0881249496749206e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5636856368563685,
+     "r2_edges": 0.6444444444444445,
+     "column_var_spread": 6.47903283246265e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5501355013550135,
+     "r2_edges": 0.6444444444444445,
+     "column_var_spread": 6.080803316432792e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5609756097560976,
+     "r2_edges": 0.6444444444444445,
+     "column_var_spread": 5.795942159547707e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5582655826558266,
+     "r2_edges": 0.6444444444444445,
+     "column_var_spread": 5.1270343970344356e-08
+    },
+    {
+     "file": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5609756097560976,
+     "r2_edges": 0.6444444444444445,
+     "column_var_spread": 7.84523144226057e-08
+    },
+    {
+     "file": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.45345345345345345,
+     "r2_edges": 0.5185185185185185,
+     "column_var_spread": 9.473201956211597e-08
+    },
+    {
+     "file": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.39039039039039036,
+     "r2_edges": 0.5185185185185185,
+     "column_var_spread": 4.2694221047412384e-08
+    },
+    {
+     "file": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3933933933933934,
+     "r2_edges": 0.5185185185185185,
+     "column_var_spread": 5.290970472859868e-08
+    },
+    {
+     "file": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.43843843843843844,
+     "r2_edges": 0.5185185185185185,
+     "column_var_spread": 6.270673225117207e-08
+    },
+    {
+     "file": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4624624624624625,
+     "r2_edges": 0.5555555555555556,
+     "column_var_spread": 9.842612291866004e-08
+    },
+    {
+     "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3215686274509804,
+     "r2_edges": 0.3617021276595745,
+     "column_var_spread": 5.031106153907672e-08
+    },
+    {
+     "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3254901960784314,
+     "r2_edges": 0.3829787234042553,
+     "column_var_spread": 4.2929885313292004e-08
+    },
+    {
+     "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3215686274509804,
+     "r2_edges": 0.3617021276595745,
+     "column_var_spread": 5.450408790963479e-08
+    },
+    {
+     "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.34509803921568627,
+     "r2_edges": 0.3829787234042553,
+     "column_var_spread": 7.254366007902746e-08
+    },
+    {
+     "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.34509803921568627,
+     "r2_edges": 0.3829787234042553,
+     "column_var_spread": 1.0492202373590942e-07
+    },
+    {
+     "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.345350052246604,
+     "r2_edges": 0.61,
+     "column_var_spread": 3.4220013156449625e-08
+    },
+    {
+     "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3463949843260188,
+     "r2_edges": 0.63,
+     "column_var_spread": 3.954537519668122e-08
+    },
+    {
+     "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.42371995820271685,
+     "r2_edges": 0.61,
+     "column_var_spread": 4.746909820774192e-08
+    },
+    {
+     "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4268547544409613,
+     "r2_edges": 0.61,
+     "column_var_spread": 2.8922687911325795e-08
+    },
+    {
+     "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.46551724137931033,
+     "r2_edges": 0.61,
+     "column_var_spread": 8.019335062670052e-08
+    },
+    {
+     "file": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8807339449541285,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 5.992871576765424e-08
+    },
+    {
+     "file": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8929663608562691,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 9.432085301686044e-08
+    },
+    {
+     "file": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9021406727828746,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 3.9557421116498404e-08
+    },
+    {
+     "file": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8807339449541285,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 3.498242995281231e-08
+    },
+    {
+     "file": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8929663608562691,
+     "r2_edges": 0.6923076923076923,
+     "column_var_spread": 9.371668885371776e-08
+    },
+    {
+     "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5531914893617021,
+     "r2_edges": 0.5172413793103449,
+     "column_var_spread": 5.325075402851098e-08
+    },
+    {
+     "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5425531914893617,
+     "r2_edges": 0.4827586206896552,
+     "column_var_spread": 1.1555680778929656e-07
+    },
+    {
+     "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5425531914893617,
+     "r2_edges": 0.4827586206896552,
+     "column_var_spread": 7.141064417570675e-08
+    },
+    {
+     "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5425531914893617,
+     "r2_edges": 0.4827586206896552,
+     "column_var_spread": 8.301301557267493e-08
+    },
+    {
+     "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5425531914893617,
+     "r2_edges": 0.4827586206896552,
+     "column_var_spread": 7.28035943753369e-08
+    },
+    {
+     "file": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5495689655172413,
+     "r2_edges": 0.5285714285714286,
+     "column_var_spread": 2.255201692058506e-08
+    },
+    {
+     "file": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5452586206896551,
+     "r2_edges": 0.5285714285714286,
+     "column_var_spread": 5.35459213635292e-08
+    },
+    {
+     "file": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5668103448275862,
+     "r2_edges": 0.5285714285714286,
+     "column_var_spread": 3.208974286295074e-08
+    },
+    {
+     "file": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5625,
+     "r2_edges": 0.5285714285714286,
+     "column_var_spread": 3.088522115834991e-08
+    },
+    {
+     "file": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5538793103448276,
+     "r2_edges": 0.5285714285714286,
+     "column_var_spread": 2.4951405608319988e-08
+    },
+    {
+     "file": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7177914110429447,
+     "r2_edges": 0.59375,
+     "column_var_spread": 5.2927587756990135e-08
+    },
+    {
+     "file": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7177914110429447,
+     "r2_edges": 0.59375,
+     "column_var_spread": 7.319675610073517e-08
+    },
+    {
+     "file": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7177914110429447,
+     "r2_edges": 0.59375,
+     "column_var_spread": 6.365898164162331e-08
+    },
+    {
+     "file": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7300613496932515,
+     "r2_edges": 0.59375,
+     "column_var_spread": 6.55239137392627e-08
+    },
+    {
+     "file": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7177914110429447,
+     "r2_edges": 0.59375,
+     "column_var_spread": 3.3919900443990514e-08
+    },
+    {
+     "file": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9103448275862069,
+     "r2_edges": 0.71875,
+     "column_var_spread": 7.008801672370168e-08
+    },
+    {
+     "file": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9103448275862069,
+     "r2_edges": 0.71875,
+     "column_var_spread": 5.2903904701473436e-08
+    },
+    {
+     "file": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9103448275862069,
+     "r2_edges": 0.71875,
+     "column_var_spread": 4.467016134768187e-08
+    },
+    {
+     "file": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9103448275862069,
+     "r2_edges": 0.71875,
+     "column_var_spread": 7.251993872081641e-08
+    },
+    {
+     "file": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9103448275862069,
+     "r2_edges": 0.71875,
+     "column_var_spread": 6.499662419390262e-08
+    },
+    {
+     "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14882226980728053,
+     "r2_edges": 0.3020833333333333,
+     "column_var_spread": 4.99931941400078e-08
+    },
+    {
+     "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14025695931477516,
+     "r2_edges": 0.3020833333333333,
+     "column_var_spread": 5.7425845190195446e-08
+    },
+    {
+     "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.1381156316916488,
+     "r2_edges": 0.3020833333333333,
+     "column_var_spread": 1.3829856748692748e-07
+    },
+    {
+     "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14025695931477516,
+     "r2_edges": 0.3020833333333333,
+     "column_var_spread": 1.2723574160933282e-07
+    },
+    {
+     "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14025695931477516,
+     "r2_edges": 0.3020833333333333,
+     "column_var_spread": 9.530212286001927e-08
+    },
+    {
+     "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3187919463087248,
+     "r2_edges": 0.5192307692307693,
+     "column_var_spread": 1.0938870165233539e-07
+    },
+    {
+     "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.28523489932885904,
+     "r2_edges": 0.4807692307692308,
+     "column_var_spread": 8.191272349300505e-08
+    },
+    {
+     "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2785234899328859,
+     "r2_edges": 0.4423076923076923,
+     "column_var_spread": 6.303986999078859e-08
+    },
+    {
+     "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.28523489932885904,
+     "r2_edges": 0.4807692307692308,
+     "column_var_spread": 1.007381654760664e-07
+    },
+    {
+     "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.28523489932885904,
+     "r2_edges": 0.4807692307692308,
+     "column_var_spread": 6.509940220222887e-08
+    },
+    {
+     "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3087719298245614,
+     "r2_edges": 0.55,
+     "column_var_spread": 7.263141021951469e-08
+    },
+    {
+     "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.312280701754386,
+     "r2_edges": 0.55,
+     "column_var_spread": 1.1402173061281218e-07
+    },
+    {
+     "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3087719298245614,
+     "r2_edges": 0.55,
+     "column_var_spread": 1.1954839007621842e-07
+    },
+    {
+     "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3192982456140351,
+     "r2_edges": 0.55,
+     "column_var_spread": 9.13904446564473e-08
+    },
+    {
+     "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3192982456140351,
+     "r2_edges": 0.55,
+     "column_var_spread": 1.2096558021923443e-07
+    },
+    {
+     "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5270935960591133,
+     "r2_edges": 0.6176470588235294,
+     "column_var_spread": 8.538009199643426e-08
+    },
+    {
+     "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5270935960591133,
+     "r2_edges": 0.6176470588235294,
+     "column_var_spread": 1.1303691449526809e-07
+    },
+    {
+     "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6206896551724138,
+     "r2_edges": 0.6470588235294118,
+     "column_var_spread": 8.457692379781889e-08
+    },
+    {
+     "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5467980295566502,
+     "r2_edges": 0.6470588235294118,
+     "column_var_spread": 1.1884017958596615e-07
+    },
+    {
+     "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5467980295566502,
+     "r2_edges": 0.6470588235294118,
+     "column_var_spread": 8.417636154778307e-08
+    },
+    {
+     "file": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7828162291169452,
+     "r2_edges": 0.7307692307692307,
+     "column_var_spread": 1.3903195417164227e-07
+    },
+    {
+     "file": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7804295942720764,
+     "r2_edges": 0.7115384615384616,
+     "column_var_spread": 1.2077830902068598e-07
+    },
+    {
+     "file": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7840095465393795,
+     "r2_edges": 0.7403846153846154,
+     "column_var_spread": 1.0133621730634701e-07
+    },
+    {
+     "file": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7863961813842482,
+     "r2_edges": 0.7211538461538461,
+     "column_var_spread": 1.0885011547667744e-07
+    },
+    {
+     "file": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7875894988066826,
+     "r2_edges": 0.7307692307692307,
+     "column_var_spread": 1.2082831124526905e-07
+    },
+    {
+     "file": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.29222520107238603,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 1.491203489578652e-07
+    },
+    {
+     "file": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.2949061662198391,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 1.2384234160389695e-07
+    },
+    {
+     "file": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3324396782841823,
+     "r2_edges": 0.42105263157894735,
+     "column_var_spread": 1.5960514399004921e-07
+    },
+    {
+     "file": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.28418230563002683,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 1.3705989732049062e-07
+    },
+    {
+     "file": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.26005361930294907,
+     "r2_edges": 0.3684210526315789,
+     "column_var_spread": 1.4313487117778578e-07
+    },
+    {
+     "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4727272727272727,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 3.1172073811092105e-08
+    },
+    {
+     "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4636363636363636,
+     "r2_edges": 0.5454545454545454,
+     "column_var_spread": 1.1090858043072416e-07
+    },
+    {
+     "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4681818181818182,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 7.861346018600557e-08
+    },
+    {
+     "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4681818181818182,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 3.8854737649529625e-08
+    },
+    {
+     "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4681818181818182,
+     "r2_edges": 0.5454545454545454,
+     "column_var_spread": 7.086123310351411e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5605381165919282,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 1.0742013967224295e-07
+    },
+    {
+     "file": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5695067264573991,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 9.166638303970132e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5560538116591929,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 6.652954853691995e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5515695067264574,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 9.144807533445487e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5695067264573991,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 1.6133514502136848e-07
+    },
+    {
+     "file": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5217391304347826,
+     "r2_edges": 0.475,
+     "column_var_spread": 1.8069825857836008e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5304347826086957,
+     "r2_edges": 0.475,
+     "column_var_spread": 1.137324756594893e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5260869565217391,
+     "r2_edges": 0.475,
+     "column_var_spread": 1.0738056444026256e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5304347826086957,
+     "r2_edges": 0.475,
+     "column_var_spread": 1.5331306668642242e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5217391304347826,
+     "r2_edges": 0.475,
+     "column_var_spread": 1.8103435639460486e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6563706563706564,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 4.7296699112742147e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6525096525096525,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 6.990894130254333e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6563706563706564,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 9.244591969714833e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.637065637065637,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 6.769776184079035e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6602316602316602,
+     "r2_edges": 0.5681818181818182,
+     "column_var_spread": 1.3664826481463166e-07
+    },
+    {
+     "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8508771929824561,
+     "r2_edges": 0.7777777777777778,
+     "column_var_spread": 7.83257209091559e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8508771929824561,
+     "r2_edges": 0.7777777777777778,
+     "column_var_spread": 6.821755349495362e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.868421052631579,
+     "r2_edges": 0.8055555555555556,
+     "column_var_spread": 5.020473525796376e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8508771929824561,
+     "r2_edges": 0.7777777777777778,
+     "column_var_spread": 7.75603545832837e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8508771929824561,
+     "r2_edges": 0.7777777777777778,
+     "column_var_spread": 4.525422248047306e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5233853006681515,
+     "r2_edges": 0.5,
+     "column_var_spread": 3.778870516502053e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48997772828507796,
+     "r2_edges": 0.5,
+     "column_var_spread": 2.786771646778874e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4922048997772829,
+     "r2_edges": 0.5,
+     "column_var_spread": 7.546819247306047e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49888641425389757,
+     "r2_edges": 0.5,
+     "column_var_spread": 9.404061296347521e-08
+    },
+    {
+     "file": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49665924276169265,
+     "r2_edges": 0.5227272727272727,
+     "column_var_spread": 4.174449286242776e-08
+    }
+   ]
+  },
+  "formula": {
+   "summary": {
+    "var_paths": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5
+    },
+    "var_edges": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5
+    },
+    "r2_paths": {
+     "mean": 0.6025,
+     "min": 0.1437,
+     "max": 0.9518
+    },
+    "r2_edges": {
+     "mean": 0.5972,
+     "min": 0.3947,
+     "max": 0.8387
+    },
+    "files": 250,
+    "max_column_var_spread": 0.0
+   },
+   "rows": [
+    {
+     "file": "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5987654320987654,
+     "r2_edges": 0.6290322580645161,
+     "column_var_spread": 1.1390698362312435e-07
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6152263374485597,
+     "r2_edges": 0.6612903225806451,
+     "column_var_spread": 1.0914863723954227e-07
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5987654320987654,
+     "r2_edges": 0.6290322580645161,
+     "column_var_spread": 8.937267548247974e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.602880658436214,
+     "r2_edges": 0.6612903225806451,
+     "column_var_spread": 1.3435187418142647e-07
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6152263374485597,
+     "r2_edges": 0.6612903225806451,
+     "column_var_spread": 1.3807059917603226e-07
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6436170212765957,
+     "r2_edges": 0.6851851851851852,
+     "column_var_spread": 3.0548616192227485e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6648936170212766,
+     "r2_edges": 0.6851851851851852,
+     "column_var_spread": 6.462200285994868e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6648936170212766,
+     "r2_edges": 0.6851851851851852,
+     "column_var_spread": 3.586008978651023e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6223404255319149,
+     "r2_edges": 0.6851851851851852,
+     "column_var_spread": 2.184033132124341e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6542553191489362,
+     "r2_edges": 0.6851851851851852,
+     "column_var_spread": 3.9442351384977314e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6504424778761062,
+     "r2_edges": 0.4857142857142857,
+     "column_var_spread": 6.593882995176159e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6769911504424779,
+     "r2_edges": 0.5142857142857142,
+     "column_var_spread": 5.4793168002831294e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6415929203539823,
+     "r2_edges": 0.5142857142857142,
+     "column_var_spread": 3.2844061803594116e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6592920353982301,
+     "r2_edges": 0.5142857142857142,
+     "column_var_spread": 2.793341646878389e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6504424778761062,
+     "r2_edges": 0.5142857142857142,
+     "column_var_spread": 4.105855877511999e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.70625,
+     "r2_edges": 0.65625,
+     "column_var_spread": 1.1690191592528265e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.71875,
+     "r2_edges": 0.6875,
+     "column_var_spread": 3.047904917341526e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.70625,
+     "r2_edges": 0.6875,
+     "column_var_spread": 3.618385768788812e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.70625,
+     "r2_edges": 0.6875,
+     "column_var_spread": 2.4120207831046514e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.71875,
+     "r2_edges": 0.6875,
+     "column_var_spread": 5.040405959277905e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5118110236220472,
+     "r2_edges": 0.6206896551724138,
+     "column_var_spread": 7.237764054757179e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5275590551181102,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 8.39658345075378e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5275590551181102,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 2.94439959080961e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5118110236220472,
+     "r2_edges": 0.6206896551724138,
+     "column_var_spread": 9.969507142049139e-08
+    },
+    {
+     "file": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.531496062992126,
+     "r2_edges": 0.6724137931034483,
+     "column_var_spread": 3.878351861885676e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49101796407185627,
+     "r2_edges": 0.5263157894736842,
+     "column_var_spread": 2.3202061716354194e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49700598802395207,
+     "r2_edges": 0.5263157894736842,
+     "column_var_spread": 2.989138114806167e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49700598802395207,
+     "r2_edges": 0.5263157894736842,
+     "column_var_spread": 6.255021467449495e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49700598802395207,
+     "r2_edges": 0.5526315789473685,
+     "column_var_spread": 1.5813469533831892e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5029940119760479,
+     "r2_edges": 0.5526315789473685,
+     "column_var_spread": 4.3575733466028055e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9465270121278941,
+     "r2_edges": 0.6777777777777778,
+     "column_var_spread": 2.7945157410336208e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9465270121278941,
+     "r2_edges": 0.6777777777777778,
+     "column_var_spread": 3.906531631514554e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9454244762954797,
+     "r2_edges": 0.6555555555555556,
+     "column_var_spread": 2.4883913929407697e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9443219404630651,
+     "r2_edges": 0.6333333333333333,
+     "column_var_spread": 2.207949945098875e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9454244762954797,
+     "r2_edges": 0.6555555555555556,
+     "column_var_spread": 2.3647823366168552e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6791044776119403,
+     "r2_edges": 0.7045454545454546,
+     "column_var_spread": 2.323114767222023e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6828358208955224,
+     "r2_edges": 0.7045454545454546,
+     "column_var_spread": 5.6601131226408086e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6828358208955224,
+     "r2_edges": 0.7045454545454546,
+     "column_var_spread": 5.323507146215434e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6865671641791045,
+     "r2_edges": 0.7272727272727273,
+     "column_var_spread": 5.566880034724164e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6828358208955224,
+     "r2_edges": 0.7045454545454546,
+     "column_var_spread": 3.816123628208601e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7125,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.841529861934532e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7125,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.1075512729163961e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7125,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.2429300255689668e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.70625,
+     "r2_edges": 0.5483870967741935,
+     "column_var_spread": 7.847657745863046e-09
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.71875,
+     "r2_edges": 0.6129032258064516,
+     "column_var_spread": 9.154447311310321e-09
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6081871345029239,
+     "r2_edges": 0.7241379310344828,
+     "column_var_spread": 2.92855946160131e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6140350877192983,
+     "r2_edges": 0.7241379310344828,
+     "column_var_spread": 6.359582371828765e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5964912280701754,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 3.8121661050105615e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5964912280701754,
+     "r2_edges": 0.6896551724137931,
+     "column_var_spread": 5.8266356406377895e-08
+    },
+    {
+     "file": "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5964912280701754,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 4.588453761389388e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7326732673267327,
+     "r2_edges": 0.5769230769230769,
+     "column_var_spread": 3.92852343988892e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7326732673267327,
+     "r2_edges": 0.5769230769230769,
+     "column_var_spread": 3.209915955260101e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7326732673267327,
+     "r2_edges": 0.5769230769230769,
+     "column_var_spread": 2.555482392363473e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7326732673267327,
+     "r2_edges": 0.5769230769230769,
+     "column_var_spread": 5.401674529892375e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7326732673267327,
+     "r2_edges": 0.5769230769230769,
+     "column_var_spread": 2.8460217627035433e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9397590361445783,
+     "r2_edges": 0.8064516129032258,
+     "column_var_spread": 1.0432770036761241e-07
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9397590361445783,
+     "r2_edges": 0.8064516129032258,
+     "column_var_spread": 6.402811014716292e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9518072289156626,
+     "r2_edges": 0.8064516129032258,
+     "column_var_spread": 4.736015346562539e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9457831325301205,
+     "r2_edges": 0.8387096774193549,
+     "column_var_spread": 1.1566617574843008e-07
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.9457831325301205,
+     "r2_edges": 0.8387096774193549,
+     "column_var_spread": 5.953318671370056e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6981132075471698,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 3.8170668847925526e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6823899371069182,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 7.294300397031606e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6823899371069182,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 1.3697975254078898e-07
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6823899371069182,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 6.393309470720254e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6761006289308176,
+     "r2_edges": 0.6666666666666666,
+     "column_var_spread": 4.470836545422685e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217948717948718,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 1.4757247313035293e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217948717948718,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 1.1976903691035545e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217948717948718,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 4.095585615093711e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217948717948718,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 1.921098369273011e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217948717948718,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 3.877353627057545e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6081081081081081,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.1408656575007114e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6036036036036037,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.4481981169822689e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6036036036036037,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.4486094657151227e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6081081081081081,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.1433160196361314e-08
+    },
+    {
+     "file": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6036036036036037,
+     "r2_edges": 0.5806451612903226,
+     "column_var_spread": 1.0477320899759945e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7130434782608696,
+     "r2_edges": 0.6153846153846154,
+     "column_var_spread": 1.3315397451307831e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7217391304347827,
+     "r2_edges": 0.6538461538461539,
+     "column_var_spread": 1.0178538678573545e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7217391304347827,
+     "r2_edges": 0.6538461538461539,
+     "column_var_spread": 1.285990181010277e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7217391304347827,
+     "r2_edges": 0.6538461538461539,
+     "column_var_spread": 3.548187021973348e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7217391304347827,
+     "r2_edges": 0.6538461538461539,
+     "column_var_spread": 1.328688614687934e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7697674418604651,
+     "r2_edges": 0.7435897435897436,
+     "column_var_spread": 5.0525013284286047e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7627906976744186,
+     "r2_edges": 0.717948717948718,
+     "column_var_spread": 2.6156162680202044e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7674418604651163,
+     "r2_edges": 0.717948717948718,
+     "column_var_spread": 5.866138197418991e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7593023255813953,
+     "r2_edges": 0.7051282051282052,
+     "column_var_spread": 8.101561210782648e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7604651162790698,
+     "r2_edges": 0.717948717948718,
+     "column_var_spread": 5.7866600178257954e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47478991596638653,
+     "r2_edges": 0.4375,
+     "column_var_spread": 4.2792471011132704e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48739495798319327,
+     "r2_edges": 0.5,
+     "column_var_spread": 5.699538097037049e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4957983193277311,
+     "r2_edges": 0.4583333333333333,
+     "column_var_spread": 4.8123683482614865e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5042016806722689,
+     "r2_edges": 0.4166666666666667,
+     "column_var_spread": 6.12354278395344e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47058823529411764,
+     "r2_edges": 0.4166666666666667,
+     "column_var_spread": 4.495046546093562e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7469512195121951,
+     "r2_edges": 0.7424242424242424,
+     "column_var_spread": 3.020981154122637e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7408536585365854,
+     "r2_edges": 0.7121212121212122,
+     "column_var_spread": 3.981018825705007e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7469512195121951,
+     "r2_edges": 0.7424242424242424,
+     "column_var_spread": 3.045081287122997e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7408536585365854,
+     "r2_edges": 0.7121212121212122,
+     "column_var_spread": 3.0218069935195047e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7408536585365854,
+     "r2_edges": 0.7121212121212122,
+     "column_var_spread": 1.1358544438344609e-08
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4937888198757764,
+     "r2_edges": 0.5606060606060606,
+     "column_var_spread": 1.39515080599395e-07
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4937888198757764,
+     "r2_edges": 0.5606060606060606,
+     "column_var_spread": 1.11815839698437e-07
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.515527950310559,
+     "r2_edges": 0.5606060606060606,
+     "column_var_spread": 1.0633311264829359e-07
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5248447204968945,
+     "r2_edges": 0.5606060606060606,
+     "column_var_spread": 1.594683923800133e-07
+    },
+    {
+     "file": "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5062111801242236,
+     "r2_edges": 0.5606060606060606,
+     "column_var_spread": 7.130865897764238e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4621212121212121,
+     "r2_edges": 0.5,
+     "column_var_spread": 5.681335335516735e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4621212121212121,
+     "r2_edges": 0.5,
+     "column_var_spread": 7.299709114949593e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4621212121212121,
+     "r2_edges": 0.5,
+     "column_var_spread": 6.570699340180397e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4621212121212121,
+     "r2_edges": 0.5,
+     "column_var_spread": 4.5741357035389285e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4621212121212121,
+     "r2_edges": 0.5,
+     "column_var_spread": 1.695622320330159e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6093117408906883,
+     "r2_edges": 0.5405405405405406,
+     "column_var_spread": 1.3671299092798961e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6174089068825911,
+     "r2_edges": 0.5675675675675675,
+     "column_var_spread": 1.2620343770031184e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6174089068825911,
+     "r2_edges": 0.5675675675675675,
+     "column_var_spread": 3.017173177966015e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.611336032388664,
+     "r2_edges": 0.5540540540540541,
+     "column_var_spread": 2.6062150881855928e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.631578947368421,
+     "r2_edges": 0.5675675675675675,
+     "column_var_spread": 1.1368146868306894e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7017167381974249,
+     "r2_edges": 0.7727272727272727,
+     "column_var_spread": 2.2169454050313675e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7017167381974249,
+     "r2_edges": 0.7727272727272727,
+     "column_var_spread": 3.4269714288548414e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6995708154506438,
+     "r2_edges": 0.7575757575757576,
+     "column_var_spread": 2.884756722387749e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6995708154506438,
+     "r2_edges": 0.7575757575757576,
+     "column_var_spread": 8.496291648008025e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.703862660944206,
+     "r2_edges": 0.7878787878787878,
+     "column_var_spread": 2.1365611724277755e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4290322580645161,
+     "r2_edges": 0.425,
+     "column_var_spread": 7.970106186139247e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4290322580645161,
+     "r2_edges": 0.425,
+     "column_var_spread": 1.0416374585098254e-07
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47419354838709676,
+     "r2_edges": 0.45,
+     "column_var_spread": 6.702523913659775e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.45483870967741935,
+     "r2_edges": 0.45,
+     "column_var_spread": 8.39957298159888e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4129032258064516,
+     "r2_edges": 0.425,
+     "column_var_spread": 9.204042972221771e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4830188679245283,
+     "r2_edges": 0.5428571428571428,
+     "column_var_spread": 4.678092202503592e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5132075471698113,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 3.923137370520635e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.46037735849056605,
+     "r2_edges": 0.5428571428571428,
+     "column_var_spread": 6.289455534158606e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5018867924528302,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 1.418398121177944e-08
+    },
+    {
+     "file": "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4641509433962264,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 3.400913695106311e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6807228915662651,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 1.609702915406075e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6807228915662651,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 1.2524734138708027e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6626506024096386,
+     "r2_edges": 0.603448275862069,
+     "column_var_spread": 1.3862932357611157e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6686746987951807,
+     "r2_edges": 0.6206896551724138,
+     "column_var_spread": 8.550010255348184e-09
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6807228915662651,
+     "r2_edges": 0.6551724137931034,
+     "column_var_spread": 1.6861103846466108e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4375,
+     "r2_edges": 0.5147058823529411,
+     "column_var_spread": 8.635370529752606e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4320652173913043,
+     "r2_edges": 0.4852941176470588,
+     "column_var_spread": 1.7489371395562614e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4266304347826087,
+     "r2_edges": 0.45588235294117646,
+     "column_var_spread": 5.514997836186808e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4266304347826087,
+     "r2_edges": 0.4852941176470588,
+     "column_var_spread": 3.6182259632866476e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4320652173913043,
+     "r2_edges": 0.4852941176470588,
+     "column_var_spread": 4.786700003034383e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44666666666666666,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 5.205510966721505e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44666666666666666,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 2.6106540040871096e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44666666666666666,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 4.205229142684175e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44666666666666666,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 4.124494645818544e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.44666666666666666,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 1.9280222640638556e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47468354430379744,
+     "r2_edges": 0.4722222222222222,
+     "column_var_spread": 8.642462834274056e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47151898734177217,
+     "r2_edges": 0.4583333333333333,
+     "column_var_spread": 4.211478177307271e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47151898734177217,
+     "r2_edges": 0.4583333333333333,
+     "column_var_spread": 8.208693447198101e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47151898734177217,
+     "r2_edges": 0.4583333333333333,
+     "column_var_spread": 7.036356364231722e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47151898734177217,
+     "r2_edges": 0.4583333333333333,
+     "column_var_spread": 4.6433365374909386e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3326612903225806,
+     "r2_edges": 0.4868421052631579,
+     "column_var_spread": 4.989762003582143e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3407258064516129,
+     "r2_edges": 0.4868421052631579,
+     "column_var_spread": 7.13575725175275e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3407258064516129,
+     "r2_edges": 0.4868421052631579,
+     "column_var_spread": 7.234744692219408e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3286290322580645,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 8.232790416062841e-08
+    },
+    {
+     "file": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.3286290322580645,
+     "r2_edges": 0.4605263157894737,
+     "column_var_spread": 8.950266372487192e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.59375,
+     "r2_edges": 0.5625,
+     "column_var_spread": 6.251048589867025e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6015625,
+     "r2_edges": 0.5625,
+     "column_var_spread": 1.0396561256342807e-07
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6015625,
+     "r2_edges": 0.59375,
+     "column_var_spread": 4.053712465701409e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.59375,
+     "r2_edges": 0.5625,
+     "column_var_spread": 8.127420370040994e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6015625,
+     "r2_edges": 0.59375,
+     "column_var_spread": 7.216012787303328e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.19203413940256045,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 3.9802297124857944e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.19487908961593173,
+     "r2_edges": 0.5217391304347826,
+     "column_var_spread": 3.4111066415931646e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14366998577524892,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 7.561857973126251e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14366998577524892,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 3.176276208716189e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.14366998577524892,
+     "r2_edges": 0.4782608695652174,
+     "column_var_spread": 4.1706777254013616e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4921259842519685,
+     "r2_edges": 0.6176470588235294,
+     "column_var_spread": 3.901006628836967e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.484251968503937,
+     "r2_edges": 0.5882352941176471,
+     "column_var_spread": 4.024788480272434e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4921259842519685,
+     "r2_edges": 0.6176470588235294,
+     "column_var_spread": 2.1443079867289327e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4921259842519685,
+     "r2_edges": 0.6176470588235294,
+     "column_var_spread": 5.1326685124308824e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.484251968503937,
+     "r2_edges": 0.5882352941176471,
+     "column_var_spread": 2.8550372177527095e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49640287769784175,
+     "r2_edges": 0.53125,
+     "column_var_spread": 6.652167838794298e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.5035971223021583,
+     "r2_edges": 0.59375,
+     "column_var_spread": 2.993349090818498e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4892086330935252,
+     "r2_edges": 0.53125,
+     "column_var_spread": 6.422467380140517e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49640287769784175,
+     "r2_edges": 0.5625,
+     "column_var_spread": 7.799653811702001e-09
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.49640287769784175,
+     "r2_edges": 0.5625,
+     "column_var_spread": 6.72541738966359e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6504297994269341,
+     "r2_edges": 0.6,
+     "column_var_spread": 6.497744930999971e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217765042979942,
+     "r2_edges": 0.625,
+     "column_var_spread": 5.921813617248972e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6275071633237822,
+     "r2_edges": 0.625,
+     "column_var_spread": 6.912982386531041e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6446991404011462,
+     "r2_edges": 0.625,
+     "column_var_spread": 2.8928760720248192e-08
+    },
+    {
+     "file": "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6217765042979942,
+     "r2_edges": 0.625,
+     "column_var_spread": 4.847283208153641e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7945736434108527,
+     "r2_edges": 0.5795454545454546,
+     "column_var_spread": 1.293164325621987e-07
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7945736434108527,
+     "r2_edges": 0.5795454545454546,
+     "column_var_spread": 1.029768295079947e-07
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7945736434108527,
+     "r2_edges": 0.5795454545454546,
+     "column_var_spread": 6.409393371598071e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7945736434108527,
+     "r2_edges": 0.5795454545454546,
+     "column_var_spread": 8.268409801281962e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7945736434108527,
+     "r2_edges": 0.5795454545454546,
+     "column_var_spread": 4.9104249666420685e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.692,
+     "r2_edges": 0.5,
+     "column_var_spread": 4.118317431522911e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.74,
+     "r2_edges": 0.5277777777777778,
+     "column_var_spread": 2.1505559888446157e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.64,
+     "r2_edges": 0.5,
+     "column_var_spread": 3.274291704435939e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.784,
+     "r2_edges": 0.5,
+     "column_var_spread": 4.222237015572006e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.76,
+     "r2_edges": 0.5277777777777778,
+     "column_var_spread": 3.4109125968129206e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4676470588235294,
+     "r2_edges": 0.47560975609756095,
+     "column_var_spread": 6.533616581094748e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.45588235294117646,
+     "r2_edges": 0.45121951219512196,
+     "column_var_spread": 6.418554188147851e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4676470588235294,
+     "r2_edges": 0.47560975609756095,
+     "column_var_spread": 9.189466632086862e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.37941176470588234,
+     "r2_edges": 0.45121951219512196,
+     "column_var_spread": 7.379199340462606e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.40294117647058825,
+     "r2_edges": 0.4268292682926829,
+     "column_var_spread": 9.163453795757448e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6470588235294118,
+     "r2_edges": 0.7777777777777778,
+     "column_var_spread": 8.874519807910985e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6417112299465241,
+     "r2_edges": 0.75,
+     "column_var_spread": 8.26315235125108e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6417112299465241,
+     "r2_edges": 0.75,
+     "column_var_spread": 8.342919799453341e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6417112299465241,
+     "r2_edges": 0.75,
+     "column_var_spread": 9.793237232269547e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6417112299465241,
+     "r2_edges": 0.75,
+     "column_var_spread": 1.2810251071027068e-07
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4424778761061947,
+     "r2_edges": 0.7037037037037037,
+     "column_var_spread": 8.058402023447542e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4424778761061947,
+     "r2_edges": 0.7037037037037037,
+     "column_var_spread": 6.551811815302955e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4424778761061947,
+     "r2_edges": 0.7037037037037037,
+     "column_var_spread": 5.776054579076373e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4424778761061947,
+     "r2_edges": 0.7037037037037037,
+     "column_var_spread": 5.598311325627492e-08
+    },
+    {
+     "file": "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.4424778761061947,
+     "r2_edges": 0.7037037037037037,
+     "column_var_spread": 7.567342175107683e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7184466019417476,
+     "r2_edges": 0.6060606060606061,
+     "column_var_spread": 9.362773001342362e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7233009708737864,
+     "r2_edges": 0.6363636363636364,
+     "column_var_spread": 6.658089657385347e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7087378640776699,
+     "r2_edges": 0.6363636363636364,
+     "column_var_spread": 1.0266727312746582e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7087378640776699,
+     "r2_edges": 0.6363636363636364,
+     "column_var_spread": 1.1827185186774614e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7087378640776699,
+     "r2_edges": 0.6363636363636364,
+     "column_var_spread": 1.0086243129592276e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7204301075268817,
+     "r2_edges": 0.6046511627906976,
+     "column_var_spread": 8.304614074194916e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7670250896057348,
+     "r2_edges": 0.6046511627906976,
+     "column_var_spread": 2.4271603948911036e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7204301075268817,
+     "r2_edges": 0.6046511627906976,
+     "column_var_spread": 9.180039872713763e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7204301075268817,
+     "r2_edges": 0.6046511627906976,
+     "column_var_spread": 2.8841049881656033e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7670250896057348,
+     "r2_edges": 0.6046511627906976,
+     "column_var_spread": 5.4110136593621405e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6666666666666666,
+     "r2_edges": 0.7096774193548387,
+     "column_var_spread": 1.1773719843510833e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6666666666666666,
+     "r2_edges": 0.7096774193548387,
+     "column_var_spread": 1.0058318700156832e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6405228758169934,
+     "r2_edges": 0.7096774193548387,
+     "column_var_spread": 8.075426305431677e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6666666666666666,
+     "r2_edges": 0.7096774193548387,
+     "column_var_spread": 6.042708944331565e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6601307189542484,
+     "r2_edges": 0.6774193548387096,
+     "column_var_spread": 1.444003966399876e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8542713567839196,
+     "r2_edges": 0.7027027027027027,
+     "column_var_spread": 1.0847851705797495e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8492462311557789,
+     "r2_edges": 0.6756756756756757,
+     "column_var_spread": 5.4296604101722323e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8542713567839196,
+     "r2_edges": 0.7027027027027027,
+     "column_var_spread": 1.2164974783068772e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8492462311557789,
+     "r2_edges": 0.6756756756756757,
+     "column_var_spread": 7.823786429828061e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8542713567839196,
+     "r2_edges": 0.7027027027027027,
+     "column_var_spread": 7.044143968126804e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.33578431372549017,
+     "r2_edges": 0.4714285714285714,
+     "column_var_spread": 7.915464028673824e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.32598039215686275,
+     "r2_edges": 0.44285714285714284,
+     "column_var_spread": 6.236920757629605e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.32598039215686275,
+     "r2_edges": 0.44285714285714284,
+     "column_var_spread": 9.428671821076762e-08
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.33578431372549017,
+     "r2_edges": 0.4714285714285714,
+     "column_var_spread": 1.142260790398808e-07
+    },
+    {
+     "file": "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.33578431372549017,
+     "r2_edges": 0.4714285714285714,
+     "column_var_spread": 6.655311479697446e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8155339805825242,
+     "r2_edges": 0.6285714285714286,
+     "column_var_spread": 3.7424603638314125e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8058252427184466,
+     "r2_edges": 0.6285714285714286,
+     "column_var_spread": 6.663907914372658e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8155339805825242,
+     "r2_edges": 0.6285714285714286,
+     "column_var_spread": 6.183153045125067e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.7961165048543689,
+     "r2_edges": 0.6285714285714286,
+     "column_var_spread": 2.5131988046211973e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.8058252427184466,
+     "r2_edges": 0.6285714285714286,
+     "column_var_spread": 4.642956041855939e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.391304347826087,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 1.387379477968409e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.39855072463768115,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 2.0759539309800346e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.391304347826087,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 1.5722667279227664e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.39855072463768115,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 9.46452916039675e-09
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.39855072463768115,
+     "r2_edges": 0.39473684210526316,
+     "column_var_spread": 2.1533996807932e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6689655172413793,
+     "r2_edges": 0.6388888888888888,
+     "column_var_spread": 2.6492937177380327e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6275862068965518,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 6.925021844850221e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6620689655172414,
+     "r2_edges": 0.6388888888888888,
+     "column_var_spread": 3.316970731415125e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6275862068965518,
+     "r2_edges": 0.6111111111111112,
+     "column_var_spread": 2.2891932016655403e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6586206896551724,
+     "r2_edges": 0.625,
+     "column_var_spread": 1.7065138635530275e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.62,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 3.84190224078651e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6066666666666667,
+     "r2_edges": 0.5428571428571428,
+     "column_var_spread": 8.881424040652064e-09
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6066666666666667,
+     "r2_edges": 0.5428571428571428,
+     "column_var_spread": 6.702296373450878e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.6266666666666667,
+     "r2_edges": 0.6,
+     "column_var_spread": 1.2025089590750326e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.62,
+     "r2_edges": 0.5714285714285714,
+     "column_var_spread": 3.3037170332761434e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep000.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48673740053050396,
+     "r2_edges": 0.524390243902439,
+     "column_var_spread": 2.648228147883458e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep001.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.47877984084880637,
+     "r2_edges": 0.5487804878048781,
+     "column_var_spread": 5.746113596050151e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep002.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48673740053050396,
+     "r2_edges": 0.5487804878048781,
+     "column_var_spread": 4.4614809957543855e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep003.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.48408488063660476,
+     "r2_edges": 0.5487804878048781,
+     "column_var_spread": 5.61330015802497e-08
+    },
+    {
+     "file": "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep004.npz",
+     "var_paths": 0.5,
+     "var_edges": 0.5,
+     "r2_paths": 0.473474801061008,
+     "r2_edges": 0.5487804878048781,
+     "column_var_spread": 5.589096607749866e-08
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "producer": "analysis/rescore_controls_v2.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-33",
+  "BEN-07",
+  "REP-07",
+  "EXT-01"
+ ],
+ "regime": "per-row",
+ "regime_detail": "D for observational methods; D+I for GIES with targets",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "both arms reported",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "orientation_rule": "both reported: lower (authors') and random (expectation)",
+ "metric_defs": {
+  "S": "skeleton F1",
+  "c": "commit rate",
+  "q": "commit accuracy",
+  "a": "c q + (1 - c)/2",
+  "F1_random": "directed F1, undecided at random (per-file seed)",
+  "F1_lower": "directed F1, authors' rule (earlier column -> later column)",
+  "authors_rule_gain": "F1_lower(released) - F1_random(shuffled): published-style number minus the controlled one",
+  "conflict_rule_gain": "F1_random(released) - F1_random(shuffled)"
+ }
+}

@@ -1,0 +1,930 @@
+{
+ "plan": "Audit program DAG: research landscape, commercial landscape, wedge and paper",
+ "version": 1,
+ "drafted": "2026-10-12",
+ "status": "approved by Uzair 2026-10-12 (docs/decisions/2026-10-12_audit_dag.md)",
+ "relation_to_q1": "runs alongside plans/q1_dag.json; BND-12's second-model part moves into AB-06; AB-07 is DEC-02 (A3); AB-16 feeds DEC-01",
+ "scope": {
+  "audit_program": [
+   "AUD-33",
+   "AUD-34",
+   "AUD-35",
+   "AUD-36",
+   "AUD-37",
+   "AUD-38",
+   "AUD-39",
+   "AUD-40",
+   "AUD-41",
+   "AUD-42",
+   "AUD-43",
+   "AUD-44",
+   "AUD-45",
+   "AUD-46",
+   "AUD-47",
+   "AUD-48",
+   "DEC-05"
+  ],
+  "outside_bundles": []
+ },
+ "scope_note": "each bundle closes exactly one ticket (AUD-33..48, DEC-05), issued on approval 2026-10-12",
+ "landmark_criteria": {
+  "L1": "Layout and engine channels: on two public scoreboards, controlled re-scoring moves at least one published method by >= 0.05 F1 or changes a top-10 rank. Status 12 Oct: met on one board (PC -0.07 / +0.07 by column order; authors' rule +0.2 for FCI; the agent's PC copy wrong on 36% of perfect-information problems).",
+  "L2": "Name reliance across the field: >= 3 of >= 5 LLM-using systems lose >= 0.10 directed F1 from real to swapped names with shuffled columns, and a rho curve shows the dose response. Status: one system measured (Causal-Copilot 0.306 -> 0.142).",
+  "L3": "Decision value: on >= 2 benchmarks with interventions, most methods are within 0.05 of 'nothing moves' while the identifiable ceiling is >= 0.15 above the best. Status: met on CausalArena semantic and formula (12 Oct).",
+  "L4": "A constructive system: never below its data-only output on held-out data, bounded harm under swapped names, and decision-value precision at stated coverage >= 0.05 above the best reproduced method with calibration error <= 0.05, on >= 2 benchmarks. Status: format and verifier only.",
+  "L5": "Theory that explains the measurements: the F1 = S x a identity and error budget, bounded harm, order dependence of conflict rules, the decision-value ceiling. Status: identity checked numerically; rest to write.",
+  "C1": "Demand evidence: practitioners name decisions where provenance and abstention matter (interviews, teardown).",
+  "C2": "One vertical where order knowledge plus abstention measurably beats learned graphs (RCA probe).",
+  "C3": "A regulatory or standards hook that rewards the ledger's guarantees (map, venue)."
+ },
+ "kill_criteria": [
+  "if P9 is refuted (no agent loses >= 0.10 with swapped names), drop L2 as a headline and lead with L1 + L3",
+  "if P6 is refuted on a second benchmark (most methods clearly beat 'nothing moves'), L3 becomes a CausalArena-specific note",
+  "if no interviewee values provenance or abstention (P13 refuted), the product angle is shelved; the paper stands on L1-L3"
+ ],
+ "bundles": [
+  {
+   "id": "AB-01",
+   "title": "Controlled scoreboard, CausalArena complete",
+   "track": "research",
+   "depends_on": [],
+   "runner": "Claude (free compute)",
+   "window": [
+    "2026-10-12",
+    "2026-10-17"
+   ],
+   "closes": [
+    "AUD-33"
+   ],
+   "advances": [
+    "BEN-07",
+    "REP-07",
+    "EXT-01"
+   ],
+   "proposed_tickets": [
+    "AUD-33 controlled scoreboard complete"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "done 12 Oct: engine oracle (AUD-27), released vs shuffled re-score of PC/GES/FCI/LiNGAM/NOTEARS on semantic and formula (AUD-28), PC conflict-rule mechanism (AUD-28), sortability (AUD-29)",
+    "remaining: synthetic family; the D+I regime (GIES with the released targets, released vs shuffled); PC with maxP and with the order-free conservative rule on all families; a corrected leaderboard table (published, our released, our shuffled, rule used)"
+   ],
+   "predictions": [
+    "P1 GIES with targets gains under 0.01 from shuffling under the expectation rule and 0.01-0.04 under the authors' rule (refuted: |gain| > 0.05 expectation rule)",
+    "P2 PC with maxP: released and shuffled within 0.01 in all three families (refuted: > 0.03 in any)"
+   ],
+   "gates": [
+    "every published row we can run has released and shuffled numbers, both orientation rules, files paired"
+   ],
+   "must_show": [
+    "corrected leaderboard table",
+    "per-family layout gain by channel (authors' rule, conflict rule, engine copy)"
+   ],
+   "outputs": [
+    "analysis/results/rescore/ (extended)",
+    "analysis/reports/ab01_controlled_scoreboard.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L1"
+   ]
+  },
+  {
+   "id": "AB-02",
+   "title": "Second scoreboard: do the layout and conflict channels exist elsewhere?",
+   "track": "research",
+   "depends_on": [
+    "AB-01"
+   ],
+   "runner": "Claude (free compute)",
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ],
+   "closes": [
+    "AUD-34"
+   ],
+   "advances": [
+    "BEN-07",
+    "STR-01"
+   ],
+   "proposed_tickets": [
+    "AUD-34 second scoreboard"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "pick two public benchmarks with published per-method numbers and released files (candidates from AU2: CausalBench (Wang et al.), bnlearn networks as used by LLM papers, CausalTime, CIPCaD); measure column order vs causal order, R2-sortability, and the released vs shuffled re-score of PC/GES/FCI",
+    "record which published numbers can be reproduced within their reported error"
+   ],
+   "predictions": [
+    "P3 at least one of the two releases lists columns in an order correlated with causal order (Kendall tau > 0.3) (refuted: both < 0.1)",
+    "P4 PC's conflict-rule effect (released vs shuffled q) appears wherever columns follow causal order (refuted: |delta q| < 0.03 there)"
+   ],
+   "gates": [
+    "reproduction of at least two published rows per benchmark within reported error before any re-score claim"
+   ],
+   "must_show": [
+    "per-benchmark table: order correlation, sortability, layout gain per method"
+   ],
+   "outputs": [
+    "analysis/reports/ab02_second_scoreboard.md"
+   ],
+   "risks": [
+    "release formats differ; a benchmark may not publish per-method numbers we can reproduce"
+   ],
+   "serves": [
+    "L1"
+   ]
+  },
+  {
+   "id": "AB-03",
+   "title": "Engine forensics across the tools agents call",
+   "track": "research",
+   "depends_on": [],
+   "runner": "Claude (free compute)",
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ],
+   "closes": [
+    "AUD-35"
+   ],
+   "advances": [
+    "EXT-03",
+    "CAP-05",
+    "CAP-11"
+   ],
+   "proposed_tickets": [
+    "AUD-35 engine forensics"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "extend the oracle check (AUD-27) to every engine an audited agent or library ships: causal-learn GES/CD-NOD/GIN with oracle scores where defined, pgmpy PC, dodiscover PC/FCI, gCastle PC settings, Causal-Copilot's other algorithm copies; Tetrad via py-tetrad if Java runs; pcalg only if R installs on Uzair's machine",
+    "determinism: same inputs, three runs, threads and processes; time-series engines (Tigramite PCMCI) with an oracle",
+    "file upstream-style bug reports as drafts (EXT-03) for Uzair to send"
+   ],
+   "predictions": [
+    "P5 at least one more widely used engine besides gCastle original/stable returns a wrong skeleton under a perfect oracle (refuted: all others 100%)"
+   ],
+   "gates": [
+    "every engine version pinned by wheel hash; oracle runs reproducible from one command"
+   ],
+   "must_show": [
+    "engine defect table: exact rate, order invariance, determinism, defect class"
+   ],
+   "outputs": [
+    "analysis/results/engine_oracle/ (extended)",
+    "analysis/reports/ab03_engine_forensics.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L1",
+    "L4"
+   ]
+  },
+  {
+   "id": "AB-04",
+   "title": "Decision-value scoreboard",
+   "track": "research",
+   "depends_on": [
+    "AB-01"
+   ],
+   "runner": "Claude (free compute)",
+   "window": [
+    "2026-10-14",
+    "2026-10-28"
+   ],
+   "closes": [
+    "AUD-36"
+   ],
+   "advances": [
+    "TGT-15",
+    "TGT-16",
+    "EVL-03",
+    "CAP-15"
+   ],
+   "proposed_tickets": [
+    "AUD-36 decision-value scoreboard"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "DV-1 (done 12 Oct on CausalArena, AUD-30) extended to: the synthetic family; Causal Chambers obs+int sample (53 regimes, physical ground truth); Sachs with its real interventions",
+    "DV-2: regret of choosing an intervention target to move a named outcome, vs random and vs the true graph",
+    "risk-coverage curves from bootstrap frequencies (no calibration yet); AID next to F1 for every method",
+    "the 'nothing moves' and 'everything downstream of inputs' baselines on every benchmark",
+    "usefulness threshold: the precision at stated coverage at which acting on the learned graph beats acting on 'nothing moves' or on a declared topology, measured as DV-2 regret, with the costs of wrong claims taken from AB-10's interviews"
+   ],
+   "predictions": [
+    "P6 on every benchmark, at most two of the reproduced methods beat the empty graph's committed-claim precision by more than 0.05 (refuted: four or more do)",
+    "P7 the true-CPDAG ceiling exceeds the best method by at least 0.15 on every benchmark (refuted: < 0.05 anywhere)"
+   ],
+   "gates": [
+    "baselines and ceilings computed on exactly the files each method finished; claims checked against truth; data-checked agreement reported only with the true DAG's own agreement as its ceiling"
+   ],
+   "must_show": [
+    "decision-value table across benchmarks",
+    "risk-coverage figure",
+    "F1 vs DV scatter"
+   ],
+   "outputs": [
+    "analysis/results/decision_value/ (extended)",
+    "analysis/reports/ab04_decision_value.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L3"
+   ]
+  },
+  {
+   "id": "AB-05",
+   "title": "LIVE (small): agent probes, install and one-run cost per agent",
+   "track": "research",
+   "depends_on": [],
+   "runner": "Uzair (live)",
+   "window": [
+    "2026-10-14",
+    "2026-10-20"
+   ],
+   "closes": [
+    "AUD-37"
+   ],
+   "advances": [
+    "STR-01"
+   ],
+   "proposed_tickets": [
+    "AUD-37 agent probes"
+   ],
+   "llm_cost": "one run per agent on one public scenario: Vashishtha et al. order elicitor, PyWhy-LLM pairwise, MATMCD, causaliq-knowledge, Causal-Copilot on a second model; cap $5 in total",
+   "approval_needed": "approved 2026-10-12 ($5 cap)",
+   "uzair_actions": [
+    "approve the cap",
+    "cc.ps1 plan plans/ab05_probe_<agent>.json for each"
+   ],
+   "parts": [
+    "Claude installs each agent in the harness offline, runs it with the stub model, measures calls and tokens per run",
+    "Uzair runs one live call set per agent; the plan file caps tokens"
+   ],
+   "predictions": [
+    "P8 at least three of the five agents run end to end on a 20-40 variable CausalArena scenario (refuted: one or none)"
+   ],
+   "gates": [
+    "no key in any log; every call recorded; repo byte-identical"
+   ],
+   "must_show": [
+    "per-agent: installs, runs, calls, tokens, cost, wall time, failure points"
+   ],
+   "outputs": [
+    "analysis/results/agent_probes/",
+    "plans/ab05_probe_*.json"
+   ],
+   "risks": [
+    "licences: Takayama, ILS-CSL, ArgCausalDisco have none; run for evaluation only, never redistribute wrappers"
+   ],
+   "serves": [
+    "L2"
+   ]
+  },
+  {
+   "id": "AB-06",
+   "title": "LIVE: field audit under names x layout controls",
+   "track": "research",
+   "depends_on": [
+    "AB-05",
+    "AB-04",
+    "AB-01"
+   ],
+   "runner": "Uzair (live)",
+   "window": [
+    "2026-10-21",
+    "2026-11-14"
+   ],
+   "closes": [
+    "AUD-38"
+   ],
+   "advances": [
+    "STR-01",
+    "RQ-05",
+    "RQ-17",
+    "AUD-13"
+   ],
+   "proposed_tickets": [
+    "AUD-38 field audit"
+   ],
+   "llm_cost": "set from AB-05: about 3 arms x 10 dev scenarios x the agents that ran; Causal-Copilot $0.46/run measured; budget proposed in the AB-05 report before any spend",
+   "approval_needed": "yes",
+   "uzair_actions": [
+    "approve budget from AB-05",
+    "run the plan files"
+   ],
+   "parts": [
+    "arms: real / neutral / swapped names, all with shuffled columns; each agent's own data-only mode where it has one",
+    "scores: F1, S/c/q, DV-1, name-reliance (swapped minus real, per edge provenance where logged)",
+    "absorbs BND-12's second-model part for Causal-Copilot"
+   ],
+   "predictions": [
+    "P9 at least three agents lose >= 0.10 directed F1 from real to swapped names (refuted: none does)",
+    "P10 at least one agent scores below its own data-only output with real names on DV-1 (refuted: all at or above)"
+   ],
+   "gates": [
+    "thresholds hashed into the plan before the calls; dev split only; held-out reserved"
+   ],
+   "must_show": [
+    "per agent x arm table",
+    "name-reliance figure",
+    "where each agent's directions come from (provenance shares)"
+   ],
+   "outputs": [
+    "analysis/results/field_audit/",
+    "analysis/reports/ab06_field_audit.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L2"
+   ]
+  },
+  {
+   "id": "AB-07",
+   "title": "LIVE: knowledge elicitation (A3), what can a model supply?",
+   "track": "research",
+   "depends_on": [
+    "AB-01"
+   ],
+   "runner": "Uzair (live)",
+   "window": [
+    "2026-10-16",
+    "2026-10-28"
+   ],
+   "closes": [
+    "AUD-48"
+   ],
+   "advances": [
+    "RQ-10",
+    "RQ-11",
+    "RQ-12",
+    "RQ-13",
+    "RQ-14",
+    "CAP-04",
+    "BLD-04"
+   ],
+   "proposed_tickets": [
+    "AUD-48 knowledge elicitation run (A3)"
+   ],
+   "llm_cost": "about 900 short calls (DEC-02): tiers only, three phrasings, three name arms, 50 semantic + 50 formula scenarios",
+   "approval_needed": "approved 2026-10-12 (DEC-02)",
+   "uzair_actions": [
+    "decide DEC-02",
+    "run the plan file"
+   ],
+   "parts": [
+    "prompt and thresholds hashed before the calls (O1-O5 of program v2)",
+    "post-cutoff and fictitious-name controls from AU2 (Srivastava graphs, Feng et al. design) on a subset"
+   ],
+   "predictions": [
+    "O1-O5 as pre-registered in program v2"
+   ],
+   "gates": [
+    "DEC-02 approved (done 2026-10-12)"
+   ],
+   "must_show": [
+    "O1-O5 verdicts",
+    "tier accuracy by arm",
+    "regression on model tiers vs 0.634 / 0.524"
+   ],
+   "outputs": [
+    "analysis/results/a3_elicitation/",
+    "analysis/reports/ab07_knowledge_elicitation.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L2",
+    "L4"
+   ]
+  },
+  {
+   "id": "AB-08",
+   "title": "Name-reliance benchmark (decoupled semantics, B2)",
+   "track": "research",
+   "depends_on": [
+    "AB-04"
+   ],
+   "runner": "Claude (free to build); agent runs inside AB-06's budget",
+   "window": [
+    "2026-10-21",
+    "2026-11-14"
+   ],
+   "closes": [
+    "AUD-39"
+   ],
+   "advances": [
+    "STR-02",
+    "EVL-02"
+   ],
+   "proposed_tickets": [
+    "AUD-39 name-reliance benchmark"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "generator: CausalArena's released SCM sampler (or our own) with names taken from a second plausible system whose graph disagrees with the data on a set fraction rho of edges (rho = 0, 0.25, 0.5, 0.75, 1)",
+    "ArenaShuffle overlay (B1): server-side arms, declared regime, scored confidence matrices",
+    "scorer: AB-04's DV metrics plus per-edge provenance"
+   ],
+   "predictions": [
+    "P11 for name-reading agents, directed F1 falls monotonically in rho (Spearman <= -0.8) (refuted: no trend)"
+   ],
+   "gates": [
+    "the generator's own sortability and layout reported; columns always shuffled"
+   ],
+   "must_show": [
+    "rho curve per method",
+    "benchmark card"
+   ],
+   "outputs": [
+    "benchmarks/name_reliance/",
+    "analysis/reports/ab08_name_reliance.md"
+   ],
+   "risks": [
+    "choosing 'plausible' second systems needs care; an LLM may be used to propose names, recorded as knowledge with hashes"
+   ],
+   "serves": [
+    "L2",
+    "L3"
+   ]
+  },
+  {
+   "id": "AB-09",
+   "title": "Theory pack",
+   "track": "research",
+   "depends_on": [],
+   "runner": "Claude",
+   "window": [
+    "2026-10-15",
+    "2026-11-07"
+   ],
+   "closes": [
+    "AUD-40"
+   ],
+   "advances": [
+    "RQ-04",
+    "RQ-06"
+   ],
+   "proposed_tickets": [
+    "AUD-40 theory pack"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "F1 = S x a identity and the three-term error budget (identifiability, finite sample, algorithm), with the per-scenario proof",
+    "bounded harm under I5: wrong knowledge can cost at most the directions it decided; tight example",
+    "order dependence of PC's collider conflict rules and why maxP removes it; the decision-value ceiling of the CPDAG",
+    "each statement checked numerically on CausalArena files"
+   ],
+   "predictions": [
+    "P12 every statement holds on all 500 public files to numerical precision (refuted: any counterexample, then restate)"
+   ],
+   "gates": [
+    "no statement beyond what AU3's references support"
+   ],
+   "must_show": [
+    "proof notes",
+    "numerical checks"
+   ],
+   "outputs": [
+    "analysis/theory/",
+    "analysis/reports/ab09_theory.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L5"
+   ]
+  },
+  {
+   "id": "AB-10",
+   "title": "Practitioner interviews",
+   "track": "commercial",
+   "depends_on": [],
+   "runner": "Uzair (interviews); Claude prepares and synthesises",
+   "window": [
+    "2026-10-14",
+    "2026-11-07"
+   ],
+   "closes": [
+    "AUD-41"
+   ],
+   "advances": [
+    "STR-06"
+   ],
+   "proposed_tickets": [
+    "AUD-41 practitioner interviews"
+   ],
+   "llm_cost": "none",
+   "approval_needed": "yes",
+   "uzair_actions": [
+    "recruit and run the interviews"
+   ],
+   "parts": [
+    "screener and interview guide (Claude); 5-8 interviews: IT operations / SRE, marketing science, real-world evidence, policy analytics",
+    "hypotheses: H1 they would use per-claim provenance and abstention; H2 they ask intervention questions, not graph questions; H3 a name/semantic dependence audit of their LLM tools is worth paying for",
+    "check with the course staff whether informal interviews need any human-subjects review before starting"
+   ],
+   "predictions": [
+    "P13 at least half of interviewees name a decision where 'which causes, how sure' matters more than the full graph (refuted: under a quarter)"
+   ],
+   "gates": [
+    "notes stored without personal data beyond role and sector"
+   ],
+   "must_show": [
+    "interview synthesis with quotes paraphrased"
+   ],
+   "outputs": [
+    "docs/interviews/ (role-coded)",
+    "analysis/reports/ab10_interviews.md"
+   ],
+   "risks": [],
+   "serves": [
+    "C1"
+   ]
+  },
+  {
+   "id": "AB-11",
+   "title": "Competitive teardown",
+   "track": "commercial",
+   "depends_on": [
+    "AB-04"
+   ],
+   "runner": "Claude (desk + free compute)",
+   "window": [
+    "2026-10-15",
+    "2026-10-31"
+   ],
+   "closes": [
+    "AUD-42"
+   ],
+   "advances": [
+    "STR-06",
+    "CAP-09"
+   ],
+   "proposed_tickets": [
+    "AUD-42 competitive teardown"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "hands-on with open tools (DoWhy + causal-learn, Tetrad, pgmpy, PyWhy-LLM, Causal-Copilot) on one public scenario: what each outputs, what it claims, whether it would pass the ledger verifier's checks, its decision-value score",
+    "vendor documentation for closed tools (causaLens, Causely, Datadog, Dynatrace): claimed guarantees and formats only, labelled as claims"
+   ],
+   "predictions": [
+    "P14 no tool records a per-direction source (refuted: any does)"
+   ],
+   "gates": [
+    "vendor claims never presented as measurements"
+   ],
+   "must_show": [
+    "teardown table"
+   ],
+   "outputs": [
+    "analysis/reports/ab11_teardown.md"
+   ],
+   "risks": [],
+   "serves": [
+    "C1",
+    "L4"
+   ]
+  },
+  {
+   "id": "AB-12",
+   "title": "Vertical probe: root-cause analysis",
+   "track": "commercial",
+   "depends_on": [
+    "AB-04"
+   ],
+   "runner": "Claude (free compute)",
+   "window": [
+    "2026-10-20",
+    "2026-11-07"
+   ],
+   "closes": [
+    "AUD-43"
+   ],
+   "advances": [
+    "STR-06"
+   ],
+   "proposed_tickets": [
+    "AUD-43 RCA vertical probe"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "RCAEval (or PetShop) incidents: learned-graph RCA vs BARO vs declared topology; add abstention and name-swapped service names",
+    "measure top-k accuracy, abstention value, and name dependence"
+   ],
+   "predictions": [
+    "P15 declared topology plus abstention beats learned-graph RCA on AC@3 by >= 0.1 (refuted: < 0.03)"
+   ],
+   "gates": [
+    "datasets reachable from the sandbox or from Uzair's machine"
+   ],
+   "must_show": [
+    "RCA table",
+    "what a ledger adds here"
+   ],
+   "outputs": [
+    "analysis/results/rca_probe/",
+    "analysis/reports/ab12_rca_probe.md"
+   ],
+   "risks": [
+    "egress may block the datasets; then Uzair downloads them"
+   ],
+   "serves": [
+    "C2"
+   ]
+  },
+  {
+   "id": "AB-13",
+   "title": "Regulation and standards map",
+   "track": "commercial",
+   "depends_on": [],
+   "runner": "Claude (desk)",
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ],
+   "closes": [
+    "AUD-44"
+   ],
+   "advances": [
+    "CAP-09",
+    "EXT-02"
+   ],
+   "proposed_tickets": [
+    "AUD-44 regulation map"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "FDA RWE guidance, EMA qualification (PROCOVA precedent), ICH E9(R1), EU AI Act record-keeping, SR 26-2, TARGET/STROBE: requirement -> ledger field matrix",
+    "one venue where a claim format could be proposed (a reporting guideline, a W3C PROV profile, a pharma consortium)"
+   ],
+   "predictions": [
+    "none (desk map)"
+   ],
+   "gates": [
+    "primary texts only; summaries labelled second-hand"
+   ],
+   "must_show": [
+    "requirement -> field matrix"
+   ],
+   "outputs": [
+    "analysis/reports/ab13_regulation_map.md"
+   ],
+   "risks": [],
+   "serves": [
+    "C3"
+   ]
+  },
+  {
+   "id": "AB-14",
+   "title": "Market and go-to-market hypotheses",
+   "track": "commercial",
+   "depends_on": [
+    "AB-10",
+    "AB-13"
+   ],
+   "runner": "Claude (desk)",
+   "window": [
+    "2026-10-27",
+    "2026-11-12"
+   ],
+   "closes": [
+    "AUD-45"
+   ],
+   "advances": [
+    "STR-06"
+   ],
+   "proposed_tickets": [
+    "AUD-45 market hypotheses"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "bottom-up estimates for two verticals (IT incident analysis, marketing measurement) from public pricing; buyer, budget line, channel; every figure labelled estimate with its inputs"
+   ],
+   "predictions": [
+    "none"
+   ],
+   "gates": [
+    "no number without its inputs"
+   ],
+   "must_show": [
+    "two one-page vertical briefs"
+   ],
+   "outputs": [
+    "analysis/reports/ab14_market.md"
+   ],
+   "risks": [],
+   "serves": [
+    "C3"
+   ]
+  },
+  {
+   "id": "AB-15",
+   "title": "Positioning closure",
+   "track": "wedge",
+   "depends_on": [],
+   "runner": "Claude (desk)",
+   "window": [
+    "2026-10-12",
+    "2026-10-22"
+   ],
+   "closes": [
+    "AUD-46"
+   ],
+   "advances": [
+    "DOM-07"
+   ],
+   "proposed_tickets": [
+    "AUD-46 positioning closure"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "read what AU1-AU8 left unread that touches our claims: CausalArena appendices B-C, CausalVerify, ReplaySCM, CARE, MosaCD, Kitson & Constantinou 2026, Li & Russo, CausalDS, ACDB, CausaLab",
+    "nearest-neighbour matrix: for each of our candidate claims L1-L5, the closest prior result and the difference"
+   ],
+   "predictions": [
+    "none"
+   ],
+   "gates": [
+    "every claim of novelty bounded by the searches recorded"
+   ],
+   "must_show": [
+    "novelty matrix"
+   ],
+   "outputs": [
+    "analysis/reports/ab15_positioning.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+   ]
+  },
+  {
+   "id": "AB-16",
+   "title": "Wedge decision (gate)",
+   "track": "wedge",
+   "depends_on": [
+    "AB-01",
+    "AB-02",
+    "AB-03",
+    "AB-04",
+    "AB-05",
+    "AB-09",
+    "AB-10",
+    "AB-11",
+    "AB-15"
+   ],
+   "runner": "Uzair decides; Claude prepares",
+   "window": [
+    "2026-11-03",
+    "2026-11-14"
+   ],
+   "closes": [
+    "DEC-05"
+   ],
+   "advances": [
+    "DEC-01"
+   ],
+   "proposed_tickets": [
+    "DEC-05 wedge and venue"
+   ],
+   "llm_cost": "none",
+   "approval_needed": "yes",
+   "uzair_actions": [
+    "decide"
+   ],
+   "parts": [
+    "score each landmark criterion L1-L5 and C1-C3 with the evidence in hand; choose the paper's spine and the venue; set the Q2 build",
+    "if AB-06 has not finished, decide on its interim results"
+   ],
+   "predictions": [
+    "none (decision)"
+   ],
+   "gates": [
+    "decision recorded as a DEC ticket with the evidence it rests on"
+   ],
+   "must_show": [
+    "wedge memo"
+   ],
+   "outputs": [
+    "analysis/reports/ab16_wedge_decision.md"
+   ],
+   "risks": [],
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "C1",
+    "C2",
+    "C3"
+   ]
+  },
+  {
+   "id": "AB-17",
+   "title": "Paper skeleton and pre-registration",
+   "track": "wedge",
+   "depends_on": [
+    "AB-16"
+   ],
+   "runner": "Claude",
+   "window": [
+    "2026-11-10",
+    "2026-11-21"
+   ],
+   "closes": [
+    "AUD-47"
+   ],
+   "advances": [
+    "EXT-04"
+   ],
+   "proposed_tickets": [
+    "AUD-47 paper skeleton"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "claims list, figure plan, and the predictions for every remaining run hashed into a manifest before the runs"
+   ],
+   "predictions": [
+    "none"
+   ],
+   "gates": [
+    "manifest committed before any held-out run"
+   ],
+   "must_show": [
+    "skeleton",
+    "manifest"
+   ],
+   "outputs": [
+    "docs/paper/skeleton.md",
+    "manifests/evidence/paper_prereg_<date>.sha256"
+   ],
+   "risks": [],
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+   ]
+  }
+ ],
+ "milestones": [
+  {
+   "id": "AM-1",
+   "title": "Controlled scoreboard and decision value published internally",
+   "date": "2026-10-28",
+   "requires": [
+    "AB-01",
+    "AB-04"
+   ]
+  },
+  {
+   "id": "AM-2",
+   "title": "Wedge decision",
+   "date": "2026-11-14",
+   "requires": [
+    "AB-16"
+   ]
+  },
+  {
+   "id": "AM-3",
+   "title": "Paper skeleton and pre-registration",
+   "date": "2026-11-21",
+   "requires": [
+    "AB-17"
+   ]
+  }
+ ]
+}

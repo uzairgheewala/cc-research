@@ -1,0 +1,759 @@
+{
+  "audit": "AU8",
+  "question": "How are causal-analysis tools delivered, what do users and regulators need from their outputs, what do users complain about, and what should the claim ledger's outputs and interface look like to be adopted?",
+  "written": "2026-10-12",
+  "tickets": [
+    "AUD-25 ",
+    "CAP-09",
+    "EXT-02"
+  ],
+  "schema": {
+    "kind": "delivery_mode | output_requirement | regulator_requirement | complaint",
+    "name": "short name of the mode, requirement or complaint",
+    "example_tools": "tools or documents where it appears",
+    "who_needs_it": "user group that needs it or complains",
+    "what_is_required_or_complained": "the requirement or complaint, paraphrased",
+    "evidence": "quote under 15 words or paraphrase, with label reported / claim (vendor) / second-hand / our reading",
+    "implication_for_us": "what it changes for the claim ledger",
+    "sources": "URLs read on 2026-10-12"
+  },
+  "rows": [
+    {
+      "kind": "delivery_mode",
+      "name": "Desktop GUI for search and knowledge editing",
+      "example_tools": [
+        "Tetrad GUI"
+      ],
+      "who_needs_it": "methodologists, applied researchers without programming",
+      "what_is_required_or_complained": "Point-and-click workflow boxes for data, knowledge (tiers, forbidden/required edges), search, estimation; 20+ algorithms incl. latent-confounder methods.",
+      "evidence": "Tetrad describes itself as a suite for 'simulating, estimating, and searching' graphical causal models; a 2025 user thread (#1905, 45 comments) starts with a beginner unable to wire GUI boxes despite tutorials (paraphrase).",
+      "implication_for_us": "A GUI is not where the ledger should start; but Tetrad's knowledge model (tiers, forbidden, required) is the de-facto vocabulary for K evidence and should be importable.",
+      "sources": [
+        "https://www.cmu.edu/dietrich/philosophy/tetrad/",
+        "https://github.com/cmu-phil/tetrad/issues/1905"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Command-line tool with file outputs",
+      "example_tools": [
+        "causal-cmd (Tetrad CLI)"
+      ],
+      "who_needs_it": "researchers scripting batch runs, pipelines",
+      "what_is_required_or_complained": "Writes <algorithm>_<timestamp>.txt holding run log, parameters and graph; --json-graph writes a JSON graph equal to the GUI export; --knowledge file with addtemporal / forbiddirect / requiredirect; bootstrap options incl. ensemble rule and --seed.",
+      "evidence": "Docs: default output is one text file with log, parameters and edges; JSON graph optional; seed -1 means off (paraphrase).",
+      "implication_for_us": "Closest existing 'run record': parameters and graph in one file. The ledger CLI should read causal-cmd knowledge files and emit JSON graphs Tetrad can load, plus what causal-cmd lacks: per-edge evidence and data/software hashes.",
+      "sources": [
+        "https://bd2kccd.github.io/docs/causal-cmd/",
+        "https://github.com/bd2kccd/causal-cmd",
+        "https://www.cmu.edu/dietrich/philosophy/tetrad/use-tetrad/command-line-tetrad.html"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Python / R library bindings",
+      "example_tools": [
+        "causal-learn",
+        "py-tetrad / rpy-tetrad",
+        "pcalg (R)",
+        "bnlearn (R)",
+        "DoWhy"
+      ],
+      "who_needs_it": "researchers, data scientists",
+      "what_is_required_or_complained": "Functions returning graph objects (CPDAG/PAG, bootstrap strengths); users assemble their own reports.",
+      "evidence": "In a 2026 scoping review of 72 medical causal-discovery studies, R was the most used software (22 studies; pcalg most cited), Tetrad 10, Python 7; 27 (37.5%) gave no software details (reported).",
+      "implication_for_us": "Primary delivery for researchers should be a Python library with an R path (reticulate), because that is what applied papers actually cite; the ledger object must be returned by the library, not only rendered.",
+      "sources": [
+        "https://medinform.jmir.org/2026/1/e82499",
+        "https://arxiv.org/abs/2308.07346",
+        "https://www.pywhy.org/dowhy/main/"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Notebooks and example galleries",
+      "example_tools": [
+        "DoWhy example notebooks",
+        "causal-learn docs",
+        "Causalvis widgets"
+      ],
+      "who_needs_it": "data scientists learning or adapting a method",
+      "what_is_required_or_complained": "Worked notebooks per problem; DoWhy frames analysis as model, identify, estimate, refute with assumptions as 'first-class citizens'.",
+      "evidence": "DoWhy docs: assumptions viewable as a graph or CI statements and tested 'wherever possible' (paraphrase). Causalvis authors report analysts rely on visual checks but toolkits miss steps and do not fit analysts' environments (reported, expert feedback only).",
+      "implication_for_us": "Ship a notebook that renders the ledger inline (per-edge drill-down) and a Jupyter widget; mirror DoWhy's 'assumptions are first-class' language so analysts recognise it.",
+      "sources": [
+        "https://www.pywhy.org/dowhy/main/",
+        "https://arxiv.org/abs/2303.00617"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Browser app for declared DAGs",
+      "example_tools": [
+        "DAGitty (web + R package)"
+      ],
+      "who_needs_it": "epidemiologists, reviewers, teachers",
+      "what_is_required_or_complained": "Draw a DAG in the browser, compute adjustment sets, share the model code.",
+      "evidence": "DAGitty is browser-based, needs no install, and has had DAG sharing since v2.2 (2014) (paraphrase of site).",
+      "implication_for_us": "Export ledger graphs in DAGitty syntax so epidemiologists can inspect and reuse them; a shareable model string is a cheap 'third-party view'.",
+      "sources": [
+        "https://dagitty.net/"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "No-code UI over open libraries",
+      "example_tools": [
+        "ShowWhy (Microsoft)"
+      ],
+      "who_needs_it": "business analysts without code",
+      "what_is_required_or_complained": "Four no-code interfaces (data wrangling, exposure analysis with DoWhy refuters, event analysis, discovery with Causica/NOTEARS/DirectLiNGAM).",
+      "evidence": "Repository 'archived by the owner on Dec 17, 2025' and no longer maintained (quoted from repo page).",
+      "implication_for_us": "No-code front ends for causal analysis have not survived; do not build one in the capstone. Evidence that a GUI alone does not create adoption.",
+      "sources": [
+        "https://github.com/microsoft/showwhy"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Enterprise platform / agent product",
+      "example_tools": [
+        "causaLens Digital Workers",
+        "CausalNex (McKinsey/QuantumBlack)",
+        "Causica (Microsoft)"
+      ],
+      "who_needs_it": "enterprise analytics teams",
+      "what_is_required_or_complained": "Packaged agents or libraries sold or released by companies; causaLens now sells 'Digital Workers' in docker images with an audit-trail governance layer.",
+      "evidence": "claim (vendor): every worker has 'full audit trails and automated evaluation'; no technical detail. CausalNex 'reached end of life' 24 June 2026 (repo page). Causica refactored, some models removed (README).",
+      "implication_for_us": "Vendors market audit trails without saying what they contain; a published, checkable ledger schema is a differentiator. Library abandonment (ShowWhy, CausalNex) is a real adoption risk users will ask about.",
+      "sources": [
+        "https://causalens.com/",
+        "https://github.com/mckinsey/causalnex",
+        "https://github.com/microsoft/causica"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Literature-knowledge platform with cited answers",
+      "example_tools": [
+        "Causaly"
+      ],
+      "who_needs_it": "life-science R&D teams",
+      "what_is_required_or_complained": "Chat over a knowledge graph of directional relationships extracted from literature, with cited answers.",
+      "evidence": "claim (vendor): '500M facts and 70M directional relationships'; returns 'cited' and 'traceable' evidence; per-relationship provenance not described on the page.",
+      "implication_for_us": "Declared knowledge (K) could come from such sources; the ledger should accept K items carrying a citation (document id, span) and keep them separate from data evidence.",
+      "sources": [
+        "https://www.causaly.com/"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "LLM agent that ends in a PDF report",
+      "example_tools": [
+        "Causal-Copilot (CLI, Gradio web demo, LaTeX PDF)"
+      ],
+      "who_needs_it": "non-expert users; researchers wanting a turnkey run",
+      "what_is_required_or_complained": "Upload data plus a natural-language query; LLM selects algorithm and hyperparameters, runs it, bootstraps, LLM prunes/orients, writes a LaTeX/PDF report; web demo exports JSON and a zip.",
+      "evidence": "Paper: an LLM 'populates a pre-designed LaTeX template'; no user study or report evaluation reported (reported). Code: CLI writes report.pdf/.tex/.txt and figures; JSON export only in the web-demo path (our reading).",
+      "implication_for_us": "The PDF-report form is attractive to non-experts but the prose is model-written; our report must be generated deterministically from the ledger, with any LLM text marked as commentary.",
+      "sources": [
+        "https://arxiv.org/html/2504.13263",
+        "https://github.com/Lancelot39/Causal-Copilot"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "LLM chat agents for effect estimation",
+      "example_tools": [
+        "CAIS (Causal AI Scientist)",
+        "CATE-B",
+        "LLM4Causal",
+        "Causal Agent (Han et al.)",
+        "CausalAgent (Zhu et al.)"
+      ],
+      "who_needs_it": "analysts asking effect questions in natural language",
+      "what_is_required_or_complained": "Chat or query front end; method choice by decision tree (CAIS) or LLM; some keep a state store (CATE-B 'state bank', CAIS state_manager); LLM4Causal turns queries into JSON task specs.",
+      "evidence": "Prior note cluster2: CAIS and CATE-B describe state stores and decision logging, but none records per final edge which stage made it. CAIS docs list state_manager, decision_tree and format_output modules but the page body did not describe outputs (read 2026-10-12).",
+      "implication_for_us": "A chat interface is a plausible analyst front end, but only as a reader of the ledger; the agent should not write edges (cf. Zheng et al.).",
+      "sources": [
+        "https://causal-agent.readthedocs.io/en/latest/theory/agent_architecture.html",
+        "https://arxiv.org/abs/2508.10581",
+        "https://arxiv.org/abs/2312.17122",
+        "https://arxiv.org/abs/2408.06849",
+        "https://arxiv.org/abs/2602.11527"
+      ]
+    },
+    {
+      "kind": "delivery_mode",
+      "name": "Hosted platform where the agent may not supply edges",
+      "example_tools": [
+        "causal-learn+ (Zheng, Verma, Gill, Dai, Spirtes, Zhang 2026)"
+      ],
+      "who_needs_it": "researchers who want agent help without agent-made claims",
+      "what_is_required_or_complained": "Agent coordinates tools and explains assumptions; it 'should not supply edges, orientations, priors' (per prior note).",
+      "evidence": "Prior note cluster2/cluster6: calls for audit trails that separate data, assumptions, agent recommendations, user decisions and algorithm outputs; logs run-level choices only; audit trails left as future work.",
+      "implication_for_us": "Direct statement of the user need the ledger fills; position our ledger as the audit trail they call for, with per-mark derivations.",
+      "sources": [
+        "https://arxiv.org/abs/2606.23608"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Typed graph marks preserved end to end",
+      "example_tools": [
+        "Tetrad JSON graph",
+        "causal-learn GeneralGraph",
+        "PAG endpoint marks"
+      ],
+      "who_needs_it": "researchers, downstream estimators",
+      "what_is_required_or_complained": "Outputs must keep CPDAG/PAG semantics (o->, <->, undirected) rather than forcing a DAG.",
+      "evidence": "causal-learn #266: FCI with knowledge turned a correct Z o-> Y into Z --> Y, asserting ancestry and no confounding the knowledge did not license (paraphrase). Our scope note: Causal-Copilot effect estimation treats <-> and o-> as parents.",
+      "implication_for_us": "Each claim record stores endpoint marks separately (two endpoints), plus 'abstain' as an explicit value; never collapse to a directed edge without a recorded rule.",
+      "sources": [
+        "https://github.com/py-why/causal-learn/issues/266",
+        "https://github.com/cmu-phil/tetrad/issues/1954"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Adjacency confidence separate from orientation confidence",
+      "example_tools": [
+        "bnlearn boot.strength",
+        "causal-cmd bootstrap ensembles",
+        "ETIA edge confidence"
+      ],
+      "who_needs_it": "researchers, analysts deciding which edges to trust",
+      "what_is_required_or_complained": "Report existence probability and direction probability conditional on existence as separate numbers.",
+      "evidence": "bnlearn: strength is the empirical bootstrap frequency of the arc; direction is the probability of each direction given the arc is present (paraphrase); averaged.network thresholds strength.",
+      "implication_for_us": "Our measured decomposition (directed F1 = skeleton F1 x direction accuracy) maps exactly onto this two-number record; adopt bnlearn's semantics and names where possible.",
+      "sources": [
+        "https://www.bnlearn.com/documentation/man/arc.strength.html"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Per-edge justification with a cited source",
+      "example_tools": [
+        "DAG reporting in epidemiology"
+      ],
+      "who_needs_it": "reviewers, journal editors, regulators",
+      "what_is_required_or_complained": "Each arc (and each omitted arc) justified by theory or evidence; estimand and adjustment set stated.",
+      "evidence": "Tennant et al. 2021 (IJE): of 144 articles showing a DAG, 8 (6%) cited sources to justify arcs; 48 of 234 (21%) stated their estimand; none tested DAG-data compatibility (reported).",
+      "implication_for_us": "Per-claim provenance is exactly what the reporting literature finds missing; the ledger's per-edge support list answers recommendation 5 (justify arcs) automatically.",
+      "sources": [
+        "https://eprints.whiterose.ac.uk/id/eprint/180527/1/dyaa213.pdf"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Provenance graph in a W3C standard",
+      "example_tools": [
+        "W3C PROV-O / PROV-DM",
+        "PROV-AGENT"
+      ],
+      "who_needs_it": "auditors, tool builders, archivists",
+      "what_is_required_or_complained": "Entity / Activity / Agent with wasGeneratedBy, used, wasDerivedFrom, wasAttributedTo; qualified derivations can name the activity and usage.",
+      "evidence": "PROV-O is a W3C Recommendation of 30 April 2013; qualifiedDerivation points to a Derivation citing activity, usage and generation (paraphrase). Prior note cluster3: no published application to causal-discovery output found.",
+      "implication_for_us": "Export each claim as a prov:Entity derived (qualifiedDerivation) from test, rule, intervention and knowledge activities; LLM calls as PROV-AGENT model invocations. Cheap to add, recognisable to auditors.",
+      "sources": [
+        "https://www.w3.org/TR/prov-o/",
+        "https://arxiv.org/abs/2508.02866"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Assertion separated from its provenance",
+      "example_tools": [
+        "nanopublications",
+        "RDF reification"
+      ],
+      "who_needs_it": "knowledge-graph curators, meta-researchers",
+      "what_is_required_or_complained": "A claim is published as assertion + provenance + publication info; recording that a source asserted X->Y does not assert X->Y.",
+      "evidence": "Prior note cluster5: RDF 1.1 'a reification of a triple does not entail the triple'; nanopublication = core statement plus context (Groth et al. 2010).",
+      "implication_for_us": "Keep 'source S proposed X->Y' as a support item and 'ledger asserts X->Y' as a separate, derived status. This is the distinction Causal-Copilot collapses.",
+      "sources": [
+        "https://www.w3.org/TR/rdf11-semantics/",
+        "https://www.doi.org/10.3233/ISU-2010-0613"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Packaged run record (inputs, outputs, code, provenance)",
+      "example_tools": [
+        "Workflow Run RO-Crate"
+      ],
+      "who_needs_it": "reviewers, journals, archives",
+      "what_is_required_or_complained": "Bundle inputs, outputs and code with execution provenance at several granularities.",
+      "evidence": "Leo et al. 2024, PLoS ONE 19(9): e0309210 define RO-Crate profiles recording workflow-run provenance (paraphrase of project page).",
+      "implication_for_us": "Ship each run as an RO-Crate zip (ledger JSON, report, manifest, PROV) so it can be deposited (Zenodo) and cited.",
+      "sources": [
+        "https://www.researchobject.org/workflow-run-crate/",
+        "https://doi.org/10.1371/journal.pone.0309210"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Verification against an attestation without rebuilding",
+      "example_tools": [
+        "SLSA build provenance",
+        "in-toto style attestations"
+      ],
+      "who_needs_it": "third-party verifiers",
+      "what_is_required_or_complained": "Consumers check signed provenance (builder id, external parameters, dependency digests) against expectations; rebuilding is optional.",
+      "evidence": "SLSA v1.0: consumers 'MUST accept only specific signer-builder pairs'; others 'can rebuild the artifact, if desired' (quoted). Page marked retired; v1.2 current.",
+      "implication_for_us": "Model for the ledger's 'verify without rerun' tier: hash every input, sign the manifest, let a verifier re-check derivations and digests deterministically.",
+      "sources": [
+        "https://slsa.dev/spec/v1.0/provenance"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Model card / datasheet style summary",
+      "example_tools": [
+        "Model Cards (Mitchell et al.)",
+        "Datasheets for Datasets (Gebru et al.)"
+      ],
+      "who_needs_it": "deployers, reviewers",
+      "what_is_required_or_complained": "Short document with intended use, evaluation procedure, results by subgroup, caveats; datasheets cover motivation, composition, collection, uses.",
+      "evidence": "Model cards: benchmarked evaluation across conditions plus caveats about where the model performs poorly (paraphrase of abstract).",
+      "implication_for_us": "A 'method card' for the ledger engine: intended regime (Q x R x W cells), measured calibration and abstention per regime, known failure cells (hidden confounders, time series not covered).",
+      "sources": [
+        "https://arxiv.org/abs/1810.03993",
+        "https://arxiv.org/abs/1803.09010"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Explicit assumption statement",
+      "example_tools": [
+        "DoWhy causal model",
+        "ICH E9(R1) estimand"
+      ],
+      "who_needs_it": "analysts, reviewers",
+      "what_is_required_or_complained": "Assumptions (sufficiency, faithfulness, iid, test level, knowledge) stated with the result and tested where possible.",
+      "evidence": "DoWhy paper: there is 'no global validator method for a causal estimate'; assumptions declared via a graph and some tested (reported). ICH E9(R1) A.5.1: 'Key assumptions should be stated explicitly together with the estimand'.",
+      "implication_for_us": "Run report opens with an assumption block keyed to the claims that depend on each assumption, so a reviewer sees which claims fall if sufficiency fails.",
+      "sources": [
+        "https://arxiv.org/abs/2108.13518",
+        "https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Reproducibility checklist items for papers",
+      "example_tools": [
+        "NeurIPS paper checklist"
+      ],
+      "who_needs_it": "paper reviewers",
+      "what_is_required_or_complained": "Code, data and instructions to reproduce; hyperparameters and how chosen; error bars correctly defined; compute per run.",
+      "evidence": "NeurIPS checklist items 5-8 ask for code/data, settings 'and how they were chosen', error bars, and compute per experimental run (paraphrase). Prior note cluster2: most causal-agent papers report single runs.",
+      "implication_for_us": "Our run report must carry seed lists, run-to-run spread and compute, and the ledger must replay recorded LLM responses (temperature 0 is not deterministic, prior note cluster5).",
+      "sources": [
+        "https://neurips.cc/public/guides/PaperChecklist"
+      ]
+    },
+    {
+      "kind": "output_requirement",
+      "name": "Registry of causal claims",
+      "example_tools": [],
+      "who_needs_it": "meta-researchers, regulators",
+      "what_is_required_or_complained": "A public register where individual causal claims (not whole studies) are recorded with provenance.",
+      "evidence": "Not found by these searches (search budget ended before a targeted search). Closest: nanopublications (claim-level) and study registries; a 'causal claims in economics' database was not opened.",
+      "implication_for_us": "No standard to conform to; the ledger's claim schema could be offered as one, but do not claim novelty until the economics claims database and study-registry formats are checked.",
+      "sources": [
+        "https://www.doi.org/10.3233/ISU-2010-0613"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "FDA RWE non-interventional studies (draft, March 2024)",
+      "example_tools": [
+        "any tool producing causal evidence for a drug submission"
+      ],
+      "who_needs_it": "sponsors, FDA reviewers",
+      "what_is_required_or_complained": "Finalised protocol before conduct; prespecified SAP; a causal diagram of the theorised relationships; approach to confounding 'including assessment of unmeasured confounding'; planned sensitivity analyses with rationale; data traceability (audit trail of provenance).",
+      "evidence": "Draft guidance asks for 'a causal diagram to specify the theorized causal relationship' (Section C, quoted); footnote describes traceability as e.g. an audit trail showing data provenance (paraphrase). Status: draft, non-binding.",
+      "implication_for_us": "A ledger graph with per-edge provenance can be the submitted causal diagram's justification; discovery output must be framed as design input fixed before outcome analysis, not as post hoc evidence.",
+      "sources": [
+        "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/real-world-evidence-considerations-regarding-non-interventional-studies-drug-and-biological-products",
+        "https://www.fda.gov/media/177128/download"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "FDA AI credibility framework (draft, January 2025)",
+      "example_tools": [
+        "AI models whose output supports drug regulatory decisions"
+      ],
+      "who_needs_it": "sponsors, FDA reviewers",
+      "what_is_required_or_complained": "Seven steps: question of interest, context of use, model risk (model influence x decision consequence), credibility plan, execution, documented results and deviations, adequacy decision; uncertainty of predictions estimated; performance estimates with confidence intervals; life-cycle maintenance.",
+      "evidence": "Guidance: 'All performance estimates should be provided with confidence intervals' (quoted); model risk combines influence and consequence (paraphrase). Status: draft.",
+      "implication_for_us": "The ledger's method card should state context of use and report calibration and accuracy with intervals; per-run 'deviations from plan' section maps to step 6.",
+      "sources": [
+        "https://www.fda.gov/media/184830/download",
+        "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "ICH E9(R1) estimands and sensitivity analysis (2019)",
+      "example_tools": [
+        "trial and RWE analyses"
+      ],
+      "who_needs_it": "sponsors, regulators (FDA, EMA, PMDA)",
+      "what_is_required_or_complained": "Estimand defined by treatment, population, variable, intercurrent-event strategy, population-level summary; key assumptions stated with the estimand; sensitivity analyses for estimands that matter for decisions.",
+      "evidence": "A.5.1: 'Key assumptions should be stated explicitly together with the estimand' (quoted); estimators with strong assumptions need more sensitivity analysis (paraphrase).",
+      "implication_for_us": "Edge claims are not estimands; when the ledger feeds an effect question (Q = effect), the report must name the estimand and list which ledger claims the adjustment set depends on.",
+      "sources": [
+        "https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "TARGET reporting guideline for target trial emulation (2025)",
+      "example_tools": [
+        "observational causal-effect studies"
+      ],
+      "who_needs_it": "journal reviewers, regulators reading RWE",
+      "what_is_required_or_complained": "21 items: target protocol vs emulation side by side, causal contrasts, identifying assumptions (e.g. exchangeability), all sensitivity analyses with rationale, data and code sharing (item 19).",
+      "evidence": "Cashin et al., BMJ 2025;390:e087179 and JAMA 2025; items 6g/7g ask for assumptions needed to identify each estimand (paraphrase).",
+      "implication_for_us": "Offer a TARGET-mapped appendix in the run report: which items the ledger supplies (causal diagram justification, assumptions, sensitivity to knowledge removal) and which it cannot.",
+      "sources": [
+        "https://www.bmj.com/content/390/bmj-2025-087179",
+        "https://www.equator-network.org/reporting-guidelines/22462/"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "STROBE reporting for observational studies (2007)",
+      "example_tools": [
+        "cohort, case-control, cross-sectional reports"
+      ],
+      "who_needs_it": "journal reviewers",
+      "what_is_required_or_complained": "Whole-report checklist for observational designs; not a quality instrument; no DAG item on the EQUATOR page.",
+      "evidence": "von Elm et al. 2007, published in eight journals; EQUATOR lists STROBE-MR as the causal-design extension (paraphrase).",
+      "implication_for_us": "Low direct leverage; cite TARGET and Tennant et al. instead for causal-graph reporting.",
+      "sources": [
+        "https://www.equator-network.org/reporting-guidelines/strobe/"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "ICH M14 RWD safety studies (Step 4, Sept 2025)",
+      "example_tools": [
+        "pharmacoepidemiology safety studies"
+      ],
+      "who_needs_it": "sponsors, regulators",
+      "what_is_required_or_complained": "Protocol must describe data sources and fitness for the question; bias and confounding addressed; data management and reporting.",
+      "evidence": "RAPS: M14 'reached Step 4 of the ICH process in September 2025' (quoted); details of causal-diagram requirements not in the article (second-hand).",
+      "implication_for_us": "Unread in full; check whether M14 asks for causal diagrams before citing it as a driver.",
+      "sources": [
+        "https://www.raps.org/resource/ich-adopts-the-m14-guideline-on-observational-stud.html"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "EMA reflection paper on AI in the medicinal product lifecycle (Sept 2024)",
+      "example_tools": [
+        "AI/ML used in trials and submissions"
+      ],
+      "who_needs_it": "sponsors, EMA assessors",
+      "what_is_required_or_complained": "Data sources and processing documented in a 'detailed and fully traceable manner'; development logs kept; models and pre-processing frozen before unblinding in pivotal trials; preference for interpretable models, explainability methods where possible; generative LLM output needs human review.",
+      "evidence": "Section 2.3.3.3: pipeline and models 'should be frozen and documented' before database lock (quoted); 'Incremental learning approaches are not accepted' (quoted).",
+      "implication_for_us": "A ledger frozen and hashed before outcome analysis fits EMA's model; LLM-sourced knowledge needs a recorded human sign-off field.",
+      "sources": [
+        "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+        "https://www.ema.europa.eu/en/about-us/how-we-work/data-regulation-big-data-other-sources/artificial-intelligence"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "FDA-EMA guiding principles of good AI practice (Jan 2026)",
+      "example_tools": [
+        "AI in drug development"
+      ],
+      "who_needs_it": "sponsors",
+      "what_is_required_or_complained": "Ten principles incl. clear context of use, risk-based validation, data governance and documentation, plain-language information.",
+      "evidence": "second-hand (RAPS summary): principles call for 'good data governance and documentation' and essential information 'in plain language'; full list not read.",
+      "implication_for_us": "Report needs a plain-language summary layer generated from the ledger, not free LLM prose.",
+      "sources": [
+        "https://www.raps.org/resource/ema-fda-issue-joint-ai-guiding-principles-for-drug.html"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "EU AI Act record-keeping and transparency (Arts. 12, 13, 19, Annex IV)",
+      "example_tools": [
+        "high-risk AI systems (Annex III uses such as credit, employment, essential services)"
+      ],
+      "who_needs_it": "providers and deployers of high-risk AI in the EU",
+      "what_is_required_or_complained": "Automatic event logs over the lifetime (Art. 12); instructions with accuracy metrics, limitations, how to interpret output, log mechanisms (Art. 13); logs kept at least six months (Art. 19); technical documentation of design choices 'including the rationale and assumptions', dated and signed test logs (Annex IV).",
+      "evidence": "Art. 12: high-risk systems must allow 'automatic recording of events (logs)' (quoted). Per artificialintelligenceact.eu labels, Annex III obligations apply from 2 December 2027 (verify against the Official Journal).",
+      "implication_for_us": "A causal-discovery engine is high-risk only when used inside an Annex III decision; even then the ledger already supplies logs, assumptions and output-interpretation material. Useful as a selling point to industry, not a capstone requirement.",
+      "sources": [
+        "https://artificialintelligenceact.eu/article/12/",
+        "https://artificialintelligenceact.eu/article/13/",
+        "https://artificialintelligenceact.eu/article/19/",
+        "https://artificialintelligenceact.eu/annex/4/",
+        "https://artificialintelligenceact.eu/article/6/"
+      ]
+    },
+    {
+      "kind": "regulator_requirement",
+      "name": "US bank model risk management (SR 11-7, superseded by SR 26-2 on 17 April 2026)",
+      "example_tools": [
+        "any quantitative model used by large US banks, incl. vendor models"
+      ],
+      "who_needs_it": "bank model owners, independent validators, examiners",
+      "what_is_required_or_complained": "Documentation detailed enough for parties unfamiliar with the model; effective challenge; validation of conceptual soundness, ongoing monitoring, outcomes analysis; vendor models validated too. SR 26-2 puts generative and agentic AI out of scope.",
+      "evidence": "SR 11-7: documentation so 'parties unfamiliar with a model' understand it (quoted). SR 26-2 calls generative/agentic AI 'novel and rapidly evolving' and excludes it (quoted).",
+      "implication_for_us": "An LLM agent that writes edges falls outside the revised bank guidance and into firms' own controls; a deterministic ledger engine with LLM input as recorded data is closer to a 'model' validators know how to review.",
+      "sources": [
+        "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm",
+        "https://www.federalreserve.gov/supervisionreg/srletters/SR2602.pdf"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Declared background knowledge not honoured",
+      "example_tools": [
+        "causal-learn PC/FCI",
+        "Tetrad GRaSP"
+      ],
+      "who_needs_it": "researchers supplying tiers or forbidden edges",
+      "what_is_required_or_complained": "Forbidden edges still appear; forbidden pairs still tested and used in separating sets; knowledge orientation adds unsupported tails; tier knowledge ignored by one DAG-building path.",
+      "evidence": "causal-learn #219 'Background knowledge not working'; #171 forbidden higher-tier variables appear in separating sets (paraphrase); #266 spurious tail; Tetrad #1954 'output graph doesn't respect the tier knowledge' (quoted).",
+      "implication_for_us": "Ship a deterministic check, run on every ledger, that every declared K item is satisfied or explicitly overridden with a recorded reason; report it as a verifiable property.",
+      "sources": [
+        "https://github.com/py-why/causal-learn/issues/219",
+        "https://github.com/py-why/causal-learn/issues/171",
+        "https://github.com/py-why/causal-learn/issues/266",
+        "https://github.com/cmu-phil/tetrad/issues/1954"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Results depend silently on column order",
+      "example_tools": [
+        "causal-learn GIN",
+        "DoWhy gcm estimate_probabilities"
+      ],
+      "who_needs_it": "anyone reordering data",
+      "what_is_required_or_complained": "Positional indexing makes outputs depend on input column order with no error.",
+      "evidence": "causal-learn #271: one column ordering gives no clusters, a permutation gives [[1, 2]] (paraphrase). DoWhy #1695: method 'silently returns incorrect probabilities' if parent columns are reordered (quoted).",
+      "implication_for_us": "Matches our CausalArena finding (column order alone scores 0.680). Ledger records should key variables by content hash and the run report should include a shuffled-order invariance check by default.",
+      "sources": [
+        "https://github.com/py-why/causal-learn/issues/271",
+        "https://github.com/py-why/dowhy/issues/1695"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Version breakage in validation steps",
+      "example_tools": [
+        "DoWhy refuters"
+      ],
+      "who_needs_it": "analysts following books and tutorials",
+      "what_is_required_or_complained": "Refutation call fails across versions; only workaround is downgrading.",
+      "evidence": "DoWhy #1028: 'No group keys passed!' in random_common_cause refuter across 0.9-0.11 and three OSes; workaround install 0.8 (paraphrase).",
+      "implication_for_us": "Pin and record every library version in the run manifest; a third party must be able to tell which version produced a claim.",
+      "sources": [
+        "https://github.com/py-why/dowhy/issues/1028"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Background knowledge slows search instead of speeding it",
+      "example_tools": [
+        "causal-learn FCI"
+      ],
+      "who_needs_it": "users at 100s of variables",
+      "what_is_required_or_complained": "With ~300 variables and many forbidden edges, FCI with knowledge ran much slower.",
+      "evidence": "causal-learn #90: user subclass FastBackgroundKnowledge cut time 'significantly'; maintainer blamed knowledge-lookup overhead (paraphrase).",
+      "implication_for_us": "If the ledger stores K items per pair, lookups must be indexed; minor, but scale complaints recur.",
+      "sources": [
+        "https://github.com/py-why/causal-learn/issues/90"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Steep learning curve and no shared teaching material",
+      "example_tools": [
+        "Tetrad GUI",
+        "causal analysis generally"
+      ],
+      "who_needs_it": "newcomers, domain scientists",
+      "what_is_required_or_complained": "Users cannot configure models from the GUI; field lacks agreed teaching material.",
+      "evidence": "Tetrad #1905 beginner thread; CAWS 2021 round table lists 'Lowering the barrier to entry' and reliance on one-on-one instruction (paraphrase).",
+      "implication_for_us": "The ledger report must be readable without knowing PAG notation: each claim gets a one-line plain-language gloss generated from a template, not an LLM.",
+      "sources": [
+        "https://github.com/cmu-phil/tetrad/issues/1905",
+        "https://proceedings.mlr.press/v160/kummerfeld21a/kummerfeld21a.pdf"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "No standard language for communicating discovery results; skeptical reviewers",
+      "example_tools": [
+        "causal discovery in applied science"
+      ],
+      "who_needs_it": "applied researchers publishing discovery results",
+      "what_is_required_or_complained": "Readers and reviewers react negatively to causal claims; no standard way to report them.",
+      "evidence": "CAWS 2021 round table: 'Communicating causal analysis results to those outside the field' named as a challenge (quoted).",
+      "implication_for_us": "A typed claim record with source, assumption and confidence is a candidate reporting standard; test it with a reviewer-facing pilot.",
+      "sources": [
+        "https://proceedings.mlr.press/v160/kummerfeld21a/kummerfeld21a.pdf"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "No ground truth to validate against",
+      "example_tools": [
+        "all discovery tools"
+      ],
+      "who_needs_it": "practitioners, reviewers",
+      "what_is_required_or_complained": "Few datasets with known mechanisms; results cannot be checked like holdout accuracy.",
+      "evidence": "CAWS 2021: 'the lack of data sets with known data-generating causal mechanisms' hinders progress (quoted). JMIR 2026 review: unmeasured confounding cited as a limitation in 32/72 (44.4%) studies; validation often 'None reported' (reported).",
+      "implication_for_us": "Calibration claims must be tied to named benchmark regimes; for user data the ledger can only offer internal checks (stability, knowledge consistency, invariance), and should say so.",
+      "sources": [
+        "https://proceedings.mlr.press/v160/kummerfeld21a/kummerfeld21a.pdf",
+        "https://medinform.jmir.org/2026/1/e82499"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Poor reporting of software and assumptions in applied studies",
+      "example_tools": [
+        "applied medical causal discovery"
+      ],
+      "who_needs_it": "reviewers, replicators",
+      "what_is_required_or_complained": "Studies omit software and leave assumptions unvalidated; almost none reach decision support.",
+      "evidence": "JMIR 2026: 27/72 (37.5%) gave no software details; unvalidated assumptions noted in 13/72 (18.1%); 1/72 addressed clinical decision support (reported).",
+      "implication_for_us": "A run manifest generated automatically removes the 'no software details' failure; translation gap suggests our first users are researchers, not clinicians.",
+      "sources": [
+        "https://medinform.jmir.org/2026/1/e82499"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Causal tools lack credibility or give overly complex outputs",
+      "example_tools": [
+        "computational tools for causal relations in qualitative data"
+      ],
+      "who_needs_it": "HCI and social-science researchers",
+      "what_is_required_or_complained": "Existing tools ignore context, lack credibility, or produce overly complex outputs.",
+      "evidence": "Meng et al. (CHI 2026, conditionally accepted): formative study n=15 found these three shortcomings (reported; adjacent domain, abstract-level read).",
+      "implication_for_us": "Supports a layered report: short claim table first, provenance on demand.",
+      "sources": [
+        "https://arxiv.org/abs/2602.06506"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "Library abandonment",
+      "example_tools": [
+        "ShowWhy",
+        "CausalNex"
+      ],
+      "who_needs_it": "enterprises choosing a stack",
+      "what_is_required_or_complained": "Projects archived or discontinued with no further fixes.",
+      "evidence": "ShowWhy archived 17 Dec 2025; CausalNex discontinued 24 June 2026 (repo pages).",
+      "implication_for_us": "Keep the ledger format independent of our engine (JSON schema + PROV export) so records outlive the code.",
+      "sources": [
+        "https://github.com/microsoft/showwhy",
+        "https://github.com/mckinsey/causalnex"
+      ]
+    },
+    {
+      "kind": "complaint",
+      "name": "LLM agent outputs not traceable to source of each edge",
+      "example_tools": [
+        "Causal-Copilot",
+        "ALCM",
+        "MAC",
+        "CATE-B"
+      ],
+      "who_needs_it": "researchers evaluating agents; our project",
+      "what_is_required_or_complained": "No record per final edge of which stage introduced, removed or reoriented it; agents may prefer intractable methods.",
+      "evidence": "Prior note cluster2: none of the agents records per-edge stage provenance; CausalSteward had to steer Causal-Copilot to XGES because it 'often preferred intractable methods such as FCI' (reported by CausalSteward). Causal-Copilot restricts issue creation, so no public user complaints were found.",
+      "implication_for_us": "The core gap the ledger fills; it is also why our audit had to reconstruct stage effects from code.",
+      "sources": [
+        "https://arxiv.org/abs/2607.01936",
+        "https://github.com/Lancelot39/Causal-Copilot/issues"
+      ]
+    }
+  ],
+  "searches": [
+    "WebSearch: github py-why causal-learn issue different results PC algorithm background knowledge",
+    "WebSearch: github py-why dowhy issue refuter results confusing interpretation",
+    "WebSearch: github Lancelot39 Causal-Copilot issues report generation error",
+    "WebSearch: github cmu-phil tetrad issue causal-cmd output graph format results differ",
+    "WebSearch (extended): survey practitioners barriers adoption causal discovery industry interviews",
+    "WebSearch: interview study data scientists causal inference tools needs challenges CHI",
+    "WebSearch: \"causal discovery\" scoping review applied health research reporting practices limitations adoption",
+    "WebSearch: qualitative interview study practitioners causal inference workflow industry \"data scientists\" challenges paper",
+    "WebSearch: FDA guidance \"Real-World Evidence: Considerations Regarding Non-Interventional Studies\" draft 2024",
+    "WebSearch: FDA draft guidance Considerations for the Use of AI to Support Regulatory Decision-Making credibility context of use",
+    "WebSearch: TARGET guideline reporting target trial emulation 2025 JAMA BMJ checklist items",
+    "WebSearch: FDA AI regulatory decision-making draft guidance seven steps ...",
+    "WebSearch: SR 11-7 documentation sufficiently detailed effective challenge",
+    "WebSearch: Federal Reserve SR 26-2 model risk management 2026",
+    "WebSearch: EMA reflection paper use of AI medicinal product lifecycle adopted September 2024 traceability",
+    "WebSearch: ICH M14 guideline pharmacoepidemiological studies RWD safety step 4 adopted",
+    "WebSearch: EMA FDA good AI practice ten principles January 2026",
+    "WebSearch: STROBE extension causal inference DAG reporting guideline",
+    "WebSearch (failed, shared budget exhausted): causal claims in economics Garg Fetzer database",
+    "Direct page reads: GitHub issue list pages (open issues, default view) for causal-learn, DoWhy, Tetrad, Causal-Copilot; individual issues causal-learn #1,#90,#171,#219,#266,#271,#272; DoWhy #1028,#1695,#1708 (failed); Tetrad #1905,#1954; Causal-Copilot #1,#2,#5,#10,#20,#30",
+    "Local code reading: Causal-Copilot report/, web_demo/, global_setting/state.py, postprocess/judge_functions.py, llm/llm_client.py at a31aa7c"
+  ],
+  "not_read": [
+    {
+      "source": "GitHub issue search pages with sort/query parameters",
+      "reason": "robots.txt disallowed for the fetch tool"
+    },
+    {
+      "source": "GitHub REST API / gh CLI for issue counts and comment-sorted lists",
+      "reason": "repository access not enabled for this session (HTTP 403)"
+    },
+    {
+      "source": "https://github.com/py-why/dowhy/issues/1708 (REFUTE critique + calibration benchmark)",
+      "reason": "fetch returned client error"
+    },
+    {
+      "source": "https://www.federalreserve.gov/supervisionreg/srletters/sr1107a1.pdf",
+      "reason": "fetch error; the SR 11-7 HTML letter was read instead"
+    },
+    {
+      "source": "https://www.bnlearn.com/documentation/man/strength.html",
+      "reason": "fetch error; arc.strength.html read instead"
+    },
+    {
+      "source": "CAIS agent architecture page body",
+      "reason": "only navigation and module names were returned"
+    },
+    {
+      "source": "ICH M14 full guideline text",
+      "reason": "not fetched; only the RAPS news summary read"
+    },
+    {
+      "source": "FDA-EMA ten principles full text",
+      "reason": "not fetched; RAPS summary only (second-hand)"
+    },
+    {
+      "source": "STROBE checklist documents",
+      "reason": "page lists downloadable files only"
+    },
+    {
+      "source": "Garg & Fetzer 'Causal Claims in Economics' and any other causal-claims registry",
+      "reason": "shared web-search budget exhausted before the search ran"
+    },
+    {
+      "source": "Causal-Copilot example reports asset/report_*.pdf",
+      "reason": "not opened; judgement rests on the generator code and the paper"
+    },
+    {
+      "source": "causaLens technical documentation",
+      "reason": "only the homepage (vendor claims) was read"
+    }
+  ]
+}

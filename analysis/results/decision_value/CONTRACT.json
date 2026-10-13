@@ -1,0 +1,28 @@
+{
+ "producer": "analysis/decision_value.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-30",
+  "AUD-24",
+  "EVL-03",
+  "TGT-15"
+ ],
+ "regime": "D",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "both arms",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "orientation_rule": "no orientation rule: undecided pairs are abstentions (or 'yes' in the forced view)",
+ "metric_defs": {
+  "coverage": "share of (target, variable) pairs given a committed claim",
+  "precision_committed": "share of committed claims that match the true graph",
+  "forced_precision": "accuracy when undecided reachability counts as yes",
+  "agreement_with_data_committed": "share of committed claims matching a Welch test on held-out interventional rows (alpha 0.01)",
+  "ancestor_aid": "Henckel et al. ancestor adjustment identification distance, normalised (gadjid)",
+  "oset_aid": "O-set AID, normalised",
+  "parent_aid": "parent AID, normalised"
+ },
+ "split_detail": "public half"
+}

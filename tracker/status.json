@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-13T02:09:52Z",
+ "verified_utc": "2026-10-13T19:50:06Z",
  "items": [
   {
    "id": "DLV-01",
@@ -1621,6 +1621,1119 @@
    "problems": []
   },
   {
+   "id": "AUD-18",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Field audit: every causal-discovery system, its regimes, order source and evaluation controls",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU1_field_systems.md",
+    "analysis/audits/AU1_field_systems.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"name\": \"PC (incl. PC-stable)\", \"category\": \"classical: co (len_eq 75)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-19",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU2_benchmarks.md",
+    "analysis/audits/AU2_benchmarks.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"name\": \"CausalArena (generated families: synthetic, seman (len_eq 69)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-20",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU3_theory_limits.md",
+    "analysis/audits/AU3_theory_limits.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"id\": \"C01\", \"question\": \"skeleton\", \"regime\": \"D\", \"world (len_eq 55)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-21",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Own-benchmark audit: requirements, pitfalls and candidate designs",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU4_own_benchmark.md",
+    "analysis/audits/AU4_own_benchmark.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"id\": \"R01\", \"requirement\": \"Column order randomised per i (len_eq 20)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-22",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Commercial audit: who buys causal analysis, for which decision, with which guarantee",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU5_commercial.md",
+    "analysis/audits/AU5_commercial.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"id\": \"C01\", \"kind\": \"product\", \"name\": \"decisionOS (G-Clo (len_eq 42)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-23",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Engine audit: libraries, capabilities, defects; build vs reuse for the ledger",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU6_core_engines.md",
+    "analysis/audits/AU6_core_engines.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"name\": \"causal-learn (upstream, PyPI 0.1.4.8)\", \"language (len_eq 36)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-24",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Value-of-accuracy audit: how graph errors become decision errors",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU7_value_of_accuracy.md",
+    "analysis/audits/AU7_value_of_accuracy.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"id\": \"V01\", \"setting\": \"DAG estimates of a known DAG (ill (len_eq 45)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-25",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Packaging audit: delivery modes, output requirements, regulator needs, user complaints",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed table with a source on every row, searches and unread sources listed, implications for the project",
+   "evidence": [
+    "analysis/audits/AU8_packaging.md",
+    "analysis/audits/AU8_packaging.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    },
+    {
+     "ok": true,
+     "detail": "rows = [{\"kind\": \"delivery_mode\", \"name\": \"Desktop GUI for search a (len_eq 43)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
+   "problems": []
+  },
+  {
+   "id": "AUD-26",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Answers the three program questions from AU1-AU8 with evidence and inference separated; layout claim checked",
+   "evidence": [
+    "analysis/audits/AU0_synthesis.md",
+    "analysis/audits/AUDIT_PROGRAM.md",
+    "analysis/authors_rule_layout_check.py",
+    "analysis/results/authors_rule/check.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "methods/FCI/shuffled_order/layout_gain = -0.0063 (le 0.01)"
+    },
+    {
+     "ok": true,
+     "detail": "found: Decisions for Uzair"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Decision input for DEC-01.",
+   "problems": []
+  },
+  {
+   "id": "AUD-27",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "120 random DAGs x 6 column orders per engine; exact-class, order-invariance and defect counts per engine; Causal-Copilot's copy vs PyPI causal-learn vs gCastle",
+   "evidence": [
+    "analysis/engine_oracle_check.py",
+    "analysis/results/engine_oracle/oracle.json",
+    "analysis/results/engine_oracle/CONTRACT.json",
+    "analysis/reports/aud27_31_free_steps.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "engines/vendored/pc/exact_equivalence_class = 460 (eq 460)"
+    },
+    {
+     "ok": true,
+     "detail": "engines/pypi-0.1.3.8/pc/exact_equivalence_class = 720 (eq 720)"
+    },
+    {
+     "ok": true,
+     "detail": "engines/gcastle-1.0.4/gcastle_original/exact_equivalence_class = 456 (eq 456)"
+    }
+   ],
+   "reproduce": "python analysis/engine_oracle_check.py --engine vendored=<Causal-Copilot>/externals/causal-learn --engine pypi-0.1.3.8=<site-packages> --gcastle <site-packages>",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "No model calls. The copy's FCI step is not deterministic under threads (533 vs 531).",
+   "problems": []
+  },
+  {
+   "id": "AUD-28",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Controlled re-score: released vs shuffled columns for every runnable baseline; PC conflict-rule mechanism",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Files paired; S, c, q, a and F1 under both orientation rules; published values alongside; mechanism prediction written before the run",
+   "evidence": [
+    "analysis/rescore_controls.py",
+    "analysis/pc_upstream_run.py",
+    "analysis/pc_orientation_order.py",
+    "analysis/results/rescore/rescore.json",
+    "analysis/results/rescore/pc_orientation_order.json",
+    "analysis/reports/aud27_31_free_steps.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "methods/PC (upstream causal-learn)/semantic/files_better_shuffled = 175 (eq 175)"
+    },
+    {
+     "ok": true,
+     "detail": "configs/maxP uc_rule=1/q_gap_shuffled_minus_released = 0.0013 (le 0.03)"
+    },
+    {
+     "ok": true,
+     "detail": "configs/default uc_rule=0 uc_priority=2/q_gap_shuffled_minus_released = 0.1475 (ge 0.1)"
+    }
+   ],
+   "reproduce": "python analysis/pc_upstream_run.py && python analysis/rescore_controls.py && python analysis/pc_orientation_order.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-29",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Sortability of the CausalArena release (varsortability, R2-sortability)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Path-weighted and edge-only, per file and per family",
+   "evidence": [
+    "analysis/sortability_audit.py",
+    "analysis/results/sortability/sortability.json",
+    "analysis/reports/aud27_31_free_steps.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/semantic/summary/var_paths/mean = 0.5 (eq 0.5)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/summary/files = 250 (eq 250)"
+    }
+   ],
+   "reproduce": "python analysis/sortability_audit.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-30",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Decision value (DV-1) and adjustment-identification distance for every baseline, with ceilings and the empty-graph baseline",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Committed-claim precision and coverage against truth; true CPDAG and DAG ceilings; empty-graph baseline; AID where defined, refusals counted",
+   "evidence": [
+    "analysis/decision_value.py",
+    "analysis/results/decision_value/decision_value.json",
+    "analysis/results/decision_value/CONTRACT.json",
+    "analysis/reports/aud27_31_free_steps.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/semantic/ceiling: true CPDAG/reference/precision_committed = 1.0 (ge 0.999)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/baseline: empty graph (nothing moves)/reference/precision_committed = 0.6431 (le 0.65)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/GES (BIC)/released/precision_committed = 0.7533 (le 0.76)"
+    }
+   ],
+   "reproduce": "python analysis/decision_value.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Baselines use all 250 files, methods the files they finished; AB-04 pairs them.",
+   "problems": []
+  },
+  {
+   "id": "AUD-31",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Cost of one Causal-Copilot run (the approved one-run cost check)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Per-run cost, calls, tokens and wall time from the API's own usage records",
+   "evidence": [
+    "analysis/results/stability_s2/cost_per_run.json",
+    "analysis/reports/aud27_31_free_steps.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "cost_per_run_usd/median = 0.457 (eq 0.457)"
+    },
+    {
+     "ok": true,
+     "detail": "runs = 30 (eq 30)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Answered from the 30 logged BND-08 runs; nothing spent.",
+   "problems": []
+  },
+  {
+   "id": "AUD-32",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Audit program DAG: research landscape, commercial landscape, wedge and paper",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Bundles with dependencies, windows, costs, runners, predictions and must-show lists; landmark and kill criteria; plan_check passes; approved by Uzair",
+   "evidence": [
+    "plans/make_audit_dag.py",
+    "plans/audit_dag.json",
+    "analysis/reports/audit_dag.md",
+    "docs/decisions/2026-10-12_audit_dag.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "bundles = [{\"id\": \"AB-01\", \"title\": \"Controlled scoreboard, CausalAren (len_eq 17)"
+    },
+    {
+     "ok": true,
+     "detail": "found: What needs Uzair"
+    }
+   ],
+   "reproduce": "python plans/make_audit_dag.py && python tracker/plan_check.py plans/audit_dag.json",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Approved by Uzair 2026-10-12 (docs/decisions/2026-10-12_audit_dag.md); AUD-33..48 and DEC-05 issued.",
+   "problems": []
+  },
+  {
+   "id": "AUD-33",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: corrected leaderboard table; per-family layout gain by channel (authors' rule, conflict rule, engine copy). Gate: every runnable published row has released and shuffled numbers under both rules, files paired",
+   "evidence": [
+    "analysis/baseline_variants_run.py",
+    "analysis/rescore_controls_v2.py",
+    "analysis/results/rescore_v2/rescore_v2.json",
+    "analysis/results/rescore_v2/leaderboard_controlled.md",
+    "analysis/results/rescore_v2/leaderboard_controlled.json",
+    "analysis/results/rescore_v2/CONTRACT.json",
+    "analysis/reports/ab01_controlled_scoreboard.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/P2/complete = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "found: Corrected leaderboard"
+    }
+   ],
+   "reproduce": "python analysis/baseline_variants_run.py ... (see report) && python analysis/rescore_controls_v2.py",
+   "reopen_if": [],
+   "due": "2026-10-17",
+   "blocked_by": null,
+   "note": "Results in the report; predictions P1/P2 verdicts in rescore_v2.json.",
+   "problems": []
+  },
+  {
+   "id": "AUD-34",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: per-benchmark table: order correlation, sortability, layout gain per method. Gate: two published rows reproduced per benchmark before any re-score claim",
+   "evidence": [
+    "analysis/reports/ab02_second_scoreboard.md",
+    "analysis/ab02_alarm_order.py",
+    "analysis/results/ab02/alarm_order.json",
+    "analysis/audits/AB02_AB12_data_scouting.md",
+    "analysis/ab02_bayesys.py",
+    "analysis/results/ab02/bayesys.json",
+    "analysis/results/ab02/bayesys_runs.jsonl"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "P3/verdict = \"supported\" (eq \"supported\")"
+    },
+    {
+     "ok": true,
+     "detail": "found: reproduction gate"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-24",
+   "blocked_by": "Uzair: results_noisyPaper.xlsx into external/bayesys (reproduction gate)",
+   "note": "Bayesys measured 13 Oct (6 networks, released vs 5 shuffled orders, PC/maxP/FCI/GES): ASIA, SPORTS, PATHFINDER are released in topological order (P3 supported); an index tie-break gains +0.04 to +0.30 there and about 0 on ALARM/PROPERTY. P4 inconclusive (conflict-rule gap on 2 of 3 ordered networks). No claim on the published numbers until two cells are reproduced. Sortability not computed (discrete data).",
+   "problems": []
+  },
+  {
+   "id": "AUD-35",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: engine defect table (exact rate, order invariance, determinism, defect class). Gate: versions pinned; one command reproduces",
+   "evidence": [
+    "analysis/engine_forensics.py",
+    "analysis/engine_shims.py",
+    "analysis/results/engine_forensics/forensics.json",
+    "analysis/results/engine_forensics/CONTRACT.json",
+    "analysis/reports/ab03_engine_forensics.md",
+    "docs/drafts/bug_reports/dodiscover_pc_oracle_cycle.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "engines/dodiscover_pc/exact_equivalence_class = 597 (eq 597)"
+    },
+    {
+     "ok": true,
+     "detail": "engines/pgmpy_stable_unbounded/exact_equivalence_class = 720 (eq 720)"
+    },
+    {
+     "ok": true,
+     "detail": "engines/tigramite_pcmciplus/exact_equivalence_class = 720 (eq 720)"
+    }
+   ],
+   "reproduce": "python analysis/engine_forensics.py --python2 <venv with pgmpy, tigramite, dodiscover> --vendored <Causal-Copilot>/externals/causal-learn --out analysis/results/engine_forensics",
+   "reopen_if": [],
+   "due": "2026-10-24",
+   "blocked_by": null,
+   "note": "P5 refuted as worded (no further wrong skeleton); new defect class: dodiscover PC orients wrongly under an oracle and can return a cyclic graph. Bug-report drafts for EXT-03 in docs/drafts/bug_reports/.",
+   "problems": []
+  },
+  {
+   "id": "AUD-36",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: decision-value table across benchmarks; risk-coverage figure; F1 vs DV scatter. Gate: claims checked against truth; baselines on exactly the files each method finished",
+   "evidence": [
+    "analysis/decision_value_v2.py",
+    "analysis/dv_chambers_sachs.py",
+    "analysis/ab04_figures.py",
+    "analysis/results/decision_value_v2/decision_value_v2.json",
+    "analysis/results/decision_value_v2/dv_chambers_sachs.json",
+    "analysis/results/decision_value_v2/risk_coverage.png",
+    "analysis/results/decision_value_v2/f1_vs_dv.png",
+    "analysis/results/decision_value_v2/CONTRACT.json",
+    "analysis/reports/ab04_decision_value.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: P6"
+    },
+    {
+     "ok": true,
+     "detail": "benchmarks/causal_chambers_lt/methods/true CPDAG/precision_committed = 1.0 (eq 1.0)"
+    }
+   ],
+   "reproduce": "python analysis/decision_value_v2.py && python analysis/dv_chambers_sachs.py --causal-learn <upstream causal-learn> ... && python analysis/ab04_figures.py ...",
+   "reopen_if": [],
+   "due": "2026-10-28",
+   "blocked_by": null,
+   "note": "Five benchmarks: CausalArena semantic, formula, synthetic; Causal Chambers (physical truth, real interventions); Sachs (weak).",
+   "problems": []
+  },
+  {
+   "id": "AUD-37",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: per agent: installs, runs, calls, tokens, cost, wall time, failure points. Gate: no key in any log; every call recorded; repo byte-identical",
+   "evidence": [
+    "harness/agent_probe.py",
+    "harness/probe_llm.py",
+    "harness/probe_io.py",
+    "harness/agents/registry.json",
+    "docker/Dockerfile.probes",
+    "plans/ab05_probe_causaliq.json",
+    "plans/ab05_probe_pywhyllm.json",
+    "plans/ab05_probe_matmcd.json",
+    "plans/ab05_probe_vashishtha.json",
+    "plans/ab05_cc_gpt4omini.json",
+    "analysis/reports/ab05_probe_prep.md",
+    "analysis/reports/ab05_probe_results.md",
+    "tests/test_agent_probe.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Proposed AB-06 budget"
+    },
+    {
+     "ok": true,
+     "detail": "budget_check/sum_max_usd_all_four = 3.55 (le 4.0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-20",
+   "blocked_by": "Uzair: three remaining live probes",
+   "note": "Live 13 Oct: causaliq ok (1 call, $0.004, F1 0.231); Causal-Copilot on gpt-4o-mini crashed at judge_functions.py:562 (the upstream key bug that also killed 15 of 114 gpt-4o runs). Remaining: PyWhy-LLM, MATMCD, Vashishtha.",
+   "problems": []
+  },
+  {
+   "id": "AUD-38",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-06 LIVE: field audit of LLM-using systems under names x layout controls",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: per agent x arm table; name-reliance figure; provenance shares. Gate: thresholds hashed before the calls; dev split only",
+   "evidence": [
+    "plans/make_ab06_plans.py",
+    "plans/ab06/BUDGET.json",
+    "harness/agent_batch.py",
+    "analysis/ab06_score.py",
+    "plans/ab06_cc_gpt4omini_s2.json",
+    "analysis/reports/ab06_prep.md",
+    "tests/test_ab06_batch.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "total/runs = 120 (eq 120)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-14",
+   "blocked_by": "Uzair: live batch (plans/ab06, estimate about $58) and the Causal-Copilot arm (about $1)",
+   "note": "Plans, batch runner and scorer ready and stub-tested end to end. The batch never pays twice for a crashed run (--retry-failed to override), counts every logged attempt, and stops at the total cap before a run (exit 3).",
+   "problems": []
+  },
+  {
+   "id": "AUD-39",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: rho curve per method; benchmark card. Gate: generator's own sortability and layout reported; columns always shuffled",
+   "evidence": [
+    "analysis/b2_generator.py",
+    "analysis/b2_score.py",
+    "analysis/b2_reference_methods.py",
+    "analysis/reports/ab08_benchmark_card.md",
+    "analysis/results/b2/b2_reference_scores.json",
+    "analysis/results/b2/b2_sortability.json",
+    "analysis/results/b2/CONTRACT.json",
+    "tests/test_b2_generator.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "methods/names_oracle/by_track_rho/linear/1.00/f1_data_mean = 0.0 (eq 0.0)"
+    },
+    {
+     "ok": true,
+     "detail": "found: [Ll]imitations"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-14",
+   "blocked_by": null,
+   "note": "Benchmark built and validated (2,500 files, 257.7 MB, outside git under external/b2_namereliance; manifest sha256). P11 holds for the reference methods; agent curves come from AB-06.",
+   "problems": []
+  },
+  {
+   "id": "AUD-40",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: proof notes; numerical checks. Gate: no statement beyond what the references support",
+   "evidence": [
+    "analysis/theory_checks.py",
+    "analysis/results/theory/theory_checks.json",
+    "analysis/results/theory/CONTRACT.json",
+    "analysis/reports/ab09_theory_pack.md",
+    "tests/test_theory.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "P12_holds_as_restated = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-07",
+   "blocked_by": null,
+   "note": "T1-T4 hold as stated; T5 restated (coverage = constant-answer share minus definite causes without a directed path). F1 = S x a holds per file, not for family means (corrects the AUD-28 wording).",
+   "problems": []
+  },
+  {
+   "id": "AUD-41",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-10 Practitioner interviews (C1)",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: interview synthesis with quotes paraphrased. Gate: notes stored without personal data beyond role and sector",
+   "evidence": [
+    "docs/interviews/human_subjects_check.md",
+    "docs/interviews/guide.md",
+    "docs/interviews/screener.md",
+    "docs/interviews/consent_script.md",
+    "docs/interviews/notes_schema.json",
+    "docs/interviews/synthesis_plan.md",
+    "analysis/interview_synthesis.py",
+    "tests/test_interview_synthesis.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: generalizable knowledge"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-07",
+   "blocked_by": "Uzair: course-staff question, then recruiting and interviews",
+   "note": "Interview kit ready. First Uzair asks course staff whether an IRB determination is needed (path a: course-internal; path b: determination before the first interview).",
+   "problems": []
+  },
+  {
+   "id": "AUD-42",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: teardown table. Gate: vendor claims never presented as measurements",
+   "evidence": [
+    "analysis/audits/AB11_vendor_claims.md",
+    "analysis/audits/AB11_vendor_claims.json",
+    "analysis/ab11_teardown_run.py",
+    "analysis/ab11_ledger_adapters.py",
+    "analysis/results/teardown/teardown.json",
+    "analysis/results/teardown/CONTRACT.json",
+    "tests/test_ab11_adapters.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Hands-on results"
+    },
+    {
+     "ok": true,
+     "detail": "tools = {\"lingam\": {\"interface\": \"lingam.DirectLiNGAM(prior_knowledg (len_eq 10)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-31",
+   "blocked_by": null,
+   "note": "33 tools by documentation, 10 run by hand. P14 strong form survives narrowed: no tool stores a per-direction source linked to evidence (CausalNex 'origin' and Tetrad verbose text are partial).",
+   "problems": []
+  },
+  {
+   "id": "AUD-43",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-12 Vertical probe: root-cause analysis",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: RCA table; what a ledger adds here. Gate: datasets reachable",
+   "evidence": [
+    "analysis/ab12_rca_probe.py",
+    "analysis/results/rca/rca_probe.json",
+    "analysis/results/rca/ab12_prereg.json",
+    "analysis/results/rca/CONTRACT.json",
+    "analysis/reports/ab12_rca_probe.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "P15/verdict = \"supported\" (eq \"supported\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-07",
+   "blocked_by": null,
+   "note": "PetShop test (48 issues): declared topology + abstention AC@3 0.93 at coverage 0.92 vs learned-graph (PC) 0.21; P15 supported, almost all of the gap from topology.",
+   "problems": []
+  },
+  {
+   "id": "AUD-44",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-13 Regulation and standards map: requirement -> ledger field",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: requirement -> field matrix. Gate: primary texts only; summaries labelled second-hand",
+   "evidence": [
+    "analysis/audits/AB13_regulation_map.md",
+    "analysis/audits/AB13_regulation_map.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "rows = [{\"instrument\": \"FDA draft guidance: Considerations for the  (len_eq 50)"
+    },
+    {
+     "ok": true,
+     "detail": "found: What this changes"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-24",
+   "blocked_by": null,
+   "note": "50 requirements, 21 texts; five ledger gaps ranked (plan/deviations, assumptions, lineage, reviews, question/context: BLD-14). Venue: W3C AI Computed Provenance CG.",
+   "problems": []
+  },
+  {
+   "id": "AUD-45",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-14 Market and go-to-market hypotheses for two verticals",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Must show: two one-page vertical briefs. Gate: no number without its inputs",
+   "evidence": [
+    "docs/market/README.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-12",
+   "blocked_by": "AUD-41",
+   "note": "Scaffolding only; waits on AB-10 interviews and uses AB-11 pricing signals.",
+   "problems": []
+  },
+  {
+   "id": "AUD-46",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-15 Positioning closure: novelty matrix for L1-L5",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: novelty matrix. Gate: every claim of novelty bounded by the searches recorded",
+   "evidence": [
+    "analysis/audits/AB15_positioning.md",
+    "analysis/audits/AB15_positioning.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "rows = [{\"claim\": \"L1\", \"nearest_prior\": \"Order dependence of PC, i (len_eq 45)"
+    },
+    {
+     "ok": true,
+     "detail": "novelty_matrix = {\"L1\": {\"verdict\": \"partly open\", \"why\": \"Order dependence o (len_eq 5)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-22",
+   "blocked_by": null,
+   "note": "All five claims partly open. Must cite Colombo & Maathuis 2014 (scoops PC order dependence), CARE (single-system name collapse), Li & Russo 2026 (orient-only LLM knowledge).",
+   "problems": []
+  },
+  {
+   "id": "AUD-47",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-17 Paper skeleton and pre-registration manifest",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Must show: skeleton; manifest. Gates: manifest committed before any held-out run",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-21",
+   "blocked_by": null,
+   "note": "Bundle AB-17: after AB-16.",
+   "problems": []
+  },
+  {
+   "id": "AUD-48",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: O1-O5 verdicts; tier accuracy by arm; regression on model tiers vs 0.634 / 0.524. Gate: DEC-02 approved; prompts and thresholds hashed before the calls",
+   "evidence": [
+    "analysis/a3_make_requests.py",
+    "harness/tiers_runner.py",
+    "analysis/a3_score.py",
+    "plans/a3_prereg.json",
+    "plans/a3_tiers_requests.jsonl",
+    "plans/a3_scenarios.json",
+    "analysis/results/a3/a3.json",
+    "analysis/results/a3/selftest.json",
+    "analysis/a3_orient_only.py",
+    "analysis/results/a3/a3_orient_only.json",
+    "analysis/reports/ab07_knowledge_elicitation.md",
+    "tests/test_tiers_runner.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "requests = 900 (eq 900)"
+    },
+    {
+     "ok": true,
+     "detail": "requests_answered = 900 (eq 900)"
+    },
+    {
+     "ok": true,
+     "detail": "verdicts/O4/verdict = \"refuted\" (eq \"refuted\")"
+    },
+    {
+     "ok": true,
+     "detail": "found: Pre-registered verdicts"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-28",
+   "blocked_by": null,
+   "note": "Live 13 Oct (gpt-4o-2024-08-06, 914 calls, about $2.08). O1 inconclusive (69.4% correct, 12.1% contradicted), O2 supported, O3 supported by data, O4 refuted (0.448), O5 refuted (0.384). Orient-only use of the tiers (exploratory): GES 0.528 -> 0.546 semantic.",
+   "problems": []
+  },
+  {
+   "id": "DEC-05",
+   "category": "15 Decisions",
+   "title": "AB-16 Wedge decision: paper spine, venue and the Q2 build",
+   "kind": "decision",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Must show: wedge memo. Gates: decision recorded as a DEC ticket with the evidence it rests on",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-14",
+   "blocked_by": null,
+   "note": "Bundle AB-16: decide once the evidence is in (no date pressure).",
+   "problems": []
+  },
+  {
    "id": "BEN-01",
    "category": "4 Audit: benchmarks and data",
    "title": "CausalArena public release inspected (families, files, graph convention)",
@@ -2257,9 +3370,9 @@
    "category": "5 Targets",
    "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled",
    "kind": "target",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
    "level": "V0",
    "required_level": "",
    "criterion": "",
@@ -2269,8 +3382,8 @@
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02 (approval of the elicitation calls)",
-   "note": "",
+   "blocked_by": null,
+   "note": "Unblocked 13 Oct by AUD-48.",
    "problems": []
   },
   {
@@ -2554,9 +3667,9 @@
    "category": "6 Required capabilities",
    "title": "Declared knowledge as tiers, never edges",
    "kind": "task",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
    "level": "V0",
    "required_level": "",
    "criterion": "",
@@ -2566,8 +3679,8 @@
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Unblocked 13 Oct by AUD-48: orient-only tiers lift GES 0.528 -> 0.546 (exploratory); wrong tiers cost 0.19, bounded.",
    "problems": []
   },
   {
@@ -3150,22 +4263,28 @@
    "category": "7 Research questions",
    "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
    "kind": "question",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "",
    "evidence": [
-    "analysis/reports/program_v2.md"
+    "analysis/results/a3/a3.json",
+    "analysis/reports/ab07_knowledge_elicitation.md"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/O1/verdict = \"inconclusive\" (eq \"inconclusive\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Answered 13 Oct: no, narrowly: 69.4% of true edges ordered correctly, 12.1% contradicted (semantic, consensus tiers).",
    "problems": []
   },
   {
@@ -3173,22 +4292,27 @@
    "category": "7 Research questions",
    "title": "O2 Neutral names give no order information",
    "kind": "question",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "",
    "evidence": [
-    "analysis/reports/program_v2.md"
+    "analysis/results/a3/a3.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/O2/verdict = \"supported\" (eq \"supported\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Answered 13 Oct: yes. With neutral names the model puts every variable in one tier.",
    "problems": []
   },
   {
@@ -3196,22 +4320,27 @@
    "category": "7 Research questions",
    "title": "O3 Moved names: tiers follow the labels",
    "kind": "question",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "",
    "evidence": [
-    "analysis/reports/program_v2.md"
+    "analysis/results/a3/a3.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/O3/by_data/verdict = \"supported\" (eq \"supported\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Answered 13 Oct: yes. Moved names: ordering follows the labels (72% correct by label) and is worse than chance by data.",
    "problems": []
   },
   {
@@ -3219,22 +4348,27 @@
    "category": "7 Research questions",
    "title": "O4 Regression on model tiers reaches 0.634 (semantic)",
    "kind": "question",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "",
    "evidence": [
-    "analysis/reports/program_v2.md"
+    "analysis/results/a3/a3.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/O4/verdict = \"refuted\" (eq \"refuted\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Answered 13 Oct: no. Regression on the model's tiers 0.448 (oracle depth 0.714).",
    "problems": []
   },
   {
@@ -3242,22 +4376,27 @@
    "category": "7 Research questions",
    "title": "O5 Same for formula vs 0.524",
    "kind": "question",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "",
    "evidence": [
-    "analysis/reports/program_v2.md"
+    "analysis/results/a3/a3.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/O5/verdict = \"refuted\" (eq \"refuted\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Answered 13 Oct: no. 0.384 on formula (oracle depth 0.615).",
    "problems": []
   },
   {
@@ -3441,9 +4580,9 @@
    "category": "8 Build",
    "title": "B3 declared knowledge as tiers",
    "kind": "task",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
    "level": "V0",
    "required_level": "",
    "criterion": "",
@@ -3453,8 +4592,8 @@
    "reproduce": "",
    "reopen_if": [],
    "due": null,
-   "blocked_by": "DEC-02",
-   "note": "",
+   "blocked_by": null,
+   "note": "Unblocked 13 Oct by AUD-48 (model tiers measured).",
    "problems": []
   },
   {
@@ -3700,6 +4839,66 @@
    "due": null,
    "blocked_by": null,
    "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-13",
+   "category": "8 Build",
+   "title": "Claim-ledger record format, JSON Schema and verifier (V1-V8)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Design names the failures the format prevents; schema generated from one source; verifier passes a toy ledger and catches each of eight corruptions",
+   "evidence": [
+    "ledger/DESIGN.md",
+    "ledger/schema.py",
+    "ledger/schema/ledger.schema.json",
+    "ledger/verify.py",
+    "tests/test_ledger_verify.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: What the format must make impossible"
+    },
+    {
+     "ok": true,
+     "detail": "found: cc-claim-ledger/0\\.1"
+    }
+   ],
+   "reproduce": "python ledger/schema.py && python tests/test_ledger_verify.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "No discovery engine yet; PROV-O export and causal-cmd/Tetrad interop are later steps.",
+   "problems": []
+  },
+  {
+   "id": "BLD-14",
+   "category": "8 Build",
+   "title": "Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Fields for the five gaps AB-13 ranks (plan fixed before data with deviations; identifying assumptions and sensitivity; data lineage pointer; human review records; question / context of use / estimand), the AB-11 findings (verifier reports V2-V8 even when V1 fails; a y->x relation or an explicit orientation convention; knowledge-file import records required edges on unconnected pairs as overrides), each with a verifier test",
+   "evidence": [
+    "analysis/audits/AB13_regulation_map.md",
+    "analysis/audits/AB11_vendor_claims.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Found 2026-10-13 by AB-11 and AB-13.",
    "problems": []
   },
   {
@@ -4102,7 +5301,7 @@
     },
     {
      "ok": true,
-     "detail": "ran = 23 (ge 18)"
+     "detail": "ran = 112 (ge 18)"
     },
     {
      "ok": true,
@@ -4772,20 +5971,27 @@
    "category": "15 Decisions",
    "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)",
    "kind": "decision",
-   "status": "open",
-   "effective_status": "open",
-   "emoji": "🔵",
-   "level": "V0",
-   "required_level": "",
-   "criterion": "",
-   "evidence": [],
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Uzair's decision recorded with what it approves",
+   "evidence": [
+    "docs/decisions/2026-10-12_audit_dag.md"
+   ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: DEC-02 tier-elicitation test \\(AB-07\\) \\| approved"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "",
+   "note": "Approved 2026-10-12 with the audit DAG; the run is AUD-48 (AB-07).",
    "problems": []
   },
   {

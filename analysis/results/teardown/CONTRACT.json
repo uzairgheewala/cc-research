@@ -1,0 +1,34 @@
+{
+ "producer": "analysis/ab11_teardown_run.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-42",
+  "CAP-09"
+ ],
+ "regime": "per-row",
+ "regime_by_row": {
+  "lingam": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "py-tetrad": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "pywhy-llm": "D+K",
+  "dowhy+causal-learn": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "pgmpy-pc": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "pgmpy-hillclimb": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "causalnex": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "dodiscover": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "tigramite": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)",
+  "gcastle": "D (scores, V7, V8) / D+K (knowledge tests, V3, V5)"
+ },
+ "regime_detail": "DV-1 and F1 are scored on the data-only (D) run at shuffle seed 20261010; knowledge runs are D+K and are not scored; PyWhy-LLM has no data interface, so its only regime is K (recorded as D+K, data-only relation 'none'), and it ran on the offline stub",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "three orders",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "scenario": "run_pc/cc-research/external/causalarena/scm/semantic/data/semantic_obs_only/semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+ "metric_defs": {
+  "dv1": "decision_value_v2.claims with every variable as a target: coverage = committed (target, variable) claims / d(d-1); precision_committed = share of committed yes/no claims matching the true graph's reachability",
+  "f1": "directed-edge F1 (causalarena_io.directed_scores), undecided pairs oriented by the random rule seeded crc32(file name); f1_drop_undecided also given",
+  "ledger_checks": "ledger/verify.py V1-V8 on ledgers written by analysis/ab11_ledger_adapters.py from what each tool exposes"
+ }
+}

@@ -1,0 +1,57 @@
+# AB-05 (AUD-37) pinned requirements for the 'causaliq' probe: installed with  pip install --target /opt/probes/causaliq -r this-file
+# Resolved for Python 3.10 / linux x86_64 (the cc-research image) with:
+#   uv pip compile --python-version 3.10 --python-platform x86_64-manylinux_2_28 --exclude-newer 2026-10-11T00:00:00Z
+# i.e. the newest versions available on the agent repository's last commit date. Top-level inputs:
+#   causaliq-workflow>=0.5.0
+#   causaliq-core>=0.7.0
+#   click>=8.0.0
+#   httpx>=0.24.0
+#   pydantic>=2.0.0
+#   numpy
+#   httpx
+#   tiktoken
+#   python-dotenv
+# Verified locally: installed into a --target dir, imported and stub-run end to end (Python 3.10.20).
+
+annotated-types==0.8.0
+anyio==4.15.1
+attrs==26.1.0
+causaliq-core==0.7.0
+causaliq-workflow==0.5.0
+certifi==2026.7.22
+charset-normalizer==3.5.2
+click==8.5.0
+cloudpickle==3.1.2
+exceptiongroup==1.3.1
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.20
+joblib==1.6.0
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+numpy==2.2.6
+pandas==2.3.3
+platformdirs==4.12.4
+psutil==7.2.2
+py-cpuinfo==9.0.0
+pydantic==2.14.0
+pydantic-core==2.50.0
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.4
+pytz==2026.5
+pyyaml==6.0.3
+referencing==0.37.0
+regex==2026.9.29
+requests==2.34.2
+rpds-py==0.30.0
+scikit-learn==1.7.2
+scipy==1.15.3
+simpleeval==1.0.8
+six==1.17.0
+threadpoolctl==3.7.0
+tiktoken==0.14.0
+typing-extensions==4.16.0
+typing-inspection==0.4.4
+tzdata==2026.5
+urllib3==2.8.0

@@ -1,0 +1,4031 @@
+{
+ "audit": "AU1",
+ "question": "Which causal-discovery systems exist today, what evidence may each use (D, I, K), where do its edge directions come from, and how was it evaluated (benchmarks, reported numbers, name/column-order controls)?",
+ "written": "2026-10-12",
+ "tickets": [
+  "STR-01",
+  "AUD-18 ",
+  "DOM-11"
+ ],
+ "schema": {
+  "name": "system name",
+  "category": "classical | continuous optimisation | pretrained / amortised | LLM-assisted discovery | agent (+ subtype) | benchmark control",
+  "year": "first public version year",
+  "venue_or_arxiv": "venue if seen on a primary page; otherwise arXiv id and an explicit \"not on abs page\" note",
+  "regimes": "subset of D (observational data), I (interventional data), K (declared knowledge: variable names, descriptions, LLM priors, tiers, background knowledge)",
+  "order_source": "where edge directions come from: data pattern, functional-form asymmetry, interventions, LLM/name knowledge, column order, learned prior",
+  "hidden_confounders_supported": "true / false / null (unknown or not verified)",
+  "time_series": "bool",
+  "max_variables_reported": "largest graph in the cited evaluation, or null",
+  "benchmarks": "list",
+  "best_reported": "list of {benchmark, metric, value, label}; label is reported / reported (other authors) / second-hand / measured (project)",
+  "controls_reported": "subset of names_neutralised, names_permuted, columns_shuffled, or [\"none\"]",
+  "other_controls": "memorisation probes, architectural invariance, augmentation, etc.",
+  "q_cells": "questions addressed (skeleton, orientation, effects, choice of experiments, ...)",
+  "code_url": "public code, or null if none found",
+  "licence": "as seen on repo/PyPI",
+  "last_commit_or_release": "as visible (GitHub pages did not show commit dates; PyPI upload dates used)",
+  "cpu_runnable": "yes / no / unknown",
+  "cost_per_graph": "if reported",
+  "notes": "free text",
+  "sources": "URLs (read 2026-10-12) or project files",
+  "order_source_code": "short code: DATA, FUNC, INT, SCORE, LEARNED, LLM, COL (* = only via a benchmark wrapper that forces undirected edges to a DAG by column index), RANDOM-ORDER, AGENT"
+ },
+ "rows": [
+  {
+   "name": "PC (incl. PC-stable)",
+   "category": "classical: constraint-based",
+   "year": 2000,
+   "venue_or_arxiv": "Spirtes, Glymour, Scheines, Causation, Prediction and Search (MIT Press 2000); PC-stable: Colombo & Maathuis, JMLR 15 (2014)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (v-structures + Meek rules)",
+    "column order (when a benchmark wrapper forces undirected CPDAG edges to a DAG; CausalArena \"liberal\" rule orients smaller index -> larger)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena",
+    "ACDB",
+    "Causal Chambers (via CDFM paper)",
+    "bnlearn (many papers)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.333,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.307,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.185,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "ACDB (4-7 nodes, observational only)",
+     "metric": "directed F1 (%)",
+     "value": 13.6,
+     "label": "reported (ACDB authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic public 50 (project rerun)",
+     "metric": "skeleton F1 / share of found pairs oriented / share of those right",
+     "value": "0.611 / 0.80 / 0.54",
+     "label": "measured (project)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "order-independent skeleton by design in PC-stable (Colombo & Maathuis 2014)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/py-why/causal-learn",
+   "licence": "MIT (repo page)",
+   "last_commit_or_release": "causal-learn 0.1.4.8 on PyPI, 2026-07-11",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime table: mean 20.4 s per row (reported)",
+   "notes": "Background knowledge accepted via causal-learn BackgroundKnowledge. On CausalArena the wrapper default orients every undirected edge from smaller to larger column index and drops bidirected marks; released columns follow a topological node_order in the scenario checked (DOM-07), so a share of PC directions there comes from layout, not data.",
+   "sources": [
+    "https://causal-learn.readthedocs.io/en/latest/search_methods_index/Constraint-based%20causal%20discovery%20methods/PC.html",
+    "https://github.com/py-why/causal-learn",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md",
+    "https://arxiv.org/html/2609.31675",
+    "project file /home/claude/work/audit_context.md (project measurements, not re-verified here)"
+   ],
+   "order_source_code": "DATA+COL*"
+  },
+  {
+   "name": "FCI",
+   "category": "classical: constraint-based (latent-aware)",
+   "year": 1995,
+   "venue_or_arxiv": "Spirtes, Meek, Richardson, UAI 1995 (as cited by causal-learn docs)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (colliders, discriminating paths -> PAG arrowheads); circle marks left undecided"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "FoundCause 15-dataset suite (as baseline)",
+    "project CausalArena rerun"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "FoundCause suite, 15 real/semi-synthetic datasets (macro avg)",
+     "metric": "directed F1",
+     "value": 0.38,
+     "label": "reported (FoundCause authors, as baseline)"
+    },
+    {
+     "benchmark": "CausalArena semantic public 50 (project rerun)",
+     "metric": "share of committed directions correct",
+     "value": 0.8,
+     "label": "measured (project)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation (PAG)"
+   ],
+   "code_url": "https://github.com/py-why/causal-learn",
+   "licence": "MIT (repo page)",
+   "last_commit_or_release": "causal-learn 0.1.4.8 on PyPI, 2026-07-11",
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Not on the CausalArena leaderboard. Output is a PAG; any DAG-scored benchmark must convert circle and bidirected marks, which re-introduces an order or truth-based rule (Causal-Copilot scorer orients them from the truth; REP-03).",
+   "sources": [
+    "https://causal-learn.readthedocs.io/en/latest/search_methods_index/Constraint-based%20causal%20discovery%20methods/FCI.html",
+    "https://arxiv.org/html/2606.17516",
+    "project file /home/claude/work/audit_context.md (project measurements, not re-verified here)"
+   ],
+   "order_source_code": "DATA"
+  },
+  {
+   "name": "GES",
+   "category": "classical: score-based",
+   "year": 2002,
+   "venue_or_arxiv": "Chickering, JMLR 3 (2002) 507-554",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (score-equivalent CPDAG)",
+    "column order (CausalArena liberal rule for undirected edges)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena (as GIES without targets)",
+    "project CausalArena rerun"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic obs-only (GIES row, observational setting = GES per TabCausal baselines README)",
+     "metric": "directed F1",
+     "value": 0.552,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic public 50 (project rerun)",
+     "metric": "share of committed directions correct",
+     "value": 0.81,
+     "label": "measured (project)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/juangamella/gies (GES = GIES with no targets); causal-learn GES",
+   "licence": "BSD-3-Clause (gies on PyPI)",
+   "last_commit_or_release": "gies 0.0.3 on PyPI, 2025-03-03",
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Second-best published semantic number on CausalArena comes from this score with the liberal orientation rule over topologically ordered columns.",
+   "sources": [
+    "https://www.jmlr.org/papers/v3/chickering02b.html",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md",
+    "project file /home/claude/work/audit_context.md (project measurements, not re-verified here)"
+   ],
+   "order_source_code": "DATA+COL*"
+  },
+  {
+   "name": "GIES",
+   "category": "classical: score-based, interventional",
+   "year": 2012,
+   "venue_or_arxiv": "Hauser & Buhlmann, JMLR 13 (2012) 2409-2464",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "data pattern",
+    "interventions (interventional MEC)",
+    "column order (CausalArena liberal rule)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.552,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.568,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.48,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.481,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, obs+int, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.269,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/juangamella/gies; R pcalg",
+   "licence": "BSD-3-Clause (gies); GPL-2|3 (pcalg, per DOM-10)",
+   "last_commit_or_release": "gies 0.0.3 on PyPI, 2025-03-03",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 2.8 s per row (reported)",
+   "notes": "Best classical row on CausalArena semantic; the gain from 200 interventional rows is small (0.552 -> 0.568).",
+   "sources": [
+    "https://www.jmlr.org/papers/v13/hauser12a.html",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md"
+   ],
+   "order_source_code": "DATA+INT+COL*"
+  },
+  {
+   "name": "LiNGAM family (ICA-LiNGAM, DirectLiNGAM)",
+   "category": "classical: functional causal model",
+   "year": 2006,
+   "venue_or_arxiv": "Shimizu et al., JMLR 7 (2006) 2003-2030; DirectLiNGAM is the CausalArena runner",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "functional-form asymmetry (non-Gaussian noise, linear)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.203,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.207,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.131,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": "https://github.com/cdt15/lingam",
+   "licence": "MIT (PyPI)",
+   "last_commit_or_release": "lingam 1.13.0 on PyPI, 2026-07-22",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 36.2 s per row (reported)",
+   "notes": "Directions come from non-Gaussianity; CausalArena semantic data are standardised, which leaves non-Gaussianity intact but the low score suggests the mechanisms violate the linear non-Gaussian assumption. Latent-variable and time-series variants in the lingam package were not checked today.",
+   "sources": [
+    "https://www.jmlr.org/papers/v7/shimizu06a.html",
+    "https://pypi.org/pypi/lingam/json",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv"
+   ],
+   "order_source_code": "FUNC"
+  },
+  {
+   "name": "ANM (additive noise model)",
+   "category": "classical: functional causal model",
+   "year": 2008,
+   "venue_or_arxiv": "Hoyer, Janzing, Mooij, Peters, Scholkopf, NIPS 2008",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "functional-form asymmetry (nonlinear additive noise; residual independence)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation (mainly bivariate)"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "No benchmark numbers read today. Implementations exist in several toolboxes (not checked).",
+   "sources": [
+    "https://papers.nips.cc/paper/2008/hash/f7664060cc52bc6f3d620bcedc94a4b6-Abstract.html"
+   ],
+   "order_source_code": "FUNC"
+  },
+  {
+   "name": "CAM",
+   "category": "classical: functional causal model",
+   "year": 2014,
+   "venue_or_arxiv": "Buhlmann, Peters, Ernest, arXiv 1310.1533 (DOI 10.1214/14-AOS1260 suggests Annals of Statistics; inferred from DOI)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "functional-form asymmetry (additive nonlinear Gaussian; order search by likelihood)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Used as the pruning step for LLM orders in Vashishtha et al. and as a DCDI baseline. No numbers read today.",
+   "sources": [
+    "https://arxiv.org/abs/1310.1533",
+    "https://arxiv.org/html/2310.15117v2"
+   ],
+   "order_source_code": "FUNC"
+  },
+  {
+   "name": "RESIT",
+   "category": "classical: functional causal model",
+   "year": 2014,
+   "venue_or_arxiv": "Peters, Mooij, Janzing, Scholkopf, JMLR 15 (2014) 2009-2053",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "functional-form asymmetry (regress, then test residual independence; sink-first order)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Provably correct in the population setting under additive noise (abstract). No benchmark numbers read today.",
+   "sources": [
+    "https://www.jmlr.org/papers/v15/peters14a.html"
+   ],
+   "order_source_code": "FUNC"
+  },
+  {
+   "name": "IGSP",
+   "category": "classical: permutation-based, interventional",
+   "year": 2017,
+   "venue_or_arxiv": "Wang, Solus, Yang, Uhler, arXiv 1705.10220 (venue not on abs page; NeurIPS 2017 unverified)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "data pattern (CI tests)",
+    "interventions (invariance tests)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.309,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.31,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.406,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.387,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.176,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "causaldag (PyPI, uhlerlab)",
+   "licence": "not shown on PyPI",
+   "last_commit_or_release": "causaldag 0.1a163 on PyPI, 2021-03-25",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 26.3 s per row (reported)",
+   "notes": "CausalArena notes it needs enough samples per intervention; with 200 interventional rows it gains nothing over obs-only.",
+   "sources": [
+    "https://arxiv.org/abs/1705.10220",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "https://arxiv.org/html/2609.11897v1"
+   ],
+   "order_source_code": "DATA+INT"
+  },
+  {
+   "name": "UT-IGSP",
+   "category": "classical: permutation-based, unknown targets",
+   "year": 2019,
+   "venue_or_arxiv": "Squires, Wang, Uhler, arXiv 1910.09007 (venue not on abs page)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "data pattern",
+    "interventions (targets partially or fully unknown)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Causal Chambers light tunnel (authors notebook)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Causal Chambers, 20-variable light-tunnel subgraph",
+     "metric": "precision / recall",
+     "value": "0.51 / 0.64",
+     "label": "second-hand (cluster7 note; hyperparameters picked against truth)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://uhlerlab.github.io/causaldag/utigsp",
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/abs/1910.09007",
+    "project note agent_reports/cluster7_active_discovery_and_environments.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+INT"
+  },
+  {
+   "name": "JCI (Joint Causal Inference)",
+   "category": "classical: multi-context framework",
+   "year": 2016,
+   "venue_or_arxiv": "Mooij, Magliacane, Claassen, arXiv 1611.10351 v6 2020 (journal not on abs page)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "data pattern",
+    "interventions as context variables"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abs page read today does not state latent-confounder support; the framework is used with FCI-type algorithms in the literature (not verified today). No numbers read.",
+   "sources": [
+    "https://arxiv.org/abs/1611.10351"
+   ],
+   "order_source_code": "DATA+INT"
+  },
+  {
+   "name": "DAS",
+   "category": "classical: functional (score matching, additive models)",
+   "year": null,
+   "venue_or_arxiv": "citation not resolved: CausalArena says it builds on additive-model structure learning [24,25]",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "functional-form asymmetry (additive nonlinear model)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.208,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.34,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.188,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 57.6 s per row (reported)",
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/html/2609.11897v1",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv"
+   ],
+   "order_source_code": "FUNC"
+  },
+  {
+   "name": "CDIS",
+   "category": "classical: graphical search (per CausalArena)",
+   "year": null,
+   "venue_or_arxiv": "CausalArena ref [21]; acronym not expanded; identity not resolved by these searches",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "data pattern",
+    "interventions",
+    "column order (outputs partially directed graphs; liberal rule)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.403,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.396,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.375,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.398,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.229,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 75.8 s per row (reported)",
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/html/2609.11897v1",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md"
+   ],
+   "order_source_code": "DATA+INT+COL*"
+  },
+  {
+   "name": "RandomRegress (control)",
+   "category": "benchmark control",
+   "year": 2026,
+   "venue_or_arxiv": "CausalArena arXiv 2609.11897",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "random variable order (control)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.252,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.281,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.199,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "mean 0.8 s per row (reported)",
+   "notes": "Floor for order-based regression. Project measurement: the same regression fed the released column order scores 0.680, shuffled 0.269; fed true causal depth 0.714 (audit_context).",
+   "sources": [
+    "https://arxiv.org/html/2609.11897v1",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "project file /home/claude/work/audit_context.md (project measurements, not re-verified here)"
+   ],
+   "order_source_code": "RANDOM-ORDER"
+  },
+  {
+   "name": "NOTEARS (linear)",
+   "category": "continuous optimisation",
+   "year": 2018,
+   "venue_or_arxiv": "Zheng, Aragam, Ravikumar, Xing, arXiv 1803.01422 (venue not on abs page)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "least-squares score + acyclicity; directions track marginal-variance ordering (varsortability, Reisach et al. 2021)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.203,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.276,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.158,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/xunzheng/notears",
+   "licence": "Apache-2.0",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 30.5 s per row (reported)",
+   "notes": "CausalArena data are z-scored, which removes the variance cue NOTEARS relies on; consistent with its low semantic score.",
+   "sources": [
+    "https://arxiv.org/abs/1803.01422",
+    "https://github.com/xunzheng/notears",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note agent_reports/cluster8_benchmark_leakage_and_ceilings.md (read 2026-10-12)"
+   ],
+   "order_source_code": "SCORE(scale)"
+  },
+  {
+   "name": "NOTEARS-MLP",
+   "category": "continuous optimisation (nonlinear)",
+   "year": null,
+   "venue_or_arxiv": "nonlinear extension in the NOTEARS repo; paper not opened today",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "nonlinear least-squares score + acyclicity (scale-sensitive)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.221,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.353,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.208,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/xunzheng/notears",
+   "licence": "Apache-2.0",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 80.3 s per row (reported)",
+   "notes": "",
+   "sources": [
+    "https://github.com/xunzheng/notears",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv"
+   ],
+   "order_source_code": "SCORE(scale)"
+  },
+  {
+   "name": "DAGMA",
+   "category": "continuous optimisation",
+   "year": 2022,
+   "venue_or_arxiv": "Bello, Aragam, Ravikumar, arXiv 2209.08037 (venue not on abs page)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "score + log-det acyclicity (scale-sensitive like NOTEARS)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena",
+    "Arrow paper semi-synthetic"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.182,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.284,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.161,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "ECOLI70 (p=46, n=100)",
+     "metric": "F1",
+     "value": 0.49,
+     "label": "reported (Arrow authors, as baseline)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/kevinsbello/dagma",
+   "licence": "Apache 2.0 (PyPI)",
+   "last_commit_or_release": "dagma 1.1.1 on PyPI, 2023-09-02",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 5.3 s per row (reported)",
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/abs/2209.08037",
+    "https://pypi.org/pypi/dagma/json",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "https://arxiv.org/html/2605.07204v1"
+   ],
+   "order_source_code": "SCORE(scale)"
+  },
+  {
+   "name": "GOLEM",
+   "category": "continuous optimisation",
+   "year": 2020,
+   "venue_or_arxiv": "Ng, Ghassami, Zhang, arXiv 2006.10201 (venue not on abs page)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "Gaussian likelihood score; equal-noise-variance variant identifies direction from variance assumption"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/ignavierng/golem",
+   "licence": "Apache-2.0",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "TensorFlow 1.15; GPU optional (README). Causal-Copilot paper says GOLEM excels on linear data in its preliminary benchmark (REP-03 row 6; not reproduced).",
+   "sources": [
+    "https://arxiv.org/abs/2006.10201",
+    "https://github.com/ignavierng/golem",
+    "/home/claude/work/bnd03/rep03_headline_claims.md"
+   ],
+   "order_source_code": "SCORE(variance assumption)"
+  },
+  {
+   "name": "GraN-DAG",
+   "category": "continuous optimisation (neural)",
+   "year": 2019,
+   "venue_or_arxiv": "Lachapelle, Brouillard, Deleu, Lacoste-Julien, arXiv 1906.02226 (venue not on abs page)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "neural likelihood score + acyclicity"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "used as baseline by CausalSteward"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Code repository not verified today.",
+   "sources": [
+    "https://arxiv.org/abs/1906.02226",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "SCORE"
+  },
+  {
+   "name": "DCDI",
+   "category": "continuous optimisation (neural, interventional)",
+   "year": 2020,
+   "venue_or_arxiv": "Brouillard et al., NeurIPS 2020 (proceedings URL seen); arXiv 2007.01754",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "neural likelihood score",
+    "interventions (perfect/imperfect, targets may be unknown)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/slachapelle/dcdi",
+   "licence": "LICENSE.md present, type not shown",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "TabCausal baselines README lists DCDI among runners that consume mixed files, but DCDI is not on the CausalArena leaderboard.",
+   "sources": [
+    "https://arxiv.org/abs/2007.01754",
+    "https://github.com/slachapelle/dcdi",
+    "https://papers.nips.cc/paper/2020/file/f8b7aa3a0d349d9562b424160ad18612-Review.html",
+    "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md"
+   ],
+   "order_source_code": "SCORE+INT"
+  },
+  {
+   "name": "SDCD",
+   "category": "continuous optimisation (interventional)",
+   "year": 2023,
+   "venue_or_arxiv": "Nazaret et al., ICML 2024, PMLR v235; arXiv 2311.10263",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "differentiable score with stable acyclicity penalty",
+    "interventions"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena",
+    "Arrow paper"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.358,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.362,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.383,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.376,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.241,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://pypi.org/project/sdcd/",
+   "licence": "MIT (PyPI)",
+   "last_commit_or_release": "sdcd 0.1.4 on PyPI, 2024-06-17",
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "CausalArena runtime: mean 192.6 s per row (reported; slowest)",
+   "notes": "",
+   "sources": [
+    "https://proceedings.mlr.press/v235/nazaret24a.html",
+    "https://pypi.org/pypi/sdcd/json",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv"
+   ],
+   "order_source_code": "SCORE+INT"
+  },
+  {
+   "name": "AVICI",
+   "category": "pretrained / amortised",
+   "year": 2022,
+   "venue_or_arxiv": "Lorch et al., arXiv 2205.12934 (NeurIPS 2022 per repo README, DOM-11)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "learned from simulator prior (patterns + functional form); may exploit correlation artefacts (iSCM study)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 100,
+   "benchmarks": [
+    "CausalArena",
+    "Arrow paper",
+    "CauScientist (as base)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.278,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.298,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.321,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.346,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.239,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "permutation-equivariant by architecture (paper Sec. 4.2)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/larslorch/avici",
+   "licence": "MIT",
+   "last_commit_or_release": "avici 1.0.7 on PyPI, 2025-01-03",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 11.6 s per row (reported); \"a few seconds on CPU\" (paper)",
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/abs/2205.12934",
+    "https://pypi.org/pypi/avici/json",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)",
+    "project note agent_reports/cluster8_benchmark_leakage_and_ceilings.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED+INT"
+  },
+  {
+   "name": "CSIvA",
+   "category": "pretrained / amortised",
+   "year": 2022,
+   "venue_or_arxiv": "Ke et al., arXiv 2204.04875 (venue not on abs page)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "learned from supervised synthetic graphs"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "FoundCause suite (as baseline)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "FoundCause suite, 15 datasets (macro avg)",
+     "metric": "directed F1",
+     "value": 0.507,
+     "label": "reported (FoundCause authors, as baseline)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "No code link on abs page; equivariance not verified (cluster8).",
+   "sources": [
+    "https://arxiv.org/abs/2204.04875",
+    "https://arxiv.org/html/2606.17516",
+    "project note agent_reports/cluster8_benchmark_leakage_and_ceilings.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED+INT"
+  },
+  {
+   "name": "SEA",
+   "category": "pretrained / amortised",
+   "year": 2024,
+   "venue_or_arxiv": "Wu, Bao, Barzilay, Jaakkola, arXiv 2402.01929 (venue not on abs page)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "learned aggregation of classical estimates (GIES/FCI on variable subsets) + inverse covariance",
+    "column order possible (learned 1D positional embeddings)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": 1000,
+   "benchmarks": [
+    "CausalArena",
+    "FoundCause suite",
+    "Arrow paper"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.332,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.396,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.208,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "FoundCause suite (macro avg)",
+     "metric": "directed F1",
+     "value": 0.512,
+     "label": "reported (FoundCause authors, as baseline)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "random node-index permutation during training (paper Sec. 3.3, DOM-11)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/rmwu/sea",
+   "licence": "not stated (no LICENSE)",
+   "last_commit_or_release": null,
+   "cpu_runnable": "no",
+   "cost_per_graph": "CausalArena runtime: mean 4.7 s per row (reported)",
+   "notes": "Aggregation step on GPU (DOM-11). An FCI-based checkpoint exists; whether its output carries latent marks was not checked. Hard-coded maximum of 1000 variables.",
+   "sources": [
+    "https://arxiv.org/abs/2402.01929",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)",
+    "https://arxiv.org/html/2606.17516"
+   ],
+   "order_source_code": "LEARNED+INT+COL?"
+  },
+  {
+   "name": "FoundCause",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Blobaum, Balasubramanian, Kasiviswanathan, arXiv 2606.17516",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned from synthetic SCM prior (DoWhy + custom generators, 18+ mechanism families)"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": 100,
+   "benchmarks": [
+    "CausalArena",
+    "own 15-dataset suite",
+    "Tubingen pairs",
+    "DREAM4-100, HAILFINDER, HEPAR II, WIN95PTS"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.634,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.622,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.212,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena formula obs-only",
+     "metric": "directed F1",
+     "value": 0.524,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "own suite, 15 real/semi-synthetic datasets (macro avg)",
+     "metric": "directed F1",
+     "value": 0.535,
+     "label": "reported"
+    },
+    {
+     "benchmark": "Tubingen pairs (102)",
+     "metric": "accuracy (unweighted)",
+     "value": 0.637,
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "no positional embeddings; random variable permutation on all training batches; inference averages K=10 random permutations (by design, no measured permutation test)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation",
+    "confounding flag"
+   ],
+   "code_url": "https://github.com/amazon-science/foundcause",
+   "licence": "Apache-2.0",
+   "last_commit_or_release": "repo archived 17 Jun 2026 (DOM-11)",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "under 2 s inference (paper; hardware not stated); CausalArena runtime mean 7.1 s per row",
+   "notes": "Best published CausalArena semantic number (0.634) but 0.212 on CausalArena real data. Latent confounding is a pairwise flag, not a PAG. Because it averages over random permutations, the CausalArena column-order leak should not help it: a natural control arm for AU9/AU11.",
+   "sources": [
+    "https://arxiv.org/html/2606.17516",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "CDFM",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Qiao et al., arXiv 2607.11508",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned from synthetic prior (15 mechanism families)"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": 100,
+   "benchmarks": [
+    "CausalArena",
+    "own synthetic",
+    "Causal Chambers A1/A2",
+    "Tubingen pairs"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.434,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.42,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.391,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "Causal Chambers task A1",
+     "metric": "F1",
+     "value": 0.727,
+     "label": "reported"
+    },
+    {
+     "benchmark": "own synthetic, N=500",
+     "metric": "F1",
+     "value": 0.552,
+     "label": "reported (PC 0.471)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "no permutation test reported; equivariance not stated"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/DMIRLAB-Group/CDFM",
+   "licence": "Apache-2.0",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 7.7 s per row",
+   "notes": "Best CausalArena real-data obs-only F1 (0.391). Target class is bow-free ADMG (about 15% of pretraining batches include latents). Interventional environments are averaged, not modelled.",
+   "sources": [
+    "https://arxiv.org/html/2607.11508",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "Arrow",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Thompson, Zhao, Steinberg, Bonilla, arXiv 2605.07204",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned from synthetic SEM prior"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 107,
+   "benchmarks": [
+    "CausalArena",
+    "bnlearn semi-synthetic (ECOLI70, MAGIC, ARTH150)",
+    "Herman et al. 2025 suite",
+    "Sachs"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.309,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.342,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (real obs-only, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.149,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "ECOLI70 (p=46, n=100)",
+     "metric": "F1",
+     "value": 0.56,
+     "label": "reported (DAGMA 0.49)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "equivariant to variable order by architecture (no positional encodings); no empirical permutation test"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": "unknown",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "about 0.01 s on semi-synthetic benchmarks (paper); CausalArena mean 1.2 s per row",
+   "notes": "Weights \"will soon\" be released (paper); none found.",
+   "sources": [
+    "https://arxiv.org/html/2605.07204v1",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "TabCausal (also listed as CausalTab, ICML 2026 workshop poster, same four authors)",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Li, Liu, Wang, Ye, arXiv 2605.31156; ICML 2026 workshop poster \"CausalTab\" (identity inferred from matching authors)",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "learned from causal-environment engine prior",
+    "interventions (per-cell indicators)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalArena",
+    "own synthetic",
+    "Causal Chambers (via CDFM paper)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.422,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.447,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.497,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.501,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.384,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "Causal Chambers task A1",
+     "metric": "F1",
+     "value": 0.603,
+     "label": "reported (CDFM authors, as baseline)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "RandomRegress used as varsortability control; no permutation test visible"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/LAMDA-Tabular/TabCausal",
+   "licence": "none (README asks to consult authors)",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "CausalArena runtime: mean 6.2 s per row",
+   "notes": "Same authors as CausalArena (conflict of interest, DOM-11). Best CausalArena obs+int row overall.",
+   "sources": [
+    "https://arxiv.org/html/2605.31156v1",
+    "https://icml.cc/virtual/2026/71464",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED+INT"
+  },
+  {
+   "name": "CauScale (CausalArena label \"CaScaLe\")",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Peng, Chen, Tian, Qiao, Lu, arXiv 2602.08629 (ICML 2026 per repo, DOM-11)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned; two-stream design adds statistical graph priors"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 1000,
+   "benchmarks": [
+    "CausalArena",
+    "own synthetic + SERGIO"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalArena semantic, obs-only (100 scenarios)",
+     "metric": "directed F1",
+     "value": 0.249,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena semantic, obs+int",
+     "metric": "directed F1",
+     "value": 0.291,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs-only",
+     "metric": "directed F1",
+     "value": 0.414,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena synthetic, obs+int",
+     "metric": "directed F1",
+     "value": 0.457,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "CausalArena real data (all, 13 or 20 tasks)",
+     "metric": "directed F1",
+     "value": 0.118,
+     "label": "reported (CausalArena authors' table, not the method authors)"
+    },
+    {
+     "benchmark": "own in-distribution / out-of-distribution",
+     "metric": "mAP",
+     "value": "0.996 / 0.844",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/OpenCausaLab/CauScale",
+   "licence": "code: no LICENSE; HF checkpoints tagged Apache-2.0",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "CausalArena runtime: mean 2.2 s per row",
+   "notes": "Large gap between its own mAP and CausalArena semantic F1 (0.249).",
+   "sources": [
+    "https://arxiv.org/abs/2602.08629",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/real/real_method_summary.csv",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/results/tables/runtime/synthetic_main_runtime.csv",
+    "project note bnd02/dom11_pretrained_models.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "TabPFN causal probe",
+   "category": "pretrained / amortised",
+   "year": 2025,
+   "venue_or_arxiv": "Swelam et al., arXiv 2511.07236",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned decoder over frozen TabPFN embeddings"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abstract claims it beats several traditional algorithms; no numbers or code on the abs page. Position-indexed causal tokens (cluster8 inference: probably not order-invariant).",
+   "sources": [
+    "https://arxiv.org/abs/2511.07236",
+    "project note agent_reports/cluster8_benchmark_leakage_and_ceilings.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "DCD-PFN",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Guan et al., arXiv 2606.21212",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned local (Markov-boundary) discovery, assembled globally"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abs page only: no benchmarks, numbers or code given.",
+   "sources": [
+    "https://arxiv.org/abs/2606.21212"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "DAG-FM",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Chen et al., arXiv 2607.11510 v2",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "learned leaf-node and parent predictors -> causal ordering"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abs page only: claims state of the art, no numbers or code on the page.",
+   "sources": [
+    "https://arxiv.org/abs/2607.11510"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "TabPFN-CFM",
+   "category": "pretrained / amortised",
+   "year": 2026,
+   "venue_or_arxiv": "Zhu, Mansoldo, Wang, Groha, arXiv 2606.26467",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "learned; can condition on a known graph"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation",
+    "effects"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abs page only: structure and outcome prediction across all three rungs; no numbers or code on the page.",
+   "sources": [
+    "https://arxiv.org/abs/2606.26467"
+   ],
+   "order_source_code": "LEARNED"
+  },
+  {
+   "name": "Kiciman et al. (LLM pairwise / full graph from names)",
+   "category": "LLM-assisted discovery",
+   "year": 2023,
+   "venue_or_arxiv": "arXiv 2305.00050; TMLR (cluster1)",
+   "regimes": [
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Tubingen pairs",
+    "neuropathic pain",
+    "Arctic sea ice"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Tubingen pairs",
+     "metric": "accuracy (GPT-4)",
+     "value": 0.97,
+     "label": "second-hand (cluster1 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "memorisation probe (row completion: GPT-4 recalls about 61% of cells)",
+    "67 post-cutoff pairs"
+   ],
+   "q_cells": [
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "The canonical LLM-as-expert result; memorisation documented by the authors. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2305.00050",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LLM"
+  },
+  {
+   "name": "Long et al. (LLM as imperfect expert on the MEC)",
+   "category": "LLM-assisted discovery",
+   "year": 2023,
+   "venue_or_arxiv": "arXiv 2307.02390; ICML 2023 SPIGM workshop (cluster1)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (MEC)",
+    "LLM / name knowledge for ambiguous edges"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "bnlearn Asia, Child, Alarm, Insurance (true MECs)"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Guarantee p(true graph in class) >= 1-eta under an epsilon-expert model that LLMs violate; true graph excluded on Alarm (cluster1). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2307.02390",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Ban et al. (LLM ancestral constraints in score search)",
+   "category": "LLM-assisted discovery",
+   "year": 2023,
+   "venue_or_arxiv": "arXiv 2306.16902 v2 (2025); IEEE TAI 2025 per cluster1, not on abs page",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data score",
+    "LLM / name knowledge (hard or soft ancestral constraints)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "8 bnlearn networks"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/tyMadara/LLM-CD",
+   "licence": "not checked",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2306.16902",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "ILS-CSL",
+   "category": "LLM-assisted discovery",
+   "year": 2023,
+   "venue_or_arxiv": "Ban, Chen, Lyu, Wang, Chen, arXiv 2311.11689 (venue not listed)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data score (HC/BDeu, CaMML)",
+    "LLM verifies only data-proposed edges"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "8 bnlearn networks"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": "https://github.com/tyMadara/ILS-CSL",
+   "licence": "none shown",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Repo ships GPT query history for all pairwise variables (out/gpt_history) and Asia/Child data only; discrete data with precomputed score files. Design never lets the LLM add an edge the data did not propose. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2311.11689",
+    "https://github.com/tyMadara/ILS-CSL",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Takayama et al. SCP (statistical causal prompting)",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "arXiv 2402.01454 v5 (2025); TMLR 2025 per cluster1, not on abs page",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (DirectLiNGAM / PC / exact search)",
+    "LLM probability matrix (names + shown data result) thresholded to forced/forbidden"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Auto MPG",
+    "DWD climate",
+    "Sachs",
+    "unpublished health-screening dataset"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Alarm (as baseline in CauTion)",
+     "metric": "F1",
+     "value": 91.2,
+     "label": "reported (CauTion authors)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "unpublished dataset to exclude memorisation"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/mas-takayama/LLM-and-SCD",
+   "licence": "none shown",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": "about 3.03M tokens on Win95pts (reported by CauTion authors)",
+   "notes": "Repo: 3 commits, folders for code, benchmark datasets and ground truth; no README. The LLM sees the data result, so its knowledge is not independent of the data. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2402.01454",
+    "https://github.com/mas-takayama/LLM-and-SCD",
+    "https://arxiv.org/html/2606.03602",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Vashishtha et al. causal order (triplet prompting)",
+   "category": "LLM-assisted discovery",
+   "year": 2023,
+   "venue_or_arxiv": "arXiv 2310.15117 v2; ICLR 2025 poster",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge (topological order from triplet votes)",
+    "data (PC / CaMML / CAM for skeleton)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 22,
+   "benchmarks": [
+    "Earthquake",
+    "Cancer",
+    "Survey",
+    "Asia",
+    "Asia-M",
+    "Child",
+    "Neuropathic",
+    "Covid-19",
+    "Alzheimers"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Asia, N=10,000",
+     "metric": "D_top (PC vs PC+LLM order)",
+     "value": "1.50 vs 0.00",
+     "label": "reported"
+    },
+    {
+     "benchmark": "Child, N=10,000",
+     "metric": "D_top (PC vs PC+LLM order)",
+     "value": "6.00 vs 5.00",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "less-known graphs chosen for memorisation concerns"
+   ],
+   "q_cells": [
+    "orientation",
+    "order"
+   ],
+   "code_url": "https://github.com/AniketVashishtha/Causal_Order_Imperfect_Experts",
+   "licence": "not checked",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Closest published analogue of our \"a few bits of order knowledge\" finding: the interface is a causal order, not edges. Triplet prompting is cubic in variables (cost not reported). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2310.15117",
+    "https://arxiv.org/html/2310.15117v2",
+    "https://iclr.cc/virtual/2025/poster/30671"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "LLM-BFS (Jiralerspong et al.)",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "arXiv 2402.01207 v5 (Apr 2026); ICLR 2024 workshop per ML Anthology listing",
+   "regimes": [
+    "K",
+    "D"
+   ],
+   "order_source": [
+    "LLM / name knowledge (breadth-first expansion)",
+    "optional Pearson correlations in the prompt"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 221,
+   "benchmarks": [
+    "Asia",
+    "Child",
+    "Neuropathic Pain (221 nodes)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Asia, no data",
+     "metric": "F1",
+     "value": 0.93,
+     "label": "reported"
+    },
+    {
+     "benchmark": "Child, 10,000 samples",
+     "metric": "F1",
+     "value": 0.63,
+     "label": "reported"
+    },
+    {
+     "benchmark": "Neuropathic Pain, no data",
+     "metric": "F1",
+     "value": 0.351,
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "about one query per node (O(n)); GPT-4",
+   "notes": "Paper says code is provided \"in this repository\" without a link. Widely used as a baseline (LLM-BFS) in CausalSteward, Li & Russo and others; LLM-BFS reaches 100% recall on Asia and Sachs in Li & Russo (memorisation flag). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2402.01207",
+    "https://arxiv.org/html/2402.01207v5",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Darvariu et al. LLM priors for CD-UCT",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "arXiv 2405.13551",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (MCTS search)",
+    "LLM soft prior (forward/backward/no edge)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "skeleton"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Reports LLMs help more with direction than existence (cluster1). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2405.13551",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "chatPC (Cohrs et al.)",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "arXiv 2406.07378",
+   "regimes": [
+    "K"
+   ],
+   "order_source": [
+    "LLM answers to CI queries + PC orientation rules"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Cancer",
+    "burglary",
+    "Asia",
+    "Sachs",
+    "climate examples"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Every edge is LLM-derived; voting over answers. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2406.07378",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LLM"
+  },
+  {
+   "name": "LACR (retrieval-augmented LLM)",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "arXiv 2402.15301",
+   "regimes": [
+    "K"
+   ],
+   "order_source": [
+    "retrieved literature + LLM votes"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Asia",
+    "Sachs",
+    "Coronary"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Argues published ground truths (e.g. Asia) conflict with current literature. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2402.15301",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LLM"
+  },
+  {
+   "name": "COAT",
+   "category": "LLM-assisted discovery",
+   "year": 2024,
+   "venue_or_arxiv": "Liu et al., NeurIPS 2024; arXiv 2402.03941",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (FCI); the LLM proposes variables only"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "AppleGastronome (synthetic)",
+    "Neuropathic",
+    "case studies"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation (PAG)",
+    "variable construction"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Clean role split: LLM never decides edges.",
+   "sources": [
+    "https://proceedings.neurips.cc/paper_files/paper/2024/hash/b99a07486702417d3b1bd64ec2cf74ad-Abstract.html",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA"
+  },
+  {
+   "name": "Srivastava et al. PC + LLM hard prior",
+   "category": "LLM-assisted discovery",
+   "year": 2025,
+   "venue_or_arxiv": "arXiv 2510.16530",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (PC)",
+    "LLM / name knowledge (hard priors that block edge removal)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "bnlearn (memorisation tests)",
+    "4 post-cutoff graphs (Alzheimer's, two COVID-19, Sweden transport)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "post-cutoff Alzheimer's graph",
+     "metric": "F1 PC / LLM / hybrid",
+     "value": "0.51 / 0.56 / 0.73",
+     "label": "second-hand (cluster2 note)"
+    },
+    {
+     "benchmark": "Sweden transport",
+     "metric": "F1 LLM vs PC",
+     "value": "0.31 vs 0.57",
+     "label": "second-hand (cluster2 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "post-cutoff graphs",
+    "node/edge/subgraph completion memorisation probes"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2510.16530",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "L2D-CD (learning to defer)",
+   "category": "LLM-assisted discovery",
+   "year": 2025,
+   "venue_or_arxiv": "Clivio et al., arXiv 2502.13132",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "per-pair choice between data method and LLM"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Tubingen pairs"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation (bivariate)"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Bivariate only; Tubingen is partly memorised (cluster1). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2502.13132",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "MosaCD",
+   "category": "LLM-assisted discovery",
+   "year": 2025,
+   "venue_or_arxiv": "Lyu, Turcan, Zhang, Wilder, arXiv 2509.23570",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (PC skeleton, separating sets veto seeds)",
+    "LLM / name knowledge (orientation seeds) + propagation"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 76,
+   "benchmarks": [
+    "10 bnlearn networks (Cancer ... Win95pts)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Win95pts (76 vars)",
+     "metric": "orientation F1",
+     "value": 0.81,
+     "label": "reported (best baseline 0.69)"
+    },
+    {
+     "benchmark": "Insurance",
+     "metric": "orientation F1",
+     "value": 0.87,
+     "label": "reported (best baseline 0.70)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "answer order shuffled (both orientations x 5 repeats) against positional bias",
+    "uninformative descriptions on Insurance"
+   ],
+   "q_cells": [
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "at least 10 LLM queries per undirected skeleton edge (GPT-4o-mini); dollar cost not reported",
+   "notes": "Abstains (leaves low-confidence edges undirected) and lets data veto LLM seeds; names not anonymised.",
+   "sources": [
+    "https://arxiv.org/html/2509.23570",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "CARE (fine-tuned LLM using algorithm outputs)",
+   "category": "LLM-assisted discovery",
+   "year": 2025,
+   "venue_or_arxiv": "Dong, Liu, Aloui, Tarokh, Carlson, arXiv 2511.16016 (venue not on abs page)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "algorithm outputs (PC, GES, LiNGAM, FCI, GRaSP, BOSS) + data",
+    "LLM / name knowledge"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Asia",
+    "Alarm (and others)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Asia, names permuted",
+     "metric": "edge F1 (LLM-judge parsed)",
+     "value": 0.46,
+     "label": "second-hand (DOM-07 note; best baseline 0.152)"
+    },
+    {
+     "benchmark": "Alarm, names permuted",
+     "metric": "edge F1 (LLM-judge parsed)",
+     "value": 0.618,
+     "label": "second-hand (DOM-07 note; best baseline 0.446)"
+    }
+   ],
+   "controls_reported": [
+    "names_neutralised",
+    "names_permuted"
+   ],
+   "other_controls": [
+    "column reordering used as training augmentation, not a measured factor"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "The only system found that measures a names-swapped arm (Original / Random / Permuted). Qwen2.5-1.5B + LoRA. Scoring uses an LLM parser. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2511.16016v1",
+    "project note agent_reports/cluster8_benchmark_leakage_and_ceilings.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "CauScientist",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "Peng, Chen, Xu, Lu, arXiv 2601.13614",
+   "regimes": [
+    "D",
+    "I",
+    "K"
+   ],
+   "order_source": [
+    "LLM proposes ADD/DEL/REV edits from names",
+    "intervention-aware BIC accepts or rejects each edit",
+    "start graph from FCI or AVICI"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 37,
+   "benchmarks": [
+    "Cancer",
+    "Asia",
+    "Child",
+    "Alarm"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Cancer",
+     "metric": "F1 (FCI -> +CauScientist)",
+     "value": "33.3 -> 87.1",
+     "label": "reported"
+    },
+    {
+     "benchmark": "Alarm",
+     "metric": "F1 (AVICI -> +CauScientist)",
+     "value": "72.5 -> 76.3",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/OpenCausaLab/CauScientist",
+   "licence": "none (placeholder repo)",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Repo holds README and a figure only: \"Code will be released soon\". Qwen3-14B/32B. Every accepted edit is BIC-improving (a data gate on LLM edits). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2601.13614v1",
+    "https://github.com/OpenCausaLab/CauScientist"
+   ],
+   "order_source_code": "DATA+LLM+INT"
+  },
+  {
+   "name": "Tench & Demeester expert-guided model averaging",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "arXiv 2601.16715",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "ensemble vote",
+    "LLM only on disputed edges"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Bayesys networks",
+    "SimSUM"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "memorisation probe (high for ASIA only)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2601.16715",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "CaPE (causal preference elicitation)",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "Bonilla, Zhao, Steinberg, arXiv 2602.01483; ICML 2026 poster (search listing, cluster1)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data likelihood",
+    "noisy-expert likelihood with active queries"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "synthetic",
+    "Sachs",
+    "CausalBench"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "choice of queries"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Tested with simulated experts, not LLMs (cluster1). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2602.01483",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA"
+  },
+  {
+   "name": "ABAPC-LLM (Li & Russo, argumentation with data veto)",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "UAI 2026, PMLR 337:3631-3667; arXiv 2602.16481",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data pattern (weighted CI facts in ASP)",
+    "LLM / name knowledge (unanimous required/forbidden arrows; required arrow dropped if data removed the adjacency)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 15,
+   "benchmarks": [
+    "bnlearn incl. Sachs",
+    "54 CauseNet-grounded novel DAGs (5/10/15 nodes)"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "novel graphs with real-world names (memorisation control, not a name control)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/briziorusso/ArgCausalDisco (base repo; LLM part not in README; not verified as paper code)",
+   "licence": "none shown",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "clingo ASP; scaling to about 15 nodes, below CausalArena sizes (20-40).",
+   "sources": [
+    "https://proceedings.mlr.press/v337/li26e.html",
+    "https://arxiv.org/html/2602.16481v1",
+    "https://github.com/briziorusso/ArgCausalDisco",
+    "/mnt/user-data/uploads/Fall 2026--DSC 180A/cc-research/analysis/literature/bnd02/dom07_deep_reads.md"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "DMCD (semantic draft + CI verification)",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "KaPatel et al. (Causify AI), arXiv 2602.20333",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "LLM / name and description knowledge (draft DAG)",
+    "data (CI tests with FDR flag missing/spurious edges)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 33,
+   "benchmarks": [
+    "Tennessee Eastman",
+    "Fluxnet2015",
+    "IT monitoring (4 datasets)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Fluxnet2015",
+     "metric": "F1",
+     "value": 0.751,
+     "label": "reported (best baseline 0.500)"
+    },
+    {
+     "benchmark": "Fluxnet2015, renamed X1..Xn + paraphrased descriptions",
+     "metric": "F1",
+     "value": 0.79,
+     "label": "reported"
+    },
+    {
+     "benchmark": "Tennessee Eastman, descriptions removed",
+     "metric": "F1",
+     "value": "0.209 -> 0.07",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "names_neutralised"
+   ],
+   "other_controls": [
+    "memorisation probes (sentence completion, dataset identification)"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "one drafting LLM call per run (GPT-5.2)",
+   "notes": "Renaming kept descriptions (paraphrased), so knowledge still flows through text. Company-authored. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2602.20333",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "CauTion (trust-calibrated LLM vs ensemble)",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "Peng et al., arXiv 2606.03602",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "algorithm ensemble votes (PC, GES, CaMML ...)",
+    "LLM / name knowledge on low-margin edges, weighted by accuracy on consensus edges"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 76,
+   "benchmarks": [
+    "Cancer",
+    "Insurance",
+    "Water",
+    "Alarm",
+    "Barley",
+    "Win95pts"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Win95pts",
+     "metric": "F1",
+     "value": 85.2,
+     "label": "reported (BOSS 84.9)"
+    },
+    {
+     "benchmark": "Insurance",
+     "metric": "F1",
+     "value": 87.4,
+     "label": "reported (SCP 74.0)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "each direction asked in both framings"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/OpenCausaLab/CauTion",
+   "licence": "none (placeholder repo)",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "about 26,267 tokens on Win95pts with Claude Sonnet 4.6 (reported)",
+   "notes": "Repo: \"Coming soon\". Reliability estimated on consensus edges of famous graphs, which memorisation inflates (cluster1). Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2606.03602",
+    "https://github.com/OpenCausaLab/CauTion",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Kitson & Constantinou probabilistic fusion (PDG)",
+   "category": "LLM-assisted discovery",
+   "year": 2026,
+   "venue_or_arxiv": "arXiv 2608.27472",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "structure-learning ensemble (FGES/Tabu/PC)",
+    "LLM orientation probabilities (aliased names)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 70,
+   "benchmarks": [
+    "26 networks from bnlearn, bnRep, Bayesys (8-70 variables)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "26 networks (mean)",
+     "metric": "F1 fusion / BNSL / LLM",
+     "value": "0.760 / 0.662 / 0.572",
+     "label": "reported"
+    },
+    {
+     "benchmark": "26 networks",
+     "metric": "orientation accuracy LLM / BNSL",
+     "value": "0.96 / 0.77",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "names_neutralised"
+   ],
+   "other_controls": [
+    "post-hoc leakage audit of benchmark identifiability"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/causaliq/causaliq-knowledge (related MIT library by the first author's CausalIQ org; link to the paper not verified)",
+   "licence": "MIT (library)",
+   "last_commit_or_release": "causaliq-knowledge 0.6.0 on PyPI, 2026-04-10",
+   "cpu_runnable": "yes",
+   "cost_per_graph": "18 LLM requests per network per setup; mean 0.05 US cents per request (reported)",
+   "notes": "Aliases are meaningful neutral names (e.g. asia -> endemic_travel), so domain knowledge is kept; no column-order control. LLM orientation accuracy 0.96 under aliases.",
+   "sources": [
+    "https://arxiv.org/html/2608.27472",
+    "https://pypi.org/pypi/causaliq-knowledge/json",
+    "https://github.com/causaliq/causaliq-knowledge",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "PyWhy-LLM",
+   "category": "LLM-assisted discovery",
+   "year": 2025,
+   "venue_or_arxiv": "library (py-why/pywhy-llm)",
+   "regimes": [
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge (pairwise suggestions; CauseNet RAG variant)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "identification"
+   ],
+   "code_url": "https://github.com/py-why/pywhy-llm",
+   "licence": "MIT",
+   "last_commit_or_release": "pywhyllm 0.1 on PyPI, 2025-04-19",
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "No benchmark reported. Usable as a minimal \"LLM-only pairwise\" arm.",
+   "sources": [
+    "https://github.com/py-why/pywhy-llm",
+    "https://pypi.org/pypi/pywhyllm/json"
+   ],
+   "order_source_code": "LLM"
+  },
+  {
+   "name": "Causal-Copilot",
+   "category": "agent",
+   "year": 2025,
+   "venue_or_arxiv": "Wang et al., arXiv 2504.13263 v2 (no venue listed)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "algorithm output (data pattern or functional form, algorithm chosen by LLM)",
+    "LLM / name knowledge (refinement adds/deletes directed edges)",
+    "bootstrap frequency filter"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": true,
+   "max_variables_reported": 1000,
+   "benchmarks": [
+    "own synthetic suite (Table 2)",
+    "CausalSteward (as baseline)",
+    "project: CausalArena semantic public 50"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "own Table 2, default (p=10, n=1000)",
+     "metric": "F1",
+     "value": 0.9,
+     "label": "reported (PC 0.920 in same row)"
+    },
+    {
+     "benchmark": "own Table 2, p=1000, n=10000",
+     "metric": "F1",
+     "value": 0.87,
+     "label": "reported"
+    },
+    {
+     "benchmark": "CausalMan Small / Medium / Neuropathic Pain",
+     "metric": "F1",
+     "value": "0.078 / 0.014 / 0.334",
+     "label": "reported (CausalSteward authors, third-party)"
+    },
+    {
+     "benchmark": "CausalArena semantic public 50, real / neutral / swapped names",
+     "metric": "directed F1",
+     "value": "0.306 / 0.232 / 0.142",
+     "label": "measured (project)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "project audit adds names_neutralised + names_permuted arms"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation",
+    "effects (web demo)"
+   ],
+   "code_url": "https://github.com/Lancelot39/Causal-Copilot",
+   "licence": "MIT",
+   "last_commit_or_release": "638 commits on main (repo page); project baseline a31aa7c",
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Paper scorer orients non-directed predicted edges from the truth and scores the pre-refinement graph (REP-03). Hidden confounders only via FCI, whose marks the refinement deletes (DOM-12). Providers: OpenAI, OpenRouter, Ollama.",
+   "sources": [
+    "https://arxiv.org/abs/2504.13263",
+    "https://github.com/Lancelot39/Causal-Copilot",
+    "/home/claude/work/bnd03/rep03_headline_claims.md",
+    "/home/claude/work/bnd03/dom12_scope_code_facts.md",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)",
+    "project file /home/claude/work/audit_context.md (project measurements, not re-verified here)"
+   ],
+   "order_source_code": "DATA/FUNC (LLM-chosen algorithm)+LLM"
+  },
+  {
+   "name": "CausalSteward (CaST)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Tagliapietra et al., arXiv 2607.01936",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge (hypothesis + critic agents, RAG)",
+    "data pattern (FCI/ICD on partitions seeded with LLM edges)"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": 222,
+   "benchmarks": [
+    "CausalMan Small (53) / Medium (186)",
+    "Neuropathic Pain (222)",
+    "CausalChambers"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalMan Small",
+     "metric": "F1",
+     "value": "0.42-0.48",
+     "label": "second-hand (cluster2 note)"
+    },
+    {
+     "benchmark": "Neuropathic Pain",
+     "metric": "F1",
+     "value": "0.10-0.13 (below XGES 0.309)",
+     "label": "second-hand (cluster2 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Only independent evaluation of Causal-Copilot found. No anonymisation.",
+   "sources": [
+    "https://arxiv.org/abs/2607.01936",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Causal Ensemble Agent (CEA)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Li et al., arXiv 2606.10607",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (bootstrap support from PC, FCI, GES, BOSS, GRaSP, ICA-LiNGAM; Meek closure)",
+    "LLM reweights algorithms on disputed relations (names)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 37,
+   "benchmarks": [
+    "bnlearn Alarm, Asia, Child, Insurance, Sachs",
+    "Alzheimer",
+    "Arctic-Sea",
+    "Sangiovese"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Alarm",
+     "metric": "normalised Hamming ratio / PR-AUC",
+     "value": "0.049 / 0.952",
+     "label": "reported"
+    },
+    {
+     "benchmark": "Arctic-Sea",
+     "metric": "normalised Hamming ratio / PR-AUC",
+     "value": "0.427 / 0.597",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": "26-63 LLM queries per dataset (604 total vs 5,389 exhaustive); GPT-5.5",
+   "notes": "Code promised on acceptance. Flags its perfect direct-LLM Asia score as possible leakage; no renaming. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2606.10607v1",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Causal Modelling Agents (CMA)",
+   "category": "agent",
+   "year": 2024,
+   "venue_or_arxiv": "Abdulaal et al., ICLR 2024",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge (proposes and amends graph)",
+    "data (deep SCM likelihood)"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Arctic sea ice",
+    "Sangiovese",
+    "Alzheimer's (11 nodes)",
+    "ADNI"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Alzheimer's",
+     "metric": "normalised Hamming ratio (CMA vs GPT-4)",
+     "value": "0.21 vs 0.27",
+     "label": "second-hand (cluster2 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Chain graphs for unmeasured confounding (cluster1).",
+   "sources": [
+    "https://openreview.net/forum?id=pAoqRlTBtY",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "MATMCD",
+   "category": "agent",
+   "year": 2024,
+   "venue_or_arxiv": "Shen et al., arXiv 2412.13667; ACL 2025 Findings (repo README)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (PC / Exact Search / DirectLiNGAM)",
+    "LLM constraint agent with web/log retrieval"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "AutoMPG",
+    "DWDClimate",
+    "Sachs",
+    "Asia",
+    "Child",
+    "two AIOps systems"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "AutoMPG",
+     "metric": "normalised Hamming (PC -> MATMCD)",
+     "value": "0.32 -> 0.04",
+     "label": "second-hand (cluster2 note)"
+    },
+    {
+     "benchmark": "Sachs",
+     "metric": "normalised Hamming",
+     "value": "0.19 -> 0.14",
+     "label": "second-hand (cluster2 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "retrieval screened for ground-truth leakage"
+   ],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": "https://github.com/D2I-Group/matmcd",
+   "licence": "MIT",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "18 commits; needs an LLM API key; datasets downloaded separately. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2412.13667",
+    "https://github.com/D2I-Group/matmcd",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "MAC (multi-agent debate)",
+   "category": "agent",
+   "year": 2024,
+   "venue_or_arxiv": "Le, Xia, Chen, arXiv 2407.15073 v1",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "LLM debate picks algorithm and refines graph (names)",
+    "data (chosen algorithm)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 11,
+   "benchmarks": [
+    "Auto MPG",
+    "DWD climate",
+    "Sachs"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Sachs",
+     "metric": "SHD (zero-shot GPT-4o baseline beats proposed models)",
+     "value": 18,
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "v1 text shows three datasets, correcting the \"five\" in cluster2. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/html/2407.15073v1",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "ALCM",
+   "category": "agent",
+   "year": 2024,
+   "venue_or_arxiv": "Khatibi et al., arXiv 2405.01744 v2 (Apr 2025; no venue listed)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (PC/LiNGAM/NOTEARS vote)",
+    "LLM refiner validates, adds, reorients"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Asia",
+    "Cancer",
+    "Child",
+    "Insurance",
+    "Neuropathic",
+    "Sachs",
+    "Sangiovese"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Asia",
+     "metric": "normalised Hamming (PC -> ALCM)",
+     "value": "0.143 -> 0.089",
+     "label": "second-hand (cluster2 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Architecture closest to Causal-Copilot's refiner; single runs, no memorisation control. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2405.01744",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "Causal Agent (Han et al.)",
+   "category": "agent",
+   "year": 2024,
+   "venue_or_arxiv": "Han, Kuang, Zhao, Ye, Wu, arXiv 2408.06849 v3 (Aug 2026)",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "data (causal-learn PC; tools via ReAct)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CausalTQA (about 1.4K questions)",
+    "QRData"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausalTQA, four levels",
+     "metric": "accuracy",
+     "value": ">0.80 on all levels",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "names_neutralised"
+   ],
+   "other_controls": [
+    "variable names drawn at random from a 311-word pool, so names carry no causal signal"
+   ],
+   "q_cells": [
+    "QA over skeleton, edges, graphs, effects"
+   ],
+   "code_url": "https://github.com/kairong-han/causal_agent",
+   "licence": "MIT",
+   "last_commit_or_release": null,
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Scores question answering, not graph recovery; gpt-3.5-turbo.",
+   "sources": [
+    "https://arxiv.org/abs/2408.06849",
+    "https://github.com/kairong-han/causal_agent",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA"
+  },
+  {
+   "name": "Causal AI Scientist (CAIS)",
+   "category": "agent",
+   "year": 2025,
+   "venue_or_arxiv": "Verma et al., NeurIPS 2025 workshop; ICML 2026 workshop version",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "not applicable (effect estimation; graph not learned)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "CauSciBench"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "effects"
+   ],
+   "code_url": "https://github.com/causalNLP/causal-agent",
+   "licence": "MIT",
+   "last_commit_or_release": "causal-agent 0.1.2 on PyPI, 2025-10-07",
+   "cpu_runnable": "yes",
+   "cost_per_graph": null,
+   "notes": "Effect estimation only (DiD, IV, OLS, RDD, backdoor/frontdoor); no discovery module listed.",
+   "sources": [
+    "https://github.com/causalNLP/causal-agent",
+    "https://pypi.org/pypi/causal-agent/json",
+    "https://neurips.cc/virtual/2025/124113",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "n/a (effects or unevaluated)"
+  },
+  {
+   "name": "CATE-B",
+   "category": "agent",
+   "year": 2025,
+   "venue_or_arxiv": "Berrevoets et al., arXiv 2508.10581",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (discovery algorithm)",
+    "LLM with RAG orients edges"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "two small datasets"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation",
+    "effects"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "State bank of intermediate artefacts; no memorisation control.",
+   "sources": [
+    "https://arxiv.org/abs/2508.10581",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "CausalAgent (conversational multi-agent demo)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Zhu, Chen, Cai, arXiv 2602.11527; IUI Companion 2026",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "not evaluated"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Sachs case study only"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "skeleton",
+    "orientation",
+    "effects"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "No quantitative evaluation.",
+   "sources": [
+    "https://arxiv.org/abs/2602.11527",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "n/a (effects or unevaluated)"
+  },
+  {
+   "name": "LLM4Causal",
+   "category": "agent",
+   "year": 2023,
+   "venue_or_arxiv": "Jiang et al., arXiv 2312.17122",
+   "regimes": [
+    "D"
+   ],
+   "order_source": [
+    "tool output (fine-tuned Llama-2 routes to tools)"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "synthetic task suite"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "effects",
+    "skeleton"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/abs/2312.17122",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "n/a (effects or unevaluated)"
+  },
+  {
+   "name": "TLVD (traceable latent variable discovery)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Du et al., arXiv 2602.14456 (DOI 10.1145/3774904.3792244)",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data (graph with latents)",
+    "multi-LLM game proposes latent variables; web evidence search"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "3 de-identified hospital datasets",
+    "2 unnamed benchmarks"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "5 datasets (average improvement)",
+     "metric": "Acc / CAcc / ECit",
+     "value": "+32.67% / +62.21% / +26.72%",
+     "label": "reported (baselines not named on abs page)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "latent variable naming"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "",
+   "sources": [
+    "https://arxiv.org/abs/2602.14456"
+   ],
+   "order_source_code": "DATA+LLM"
+  },
+  {
+   "name": "causal-learn+ (Zheng et al., agents must not supply edges)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Zheng, Verma, Gill, Dai, Spirtes, Zhang, arXiv 2606.23608",
+   "regimes": [
+    "D",
+    "K"
+   ],
+   "order_source": [
+    "data only (algorithms); user-approved constraints"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "Big Five case study"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "workflow assistance"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Position + platform; no quantitative evaluation. Calls for audit trails separating data, assumptions, agent advice, user decisions and outputs.",
+   "sources": [
+    "https://arxiv.org/abs/2606.23608",
+    "project note agent_reports/cluster1_llm_assisted_causal_discovery.md (read 2026-10-12)",
+    "project note agent_reports/cluster2_causal_agents_and_evaluation.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA"
+  },
+  {
+   "name": "ACDB entrants (GPT-5.4, Claude Sonnet 4.6 agents)",
+   "category": "agent (active-discovery benchmark)",
+   "year": 2026,
+   "venue_or_arxiv": "Deb, Shah, Krishnan, arXiv 2609.31675",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "agent reasoning over data and chosen interventions"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 7,
+   "benchmarks": [
+    "ACDB (linear-Gaussian, 4-7 nodes, budgeted hard interventions)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "ACDB weighted average",
+     "metric": "directed F1 (%)",
+     "value": "Sonnet 4.6 raw 31.7; GPT-5.4 raw 22.9; PC+greedy 42.7; random DAG 23.6",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "names_neutralised",
+    "columns_shuffled"
+   ],
+   "other_controls": [
+    "node indices randomly permuted and labels anonymised in the generator"
+   ],
+   "q_cells": [
+    "orientation",
+    "choice of experiments"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Classical baseline beats both LLM agents; GPT-5.4 is below the structure-blind random DAG.",
+   "sources": [
+    "https://arxiv.org/html/2609.31675",
+    "project note agent_reports/cluster7_active_discovery_and_environments.md (read 2026-10-12)"
+   ],
+   "order_source_code": "AGENT(D+I)"
+  },
+  {
+   "name": "CausaLab agents (GPT-5.2-high and others)",
+   "category": "agent (interactive environment)",
+   "year": 2026,
+   "venue_or_arxiv": "Yang, Zhang et al., arXiv 2605.26029",
+   "regimes": [
+    "D",
+    "I"
+   ],
+   "order_source": [
+    "agent reasoning over records and interventions"
+   ],
+   "hidden_confounders_supported": true,
+   "time_series": false,
+   "max_variables_reported": 7,
+   "benchmarks": [
+    "CausaLab (random SCMs, 3-7 nodes)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "CausaLab 6-node, observational",
+     "metric": "task accuracy / all-edge F1",
+     "value": "0.92 / 0.471",
+     "label": "reported"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [
+    "random SCMs behind fixed template property names (names carry no structure)",
+    "hidden-noise robustness settings"
+   ],
+   "q_cells": [
+    "orientation",
+    "effects (prediction)",
+    "choice of experiments"
+   ],
+   "code_url": null,
+   "licence": "built on DiscoveryWorld (Apache-2.0)",
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "\"Code:\" line is blank in the text read; no classical baseline in parts read (cluster7).",
+   "sources": [
+    "https://arxiv.org/pdf/2605.26029",
+    "project note agent_reports/cluster7_active_discovery_and_environments.md (read 2026-10-12)"
+   ],
+   "order_source_code": "AGENT(D+I)"
+  },
+  {
+   "name": "LeGIT",
+   "category": "agent (LLM-guided intervention targeting)",
+   "year": 2025,
+   "venue_or_arxiv": "Li et al., arXiv 2503.01139",
+   "regimes": [
+    "D",
+    "I",
+    "K"
+   ],
+   "order_source": [
+    "LLM / name knowledge picks targets",
+    "data (ENCO-style learner)"
+   ],
+   "hidden_confounders_supported": false,
+   "time_series": false,
+   "max_variables_reported": 37,
+   "benchmarks": [
+    "bnlearn Asia, Child, Insurance, Alarm"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Alarm",
+     "metric": "SHD (LeGIT / GIT / random)",
+     "value": "17.4 / 19.6 / 38.8",
+     "label": "second-hand (cluster7 note)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "choice of experiments"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Relies on variable names of well-known graphs. Latent flag set false because the output is a DAG/CPDAG under causal sufficiency (per the cited paper or project note).",
+   "sources": [
+    "https://arxiv.org/abs/2503.01139",
+    "project note agent_reports/cluster7_active_discovery_and_environments.md (read 2026-10-12)"
+   ],
+   "order_source_code": "DATA+LLM+INT"
+  },
+  {
+   "name": "IGDA",
+   "category": "agent (LLM-guided intervention targeting)",
+   "year": 2025,
+   "venue_or_arxiv": "Havrilla, Alvarez-Melis, Fusi, arXiv 2502.17189",
+   "regimes": [
+    "I",
+    "K"
+   ],
+   "order_source": [
+    "LLM / metadata knowledge",
+    "edge-experiment oracle"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": null,
+   "benchmarks": [
+    "8 real graphs"
+   ],
+   "best_reported": [],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "choice of experiments"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "Abstract only (cluster7).",
+   "sources": [
+    "https://arxiv.org/abs/2502.17189",
+    "project note agent_reports/cluster7_active_discovery_and_environments.md (read 2026-10-12)"
+   ],
+   "order_source_code": "LLM"
+  },
+  {
+   "name": "A-CBO (frozen LLM as interventional oracle)",
+   "category": "agent",
+   "year": 2026,
+   "venue_or_arxiv": "Roy & Parbhoo, arXiv 2605.27567",
+   "regimes": [
+    "K"
+   ],
+   "order_source": [
+    "LLM answers to interventional queries aggregated by an external Bayesian loop"
+   ],
+   "hidden_confounders_supported": null,
+   "time_series": false,
+   "max_variables_reported": 24,
+   "benchmarks": [
+    "Corr2Cause",
+    "Extended Corr2Cause (new)"
+   ],
+   "best_reported": [
+    {
+     "benchmark": "Corr2Cause",
+     "metric": "macro F1 (GLM-5.1)",
+     "value": 93.2,
+     "label": "reported (zero-shot GPT-4 29.1)"
+    }
+   ],
+   "controls_reported": [
+    "none"
+   ],
+   "other_controls": [],
+   "q_cells": [
+    "orientation (text-only)"
+   ],
+   "code_url": null,
+   "licence": null,
+   "last_commit_or_release": null,
+   "cpu_runnable": "unknown",
+   "cost_per_graph": null,
+   "notes": "No tabular data; a text benchmark of symbolic relations.",
+   "sources": [
+    "https://arxiv.org/abs/2605.27567"
+   ],
+   "order_source_code": "LLM"
+  }
+ ],
+ "searches": [
+  "CausalMACE causal discovery multi-agent LLM",
+  "LLM agent causal discovery 2026 arXiv benchmark Causal-Copilot baseline",
+  "pretrained causal discovery foundation model 2026 amortized supervised causal structure learning arXiv",
+  "\"causal discovery\" agent LLM arXiv 2026 autonomous end-to-end tabular agent framework (extended)",
+  "LLM causal discovery variable names anonymized permuted shuffled column order robustness 2026 (extended)",
+  "arXiv 2025 \"causal discovery\" \"LLM agent\" tool-use PyWhy causal-learn ReAct framework evaluation Sachs",
+  "CausaLab LLM interactive causal discovery benchmark arXiv 2605.26029",
+  "LLM causal discovery \"post-cutoff\" OR \"unseen\" graphs hybrid prior 2026 arXiv new method code github",
+  "github causal order triplet LLM Vashishtha code",
+  "github \"Efficient Causal Graph Discovery Using Large Language Models\" BFS code",
+  "\"Causal Discovery with Language Models as Imperfect Experts\" github; \"Large Language Models are Effective Priors for Causal Graph Discovery\" github",
+  "CDIS causal discovery algorithm interventional data",
+  "SDCD \"Stable Differentiable Causal Discovery\" Nazaret Blei arXiv",
+  "BLOCKED (search budget exhausted): arXiv 2026 LLM causal discovery prior knowledge tiers; LLM agent time series causal discovery 2025 2026; \"Causal-Copilot\" compared OR baseline 2026",
+  "PyPI JSON lookups: causal-learn, lingam, avici, dagma, gcastle, cdt, causaldag, gies, sdcd, pywhyllm, causalnex, tigramite, cause2e, causal-agent, causaliq-knowledge, causaliq-workflow",
+  "GitHub search API and repo API: refused for this session (403)"
+ ],
+ "not_read": [
+  {
+   "source": "https://huggingface.co (live leaderboard files)",
+   "reason": "proxy refused CONNECT (403); used the project's local snapshot of the released CSVs instead"
+  },
+  {
+   "source": "export.arxiv.org API, api.semanticscholar.org",
+   "reason": "proxy refused (403)"
+  },
+  {
+   "source": "GitHub API (search, repo metadata incl. commit dates)",
+   "reason": "session not bound to these repositories (403); GitHub web pages showed no commit dates"
+  },
+  {
+   "source": "Arrow, DAG-FM, DCD-PFN, TabPFN-CFM, TabPFN probe, CSIvA, SEA, CauScale full texts",
+   "reason": "abs pages or partial HTML only; numbers limited to what those pages or CausalArena show"
+  },
+  {
+   "source": "CausalArena appendices B-C",
+   "reason": "HTML truncated (DOM-07); CDIS and DAS citations unresolved"
+  },
+  {
+   "source": "GraN-DAG, ANM, CAM, RESIT, JCI code repositories",
+   "reason": "not opened today"
+  },
+  {
+   "source": "Papers summarised only via project notes (second-hand): Kiciman, Long, Ban, Darvariu, chatPC, LACR, COAT, L2D-CD, Tench, CaPE, CMA, CATE-B, CausalAgent demo, LLM4Causal, LeGIT, IGDA, Srivastava, CausalSteward numbers",
+   "reason": "not re-opened today; entries cite the project note and the abs URL"
+  },
+  {
+   "source": "CausalMACE (arXiv 2508.18797)",
+   "reason": "out of scope: Minecraft multi-agent cooperation, not causal discovery (search result title)"
+  }
+ ]
+}

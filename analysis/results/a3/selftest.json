@@ -1,0 +1,76 @@
+{
+ "purpose": "pipeline self-tests before the live A3 run (no model calls)",
+ "run": "2026-10-12",
+ "oracle_tiers": {
+  "what": "answers built from the true depth (real arm), by-label depth (moved), one tier (neutral)",
+  "verdicts": {
+   "O1": {
+    "value": {
+     "correct": 1.0,
+     "contradicted": 0.0
+    },
+    "verdict": "supported"
+   },
+   "O2": {
+    "value": 0.0,
+    "verdict": "supported"
+   },
+   "O3": {
+    "by_label": {
+     "correct": 1.0,
+     "contradicted": 0.0,
+     "verdict": "supported"
+    },
+    "by_data": {
+     "value": -0.0326,
+     "verdict": "supported"
+    }
+   },
+   "O4": {
+    "value": 0.7137,
+    "verdict": "supported"
+   },
+   "O5": {
+    "value": 0.6147,
+    "verdict": "supported"
+   }
+  }
+ },
+ "stub": {
+  "what": "deterministic stub replies from harness/tiers_runner.py --stub (random tiers, 43 malformed replies, 11 abstentions)",
+  "verdicts": {
+   "O1": {
+    "value": {
+     "correct": 0.2767,
+     "contradicted": 0.2531
+    },
+    "verdict": "refuted"
+   },
+   "O2": {
+    "value": -0.006,
+    "verdict": "supported"
+   },
+   "O3": {
+    "by_label": {
+     "correct": 0.2365,
+     "contradicted": 0.2669,
+     "verdict": "refuted"
+    },
+    "by_data": {
+     "value": 0.0125,
+     "verdict": "supported"
+    }
+   },
+   "O4": {
+    "value": 0.1882,
+    "verdict": "refuted"
+   },
+   "O5": {
+    "value": 0.1325,
+    "verdict": "refuted"
+   }
+  },
+  "abstained_requests": 11
+ },
+ "check": "oracle tiers reproduce the 0.714 regression-on-depth number of error_budget_and_order.md (0.7137); random tiers give correct ~= contradicted"
+}

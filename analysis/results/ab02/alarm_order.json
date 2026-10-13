@@ -1,0 +1,37 @@
+{
+ "tickets": [
+  "AUD-34",
+  "BEN-07"
+ ],
+ "source": "https://raw.githubusercontent.com/gcastle-hub/dataset/master/alarm/<name>.tar.gz",
+ "sets": {
+  "18V_55N_Wireless": {
+   "tar_sha256": "efd2fbb1f8ae7790c285fe76ebd5860e925b2d41aca887f92ca43b566d7c2614",
+   "variables": 18,
+   "edges": 69,
+   "acyclic": true,
+   "share_edges_earlier_to_later_id": 0.7246,
+   "kendall_tau_id_vs_depth": 0.0207,
+   "p_value": 0.908
+  },
+  "24V_439N_Microwave": {
+   "tar_sha256": "fad2fdb1e4095b7f50dee89725e5a6d6568f370060704480aac5d00626550de1",
+   "variables": 24,
+   "edges": 137,
+   "acyclic": true,
+   "share_edges_earlier_to_later_id": 0.4526,
+   "kendall_tau_id_vs_depth": -0.2198,
+   "p_value": 0.141
+  },
+  "25V_474N_Microwave": {
+   "tar_sha256": "7fc2e6c7c3fcbc8a010dd0e6088ad30abdaf17c08783b052581ae443324068d7",
+   "variables": 25,
+   "edges": 148,
+   "acyclic": true,
+   "share_edges_earlier_to_later_id": 0.5541,
+   "kendall_tau_id_vs_depth": -0.0688,
+   "p_value": 0.6382
+  }
+ },
+ "P3_this_release": "no (all |tau| < 0.3)"
+}

@@ -1,0 +1,29 @@
+Free audit steps (engines, controlled re-score, sortability, decision value, cost), claim-ledger format, audit DAG
+
+Tickets: AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, BLD-13
+
+No model calls; nothing spent. Report: analysis/reports/aud27_31_free_steps.md.
+
+- AUD-27 analysis/engine_oracle_check.py: PC/FCI under a perfect d-separation oracle, 120 DAGs x 6
+  column orders per engine. Causal-Copilot's causal-learn copy 460/720 exact (PyPI 0.1.3.8 and
+  0.1.4.8: 720/720; gCastle original 456, stable 460, parallel 720).
+- AUD-28 analysis/pc_upstream_run.py, rescore_controls.py, pc_orientation_order.py: released vs
+  shuffled columns, files paired, both orientation rules. Upstream PC 0.356 -> 0.426 directed F1
+  (semantic); mechanism is PC's collider conflict rule (q gap +0.148 default, +0.001 with maxP).
+- AUD-29 analysis/sortability_audit.py: varsortability 0.5 (standardised columns); R2-sortability
+  0.545 semantic, 0.603 formula.
+- AUD-30 analysis/decision_value.py: DV-1 committed-claim precision and AID with the true-CPDAG
+  ceiling and the empty-graph baseline (semantic 0.643; GES 0.753; ceiling 1.000).
+- AUD-31 analysis/results/stability_s2/cost_per_run.json: median $0.457 per Causal-Copilot run
+  from the 30 logged BND-08 runs.
+- BLD-13 ledger/ (DESIGN.md, schema.py, schema/ledger.schema.json, verify.py) and
+  tests/test_ledger_verify.py (9 tests).
+- AUD-32 plans/make_audit_dag.py, plans/audit_dag.json, analysis/reports/audit_dag.md: 17 audit
+  bundles across research, commercial and wedge tracks; proposed, awaiting approval.
+- CONTRACT.json split values for rescore and decision_value now use the allowed vocabulary
+  (check_scores: none non-conforming); tests 32/32; BND-01, AUD-28, AUD-30 repinned.
+- Tracker: catalogue, pins, status, trace, mirrors, synced dev list, relay record; snapshot and
+  site rebuilt.
+
+Not in git: tracker/relay_out/20261013T044558Z_digest_dev.{json,md} is a discarded draft (copy in
+relay_out/discarded/); delete the originals before committing.

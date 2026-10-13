@@ -1,0 +1,330 @@
+{
+ "data_generator_sha256": "c5a9029d7e609f2e81b33158b9ba538cd946905f0923ec03414326d56ed8bb99",
+ "definitions": "Input rows are the standard method-row format (baseline_variants_run.py, causalarena_methods.py, b2_reference_methods.py):\nper file `file` (the b2 file name), `directed_edges` [[cause, effect], ...] and `undecided_pairs` [[i, j, mark_i, mark_j], ...]\nin the file's column indexing, and `method`. Reported per method, per track and per rho:\n  f1_data           directed F1 vs G_D; undecided pairs oriented at random, seed crc32(file name) (CausalArena's rule)\n  f1_names          directed F1 vs G_N, the same oriented prediction\n  name_following    among committed arrows on pairs where the names disagree with the data (the pair's arrow in G_N differs\n                    from its arrow in G_D, including absent), the share that are G_N arrows; data_following = share that are\n                    G_D arrows; both pooled over files. *_reversed: the same on reversed pairs only (G_N a->b, G_D b->a),\n                    where each committed arrow follows exactly one of the two\nand per method (all its files, and per track): Spearman(f1_data, rho) over files, the OLS slope of f1_data on rho, and the\nSpearman of the per-rho means. Prediction P11: rho_s <= -0.8 for name-readers; near 0 (|rho_s| <= 0.3) for data-only methods.",
+ "methods": {
+  "names_oracle": {
+   "by_track_rho": {
+    "linear": {
+     "0.00": {
+      "arrows_on_disagreeing_pairs": 0,
+      "data_following": null,
+      "data_following_reversed": null,
+      "f1_data_mean": 1.0,
+      "f1_data_sd": 0.0,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": null,
+      "name_following_reversed": null
+     },
+     "0.25": {
+      "arrows_on_disagreeing_pairs": 259,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.7469,
+      "f1_data_sd": 0.0078,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "0.50": {
+      "arrows_on_disagreeing_pairs": 517,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.4949,
+      "f1_data_sd": 0.0064,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "0.75": {
+      "arrows_on_disagreeing_pairs": 772,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.2455,
+      "f1_data_sd": 0.0071,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "1.00": {
+      "arrows_on_disagreeing_pairs": 1024,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.0,
+      "f1_data_sd": 0.0,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     }
+    },
+    "nonlinear": {
+     "0.00": {
+      "arrows_on_disagreeing_pairs": 0,
+      "data_following": null,
+      "data_following_reversed": null,
+      "f1_data_mean": 1.0,
+      "f1_data_sd": 0.0,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": null,
+      "name_following_reversed": null
+     },
+     "0.25": {
+      "arrows_on_disagreeing_pairs": 259,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.7469,
+      "f1_data_sd": 0.0078,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "0.50": {
+      "arrows_on_disagreeing_pairs": 517,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.4949,
+      "f1_data_sd": 0.0064,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "0.75": {
+      "arrows_on_disagreeing_pairs": 772,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.2455,
+      "f1_data_sd": 0.0071,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     },
+     "1.00": {
+      "arrows_on_disagreeing_pairs": 1024,
+      "data_following": 0.0,
+      "data_following_reversed": 0.0,
+      "f1_data_mean": 0.0,
+      "f1_data_sd": 0.0,
+      "f1_names_mean": 1.0,
+      "failed": 0,
+      "files": 25,
+      "name_following": 1.0,
+      "name_following_reversed": 1.0
+     }
+    }
+   },
+   "trend_all": {
+    "files": 250,
+    "ols_slope_f1_data_per_unit_rho": -1.0006,
+    "p11_pattern": "name-reader (rho_s <= -0.8)",
+    "spearman_f1_data_vs_rho": -0.9889,
+    "spearman_of_rho_means": -1.0,
+    "spearman_p": 2.3255386935677218e-207
+   },
+   "trend_by_track": {
+    "linear": {
+     "files": 125,
+     "ols_slope_f1_data_per_unit_rho": -1.0006,
+     "p11_pattern": "name-reader (rho_s <= -0.8)",
+     "spearman_f1_data_vs_rho": -0.9889,
+     "spearman_of_rho_means": -1.0,
+     "spearman_p": 1.04132911294733e-103
+    },
+    "nonlinear": {
+     "files": 125,
+     "ols_slope_f1_data_per_unit_rho": -1.0006,
+     "p11_pattern": "name-reader (rho_s <= -0.8)",
+     "spearman_f1_data_vs_rho": -0.9889,
+     "spearman_of_rho_means": -1.0,
+     "spearman_p": 1.04132911294733e-103
+    }
+   }
+  },
+  "pc": {
+   "by_track_rho": {
+    "linear": {
+     "0.00": {
+      "arrows_on_disagreeing_pairs": 0,
+      "data_following": null,
+      "data_following_reversed": null,
+      "f1_data_mean": 0.6095,
+      "f1_data_sd": 0.1074,
+      "f1_names_mean": 0.6095,
+      "failed": 0,
+      "files": 6,
+      "name_following": null,
+      "name_following_reversed": null
+     },
+     "0.25": {
+      "arrows_on_disagreeing_pairs": 32,
+      "data_following": 0.75,
+      "data_following_reversed": 0.7895,
+      "f1_data_mean": 0.62,
+      "f1_data_sd": 0.141,
+      "f1_names_mean": 0.4938,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.1562,
+      "name_following_reversed": 0.2105
+     },
+     "0.50": {
+      "arrows_on_disagreeing_pairs": 77,
+      "data_following": 0.7662,
+      "data_following_reversed": 0.7647,
+      "f1_data_mean": 0.6474,
+      "f1_data_sd": 0.0993,
+      "f1_names_mean": 0.3849,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.1688,
+      "name_following_reversed": 0.2353
+     },
+     "0.75": {
+      "arrows_on_disagreeing_pairs": 113,
+      "data_following": 0.7699,
+      "data_following_reversed": 0.7857,
+      "f1_data_mean": 0.6145,
+      "f1_data_sd": 0.0427,
+      "f1_names_mean": 0.2523,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.1327,
+      "name_following_reversed": 0.2143
+     },
+     "1.00": {
+      "arrows_on_disagreeing_pairs": 135,
+      "data_following": 0.6593,
+      "data_following_reversed": 0.6988,
+      "f1_data_mean": 0.4891,
+      "f1_data_sd": 0.0409,
+      "f1_names_mean": 0.2256,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.1852,
+      "name_following_reversed": 0.3012
+     }
+    },
+    "nonlinear": {
+     "0.00": {
+      "arrows_on_disagreeing_pairs": 0,
+      "data_following": null,
+      "data_following_reversed": null,
+      "f1_data_mean": 0.3621,
+      "f1_data_sd": 0.1008,
+      "f1_names_mean": 0.3621,
+      "failed": 0,
+      "files": 6,
+      "name_following": null,
+      "name_following_reversed": null
+     },
+     "0.25": {
+      "arrows_on_disagreeing_pairs": 25,
+      "data_following": 0.64,
+      "data_following_reversed": 0.6667,
+      "f1_data_mean": 0.3498,
+      "f1_data_sd": 0.069,
+      "f1_names_mean": 0.2924,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.24,
+      "name_following_reversed": 0.3333
+     },
+     "0.50": {
+      "arrows_on_disagreeing_pairs": 66,
+      "data_following": 0.5455,
+      "data_following_reversed": 0.5128,
+      "f1_data_mean": 0.3838,
+      "f1_data_sd": 0.1292,
+      "f1_names_mean": 0.2996,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.3333,
+      "name_following_reversed": 0.4872
+     },
+     "0.75": {
+      "arrows_on_disagreeing_pairs": 82,
+      "data_following": 0.6829,
+      "data_following_reversed": 0.72,
+      "f1_data_mean": 0.3761,
+      "f1_data_sd": 0.1173,
+      "f1_names_mean": 0.2076,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.1829,
+      "name_following_reversed": 0.28
+     },
+     "1.00": {
+      "arrows_on_disagreeing_pairs": 103,
+      "data_following": 0.6408,
+      "data_following_reversed": 0.7018,
+      "f1_data_mean": 0.3653,
+      "f1_data_sd": 0.072,
+      "f1_names_mean": 0.1668,
+      "failed": 0,
+      "files": 6,
+      "name_following": 0.2427,
+      "name_following_reversed": 0.2982
+     }
+    }
+   },
+   "trend_all": {
+    "files": 60,
+    "ols_slope_f1_data_per_unit_rho": -0.0427,
+    "p11_pattern": "data-only (|rho_s| <= 0.3)",
+    "spearman_f1_data_vs_rho": -0.0517,
+    "spearman_of_rho_means": -0.2,
+    "spearman_p": 0.694728417924739
+   },
+   "trend_by_track": {
+    "linear": {
+     "files": 30,
+     "ols_slope_f1_data_per_unit_rho": -0.0985,
+     "p11_pattern": "data-only (|rho_s| <= 0.3)",
+     "spearman_f1_data_vs_rho": -0.2914,
+     "spearman_of_rho_means": -0.3,
+     "spearman_p": 0.11822826931899325
+    },
+    "nonlinear": {
+     "files": 30,
+     "ols_slope_f1_data_per_unit_rho": 0.013,
+     "p11_pattern": "data-only (|rho_s| <= 0.3)",
+     "spearman_f1_data_vs_rho": 0.1144,
+     "spearman_of_rho_means": 0.5,
+     "spearman_p": 0.5473015133544304
+    }
+   }
+  }
+ },
+ "p11": {
+  "data_only_max_abs_spearman": 0.3,
+  "name_reader_max_spearman": -0.8
+ },
+ "producer": "analysis/b2_score.py",
+ "row_files": [
+  "names_oracle_rows.json",
+  "pc_rows.json"
+ ],
+ "rows_missing_file": [],
+ "rows_scored": 310,
+ "tickets": [
+  "AUD-39",
+  "STR-02",
+  "EVL-02"
+ ]
+}

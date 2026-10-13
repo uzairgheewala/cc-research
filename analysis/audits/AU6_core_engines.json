@@ -1,0 +1,1240 @@
+{
+ "audit": "AU6",
+ "question": "Which libraries and engines exist for causal discovery and downstream causal analysis, what can each do, how well maintained and how fast are they, and what should the planned claim ledger reuse versus build?",
+ "written": "2026-10-12",
+ "schema": {
+  "name": "library or engine (and version scope)",
+  "language": "implementation language and interface",
+  "algorithms": "structure-learning or analysis algorithms offered (list)",
+  "ci_tests": "conditional-independence tests or measures offered (list)",
+  "interventional_data_support": "whether and how interventional data or targets are used",
+  "background_knowledge_support": "tiers / required / forbidden edges and how enforced",
+  "outputs": "DAG / CPDAG / PAG / scores / bootstrap probabilities",
+  "scalability_reported": "reported scale or speed, with label reported / claim / second-hand / none",
+  "deterministic_given_seed": "yes / no / partial / unknown, with basis",
+  "column_order_invariance": "documented / known issue / unknown, with basis",
+  "licence": "licence from LICENSE file, CRAN DESCRIPTION or PyPI metadata",
+  "last_release": "latest version and date (PyPI, CRAN or git tag)",
+  "maintainers_activity": "commits on default branch since 2025-10-12 from git log of a blobless clone, unless stated",
+  "python_api_quality_notes": "usability notes for our Python stack",
+  "sources": "URLs read on 2026-10-12"
+ },
+ "rows": [
+  {
+   "name": "causal-learn (upstream, PyPI 0.1.4.8)",
+   "language": "Python",
+   "algorithms": [
+    "PC",
+    "FCI",
+    "CD-NOD",
+    "GES (BIC, BDeu, generalized scores)",
+    "DGES",
+    "Exact Search",
+    "GRaSP",
+    "BOSS",
+    "GST",
+    "CALM",
+    "DirectLiNGAM/ICA-LiNGAM/VAR-LiNGAM/RCD/CAM-UV (FCM-based)",
+    "ANM",
+    "PNL",
+    "GIN",
+    "RLCD",
+    "Granger"
+   ],
+   "ci_tests": [
+    "Fisher-z",
+    "missing-value Fisher-z",
+    "mc_fisherz",
+    "KCI",
+    "FastKCI",
+    "RCIT/RIT",
+    "chi-square",
+    "G-square",
+    "d-separation oracle",
+    "custom via register_ci_test (0.1.4.2+)"
+   ],
+   "interventional_data_support": "none general; CD-NOD uses a domain/time index for heterogeneous data",
+   "background_knowledge_support": "BackgroundKnowledge: forbidden and required edges (by node or regex pattern), tiers, forbid/allow within tier (forbid-within-tier added 2026-02); accepted by PC, FCI, CD-NOD; not by GES",
+   "outputs": [
+    "CPDAG (PC, GES)",
+    "PAG (FCI)",
+    "DAG/adjacency (LiNGAM family)",
+    "bootstrap only for LiNGAM family"
+   ],
+   "scalability_reported": "second-hand (issue #175): GES took hours vs seconds in Tetrad on a 100-variable fMRI set; no benchmark in docs read",
+   "deterministic_given_seed": "yes for PC/FCI/GES with Fisher-z (no RNG in path; code reading); unknown for KCI/RCIT/FastKCI",
+   "column_order_invariance": "known issue, historic: issue #82 (PC graphs depend on ordering; maintainers say fixed). Our run: 0.1.4.8 showed no dependence on 24 files (project measurement). Residual risk by code reading: default uc_priority=2 resolves conflicting colliders first-come in index order",
+   "licence": "MIT",
+   "last_release": "0.1.4.8 (2026-07-11, PyPI)",
+   "maintainers_activity": "55 commits on main since 2025-10-12 (git log); 33 PyPI releases since 2021",
+   "python_api_quality_notes": "pure Python, numpy in / CausalGraph out; endpoint-matrix encoding is idiosyncratic; prints/progress bars by default; FCI rejects fastkci/rcit (open issue #246); stores union of separating sets per pair, which behaves like conservative PC (maintainer comment in #175)",
+   "sources": [
+    "https://pypi.org/pypi/causal-learn/json",
+    "https://github.com/py-why/causal-learn/releases",
+    "https://causal-learn.readthedocs.io/en/latest/",
+    "https://www.jmlr.org/papers/v25/23-0970.html",
+    "https://github.com/py-why/causal-learn/issues/82",
+    "https://github.com/py-why/causal-learn/issues/175",
+    "https://github.com/py-why/causal-learn/issues/246",
+    "https://github.com/py-why/causal-learn/issues/213",
+    "https://github.com/py-why/causal-learn/commit/b3a0299ee6c354f3dd09f4f72e593f59d22417c3"
+   ]
+  },
+  {
+   "name": "causal-learn fork vendored in Causal-Copilot (externals/causal-learn at a31aa7c, labelled 0.1.3.8)",
+   "language": "Python",
+   "algorithms": [
+    "as upstream 0.1.3.8 plus BOSS, GST, CALM, FastKCI, RCIT, BatchKCI, MarkovNetwork utilities"
+   ],
+   "ci_tests": [
+    "Fisher-z",
+    "KCI",
+    "FastKCI (falls back silently to KCI on ValueError)",
+    "RCIT",
+    "chi-square",
+    "G-square",
+    "domain-index nonlinear CIT"
+   ],
+   "interventional_data_support": "none general (CD-NOD domain index)",
+   "background_knowledge_support": "as upstream; Causal-Copilot's LLM writes forbidden/required/tiers JSON from user text",
+   "outputs": [
+    "CPDAG",
+    "PAG"
+   ],
+   "scalability_reported": "none reported; joblib parallel skeleton with n_jobs=4 default",
+   "deterministic_given_seed": "yes for Fisher-z path in stable mode (parallel results merged after each depth; code reading)",
+   "column_order_invariance": "known issue: our measurement found PC output depends on column order in 21 of 24 files. Mechanism by code reading: skeleton (SkeletonDiscovery.py L188-197) and FCI's FAS (FAS.py L193-197) build node_pairs only for x<y and test subsets of adj(x)\\{y} only, never adj(y)\\{x}",
+   "licence": "MIT (causal-learn LICENSE kept); other vendored code in externals/ ships without its own licence files",
+   "last_release": "no release; tree snapshot dated 2026-05-15 (commit a31aa7c)",
+   "maintainers_activity": "Causal-Copilot repo: 12 commits since 2025-10-12, last 2026-05-15",
+   "python_api_quality_notes": "silently diverges from PyPI 0.1.3.8 in about 25 files (diff -rq); version label is misleading; a fork must be pinned by hash, not by version string",
+   "sources": [
+    "https://github.com/Lancelot39/Causal-Copilot",
+    "https://pypi.org/pypi/causal-learn/json"
+   ]
+  },
+  {
+   "name": "Tetrad (tetrad-lib, GUI)",
+   "language": "Java (JDK 25 for 7.6.10)",
+   "algorithms": [
+    "49 listed in manual for 7.6.9: PC, PC-Max, CPC, FCI, RFCI, FCI-IOD, GFCI, BOSS, BOSS-FCI, GRaSP, GRaSP-FCI, SP, SP-FCI, FGES, LV-Heuristic, IMaGES, IMaGES-BOSS, FCIT, DirectLiNGAM, ICA-LiNGAM, FASK, CAM, DAGMA, CD-NOD, PCMCI, CCD, StabilitySelection, StARS, CStaR, latent clustering (FOFC, FTFC, BPC, TSC, GIN) ..."
+   ],
+   "ci_tests": [
+    "Fisher-Z",
+    "rank-based tests",
+    "chi-square",
+    "G-square",
+    "AD-tree discrete tests",
+    "KCI",
+    "RCIT/RCoT",
+    "DG-LRT",
+    "Basis-function LRT",
+    "conditional Gaussian / degenerate Gaussian scores"
+   ],
+   "interventional_data_support": "multi-dataset search (IMaGES, IMaGES-BOSS, FCI-IOD); CD-NOD for distribution shift; no intervention-target model found in manual list",
+   "background_knowledge_support": "Knowledge box: tiers, forbidden edges, required edges; enforced by searches that support knowledge; tiers auto-created for time lags",
+   "outputs": [
+    "CPDAG",
+    "PAG",
+    "DAG",
+    "bootstrap edge-type frequencies incl. circle marks and no-edge",
+    "ensembles: Highest/Majority/Preserved/Threshold"
+   ],
+   "scalability_reported": "none read in this pass",
+   "deterministic_given_seed": "partial: bootstrap seed settable (manual); 2026-07-31 commit investigated nondeterminism in BFCI/GFCI and named global RNG use as a source",
+   "column_order_invariance": "PC is PC-Stable (maintainer, issue #175); otherwise unknown",
+   "licence": "GPL-3.0",
+   "last_release": "v7.6.10 (tag 2026-01-06)",
+   "maintainers_activity": "2,051 commits on default branch since 2025-10-12 (git log)",
+   "python_api_quality_notes": "Python only through py-tetrad (JPype) or causal-cmd; very active but high churn in FCI/PAG rules (7.6.6-7.6.10 notes, 2026-09 R4 commit)",
+   "sources": [
+    "https://github.com/cmu-phil/tetrad",
+    "https://github.com/cmu-phil/tetrad/releases",
+    "https://github.com/cmu-phil/tetrad/releases/tag/v7.6.10",
+    "https://github.com/cmu-phil/tetrad/releases/tag/v7.6.8",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/search-algorithms-full-list.md.txt",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/tetrad-interface/detail-callouts/detail-bootstrapping.md.txt",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/tetrad-interface/box-by-box/knowledge-box.md.txt",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/workflows/choose-an-algorithm.md.txt",
+    "https://github.com/cmu-phil/tetrad/commit/92a2aea9e39e1f92e99094ad3625e4a0b536728f",
+    "https://github.com/cmu-phil/tetrad/commit/1ed439d42e7424a459f10991a4c345135b355414"
+   ]
+  },
+  {
+   "name": "py-tetrad / rpy-tetrad",
+   "language": "Python and R wrappers over Java (JPype / reticulate)",
+   "algorithms": [
+    "all Tetrad searches via TetradSearch.py"
+   ],
+   "ci_tests": [
+    "all Tetrad tests"
+   ],
+   "interventional_data_support": "as Tetrad",
+   "background_knowledge_support": "as Tetrad (not documented on README read)",
+   "outputs": [
+    "as Tetrad; graph and data translation helpers"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT for the wrapper; it calls GPL-3.0 Tetrad",
+   "last_release": "tag v0.2.0 (2023-10-31); install from git, not PyPI",
+   "maintainers_activity": "298 commits since 2025-10-12, last 2026-10-11",
+   "python_api_quality_notes": "needs JDK 21+ and Python 3.12+; README asks users to 'bear with us'; no PyPI package",
+   "sources": [
+    "https://github.com/cmu-phil/py-tetrad",
+    "https://arxiv.org/abs/2308.07346"
+   ]
+  },
+  {
+   "name": "causal-cmd",
+   "language": "Java CLI",
+   "algorithms": [
+    "Tetrad searches"
+   ],
+   "ci_tests": [
+    "Tetrad tests"
+   ],
+   "interventional_data_support": "as Tetrad",
+   "background_knowledge_support": "knowledge files (not documented on README read)",
+   "outputs": [
+    "as Tetrad"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "GPL per pom.xml (no LICENSE file at root)",
+   "last_release": "v7.6.10 (tag 2026-01-11)",
+   "maintainers_activity": "6 commits since 2025-10-12",
+   "python_api_quality_notes": "subprocess boundary; an older Python client (py-causal) had an unresolved run-to-run nondeterminism report (2019)",
+   "sources": [
+    "https://github.com/bd2kccd/causal-cmd",
+    "https://github.com/bd2kccd/py-causal/issues/91"
+   ]
+  },
+  {
+   "name": "pcalg",
+   "language": "R with C++ (Rcpp)",
+   "algorithms": [
+    "pc",
+    "fci",
+    "rfci",
+    "fciPlus",
+    "ges",
+    "gies",
+    "gds",
+    "simy",
+    "LINGAM"
+   ],
+   "ci_tests": [
+    "Fisher-z (condIndFisherZ)",
+    "G-square discrete (disCItest)",
+    "G-square binary (binCItest)",
+    "d-separation oracle (dsepTest)",
+    "user functions"
+   ],
+   "interventional_data_support": "yes: gies and simy (interventional Markov equivalence); opt.target for experiment choice",
+   "background_knowledge_support": "fixedGaps / fixedEdges in pc; addBgKnowledge on CPDAG/PDAG",
+   "outputs": [
+    "CPDAG",
+    "PAG",
+    "essential graph (EssGraph)",
+    "IDA multisets",
+    "adjustment sets"
+   ],
+   "scalability_reported": "none read; numCores option for skeleton",
+   "deterministic_given_seed": "yes for pc with Fisher-z (no RNG; u2pd='rand' uses RNG)",
+   "column_order_invariance": "documented: skel.method='stable' is order-independent; conservative or maj.rule with solve.confl=TRUE gives fully order-independent output (manual); Colombo & Maathuis 2014",
+   "licence": "GPL (>= 2)",
+   "last_release": "2.7-12 (2024-09-13) per cran.r-universe.dev DESCRIPTION; cran.r-project.org index page as fetched showed 2.7-11 (2024-02-12), likely stale",
+   "maintainers_activity": "no public git history read; one CRAN release in the last 24 months",
+   "python_api_quality_notes": "R only; reachable from Python via rpy2 or subprocess (CDT wraps it)",
+   "sources": [
+    "https://cran.r-universe.dev/pcalg/DESCRIPTION",
+    "https://cran.r-project.org/web/packages/pcalg/index.html",
+    "https://rdrr.io/cran/pcalg/man/pc.html",
+    "https://rdrr.io/cran/pcalg/man/",
+    "https://jmlr.org/papers/v15/colombo14a.html"
+   ]
+  },
+  {
+   "name": "bnlearn (R)",
+   "language": "R with C",
+   "algorithms": [
+    "PC-Stable",
+    "GS",
+    "IAMB family",
+    "MMPC",
+    "HITON-PC",
+    "hill-climbing",
+    "tabu",
+    "MMHC",
+    "RSMAX2",
+    "ARACNE",
+    "Chow-Liu"
+   ],
+   "ci_tests": [
+    "mutual information",
+    "Pearson X2",
+    "Jonckheere-Terpstra",
+    "linear correlation",
+    "Fisher's Z",
+    "shrinkage tests"
+   ],
+   "interventional_data_support": "yes for scoring: modified Bayesian Dirichlet score for mixed interventional and observational data",
+   "background_knowledge_support": "whitelists, blacklists, arc priors",
+   "outputs": [
+    "DAG",
+    "CPDAG",
+    "boot.strength: arc strength and direction given presence (per prior note cluster3, not re-read)",
+    "averaged.network (per cluster3)"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown for bnlearn itself; second-hand: Kitson & Constantinou report column order moves hill-climbing F1 by 0.412 on average, PC-Stable by 0.036 (cluster8 note)",
+   "licence": "GPL (>= 2)",
+   "last_release": "5.2.1 (CRAN, 2026-07-17); dev snapshot 5.3-20260901",
+   "maintainers_activity": "single maintainer (Scutari); dev snapshot 2026-09-01",
+   "python_api_quality_notes": "R only; note the unrelated Python package 'bnlearn' (erdogant) on PyPI",
+   "sources": [
+    "https://cran.r-universe.dev/bnlearn/DESCRIPTION",
+    "https://www.bnlearn.com/"
+   ]
+  },
+  {
+   "name": "gCastle (Huawei Noah's Ark)",
+   "language": "Python (PyTorch for gradient methods)",
+   "algorithms": [
+    "PC (original/stable/parallel)",
+    "GES",
+    "ANM",
+    "DirectLiNGAM",
+    "ICALiNGAM",
+    "PNL",
+    "NOTEARS",
+    "NOTEARS-MLP",
+    "NOTEARS-SOB",
+    "NOTEARS-low-rank",
+    "DAG-GNN",
+    "GOLEM",
+    "GraN-DAG",
+    "MCSL",
+    "GAE",
+    "RL",
+    "CORL",
+    "TTPM"
+   ],
+   "ci_tests": [
+    "Fisher-z",
+    "G2",
+    "chi2",
+    "Freeman-Tukey",
+    "modified log-likelihood",
+    "Neyman",
+    "Cressie-Read",
+    "user callable"
+   ],
+   "interventional_data_support": "none found",
+   "background_knowledge_support": "PrioriKnowledge (required/forbidden) accepted by PC and TTPM (code grep)",
+   "outputs": [
+    "adjacency matrix (CPDAG for PC)",
+    "MetricsDAG evaluation"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "yes for PC with Fisher-z (code reading); unknown for gradient methods",
+   "column_order_invariance": "known issue by code reading: default variant='original'; in 'original' and 'stable' the loop over combinations(nodes,2) tests only subsets of adj(i)\\{j} for i<j (pc.py L388-401, v1.0.4); only 'parallel' tests both sides",
+   "licence": "Apache-2.0",
+   "last_release": "1.0.4 (PyPI, 2025-03-07)",
+   "maintainers_activity": "2 commits under gcastle/ since 2025-10-12 (incl. 2026-05-29 fix: MetricsDAG TPR > 1.0 with bidirectional edges)",
+   "python_api_quality_notes": "numpy in / matrix out; metrics bug fixed only in 2026; low activity",
+   "sources": [
+    "https://pypi.org/project/gcastle/",
+    "https://github.com/huawei-noah/trustworthyAI/blob/master/gcastle/castle/algorithms/pc/pc.py",
+    "https://github.com/huawei-noah/trustworthyAI/commit/a873bd540d0a4299f1eb6a8394409c8805c5cf3f"
+   ]
+  },
+  {
+   "name": "CDT (Causal Discovery Toolbox)",
+   "language": "Python + R backends + PyTorch",
+   "algorithms": [
+    "CGNN",
+    "PC",
+    "GES",
+    "GIES",
+    "LiNGAM",
+    "CAM",
+    "GS",
+    "IAMB",
+    "MMPC",
+    "SAM",
+    "CCDr",
+    "pairwise: ANM, IGCI, RCC, NCC, Jarfo, CDS, RECI"
+   ],
+   "ci_tests": [
+    "via R pcalg/bnlearn/kpcalg"
+   ],
+   "interventional_data_support": "GIES via pcalg",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "networkx graphs"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT (repo LICENSE.md); PyPI metadata says Apache 2.0 - conflict; R backends are GPL",
+   "last_release": "0.6.0 (PyPI, 2022-08-23)",
+   "maintainers_activity": "2 commits since 2025-10-12; 72 open issues",
+   "python_api_quality_notes": "effectively unmaintained; Docker images target Python 3.6",
+   "sources": [
+    "https://github.com/FenTechSolutions/CausalDiscoveryToolbox",
+    "https://pypi.org/pypi/cdt/json"
+   ]
+  },
+  {
+   "name": "DoWhy (PyWhy)",
+   "language": "Python",
+   "algorithms": [
+    "identification (backdoor, IV, do-calculus based)",
+    "estimators",
+    "refuters",
+    "GCM: interventional samples, counterfactuals, attribution",
+    "falsify_graph"
+   ],
+   "ci_tests": [
+    "kernel-based (default in falsify_graph)",
+    "regression-based",
+    "user callables"
+   ],
+   "interventional_data_support": "no discovery from interventional data; simulates interventions on a given graph",
+   "background_knowledge_support": "takes a user DAG",
+   "outputs": [
+    "effect estimates",
+    "refutation results",
+    "falsify_graph: LMC violations vs random-graph baseline"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "partial: per-simulation seed fix in DataSubsetRefuter (2026-06)",
+   "column_order_invariance": "not applicable (no discovery); unknown for falsify permutation baseline",
+   "licence": "MIT",
+   "last_release": "0.14 (PyPI, 2025-11-08)",
+   "maintainers_activity": "173 commits since 2025-10-12",
+   "python_api_quality_notes": "mature, widely used; needs a full DAG (no CPDAG/PAG identification found in pages read)",
+   "sources": [
+    "https://github.com/py-why/dowhy",
+    "https://www.pywhy.org/dowhy/main/user_guide/modeling_causal_relations/refuting_causal_graph/refute_causal_structure.html"
+   ]
+  },
+  {
+   "name": "dodiscover (PyWhy)",
+   "language": "Python",
+   "algorithms": [
+    "PC",
+    "FCI",
+    "PsiFCI",
+    "CAM",
+    "SCORE",
+    "DAS",
+    "NoGAM",
+    "LearnSkeleton / LearnSemiMarkovianSkeleton / LearnInterventionSkeleton"
+   ],
+   "ci_tests": [
+    "Fisher-z",
+    "G-square",
+    "kernel CI",
+    "classifier CI",
+    "CMI",
+    "classifier CMI",
+    "categorical",
+    "oracle",
+    "conditional k-sample: kernel, Bregman"
+   ],
+   "interventional_data_support": "yes: InterventionalContextBuilder, PsiFCI",
+   "background_knowledge_support": "Context with included/excluded edges, skeleton phase only (issue #46 on orientation phase unresolved)",
+   "outputs": [
+    "CPDAG",
+    "PAG",
+    "Psi-PAG",
+    "DAG (order-based)"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "no PyPI release ('doesn't work until we make an official release')",
+   "maintainers_activity": "0 commits since 2025-10-12; last 2024-11-04",
+   "python_api_quality_notes": "best typed design in the PyWhy stack (Context object) but self-labelled experimental and dormant",
+   "sources": [
+    "https://github.com/py-why/dodiscover",
+    "https://www.pywhy.org/dodiscover/dev/api.html",
+    "https://github.com/py-why/dodiscover/issues/46"
+   ]
+  },
+  {
+   "name": "pywhy-graphs",
+   "language": "Python (networkx)",
+   "algorithms": [
+    "ADMG, CPDAG, PAG classes; MixedEdgeGraph"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "n/a",
+   "background_knowledge_support": "n/a",
+   "outputs": [
+    "graph objects"
+   ],
+   "scalability_reported": "n/a",
+   "deterministic_given_seed": "n/a",
+   "column_order_invariance": "n/a",
+   "licence": "MIT",
+   "last_release": "0.1.0 (PyPI, 2023-07-06)",
+   "maintainers_activity": "0 commits since 2025-10-12; last 2024-11-04",
+   "python_api_quality_notes": "self-labelled experimental; requires Python <3.12 per PyPI",
+   "sources": [
+    "https://github.com/py-why/pywhy-graphs",
+    "https://pypi.org/pypi/pywhy-graphs/json"
+   ]
+  },
+  {
+   "name": "pywhy-stats",
+   "language": "Python",
+   "algorithms": [],
+   "ci_tests": [
+    "KCI",
+    "Fisher-z",
+    "power-divergence",
+    "kernel conditional k-sample",
+    "Bregman conditional k-sample"
+   ],
+   "interventional_data_support": "conditional k-sample tests usable for interventional contrasts",
+   "background_knowledge_support": "n/a",
+   "outputs": [
+    "p-values"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "n/a",
+   "licence": "MIT",
+   "last_release": "0.1 (PyPI, 2023-09-08)",
+   "maintainers_activity": "0 commits since 2025-10-12; last 2024-05-03",
+   "python_api_quality_notes": "requires Python <3.11 per PyPI; dormant",
+   "sources": [
+    "https://github.com/py-why/pywhy-stats",
+    "https://pypi.org/pypi/pywhy-stats/json"
+   ]
+  },
+  {
+   "name": "pywhy-llm",
+   "language": "Python",
+   "algorithms": [
+    "ModelSuggester",
+    "AugmentedModelSuggester (CauseNet RAG)",
+    "IdentificationSuggester",
+    "ValidationSuggester"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "produces suggested edges, confounders, backdoor/IV sets from an LLM",
+   "outputs": [
+    "suggested relationships and critiques (text/structured)"
+   ],
+   "scalability_reported": "n/a",
+   "deterministic_given_seed": "no (LLM calls; no seed or cache documented)",
+   "column_order_invariance": "n/a",
+   "licence": "MIT",
+   "last_release": "tag v0.1 (2025-04-08); not on PyPI",
+   "maintainers_activity": "2 commits since 2025-10-12",
+   "python_api_quality_notes": "self-labelled experimental; examples use 'gpt-4'; no per-edge provenance or calibration",
+   "sources": [
+    "https://github.com/py-why/pywhy-llm"
+   ]
+  },
+  {
+   "name": "EconML",
+   "language": "Python",
+   "algorithms": [
+    "DML family",
+    "orthogonal forests",
+    "DR learners",
+    "meta-learners",
+    "IV learners",
+    "policy learners"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "n/a (effect estimation from observational data with stated adjustment/IV)",
+   "background_knowledge_support": "user supplies X, W, Z roles",
+   "outputs": [
+    "CATE/ATE with confidence intervals"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "random_state on estimators (not verified here)",
+   "column_order_invariance": "n/a",
+   "licence": "MIT",
+   "last_release": "0.17.0 (2026-07-31)",
+   "maintainers_activity": "35 commits since 2025-10-12",
+   "python_api_quality_notes": "mature; downstream of the graph, not a discovery engine",
+   "sources": [
+    "https://github.com/py-why/EconML",
+    "https://pypi.org/pypi/econml/json"
+   ]
+  },
+  {
+   "name": "causica / DECI (Microsoft)",
+   "language": "Python (PyTorch, Lightning)",
+   "algorithms": [
+    "DECI (Rhino and DDECI removed in refactor)"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "interventional data used for evaluation (datasets/interventional_data.py); learning from observational data",
+   "background_knowledge_support": "constraint_matrix (NaN free, 0 forbidden) in examples",
+   "outputs": [
+    "posterior over DAGs",
+    "ATE via simulated interventions"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "0.4.6 (PyPI, 2026-10-08)",
+   "maintainers_activity": "3 commits since 2025-10-12; 41 commits total after refactor",
+   "python_api_quality_notes": "Python 3.10 only per PyPI; GPU-oriented deep model",
+   "sources": [
+    "https://github.com/microsoft/causica",
+    "https://pypi.org/pypi/causica/json"
+   ]
+  },
+  {
+   "name": "Ananke",
+   "language": "Python",
+   "algorithms": [
+    "identification and semiparametric estimation in ADMGs",
+    "maximum likelihood for binary ADMGs"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "n/a",
+   "background_knowledge_support": "user graph",
+   "outputs": [
+    "effect estimates",
+    "identification results"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "n/a",
+   "licence": "Apache-2.0 (PyPI also lists 'Other/Proprietary' classifier)",
+   "last_release": "0.5.0 (PyPI, 2023-12-05)",
+   "maintainers_activity": "unknown (GitLab history not read)",
+   "python_api_quality_notes": "no structure learning",
+   "sources": [
+    "https://ananke.readthedocs.io/en/latest/",
+    "https://pypi.org/pypi/ananke-causal/json"
+   ]
+  },
+  {
+   "name": "CausalNex (McKinsey)",
+   "language": "Python",
+   "algorithms": [
+    "NOTEARS-based structure learning (not named on page read)",
+    "Bayesian network fitting",
+    "do-calculus interventions"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "not stated on page read",
+   "outputs": [
+    "StructureModel / BN"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "Apache-2.0",
+   "last_release": "0.12.2 (PyPI, 2026-08-31)",
+   "maintainers_activity": "end of life 2026-06-24 per README; 9 commits since 2025-10-12 (final release housekeeping)",
+   "python_api_quality_notes": "discontinued; do not adopt",
+   "sources": [
+    "https://github.com/mckinsey/causalnex",
+    "https://pypi.org/pypi/causalnex/json"
+   ]
+  },
+  {
+   "name": "Tigramite",
+   "language": "Python",
+   "algorithms": [
+    "PCMCI",
+    "PCMCI+",
+    "LPCMCI",
+    "RPCMCI",
+    "J-PCMCI+"
+   ],
+   "ci_tests": [
+    "ParCorr",
+    "RobustParCorr",
+    "ParCorrWLS",
+    "GPDC",
+    "GPDCtorch",
+    "CMIknn",
+    "CMIknnMixed",
+    "Gsquared",
+    "CMIsymb",
+    "RegressionCI",
+    "PairwiseMultCI"
+   ],
+   "interventional_data_support": "multiple datasets/contexts (J-PCMCI+)",
+   "background_knowledge_support": "link_assumptions argument in pcmci.py (code grep)",
+   "outputs": [
+    "time-series DAG/CPDAG/PAG",
+    "p-values per link",
+    "bootstrap aggregation",
+    "CausalEffects estimates"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "seed handling fixes 2021/2023 (commit log); permutation tests need seeds",
+   "column_order_invariance": "unknown; 2025-08 commit added a preferred tie order for LPCMCI",
+   "licence": "GPL-3.0",
+   "last_release": "5.2.10.1 (PyPI, 2026-01-14)",
+   "maintainers_activity": "36 commits since 2025-10-12",
+   "python_api_quality_notes": "mature; time series only (out of our iid slice)",
+   "sources": [
+    "https://github.com/jakobrunge/tigramite",
+    "https://pypi.org/pypi/tigramite/json",
+    "https://github.com/jakobrunge/tigramite/commit/1d6caeee4185dc7d471ed7c9fd7b5e52413fc958"
+   ]
+  },
+  {
+   "name": "lingam (cdt15)",
+   "language": "Python",
+   "algorithms": [
+    "ICA-LiNGAM",
+    "DirectLiNGAM",
+    "RESIT",
+    "VAR-LiNGAM",
+    "VARMA-LiNGAM",
+    "multi-group DirectLiNGAM",
+    "longitudinal LiNGAM",
+    "BottomUpParceLiNGAM",
+    "RCD",
+    "CAM-UV",
+    "LiNA",
+    "LiM",
+    "missingness-LiNGAM",
+    "ABIC-LiNGAM"
+   ],
+   "ci_tests": [
+    "independence measures: pwling, kernel, pwling_fast (GPU via culingam)"
+   ],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "prior_knowledge matrix (0 no path, 1 path, -1 unknown), hard or soft",
+   "outputs": [
+    "DAG adjacency",
+    "causal order",
+    "bootstrap probabilities (BootstrapResult)",
+    "total effects"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "yes (random_state parameter)",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "1.13.0 (PyPI, 2026-07-22)",
+   "maintainers_activity": "80 commits since 2025-10-12",
+   "python_api_quality_notes": "clean sklearn-style API; prior knowledge is about directed paths, which matches order evidence",
+   "sources": [
+    "https://github.com/cdt15/lingam",
+    "https://lingam.readthedocs.io/en/latest/reference/direct_lingam.html",
+    "https://pypi.org/pypi/lingam/json"
+   ]
+  },
+  {
+   "name": "benchpress",
+   "language": "Snakemake workflow (R/Python/Java modules in containers)",
+   "algorithms": [
+    "wraps algorithms from BDgraph, BiDAG, bnlearn, causal-learn, gCastle, GOBNILP, pcalg, r.blip, scikit-learn, TETRAD, trilearn (paper); pyAgrum, MVPC, tpc in news"
+   ],
+   "ci_tests": [
+    "per wrapped library"
+   ],
+   "interventional_data_support": "unknown",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "benchmark tables and plots"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "GPL-2.0",
+   "last_release": "v2.14.0 (tag 2026-09-22)",
+   "maintainers_activity": "28 commits since 2025-10-12",
+   "python_api_quality_notes": "JSON-configured; a harness, not an engine",
+   "sources": [
+    "https://github.com/felixleopoldo/benchpress",
+    "https://benchpressdocs.readthedocs.io/en/latest/",
+    "https://arxiv.org/abs/2107.03863"
+   ]
+  },
+  {
+   "name": "AVICI",
+   "language": "Python (JAX)",
+   "algorithms": [
+    "amortized inference (pretrained scm-v0, neurips-linear/rff/grn)"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "yes: interv mask argument",
+   "background_knowledge_support": "none",
+   "outputs": [
+    "edge probabilities d x d"
+   ],
+   "scalability_reported": "reported (DOM-11): forward pass a few seconds on CPU; trained on up to 100 nodes",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "documented: permutation equivariant by architecture (DOM-11)",
+   "licence": "MIT",
+   "last_release": "1.0.7 (PyPI, 2025-01-03)",
+   "maintainers_activity": "0 commits since 2025-10-12; last 2025-02-11",
+   "python_api_quality_notes": "simple API; weights on HF",
+   "sources": [
+    "https://github.com/larslorch/avici",
+    "https://pypi.org/pypi/avici/json"
+   ]
+  },
+  {
+   "name": "SDCD",
+   "language": "Python (PyTorch)",
+   "algorithms": [
+    "Stable Differentiable Causal Discovery"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "yes: designed for labelled interventional data",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "DAG"
+   ],
+   "scalability_reported": "reported: 'can scale to thousands of variables' (abstract)",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "0.1.4 (PyPI, 2024-06-17)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "research code; preprint",
+   "sources": [
+    "https://github.com/azizilab/sdcd",
+    "https://arxiv.org/abs/2311.10263"
+   ]
+  },
+  {
+   "name": "DAGMA",
+   "language": "Python (numpy/PyTorch)",
+   "algorithms": [
+    "DAGMA linear",
+    "DAGMA nonlinear (MLP)",
+    "logistic for binary"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "weighted DAG"
+   ],
+   "scalability_reported": "claim (README): faster than NOTEARS and GOLEM; no numbers",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown; continuous methods are exposed to varsortability (Reisach et al.)",
+   "licence": "Apache-2.0",
+   "last_release": "1.1.1 (PyPI, 2023-09-02)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "small, readable",
+   "sources": [
+    "https://github.com/kevinsbello/dagma",
+    "https://arxiv.org/abs/2102.13647"
+   ]
+  },
+  {
+   "name": "NOTEARS (reference implementation)",
+   "language": "Python",
+   "algorithms": [
+    "NOTEARS linear (L2, logistic, Poisson)",
+    "NOTEARS nonlinear (MLP, basis expansion)"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "none in reference code",
+   "outputs": [
+    "weighted DAG (thresholded)"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown; varsortability: some continuous methods fail on standardized data (Reisach et al.)",
+   "licence": "Apache-2.0",
+   "last_release": "tag v2.3 (2020-12-16); not on PyPI",
+   "maintainers_activity": "1 commit since 2025-10-12; README points to dagrad",
+   "python_api_quality_notes": "reference code only; copies also inside gCastle, CausalNex, Causal-Copilot externals",
+   "sources": [
+    "https://github.com/xunzheng/notears",
+    "https://arxiv.org/abs/2102.13647"
+   ]
+  },
+  {
+   "name": "cuPC",
+   "language": "CUDA + R",
+   "algorithms": [
+    "PC-stable skeleton (cuPC-E, cuPC-S)"
+   ],
+   "ci_tests": [
+    "Gaussian partial correlation"
+   ],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "no",
+   "outputs": [
+    "skeleton/CPDAG via pcalg"
+   ],
+   "scalability_reported": "reported (README/abstract): average 500x (cuPC-E) and 1300x (cuPC-S) over serial CPU; one dataset from more than 11 hours to about 4 seconds",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "documented: order-independent PC-stable",
+   "licence": "GPL-3.0",
+   "last_release": "no release; last commit 2021-03-19",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "R + nvcc build; NVIDIA only",
+   "sources": [
+    "https://github.com/LIS-Laboratory/cupc",
+    "https://arxiv.org/abs/1812.08491"
+   ]
+  },
+  {
+   "name": "gpucsl",
+   "language": "Python (CuPy/CUDA)",
+   "algorithms": [
+    "PC-stable (skeleton + orientation, Meek rules)"
+   ],
+   "ci_tests": [
+    "Fisher-z",
+    "Pearson chi-square"
+   ],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "no",
+   "outputs": [
+    "CPDAG"
+   ],
+   "scalability_reported": "none on README",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "documented: PC-stable; README says orientation conflicts resolved to match pcalg",
+   "licence": "MIT (helpers.py separately licensed)",
+   "last_release": "0.0.7 (PyPI, 2022-04-04)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "Linux + NVIDIA + CUDA 11.2 images; used by Causal-Copilot for GPU PC",
+   "sources": [
+    "https://github.com/hpi-epic/gpucsl",
+    "https://pypi.org/pypi/gpucsl/json"
+   ]
+  },
+  {
+   "name": "culingam (AcceleratedLiNGAM)",
+   "language": "Python/CUDA",
+   "algorithms": [
+    "GPU DirectLiNGAM ordering ('pwling_fast')"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "via lingam",
+   "outputs": [
+    "as lingam"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT (PyPI classifier)",
+   "last_release": "0.0.8 (PyPI, 2024-03-03)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "used through lingam measure='pwling_fast'",
+   "sources": [
+    "https://pypi.org/pypi/culingam/json",
+    "https://lingam.readthedocs.io/en/latest/reference/direct_lingam.html"
+   ]
+  },
+  {
+   "name": "XGES",
+   "language": "C++ core + Python",
+   "algorithms": [
+    "XGES (extremely greedy equivalence search)"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "not mentioned",
+   "outputs": [
+    "CPDAG"
+   ],
+   "scalability_reported": "reported (abstract): 10 times faster than GES; C++ at least about 10x faster than its Python version (README)",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown (tie-breaking not documented)",
+   "licence": "none found (no LICENSE file; PyPI license empty)",
+   "last_release": "0.1.6 (PyPI, 2024-06-27)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "used by Causal-Copilot; licence blocks redistribution",
+   "sources": [
+    "https://github.com/ANazaret/XGES",
+    "https://arxiv.org/abs/2502.19551",
+    "https://pypi.org/pypi/xges/json"
+   ]
+  },
+  {
+   "name": "ges / gies (Gamella)",
+   "language": "Python",
+   "algorithms": [
+    "GES",
+    "GIES"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "yes for gies (interventional targets)",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "CPDAG / I-essential graph"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "BSD-3-Clause",
+   "last_release": "ges 1.1.1 and gies 0.0.3 (PyPI, 2025-03-03)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "small pure-Python reference implementations; permissive GIES alternative to pcalg",
+   "sources": [
+    "https://pypi.org/pypi/ges/json",
+    "https://pypi.org/pypi/gies/json"
+   ]
+  },
+  {
+   "name": "graphical_models / graphical_model_learning (Uhler lab, ex-causaldag)",
+   "language": "Python",
+   "algorithms": [
+    "graph classes (DAG, PDAG, MAG, PAG, interventions); learning algorithms in graphical_model_learning not read"
+   ],
+   "ci_tests": [
+    "conditional_independence package (not read)"
+   ],
+   "interventional_data_support": "intervention classes present (file listing)",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "graph objects"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "BSD-3-Clause (graphical_models)",
+   "last_release": "graphical-models 0.1a21 (2024-04-22); graphical-model-learning 0.1a8 (2022-12-13)",
+   "maintainers_activity": "0 commits since 2025-10-12",
+   "python_api_quality_notes": "alpha, dormant",
+   "sources": [
+    "https://pypi.org/pypi/graphical-models/json",
+    "https://pypi.org/pypi/graphical-model-learning/json"
+   ]
+  },
+  {
+   "name": "pgmpy",
+   "language": "Python",
+   "algorithms": [
+    "PC",
+    "HillClimb",
+    "GES",
+    "MMHC",
+    "Sparsest Permutation (2026)",
+    "ExpertInLoop (LLM)",
+    "IGCI",
+    "inference, do-operator"
+   ],
+   "ci_tests": [
+    "chi_square",
+    "pearsonr",
+    "others not read"
+   ],
+   "interventional_data_support": "interventional distributions on a given model",
+   "background_knowledge_support": "expert knowledge (details not read)",
+   "outputs": [
+    "DAG / PDAG",
+    "BN models"
+   ],
+   "scalability_reported": "none read",
+   "deterministic_given_seed": "partial: GES made deterministic across Python hash seeds on 2026-04-09 (commit)",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "1.1.2 (PyPI, 2026-04-30)",
+   "maintainers_activity": "422 commits since 2025-10-12",
+   "python_api_quality_notes": "very active; LLM orientation via litellm (default gemini-1.5-flash); no per-edge provenance documented",
+   "sources": [
+    "https://github.com/pgmpy/pgmpy",
+    "https://pgmpy.org/structure_estimator/expert.html",
+    "https://github.com/pgmpy/pgmpy/commit/fe19dd8ed5f5236974aef46701cbe15f2ea3a90c"
+   ]
+  },
+  {
+   "name": "gadjid",
+   "language": "Rust core with Python and R bindings",
+   "algorithms": [
+    "parent-AID",
+    "ancestor-AID",
+    "oset-AID",
+    "SHD",
+    "SID"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "n/a",
+   "background_knowledge_support": "n/a",
+   "outputs": [
+    "distances between DAG/CPDAG pairs"
+   ],
+   "scalability_reported": "claim (README): 'orders of magnitude faster' than SID; no numbers",
+   "deterministic_given_seed": "n/a (deterministic graph computation)",
+   "column_order_invariance": "n/a",
+   "licence": "MPL-2.0",
+   "last_release": "0.1.0 (PyPI, 2024-07-11)",
+   "maintainers_activity": "6 commits since 2025-10-12",
+   "python_api_quality_notes": "the only Rust engine found that is relevant; evaluation, not discovery",
+   "sources": [
+    "https://cran.r-project.org/web/packages/gadjid/readme/README.html",
+    "https://pypi.org/pypi/gadjid/json"
+   ]
+  },
+  {
+   "name": "why-rs / why_rs",
+   "language": "Rust",
+   "algorithms": [
+    "PC",
+    "FCM sampling and interventions"
+   ],
+   "ci_tests": [
+    "not documented"
+   ],
+   "interventional_data_support": "sampling only",
+   "background_knowledge_support": "unknown",
+   "outputs": [
+    "unknown"
+   ],
+   "scalability_reported": "none",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT OR Apache-2.0",
+   "last_release": "0.2.1 (crates.io, updated 2025-12-16)",
+   "maintainers_activity": "50 commits total, all since 2025-10-12",
+   "python_api_quality_notes": "hobby-scale crate; not a candidate",
+   "sources": [
+    "https://rust-digger.code-maven.com/crates/why_rs",
+    "https://github.com/jwhogg/why-rs"
+   ]
+  },
+  {
+   "name": "deep_causality_discovery",
+   "language": "Rust",
+   "algorithms": [
+    "SURD decomposition",
+    "MRMR feature selection"
+   ],
+   "ci_tests": [],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "no",
+   "outputs": [
+    "influence report"
+   ],
+   "scalability_reported": "none",
+   "deterministic_given_seed": "unknown",
+   "column_order_invariance": "unknown",
+   "licence": "MIT",
+   "last_release": "0.3.4 (2026-01-22)",
+   "maintainers_activity": "unknown",
+   "python_api_quality_notes": "not graph discovery in our sense",
+   "sources": [
+    "https://lib.rs/crates/deep_causality_discovery"
+   ]
+  },
+  {
+   "name": "Causal-Copilot wrappers (causal_discovery/wrappers, LLM layer)",
+   "language": "Python",
+   "algorithms": [
+    "PC, PC-parallel, FCI, CDNOD, GES, FGES, XGES, GRaSP, DirectLiNGAM, ICALiNGAM, VARLiNGAM, NOTEARS (linear/nonlinear), NTS-NOTEARS, DYNOTEARS, GOLEM, CORL, CALM, PCMCI, Granger, Markov-blanket methods (pyCausalFS), Hybrid"
+   ],
+   "ci_tests": [
+    "fisherz/chisq CPU and GPU",
+    "kci",
+    "fastkci",
+    "rcit",
+    "cmiknn_gpu"
+   ],
+   "interventional_data_support": "no",
+   "background_knowledge_support": "LLM converts user text to forbidden/required/tiers JSON (PC.json); GPU path drops knowledge",
+   "outputs": [
+    "adjacency matrix",
+    "report"
+   ],
+   "scalability_reported": "none reported",
+   "deterministic_given_seed": "no (LLM selects algorithm and hyperparameters)",
+   "column_order_invariance": "known issue via vendored fork (see that row)",
+   "licence": "MIT",
+   "last_release": "tag v20250312 (2025-03-22); HEAD a31aa7c 2026-05-15",
+   "maintainers_activity": "12 commits since 2025-10-12",
+   "python_api_quality_notes": "wrapper default depth=4 while PC.json advises -1; per-algorithm LLM prompts; no per-edge provenance",
+   "sources": [
+    "https://github.com/Lancelot39/Causal-Copilot"
+   ]
+  }
+ ],
+ "searches": [
+  "WebSearch: causal-learn github issue PC different results when column order changed",
+  "WebSearch: cmu-phil tetrad releases 7.6 py-tetrad causal-cmd",
+  "WebSearch: cuPC GPU PC algorithm causal discovery CUDA github",
+  "WebSearch: site:github.com py-why causal-learn issues PC \"order\" variables results differ (extended)",
+  "WebSearch: github causal-learn issue FCI wrong orientation bug background knowledge",
+  "WebSearch: github causal-learn issue GES nondeterministic results random",
+  "WebSearch: bnlearn CRAN 5.1 release 2025 NEWS Scutari",
+  "WebSearch: GPUCSL GPU constraint-based structure learning Python Hagedorn PC github",
+  "WebSearch: XGES extremely greedy equivalence search C++ github Nazaret Blei",
+  "WebSearch: Rust crate causal discovery PC algorithm structure learning",
+  "WebSearch: gadjid Rust adjustment identification distance causal graphs",
+  "WebSearch: fast C++ PC algorithm causal discovery library parallel ParallelPC pcalg",
+  "WebSearch: \"causal discovery\" library written in Rust python bindings PC GES fast 2025 (extended)",
+  "WebSearch (refused, budget exhausted): gcastle PC algorithm issue wrong result; tetrad nondeterministic FGES; causal-learn GES tie breaking",
+  "PyPI JSON API for 33 package names (causal-learn, dowhy, econml, causica, ...)",
+  "CRAN DESCRIPTION via cran.r-universe.dev for pcalg and bnlearn",
+  "git clone --bare --filter=blob:none of 33 GitHub repos; git log counts since 2025-10-12; LICENSE files; tag dates",
+  "git log --grep for order dependence / determinism / seed / Meek / orientation in causal-learn, Tetrad, gCastle, lingam, DoWhy, pgmpy, Tigramite",
+  "pip download + diff of causal-learn 0.1.3.8 vs 0.1.4.8 vs Causal-Copilot externals/causal-learn; pip download gcastle 1.0.4 and dowhy 0.14 for code reading"
+ ],
+ "not_read": [
+  {
+   "source": "GitHub issue list pages and commit list pages (github.com/.../issues?q=..., /commits/main)",
+   "reason": "WebFetch blocked by robots.txt; individual issue pages and git clones used instead"
+  },
+  {
+   "source": "GitHub REST API (api.github.com)",
+   "reason": "proxy refused this session's access"
+  },
+  {
+   "source": "search.maven.org (Tetrad artifact dates)",
+   "reason": "egress proxy denied the connection; git tags used instead"
+  },
+  {
+   "source": "cran.r-project.org/package=bnlearn and bnlearn.com/news",
+   "reason": "robots / client error; r-universe DESCRIPTION used"
+  },
+  {
+   "source": "Tetrad manual algorithm pages (rendered HTML)",
+   "reason": "navigation-only render; the _sources .md.txt versions were read instead"
+  },
+  {
+   "source": "ParallelPC (arXiv 1510.03042, 1502.02454)",
+   "reason": "seen in search results only; not opened"
+  },
+  {
+   "source": "XGES proceedings page (proceedings.mlr.press/v244/nazaret24a)",
+   "reason": "seen in search results only; venue not verified"
+  },
+  {
+   "source": "Kitson & Constantinou arXiv 2206.08952",
+   "reason": "not re-read; numbers taken from the cluster8 prior note (second-hand)"
+  },
+  {
+   "source": "gCastle GitHub README",
+   "reason": "robots-blocked; PyPI page and wheel source read instead"
+  },
+  {
+   "source": "uhlerlab graphical_model_learning algorithm list; conditional_independence package",
+   "reason": "not opened beyond PyPI metadata and file listing"
+  },
+  {
+   "source": "Ananke GitLab repository history",
+   "reason": "not opened"
+  },
+  {
+   "source": "pgmpy PC/CI-test documentation",
+   "reason": "not opened beyond README and ExpertInLoop page"
+  }
+ ]
+}

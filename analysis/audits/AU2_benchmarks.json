@@ -1,0 +1,2912 @@
+{
+ "audit": "AU2",
+ "question": "Which benchmarks and datasets exist for causal discovery and causal reasoning, where does each one's ground truth come from, what does it score, and how can it leak?",
+ "written": "2026-10-12",
+ "tickets": "AUD-19, BEN-07, STR-02",
+ "schema": {
+  "name": "benchmark or dataset collection; projects sharing a name are separate rows",
+  "category": "structure / time series / root cause / representation / simulator / platform / LLM reasoning / agentic",
+  "task": "what is asked",
+  "ground_truth_origin": "synthetic generator / LLM-written / expert-elicited / physical system / experimental / literature-curated (mixed allowed)",
+  "variables": "range of number of variables",
+  "samples": "rows, cells, steps or items",
+  "regimes": "D observational data given, I interventional data given (bool or text), K_names: are names meaningful",
+  "interventional_data": "bool; null = not stated in pages read",
+  "hidden_confounders": "bool or text; null = not stated",
+  "time_series": "bool or text",
+  "metrics": "scoring",
+  "known_leaks": "list of {leak, evidence, label (reported / measured (project) / second-hand / inference), sources}",
+  "memorisation_risk": "{level, why}; level is this audit's judgment",
+  "licence": "as stated on pages read",
+  "maintained": "last update seen",
+  "used_by": "systems or papers reporting on it",
+  "sources": "URLs read 2026-10-12, plus prior-note: or project: pointers where a fact comes from an earlier project note",
+  "notes": "free text"
+ },
+ "rows": [
+  {
+   "name": "CausalArena (generated families: synthetic, semantic, formula)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "synthetic generator (synthetic family); LLM-written with human review (semantic and formula families: 'staged agentic workflow' with 'Human and LLM-assisted' review)",
+   "variables": "semantic 17-25 vars, 25-67 edges (paper); public semantic 17-25 vars, 26-67 edges (project)",
+   "samples": "1,000 obs rows, or 800 obs + 200 int rows; 5 replicates per scenario",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "semantic and formula: named (node_id like 'agitation_rpm', labels like 'calibration drift bias'); synthetic: anonymous"
+   },
+   "interventional_data": true,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "directed-edge precision/recall/F1, SHD; replicate then family averaging; undirected PC/GIES edges oriented at random (Appendix B per project)",
+   "known_leaks": [
+    {
+     "leak": "column order = causal order",
+     "evidence": "Every true edge runs from an earlier to a later column in every released file checked (semantic 2,068/2,068; formula 1,714/1,714; synthetic 50,421/50,421). Naive regression on earlier columns: 0.680 directed F1 on public semantic files vs 0.269 after shuffle; 0.575 on formula. The paper does not discuss column order.",
+     "label": "measured (project)",
+     "sources": [
+      "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)",
+      "https://arxiv.org/html/2609.11897"
+     ]
+    },
+    {
+     "leak": "semantic variable names",
+     "evidence": "Causal-Copilot final F1 0.306 with real names, 0.232 neutral, 0.142 names swapped between columns.",
+     "label": "measured (project)",
+     "sources": [
+      "project:audit_context.md"
+     ]
+    },
+    {
+     "leak": "LLM-drafted graphs",
+     "evidence": "Semantic SCMs come from an agentic drafting workflow with LLM-assisted review; directions an LLM finds plausible are therefore over-represented relative to a world-sampled graph. No test of this in the paper.",
+     "label": "reported (construction) + inference (consequence)",
+     "sources": [
+      "https://arxiv.org/html/2609.11897"
+     ]
+    },
+    {
+     "leak": "sortability not audited",
+     "evidence": "Paper cites UUMC as a way to reduce sortability but does not describe CausalArena's own handling or report varsortability.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/html/2609.11897",
+      "https://arxiv.org/abs/2503.17037"
+     ]
+    },
+    {
+     "leak": "future pretraining overlap",
+     "evidence": "Authors name public SCMs entering pretraining as the main leakage concern; plan versioning and a held-out half.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/html/2609.11897"
+     ]
+    },
+    {
+     "leak": "intervention targets fixed",
+     "evidence": "Replay sampler intervenes only on declared targets, round-robin; one inspected spec: 5 targets, all roots.",
+     "label": "second-hand (prior note, V there)",
+     "sources": [
+      "prior-note:cluster7_active_discovery_and_environments.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium-high",
+    "why": "Public half released Sept 2026 under CC BY 4.0 on Hugging Face; scenarios are new, but named graphs were drafted by LLMs so a name-reading model recovers LLM-plausible edges even without memorisation."
+   },
+   "licence": "CC BY 4.0",
+   "maintained": "v1 Sept 2026; held-out half reserved for later versions",
+   "used_by": [
+    "CausalArena paper (18 methods incl. FoundCause, GIES, CDFM, TabCausal, PC)",
+    "this project (Causal-Copilot runs)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2609.11897",
+    "https://arxiv.org/html/2609.11897",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena",
+    "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)",
+    "prior-note:cluster7_active_discovery_and_environments.md"
+   ],
+   "notes": "Public: 50 of 100 semantic, 50 formula, 500 synthetic configs (project). No agent or LLM entries on leaderboard (prior note)."
+  },
+  {
+   "name": "CausalArena real-data slice",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "literature-curated / expert ('expert-specified or experimentally motivated in the source papers'; authors: 'not independently verified unique true DAGs')",
+   "variables": "small (Auto MPG 4 vars per project) to ~40 (chambers)",
+   "samples": "varies by source",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named (Sachs proteins, PetShop services, chamber quantities, UCI-style columns)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "directed-edge F1, SHD",
+   "known_leaks": [
+    {
+     "leak": "famous, named tables",
+     "evidence": "Includes Sachs and UCI-style tables (Abalone, Auto MPG, Concrete, DWD, Ozone, Arrhythmia) whose graphs are published.",
+     "label": "reported (list)",
+     "sources": [
+      "https://arxiv.org/html/2609.11897"
+     ]
+    },
+    {
+     "leak": "indexed not republished",
+     "evidence": "Real tables are indexed, not republished, so users re-download and may reorder columns differently.",
+     "label": "measured (project)",
+     "sources": [
+      "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Sachs and UCI tables are widely discussed online; graphs are in source papers."
+   },
+   "licence": "per source dataset",
+   "maintained": "v1 Sept 2026",
+   "used_by": [
+    "CausalArena paper: best 0.391 obs (CDFM, 13 datasets), 0.462 with interventions (TabCausal, 7 datasets)"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2609.11897",
+    "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)"
+   ],
+   "notes": "CD-CSG reference [44] not resolved (reference list not in fetched text)."
+  },
+  {
+   "name": "Causal-Copilot internal synthetic suite",
+   "category": "structure",
+   "task": "structure / time series",
+   "ground_truth_origin": "synthetic generator",
+   "variables": "tabular p=10 default up to 1000; time series p=5-100, lags 3-20",
+   "samples": "n=1,000 default up to 10,000",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "not stated (no anonymisation described)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "F1 (mean +/- std), runtime; 20-minute limit, timeouts scored 0",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "no name/order control",
+     "evidence": "No variable-name or column-order control described.",
+     "label": "reported (absence)",
+     "sources": [
+      "https://arxiv.org/html/2504.13263",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Freshly generated graphs; memorisation not possible, but generator artefacts are."
+   },
+   "licence": "Causal-Copilot repo licence (not checked)",
+   "maintained": "2025 paper",
+   "used_by": [
+    "Causal-Copilot (arXiv 2504.13263)"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2504.13263"
+   ],
+   "notes": "Only real dataset in the paper text read is an earthquake case study (123 rows, 8 cols), not scored. Last 21.8k chars of the HTML not read."
+  },
+  {
+   "name": "bnlearn repository: small discrete (Asia, Cancer, Earthquake, Survey, Sachs-discretised)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "expert-elicited (textbook and expert Bayesian networks; repository page cites Hebrew U repository, Hugin, Korb & Nicholson, Koller & Friedman)",
+   "variables": "5-11",
+   "samples": "sampled by user (synthetic from CPTs)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named (e.g. SMOKING, TUBERCULOSIS)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "user-chosen (SHD, F1, SID common)",
+   "known_leaks": [
+    {
+     "leak": "LLM memorisation",
+     "evidence": "LLMs score near-perfect on BNLearn graph completion even with 0% context; LLM-BFS F1 0.93 on Asia vs 0.56 on post-cutoff Alzheimer's.",
+     "label": "reported (Srivastava et al.)",
+     "sources": [
+      "https://arxiv.org/html/2510.16530"
+     ]
+    },
+    {
+     "leak": "name reliance",
+     "evidence": "o4-mini on Asia: 1.000 with real names, 0.00-0.08 with random names, ~0.15 with permuted names (no algorithm output).",
+     "label": "second-hand (prior note, V there)",
+     "sources": [
+      "https://arxiv.org/abs/2511.16016",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "ground truth contested",
+     "evidence": "Literature-inconsistency rate Asia 57.9%.",
+     "label": "second-hand (prior note; page 429 today)",
+     "sources": [
+      "https://arxiv.org/abs/2606.01789",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "column order",
+     "evidence": "Order in which variables are read changes hill-climbing F1 by 0.412 on average; files are alphabetical, i.e. arbitrary.",
+     "label": "second-hand (prior note, V there); abstract re-read",
+     "sources": [
+      "https://arxiv.org/abs/2206.08952",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Decades-old textbook networks reproduced in countless tutorials; completion tests show recall."
+   },
+   "licence": "page CC BY-SA 3.0; network files not stated",
+   "maintained": "page last updated 2022-11-29",
+   "used_by": [
+    "CARE",
+    "CEA",
+    "ALCM",
+    "LeGIT",
+    "MATMCD",
+    "Srivastava et al."
+   ],
+   "sources": [
+    "https://www.bnlearn.com/bnrepository/",
+    "https://arxiv.org/html/2510.16530",
+    "https://arxiv.org/abs/2511.16016",
+    "https://arxiv.org/abs/2206.08952",
+    "prior-note:cluster2_causal_agents_and_evaluation.md",
+    "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "bnlearn repository: medium to massive discrete, Gaussian and CLG (Alarm, Child, Insurance, Water, Hepar2, Win95pts, Andes, Munin, ecoli70, magic-niab, arth150, Sangiovese, Mehra, ...)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "expert-elicited (discrete) and fitted to domain data in the source papers (Gaussian/CLG)",
+   "variables": "20-1,041 (discrete); 44-107 (Gaussian); 7-24 (CLG)",
+   "samples": "sampled by user",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "user-chosen (SHD, F1, SID)",
+   "known_leaks": [
+    {
+     "leak": "LLM memorisation",
+     "evidence": "Memorisation tests (node/edge/subgraph completion) run on Child, Insurance, Alarm show near-perfect recall on BNLearn graphs.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/html/2510.16530"
+     ]
+    },
+    {
+     "leak": "ground truth contested",
+     "evidence": "Literature-inconsistency rate Child 54.0%.",
+     "label": "second-hand (prior note)",
+     "sources": [
+      "https://arxiv.org/abs/2606.01789",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "column order",
+     "evidence": "Same file-order sensitivity as small networks.",
+     "label": "second-hand",
+     "sources": [
+      "https://arxiv.org/abs/2206.08952",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high (named medium networks); medium (large/massive with cryptic node names)",
+    "why": "Alarm/Child/Insurance are standard textbook examples; very large networks are less likely to be recalled in full (inference)."
+   },
+   "licence": "page CC BY-SA 3.0; files not stated",
+   "maintained": "page last updated 2022-11-29",
+   "used_by": [
+    "LeGIT (Asia/Child/Insurance/Alarm)",
+    "CEA",
+    "Kitson & Constantinou 2026 (26 networks)",
+    "CARE (Alarm)"
+   ],
+   "sources": [
+    "https://www.bnlearn.com/bnrepository/",
+    "https://arxiv.org/html/2510.16530",
+    "https://arxiv.org/abs/2608.27472",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Sachs flow cytometry (Sachs et al., Science 2005)",
+   "category": "structure",
+   "task": "structure (with interventions)",
+   "ground_truth_origin": "literature-curated consensus network over an experimental (perturbation) dataset; the paper verified some novel inferred links experimentally",
+   "variables": "11",
+   "samples": "7,466 cells in cdt loader (other versions differ: discretised 853/5,400 rows commonly used; not verified today)",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named (Raf, Mek, PKC, ...)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "SHD, F1; interventional metrics rarely",
+   "known_leaks": [
+    {
+     "leak": "ground truth not definitive",
+     "evidence": "Sachs is the only real dataset in 35% of real-data papers; its truth is 'not definitive'; results peaked at SHD about 12.",
+     "label": "second-hand (prior note, V there)",
+     "sources": [
+      "https://arxiv.org/abs/2412.01953",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "R2-sortability",
+     "evidence": "R2-sortability 0.82 on Sachs, yet PC best (SHD 11.4; empty graph 17).",
+     "label": "second-hand (prior note, V there)",
+     "sources": [
+      "https://arxiv.org/abs/2303.18211",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "literature inconsistency",
+     "evidence": "26.7% (lowest of the three checked).",
+     "label": "second-hand (prior note)",
+     "sources": [
+      "https://arxiv.org/abs/2606.01789",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "memorisation",
+     "evidence": "Famous named graph; used as sole demo by several agent papers.",
+     "label": "inference",
+     "sources": [
+      "prior-note:cluster2_causal_agents_and_evaluation.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "The most-cited real causal-discovery dataset; protein names map to textbook pathways."
+   },
+   "licence": "not stated on pages read",
+   "maintained": "static (2005 data)",
+   "used_by": [
+    "CausalArena real slice",
+    "CEA",
+    "ALCM",
+    "CausalAgent demo",
+    "QRData (causal questions)",
+    "cdt"
+   ],
+   "sources": [
+    "https://pubmed.ncbi.nlm.nih.gov/15845847/",
+    "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/data.html",
+    "https://arxiv.org/abs/2412.01953",
+    "https://arxiv.org/abs/2303.18211",
+    "prior-note:cluster8_benchmark_leakage_and_ceilings.md",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "bnRep (Bayesian networks from the academic literature)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "literature-curated (BNs published in recent papers)",
+   "variables": "not stated on CRAN page",
+   "samples": "sampled by user",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "user-chosen",
+   "known_leaks": [
+    {
+     "leak": "less memorised than bnlearn but still published",
+     "evidence": "Networks come from recent papers; recency lowers but does not remove recall risk.",
+     "label": "inference",
+     "sources": [
+      "https://cran.r-project.org/web/packages/bnRep/index.html"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Recent and many networks; still published text."
+   },
+   "licence": "MIT + file LICENSE",
+   "maintained": "v0.0.6, 2025-10-26",
+   "used_by": [
+    "Kitson & Constantinou 2026 (26 networks drawn from bnlearn, bnRep and Bayesys per prior note)"
+   ],
+   "sources": [
+    "https://cran.r-project.org/web/packages/bnRep/index.html",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Bayesys data and BN repository",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "mixed: knowledge-based graphs (COVID-19 explicitly 'knowledge-based'); textbook BNs (Asia, Alarm, Pathfinder); other construction not stated",
+   "variables": "8-109",
+   "samples": "synthetic 100k per network and 10^2-10^6 noise variants; real: Diarrhoea 259,627, ForMed 953, Sports 3,536, COVID-19 866",
+   "regimes": {
+    "D": true,
+    "I": null,
+    "K_names": "named"
+   },
+   "interventional_data": null,
+   "hidden_confounders": true,
+   "time_series": false,
+   "metrics": "repository report does not prescribe; Constantinou's work uses F1, SHD, BSF",
+   "known_leaks": [
+    {
+     "leak": "noise variants include latent confounders",
+     "evidence": "L5/L10 variants evaluated against a MAG; missing, incorrect and merged-state variants.",
+     "label": "reported",
+     "sources": [
+      "http://constantinou.info/downloads/bayesys/bayesys_repository.pdf"
+     ]
+    },
+    {
+     "leak": "named variables",
+     "evidence": "Real-data networks are named; LLM recall possible for Asia/Alarm/Pathfinder.",
+     "label": "inference",
+     "sources": [
+      "http://constantinou.info/downloads/bayesys/bayesys_repository.pdf"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Mostly less famous graphs plus a few textbook ones."
+   },
+   "licence": "report CC BY-SA 4.0",
+   "maintained": "report v1.411, May 2023",
+   "used_by": [
+    "Kitson & Constantinou papers"
+   ],
+   "sources": [
+    "http://constantinou.info/downloads/bayesys/bayesys_repository.pdf",
+    "https://bayesian-ai.eecs.qmul.ac.uk/bayesys/"
+   ],
+   "notes": "ForMed is described as 'with interventions'; nature of interventions not read."
+  },
+  {
+   "name": "Tübingen cause-effect pairs (Mooij et al., JMLR 2016)",
+   "category": "structure",
+   "task": "pairwise orientation",
+   "ground_truth_origin": "literature-curated / domain knowledge (authors 'motivate' each direction); pairs 1-41 from UCI repository",
+   "variables": "2 per pair (a few multivariate)",
+   "samples": "varies per pair",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named (pairmeta/README descriptions)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "weighted accuracy, AUC (ANM about 63 +/- 10% accuracy, AUC 0.74 reported in JMLR abstract)",
+   "known_leaks": [
+    {
+     "leak": "LLM memorisation",
+     "evidence": "GPT-4 recalls about 61% of cells and 25% of full rows of Tübingen data in a row-completion test; LLM pairwise accuracy 97%.",
+     "label": "second-hand (prior notes) + reported abstract (97%)",
+     "sources": [
+      "https://arxiv.org/abs/2305.00050",
+      "prior-note:cluster1_llm_assisted_causal_discovery.md",
+      "prior-note:cluster2_causal_agents_and_evaluation.md"
+     ]
+    },
+    {
+     "leak": "names reveal direction",
+     "evidence": "Descriptions like altitude vs temperature make direction trivial for a reader of names (inference).",
+     "label": "inference",
+     "sources": [
+      "https://webdav.tuebingen.mpg.de/cause-effect/"
+     ]
+    },
+    {
+     "leak": "near-duplicate pairs",
+     "evidence": "Authors suggest weights for very similar pairs.",
+     "label": "reported",
+     "sources": [
+      "https://webdav.tuebingen.mpg.de/cause-effect/"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Public since 2010s; LLM row-completion shows partial memorisation."
+   },
+   "licence": "not stated (UCI citation policy for pairs 1-41)",
+   "maintained": "web page lists 108 pairs; v1.0 release 2015-12-21",
+   "used_by": [
+    "Kıcıman et al.",
+    "cdt loader",
+    "ANM/IGCI literature"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/1412.3773",
+    "https://webdav.tuebingen.mpg.de/cause-effect/",
+    "https://arxiv.org/abs/2305.00050",
+    "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/data.html",
+    "prior-note:cluster1_llm_assisted_causal_discovery.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "ChaLearn cause-effect pairs challenges (2013; Fast Causation Coefficient 2014)",
+   "category": "structure",
+   "task": "pairwise orientation",
+   "ground_truth_origin": "mixed real and artificial pairs (data description not on page read)",
+   "variables": "2 per pair",
+   "samples": "not read",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "not read"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "challenge score (not read)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Old public challenge data."
+   },
+   "licence": "not read",
+   "maintained": "ended 2014-06-15 (2nd challenge)",
+   "used_by": [
+    "pairwise learning methods (RCC etc.)"
+   ],
+   "sources": [
+    "https://causality.cs.ucla.edu/blog/index.php/2014/04/30/2nd-cause-effect-pairs-challenge"
+   ],
+   "notes": "Thin row: only the announcement page read."
+  },
+  {
+   "name": "Causal Discovery Toolbox (cdt) datasets and generators",
+   "category": "structure",
+   "task": "structure / pairwise",
+   "ground_truth_origin": "mixed: Sachs (literature), Dream4 (GeneNetWeaver simulation), Tübingen (curated), plus synthetic generator",
+   "variables": "Sachs 11; Dream4 100; generator default 20",
+   "samples": "Sachs 7,466; Dream4 100; generator default 500",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "Sachs named; Dream4 gene IDs; synthetic anonymous"
+   },
+   "interventional_data": false,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "SHD, precision-recall utilities",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    },
+    {
+     "leak": "Tübingen labels constant",
+     "evidence": "load_dataset('tuebingen') labels every sample 1 (A causes B), so a constant predictor is perfect unless pairs are flipped.",
+     "label": "reported (docs)",
+     "sources": [
+      "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/data.html"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "mixed",
+    "why": "Inherits memorisation of Sachs and Tübingen."
+   },
+   "licence": "MIT",
+   "maintained": "not checked",
+   "used_by": [
+    "cdt users"
+   ],
+   "sources": [
+    "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/data.html",
+    "https://arxiv.org/abs/1903.02278"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "gCastle datasets and simulators (Huawei)",
+   "category": "structure",
+   "task": "structure / event sequences",
+   "ground_truth_origin": "synthetic generator plus three real telecom datasets (ground-truth origin not read)",
+   "variables": "not read",
+   "samples": "not read",
+   "regimes": {
+    "D": true,
+    "I": null,
+    "K_names": "synthetic anonymous; telecom not read"
+   },
+   "interventional_data": null,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "built-in graph metrics (not named in abstract)",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Synthetic or proprietary telecom data."
+   },
+   "licence": "Apache 2.0",
+   "maintained": "not checked",
+   "used_by": [
+    "gCastle users; Causal-Copilot uses similar algorithm families"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2111.15155"
+   ],
+   "notes": "GitHub datasets folder blocked by robots.txt; dataset contents not read."
+  },
+  {
+   "name": "Benchpress (Snakemake benchmarking workflow)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "user-chosen: bnlearn-style networks, random graphs, user models",
+   "variables": "user-chosen",
+   "samples": "user-chosen",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "depends on source"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "benchmark workflow metrics (not listed in abstract)",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "inherits from data source",
+    "why": "Workflow, not a fixed dataset."
+   },
+   "licence": "not read (GitHub fetch failed)",
+   "maintained": "arXiv v4 2023-12-04",
+   "used_by": [
+    "structure-learning comparisons across bnlearn, pcalg, causal-learn, gCastle, TETRAD"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2107.03863"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalPlayground",
+   "category": "simulator",
+   "task": "structure / interventions (environment)",
+   "ground_truth_origin": "synthetic generator",
+   "variables": "user-chosen",
+   "samples": "user-chosen",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "anonymous by default (inference)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "none fixed (data-generation library)",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generated SCMs."
+   },
+   "licence": "not stated on abstract page",
+   "maintained": "arXiv May 2024",
+   "used_by": [
+    "RL-style causal agents (Gymnasium integration)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2405.13092"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CSuite (Microsoft)",
+   "category": "structure",
+   "task": "structure + ATE/CATE",
+   "ground_truth_origin": "synthetic generator (hand-designed small SCMs)",
+   "variables": "2-12 nodes, 1-15 edges",
+   "samples": "2,000 rows per interventional environment",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "anonymous/synthetic"
+   },
+   "interventional_data": true,
+   "hidden_confounders": "one dataset named mixed_confounding (whether latent not verified)",
+   "time_series": false,
+   "metrics": "graph metrics; ATE and CATE error",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Synthetic."
+   },
+   "licence": "MIT",
+   "maintained": "archived 2026-06-15 (read-only)",
+   "used_by": [
+    "DECI / Causica (Geffner et al.)"
+   ],
+   "sources": [
+    "https://github.com/microsoft/csuite",
+    "https://arxiv.org/abs/2202.02195"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "OCDB (Open Causal Discovery Benchmark)",
+   "category": "structure",
+   "task": "structure + effect agreement",
+   "ground_truth_origin": "real datasets (names and GT origin not in text read)",
+   "variables": "not read",
+   "samples": "not read",
+   "regimes": {
+    "D": true,
+    "I": null,
+    "K_names": "not read"
+   },
+   "interventional_data": null,
+   "hidden_confounders": null,
+   "time_series": null,
+   "metrics": "Causal Structure Distance (CSD; reversed edges weighted worse), Causal Effect Distance (CED via adjustment sets); CPDAG-compatible encoding",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "unknown",
+    "why": "Datasets not read."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv June 2024",
+   "used_by": [
+    "OCDB paper"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2406.04598v1"
+   ],
+   "notes": "Notable for an effect-level metric that accepts CPDAG outputs."
+  },
+  {
+   "name": "CausalBench (ASU platform; Kapkiç et al.)",
+   "category": "platform",
+   "task": "structure / effect / prediction (platform)",
+   "ground_truth_origin": "user-contributed datasets",
+   "variables": "varies",
+   "samples": "varies",
+   "regimes": {
+    "D": true,
+    "I": null,
+    "K_names": "varies"
+   },
+   "interventional_data": null,
+   "hidden_confounders": null,
+   "time_series": null,
+   "metrics": "platform-hosted metrics",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "unknown",
+    "why": "Platform; content not read."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv Sept 2024",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2409.08419"
+   ],
+   "notes": "One of at least four projects named CausalBench; this is the ASU platform."
+  },
+  {
+   "name": "Causal Chambers (light tunnel, wind tunnel)",
+   "category": "structure",
+   "task": "structure, OOD, change points, ICA, symbolic regression",
+   "ground_truth_origin": "physical system: edges from physics knowledge, each validated by randomised two-level experiments",
+   "variables": "Mk1 light tunnel 38 vars / 57 edges; wind tunnel 32 / 42 (prior note from package ground_truth); Mk2 up to 99",
+   "samples": "datasets up to 10k reference rows plus 1k per single-target shift; Remote Lab live",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named physical quantities (actuators, sensors)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": "sensor-sensor confounding possible (prior note)",
+   "time_series": "both (some datasets time series)",
+   "metrics": "dataset-specific (authors' notebook: GES precision .55-.60 on 20-var subgraph)",
+   "known_leaks": [
+    {
+     "leak": "depth-1 graphs",
+     "evidence": "Mk1 standard graphs are two-layer: every parent is a manipulable actuator root, longest path 1; orientation is trivial once actuator columns are known.",
+     "label": "second-hand (prior note, computed from package)",
+     "sources": [
+      "prior-note:cluster7_active_discovery_and_environments.md"
+     ]
+    },
+    {
+     "leak": "names reveal role",
+     "evidence": "Column names distinguish actuators from sensors (inference).",
+     "label": "inference",
+     "sources": [
+      "prior-note:cluster7_active_discovery_and_environments.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low-medium",
+    "why": "Physical data generated after 2024; graphs published but variable roles are generic."
+   },
+   "licence": "data CC BY 4.0",
+   "maintained": "repo 'regularly updated'; Remote Lab offered 2026; Nature Machine Intelligence paper",
+   "used_by": [
+    "CausalArena real slice",
+    "CausalSteward",
+    "CDFM paper (F1 .727 vs PC .281, prior note)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2404.11341",
+    "https://github.com/juangamella/causal-chamber",
+    "https://www.causalchamber.ai/",
+    "prior-note:cluster7_active_discovery_and_environments.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "causalAssembly (Bosch production line)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "mixed: within-process edges from expert physics knowledge; cross-process edges estimated from data by SpAM pruning; semisynthetic data from distributional random forests fitted to real data",
+   "variables": "98 (5 stations: 6/34/16/26/16)",
+   "samples": "real source 15,581 parts (not released); generator any n",
+   "regimes": {
+    "D": true,
+    "I": "paper: none in release; current README: hard and soft interventions supported",
+    "K_names": "not checked"
+   },
+   "interventional_data": true,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "benchmark results in library (metrics not read)",
+   "known_leaks": [
+    {
+     "leak": "partly data-derived ground truth",
+     "evidence": "Cross-process edges were learned from the same plant data, so the truth partly encodes a learning method's choices.",
+     "label": "reported (construction)",
+     "sources": [
+      "https://arxiv.org/html/2306.10816v2"
+     ]
+    },
+    {
+     "leak": "no confounders by construction",
+     "evidence": "Generated data Markovian w.r.t. graph though source plant data is confounded.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/html/2306.10816v2"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Industrial, not widely discussed."
+   },
+   "licence": "AGPL-3.0 (library)",
+   "maintained": "CLeaR 2024; repo 31 commits",
+   "used_by": [
+    "causalAssembly paper"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2306.10816",
+    "https://arxiv.org/html/2306.10816v2",
+    "https://github.com/boschresearch/causalAssembly"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalMan (Bosch physics-based simulator)",
+   "category": "structure",
+   "task": "structure (with latents and interventions)",
+   "ground_truth_origin": "simulator built with domain experts (physics of press-fitting)",
+   "variables": "observed 53 (Small) and 186 (Medium); full graphs 157 and 605",
+   "samples": "11.2 GB release",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named manufacturing variables (inference from paper description)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": true,
+   "time_series": false,
+   "metrics": "F1, precision, SHD (CausalSteward)",
+   "known_leaks": [
+    {
+     "leak": "bidirected-edge encoding",
+     "evidence": "Latent projections store bidirected edges as two opposite directed edges; directed-F1 scorers double-count them.",
+     "label": "second-hand (prior note, Zenodo README)",
+     "sources": [
+      "prior-note:bnd02/rep12_causalman.md",
+      "https://zenodo.org/records/13871097"
+     ]
+    },
+    {
+     "leak": "unnormalised data",
+     "evidence": "README says data is not normalised; scale cues (varsortability) unmeasured.",
+     "label": "second-hand + inference",
+     "sources": [
+      "prior-note:bnd02/rep12_causalman.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "New simulator; graphs not widely published."
+   },
+   "licence": "CC BY 4.0 (Zenodo v1)",
+   "maintained": "Zenodo v1 2024-10-01; newer version exists (not read)",
+   "used_by": [
+    "CausalSteward (Causal-Copilot F1 0.078 on Small, 0.014 on Medium per prior note)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2502.12707",
+    "https://zenodo.org/records/13871097",
+    "https://arxiv.org/abs/2607.01936",
+    "prior-note:bnd02/rep12_causalman.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Neuropathic pain diagnosis simulator (Tu et al., NeurIPS 2019)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "expert-elicited medical causal graph with parameters fitted to real patient records",
+   "variables": "222 nodes (prior note)",
+   "samples": "unlimited synthetic",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named symptoms and diagnoses"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "simulator supports confounder/selection/missingness studies (details not read)",
+   "time_series": false,
+   "metrics": "user-chosen",
+   "known_leaks": [
+    {
+     "leak": "partial memorisation",
+     "evidence": "GPT-3.5 partially memorised the neuropathic dataset.",
+     "label": "second-hand (prior note)",
+     "sources": [
+      "https://arxiv.org/abs/2305.00050",
+      "prior-note:cluster2_causal_agents_and_evaluation.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Published graph with named medical variables."
+   },
+   "licence": "not read",
+   "maintained": "2019",
+   "used_by": [
+    "CausalSteward",
+    "ALCM",
+    "Kıcıman et al."
+   ],
+   "sources": [
+    "https://proceedings.neurips.cc/paper/2019/hash/4fdaa19b1f22a4d926fce9bfc7c61fa5-Abstract.html",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Arctic sea ice / atmosphere (Huang et al., Frontiers in Big Data 2021)",
+   "category": "structure",
+   "task": "structure (time series)",
+   "ground_truth_origin": "literature-curated domain-knowledge graph (textbooks and papers)",
+   "variables": "12 (11 ERA-5 variables + sea ice extent); 46 edges per Feng et al.",
+   "samples": "monthly 1980-2018 (about 468 steps)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named climate variables"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "normalised Hamming distance",
+   "known_leaks": [
+    {
+     "leak": "literature graph",
+     "evidence": "Truth is a literature review, so an LLM reading names reproduces the reference by construction (inference).",
+     "label": "inference",
+     "sources": [
+      "https://www.frontiersin.org/articles/10.3389/fdata.2021.642182/full"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Kıcıman found no memorisation of Arctic sea ice (prior note), but the graph is literature-derived."
+   },
+   "licence": "not read",
+   "maintained": "2021",
+   "used_by": [
+    "CMA",
+    "CEA",
+    "Kıcıman et al.",
+    "Feng et al. ACL 2025"
+   ],
+   "sources": [
+    "https://www.frontiersin.org/articles/10.3389/fdata.2021.642182/full",
+    "https://aclanthology.org/2025.acl-long.471.pdf",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Science-grounded post-cutoff graphs (Srivastava et al. 2025: Alzheimer's, COVID-19 respiratory, COVID-19 complications, Sweden transport)",
+   "category": "structure",
+   "task": "structure (LLM + data)",
+   "ground_truth_origin": "expert-elicited graphs from recent papers (Alzheimer's from Causal Modelling Agents, ICLR 2024; COVID from Mascaro et al. 2023); Sweden transport has only expert-annotated edges",
+   "variables": "11-63 nodes, 10-138 edges",
+   "samples": "per source",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "F1",
+   "known_leaks": [
+    {
+     "leak": "freshness decays",
+     "evidence": "Post-cutoff only relative to tested models; release only via an anonymous review repo.",
+     "label": "reported + inference",
+     "sources": [
+      "https://arxiv.org/html/2510.16530"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low now, rising",
+    "why": "Chosen to post-date training cutoffs; once public they age into training data."
+   },
+   "licence": "not stated",
+   "maintained": "Oct 2025 (anonymous repo)",
+   "used_by": [
+    "Srivastava et al. (PC+LLM hybrid 0.66-0.73 on Alzheimer's)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2510.16530",
+    "https://arxiv.org/html/2510.16530"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalGraphBench (Babakov et al., ACL SRW 2025)",
+   "category": "structure",
+   "task": "LLM graph construction",
+   "ground_truth_origin": "literature-curated: 35 graphs from public repositories and papers",
+   "variables": "not stated",
+   "samples": "none (text-only)",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "not named on page",
+   "known_leaks": [
+    {
+     "leak": "contamination",
+     "evidence": "Authors examine contamination effects on graph quality (controls not described on page).",
+     "label": "reported",
+     "sources": [
+      "https://aclanthology.org/2025.acl-srw.16/"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Graphs drawn from public repositories."
+   },
+   "licence": "not read",
+   "maintained": "July 2025",
+   "used_by": [
+    "CausalGraphBench paper; 12-model study in prior note"
+   ],
+   "sources": [
+    "https://aclanthology.org/2025.acl-srw.16/",
+    "prior-note:cluster1_llm_assisted_causal_discovery.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Small real tables used in LLM/agent papers (UCI/Kaggle-style: Auto MPG, Abalone, Concrete, DWD climate, Ozone, Arrhythmia, Sangiovese, earthquake)",
+   "category": "structure",
+   "task": "structure",
+   "ground_truth_origin": "literature-curated or author-asserted graphs",
+   "variables": "4-~15",
+   "samples": "hundreds to thousands",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": "mostly no",
+   "metrics": "F1, SHD",
+   "known_leaks": [
+    {
+     "leak": "name-based",
+     "evidence": "In bundle 1 of this project, small named datasets could be scored by reading names; Auto MPG versions differ (CausalArena 4 vars/3 edges/398 rows vs repo 5/5/392).",
+     "label": "measured (project)",
+     "sources": [
+      "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Public UCI/Kaggle tables with obvious semantics."
+   },
+   "licence": "per source",
+   "maintained": "static",
+   "used_by": [
+    "CausalArena real slice",
+    "CEA (Sangiovese)",
+    "Causal-Copilot case study (earthquake)"
+   ],
+   "sources": [
+    "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)",
+    "https://arxiv.org/html/2609.11897",
+    "https://arxiv.org/html/2504.13263"
+   ],
+   "notes": "Whether these overlap the Tübingen pair sources was not verified."
+  },
+  {
+   "name": "CausalBench (GSK; Chevalley et al.) single-cell perturbation",
+   "category": "structure",
+   "task": "network inference from interventions",
+   "ground_truth_origin": "experimental: no ground-truth graph; scored on held-out perturbation data plus literature databases (CORUM, STRING)",
+   "variables": "hundreds to thousands of genes (622 and 383 intervened genes per project note)",
+   "samples": "over 200,000 interventional cells (README); K562 ~162,751 and RPE1 ~162,733 (project note)",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named genes"
+   },
+   "interventional_data": true,
+   "hidden_confounders": true,
+   "time_series": false,
+   "metrics": "mean Wasserstein distance on held-out interventions, false omission rate; precision/recall vs CORUM/STRING",
+   "known_leaks": [
+    {
+     "leak": "biological metric rewards recall",
+     "evidence": "Literature-database metric can be satisfied by recalling gene interactions from names; statistical metric uses held-out interventions and is name-immune.",
+     "label": "inference (project note)",
+     "sources": [
+      "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)",
+      "https://github.com/causalbench/causalbench"
+     ]
+    },
+    {
+     "leak": "direct vs indirect",
+     "evidence": "Wasserstein metric does not separate direct from indirect effects (challenge authors' caveat, per project note).",
+     "label": "second-hand",
+     "sources": [
+      "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)",
+      "https://arxiv.org/abs/2308.15395"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Gene names carry literature knowledge; statistical metric immune."
+   },
+   "licence": "Apache-2.0 (code); data CC BY 4.0 (Replogle) etc.",
+   "maintained": "repo 18 commits, no releases; challenge 2023",
+   "used_by": [
+    "CausalBench challenge 2023 entrants"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2210.17283",
+    "https://github.com/causalbench/causalbench",
+    "https://arxiv.org/abs/2308.15395",
+    "project:claude/benchmark-targets.md (CausalArena files measured 2026-10-07)"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "DREAM4 in silico network challenge",
+   "category": "structure",
+   "task": "GRN inference",
+   "ground_truth_origin": "synthetic generator (GeneNetWeaver) on subnetworks of E. coli and yeast regulatory networks",
+   "variables": "10 and 100 genes (5 networks each)",
+   "samples": "wild type, single knockouts, knockdowns, multifactorial, time series (21 points)",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "gene IDs (anonymised labels; not verified on page read)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": "time series included",
+   "metrics": "AUPR (main), AUROC, precision at recall; dual-knockout prediction bonus",
+   "known_leaks": [
+    {
+     "leak": "topology from real networks",
+     "evidence": "Subnetworks extracted from E. coli/yeast; motif statistics are realistic but self-loops removed.",
+     "label": "reported",
+     "sources": [
+      "https://bioconductor.statistik.tu-dortmund.de/packages/3.13/data/experiment/vignettes/DREAM4/inst/doc/DREAM4_InSilico_Description.pdf"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low-medium",
+    "why": "Labels are anonymous; networks public since 2009."
+   },
+   "licence": "not stated",
+   "maintained": "2009 challenge, static",
+   "used_by": [
+    "cdt loader",
+    "GRN inference literature"
+   ],
+   "sources": [
+    "https://bioconductor.statistik.tu-dortmund.de/packages/3.13/data/experiment/vignettes/DREAM4/inst/doc/DREAM4_InSilico_Description.pdf",
+    "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/data.html"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "DREAM5 network inference",
+   "category": "structure",
+   "task": "GRN inference",
+   "ground_truth_origin": "in silico plus literature/ChIP gold standards for E. coli (RegulonDB) and yeast; S. aureus",
+   "variables": "thousands of genes",
+   "samples": "microarray compendia",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named genes in real organisms"
+   },
+   "interventional_data": true,
+   "hidden_confounders": true,
+   "time_series": false,
+   "metrics": "AUPR, AUROC, overall score",
+   "known_leaks": [
+    {
+     "leak": "literature gold standard",
+     "evidence": "Real-organism gold standards are literature-derived; 23 of 53 novel E. coli predictions supported experimentally (43%).",
+     "label": "reported",
+     "sources": [
+      "https://www.nature.com/articles/nmeth.2016"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Named genes with curated databases online."
+   },
+   "licence": "not read",
+   "maintained": "2012",
+   "used_by": [
+    "wisdom-of-crowds GRN methods"
+   ],
+   "sources": [
+    "https://www.nature.com/articles/nmeth.2016"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "BEELINE (Pratapa et al., Nature Methods 2020)",
+   "category": "structure",
+   "task": "GRN inference from scRNA-seq",
+   "ground_truth_origin": "mixed: synthetic (BoolODE), four literature-curated Boolean models, and five experimental scRNA-seq sets scored against database networks (RegNetwork, TRRUST v2, STRING v11)",
+   "variables": "small synthetic to thousands of genes",
+   "samples": "single-cell datasets (GEO)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named genes in experimental sets"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": "pseudotime",
+   "metrics": "AUPRC, AUPRC ratio, AUROC, early precision",
+   "known_leaks": [
+    {
+     "leak": "database references",
+     "evidence": "Experimental-set truth comes from curated databases, so name knowledge can score.",
+     "label": "inference",
+     "sources": [
+      "https://www.nature.com/articles/s41592-019-0690-6"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Named genes; database networks are public."
+   },
+   "licence": "GPL-3.0",
+   "maintained": "v1.1 (Zenodo v4 data)",
+   "used_by": [
+    "14 GRN algorithms in repo"
+   ],
+   "sources": [
+    "https://www.nature.com/articles/s41592-019-0690-6",
+    "https://github.com/Murali-group/Beeline"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "SynTReN (Van den Bulcke et al., BMC Bioinformatics 2006)",
+   "category": "simulator",
+   "task": "GRN inference",
+   "ground_truth_origin": "synthetic generator on subgraphs of published E. coli / yeast networks with Michaelis-Menten and Hill kinetics",
+   "variables": "user-set",
+   "samples": "user-set (steady-state expression)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "gene names from source networks (inference)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "user-chosen",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generator."
+   },
+   "licence": "article CC BY 2.0; software licence not stated",
+   "maintained": "2006, static",
+   "used_by": [
+    "GRN benchmarks"
+   ],
+   "sources": [
+    "https://link.springer.com/article/10.1186/1471-2105-7-43"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalTime (Cheng et al.)",
+   "category": "time series",
+   "task": "time-series structure",
+   "ground_truth_origin": "synthetic generator fitted to real data: hypothesised graph from importance analysis of a fitted network or prior knowledge, then split into causal/residual/noise terms",
+   "variables": "AQI 36, Traffic 20, Medical 20",
+   "samples": "generated 500 samples x 40 steps per dataset (source series 8,760 and 52,116)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "station/sensor IDs (not semantic, inference)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "residual term may act as shared confounding (not verified)",
+   "time_series": true,
+   "metrics": "AUROC, AUPRC",
+   "known_leaks": [
+    {
+     "leak": "model-defined truth",
+     "evidence": "Ground truth is defined by the fitted generator, not the world; methods resembling the generator are favoured (inference).",
+     "label": "reported construction + inference",
+     "sources": [
+      "https://arxiv.org/html/2310.01753"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generated series; IDs carry little meaning."
+   },
+   "licence": "not stated",
+   "maintained": "ICLR 2024 (proceedings listing seen in search, page not opened)",
+   "used_by": [
+    "time-series CD papers"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2310.01753",
+    "https://arxiv.org/html/2310.01753"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalRivers",
+   "category": "time series",
+   "task": "time-series structure",
+   "ground_truth_origin": "physical system: river network topology from agency metadata, HydroSHEDS, Wikipedia and elevation services; every edge hand-checked",
+   "variables": "East Germany 666 nodes / 651 edges; Bavaria 494 / 490; Elbe flood 42 / 42",
+   "samples": "2019-2023 at 15-min (~175k steps)",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "station IDs plus metadata (river name, coordinates, elevation)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "upstream rain etc. unobserved (inference)",
+   "time_series": true,
+   "metrics": "mean AUROC (autoregressive links excluded); F1 max, accuracy in appendix",
+   "known_leaks": [
+    {
+     "leak": "metadata reveals direction",
+     "evidence": "Kit ships elevation, coordinates and river names per node; flow direction follows elevation, so metadata alone orients edges (inference from README).",
+     "label": "inference",
+     "sources": [
+      "https://github.com/causalrivers/benchmark"
+     ]
+    },
+    {
+     "leak": "simple baselines competitive",
+     "evidence": "VAR strongest overall in many sets; simple baselines often close to CD methods.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/html/2503.17452"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Graph is a river map; an LLM given river names could guess flow (inference)."
+   },
+   "licence": "data dl-de (CC BY 2.0 DE); code licence not stated",
+   "maintained": "active leaderboard (Google form)",
+   "used_by": [
+    "CausalRivers leaderboard"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2503.17452",
+    "https://arxiv.org/html/2503.17452",
+    "https://github.com/causalrivers/benchmark"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CauseMe (Runge et al.)",
+   "category": "time series",
+   "task": "time-series structure",
+   "ground_truth_origin": "synthetic generators plus real data whose structure is 'known with high confidence'",
+   "variables": "varies",
+   "samples": "varies",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "not read"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "ranked by several metrics (not named on page)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Mostly synthetic."
+   },
+   "licence": "not read",
+   "maintained": "no update date on page",
+   "used_by": [
+    "Earth-science CD methods (PCMCI family)"
+   ],
+   "sources": [
+    "https://causeme.uv.es/",
+    "https://www.nature.com/articles/s41467-019-10105-3"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalDynamics (Herdeanu et al.)",
+   "category": "time series",
+   "task": "dynamical structure",
+   "ground_truth_origin": "synthetic generator: coupled ODE/SDE systems and two idealised climate models",
+   "variables": "not stated in abstract",
+   "samples": "thousands of systems",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "anonymous (inference)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "confounded variants stated",
+   "time_series": true,
+   "metrics": "graph reconstruction (not named)",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generated."
+   },
+   "licence": "not stated",
+   "maintained": "NeurIPS 2025 D&B (listing seen in search); arXiv v2 Oct 2025",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2505.16620"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "NetSim (Smith et al., NeuroImage 2011)",
+   "category": "time series",
+   "task": "fMRI connectivity",
+   "ground_truth_origin": "synthetic generator (simulated BOLD with ground-truth networks)",
+   "variables": "Nnodes varies by simulation",
+   "samples": "28 simulations, 50 subjects each",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "anonymous nodes"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "connectivity detection accuracy (paper)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Simulated."
+   },
+   "licence": "not stated",
+   "maintained": "static",
+   "used_by": [
+    "fMRI effective-connectivity methods"
+   ],
+   "sources": [
+    "https://www.fmrib.ox.ac.uk/datasets/netsim/"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CIPCaD-Bench (Menegozzo et al.)",
+   "category": "time series",
+   "task": "time-series structure (industrial)",
+   "ground_truth_origin": "process knowledge for Tennessee Eastman simulator and a food plant ('multiple ground truths')",
+   "variables": "not stated in abstract",
+   "samples": "not stated",
+   "regimes": {
+    "D": true,
+    "I": "faults (TEP)",
+    "K_names": "named process variables (inference)"
+   },
+   "interventional_data": null,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "not stated",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Tennessee Eastman is a famous public simulator."
+   },
+   "licence": "paper CC BY-NC-ND 4.0; data not stated",
+   "maintained": "arXiv Aug 2022",
+   "used_by": [
+    "CauScientist uses Tennessee Eastman (prior note)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2208.01529",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "PetShop (Hardt et al., CLeaR 2024)",
+   "category": "root cause",
+   "task": "root cause analysis",
+   "ground_truth_origin": "experimental: 68 injected performance issues in a real microservice deployment",
+   "variables": "41 components (metrics count not stated)",
+   "samples": "5-minute metrics",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named services"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "root-cause ranking (not detailed on page)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Operational data."
+   },
+   "licence": "code Apache-2.0; data CC BY 4.0",
+   "maintained": "archived 2025-11-11",
+   "used_by": [
+    "CausalArena real slice (4 PetShop tables)"
+   ],
+   "sources": [
+    "https://proceedings.mlr.press/v236/hardt24a.html",
+    "https://github.com/amazon-science/petshop-root-cause-analysis",
+    "https://arxiv.org/html/2609.11897"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "RCAEval (Pham et al.)",
+   "category": "root cause",
+   "task": "root cause analysis",
+   "ground_truth_origin": "experimental: injected failures in three microservice systems",
+   "variables": "not stated",
+   "samples": "735 failure cases",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named services (inference)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "RCA accuracy (15 baselines)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Operational data."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv v5 Feb 2025",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2412.17015"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalVerse (Chen et al.)",
+   "category": "representation",
+   "task": "causal representation learning",
+   "ground_truth_origin": "synthetic high-fidelity simulation (configurable)",
+   "variables": "not stated",
+   "samples": "about 200k images and 3M video frames",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "n/a (images)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": true,
+   "metrics": "CRL metrics (not named)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Rendered data."
+   },
+   "licence": "not stated",
+   "maintained": "NeurIPS 2025 D&B (listing seen in search)",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2510.14049"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Corr2Cause (Jin et al.)",
+   "category": "LLM reasoning",
+   "task": "correlation-to-causation inference (text)",
+   "ground_truth_origin": "synthetic generator (graph enumeration; label by causal discovery logic)",
+   "variables": "4-6 variables named A-D...",
+   "samples": "207,972 rows (train 206k / val 1.08k / test 1.16k)",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "anonymous letters"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "F1/accuracy",
+   "known_leaks": [
+    {
+     "leak": "template overfitting",
+     "evidence": "Fine-tuned models fail on paraphrased/refactored variable names (OOD).",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2306.05836"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Public since 2023; template-based, so memorising templates helps."
+   },
+   "licence": "not stated on HF",
+   "maintained": "ICLR 2024 (prior note)",
+   "used_by": [
+    "LLM reasoning papers"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2306.05836",
+    "https://huggingface.co/datasets/causal-nlp/corr2cause",
+    "prior-note:cluster1_llm_assisted_causal_discovery.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CLadder (Jin et al.)",
+   "category": "LLM reasoning",
+   "task": "rung 1-3 causal queries (text)",
+   "ground_truth_origin": "synthetic generator ('oracle causal inference engine') then verbalised",
+   "variables": "small graphs",
+   "samples": "about 10K",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "commonsense / anti-commonsense / nonsensical variants (from memory, not verified today)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Public; symbolic answers derivable."
+   },
+   "licence": "not stated on HF",
+   "maintained": "NeurIPS 2023 (prior note); v1.5 split on HF",
+   "used_by": [
+    "CaLM-style evaluations"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2312.04350",
+    "https://huggingface.co/datasets/causal-nlp/CLadder",
+    "prior-note:cluster1_llm_assisted_causal_discovery.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalProbe-2024 (Chi et al.)",
+   "category": "LLM reasoning",
+   "task": "causal QA on fresh corpora",
+   "ground_truth_origin": "built from corpora 'fresh and nearly unseen' for studied LLMs",
+   "variables": "n/a",
+   "samples": "not stated",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named (natural text)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [
+    {
+     "leak": "contamination check by design",
+     "evidence": "LLMs score significantly worse than on older benchmarks.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2506.21215"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low then rising",
+    "why": "Freshness is relative to 2024 models."
+   },
+   "licence": "not stated",
+   "maintained": "NeurIPS 2024 (listing seen in search)",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2506.21215"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalBench / CausalBN-Bench (Zhou et al., LLM causal learning)",
+   "category": "LLM reasoning",
+   "task": "correlation, skeleton, causality identification",
+   "ground_truth_origin": "literature-curated (community datasets; graphs not listed on page)",
+   "variables": "up to >50 nodes",
+   "samples": "n/a",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "F1-type scores",
+   "known_leaks": [
+    {
+     "leak": "name association",
+     "evidence": "Authors conclude LLMs understand causality via semantic associations with named entities rather than numbers.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2404.06349"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Built on standard community graphs."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv v3 Sept 2026; DOI suggests IEEE TAI",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2404.06349"
+   ],
+   "notes": "Separate from GSK CausalBench, ASU CausalBench and Wang's CausalBench."
+  },
+  {
+   "name": "CausalBench (Zeyu Wang, SIGHAN 2024)",
+   "category": "LLM reasoning",
+   "task": "cause-to-effect and effect-to-cause, with and without intervention (text, math, code)",
+   "ground_truth_origin": "not stated on page",
+   "variables": "n/a",
+   "samples": "not stated",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy across four perspectives",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Public on HF."
+   },
+   "licence": "not stated",
+   "maintained": "2024",
+   "used_by": [],
+   "sources": [
+    "https://aclanthology.org/2024.sighan-1.17",
+    "https://neurips.cc/virtual/2024/100286"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CRAB (Romanou et al., EMNLP 2023)",
+   "category": "LLM reasoning",
+   "task": "causal strength between real-world events",
+   "ground_truth_origin": "expert/annotator-labelled (method not stated on page)",
+   "variables": "events",
+   "samples": "about 2.7K event pairs",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named events (news)"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "classification",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "News events of 2022-ish are in training data."
+   },
+   "licence": "not stated",
+   "maintained": "2023",
+   "used_by": [],
+   "sources": [
+    "https://aclanthology.org/2023.emnlp-main.940"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "e-CARE (Du et al., ACL 2022)",
+   "category": "LLM reasoning",
+   "task": "causal reasoning + explanation",
+   "ground_truth_origin": "human-annotated",
+   "variables": "n/a",
+   "samples": "over 21K questions",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "natural text"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy; generation metrics",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Public since 2022."
+   },
+   "licence": "not stated",
+   "maintained": "2022",
+   "used_by": [
+    "CausalProbe comparison set (from memory)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2205.05849"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "COPA (Roemmele, Bejan, Gordon 2011)",
+   "category": "LLM reasoning",
+   "task": "choice of plausible cause/effect",
+   "ground_truth_origin": "expert-written (creation details not on page)",
+   "variables": "n/a",
+   "samples": "1,000 (500 dev / 500 test)",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "natural text"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "In SuperGLUE since 2019."
+   },
+   "licence": "not stated",
+   "maintained": "static",
+   "used_by": [
+    "SuperGLUE"
+   ],
+   "sources": [
+    "https://people.ict.usc.edu/~gordon/copa.html"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Kıcıman et al. LLM causal evaluations (Tübingen-LLM, neuropathic, counterfactual, actual causality)",
+   "category": "LLM reasoning",
+   "task": "pairwise orientation from names; counterfactual; event causality",
+   "ground_truth_origin": "reuses Tübingen pairs, neuropathic simulator, CRASS-type vignettes",
+   "variables": "pairs",
+   "samples": "n/a",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy (97% pairwise, 92% counterfactual, 86% event)",
+   "known_leaks": [
+    {
+     "leak": "memorisation partly",
+     "evidence": "Row-completion recall 61% of cells / 25% of rows; authors argue memorisation alone does not explain accuracy and test post-cutoff data.",
+     "label": "second-hand (prior note) + reported abstract",
+     "sources": [
+      "https://arxiv.org/abs/2305.00050",
+      "prior-note:cluster1_llm_assisted_causal_discovery.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Reuses famous datasets."
+   },
+   "licence": "n/a",
+   "maintained": "arXiv v3 Aug 2024",
+   "used_by": [
+    "many LLM-causality papers"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2305.00050",
+    "prior-note:cluster1_llm_assisted_causal_discovery.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalQuest / Quriosity (Ceraolo et al.)",
+   "category": "LLM reasoning",
+   "task": "identify causal questions among natural user queries",
+   "ground_truth_origin": "naturally occurring questions; labelling method not stated",
+   "variables": "n/a",
+   "samples": "13.5K questions",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "natural text"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "classification",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Real user queries."
+   },
+   "licence": "not stated",
+   "maintained": "IJCNLP-AACL 2025 Findings (abs page now titled Quriosity)",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2405.20318"
+   ],
+   "notes": "The abs page for arXiv 2405.20318 titles it Quriosity; equating it with CausalQuest rests on my recollection of the ID."
+  },
+  {
+   "name": "CaLM (Chen et al.)",
+   "category": "LLM reasoning",
+   "task": "broad causal evaluation (92 causal targets)",
+   "ground_truth_origin": "curated mix (construction not stated on page)",
+   "variables": "n/a",
+   "samples": "126,334 samples",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "mixed"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "7 metrics, 12 error types",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Public large suite."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv May 2024",
+   "used_by": [
+    "28 models evaluated"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2405.00622"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CLEAR (Chen et al.)",
+   "category": "LLM reasoning",
+   "task": "causal-graph understanding (20 tasks, 3 levels)",
+   "ground_truth_origin": "synthetic graph tasks (construction not detailed)",
+   "variables": "small graphs",
+   "samples": "not stated",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "not stated"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low-medium",
+    "why": "Graph-structure questions."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv June 2024",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2406.16605"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalGraph2LLM (Sheth et al.)",
+   "category": "LLM reasoning",
+   "task": "graph-level and node-level causal queries given an encoded graph",
+   "ground_truth_origin": "graphs not listed on page",
+   "variables": "not stated",
+   "samples": "over 700k queries",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "not stated"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [
+    {
+     "leak": "encoding sensitivity",
+     "evidence": "GPT-4 and Gemini-1.5 deviate by about 60% across graph encodings; contextual information triggers parametric-memory bias.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2410.15939"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Biases from parametric memory reported."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv v2 Feb 2025 (NAACL Findings 2025 per search result)",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2410.15939"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CRASS (Frohberg & Binder)",
+   "category": "LLM reasoning",
+   "task": "counterfactual conditionals",
+   "ground_truth_origin": "hand-built with crowd-validated human baseline",
+   "variables": "n/a",
+   "samples": "not stated",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "natural text"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "high",
+    "why": "Public since 2021."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv v3 Oct 2022",
+   "used_by": [
+    "Kıcıman et al. (counterfactual task, inference)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2112.11941"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Feng et al. 2025 occurrence-controlled probes (ConceptNet, CauseNet pairs; fictitious-term relations)",
+   "category": "LLM reasoning",
+   "task": "pair direction; full discovery on small medical/Arctic/insurance graphs",
+   "ground_truth_origin": "literature/knowledge-base pairs plus synthetic fictitious relations injected into Dolma docs",
+   "variables": "pairs; graphs 12-27 vars",
+   "samples": "3,800 + 1,628 pairs; 100 synthetic relations",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named; fictitious names for the control"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy, F1",
+   "known_leaks": [
+    {
+     "leak": "frequency tracks accuracy",
+     "evidence": "OLMo full-discovery F1 falls from 0.88 (highest pretraining occurrence) to 0.2 (lowest).",
+     "label": "reported",
+     "sources": [
+      "https://aclanthology.org/2025.acl-long.471.pdf"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "controlled",
+    "why": "Uses open-corpus models to count exposure directly."
+   },
+   "licence": "not stated",
+   "maintained": "ACL 2025",
+   "used_by": [],
+   "sources": [
+    "https://aclanthology.org/2025.acl-long.471.pdf"
+   ],
+   "notes": "The only design found that measures exposure in the pretraining corpus directly."
+  },
+  {
+   "name": "CARE probe protocol (Dong et al.) on bnlearn",
+   "category": "LLM reasoning",
+   "task": "LLM structure discovery with original / random / permuted names, N in {0,50,200}, +/- algorithm output",
+   "ground_truth_origin": "expert-elicited bnlearn graphs (Asia, Survey, Earthquake, Alarm)",
+   "variables": "5-37",
+   "samples": "0-200 rows in prompt",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "original, anonymised and permuted arms"
+   },
+   "interventional_data": false,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "F1",
+   "known_leaks": [
+    {
+     "leak": "name reliance measured",
+     "evidence": "Performance collapses when names are random or permuted; more data helps little.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2511.16016"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "measured",
+    "why": "Designed to measure it."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv Nov 2025",
+   "used_by": [
+    "CARE fine-tuned Qwen2.5-1.5B"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2511.16016",
+    "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+   ],
+   "notes": "Column reordering used only as augmentation, not a measured factor (prior note)."
+  },
+  {
+   "name": "CausalDS (Leban & Sun)",
+   "category": "agentic",
+   "task": "end-to-end data-science causal tasks (rungs 1-3) in a sandbox",
+   "ground_truth_origin": "synthetic generator (hidden sampled SCM) with a synthetic story; optional grounding in real distributions",
+   "variables": "small motifs (IV, confounding, front-door, chain, grafted)",
+   "samples": "953 scenes; released exam 100 tasks",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named via story"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "confounding motifs; non-identifiable tasks imply unobserved confounding (inference)",
+   "time_series": false,
+   "metrics": "pass rate; identification-gated effect tasks; abstention scored; interval score and coverage",
+   "known_leaks": [
+    {
+     "leak": "story semantics",
+     "evidence": "Natural-language stories carry names; prior note says a verbalisation swap was used (not re-verified).",
+     "label": "second-hand",
+     "sources": [
+      "prior-note:cluster2_causal_agents_and_evaluation.md",
+      "prior-note:cluster9_query_level_evaluation.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Freshly sampled SCMs."
+   },
+   "licence": "not read",
+   "maintained": "arXiv July 2026",
+   "used_by": [
+    "7 frontier models (Opus 4.8, GPT-5.5 82.4% pass, prior note)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2607.08093",
+    "prior-note:cluster9_query_level_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CauSciBench (Acharya et al., ICML 2026)",
+   "category": "agentic",
+   "task": "end-to-end causal inference from data",
+   "ground_truth_origin": "literature-curated (replicated papers, textbooks) plus synthetic",
+   "variables": "real datasets",
+   "samples": "over 300 queries",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": "real-data designs",
+   "time_series": false,
+   "metrics": "method-selection accuracy, relative error of estimate",
+   "known_leaks": [
+    {
+     "leak": "published answers",
+     "evidence": "Real-paper queries have published estimates a model may recall (inference).",
+     "label": "inference",
+     "sources": [
+      "https://proceedings.mlr.press/v306/acharya26a.html"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Real published studies."
+   },
+   "licence": "not read",
+   "maintained": "ICML 2026",
+   "used_by": [
+    "CAIS (prior note)"
+   ],
+   "sources": [
+    "https://proceedings.mlr.press/v306/acharya26a.html",
+    "prior-note:cluster2_causal_agents_and_evaluation.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalReasoningBenchmark (Sawarni, Tan, Syrgkanis)",
+   "category": "agentic",
+   "task": "identification spec + estimate from real data",
+   "ground_truth_origin": "literature-curated from 73 papers and 3 textbooks",
+   "variables": "real datasets",
+   "samples": "174 queries on 139 datasets",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "identification spec scored field by field; estimate scored separately",
+   "known_leaks": [
+    {
+     "leak": "published answers",
+     "evidence": "Gold estimates come from published work (inference).",
+     "label": "inference",
+     "sources": [
+      "https://arxiv.org/abs/2602.20571"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Published designs."
+   },
+   "licence": "not read",
+   "maintained": "arXiv v3 Sept 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2602.20571"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalVerify (Zhang et al.)",
+   "category": "agentic",
+   "task": "end-to-end verification of causal analyses",
+   "ground_truth_origin": "mixed: 259 real-paper contexts, 100 synthetic scenarios with executable references, paper-twin pairs",
+   "variables": "n/a",
+   "samples": "259 + 100 + 23(+6) pairs",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "joint recovery of estimate and SE; four layers",
+   "known_leaks": [
+    {
+     "leak": "reference-builder family advantage",
+     "evidence": "On the two newest pairs the gain appeared only for models from the family that built the references.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2609.07944"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Real-paper contexts."
+   },
+   "licence": "not read",
+   "maintained": "arXiv v2 Sept 2026",
+   "used_by": [
+    "nine-model study"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2609.07944"
+   ],
+   "notes": "Direct evidence that LLM-built references favour the same model family."
+  },
+  {
+   "name": "QRData (Liu et al., Findings ACL 2024)",
+   "category": "agentic",
+   "task": "statistical and causal QA with data",
+   "ground_truth_origin": "literature-curated (textbooks, course material, papers)",
+   "variables": "varies",
+   "samples": "411 questions",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "accuracy (GPT-4 58%)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Textbook questions."
+   },
+   "licence": "not read",
+   "maintained": "2024",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2402.17644"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "DiscoveryBench (Majumder et al.)",
+   "category": "agentic",
+   "task": "data-driven hypothesis discovery",
+   "ground_truth_origin": "literature-curated workflows from papers (real) plus synthetic",
+   "variables": "varies",
+   "samples": "264 real + 903 synthetic tasks",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "facet-based hypothesis match (best 25%)",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Published findings."
+   },
+   "licence": "not read",
+   "maintained": "arXiv July 2024",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2407.01725"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalPitfalls (Du et al.)",
+   "category": "agentic",
+   "task": "avoid statistical pitfalls (Simpson's, selection bias)",
+   "ground_truth_origin": "authored challenges with rubrics",
+   "variables": "small",
+   "samples": "not stated",
+   "regimes": {
+    "D": true,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "rubric scored by validated LLM judge",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Classic pitfalls are textbook material."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv v3 May 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2505.13770"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "InterveneBench (Shi et al.)",
+   "category": "agentic",
+   "task": "intervention reasoning and study design",
+   "ground_truth_origin": "literature-curated (744 social-science studies)",
+   "variables": "n/a",
+   "samples": "744 studies",
+   "regimes": {
+    "D": false,
+    "I": false,
+    "K_names": "named"
+   },
+   "interventional_data": false,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "not named on page",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Published studies."
+   },
+   "licence": "not stated",
+   "maintained": "arXiv Mar 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2603.15542"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Active Causal Discovery Benchmark (ACDB; Deb, Shah, Krishnan)",
+   "category": "agentic",
+   "task": "structure with budgeted hard interventions (observe-intervene-submit API)",
+   "ground_truth_origin": "synthetic generator (linear-Gaussian)",
+   "variables": "4-7 nodes (prior note)",
+   "samples": "budgeted",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "node indices permuted 'so names do not leak topology' (prior note)"
+   },
+   "interventional_data": true,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "directed F1, SHD, intervention efficiency; skeleton/DAG/efficiency layers; random-DAG floor 23.6%",
+   "known_leaks": [
+    {
+     "leak": "varsortability / R2-sortability of simulated additive-noise data",
+     "evidence": "Generic ANM simulations have varsortability above 0.94 (linear) and R2-sortability about 0.8 by default; sort-and-regress baselines match continuous methods; R2-sortability survives standardisation (reported in Reisach 2021/2023, via prior note; abstracts re-read today). Not measured for this specific generator.",
+     "label": "reported (general), unmeasured for this row",
+     "sources": [
+      "https://arxiv.org/abs/2102.13647",
+      "https://arxiv.org/abs/2303.18211",
+      "https://arxiv.org/abs/2406.11601",
+      "prior-note:cluster8_benchmark_leakage_and_ceilings.md"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generated."
+   },
+   "licence": "not read",
+   "maintained": "arXiv Sept 2026",
+   "used_by": [
+    "PC+greedy 42.7, Sonnet 4.6 31.7, GPT-5.4 22.9 directed F1"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2609.31675",
+    "prior-note:cluster8_benchmark_leakage_and_ceilings.md",
+    "prior-note:cluster7_active_discovery_and_environments.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausaLab (Yang et al.)",
+   "category": "agentic",
+   "task": "interactive discovery + prediction (crystal lab)",
+   "ground_truth_origin": "synthetic generator (randomly sampled hidden SCM)",
+   "variables": "3-7 nodes (prior note)",
+   "samples": "budget 4(k-1) (prior note)",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "abstract lab entities"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "task accuracy, all-edge F1, SHD",
+   "known_leaks": [
+    {
+     "leak": "prediction vs mechanism gap",
+     "evidence": "GPT-5.2-high: 92% task accuracy but 0.471 edge F1 observational at 6 nodes.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2605.26029"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Random SCMs."
+   },
+   "licence": "not read",
+   "maintained": "arXiv May 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2605.26029",
+    "prior-note:cluster7_active_discovery_and_environments.md"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "CausalGame (Chen et al.)",
+   "category": "agentic",
+   "task": "AI-scientist game with selection bias, measurement error, hidden confounders",
+   "ground_truth_origin": "synthetic SCM-driven game",
+   "variables": "14 scenarios",
+   "samples": "interactive",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "game semantics"
+   },
+   "interventional_data": true,
+   "hidden_confounders": true,
+   "time_series": false,
+   "metrics": "survival rate; rubric credit",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "New environment."
+   },
+   "licence": "not read",
+   "maintained": "arXiv July 2026",
+   "used_by": [
+    "30 agents; best 68.0% vs optimum 78-85%"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2607.04293"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "BoxingGym (Gandhi et al.)",
+   "category": "agentic",
+   "task": "experimental design and model discovery",
+   "ground_truth_origin": "probabilistic models from science",
+   "variables": "10 environments",
+   "samples": "interactive",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "named scientific settings"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "expected information gain, explanation-based prediction, prediction error",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "medium",
+    "why": "Textbook models may be recalled."
+   },
+   "licence": "not read",
+   "maintained": "arXiv v2 Oct 2025",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2501.01540"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "Auto-Discovery-Bench (Chen et al.)",
+   "category": "agentic",
+   "task": "oracle-guided graph/relational/equation discovery",
+   "ground_truth_origin": "synthetic oracle",
+   "variables": "small, degrading with size",
+   "samples": "interactive",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "not stated"
+   },
+   "interventional_data": true,
+   "hidden_confounders": null,
+   "time_series": false,
+   "metrics": "not named on page",
+   "known_leaks": [],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Oracle tasks."
+   },
+   "licence": "not read",
+   "maintained": "arXiv v2 May 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2502.15224"
+   ],
+   "notes": ""
+  },
+  {
+   "name": "ReplaySCM (Batzoglou)",
+   "category": "agentic",
+   "task": "induce executable Boolean mechanisms from interventions",
+   "ground_truth_origin": "synthetic generator (Boolean SCMs)",
+   "variables": "6-10 (prior note)",
+   "samples": "1,300 items",
+   "regimes": {
+    "D": true,
+    "I": true,
+    "K_names": "order disclosure varied: Ordered / Block-order / Hidden-order / Hidden-roots"
+   },
+   "interventional_data": true,
+   "hidden_confounders": false,
+   "time_series": false,
+   "metrics": "held-out intervention replay",
+   "known_leaks": [
+    {
+     "leak": "order disclosure matters",
+     "evidence": "Held-out replay drops sharply when order or roots are hidden.",
+     "label": "reported",
+     "sources": [
+      "https://arxiv.org/abs/2605.08197"
+     ]
+    }
+   ],
+   "memorisation_risk": {
+    "level": "low",
+    "why": "Generated."
+   },
+   "licence": "not read",
+   "maintained": "arXiv May 2026",
+   "used_by": [],
+   "sources": [
+    "https://arxiv.org/abs/2605.08197"
+   ],
+   "notes": "Only benchmark found that varies causal-order disclosure as a factor."
+  }
+ ],
+ "searches": [
+  "CIPCaD-Bench continuous industrial process datasets benchmarking causal discovery",
+  "CausalVerse benchmark causal representation learning simulation arXiv",
+  "CausalPlayground python library structural causal models arXiv",
+  "OCDB open causal discovery benchmark LLM arXiv 2024",
+  "CausalBench causal learning benchmark platform Arizona State Kapkiç Wang causalbench.org",
+  "DREAM4 in silico network challenge GeneNetWeaver gold standard knockouts time series 10 100 genes",
+  "CausalDynamics benchmark large-scale time series causal discovery climate arXiv 2025",
+  "PetShop dataset root cause analysis microservices causal arXiv",
+  "RCAEval benchmark root cause analysis microservice systems arXiv 2412.17015",
+  "CSuite causal discovery inference benchmark datasets Microsoft Geffner deep end-to-end causal inference",
+  "neuropathic pain diagnosis simulator causal discovery Tu Zhang Kjellström NeurIPS 2019 222 nodes",
+  "bnRep repository Bayesian networks from the literature Leonelli R package",
+  "CausalProbe 2024 \"Unveiling Causal Reasoning in Large Language Models: Reality or Mirage\" arXiv",
+  "CRAB benchmark causal relationships real-world events strength Romanou EMNLP 2023 arXiv",
+  "CausalBench Zeyu Wang SIGHAN 2024 comprehensive benchmark evaluating causal reasoning capabilities of LLMs",
+  "gCastle real telecom alarm dataset topology PCIC 2021 causal discovery competition ground truth",
+  "Mooij Joint Causal Inference Sachs flow cytometry ground truth consensus network disagreement",
+  "new benchmark causal discovery 2026 arXiv real-world ground truth dataset (extended)",
+  "benchmark LLM causal discovery memorization anonymized variable names novel graphs 2025 2026 (extended)",
+  "NetSim Smith 2011 network modelling methods for FMRI simulated BOLD 28 simulations benchmark causal",
+  "ChaLearn cause-effect pairs challenge Guyon 2013 Kaggle dataset",
+  "\"CausalTime\" Cheng ICLR 2024 realistically generated time-series benchmark causal discovery openreview"
+ ],
+ "not_read": [
+  {
+   "source": "https://www.pnas.org/doi/10.1073/pnas.0913357107 (DREAM3/GeneNetWeaver PNAS 2010)",
+   "reason": "fetch error"
+  },
+  {
+   "source": "https://www.nature.com/articles/s41592-024-02443-2",
+   "reason": "fetch error; identity of paper unknown, not used"
+  },
+  {
+   "source": "https://www.science.org/doi/10.1126/science.1105809 (Sachs 2005)",
+   "reason": "fetch error; PubMed abstract read instead"
+  },
+  {
+   "source": "https://openreview.net/forum?id=pAoqRlTBtY (Causal Modelling Agents)",
+   "reason": "browser verification wall"
+  },
+  {
+   "source": "https://www.sciencedirect.com/science/article/pii/S2405471220302878 (SERGIO)",
+   "reason": "robots.txt disallowed; SERGIO not given a row"
+  },
+  {
+   "source": "https://github.com/huawei-noah/trustworthyAI/tree/master/datasets (gCastle datasets)",
+   "reason": "robots.txt disallowed"
+  },
+  {
+   "source": "https://github.com/cbg-ethz/Benchpress",
+   "reason": "fetch error"
+  },
+  {
+   "source": "https://arxiv.org/abs/2606.01789 (literature inconsistency of benchmark graphs)",
+   "reason": "HTTP 429 rate limit; numbers taken from prior note cluster8 where it was read"
+  },
+  {
+   "source": "https://arxiv.org/abs/2409.19158 (bnRep paper)",
+   "reason": "only CRAN page opened"
+  },
+  {
+   "source": "CausalArena reference list and Appendix B/C",
+   "reason": "not present in fetched HTML text; CD-CSG [44] unresolved"
+  },
+  {
+   "source": "https://arxiv.org/abs/2308.15395 (CausalBench challenge)",
+   "reason": "not re-opened; project note used"
+  },
+  {
+   "source": "ICLR 2024 / NeurIPS 2024-2025 proceedings pages for CausalTime, CausalProbe, CausalVerse, CausalDynamics",
+   "reason": "venues taken from search-result listings only"
+  }
+ ]
+}

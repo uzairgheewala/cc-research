@@ -1,10 +1,11 @@
 # Causal-Copilot research harness launcher (Windows PowerShell + Docker Desktop).
 # Usage:  powershell -ExecutionPolicy Bypass -File .\cc.ps1 <command>
-# Commands: build | preflight [nollm] | dryrun | golden | plan <file> | names <file> [stub] | compute <job> | fetch | queue | stop | shell | help
+# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent] | compute <job> | fetch | queue | stop | shell | help
 param(
     [Parameter(Position = 0)] [string] $Command = "help",
     [Parameter(Position = 1)] [string] $Arg1 = "",
-    [Parameter(Position = 2)] [string] $Arg2 = ""
+    [Parameter(Position = 2)] [string] $Arg2 = "",
+    [Parameter(Position = 3)] [string] $Arg3 = ""
 )
 
 $Research  = $PSScriptRoot
@@ -82,7 +83,86 @@ switch ($Command.ToLower()) {
         if (-not $Arg1) { Fail "usage: cc.ps1 plan <file name inside cc-research\plans>" }
         $leaf = Split-Path -Leaf $Arg1
         if (-not (Test-Path (Join-Path $Research "plans\$leaf"))) { Fail "plan file not found: cc-research\plans\$leaf" }
-        Invoke-InContainer -Cmd @("python", "/research/harness/run_plan.py", "--plan", "/research/plans/$leaf")
+        $extra = @()
+        if ($Arg2) {
+            # Second model (AB-05/AB-06): passed as an environment variable; real environment variables win over the repo's
+            # .env (python-dotenv, override=False), so the .env file is neither read here nor changed.
+            if ($Arg2 -notmatch '^[A-Za-z0-9._:-]{1,60}$') { Fail "model name has unexpected characters: $Arg2" }
+            $extra = @("-e", "LLM_MODEL=$Arg2")
+            Write-Host "[cc] LLM_MODEL=$Arg2 for this plan (run_traced records it in each run's meta)"
+        }
+        Invoke-InContainer -Cmd @("python", "/research/harness/run_plan.py", "--plan", "/research/plans/$leaf") -Extra $extra
+    }
+
+    "tiers" {
+        # AB-07 / A3 (DEC-02): tier requests from cc-research\plans. LIVE (uses the key in Causal-Copilot\.env) unless the
+        # second argument is "stub". The runner refuses a live run whose request file differs from plans\a3_prereg.json.
+        if (-not $Arg1) { Fail "usage: cc.ps1 tiers <request file inside cc-research\plans> [stub]" }
+        $leaf = Split-Path -Leaf $Arg1
+        if (-not (Test-Path (Join-Path $Research "plans\$leaf"))) { Fail "request file not found: cc-research\plans\$leaf" }
+        $cmd = @("python", "/research/harness/tiers_runner.py", "--requests", "/research/plans/$leaf", "--prereg", "/research/plans/a3_prereg.json")
+        if ($Arg2 -eq "stub") { $cmd += @("--stub", "--out", "/research/plans/results/a3_tiers_answers.STUB.jsonl") }
+        else { $cmd += @("--out", "/research/plans/results/a3_tiers_answers.jsonl") }
+        Invoke-InContainer -Cmd $cmd
+    }
+
+    "probebuild" {
+        # AB-05: separate image with the four external agents (docker\Dockerfile.probes). Build context = the four
+        # requirement files only. Never push this image (it contains code without a licence, used for evaluation only).
+        $ctx = Join-Path $env:TEMP "cc-probes-context"
+        if (Test-Path $ctx) { Remove-Item -Recurse -Force $ctx }
+        New-Item -ItemType Directory -Path $ctx | Out-Null
+        Copy-Item (Join-Path $Research "harness\agents\requirements_*.txt") $ctx
+        & docker build --build-arg "BASE=$Image" -f (Join-Path $Research "docker\Dockerfile.probes") -t "cc-probes:ab05-1" $ctx
+        if ($LASTEXITCODE -ne 0) { Fail "probe image build failed" }
+        & docker image inspect "cc-probes:ab05-1" --format "{{.Id}}"
+    }
+
+    "probe" {
+        # AB-05: one agent probe from a plan file in cc-research\plans. "stub" runs offline (no network, no key, no cost);
+        # otherwise LIVE: only the .env file is mounted, read-only. Caps (calls, USD) come from the plan file.
+        if (-not $Arg1) { Fail "usage: cc.ps1 probe <plan file inside cc-research\plans> [stub]" }
+        $leaf = Split-Path -Leaf $Arg1
+        if (-not (Test-Path (Join-Path $Research "plans\$leaf"))) { Fail "plan file not found: cc-research\plans\$leaf" }
+        $base = @("run", "--rm", "-i", "--init")
+        $common = @("-v", "${Research}:/research", "-w", "/research", "-e", "PYTHONPATH=", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1")
+        if ($Arg2 -eq "stub") {
+            $dockerArgs = $base + @("--network", "none") + $common + @("cc-probes:ab05-1", "python", "/research/harness/agent_probe.py", "--plan", "/research/plans/$leaf", "--stub")
+        }
+        else {
+            $envFile = Join-Path $Repo ".env"
+            $dockerArgs = $base + @("-v", "${envFile}:/app/.env:ro") + $common + @("cc-probes:ab05-1", "python", "/research/harness/agent_probe.py", "--plan", "/research/plans/$leaf")
+        }
+        & docker @dockerArgs
+        $code = $LASTEXITCODE
+        Write-Host ""
+        Write-Host "[cc] probe exit code: $code (0 ok, 3 cap reached, 4 agent failed, 2 setup error)"
+        exit $code
+    }
+
+    "probebatch" {
+        # AB-06: every plan in a folder of cc-research\plans (e.g. ab06), one agent run per process, resumable, with a total
+        # USD cap (default 60; plans\ab06\BUDGET.json has the estimate). "stub" = offline (no network, no key, no cost).
+        # Optional third argument: one agent (causaliq, pywhyllm, matmcd, vashishtha) to run only that agent's plans.
+        if (-not $Arg1) { Fail "usage: cc.ps1 probebatch <plan folder inside cc-research\plans> [stub|live] [agent]" }
+        $leaf = Split-Path -Leaf $Arg1
+        if (-not (Test-Path (Join-Path $Research "plans\$leaf"))) { Fail "plan folder not found: cc-research\plans\$leaf" }
+        $base = @("run", "--rm", "-i", "--init")
+        $common = @("-v", "${Research}:/research", "-w", "/research", "-e", "PYTHONPATH=", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1")
+        $cmd = @("python", "/research/harness/agent_batch.py", "--plans", "/research/plans/$leaf")
+        if ($Arg3) { $cmd += @("--agent", $Arg3) }
+        if ($Arg2 -eq "stub") {
+            $dockerArgs = $base + @("--network", "none") + $common + @("cc-probes:ab05-1") + $cmd + @("--stub")
+        }
+        else {
+            $envFile = Join-Path $Repo ".env"
+            $dockerArgs = $base + @("-v", "${envFile}:/app/.env:ro") + $common + @("cc-probes:ab05-1") + $cmd
+        }
+        & docker @dockerArgs
+        $code = $LASTEXITCODE
+        Write-Host ""
+        Write-Host "[cc] probebatch exit code: $code"
+        exit $code
     }
 
     "compute" {
@@ -148,6 +228,11 @@ switch ($Command.ToLower()) {
         Write-Host "  dryrun             full pipeline on Linear_Gaussian with an offline stub instead of the LLM (no cost)"
         Write-Host "  golden             live golden runs: Linear_Gaussian, then sachs"
         Write-Host "  plan <file>        run a plan file from cc-research\plans"
+        Write-Host "  plan <file> <model> same, with LLM_MODEL set for this run only (e.g. gpt-4o-mini)"
+        Write-Host "  tiers <file> [stub] AB-07 tier questions (live; 'stub' = offline, no cost)"
+        Write-Host "  probebuild         build the AB-05 agent-probe image (once)"
+        Write-Host "  probe <plan> [stub] AB-05 agent probe (live; 'stub' = offline, no cost)"
+        Write-Host "  probebatch <dir> [stub|live] [agent]  AB-06 folder of probe plans, resumable, total cap"
         Write-Host "  names <file> [stub] BND-11 direction questions from cc-research\plans (live; 'stub' = offline, no cost)"
         Write-Host "  compute <job>      run a no-cost compute job from cc-research\jobs (no network, no key)"
         Write-Host "  fetch              download public benchmark data into cc-research\external (no LLM, no cost)"

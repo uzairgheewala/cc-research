@@ -1,0 +1,52 @@
+# AB-05 (AUD-37) agent-probe image: the cc-research runtime image plus four external LLM causal-discovery agents.
+# Separate image; docker/Dockerfile.overlay and the cc-research image are not changed.
+#
+# Build context = a temporary folder holding ONLY the four harness/agents/requirements_<agent>.txt files (see the
+# PowerShell build command in analysis/reports/ab05_probe_prep.md). Nothing else is copied: no .env, no key, no repo
+# code, no data. The harness itself is mounted at /research at run time.
+#
+# Each agent gets its own `pip install --target /opt/probes/<agent>` directory from fully pinned requirements, so the
+# agents' conflicting pins (openai 1.82 vs 2.x, numpy, networkx <= 3.2.1, langchain versions) never meet, and the
+# base image's own site-packages (Causal-Copilot's pins) are left untouched. harness/agent_probe.py puts exactly one
+# agent's directory first on sys.path.
+#
+# Agent sources are cloned from GitHub at the pinned commits (harness/agents/registry.json) at build time. The
+# Vashishtha et al. repository shows no licence: it is used for evaluation only, inside this local image, and is never
+# redistributed (do not push this image to any registry).
+ARG BASE=cc-research:a31aa7c-1
+FROM ${BASE}
+
+ENV PROBES_ROOT=/opt/probes \
+    PROBES_SRC=/opt/probes/src \
+    TIKTOKEN_CACHE_DIR=/opt/probes/tiktoken_cache \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+COPY requirements_vashishtha.txt requirements_pywhyllm.txt requirements_matmcd.txt requirements_causaliq.txt /opt/probes/req/
+
+RUN set -eux; \
+    for a in vashishtha pywhyllm matmcd causaliq; do \
+        python -m pip install --no-cache-dir --no-compile --target /opt/probes/$a -r /opt/probes/req/requirements_$a.txt; \
+    done
+
+RUN set -eux; \
+    mkdir -p /opt/probes/src; cd /opt/probes/src; \
+    clone() { git init -q "$1"; git -C "$1" fetch -q --depth 1 "$2" "$3"; git -C "$1" checkout -q FETCH_HEAD; \
+              test "$(git -C "$1" rev-parse HEAD)" = "$3"; }; \
+    clone Causal_Order_Imperfect_Experts https://github.com/AniketVashishtha/Causal_Order_Imperfect_Experts ad609dbd3d93e50d890c9967eb746945546515d1; \
+    clone pywhy-llm          https://github.com/py-why/pywhy-llm            66f2d59b0cf74dfabf0a83704bd1de708f8520ac; \
+    clone matmcd             https://github.com/D2I-Group/matmcd            ef2c3ecad0f5ddb9c3d20a8523c2c1043d213190; \
+    clone causaliq-knowledge https://github.com/causaliq/causaliq-knowledge d7917efe1f3d5ef514d3dfe49b7ab4ef1e757659
+
+# Token counter files, fetched once at build time so offline (--network none) stub runs count with o200k_base.
+# tiktoken checks each file against its own pinned sha256.
+RUN set -eux; mkdir -p /opt/probes/tiktoken_cache; \
+    PYTHONPATH=/opt/probes/vashishtha python -c "import tiktoken; [tiktoken.get_encoding(e) for e in ('o200k_base', 'cl100k_base')]"
+
+# Import check of every agent exactly as the runner sets sys.path (fails the build if any agent cannot import).
+RUN set -eux; \
+    PYTHONPATH=/opt/probes/vashishtha:/opt/probes/src/Causal_Order_Imperfect_Experts python -c "import causal_discovery.strategies.triplet, causallearn, openai"; \
+    PYTHONPATH=/opt/probes/pywhyllm:/opt/probes/src/pywhy-llm python -c "import guidance; from pywhyllm.suggesters.model_suggester import ModelSuggester"; \
+    cd /opt/probes/src/matmcd && PYTHONPATH=/opt/probes/matmcd:/opt/probes/src/matmcd python -c "import ConstrainAgent.ConstrainAgent, Utils.CausalDiscovery"; \
+    PYTHONPATH=/opt/probes/causaliq:/opt/probes/src/causaliq-knowledge/src python -c "from causaliq_knowledge.graph.generator import GraphGenerator"
+
+WORKDIR /research

@@ -1,0 +1,551 @@
+{
+ "audit": "AU4",
+ "question": "What would a benchmark need in order to measure (a) where a system's edge directions come from (data vs interventions vs names/knowledge vs column layout), (b) whether its claims are calibrated and it can abstain, and (c) whether better graphs lead to better decisions (effects, experiment choice), without the leaks known in existing benchmarks? What designs exist or are proposed, and what would building one cost?",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-21 ",
+  "STR-02",
+  "EVL-02"
+ ],
+ "schema": {
+  "id": "row id R01..R20",
+  "requirement": "what the benchmark must have",
+  "why": "failure it prevents, with evidence; numbers labelled measured (ours) / reported / via prior note",
+  "how_existing_benchmarks_fail": "named benchmarks or papers that lack it, as far as these reads reached",
+  "candidate_designs": "list of design options",
+  "effort": "person-weeks, labelled our estimate, with reasoning (1 person-week = about 40 focused hours)",
+  "data_sources": "datasets, generators or libraries that supply what is needed",
+  "sources": "URLs read 2026-10-12, or URLs cited via an earlier project note (marked in 'why')"
+ },
+ "rows": [
+  {
+   "id": "R01",
+   "requirement": "Column order randomised per instance and per replicate, with the permutation key hidden; scoring done in canonical ids; an index-order (layout-only) baseline reported.",
+   "why": "Released column layout can carry the causal order. Measured (ours): CausalArena semantic files list columns in causal order; an index-order regression scores 0.680 directed F1 vs 0.269 on shuffled columns. Reported: column order alone moves hill-climbing F1 by 0.412 on average, more than a 100x sample-size increase (Kitson & Constantinou; via prior note cluster8). CausalArena's own 'liberal' rule orients undecided edges from smaller to larger index (code, via prior note dom07).",
+   "how_existing_benchmarks_fail": "CausalArena: columns in generator node_order (topological in the scenarios checked), no shuffle in the replay sampler, index-based orientation of undecided edges. bnlearn-derived suites: alphabetical/arbitrary order, never varied as a factor. CARE: column reordering used as augmentation, not a measured factor. ACDB permutes node indices (precaution only, no measured layout effect).",
+   "candidate_designs": [
+    "Server-side permutation per replicate; k>=3 permutations of the same data to measure output variance (order-invariance test)",
+    "Layout-probe baseline: regression in presented column order; report its score next to every method",
+    "Submissions return edges by stable opaque ids, never by column index"
+   ],
+   "effort": "0.5 person-weeks (our estimate): a permutation wrapper over an existing sampler plus re-indexing in the scorer; the layout probe is one function. Compute: k-fold repetition of every run.",
+   "data_sources": [
+    "CausalArena public release (CC BY 4.0)",
+    "any generator"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2206.08952",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/scm/semantic/artifacts/education/021_classroom_co2_attention_reading_classroom_co2_and_reading_attention/generator_spec.json",
+    "https://github.com/LAMDA-Tabular/TabCausal",
+    "https://arxiv.org/abs/2511.16016",
+    "https://arxiv.org/abs/2609.31675"
+   ]
+  },
+  {
+   "id": "R02",
+   "requirement": "Name regime as a declared, crossed factor on identical data: real names / neutral tokens / names swapped between columns (derangement), plus a counterfactual-relabel arm in which names imply a plausible but different graph.",
+   "why": "LLM-assisted systems take directions from names. Measured (ours): Causal-Copilot final F1 0.306 real, 0.232 neutral, 0.142 swapped. Reported: CARE, o4-mini on Asia without algorithm output 1.000 with original names, 0.00-0.08 random names, about 0.15 permuted (via prior note cluster8). CARE abstract: LLMs 'mostly rely on the semantic meaning of variable names' (read 2026-10-12).",
+   "how_existing_benchmarks_fail": "CausalArena: names are semantic by design ('Nodes are labeled by what they mean'), no neutral or swapped arm. bnlearn-based agent papers (ALCM, MATMCD, CEA, CauScientist): no renaming. Kitson & Constantinou 2026 and DMCD: obfuscation only (no swap). CARE: original/random/permuted on Asia, Alarm etc. but only for its own method family. CausalDS: verbalisation swap, but on story-graph tasks not data discovery.",
+   "candidate_designs": [
+    "Three-arm minimum (real / neutral / swapped) on byte-identical data",
+    "Counterfactual relabel: draw names from a second plausible graph (e.g. CauseNet-grounded) that disagrees with the data graph on a controlled fraction of orientations; report F1 as a function of that fraction",
+    "Name-only probe (LLM given names, no data) as a reference row"
+   ],
+   "effort": "1.5 person-weeks (our estimate): neutral and swapped arms are 1-2 days; the counterfactual-relabel arm needs a source of plausible alternative graphs (CauseNet mapping as in ABAPC-LLM, or LLM-drafted stories with human checks) and validation that the stories are not detectably fake.",
+   "data_sources": [
+    "CausalArena semantic scenarios",
+    "CauseNet-grounded random DAGs (Li & Russo protocol)",
+    "our own generator"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2511.16016",
+    "https://arxiv.org/html/2609.11897v1",
+    "https://arxiv.org/abs/2608.27472",
+    "https://arxiv.org/html/2602.16481v1",
+    "https://arxiv.org/abs/2607.08093",
+    "https://arxiv.org/abs/2602.20333",
+    "https://arxiv.org/abs/2606.10607"
+   ]
+  },
+  {
+   "id": "R03",
+   "requirement": "Sortability and scale artefacts measured per instance and controlled: report var-sortability and R2-sortability, include sortnregress and R2-SortnRegress baselines, generate at least one slice with standardised SCMs (iSCM) or matched sortability near 0.5, and test unit rescaling.",
+   "why": "Reported: in common simulated ANMs marginal variance rises along the causal order; a sort-and-regress baseline matches continuous methods, which fail on standardised data (Reisach et al. 2021). R2 is scale-invariant, so standardisation does not remove R2-sortability; R2-SortnRegress can match or beat established methods (Reisach et al. 2023). iSCMs are not var-sortable by construction and mostly not R2-sortable (Ormaniec et al.). Rescaling variables can 'largely alter' NOTEARS output (Kaiser & Sipos).",
+   "how_existing_benchmarks_fail": "Most synthetic suites (ER/SF ANMs with independently drawn weights). CausalArena: varsortability discussed only for synthetic generators, not analysed for the semantic family; files pre-standardised. causalAssembly is the exception that reports varsortability.",
+   "candidate_designs": [
+    "Report both sortabilities per instance and filter or stratify the leaderboard by them",
+    "iSCM generator slice (sortability ~0.5)",
+    "Random unit rescaling arm (raw vs standardised vs rescaled)"
+   ],
+   "effort": "1 person-week (our estimate): CausalDisco implements the sortability measures and baselines; iSCM generation is a small change to an SCM sampler.",
+   "data_sources": [
+    "CausalDisco library",
+    "iSCM generator",
+    "causally library (Montagna et al.)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2102.13647",
+    "https://arxiv.org/abs/2303.18211",
+    "https://arxiv.org/abs/2406.11601",
+    "https://arxiv.org/abs/2104.05441",
+    "https://arxiv.org/html/2609.11897v1",
+    "https://arxiv.org/html/2306.10816v2"
+   ]
+  },
+  {
+   "id": "R04",
+   "requirement": "No famous networks in the scored set (Asia, Sachs, Alarm, Child, Insurance); recognition of famous graphs measured only in a separate probe arm; novel or post-cutoff graphs for any arm that uses real names.",
+   "why": "Reported: LLMs reach near-perfect accuracy on BNLearn but far worse on post-cutoff graphs (Srivastava et al.; e.g. LLM-BFS F1 0.93 on Asia vs 0.56 on post-cutoff Alzheimer's, via prior note cluster8). CEA calls a perfect Asia score a 'potential benchmark-leakage signal' (via prior note cluster2). Sachs ground truth is 'not definitive' and results have 'peaked at an SHD of around 12' (Brouillard et al.).",
+   "how_existing_benchmarks_fail": "Agent and hybrid papers that report gains only on bnlearn (ALCM, MATMCD, CauScientist, CEA). CausalArena's semantic graphs are new but authored with LLM help and public, so may enter pretraining corpora (the paper says it does not assume semantic knowledge is unseen).",
+   "candidate_designs": [
+    "Recognition probe: node/edge/subgraph completion from names only (Srivastava et al.)",
+    "Novel graphs via CauseNet subgraph mapping or freshly generated scenarios with private seeds",
+    "Rotating held-out set regenerated each round"
+   ],
+   "effort": "1 person-week (our estimate) for the probe and a novel-graph slice; ongoing cost if regenerated each round.",
+   "data_sources": [
+    "CauseNet-grounded DAGs",
+    "post-cutoff literature graphs (Srivastava et al.)",
+    "our generator"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2510.16530",
+    "https://arxiv.org/html/2412.01953v2",
+    "https://arxiv.org/abs/2606.10607",
+    "https://arxiv.org/html/2609.11897v1",
+    "https://arxiv.org/html/2602.16481v1"
+   ]
+  },
+  {
+   "id": "R05",
+   "requirement": "Ground-truth origin typed per instance (sampled synthetic / LLM-assisted authored / expert / physics-derived / validated by randomised experiment) and reported as a stratum, never pooled silently.",
+   "why": "LLM-assisted graph authoring creates a circularity: an LLM agent evaluated with real names on LLM-drafted graphs can score by sharing the author's priors, which is not evidence of discovery from data. CausalArena builds semantic and formula SCMs with a 'staged agentic construction workflow' and 'Human and LLM-assisted review'; its quality check is an 'LLM-judge quality rubric' on 20 scenarios (3.80 to 4.48), not empirical realism (read 2026-10-12).",
+   "how_existing_benchmarks_fail": "CausalArena (LLM-assisted authoring, LLM-judged quality, names semantic). causalAssembly: within-process edges from experts/physics but cross-process edges learned by SpAM pruning and then treated as truth. CausalDS: ground truth is a 'story-implied' graph.",
+   "candidate_designs": [
+    "Provenance field on every instance and every edge of the truth graph",
+    "Report results per origin stratum",
+    "For LLM-authored graphs, run the neutral-name arm as the primary score"
+   ],
+   "effort": "0.5 person-weeks (our estimate) for schema and reporting; more if edge-level truth provenance must be reconstructed for third-party data.",
+   "data_sources": [
+    "all"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2609.11897v1",
+    "https://arxiv.org/html/2306.10816v2",
+    "https://arxiv.org/abs/2607.08093",
+    "https://arxiv.org/abs/2404.11341"
+   ]
+  },
+  {
+   "id": "R06",
+   "requirement": "Identifiability-aware target and an order-independent conversion rule: score skeleton and orientation separately against the equivalence class identifiable in the declared regime (CPDAG, I-CPDAG, PAG); any forced-choice DAG score uses a published, layout-independent rule (expectation over random orientation, or seeded random), and per-instance ceilings are reported.",
+   "why": "Measured (ours): identifiability limit on CausalArena semantic 0.957 (91.8% of edges compelled), directed F1 = skeleton F1 x direction accuracy. CausalArena's code orients undirected CPDAG edges smaller-index to larger-index, which with topological column order always picks the true direction (via prior note dom07). ACDB scores skeleton, DAG and efficiency as separate layers and reports a random-DAG floor of 23.6% directed F1 (read 2026-10-12).",
+   "how_existing_benchmarks_fail": "CausalArena: DAG-level directed F1 after index-based 'liberal' orientation; bidirected entries dropped. Causal-Copilot's own evaluator orients non-directed edges from the truth (our scope note). Most benchmarks never state the conversion rule.",
+   "candidate_designs": [
+    "Report (skeleton F1, direction accuracy on compelled edges, abstention rate on non-compelled edges) as the primary triple",
+    "Forced-choice F1 as expectation over uniform orientations of undirected edges",
+    "Per-instance ceiling = F1 of the true CPDAG under the same rule"
+   ],
+   "effort": "1 person-week (our estimate): CPDAG/I-CPDAG computation exists (causal-learn, pcalg); the work is scorer design and tests.",
+   "data_sources": [
+    "any instance with a known DAG and declared intervention targets"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2609.31675",
+    "https://github.com/LAMDA-Tabular/TabCausal",
+    "https://arxiv.org/abs/2412.10039v1"
+   ]
+  },
+  {
+   "id": "R07",
+   "requirement": "Metric plurality with declared conventions: SHD with the reversal cost stated, SID or AID (gadjid) for adjustment relevance, a separation-based distance for MEC-level comparison, and negative-control (random-guess) distributions for every metric.",
+   "why": "Metric choice changes rankings: interventional measures on empirical data give 'substantially different' results from structural ones (Gentzel et al.). SID measures differences in implied intervention distributions and handles CPDAGs (Peters & Buhlmann); AID generalises SID and is orders of magnitude faster (Henckel et al.). Separation distances target what link-based distances miss (Wahl & Runge). Precision and recall under random guessing can be very large, so they should not be reported without negative controls (Petersen). Two SHD conventions (reversal 1 vs 2) explain our SHD gap with CausalArena (via prior note dom07).",
+   "how_existing_benchmarks_fail": "CausalArena: directed P/R/F1 and SHD only, with the reversal convention unstated in the paper (code counts 1). Brouillard et al.: structural metrics used in 100% of simulated-data studies, interventional metrics in under 10%.",
+   "candidate_designs": [
+    "Primary triple from R06 plus AID and SHD(rev=1, rev=2)",
+    "Random-DAG and empty-graph rows on every table",
+    "Exact random-guess distribution for skeleton metrics (Petersen)"
+   ],
+   "effort": "0.5 person-weeks (our estimate): gadjid is a pip package; random controls are cheap.",
+   "data_sources": [
+    "gadjid",
+    "pcalg/SID"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/1910.05387",
+    "https://arxiv.org/abs/1306.1043",
+    "https://arxiv.org/abs/2402.08616",
+    "https://arxiv.org/abs/2402.04952",
+    "https://arxiv.org/abs/2412.10039v1",
+    "https://arxiv.org/html/2412.01953v2",
+    "https://arxiv.org/html/2406.04598v1"
+   ]
+  },
+  {
+   "id": "R08",
+   "requirement": "Evidence regime declared and enforced by the harness: D (observational only), D+I released (fixed targets), D+I chosen (budgeted API), D+K (declared knowledge such as tiers or names). Agents run sandboxed without network; a method that uses names must say so and is scored in the K regime.",
+   "why": "Without enforced regimes, a score mixes data skill with knowledge and layout. CausalDS runs agents in a sandboxed Docker container with no network (via prior note dom07). CausalArena's mixed split is 800 observational + 200 interventional rows with targets fixed by the replay sampler, mostly roots in the one spec checked (via prior notes dom07, cluster7).",
+   "how_existing_benchmarks_fail": "CausalArena: manifest lists 'supported regimes' but no K regime and no enforcement of name use. Most LLM-agent papers: names always present, regime implicit.",
+   "candidate_designs": [
+    "Regime field in the submission manifest, cross-checked by running the neutral-name arm",
+    "Sandbox with no network for agent submissions",
+    "Separate leaderboards per regime"
+   ],
+   "effort": "1 person-week (our estimate) for a sandboxed agent harness; 0.25 if only file submissions are accepted.",
+   "data_sources": [
+    "CausalArena replay sampler",
+    "CausalPlayground (Gymnasium SCM env)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2607.08093",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena",
+    "https://arxiv.org/html/2405.13092v1"
+   ]
+  },
+  {
+   "id": "R09",
+   "requirement": "Order provenance computed per edge from the controlled arms: for each output edge, record whether its direction survives (a) neutral names + shuffled columns (data-only), (b) adding real names, (c) adding layout, (d) adding interventions; optionally score a system's self-declared source tags against this measured attribution.",
+   "why": "Measured (ours): given the true causal depth of each variable a plain regression scores 0.714, more than every published method, so a few bits of order information from any channel dominate scores. Zheng et al. call for audit trails that separate data, assumptions, agent recommendations and algorithmic outputs (via prior note cluster2). No published benchmark attributes directions to sources (prior note cluster8 gap y).",
+   "how_existing_benchmarks_fail": "All found: single-condition scoring. CARE crosses names with data presence but treats layout as nuisance. Kitson & Constantinou keep per-edge per-source probabilities but as a method, not a benchmark measure.",
+   "candidate_designs": [
+    "Edge-level attribution table: direction flips between arms",
+    "Provenance-honesty score: agreement between claimed source tags and measured arm sensitivity",
+    "Aggregate: share of correct directions that survive the data-only arm"
+   ],
+   "effort": "1 person-week (our estimate) on top of R01/R02/R08, mostly scorer and reporting.",
+   "data_sources": [
+    "outputs of the controlled arms"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2511.16016",
+    "https://arxiv.org/abs/2608.27472"
+   ]
+  },
+  {
+   "id": "R10",
+   "requirement": "Calibrated per-claim confidence and abstention: submissions give per-pair probabilities over {i->j, j->i, absent} or abstain; scored by Brier (with reliability term), equal-mass-bin ECE with scenario-level bootstrap, risk-coverage curves and precision at fixed coverage; abstaining on edges not identifiable in the regime earns credit.",
+   "why": "Bootstrap edge frequencies are rankings, not calibrated probabilities (Friedman et al.; Jabbari et al., via prior note dom08). Banerjee et al. score resampled edge frequencies by Brier and ECE and find no single resampling technique wins. Many Bayesian-discovery metrics correlate poorly with posterior quality (Karimi Mamaghan et al.). ACDB: PC under-commits with high precision, LLMs over-commit. CausalDS makes abstention 'a first-class scored outcome'.",
+   "how_existing_benchmarks_fail": "CausalArena: binary directed F1 (its submission format allows a score_matrix but the leaderboard does not score it). CausalDS scores abstention for effect questions, not edges. Causal-Audit scores dataset-level abstention for time series, not per-edge.",
+   "candidate_designs": [
+    "Three-state probability file per instance",
+    "Brier + reliability diagram + ECE (equal-mass bins) with scenario-bootstrap CIs",
+    "Precision at 50/80% coverage; area under risk-coverage",
+    "Abstention credit only for edges outside the identifiable set"
+   ],
+   "effort": "1.5 person-weeks (our estimate): scorer is small; the effort is in defining abstention credit consistently with R06 and validating on PC/GES bootstrap baselines.",
+   "data_sources": [
+    "any instance with truth"
+   ],
+   "sources": [
+    "https://arxiv.org/pdf/1301.6695v1",
+    "https://arxiv.org/pdf/1712.08626v1",
+    "https://arxiv.org/html/2503.15436v1",
+    "https://arxiv.org/abs/2406.03209",
+    "https://arxiv.org/abs/2609.31675",
+    "https://arxiv.org/abs/2607.08093",
+    "https://arxiv.org/html/2604.02488v1",
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena"
+   ]
+  },
+  {
+   "id": "R11",
+   "requirement": "Held-out interventional prediction: predict outcome distributions (or means) under interventions withheld from the agent; scored by distributional distance or error against samples from the true SCM (or real interventional data).",
+   "why": "Brouillard et al. recommend interventional metrics on unseen interventions, 'arguably closest to what most practitioners care about', and find them unused 89% of the time when real data contain interventions. Gentzel et al.: interventional evaluation changes conclusions. CausalBench (single-cell) scores predicted networks against held-out perturbation data and found methods using interventions did not beat observational ones, unlike in synthetic benchmarks.",
+   "how_existing_benchmarks_fail": "CausalArena: structural metrics only. bnlearn suites: no interventions. CausaLab scores a prediction task (92% accuracy with edge F1 0.471), showing prediction and structure can diverge.",
+   "candidate_designs": [
+    "Fixed graph-to-effect pipeline: harness fits linear/GP mechanisms on the submitted graph, so the score isolates the graph",
+    "Free pipeline: submission returns its own interventional predictions",
+    "Report both, plus the oracle-graph pipeline as ceiling"
+   ],
+   "effort": "2 person-weeks (our estimate): sampler already supports interventions on declared targets; needs arbitrary-target sampling, a fixed estimator and the distance metric.",
+   "data_sources": [
+    "CausalArena replay sampler (extended)",
+    "Causal Chambers lt_interventions_standard_v1 and validate datasets",
+    "CausalBench (GSK)"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2412.01953v2",
+    "https://arxiv.org/abs/1910.05387",
+    "https://arxiv.org/abs/2210.17283",
+    "https://arxiv.org/abs/2605.26029",
+    "https://github.com/juangamella/causal-chamber"
+   ]
+  },
+  {
+   "id": "R12",
+   "requirement": "Experiment-choice value: a budgeted observe/intervene/submit API; score the gain per intervention (orientations resolved, interventional error reduced) and regret against classical designers (pcalg OptSingle/OptUnb, CBED, random).",
+   "why": "ACDB reports PC + greedy active orientation 42.7% directed F1 vs 31.7% and 22.9% for two LLM agents, with a random-DAG floor of 23.6% (read 2026-10-12). BoxingGym scores design by expected information gain and finds GPT-4o struggles. Where classical baselines were included they beat LLMs (prior note cluster7).",
+   "how_existing_benchmarks_fail": "CausalArena: interventions fixed by the sampler, no choice. ACDB: 4-7 node linear-Gaussian worlds, no name arm. CausaLab: 3-7 nodes, no classical baseline in parts read. BoxingGym: no graph scoring.",
+   "candidate_designs": [
+    "Interactive wrapper around a generator with budget B and per-intervention cost",
+    "Value = increase in compelled-edge fraction or decrease in interventional error per unit budget",
+    "Baselines: OptSingle via pcalg::opt.target, CBED, random target"
+   ],
+   "effort": "2.5 person-weeks (our estimate): environment wrapper ~1 week (CausalPlayground gives a Gymnasium SCM env), baselines ~1 week (CBED CPU feasibility unverified), scoring ~0.5.",
+   "data_sources": [
+    "CausalPlayground",
+    "modified CausalArena sampler",
+    "Causal Chambers Remote Lab (subscription)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2609.31675",
+    "https://arxiv.org/abs/2501.01540",
+    "https://arxiv.org/abs/2605.26029",
+    "https://rdrr.io/cran/pcalg/man/opt.target.html",
+    "https://github.com/yannadani/cbed",
+    "https://arxiv.org/html/2405.13092v1"
+   ]
+  },
+  {
+   "id": "R13",
+   "requirement": "Decision value: effect and adjustment queries that depend on the graph (ATE for selected pairs, valid adjustment sets, best single intervention for a target), identification-gated, with credit for correct 'not identifiable' answers and for bounds.",
+   "why": "Eigenmann et al. frame structure-learning evaluation as decision-theoretic risk. Emezue et al. benchmark Bayesian discovery by downstream treatment-effect estimation. CausalDS gates effect tasks by identification and scores null answers (via prior note cluster9). OCDB proposes a causal-effect distance counting pairs whose effects differ.",
+   "how_existing_benchmarks_fail": "CausalArena and bnlearn suites: no effect queries. Effect benchmarks (CausalDS, CauSciBench, QRData): small motifs or fixed graphs, not tied to discovery at 20-40 variables (prior note cluster9).",
+   "candidate_designs": [
+    "Query set per instance from the true graph: identifiable and non-identifiable pairs in each regime",
+    "Score: interval coverage and error for identifiable; abstain/bounds credit for non-identifiable",
+    "Decision regret: chosen intervention's true effect vs best"
+   ],
+   "effort": "2 person-weeks (our estimate): identification via generalised adjustment (dagitty/pcalg) is cheap; interval scoring and query sampling are the work.",
+   "data_sources": [
+    "any SCM generator with ground truth",
+    "DoWhy for estimation baselines"
+   ],
+   "sources": [
+    "https://proceedings.mlr.press/v124/eigenmann20a.html",
+    "https://arxiv.org/abs/2307.04988",
+    "https://arxiv.org/abs/2607.08093",
+    "https://arxiv.org/html/2406.04598v1",
+    "https://arxiv.org/abs/2402.08616"
+   ]
+  },
+  {
+   "id": "R14",
+   "requirement": "A physical or physics-derived ground-truth slice, with the truth's validation method recorded.",
+   "why": "Synthetic suites carry generator artefacts (R03); real benchmarks with expert graphs are uncertain (Sachs). Causal Chambers provide real physical systems whose causal models are empirically validated (Gamella et al.; NMI 2025 per the repo). But Mk1 standard graphs are depth-1 actuator->sensor, so orientation is trivial once actuators are known (prior note cluster7, computed from the package).",
+   "how_existing_benchmarks_fail": "CausalArena includes both tunnels but reports pooled real-data scores (prior note cluster7). causalAssembly lacks interventions and has learned cross-process edges. CausalMan is physics-simulated but large (53/186 nodes) and from authors overlapping with CausalSteward.",
+   "candidate_designs": [
+    "Causal Chambers public datasets with validated interventions",
+    "Light Tunnel Mk2 'linked_leds' configuration (lt_spice_v1) for deeper graphs",
+    "causalAssembly station subsets (observational only)",
+    "SERGIO for gene-regulation-like data with knockouts (stated capability)"
+   ],
+   "effort": "1.5 person-weeks (our estimate) for public datasets; Remote Lab experiments add an unknown fee (no public price) and scheduling time.",
+   "data_sources": [
+    "Causal Chambers datasets (CC BY 4.0)",
+    "Causal Chambers Remote Lab",
+    "causalAssembly",
+    "CausalMan (Zenodo, CC BY 4.0)",
+    "SERGIO",
+    "CausalBench (GSK)"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2404.11341",
+    "https://github.com/juangamella/causal-chamber",
+    "https://github.com/juangamella/causal-chamber-package",
+    "https://arxiv.org/html/2306.10816v2",
+    "https://arxiv.org/html/2502.12707v1",
+    "https://www.biorxiv.org/content/10.1101/716811.full.pdf",
+    "https://arxiv.org/abs/2210.17283"
+   ]
+  },
+  {
+   "id": "R15",
+   "requirement": "Assumption-violation axes (world W) declared per instance: hidden confounders, measurement error, unfaithfulness, non-iid, mechanism form, sample size; results stratified by them.",
+   "why": "Montagna et al. simulate confounding, measurement error, unfaithfulness, autocorrelation, post-nonlinear and non-Gaussian violations over 60,000+ datasets and find rankings change. Faithfulness violations limit neural discovery (Olko et al.). CausalCompass does the same for time series (8 scenarios incl. standardisation).",
+   "how_existing_benchmarks_fail": "CausalArena semantic: latent nodes exist (mask) but violation type is not a reported stratum. Most LLM-agent evaluations: one world type.",
+   "candidate_designs": [
+    "W tag per instance (sufficiency, iid, mechanism, n)",
+    "Use the causally library generators for violation arms"
+   ],
+   "effort": "1 person-week (our estimate) using existing generators.",
+   "data_sources": [
+    "causally library",
+    "CausalCompass (time series)"
+   ],
+   "sources": [
+    "https://arxiv.org/html/2310.13387v2",
+    "https://arxiv.org/abs/2502.16056",
+    "https://causalcompass.readthedocs.io/en/latest/",
+    "https://arxiv.org/abs/2502.14719"
+   ]
+  },
+  {
+   "id": "R16",
+   "requirement": "Baseline floor rows on every table: empty graph, random DAG, sortnregress, R2-SortnRegress, layout-probe regression, name-only LLM, true-depth regression (oracle order bits), PC/GES/GIES with stated configs.",
+   "why": "Trivial baselines expose shortcuts: R2-SortnRegress, the layout probe (0.680 measured, ours), true-depth regression 0.714 (measured, ours), random DAG 23.6% (ACDB). causalAssembly found default methods fail to beat an empty graph on SHD on the full line.",
+   "how_existing_benchmarks_fail": "CausalArena has RandomRegress ('a fixed-random-order regression control') but no layout probe, sortnregress or name-only rows.",
+   "candidate_designs": [
+    "Fixed baseline pack run by the maintainers on every release"
+   ],
+   "effort": "0.5 person-weeks (our estimate).",
+   "data_sources": [
+    "CausalDisco",
+    "causal-learn"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2303.18211",
+    "https://arxiv.org/abs/2609.31675",
+    "https://arxiv.org/html/2306.10816v2",
+    "https://arxiv.org/html/2609.11897v1"
+   ]
+  },
+  {
+   "id": "R17",
+   "requirement": "Repetition and uncertainty: at least 5 runs per stochastic system, scenario-level confidence intervals, rank stability reported.",
+   "why": "Single-run leaderboards invert at least one pairwise rank in 10 of 12 slices (Alvarado Gonzalez et al.); single-run evaluations misrank models 29.3% of the time (Mehta) (both via prior note cluster2). Effective sample size for calibration is the scenario, not the edge (prior note dom08).",
+   "how_existing_benchmarks_fail": "Most LLM-agent papers report single runs (prior note cluster2). CausalArena: 5 replicates of data but std mixes SCM and replicate variance (prior note dom07).",
+   "candidate_designs": [
+    "Scenario bootstrap CIs",
+    "Rank-stability table"
+   ],
+   "effort": "0.25 person-weeks (our estimate) plus compute (x5 runs).",
+   "data_sources": [
+    "n/a"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2509.24086",
+    "https://arxiv.org/abs/2602.11619"
+   ]
+  },
+  {
+   "id": "R18",
+   "requirement": "Contamination hygiene: a private held-out split regenerated per round from private seeds, canary strings in released files, release dates recorded.",
+   "why": "CausalArena releases half of each family and holds back the rest for 'future versioned evaluation and contamination checks'; it notes SCMs 'can later enter pretraining corpora'. Post-cutoff graphs change LLM scores sharply (Srivastava et al.).",
+   "how_existing_benchmarks_fail": "bnlearn networks: decades public. CausalArena: held-out half not described as server-scored.",
+   "candidate_designs": [
+    "Generator-based private split, regenerated per round",
+    "Server-side scoring for file submissions"
+   ],
+   "effort": "0.5 person-weeks (our estimate) for generator-based splits; server-side scoring adds ~1 week if hosted.",
+   "data_sources": [
+    "our generator"
+   ],
+   "sources": [
+    "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena",
+    "https://arxiv.org/html/2609.11897v1",
+    "https://arxiv.org/abs/2510.16530"
+   ]
+  },
+  {
+   "id": "R19",
+   "requirement": "Reproducible, deterministic harness: pinned environments, config files, scorer hashes, released per-run decision records.",
+   "why": "Benchpress offers a JSON-configured Snakemake workflow for 'scalable, reproducible, and platform-independent' structure-learning benchmarks. CausalVerify releases prompts with hashes and scorer decision records (via prior note cluster2).",
+   "how_existing_benchmarks_fail": "CausalArena: method configs in an appendix we could not read; evidence came from the authors' TabCausal code (prior note dom07).",
+   "candidate_designs": [
+    "Benchpress-style workflow or a small Snakemake/Make harness",
+    "Scorer as a versioned package with test vectors"
+   ],
+   "effort": "1 person-week (our estimate).",
+   "data_sources": [
+    "benchpress"
+   ],
+   "sources": [
+    "https://arxiv.org/abs/2107.03863",
+    "https://arxiv.org/abs/2609.07944"
+   ]
+  },
+  {
+   "id": "R20",
+   "requirement": "Hyperparameter fairness: tuning only on a dev split, default and tuned configurations both reported, tuning budget declared.",
+   "why": "Machlanski et al.: the winning algorithm changes with hyperparameter quality (via prior note cluster2). Montagna et al. present a hyperparameter-stability benchmark. The Causal Chambers authors' notebook picked UT-IGSP hyperparameters against the truth (prior note cluster7).",
+   "how_existing_benchmarks_fail": "Many papers tune against the truth or do not report tuning.",
+   "candidate_designs": [
+    "Dev/test split by scenario",
+    "Report default and dev-tuned rows"
+   ],
+   "effort": "0.25 person-weeks (our estimate).",
+   "data_sources": [
+    "n/a"
+   ],
+   "sources": [
+    "https://proceedings.mlr.press/v236/machlanski24a.html",
+    "https://arxiv.org/html/2310.13387v2"
+   ]
+  }
+ ],
+ "designs": [
+  {
+   "name": "B1 ArenaShuffle (control overlay on CausalArena)",
+   "weeks": "4",
+   "generator": "CausalArena public 50 semantic + 50 formula scenarios via replay sampler (CC BY 4.0)",
+   "ground_truth": "CausalArena SCMs (LLM-assisted authored; typed as such)"
+  },
+  {
+   "name": "B2 Decoupled-semantics generator (iSCM + CauseNet names + counterfactual relabel + interactive API)",
+   "weeks": "6-8",
+   "generator": "own iSCM-based generator, 20-40 variables, private seeds",
+   "ground_truth": "sampled SCM"
+  },
+  {
+   "name": "B3 Physical slice (Causal Chambers + causalAssembly)",
+   "weeks": "4-6",
+   "generator": "public chamber datasets, optional Remote Lab",
+   "ground_truth": "physics + randomised validation experiments; causalAssembly physics/expert + learned cross-process edges"
+  }
+ ],
+ "searches": [
+  "Kaiser Sipos unsuitability of NOTEARS causal graph discovery dimensional quantities scale",
+  "Eigenmann Mukherjee Maathuis evaluation of causal structure learning algorithms via risk estimation UAI 2020",
+  "CausalPlayground synthetic data generation causal discovery reinforcement learning arXiv",
+  "CausalVerse benchmark causal representation learning simulator ground truth",
+  "SimCausal simulator causal discovery benchmark",
+  "simcausal R package Sofrygin simulation causal DAG",
+  "SERGIO single-cell gene regulatory network simulator benchmark causal discovery interventions",
+  "causal discovery benchmark LLM-generated causal graphs synthetic data realism critique semantic scenarios",
+  "LLM-generated structural causal models synthetic benchmark realistic variable names data generation causal discovery 2025",
+  "CausalRivers real-world river discharge causal discovery benchmark ground truth",
+  "robot arm or electronic circuit physical testbed ground truth causal discovery benchmark interventions dataset",
+  "CausalWorld robotic manipulation benchmark causal structure transfer Ahmed 2020",
+  "Causal Chambers Mk2 light tunnel remote lab Gamella 2025 2026 new chambers",
+  "causalchamber remote lab quickstart python API real-time experiments chambers subscribers",
+  "conformal prediction causal discovery edge sets coverage guarantee structure learning",
+  "causal discovery benchmark downstream causal effect estimation error graph metric correlation interventional evaluation 2025",
+  "CPDAG to DAG evaluation convention directed F1 undirected edges scoring causal discovery benchmark comparison",
+  "LLM causal discovery variable names conflict with data counterfactual relabeling swapped names test memorization benchmark",
+  "best practices checklist benchmarking causal discovery algorithms recommendations evaluation pitfalls 2024 2025 arXiv",
+  "\"causal discovery\" benchmark leaderboard public submission declared assumptions held-out test server",
+  "causal discovery benchmark anonymized variable names column permutation invariance test LLM agents 2026",
+  "selective causal discovery abstain edges risk coverage calibrated edge confidence benchmark"
+ ],
+ "not_read": [
+  {
+   "source": "SERGIO on PMC (https://pmc.ncbi.nlm.nih.gov/articles/PMC7530147)",
+   "reason": "reCAPTCHA page; the bioRxiv full-text PDF was read instead, but it did not show title/venue metadata"
+  },
+  {
+   "source": "Causal Chambers Remote Lab terms, prices, Mk2 ground-truth docs (docs.causalchamber.ai subpages)",
+   "reason": "landing page read only; details taken from the earlier project note cluster7 (V there), not re-opened today"
+  },
+  {
+   "source": "CausalArena appendices B and C (https://arxiv.org/html/2609.11897v1)",
+   "reason": "fetch truncates before appendices (also in prior note dom07)"
+  },
+  {
+   "source": "Brouillard et al. final 8k characters (https://arxiv.org/html/2412.01953v2)",
+   "reason": "fetch truncated at 100k characters; sections read covered the recommendations"
+  },
+  {
+   "source": "Montagna et al. Appendix I.3 score-sortability",
+   "reason": "not included in the fetched text"
+  },
+  {
+   "source": "Kaiser & Sipos rescaling experiment details and journal version",
+   "reason": "abstract/intro excerpt only; the journal-version page (Neural Processing Letters per a search title) was not opened"
+  },
+  {
+   "source": "Gentzel et al. venue (NeurIPS 2019 per prior note cluster9)",
+   "reason": "arXiv abs page does not state venue; proceedings page not opened"
+  },
+  {
+   "source": "CausalTime (ICLR 2024)",
+   "reason": "not searched; time-series realism generator left out of scope"
+  },
+  {
+   "source": "Causal-Audit (arXiv 2604.02488) publication date",
+   "reason": "HTML page did not show a date"
+  }
+ ]
+}

@@ -16,7 +16,7 @@ Metrics (EVL-03): every metric name used must be defined in metric_defs (with th
 import json
 
 REGIMES = {"D", "D+I", "D+K", "D+I+K"}
-NAMES = {"real", "neutral", "swapped", "synthetic", "per-row", "not applicable"}
+NAMES = {"real", "neutral", "swapped", "synthetic", "per-row", "not applicable", "decoupled (rho dial)"}  # last: AB-08 benchmark (2026-10-13)
 SPLITS = {"dev", "test", "all-public (measurement, no tuning)", "per-row", "not applicable"}
 STANDARD_METRICS = {
     "directed_f1": "F1 over directed edges; undecided pairs turned into predictions by the stated orientation rule",

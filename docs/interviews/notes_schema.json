@@ -1,0 +1,122 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "ab10-interview-notes/0.1",
+ "title": "AB-10 practitioner interview notes (one record per interview, no personal data)",
+ "description": "No names, emails, phone numbers or employer names. additionalProperties is false everywhere, so no field for them can be added. Free text is paraphrase only and is scanned for PII by analysis/interview_synthesis.py.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["schema", "interview_id", "interview_month", "consent", "participant", "decisions", "current_tools",
+              "trust_practices", "when_wrong", "artefacts", "adoption_signals", "coding"],
+ "properties": {
+  "schema": {"const": "ab10-interview-notes/0.1"},
+  "interview_id": {"type": "string", "pattern": "^P[0-9]{2}$", "description": "Pseudonymous id P01..P99. The id-to-contact mapping is kept outside the repo."},
+  "interview_month": {"type": "string", "pattern": "^20[0-9]{2}-(0[1-9]|1[0-2])$", "description": "YYYY-MM only; the day is not stored."},
+  "consent": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["path", "verbal_consent", "audio_consent", "audio_recorded"],
+   "properties": {
+    "path": {"enum": ["a", "b"], "description": "a = course-internal, no publication; b = HRPP determination in hand, may feed a paper."},
+    "verbal_consent": {"const": true},
+    "audio_consent": {"type": "boolean"},
+    "audio_recorded": {"type": "boolean", "description": "true only if audio was actually recorded; requires audio_consent (checked by the script)."},
+    "determination_ref": {"type": "string", "maxLength": 80, "description": "Required (non-empty) when path = b: the OIA determination or protocol reference."}
+   }
+  },
+  "participant": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["sector", "role_level", "company_size", "recruited_via"],
+   "properties": {
+    "sector": {"enum": ["it_ops_sre", "marketing_science", "rwe_health", "policy_analytics", "other"]},
+    "role_level": {"enum": ["individual_contributor", "lead_or_manager", "director_or_above", "consultant_or_academic"]},
+    "company_size": {"enum": ["1-49", "50-249", "250-999", "1000-9999", "10000+", "unknown"]},
+    "recruited_via": {"enum": ["tritons_connect", "take_a_triton", "hdsi_partner_via_course", "pywhy_community",
+                               "other_causal_community", "course_contact", "other"],
+                      "description": "pywhy_community and other_causal_community are excluded in the sensitivity tally."}
+   }
+  },
+  "decisions": {
+   "type": "array",
+   "maxItems": 6,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["summary", "type", "real_or_hypothetical", "which_causes_how_sure"],
+    "properties": {
+     "summary": {"type": "string", "minLength": 10, "maxLength": 600, "description": "Paraphrase at the level of the kind of decision; no names, systems or dates."},
+     "type": {"enum": ["graph", "intervention", "rca", "other"]},
+     "real_or_hypothetical": {"enum": ["real", "hypothetical"]},
+     "which_causes_how_sure": {"enum": ["yes", "no", "unclear"], "description": "yes = what they needed was which causes / whether an action moves an outcome, with how sure, and the full graph was not needed or secondary (synthesis_plan.md section 4)."}
+    }
+   }
+  },
+  "current_tools": {"type": "array", "maxItems": 15, "items": {"type": "string", "minLength": 1, "maxLength": 80}},
+  "trust_practices": {"type": "array", "maxItems": 10, "items": {"type": "string", "minLength": 3, "maxLength": 300}},
+  "when_wrong": {"type": "string", "maxLength": 600},
+  "artefacts": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["provenance_table", "abstaining_answer", "name_swap_audit"],
+   "properties": {
+    "provenance_table": {"$ref": "#/$defs/reaction"},
+    "abstaining_answer": {"$ref": "#/$defs/reaction"},
+    "name_swap_audit": {"$ref": "#/$defs/reaction"}
+   }
+  },
+  "adoption_signals": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["would_try", "budget_owner_named", "current_spend_band", "paraphrase"],
+   "properties": {
+    "would_try": {"enum": ["yes", "maybe", "no", "not_asked"]},
+    "budget_owner_named": {"enum": ["yes", "no", "not_asked"], "description": "They named a role (not a person) that decides or holds budget."},
+    "current_spend_band": {"enum": ["none", "under_1k", "1k_10k", "10k_100k", "over_100k", "unknown", "not_asked"], "description": "USD per year on the last tool adopted in this area."},
+    "paraphrase": {"type": "string", "maxLength": 600}
+   }
+  },
+  "coding": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["student"],
+   "properties": {
+    "student": {"$ref": "#/$defs/codeset"},
+    "claude": {"$ref": "#/$defs/codeset"},
+    "reconciled": {"$ref": "#/$defs/codeset"},
+    "reconciliation_note": {"type": "string", "maxLength": 600}
+   }
+  }
+ },
+ "$defs": {
+  "reaction": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["shown", "score", "paraphrase"],
+   "properties": {
+    "shown": {"type": "boolean"},
+    "score": {"type": ["integer", "null"], "minimum": 1, "maximum": 5, "description": "1 = would not use, 5 = would use as is; null if not shown."},
+    "paraphrase": {"type": "string", "maxLength": 600}
+   }
+  },
+  "code": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["code", "evidence"],
+   "properties": {
+    "code": {"enum": ["supports", "refutes", "silent"]},
+    "evidence": {"type": "string", "maxLength": 400, "description": "Paraphrase of what was said; required non-empty unless code = silent (checked by the script)."}
+   }
+  },
+  "codeset": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["H1", "H2", "H3", "P13"],
+   "properties": {
+    "H1": {"$ref": "#/$defs/code"},
+    "H2": {"$ref": "#/$defs/code"},
+    "H3": {"$ref": "#/$defs/code"},
+    "P13": {"$ref": "#/$defs/code"}
+   }
+  }
+ }
+}

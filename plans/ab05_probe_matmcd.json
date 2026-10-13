@@ -1,0 +1,39 @@
+{
+ "ticket": "AUD-37",
+ "bundle": "AB-05",
+ "agent": "matmcd",
+ "status": "READY - inside the AB-05 cap approved 2026-10-12 ($5 in total; the four probes cap at $3.55 together, Causal-Copilot second model about $0.03-0.46). Model choice follows each agent's documented default where noted in deviation_from_brief_model.",
+ "run": {
+  "scenario": "/research/external/causalarena/scm/semantic/data/semantic_obs_only/semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+  "shuffle_seed": 20261010,
+  "model": "gpt-4o-mini",
+  "agent_opts": {},
+  "max_calls": 1800,
+  "max_usd": 0.41,
+  "out": "/research/runs/ab05/matmcd/",
+  "out_stub": "/research/runs/ab05/stub_plan/matmcd/"
+ },
+ "basis": {
+  "stub_summary": "runs/ab05/stub/matmcd_mini/semantic/summary.json",
+  "stub_calls": 1200,
+  "stub_prompt_tokens": 844656,
+  "stub_completion_tokens": 241800,
+  "token_counter": "tiktoken:cl100k_base",
+  "est_usd_at_plan_prices": 0.2718,
+  "est_usd_if_all_gpt4o": 4.5296,
+  "max_usd_by_1_5x_rule": 0.41,
+  "max_usd_floor_for_last_call": 0.28,
+  "note": "ESTIMATE: prompt tokens counted locally (tiktoken:cl100k_base); completion lengths assumed (adapter constants, recorded per call in calls.jsonl)"
+ },
+ "deviation_from_brief_model": "gpt-4o-mini, the repository's own configured model (config.py: MODEL = \"gpt-4o-mini\"), not gpt-4o: 2 x d(d-1) = 1,200 calls at gpt-4o are estimated at $4.53 (x1.5 = $6.80), above the whole $4 AB-05 budget on their own",
+ "agent_repo": {
+  "url": "https://github.com/D2I-Group/matmcd",
+  "commit": "ef2c3ecad0f5ddb9c3d20a8523c2c1043d213190",
+  "licence": "MIT"
+ },
+ "launch": "python /research/harness/agent_probe.py --plan /research/plans/ab05_probe_matmcd.json [--stub]",
+ "budget_check": {
+  "sum_max_usd_all_four": 3.55,
+  "limit": 4.0
+ }
+}

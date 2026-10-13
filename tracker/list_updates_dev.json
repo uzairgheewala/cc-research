@@ -1,163 +1,29 @@
 {
  "list": "F0C869P25NE",
  "updates": {
-  "REP-07": {
-   "record_id": "Rec0C84FT04VC",
+  "AUD-34": {
+   "record_id": "Rec0C8SU9PGAW",
    "cells": {
-    "Evidence": "analysis/results/methods/bnd06_verdicts.json\nanalysis/results/methods/bnd06_families.json\nanalysis/reports/bnd06_interim.md\nanalysis/reports/bnd06_families.md\nanalysis/reports/bnd04_results.md",
-    "Checks": "PASS methods/lingam/vs_published_authors_rule/f1_within = true (true ); PASS gate_C1_published_PC_F1_reproduced = true (true )",
-    "Note": "Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run.",
-    "Verified": "2026-10-12"
+    "Evidence": "analysis/reports/ab02_second_scoreboard.md\nanalysis/ab02_alarm_order.py\nanalysis/results/ab02/alarm_order.json\nanalysis/audits/AB02_AB12_data_scouting.md\nanalysis/ab02_bayesys.py\nanalysis/results/ab02/bayesys.json\nanalysis/results/ab02/bayesys_runs.jsonl",
+    "Checks": "PASS P3/verdict = \"supported\" (eq \"supported\"); PASS found: reproduction gate",
+    "Blocked by": "Uzair: results_noisyPaper.xlsx into external/bayesys (reproduction gate)",
+    "Note": "Bayesys measured 13 Oct (6 networks, released vs 5 shuffled orders, PC/maxP/FCI/GES): ASIA, SPORTS, PATHFINDER are released in topological order (P3 supported); an index tie-break gains +0.04 to +0.30 there and about 0 on ALARM/PROPERTY. P4 inconclusive (conflict-rule gap on 2 of 3 ordered networks). No claim on the published numbers until two cells are reproduced. Sortability not computed (discrete data).",
+    "Verified": "2026-10-13"
    }
   },
-  "REP-09": {
-   "record_id": "Rec0C869THW1G",
+  "AUD-38": {
+   "record_id": "Rec0C8R4XCDCN",
    "cells": {
-    "Status": "✅ Done",
-    "Evidence level": "V3",
-    "Evidence": "analysis/rep09_ges.py\nanalysis/results/chambers/rep09_ges.json\nanalysis/reports/bnd07_chambers.md\nmanifests/evidence/chambers_extracted_2026-10-12.sha256",
-    "Checks": "PASS verdict = \"supported\" (eq \"supported\"); PASS ours/cpdag_identical_to_authors = true (true ); PASS 0 listed files changed or missing",
-    "Note": "GES (BIC, forward/backward/turning) on lt uniform_reference, 10,000 rows, the authors' 20 variables: CPDAG identical to the authors'; 12 DAGs, precision 0.55-0.60, recall 0.564-0.615 (reported 0.55-0.60 / 0.56-0.62). CDFM's 0.727 recorded as not reproducible here: checkpoint only on huggingface.co (blocked by the egress allowlist) and its chamber protocol not pinned.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "REP-11": {
-   "record_id": "Rec0C8160P7S9",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V3",
-    "Evidence": "analysis/rep11_sachs_data.py\nanalysis/results/rep11/rep11_sachs_data.json\nanalysis/reports/rep11_sachs_data.md",
-    "Checks": "PASS verdicts/ensemble_f1_primary_B/verdict = \"reproduced\" (eq \"reproduced\")",
-    "Note": "Data part (no LLM) reproduced within 0.05 with Python stand-ins for bnlearn/Tetrad: ensemble F1 0.647 vs 0.606, single-run mean 0.259 vs 0.293; merge, DAG conversion and F1 cross-checked against the authors' PyPI code (identical). Conditional: Sachs has no data-identifiable direction, so the ensemble's arrows come from Tabu-Stable's orientation. Open: LLM 0.40 and fused 0.73 (BND-12, live).",
-    "Verified": "2026-10-12"
-   }
-  },
-  "DOM-09": {
-   "record_id": "Rec0C869WNG0J",
-   "cells": {
-    "Status": "✅ Done",
-    "Evidence level": "V3",
-    "Evidence": "analysis/literature/dom09_what_if.md\nanalysis/dom09_ida_timing.py\nanalysis/results/dom09/ida_timing.json",
-    "Checks": "PASS variables = 25 (eq 25); PASS ordered_pairs = 600 (eq 600)",
-    "Note": "Local IDA on PC's CPDAG at 25 variables: 600 pairs in 0.06 s; 52% identified within the class; true parents among the candidates for only 7 of 25 X. Computation is not the obstacle; skeleton recall is.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BEN-07": {
-   "record_id": "Rec0C86A2T6G2",
-   "cells": {
-    "Evidence": "analysis/results/causalarena_calibration/protocol_check.json\nanalysis/results/methods/bnd06_verdicts.json\nanalysis/results/methods/bnd06_families.json\nanalysis/results/methods/pc_skeleton_order_vendored.json\nanalysis/results/methods/pc_skeleton_order_upstream.json\nanalysis/reports/bnd06_interim.md\nanalysis/reports/bnd06_families.md\nplans/bnd06_prereg.json",
-    "Checks": "PASS facts/P2_liberal_orientation/found = true (true ); PASS Q4c/verdict = \"REFUTED\" (eq \"REFUTED\"); PASS files_with_different_skeleton = 21 (eq 21); PASS files_with_different_skeleton = 0 (eq 0)",
-    "Note": "Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. Open: AVICI (pretrained; checkpoint download blocked).",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BEN-10": {
-   "record_id": "Rec0C808DHVR9",
-   "cells": {
-    "Status": "✅ Done",
-    "Evidence": "external/FETCH_REPORT.json\nanalysis/results/chambers/mapping.json\nanalysis/results/chambers/one_layer_deep.json\nanalysis/results/chambers/sample/obs_int_sample.npz\nanalysis/results/chambers/sample/README.md\nanalysis/chambers_map.py\nanalysis/chambers_validate.py\nanalysis/chambers_sample.py\nanalysis/reports/bnd07_chambers.md\nmanifests/evidence/chambers_extracted_2026-10-12.sha256",
-    "Checks": "PASS extracted = [{\"dataset\": \"lt_interventions_standard_v1\", \"csv_files\": 59 (len_eq 8); PASS part_a_our_check/lt_validate_v1/children_shift = 57 (eq 57); PASS part_a_our_check/lt_validate_v1/non_descendants_shift = 0 (eq 0); PASS part_a_our_check/wt_validate_v1/non_descendants_shift = 0 (eq 0); PASS built = true (true ); PASS 0 listed files changed or missing",
-    "Note": "All 8 datasets use the 'standard' configuration: lt 38 variables / 57 edges, wt 32 / 42, every edge input -> output (longest path 1). On the validation data: lt 57/57 children shift, wt 40/42 (load_out -> pressure_intake p 0.082; osr_downwind -> pressure_downwind fails only after Holm over 868 tests); 0 non-descendant shifts in either. Sample: 6,200 rows, 53 regimes.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BEN-11": {
-   "record_id": "Rec0C7R3ZUNLF",
-   "cells": {
-    "Evidence level": "V3",
-    "Evidence": "analysis/results/methods/error_budget_gesbic.json\nanalysis/results/methods/error_budget_fci.json\nanalysis/results/methods/error_budget_lingam_semantic.json\nanalysis/results/methods/error_budget_notears_semantic.json\nanalysis/results/methods/error_budget_pc_semantic.json\nanalysis/results/methods/error_budget_gesbic_formula.json\nanalysis/results/methods/error_budget_fci_formula.json\nanalysis/results/methods/error_budget_lingam_formula.json\nanalysis/results/methods/error_budget_notears_formula.json\nanalysis/results/methods/error_budget_gesbic_synthetic100.json\nanalysis/results/methods/error_budget_fci_synthetic100.json\nanalysis/results/methods/error_budget_lingam_synthetic100.json\nanalysis/results/methods/error_budget_notears_synthetic100.json\nanalysis/reports/bnd06_families.md",
-    "Checks": "PASS files = 250 (eq 250); PASS files = 250 (eq 250)",
-    "Note": "Done for PC, GES, FCI, DirectLiNGAM, NOTEARS x semantic, formula, synthetic100 (15 budgets; failed files scored empty and counted). Open: pretrained models (AVICI checkpoint blocked by the egress allowlist; Uzair can download two files by hand).",
-    "Verified": "2026-10-12"
-   }
-  },
-  "TGT-13": {
-   "record_id": "Rec0C816E2ABF",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V3",
-    "Evidence": "harness/names_runner.py\ntests/test_refinement_v2.py",
-    "Checks": "PASS found: never raised",
-    "Note": "BND-11 names runner: invalid reply -> one retry -> abstention; API errors recorded the same way. Offline stub with injected malformed replies: 25 invalid replies, no exception. Closes on the live names run (crash count 0).",
-    "Verified": "2026-10-12"
-   }
-  },
-  "CAP-10": {
-   "record_id": "Rec0C808L52BV",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V3",
-    "Evidence": "harness/names_runner.py\nanalysis/refinement_v2.py\ntests/test_refinement_v2.py\nanalysis/reports/bnd11_prep.md",
-    "Checks": "PASS ok = true (true )",
-    "Note": "Schema-validated replies, one retry, then abstain; built and unit-tested (parse rule shared with refinement_v2). Closes on BND-11's live names run.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "CAP-17": {
-   "record_id": "Rec0C8A63BNA0",
-   "cells": {
-    "Status": "✅ Done",
-    "Evidence": "analysis/package_submission.py\nanalysis/results/submission/validator_output.txt\nanalysis/results/submission/packages.json",
-    "Checks": "PASS found: exit code 0; PASS found: notears__shuffled",
-    "Note": "10 packages (PC, GES, FCI, DirectLiNGAM, NOTEARS x released / shuffled columns), 600 rows each (semantic 250, formula 250, synthetic100); the official validator exits 0 on all 10. Nothing submitted.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BLD-06": {
-   "record_id": "Rec0C90SNN2NL",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V3",
-    "Evidence": "analysis/refinement_v1.py\nanalysis/refinement_v2.py\nanalysis/results/refinement_v2/RULE.json\nanalysis/results/refinement_v2/dev.json\nanalysis/reports/bnd11_prep.md",
-    "Checks": "PASS summary/all_edges_sourced = true (true ); PASS summary/R1/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")",
-    "Note": "v1 frozen and tested (BND-10). v2 frozen 2026-10-12 (sha256 443354d8...): data part never deletes algorithm adjacencies; dev R1-R3 supported (92 files). Held-out: formula test replay (compute job) and the live names run (R4-R6).",
-    "Verified": "2026-10-12"
+    "Evidence": "plans/make_ab06_plans.py\nplans/ab06/BUDGET.json\nharness/agent_batch.py\nanalysis/ab06_score.py\nplans/ab06_cc_gpt4omini_s2.json\nanalysis/reports/ab06_prep.md\ntests/test_ab06_batch.py",
+    "Note": "Plans, batch runner and scorer ready and stub-tested end to end. The batch never pays twice for a crashed run (--retry-failed to override), counts every logged attempt, and stops at the total cap before a run (exit 3).",
+    "Verified": "2026-10-13"
    }
   },
   "INF-05": {
    "record_id": "Rec0C7R4HJE23",
    "cells": {
-    "Checks": "PASS ok = true (true ); PASS ran = 23 (ge 18); PASS found: def input_key",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BND-06": {
-   "record_id": "Rec0C8A3E4CMQ",
-   "cells": {
-    "Evidence": "analysis/results/methods/bnd06_verdicts.json\nanalysis/results/methods/bnd06_families.json\nanalysis/results/methods/bnd06_c1_recheck.json\nanalysis/reports/bnd06_interim.md\nanalysis/reports/bnd06_families.md\nplans/bnd06_prereg.json\nanalysis/notears_linear.py\nanalysis/results/submission/validator_output.txt",
-    "Note": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11. Runner: claude via compute jobs. API spend: none.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BND-07": {
-   "record_id": "Rec0C84V10FC5",
-   "cells": {
-    "Status": "✅ Done",
-    "Evidence": "analysis/intervention_audit.py\nanalysis/results/intervention_audit/intervention_audit.json\nexternal/causalchamber_pkg/causalchamber-0.2.8-py3-none-any.whl\nanalysis/results/chambers/mapping.json\nanalysis/results/chambers/one_layer_deep.json\nanalysis/results/chambers/rep09_ges.json\nanalysis/reports/bnd07_chambers.md",
-    "Note": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here). Runner: claude via compute jobs. API spend: none.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BND-11": {
-   "record_id": "Rec0C8C6NG81F",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V3",
-    "Evidence": "analysis/refinement_v2.py\nanalysis/results/refinement_v2/RULE.json\nanalysis/results/refinement_v2/dev.json\nplans/bnd11_names_requests.jsonl\nharness/names_runner.py\nanalysis/reports/bnd11_prep.md\nmanifests/evidence/bnd11_prereg_2026-10-12.sha256",
-    "Checks": "PASS 0 listed files changed or missing",
-    "Note": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live. Runner: Uzair (live). API spend: about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each.",
-    "Verified": "2026-10-12"
-   }
-  },
-  "BND-12": {
-   "record_id": "Rec0C8A3F08QJ",
-   "cells": {
-    "Status": "👀 In progress",
-    "Evidence level": "V2",
-    "Evidence": "analysis/results/rep11/rep11_sachs_data.json\nanalysis/reports/rep11_sachs_data.md",
-    "Note": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair. Runner: Uzair (live). API spend: second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k).",
-    "Verified": "2026-10-12"
+    "Checks": "PASS ok = true (true ); PASS ran = 112 (ge 18); PASS found: def input_key",
+    "Verified": "2026-10-13"
    }
   }
  },

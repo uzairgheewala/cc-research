@@ -1,0 +1,39 @@
+{
+ "ticket": "AUD-37",
+ "bundle": "AB-05",
+ "agent": "pywhyllm",
+ "status": "READY - inside the AB-05 cap approved 2026-10-12 ($5 in total; the four probes cap at $3.55 together, Causal-Copilot second model about $0.03-0.46). Model choice follows each agent's documented default where noted in deviation_from_brief_model.",
+ "run": {
+  "scenario": "/research/external/causalarena/scm/semantic/data/semantic_obs_only/semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+  "shuffle_seed": 20261010,
+  "model": "gpt-4o",
+  "agent_opts": {},
+  "max_calls": 452,
+  "max_usd": 1.83,
+  "out": "/research/runs/ab05/pywhyllm/",
+  "out_stub": "/research/runs/ab05/stub_plan/pywhyllm/"
+ },
+ "basis": {
+  "stub_summary": "runs/ab05/stub/pywhyllm/semantic/summary.json",
+  "stub_calls": 301,
+  "stub_prompt_tokens": 110905,
+  "stub_completion_tokens": 93824,
+  "token_counter": "tiktoken:cl100k_base",
+  "est_usd_at_plan_prices": 1.2155,
+  "est_usd_if_all_gpt4o": 1.2155,
+  "max_usd_by_1_5x_rule": 1.83,
+  "max_usd_floor_for_last_call": 1.23,
+  "note": "ESTIMATE: prompt tokens counted locally (tiktoken:cl100k_base); completion lengths assumed (adapter constants, recorded per call in calls.jsonl)"
+ },
+ "deviation_from_brief_model": null,
+ "agent_repo": {
+  "url": "https://github.com/py-why/pywhy-llm",
+  "commit": "66f2d59b0cf74dfabf0a83704bd1de708f8520ac",
+  "licence": "MIT"
+ },
+ "launch": "python /research/harness/agent_probe.py --plan /research/plans/ab05_probe_pywhyllm.json [--stub]",
+ "budget_check": {
+  "sum_max_usd_all_four": 3.55,
+  "limit": 4.0
+ }
+}

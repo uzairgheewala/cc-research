@@ -1,0 +1,28 @@
+{
+ "producer": "analysis/decision_value_v2.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-36",
+  "TGT-15",
+  "TGT-16",
+  "EVL-03",
+  "CAP-15"
+ ],
+ "regime": "per-row",
+ "regime_detail": "D for observational methods; D+I for GIES with targets",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "both arms",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "orientation_rule": "none: undecided reachability is an abstention",
+ "metric_defs": {
+  "coverage": "share of (target, variable) pairs given a committed claim",
+  "precision_committed": "share of committed claims that match the true graph",
+  "lift_over_empty_graph": "precision minus the empty graph's precision on the same files",
+  "risk_coverage_replicate_agreement": "precision of the claims with the highest replicate agreement, by coverage",
+  "dv2": "target choice for a named outcome: answer rate, success when answering, random baseline",
+  "threshold": "stylised act/do-nothing comparison at cost ratio c/g"
+ }
+}

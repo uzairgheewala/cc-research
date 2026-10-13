@@ -1,0 +1,29 @@
+{
+ "producer": "analysis/a3_score.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-48",
+  "RQ-10",
+  "RQ-11",
+  "RQ-12",
+  "RQ-13",
+  "RQ-14"
+ ],
+ "regime": "D+K",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "names shown in random order; regression ignores column order",
+  "names": "per-row",
+  "supplier": "model (pre-registered)",
+  "knowledge_source": "model tiers",
+  "names_detail": "three arms: real, neutral (V01..Vd), moved (real names permuted across variables)"
+ },
+ "metric_defs": {
+  "correct": "share of true edges whose cause sits in a strictly earlier consensus tier than its effect",
+  "contradicted": "share of true edges with the effect in a strictly earlier tier",
+  "tied": "share with both ends in one tier",
+  "regression_f1": "directed F1 of regressing each variable on variables in earlier tiers (O4/O5)",
+  "orient_only": "a3_orient_only.json (exploratory, post hoc): data-method adjacencies re-oriented by tiers; F1 and DV-1 precision"
+ },
+ "amended": "2026-10-13: names vocabulary and metric_defs added after scoring (contract metadata only; scores unchanged)"
+}

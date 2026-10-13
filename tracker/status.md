@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-13T02:09:52Z)
+# Tracker status (verified 2026-10-13T19:50:06Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -68,6 +68,43 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-13 | ⏳ | Second model besides GPT-4o | V0 |  |
 | AUD-14 | 👀 | Torch-based and time-series wrappers, web-demo path, report quality | V3 |  |
 | AUD-15 | ✅ | Upstream branches newer than a31aa7c | V3 |  |
+| AUD-18 | ✅ | Field audit: every causal-discovery system, its regimes, order source and evaluation controls | V3 |  |
+| AUD-19 | ✅ | Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark | V3 |  |
+| AUD-20 | ✅ | Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W | V3 |  |
+| AUD-21 | ✅ | Own-benchmark audit: requirements, pitfalls and candidate designs | V3 |  |
+| AUD-22 | ✅ | Commercial audit: who buys causal analysis, for which decision, with which guarantee | V3 |  |
+| AUD-23 | ✅ | Engine audit: libraries, capabilities, defects; build vs reuse for the ledger | V3 |  |
+| AUD-24 | ✅ | Value-of-accuracy audit: how graph errors become decision errors | V3 |  |
+| AUD-25 | ✅ | Packaging audit: delivery modes, output requirements, regulator needs, user complaints | V3 |  |
+| AUD-26 | ✅ | Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse | V3 |  |
+| AUD-27 | ✅ | Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy | V3 |  |
+| AUD-28 | ✅ | Controlled re-score: released vs shuffled columns for every runnable baseline; PC conflict-rule mechanism | V3 |  |
+| AUD-29 | ✅ | Sortability of the CausalArena release (varsortability, R2-sortability) | V3 |  |
+| AUD-30 | ✅ | Decision value (DV-1) and adjustment-identification distance for every baseline, with ceilings and the empty-graph baseline | V3 |  |
+| AUD-31 | ✅ | Cost of one Causal-Copilot run (the approved one-run cost check) | V3 |  |
+| AUD-32 | ✅ | Audit program DAG: research landscape, commercial landscape, wedge and paper | V3 |  |
+| AUD-33 | ✅ | AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard) | V3 |  |
+| AUD-34 | 🔴 | AB-02 Second scoreboard: layout and conflict channels on other public benchmarks | V3 |  |
+| AUD-35 | ✅ | AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call | V3 |  |
+| AUD-36 | ✅ | AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold | V3 |  |
+| AUD-37 | 🔴 | AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap) | V3 |  |
+| AUD-38 | 🔴 | AB-06 LIVE: field audit of LLM-using systems under names x layout controls | V3 |  |
+| AUD-39 | ✅ | AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2) | V3 |  |
+| AUD-40 | ✅ | AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling | V3 |  |
+| AUD-41 | 🔴 | AB-10 Practitioner interviews (C1) | V3 |  |
+| AUD-42 | ✅ | AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims | V3 |  |
+| AUD-43 | ✅ | AB-12 Vertical probe: root-cause analysis | V3 |  |
+| AUD-44 | ✅ | AB-13 Regulation and standards map: requirement -> ledger field | V3 |  |
+| AUD-45 | ⏳ | AB-14 Market and go-to-market hypotheses for two verticals | V2 |  |
+| AUD-46 | ✅ | AB-15 Positioning closure: novelty matrix for L1-L5 | V3 |  |
+| AUD-47 | ⏳ | AB-17 Paper skeleton and pre-registration manifest | V0 |  |
+| AUD-48 | ✅ | AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms | V3 |  |
+
+## 15 Decisions
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| DEC-05 | ⏳ | AB-16 Wedge decision: paper spine, venue and the Q2 build | V0 |  |
 
 ## 4 Audit: benchmarks and data
 
@@ -96,7 +133,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | TGT-04 | ⏳ | Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993 | V2 |  |
 | TGT-05 | ⏳ | Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets) | V2 |  |
 | TGT-06 | ⏳ | Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset) | V0 |  |
-| TGT-07 | 🔴 | Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled | V0 |  |
+| TGT-07 | ⏳ | Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled | V0 |  |
 | TGT-08 | 🔵 | Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79) | V2 |  |
 | TGT-09 | 👀 | Never below the system's own data-only output | V3 |  |
 | TGT-10 | ⏳ | Zero change when columns are shuffled | V0 |  |
@@ -114,7 +151,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | CAP-01 | ⏳ | Skeleton recall at variables with many causes (joint test per candidate edge) | V0 |  |
 | CAP-02 | ⏳ | Direction from the numbers (PC: 54%) | V0 |  |
 | CAP-03 | ⏳ | Use intervention data | V0 |  |
-| CAP-04 | 🔴 | Declared knowledge as tiers, never edges | V0 |  |
+| CAP-04 | ⏳ | Declared knowledge as tiers, never edges | V0 |  |
 | CAP-05 | ⏳ | Invariance to column order | V0 |  |
 | CAP-06 | ✅ | Keep 'direction unknown' edges | V3 |  |
 | CAP-07 | ⏳ | Calibrated confidence per claim | V0 |  |
@@ -143,11 +180,11 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | RQ-07 | 🔵 | T4 Calibrated, machine-checkable claims with abstention | V2 |  |
 | RQ-08 | 🔵 | T5 What-if answers with identification status | V2 |  |
 | RQ-09 | 🔵 | T6 Experiment choice beats random on recorded experiments | V2 |  |
-| RQ-10 | 🔴 | O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted | V2 |  |
-| RQ-11 | 🔴 | O2 Neutral names give no order information | V2 |  |
-| RQ-12 | 🔴 | O3 Moved names: tiers follow the labels | V2 |  |
-| RQ-13 | 🔴 | O4 Regression on model tiers reaches 0.634 (semantic) | V2 |  |
-| RQ-14 | 🔴 | O5 Same for formula vs 0.524 | V2 |  |
+| RQ-10 | ✅ | O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted | V3 |  |
+| RQ-11 | ✅ | O2 Neutral names give no order information | V3 |  |
+| RQ-12 | ✅ | O3 Moved names: tiers follow the labels | V3 |  |
+| RQ-13 | ✅ | O4 Regression on model tiers reaches 0.634 (semantic) | V3 |  |
+| RQ-14 | ✅ | O5 Same for formula vs 0.524 | V3 |  |
 | RQ-15 | 🔵 | Do LLM-written semantic graphs inflate name-based scores? | V0 |  |
 | RQ-16 | ✅ | Does PC's error pattern hold for other algorithms? | V3 |  |
 | RQ-17 | 🔵 | Do results hold for a second model? | V0 |  |
@@ -159,7 +196,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BLD-01 | ✅ | Recording harness and analysis tools | V3 |  |
 | BLD-02 | ⏳ | B1 data-only claim ledger with invariants I1-I4, I7 | V0 |  |
 | BLD-03 | ⏳ | B2 interventions as order evidence | V0 |  |
-| BLD-04 | 🔴 | B3 declared knowledge as tiers | V0 |  |
+| BLD-04 | ⏳ | B3 declared knowledge as tiers | V0 |  |
 | BLD-05 | ⏳ | B4 confidence, calibration, selective output | V0 |  |
 | BLD-06 | 👀 | Drop-in replacement for Causal-Copilot's refinement stage | V3 |  |
 | BLD-07 | ⏳ | C1 what-if answers with identification status and bounds | V0 |  |
@@ -168,6 +205,8 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BLD-10 | ✅ | Evidence tracker for this list (catalogue, verify, Slack List mirror) | V3 |  |
 | BLD-11 | ✅ | Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract | V3 |  |
 | BLD-12 | ✅ | Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts | V3 |  |
+| BLD-13 | ✅ | Claim-ledger record format, JSON Schema and verifier (V1-V8) | V3 |  |
+| BLD-14 | ⏳ | Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check | V2 |  |
 
 ## 9 Evaluation protocol
 
@@ -243,7 +282,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | DEC-01 | 🔵 | Adopt, redirect or enlarge program v2; which of E1-E5 in scope | V0 |  |
-| DEC-02 | 🔵 | Approve the tier-elicitation test (~900 short calls through Uzair's key) | V0 |  |
+| DEC-02 | ✅ | Approve the tier-elicitation test (~900 short calls through Uzair's key) | V3 |  |
 | DEC-03 | 🔵 | Whether to tell CausalArena's maintainers about the column order | V0 |  |
 | DEC-04 | ✅ | Connect Slack; tracker in private #cd-tracker | V3 |  |
 

@@ -1,0 +1,9 @@
+{
+ "plan_id": "ab05_cc_gpt4omini",
+ "note": "AB-05 (AUD-37), approved cap $5 in total for AB-05. LIVE. Causal-Copilot unmodified on one S2 scenario (q011, real names, shuffled columns) with a second model. Launch with the model argument: cc.ps1 plan ab05_cc_gpt4omini.json gpt-4o-mini (gpt-4o-mini is the default model in Causal-Copilot's own llm_client.py). Expected cost about $0.03 (36 calls at gpt-4o-mini list prices); if launched without the model argument it runs on the .env model (gpt-4o, about $0.46), still inside the cap. run_traced records the model in meta.",
+ "interleave": false,
+ "run_timeout_s": 3600,
+ "runs": [
+  {"label": "ab05cc", "dataset": "research:datasets/suite_q1s2/q011/q011.csv", "data_mode": "real", "query": null, "repeats": 1}
+ ]
+}

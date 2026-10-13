@@ -1,0 +1,41 @@
+{
+ "producer": "analysis/ab12_rca_probe.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-43",
+  "STR-06"
+ ],
+ "regime": "per-row",
+ "split": "test",
+ "controls": {
+  "columns_shuffled": "both",
+  "names": "not applicable",
+  "supplier": "petshop",
+  "knowledge_source": "declared service call graph released with PetShop (methods c, d only)"
+ },
+ "per_method_regime": {
+  "a_ranked_correlation": "D",
+  "a2_mad_rank": "D",
+  "b_learned_traversal": "D",
+  "b_rand_learned_traversal_random_orientation": "D",
+  "b_lat_posthoc_learned_traversal_latency_graph_for_both_metrics": "D",
+  "c_declared_traversal": "D+K",
+  "d_declared_traversal_abstain": "D+K",
+  "e_ranked_correlation_abstain": "D",
+  "b_abstain_learned_traversal_abstain": "D"
+ },
+ "metric_defs": {
+  "AC@k": "tie-aware expected hit of the single true root-cause node in the top k",
+  "Avg@5": "mean of AC@1..AC@5",
+  "coverage": "share of issues answered (not abstained)",
+  "AC@k_answered": "AC@k over answered issues",
+  "AC@k_strict": "AC@k with abstentions counted as misses"
+ },
+ "abstention_rule": "abstain iff no candidate, or >= 4 candidates and relative margin between 3rd and 4th score <= tau; tau tuned on train only (ab12_prereg.json)",
+ "prereg_sha256": "5d5939da986a0d99d95205934ca24ac9daaeffb2fd972b4a3311d2b801d088cb",
+ "files": {
+  "rca_probe.json": "all results, per-issue ranks, P15 verdict",
+  "ab12_prereg.json": "protocol frozen before test results"
+ },
+ "regime_detail": "D+K for declared topology (c, d); D otherwise (a, a2, b, b_rand, e, b+abstain); per-method regime is in rca_probe.json results.*.*.regime"
+}

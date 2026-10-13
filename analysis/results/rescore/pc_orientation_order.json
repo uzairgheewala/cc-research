@@ -1,0 +1,76 @@
+{
+ "tickets": [
+  "AUD-28",
+  "REP-07"
+ ],
+ "family": "semantic",
+ "files": 125,
+ "skipped_singular": 13,
+ "prediction": "gap in q (shuffled - released) < 0.03 for maxP and definite maxP; about 0.15 for the default",
+ "configs": {
+  "default uc_rule=0 uc_priority=2": {
+   "released": {
+    "S": 0.6117,
+    "c": 0.7718,
+    "q": 0.5922,
+    "a": 0.5729
+   },
+   "shuffled": {
+    "S": 0.6117,
+    "c": 0.7678,
+    "q": 0.7397,
+    "a": 0.684
+   },
+   "q_gap_shuffled_minus_released": 0.1475,
+   "files": 112
+  },
+  "uc_sepset, overwrite uc_priority=0": {
+   "released": {
+    "S": 0.6117,
+    "c": 0.8369,
+    "q": 0.8858,
+    "a": 0.8262
+   },
+   "shuffled": {
+    "S": 0.6117,
+    "c": 0.8427,
+    "q": 0.7301,
+    "a": 0.6936
+   },
+   "q_gap_shuffled_minus_released": -0.1557,
+   "files": 112
+  },
+  "maxP uc_rule=1": {
+   "released": {
+    "S": 0.6117,
+    "c": 0.7623,
+    "q": 0.8265,
+    "a": 0.7476
+   },
+   "shuffled": {
+    "S": 0.6117,
+    "c": 0.7632,
+    "q": 0.8278,
+    "a": 0.7489
+   },
+   "q_gap_shuffled_minus_released": 0.0013,
+   "files": 112
+  },
+  "definite maxP uc_rule=2": {
+   "released": {
+    "S": 0.6117,
+    "c": 0.7441,
+    "q": 0.8023,
+    "a": 0.7211
+   },
+   "shuffled": {
+    "S": 0.6117,
+    "c": 0.745,
+    "q": 0.8026,
+    "a": 0.7214
+   },
+   "q_gap_shuffled_minus_released": 0.0003,
+   "files": 112
+  }
+ }
+}

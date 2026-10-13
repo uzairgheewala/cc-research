@@ -1,0 +1,124 @@
+{
+ "tickets": [
+  "AUD-27",
+  "AUD-23",
+  "CAP-05",
+  "REP-07"
+ ],
+ "dags": 120,
+ "perms_per_dag": 6,
+ "seed": 20261013,
+ "sizes": [
+  6,
+  8,
+  10,
+  12
+ ],
+ "edges_total": 1330,
+ "engines": {
+  "vendored/pc": {
+   "path": "Causal-Copilot a31aa7c externals/causal-learn (the copy the agent runs)",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 460,
+   "exact_skeleton": 460,
+   "dags": 120,
+   "dags_order_invariant": 56,
+   "skeleton_extra_adjacencies": 494,
+   "skeleton_missing_adjacencies": 0
+  },
+  "vendored/fci_skeleton": {
+   "path": "Causal-Copilot a31aa7c externals/causal-learn (the copy the agent runs)",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 531,
+   "exact_skeleton": 531,
+   "dags": 120,
+   "dags_order_invariant": 62,
+   "skeleton_extra_adjacencies": 280,
+   "skeleton_missing_adjacencies": 0
+  },
+  "pypi-0.1.3.8/pc": {
+   "path": "causal-learn 0.1.3.8 wheel from PyPI",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0
+  },
+  "pypi-0.1.3.8/fci_skeleton": {
+   "path": "causal-learn 0.1.3.8 wheel from PyPI",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0
+  },
+  "pypi-0.1.4.8/pc": {
+   "path": "causal-learn 0.1.4.8 wheel from PyPI",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0
+  },
+  "pypi-0.1.4.8/fci_skeleton": {
+   "path": "causal-learn 0.1.4.8 wheel from PyPI",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0
+  },
+  "gcastle-1.0.4/gcastle_original": {
+   "path": "gcastle 1.0.4 wheel from PyPI (torch stubbed; PC never calls it)",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 456,
+   "exact_skeleton": 456,
+   "dags": 120,
+   "dags_order_invariant": 56,
+   "skeleton_extra_adjacencies": 516,
+   "skeleton_missing_adjacencies": 5
+  },
+  "gcastle-1.0.4/gcastle_stable": {
+   "path": "gcastle 1.0.4 wheel from PyPI (torch stubbed; PC never calls it)",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 460,
+   "exact_skeleton": 460,
+   "dags": 120,
+   "dags_order_invariant": 56,
+   "skeleton_extra_adjacencies": 494,
+   "skeleton_missing_adjacencies": 5
+  },
+  "gcastle-1.0.4/gcastle_parallel": {
+   "path": "gcastle 1.0.4 wheel from PyPI (torch stubbed; PC never calls it)",
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0
+  }
+ },
+ "notes": [
+  "Every error is an extra adjacency (a separation the implementation never tested), except 5 missing adjacencies in each gCastle original/stable run set.",
+  "A first full run of the same configuration gave the vendored FCI 533 of 720 exact (this run 531): the vendored copy's parallel step is not deterministic under threads. Upstream copies gave 720 both times.",
+  "The vendored copy's d-separation test calls networkx inside joblib worker processes without importing it; the check runs joblib with the threading backend so the oracle is usable. This does not change the algorithm."
+ ]
+}

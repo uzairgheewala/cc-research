@@ -1,0 +1,23 @@
+{
+ "tickets": [
+  "AUD-31",
+  "BND-08"
+ ],
+ "label": "s2",
+ "runs": 30,
+ "price_assumption_usd_per_mtok": {
+  "prompt": 2.5,
+  "completion": 10.0
+ },
+ "prompt_tokens_total": 3316360,
+ "completion_tokens_total": 439357,
+ "cost_per_run_usd": {
+  "median": 0.457,
+  "min": 0.27,
+  "max": 0.567,
+  "total": 12.68
+ },
+ "llm_calls_per_run_median": 36.0,
+ "wall_time_s_median": 692.45,
+ "note": "Measured from the 30 live BND-08 runs (runs/*/llm_calls.jsonl, usage reported by the API). Prices are list prices for gpt-4o-2024-08-06 assumed by the BND-08 report; the invoice is the authority."
+}

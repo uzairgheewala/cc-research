@@ -50,6 +50,8 @@ def bc(col, y, bid, title, note):
 
 
 _bundled = {x for b in SNAP["bundles"] for x in b["closes"]}
+Q1B = [b for b in SNAP["bundles"] if b.get("plan", "q1") == "q1"]
+AB = [b for b in SNAP["bundles"] if b.get("plan") == "audit"]
 
 
 def gc(col, y, ids, title, note):
@@ -124,25 +126,89 @@ detail = f"""<section style="flex: 1 1 520px; padding: 18px 20px; background: #F
 </section>"""
 
 _dec = [(i["id"], i["title"]) for i in SNAP["items"] if i["id"].startswith("DEC-") and i["status"] != "done"]
-_waits = [b["id"] for b in SNAP["bundles"] if b["status"] != "done" and "wait" in b["note"].lower() and "uzair" in b["note"].lower()]
+_waits = [b["id"] for b in SNAP["bundles"] if b["status"] != "done" and (b["status"] == "blocked" or ("wait" in b["note"].lower() and "uzair" in b["note"].lower()))]
 QUEUE = [("Free", "cc.ps1 compute: bootstrap_replay_ca_formula_dev.json, _test.json, aud14_ts_wrappers.json", "unblocks BND-11, BND-03"),
          ("Free", "cc.ps1 names bnd11_names_requests.jsonl stub", "checks the runner"),
          ("Live", "cc.ps1 names bnd11_names_requests.jsonl (under $1)", "BND-11")] if bundle("BND-11")["status"] != "done" else []
 QUEUE += [("Decide", "%s %s" % (d, ttl), "tracker: open") for d, ttl in _dec]
 QUEUE += [("Decide", "Bring kernel B1 into Q1 as a bundle, or start it after 2 Nov", "what G2 tests")] if "BLD-02" not in _bundled else []
-QUEUE += [("Waits", "%s: %s" % (b, bundle(b)["title"]), "the bundle note says it waits on you") for b in _waits if b != "BND-11"]
+QUEUE += [("Waits", "%s: %s" % (b, bundle(b)["title"]), "the bundle note says it waits on you") for b in _waits if b != "BND-11" and not b.startswith("AB-")]
+QUEUE += [("Live", "cc.ps1 probe ab05_probe_[pywhyllm|matmcd|vashishtha].json (AB-05; stub first)", "three agent probes left"),
+          ("Live", "cc.ps1 plan ab06_cc_gpt4omini_s2.json gpt-4o-mini (AB-06, about $1)", "Causal-Copilot on a second model, BND-08 grid"),
+          ("Live", "cc.ps1 probebatch ab06 live [causaliq|matmcd|vashishtha|pywhyllm] (AB-06, about $58 in all, total cap $60; stub first)", "the field audit of the four agents, cheapest first"),
+          ("Get", "Bayesys results_noisyPaper.xlsx into external\\bayesys (AB-02)", "the reproduction gate before any claim on the published Bayesys numbers"),
+          ("Ask", "Course staff: do the AB-10 interviews need an IRB determination?", "docs/interviews/human_subjects_check.md")] if any(b["id"] == "AB-05" for b in AB) else []
 qrows = "".join(f'<li style="display: grid; grid-template-columns: 58px 1fr; gap: 8px"><span style="font-family: {MONO}; font-size: 12px; font-weight: 600; color: #8E2A2A">{k}</span><span>{t}<br><span style="color: #4E5751; font-size: 13px">{w}</span></span></li>' for k, t, w in QUEUE)
 queue = f"""<section style="flex: 1 1 420px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 10px">
 {tag("Waiting on you", "#8E2A2A")}
 <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 20px">{qrows}</ol>
 </section>"""
 
+
+# ---- audit program (plans/audit_dag.json, approved 2026-10-12): three tracks, columns = dependency depth
+A_LANES = [("research", "Research", "scoreboards, engines, agents, theory", "#1D5C99", "#F7FAFD"),
+           ("commercial", "Commercial", "buyers, vendors, rules", "#7A4BA8", "#FAF8FD"),
+           ("wedge", "Wedge", "decide, then write", "#9A4A0E", "#FFFAF5")]
+A_POS = {"AB-01": (0, 0), "AB-03": (0, 1), "AB-05": (0, 2), "AB-09": (0, 3), "AB-02": (1, 0), "AB-04": (1, 1), "AB-07": (1, 2),
+         "AB-06": (2, 0), "AB-08": (2, 1), "AB-10": (0, 0), "AB-13": (0, 1), "AB-14": (1, 0), "AB-11": (2, 0), "AB-12": (2, 1),
+         "AB-15": (0, 0), "AB-16": (3, 0), "AB-17": (4, 0)}
+ACH = 118
+A_HEAD = ["No blockers", "After AB-01 / AB-10", "After AB-04 / AB-05", "Decision gate", "Paper"]
+
+
+def acard(x, y, b):
+    st = b["status"]
+    done = sum(1 for t in b["closes"] if item(t)["status"] == "done") if b["closes"] else 0
+    txt = {"done": "done", "in_progress": "in progress", "blocked": "waits on you"}.get(st, "to do")
+    live = " · LIVE" if (b.get("llm_cost") or "none") != "none" else ""
+    bg, bd, fg, style = STATUS[STATUS_OF.get(st, "todo")]
+    return f"""<div style="position: absolute; left: {x}px; top: {y}px; width: {CW}px; height: {ACH}px; box-sizing: border-box; padding: 7px 10px; background: {bg}; border: 1.5px {style} {bd}; border-radius: 8px; display: flex; flex-direction: column; gap: 2px; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px"><span style="font-family: {MONO}; font-size: 12px; line-height: 16px; font-weight: 600; color: {fg}">{b["id"]}{live}</span><span style="font-size: 11px; line-height: 16px; font-weight: 600; color: {fg}">{txt}</span></div>
+<span style="font-size: 13px; line-height: 17px; font-weight: 600">{html_escape(short_title(b["title"]))}</span>
+<span style="font-size: 11px; line-height: 15px; color: #4E5751">{html_escape(b["note"])}</span>
+</div>"""
+
+
+def short_title(t):
+    import re as _re
+    t = _re.sub(r"^LIVE( \(small\))?: ", "", t)
+    return t.split(":")[0][:48]
+
+
+def html_escape(x):
+    import html as _h
+    return _h.escape(x or "")
+
+
+aparts, top = [], 44
+for i, h in enumerate(A_HEAD):
+    aparts.append(f'<div style="position: absolute; left: {CX[i]}px; top: 12px; width: {CW}px; font-size: 13px; line-height: 17px"><b>{h}</b></div>')
+for key, name, sub, col, bg in A_LANES:
+    lane = [b for b in AB if b.get("track") == key]
+    rows = 1 + max((A_POS[b["id"]][1] for b in lane), default=0)
+    h = rows * (ACH + 10) + 14
+    aparts.append(f'<div style="position: absolute; left: 0; top: {top}px; width: {HOST_W}px; height: {h}px; background: {bg}; border-top: 1px solid #E3E6E0"></div>')
+    aparts.append(f'<div style="position: absolute; left: 16px; top: {top + 12}px; width: 136px; display: flex; flex-direction: column; gap: 2px">{tag(name, col)}<span style="font-size: 13px; line-height: 17px; color: #4E5751">{sub}</span></div>')
+    for b in lane:
+        c, r = A_POS[b["id"]]
+        aparts.append(acard(CX[c], top + 8 + r * (ACH + 10), b))
+    top += h
+audit_host = f"""<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #C9CEC6; border-radius: 12px">
+<div style="position: relative; width: {HOST_W}px; height: {top + 8}px">
+{chr(10).join(aparts)}
+</div>
+</div>"""
+audit_intro = '<div style="display: flex; flex-direction: column; gap: 6px">' + h2("Audit program: %d bundles, %d done, %d in progress, %d waiting on you" % (
+    len(AB), sum(b["status"] == "done" for b in AB), sum(b["status"] == "in_progress" for b in AB), sum(b["status"] == "blocked" for b in AB))) + '<p style="margin: 0; max-width: 900px; font-size: 15px; line-height: 22px; color: #2C3631">%s</p></div>' % (
+    "Approved 12 Oct (plans/audit_dag.json). It runs beside the Q1 plan and ends in the wedge decision (AB-16). LIVE bundles spend API credit and are run by you; every other bundle is free compute or desk work. The card note is the bundle's current result.")
+
 body = "\n".join([
-    title_block("%d bundles, and the pieces of the ledger with no bundle yet" % len(SNAP["bundles"]),
+    title_block("%d Q1 bundles, and the pieces of the ledger with no bundle yet" % len(Q1B),
                 "Bundles are how the theses get done. Each lane is a pillar from Level 3; red dashed cards are work a thesis needs that the Q1 plan does not yet schedule."),
     legend, host,
     f'<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">{detail}{queue}</div>',
-    footer("%d of %d bundles are done and %d are in progress, almost all in measurement. Refinement v2 (BND-11) is ready and waits on free jobs and one run under $1." % (sum(b["status"] == "done" for b in SNAP["bundles"]), len(SNAP["bundles"]), sum(b["status"] == "in_progress" for b in SNAP["bundles"])),
+    audit_intro, audit_host,
+    footer("%d of %d Q1 bundles are done and %d are in progress, almost all in measurement. Refinement v2 (BND-11) is ready and waits on free jobs and one run under $1." % (sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "in_progress" for b in Q1B)),
            "run the free jobs, settle DLV-02 and DEC-01/02, then decide whether the ledger kernel becomes a Q1 bundle so the 2 Nov checkpoint moves us into the thesis cell.",
            "Stages.dc.html", "Zoom into one run"),
 ])

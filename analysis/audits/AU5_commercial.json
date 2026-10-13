@@ -1,0 +1,935 @@
+{
+ "audit": "AU5",
+ "tickets": "AUD-22, STR-06",
+ "question": "Who sells or buys causal discovery and causal analysis today, for which decisions, with what claimed guarantees, at what price model, and where does it fail in practice? Which guarantee (accuracy, calibrated uncertainty, abstention, provenance/audit trail, speed, cost) do buyers actually pay for?",
+ "written": "2026-10-12",
+ "schema": {
+  "id": "row id C01..",
+  "kind": "product | case study | use case | deployed system (paper) | research for industry | buyer evidence | evaluation evidence | market evidence | market estimate",
+  "name": "product or use case",
+  "vendor": "company or authors",
+  "sector": "industry",
+  "decision_supported": "the decision the output feeds",
+  "method_family": "discovery / effect estimation / both / RCA (with a short note on where the graph comes from)",
+  "uses_llm": "yes / no / unknown, with note",
+  "claimed_guarantee_or_accuracy": "labelled `claim (vendor)`, `reported` (authors' own paper/table) or `second-hand`",
+  "pricing_model": "if public; labelled",
+  "adoption_evidence": "customers, funding, case studies; type labelled",
+  "failure_or_criticism": "with source in the sources list",
+  "sources": "URLs, all read 2026-10-12"
+ },
+ "rows": [
+  {
+   "id": "C01",
+   "kind": "product",
+   "name": "decisionOS (G-Cloud 14 listing)",
+   "vendor": "causaLens",
+   "sector": "cross-sector (finance, government, retail, manufacturing)",
+   "decision_supported": "KPI driver analysis, scenario simulation, pricing/promotion, fairness checks in lending and recruitment",
+   "method_family": "both (human-guided causal discovery + effect/scenario estimation)",
+   "uses_llm": "yes (listing names a generative-AI copilot)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): automatically identifies cause-and-effect relationships for KPIs; 'Accelerating time from data to value 3 to 10 times'. Only contractual guarantees on the page are service-level: 99% monthly uptime, 5% service credit per 4h+ outage. No guarantee of model accuracy.",
+   "pricing_model": "claim (vendor) list price: GBP 240,000 per licence per year; 2-week free trial on example data only",
+   "adoption_evidence": "claim (vendor): $45m Series A (Dorilton, Molten Ventures), Aviva and TIAA named as users, revenue growth >500% after leaving stealth in Jan 2021",
+   "failure_or_criticism": "Observed: causaLens homepage (read today) no longer mentions decisionOS; it sells LLM 'Digital Workers' (see C02). Case studies give value figures without accuracy metrics (see C03).",
+   "sources": [
+    "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/services/374127438578607",
+    "https://causalens.com/causal-ai/startup-series-a-funding-round-45-million",
+    "https://causalens.com/"
+   ]
+  },
+  {
+   "id": "C02",
+   "kind": "product",
+   "name": "Digital Workers (Blueprints, Digital Worker Factory, System of Work)",
+   "vendor": "causaLens",
+   "sector": "cross-sector (financial services, pharma services, marketing)",
+   "decision_supported": "automating repetitive knowledge workflows; 'causal-driven answers'",
+   "method_family": "unknown (marketing says workers 'reason via causation'; no method stated)",
+   "uses_llm": "yes (multi-agent systems)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): '5x ROI in year one'; financial services: 'guaranteed ROI and audit-ready reliability'; compliance tagline 'Always Accurate'; governance layer with audit trails and automated evaluation",
+   "pricing_model": "not public (book a demo)",
+   "adoption_evidence": "claim (vendor): logos/quotes from Johnson & Johnson, McCann Worldgroup, DANA Indonesia, Syneos Health, Cisco, Croud",
+   "failure_or_criticism": "No evidence offered for 'Always Accurate' or guaranteed ROI on the page. The pivot itself is a signal: the best-known causal-AI pure play now leads with LLM agents plus audit trails, not with causal discovery.",
+   "sources": [
+    "https://causalens.com/"
+   ]
+  },
+  {
+   "id": "C03",
+   "kind": "case study",
+   "name": "Manufacturing root-cause case study (commodity manufacturer)",
+   "vendor": "causaLens",
+   "sector": "manufacturing",
+   "decision_supported": "find components behind machine instabilities (tens of faults per week) to cut downtime",
+   "method_family": "both (time-series causal model + RCA engine; whether the graph was learned or specified is not stated)",
+   "uses_llm": "no (not mentioned)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'over $15 million through reduced production downtime'; no accuracy, precision or baseline",
+   "pricing_model": "n/a",
+   "adoption_evidence": "case study type: vendor-hosted, anonymised customer ($20bn commodity manufacturer)",
+   "failure_or_criticism": "No method detail or metric; value figure not verifiable.",
+   "sources": [
+    "https://causalens.com/causal-ai/customer-case-study-manufacturing-root-cause-analysis"
+   ]
+  },
+  {
+   "id": "C04",
+   "kind": "product",
+   "name": "CauseWay / PathWay (incl. PathWay for Rail - Delay Attribution)",
+   "vendor": "Geminos Software",
+   "sector": "rail operations; general enterprise",
+   "decision_supported": "delay attribution under railway rules (DAPR); root causes and what-if scenarios",
+   "method_family": "both (causal knowledge graphs; LLM-assisted causal discovery per analyst interview)",
+   "uses_llm": "yes (LLM-assisted discovery; 'Causal RAG')",
+   "claimed_guarantee_or_accuracy": "claim (vendor): causal reasoning gives better operational decisions than summaries; no accuracy figure. Rail product covers about 40% of attribution scenarios at first deployment.",
+   "pricing_model": "not public; 'priced below' traditional enterprise projects; tools licensable",
+   "adoption_evidence": "claim (vendor): built with Great Western Railway, entering production June 2026; IBM watsonx integration. second-hand: analyst piece names no customers",
+   "failure_or_criticism": "Analyst piece is an interview with the CEO; no independent results.",
+   "sources": [
+    "https://raillive.org.uk/exhibitor-news/geminos-software-launches-geminos-pathway-working-ai-applications-days-production-ready-systems-weeks",
+    "https://thecuberesearch.com/ai-that-knows-why/"
+   ]
+  },
+  {
+   "id": "C05",
+   "kind": "product",
+   "name": "Causely causal reasoning platform",
+   "vendor": "Causely",
+   "sector": "IT operations / SRE",
+   "decision_supported": "identify root cause of service incidents and feed 'deterministic causal context' to AI agents (MCP server)",
+   "method_family": "RCA (live causal model of services, dependencies and 'known failure paths'; construction method not published)",
+   "uses_llm": "unknown internally; designed as context for LLM agents",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'zero hallucinations', '100% fault accuracy', -63% time to answer, -48% tokens. reported (vendor-authored arXiv 2605.18327): on a 24-microservice OpenTelemetry demo with injected faults, 4 agent setups, diagnosis accuracy 75% -> 100% with Causely, time-to-diagnosis -63%, tokens -60%, cost per run -57%",
+   "pricing_model": "claim (vendor): Professional $2,000/month for up to 500 services; Enterprise custom; 30-day trial",
+   "adoption_evidence": "claim (vendor): $8.8M seed (645 Ventures lead, June 2023), >$11M total; Gartner 'Cool Vendor for AI in IT Operations' (Dec 2025); logos incl. Unity, Cisco",
+   "failure_or_criticism": "Self-evaluation on one demo application with injected faults; no independent benchmark found.",
+   "sources": [
+    "https://www.causely.ai/",
+    "https://www.causely.ai/pricing",
+    "https://arxiv.org/abs/2605.18327",
+    "https://www.businesswire.com/news/home/20230629773124/en/Causely-Raises-8.8M-in-Seed-Funding-to-Deliver-IT-Industry%E2%80%99s-First-Causal-AI-Platform",
+    "https://www.businesswire.com/news/home/20251210385356/en"
+   ]
+  },
+  {
+   "id": "C06",
+   "kind": "product",
+   "name": "Davis causal AI / Dynatrace Intelligence root-cause analysis",
+   "vendor": "Dynatrace",
+   "sector": "IT operations / observability",
+   "decision_supported": "group anomalies into one problem, rank root-cause contributors, drive automated remediation",
+   "method_family": "RCA (fault-tree analysis over the Smartscape dependency topology; topology is declared/observed, not learned by discovery)",
+   "uses_llm": "separate natural-language assistant; RCA itself not LLM",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'answers, not guesses' from deterministic causal AI; docs speak of the 'most probable root cause'; no accuracy number",
+   "pricing_model": "not read",
+   "adoption_evidence": "second-hand (Omdia analyst, Feb 2026): differentiation resonates with enterprises",
+   "failure_or_criticism": "Docs admit duplicate problems for the same root cause at detection time (accepted to keep alerts fast), fixed merge windows (90 min, 5 min). Analyst: needs proof that Smartscape maps dependencies customers cannot see elsewhere; too early to judge autonomous operation.",
+   "sources": [
+    "https://www.dynatrace.com/platform/artificial-intelligence/",
+    "https://docs.dynatrace.com/docs/dynatrace-intelligence/root-cause-analysis/concepts",
+    "https://www.techtarget.com/searchapparchitecture/tip/Dynatrace-bets-on-causal-intelligence-for-AI-observability"
+   ]
+  },
+  {
+   "id": "C07",
+   "kind": "product",
+   "name": "Watchdog Root Cause Analysis",
+   "vendor": "Datadog",
+   "sector": "IT operations / APM",
+   "decision_supported": "find originating service and user impact of an incident",
+   "method_family": "RCA (causal links between symptoms across services; method not published)",
+   "uses_llm": "no (2022 release)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'often solves in minutes' what takes hours or days; no accuracy",
+   "pricing_model": "bundled with APM (no separate price read)",
+   "adoption_evidence": "case study type: one customer quote (Cvent) in press release, April 2022",
+   "failure_or_criticism": "No independent measurement.",
+   "sources": [
+    "https://www.datadoghq.com/about/latest-news/press-releases/datadog-expands-its-watchdog-ai-engine-with-root-cause-analysis-and-log-anomaly-detection/"
+   ]
+  },
+  {
+   "id": "C08",
+   "kind": "product",
+   "name": "Bits AI SRE / Bits Investigation",
+   "vendor": "Datadog",
+   "sector": "IT operations / SRE",
+   "decision_supported": "autonomous incident investigation: propose root-cause hypotheses, test each with telemetry queries",
+   "method_family": "RCA (LLM agent hypothesis-test loop, not a causal graph)",
+   "uses_llm": "yes",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'decrease time to resolution by up to 95%'; internal benchmark of labelled real incidents scored by an LLM judge aligned with human judgement; no pass rate in text",
+   "pricing_model": "claim (vendor): about 6.5 AI credits per investigation; $1.00/credit on annual plan, $1.30 on demand (about $6.50-8.45 per investigation)",
+   "adoption_evidence": "claim (vendor): benchmark labelled by 'hundreds of teams'",
+   "failure_or_criticism": "Vendor blog admits earlier versions returned wrong root causes when distracted by suspicious signals and stopped at surface causes (OOM kills instead of large payloads).",
+   "sources": [
+    "https://www.datadoghq.com/blog/building-bits-ai-sre/",
+    "https://www.datadoghq.com/pricing/?product=bits-ai-sre"
+   ]
+  },
+  {
+   "id": "C09",
+   "kind": "product",
+   "name": "Intelligent RCA (iRCA), preview",
+   "vendor": "New Relic",
+   "sector": "IT operations / observability",
+   "decision_supported": "separate probable root cause from cascading symptoms",
+   "method_family": "RCA (topology graph + 'causal models' + path-based ranking)",
+   "uses_llm": "not mentioned",
+   "claimed_guarantee_or_accuracy": "claim (vendor): root cause 'in seconds instead of hours', 'high-accuracy'; no numbers, no evaluation described",
+   "pricing_model": "not read",
+   "adoption_evidence": "announced Feb 2026 (preview)",
+   "failure_or_criticism": "No benchmark or method detail.",
+   "sources": [
+    "https://newrelic.com/blog/ai/intelligent-rca-accurately-pinpoints-root-cause-in-seconds"
+   ]
+  },
+  {
+   "id": "C10",
+   "kind": "product",
+   "name": "Instana root cause identification (RCI)",
+   "vendor": "IBM",
+   "sector": "IT operations / observability",
+   "decision_supported": "rank components most likely responsible for a failure in distributed systems",
+   "method_family": "RCA (Beta-Binomial health model over request traces and dependency topology; Pearl-style framing; no training)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported (IBM authors, arXiv 2502.18240): root cause identified in about 90% of cases in internal production-scale experiments; authors estimate MTTR reduction of at least 80%; reports low confidence when telemetry is sparse instead of guessing",
+   "pricing_model": "not read",
+   "adoption_evidence": "reported: GA planned early 2025; internal case: faulty networking switch found in <5 min vs >12 h manual",
+   "failure_or_criticism": "Internal experiments only; no external benchmark.",
+   "sources": [
+    "https://arxiv.org/abs/2502.18240v1"
+   ]
+  },
+  {
+   "id": "C11",
+   "kind": "deployed system (paper)",
+   "name": "Groot event-graph RCA",
+   "vendor": "large e-commerce company (authors' description: >185M active buyers/year)",
+   "sector": "IT operations / SRE",
+   "decision_supported": "root cause of production incidents across about 5,000 services",
+   "method_family": "RCA (rule-based event causality graph; SRE-written rules, not learned)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported: 952 labelled production incidents over 15 months, 78% top-1, 95% top-3",
+   "pricing_model": "n/a (internal)",
+   "adoption_evidence": "reported: deployed and used by the SRE team",
+   "failure_or_criticism": "Rules must be maintained by engineers; accuracy is in-house.",
+   "sources": [
+    "https://arxiv.org/abs/2108.00344"
+   ]
+  },
+  {
+   "id": "C12",
+   "kind": "research for industry",
+   "name": "Telecom alarm root-cause discovery (HPCI + CPBE) and EvoCause",
+   "vendor": "authors overlapping with Huawei telecom work (affiliations not shown on abs pages read)",
+   "sector": "telecom network operations",
+   "decision_supported": "find root-cause alarms in real-time alarm streams",
+   "method_family": "discovery (Hawkes process + CI tests to learn alarm causal graph) then RCA; EvoCause: LLM edits a PC graph using past expert diagnoses",
+   "uses_llm": "EvoCause yes (offline graph edits only)",
+   "claimed_guarantee_or_accuracy": "reported (EvoCause, arXiv 2607.27290): from PC start, Node F1 +11.59, Case EM +9.40 on synthetic data; on TeleRCA (485,681 production alarm events) replacing alarm titles with anonymous IDs lowers Node F1 by 6.12 and Case EM by 8.04 points. HPCI (arXiv 2105.03092): 'significant improvement' over baselines, no numbers on abs page",
+   "pricing_model": "n/a",
+   "adoption_evidence": "reported: TeleRCA comes from a production telecom network; no deployment described on pages read",
+   "failure_or_criticism": "EvoCause depends on alarm names (semantic leakage of the same kind our Causal-Copilot name-swap test measures).",
+   "sources": [
+    "https://arxiv.org/abs/2105.03092v1",
+    "https://arxiv.org/abs/2607.27290"
+   ]
+  },
+  {
+   "id": "C13",
+   "kind": "product",
+   "name": "Model-monitoring 'root cause analysis'",
+   "vendor": "Fiddler AI",
+   "sector": "ML model monitoring",
+   "decision_supported": "why a deployed model's performance or drift changed",
+   "method_family": "not causal (feature attribution, distribution comparison, data-integrity checks)",
+   "uses_llm": "no (for this feature)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): actionable insights; the article does not claim causal inference",
+   "pricing_model": "not read",
+   "adoption_evidence": "n/a",
+   "failure_or_criticism": "Included to mark the boundary: 'RCA' in ML monitoring is attribution, not causal analysis.",
+   "sources": [
+    "https://www.fiddler.ai/blog/find-the-root-cause-of-model-issues-with-actionable-insights"
+   ]
+  },
+  {
+   "id": "C14",
+   "kind": "product",
+   "name": "DoWhy graphical causal model (gcm) module: RCA of outliers and distribution changes",
+   "vendor": "Amazon (AWS) / PyWhy",
+   "sector": "supply chain, cloud operations (internal)",
+   "decision_supported": "attribute anomalies and KPI shifts to causal mechanisms (Shapley-based)",
+   "method_family": "both (effect/attribution given a graph; structure learning available)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "claim (vendor): used internally by teams 'ranging from' Supply Chain to AWS; no accuracy",
+   "pricing_model": "free (open source)",
+   "adoption_evidence": "claim (vendor): internal Amazon use; DoWhy open-source library",
+   "failure_or_criticism": "Graph source for RCA not specified in the post.",
+   "sources": [
+    "https://www.amazon.science/blog/aws-contributes-novel-causal-machine-learning-algorithms-to-dowhy"
+   ]
+  },
+  {
+   "id": "C15",
+   "kind": "internal use (paper)",
+   "name": "End-to-end causal attribution framework for supply-chain operations",
+   "vendor": "Amazon (authors)",
+   "sector": "supply chain",
+   "decision_supported": "root-cause attribution, intervention and counterfactual analysis for a supply-chain KPI",
+   "method_family": "discovery (PC on observational data) + effect estimation (DoWhy GCM SCMs)",
+   "uses_llm": "partly (an LLM-guided DAG is one baseline)",
+   "claimed_guarantee_or_accuracy": "reported (KDD 2025 Workshop on AI for Supply Chain, abstract): DAGs validated by falsification tests, SCMs by mechanism/fit checks; 'more robust and nuanced attribution' than rule-based models; no numbers in abstract",
+   "pricing_model": "n/a (internal)",
+   "adoption_evidence": "reported: applied to a supply-chain KPI using representative metrics",
+   "failure_or_criticism": "Abstract only; no graph accuracy reported. One of few documented commercial uses where the learned graph itself is relied on.",
+   "sources": [
+    "https://www.amazon.science/publications/an-end-to-end-causal-modeling-framework-for-advanced-attribution-in-supply-chain-operations"
+   ]
+  },
+  {
+   "id": "C16",
+   "kind": "product",
+   "name": "Responsible AI dashboard: causal analysis component",
+   "vendor": "Microsoft (Azure Machine Learning)",
+   "sector": "cross-sector",
+   "decision_supported": "effect of a feature on an outcome; which cohorts benefit from a treatment",
+   "method_family": "effect estimation (EconML double ML; requires all confounders observed)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "claim (vendor): DML gives small MSE, asymptotic normality and confidence intervals; discovery delegated to Causica",
+   "pricing_model": "part of Azure ML (no separate price read)",
+   "adoption_evidence": "not stated",
+   "failure_or_criticism": "Assumes no unobserved confounding; no discovery.",
+   "sources": [
+    "https://learn.microsoft.com/en-us/azure/machine-learning/concept-causal-inference?view=azureml-api-2"
+   ]
+  },
+  {
+   "id": "C17",
+   "kind": "product",
+   "name": "ShowWhy (no-code causal analysis incl. causal discovery)",
+   "vendor": "Microsoft (research project)",
+   "sector": "cross-sector",
+   "decision_supported": "no-code exposure analysis, event analysis (synthetic DiD), causal discovery (Causica, NOTEARS, DirectLiNGAM)",
+   "method_family": "both",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "none stated",
+   "pricing_model": "free (MIT)",
+   "adoption_evidence": "research project",
+   "failure_or_criticism": "Archived 17 Dec 2025, 'no longer maintained'.",
+   "sources": [
+    "https://github.com/microsoft/showwhy"
+   ]
+  },
+  {
+   "id": "C18",
+   "kind": "product",
+   "name": "Causica (DECI)",
+   "vendor": "Microsoft Research",
+   "sector": "cross-sector (library)",
+   "decision_supported": "end-to-end discovery plus ATE/CATE from observational data",
+   "method_family": "both",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "none stated",
+   "pricing_model": "free (open source)",
+   "adoption_evidence": "no releases listed on repo page",
+   "failure_or_criticism": "Repo notes heavy refactor and removed models.",
+   "sources": [
+    "https://github.com/microsoft/causica"
+   ]
+  },
+  {
+   "id": "C19",
+   "kind": "product",
+   "name": "CausalImpact",
+   "vendor": "Google",
+   "sector": "advertising, policy evaluation",
+   "decision_supported": "effect of an intervention on a time series (campaign, policy)",
+   "method_family": "effect estimation (Bayesian structural time-series synthetic control)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported: posterior intervals for counterfactual (Brodersen et al., arXiv 1506.00356, DOI 10.1214/14-AOAS788)",
+   "pricing_model": "free (open source)",
+   "adoption_evidence": "widely used open-source R package (no adoption figure read)",
+   "failure_or_criticism": "Abs page does not state assumptions; validity rests on control series unaffected by the intervention (standard for the design; not verified from text read).",
+   "sources": [
+    "https://arxiv.org/abs/1506.00356"
+   ]
+  },
+  {
+   "id": "C20",
+   "kind": "product",
+   "name": "Meridian",
+   "vendor": "Google",
+   "sector": "marketing measurement",
+   "decision_supported": "cross-channel budget allocation (MMM)",
+   "method_family": "effect estimation (Bayesian MMM; experiment results as priors)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "claim (vendor): calibrate with incrementality experiments as priors; accounts for reach and frequency",
+   "pricing_model": "free (open source); partner services may cost",
+   "adoption_evidence": "claim (vendor): tested with 'hundreds of brands'; 20+ certified measurement partners; case study Finder",
+   "failure_or_criticism": "No independent validation in launch post.",
+   "sources": [
+    "https://blog.google/products/ads-commerce/meridian-marketing-mix-model-open-to-everyone/"
+   ]
+  },
+  {
+   "id": "C21",
+   "kind": "product",
+   "name": "Robyn",
+   "vendor": "Meta Marketing Science",
+   "sector": "marketing measurement",
+   "decision_supported": "channel efficiency, adstock, saturation, budget allocation (MMM)",
+   "method_family": "effect estimation (ridge regression + evolutionary hyperparameter search)",
+   "uses_llm": "Python port translated from R with LLM help (README)",
+   "claimed_guarantee_or_accuracy": "none (project self-described as 'experimental')",
+   "pricing_model": "free (MIT)",
+   "adoption_evidence": "reported: 1.5k GitHub stars, 434 forks",
+   "failure_or_criticism": "Python version is beta and may have bugs.",
+   "sources": [
+    "https://github.com/facebookexperimental/Robyn"
+   ]
+  },
+  {
+   "id": "C22",
+   "kind": "product",
+   "name": "CausalML",
+   "vendor": "Uber (open source)",
+   "sector": "marketing / growth",
+   "decision_supported": "campaign targeting, personalised engagement (uplift)",
+   "method_family": "effect estimation (uplift / heterogeneous effects)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "none stated",
+   "pricing_model": "free (open source)",
+   "adoption_evidence": "reported: about 6.0k GitHub stars; KDD 2021 tutorial on industrial use cases at Microsoft, TripAdvisor, Uber",
+   "failure_or_criticism": "Repo does not describe Uber's own decisions.",
+   "sources": [
+    "https://github.com/uber/causalml",
+    "https://arxiv.org/abs/2002.11631"
+   ]
+  },
+  {
+   "id": "C23",
+   "kind": "product",
+   "name": "Haus (GeoLift experiments, Causal MMM, Causal Attribution, 'Architect' agent)",
+   "vendor": "Haus",
+   "sector": "marketing measurement",
+   "decision_supported": "which channels are incremental; budget reallocation",
+   "method_family": "effect estimation (geo experiments, synthetic control; MMM anchored on experiments)",
+   "uses_llm": "yes (Architect agent)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): experiments as ground truth for MMM; synthetic-control method '4x more precise' than matched-market tests; 'scientifically sound'",
+   "pricing_model": "second-hand (Vendr): median annual contract $150,000 (range $132k-168k); tiers Basics/Core/Plus, annual billing",
+   "adoption_evidence": "claim (vendor): $20M led by 01 Advisors (July 2024), Insight Partners; StockX, OluKai mentioned in posts",
+   "failure_or_criticism": "No independent validation read.",
+   "sources": [
+    "https://haus.io/blog/haus-announces-20m-raise-led-by-01-advisors",
+    "https://vendr.com/marketplace/haus-analytics"
+   ]
+  },
+  {
+   "id": "C24",
+   "kind": "product",
+   "name": "Recast (Bayesian MMM + GeoLift)",
+   "vendor": "Recast",
+   "sector": "marketing measurement",
+   "decision_supported": "budget allocation and forecasting",
+   "method_family": "effect estimation (Bayesian MMM validated by out-of-sample forecasts and lift tests)",
+   "uses_llm": "no (not mentioned)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): '95%+' predictive accuracy against real outcomes; 'Model holdout accuracy 94.4%'; weekly out-of-sample checks published in platform; 'No vendor smoke screens'",
+   "pricing_model": "not published; second-hand (CostBench, 40% confidence) estimate $5k-50k/month for the tier; GeoLift about $100/month",
+   "adoption_evidence": "claim (vendor): logos Rocket Money, Canva, Cash App, Hasbro; case studies PODS, Harry's, GetYourGuide",
+   "failure_or_criticism": "Vendor's own post: no MMM can guarantee being right; recommends backtests and experiment alignment. Forecast accuracy is not effect accuracy.",
+   "sources": [
+    "https://getrecast.com/",
+    "https://getrecast.com/validation/",
+    "https://getrecast.com/why-every-marketing-mix-model-should-be-treated-with-skepticism-including-recasts",
+    "https://costbench.com/software/marketing-attribution/recast"
+   ]
+  },
+  {
+   "id": "C25",
+   "kind": "product",
+   "name": "Lifesight unified marketing measurement + Lifesight MCP",
+   "vendor": "Lifesight",
+   "sector": "marketing measurement",
+   "decision_supported": "budget reallocation, board briefings via Claude/ChatGPT",
+   "method_family": "effect estimation (MMM + geo incrementality + incrementality-adjusted attribution)",
+   "uses_llm": "yes (MCP into Claude and ChatGPT)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): insight-to-decision 'from weeks to minutes'; every query logged in an audit trail; read-only at launch",
+   "pricing_model": "not public",
+   "adoption_evidence": "claim (vendor): >300 brands, >$4B marketing spend managed (June 2026)",
+   "failure_or_criticism": "No accuracy evidence in release.",
+   "sources": [
+    "https://www.newsfilecorp.com/release/300944/Lifesight-Launches-MCP-to-Bring-Unified-Marketing-Measurement-Directly-Into-Claude-and-ChatGPT"
+   ]
+  },
+  {
+   "id": "C26",
+   "kind": "use case",
+   "name": "Marketing mix modelling as practised (buyer use case)",
+   "vendor": "many (in-house, agencies, vendors)",
+   "sector": "marketing",
+   "decision_supported": "channel ROAS and budget split",
+   "method_family": "effect estimation (observational regression with adstock/saturation)",
+   "uses_llm": "varies",
+   "claimed_guarantee_or_accuracy": "second-hand: EMARKETER/TransUnion survey (July 2025): 46.9% of US marketers plan more MMM investment; 27.6% name MMM most reliable; 52% use incrementality tests",
+   "pricing_model": "varies",
+   "adoption_evidence": "second-hand survey (see claim)",
+   "failure_or_criticism": "second-hand (news report of preprint arXiv 2608.21128, simulation): standard MMM estimated paid-search ROAS 10.61x vs true 4.20x, 90% interval excluded the truth; geo-experiment structural estimate 4.14x with covering interval. Abstract itself gives no numbers.",
+   "sources": [
+    "https://www.emarketer.com/content/mmm--incrementality--other-measurement-trends-that-will-define-2026",
+    "https://www.relevantaudience.com/analytics/mmm-overstates-paid-search-roas-preprint/",
+    "https://arxiv.org/abs/2608.21128"
+   ]
+  },
+  {
+   "id": "C27",
+   "kind": "product",
+   "name": "Statsig (experimentation platform)",
+   "vendor": "Statsig, acquired by OpenAI",
+   "sector": "product experimentation",
+   "decision_supported": "ship/no-ship decisions from A/B tests",
+   "method_family": "effect estimation (randomised experiments)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "none read",
+   "pricing_model": "not read",
+   "adoption_evidence": "second-hand: OpenAI acquisition for $1.1B, announced Sept 2025 (news report)",
+   "failure_or_criticism": "n/a",
+   "sources": [
+    "https://aibusiness.com/generative-ai/openai-acquires-startup-for-1-1b-hires-ceo"
+   ]
+  },
+  {
+   "id": "C28",
+   "kind": "product",
+   "name": "Eppo (experimentation platform)",
+   "vendor": "Eppo, acquired by Datadog",
+   "sector": "product experimentation",
+   "decision_supported": "A/B test analysis",
+   "method_family": "effect estimation (randomised experiments)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "none read",
+   "pricing_model": "not read",
+   "adoption_evidence": "second-hand: Datadog acquisition May 2025, reported about $220M (competitor blog notes no press release on price)",
+   "failure_or_criticism": "n/a",
+   "sources": [
+    "https://statsig.com/blog/datadog-acquires-eppo"
+   ]
+  },
+  {
+   "id": "C29",
+   "kind": "product",
+   "name": "REFS causal AI / Gemini Digital Twins",
+   "vendor": "Aitia (formerly GNS Healthcare)",
+   "sector": "pharma R&D",
+   "decision_supported": "therapeutic targets and biomarkers from clinical + omics data",
+   "method_family": "discovery (causal models learned from multi-omics and clinical data, then simulated)",
+   "uses_llm": "not stated",
+   "claimed_guarantee_or_accuracy": "claim (vendor): uncovers 'true disease mechanisms and therapeutic targets'; no accuracy",
+   "pricing_model": "deal terms undisclosed",
+   "adoption_evidence": "claim (vendor): Ono Pharmaceutical partnership for neurology, 2 Sept 2026 (exclusive worldwide option)",
+   "failure_or_criticism": "No validation evidence in release.",
+   "sources": [
+    "https://www.ono-pharma.com/en/news/20260902.html"
+   ]
+  },
+  {
+   "id": "C30",
+   "kind": "product",
+   "name": "Aetion Evidence Platform",
+   "vendor": "Aetion (acquired by Datavant)",
+   "sector": "pharma, payers, regulators (real-world evidence)",
+   "decision_supported": "regulatory submissions, market access, safety and effectiveness from claims/EHR data",
+   "method_family": "effect estimation (epidemiologic designs, causal inference)",
+   "uses_llm": "'purpose-built AI' (unspecified)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): 'transparent and reproducible RWE accepted by global regulators, including the FDA and EMA'; 'auditable' platform",
+   "pricing_model": "not public",
+   "adoption_evidence": "second-hand: Datavant acquisition announced May 2025 (price not stated); investors NEA, Warburg Pincus",
+   "failure_or_criticism": "No named decisions in release.",
+   "sources": [
+    "https://www.businesswire.com/news/home/20250515882812/en/Datavant-to-Acquire-Aetion-Empowering-Healthcare-and-Life-Sciences-Organizations-to-Generate-High-Quality-Scalable-Real-World-Evidence-from-Connected-Privacy-Protected-Data"
+   ]
+  },
+  {
+   "id": "C31",
+   "kind": "use case / validation study",
+   "name": "RCT-DUPLICATE (trial emulation from claims data)",
+   "vendor": "Brigham and Women's / FDA-funded consortium (Wang, Schneeweiss et al.)",
+   "sector": "pharma regulatory science",
+   "decision_supported": "can database studies reproduce RCT conclusions",
+   "method_family": "effect estimation (target-trial emulation)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "second-hand: 32 trials emulated; correlation of estimates r=0.82 overall, 0.93 where design closely emulated, 0.53 otherwise (JAMA 2023;329(16):1376-85)",
+   "pricing_model": "n/a",
+   "adoption_evidence": "reported: regulator-funded study",
+   "failure_or_criticism": "Agreement weak where design elements could not be emulated; sample skewed to cardiovascular trials.",
+   "sources": [
+    "https://becarispublishing.com/digital-content/blog-post/can-real-world-evidence-studies-replicate-results-randomized-clinical-trials-insights",
+    "https://cytel.com/perspectives/reflections-on-the-rct-duplicate-study-and-increasing-confidence-in-real-world-evidence/"
+   ]
+  },
+  {
+   "id": "C32",
+   "kind": "product",
+   "name": "PROCOVA (prognostic covariate adjustment with digital twins)",
+   "vendor": "Unlearn",
+   "sector": "pharma clinical trials",
+   "decision_supported": "smaller or more powerful Phase 2/3 RCTs",
+   "method_family": "effect estimation (ANCOVA with ML prognostic score inside a randomised trial)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "regulator: EMA qualification opinion 20 Sept 2022; FDA (per vendor post) said it is a special case of ANCOVA and 'does not appear to deviate' from covariate-adjustment guidance. claim (vendor): reduces sample size 'without creating bias'",
+   "pricing_model": "not public",
+   "adoption_evidence": "regulatory qualification (EMA)",
+   "failure_or_criticism": "FDA: power may be optimistic if covariate-outcome correlation differs from external data.",
+   "sources": [
+    "https://www.unlearn.ai/resources/summary-of-the-ema-september-2022-qualification-opinion-for-procova-tm",
+    "https://www.unlearn.ai/blog/us-fda-comments-on-unlearns-procova-methodology"
+   ]
+  },
+  {
+   "id": "C33",
+   "kind": "product",
+   "name": "Causaly Bio Graph / research copilot",
+   "vendor": "Causaly",
+   "sector": "pharma R&D",
+   "decision_supported": "target identification, indication expansion from literature",
+   "method_family": "neither discovery-from-data nor estimation: cause-effect relations extracted from text into a knowledge graph (declared knowledge, K)",
+   "uses_llm": "yes (copilot)",
+   "claimed_guarantee_or_accuracy": "claim (vendor): '500M facts and 70M directional relationships'; 'cited' answers; recognises no-answer cases and filters hallucination",
+   "pricing_model": "not public",
+   "adoption_evidence": "claim (vendor): logos incl. Ipsen, Teva, UCB, Eisai; earlier rounds $1m seed, $5m Series A, $12m (2021, second-hand)",
+   "failure_or_criticism": "No accuracy for extracted relations on page.",
+   "sources": [
+    "https://www.causaly.com/",
+    "https://www.causaly.com/news/causaly-raises-5m-in-series-a-round-led-by-pentech-ventures"
+   ]
+  },
+  {
+   "id": "C34",
+   "kind": "buyer evidence",
+   "name": "FDA purchase of BayesiaLab licences",
+   "vendor": "buyer: US FDA; product: BayesiaLab (Bayesia)",
+   "sector": "regulator (buyer side)",
+   "decision_supported": "let subject-matter experts map causal understanding as diagrams; diagnosis, prediction, simulation",
+   "method_family": "both (Bayesian networks; expert-drawn plus structure learning)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "requirement (buyer): no extra statistical programming; discrete, nonlinear, nonparametric modelling",
+   "pricing_model": "2 single-user licences + support (award not stated)",
+   "adoption_evidence": "second-hand: RFQ FDA-RFQ-1251846 reported May 2022",
+   "failure_or_criticism": "n/a",
+   "sources": [
+    "https://insights.govforum.io/?p=277629"
+   ]
+  },
+  {
+   "id": "C35",
+   "kind": "product",
+   "name": "Causal DiscoveryBot",
+   "vendor": "Xplain Data",
+   "sector": "manufacturing (incl. semiconductor/automotive suppliers)",
+   "decision_supported": "alert when a new causal driver of quality loss appears in production data",
+   "method_family": "discovery (autonomous search for causal factors over production data)",
+   "uses_llm": "no (not mentioned)",
+   "claimed_guarantee_or_accuracy": "claim (vendor, via trade press Jan 2024): distinguishes causes from correlations; no accuracy. second-hand (ARC analyst, Sept 2026): time-to-root-cause cut 'from weeks' to under two hours",
+   "pricing_model": "not read",
+   "adoption_evidence": "second-hand (ARC): Schaeffler and TRUMPF named as customers",
+   "failure_or_criticism": "No metrics or validation published; analyst urges buyers to demand evidence.",
+   "sources": [
+    "https://www.computer-automation.de/industrial-software/production-optimization-through-causal-ai-technologies.htm",
+    "https://www.arcweb.com/blog/causal-ai-breakthrough-beyond-correlation-deterministic-root-cause-explainability"
+   ]
+  },
+  {
+   "id": "C36",
+   "kind": "product",
+   "name": "Parabole.ai and Ethon (industrial causal AI, per ARC)",
+   "vendor": "Parabole.ai; Ethon",
+   "sector": "manufacturing / process industry",
+   "decision_supported": "root causes and operator guidance",
+   "method_family": "RCA from declared knowledge (Parabole: graphs from manuals, interviews, Six Sigma heuristics; Ethon: encoded process structure and physics)",
+   "uses_llm": "unknown",
+   "claimed_guarantee_or_accuracy": "second-hand (ARC): Ethon up to 80% waste reduction, >$10M savings at Siemens; analyst text says causal AI can 'guarantee regulatory compliance' (unsupported)",
+   "pricing_model": "not read",
+   "adoption_evidence": "second-hand (ARC): Georgia-Pacific (Parabole); Siemens, Lindt, Bosch, Roche (Ethon)",
+   "failure_or_criticism": "Promotional analyst post; no method or baselines.",
+   "sources": [
+    "https://www.arcweb.com/blog/causal-ai-breakthrough-beyond-correlation-deterministic-root-cause-explainability"
+   ]
+  },
+  {
+   "id": "C37",
+   "kind": "research for industry",
+   "name": "Causal structure learning for wafer / assembly-line manufacturing",
+   "vendor": "academic-industry (Seagate data; assembly-line study)",
+   "sector": "manufacturing",
+   "decision_supported": "error tracing when domain experts are unavailable",
+   "method_family": "discovery (hierarchical ensemble with temporal and domain constraints; uncertainty measure)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported: learned structures cross-validated by domain engineers (no metric on pages read); 2016 assembly-line study: experts found results 'promising'",
+   "pricing_model": "n/a",
+   "adoption_evidence": "reported: Seagate Technology data (NSF award 1952539)",
+   "failure_or_criticism": "Validation is expert agreement, not ground truth.",
+   "sources": [
+    "https://par.nsf.gov/biblio/10463047",
+    "https://arxiv.org/abs/1605.04056v2"
+   ]
+  },
+  {
+   "id": "C38",
+   "kind": "evaluation evidence",
+   "name": "RCAEval benchmark and 'How far are we' study (evaluation evidence)",
+   "vendor": "Pham, Zhang, Ha et al.",
+   "sector": "IT operations research",
+   "decision_supported": "how well causal-inference RCA works on microservices",
+   "method_family": "RCA / discovery evaluation",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported (RCAEval, WWW 2025, preliminary Train Ticket table): metric-based causal methods AC@1 0.09 (RCD), 0.10 (MicroCause), 0.22 (CausalRCA), 0.32 (CIRCA) vs non-causal BARO 0.67. 'How far are we' (arXiv 2408.13729): 9 discovery + 21 RCA methods, none best overall; synthetic results may not transfer",
+   "pricing_model": "n/a",
+   "adoption_evidence": "n/a",
+   "failure_or_criticism": "Data-driven causal-discovery RCA underperforms a simple non-causal baseline on these benchmarks.",
+   "sources": [
+    "https://arxiv.org/html/2412.17015v1",
+    "https://arxiv.org/abs/2408.13729"
+   ]
+  },
+  {
+   "id": "C39",
+   "kind": "market evidence",
+   "name": "AI incident-response accuracy claims (competitor critique)",
+   "vendor": "incident.io on Rootly and itself",
+   "sector": "IT incident management",
+   "decision_supported": "vendor selection",
+   "method_family": "RCA (LLM)",
+   "uses_llm": "yes",
+   "claimed_guarantee_or_accuracy": "second-hand: article finds no published precision/recall for production RCA from Rootly; its own claims ('up to 80%' automation, 37% MTTR at one customer) are vendor-hosted or hypothetical",
+   "pricing_model": "claim (vendor): Rootly about $240-420/user/year; incident.io $45/user/month with on-call",
+   "adoption_evidence": "n/a",
+   "failure_or_criticism": "Written by a competitor's CMO; by its own test no vendor RCA accuracy is independently verified.",
+   "sources": [
+    "https://incident.io/blog/rootly-ai-accuracy-vs-competitors"
+   ]
+  },
+  {
+   "id": "C40",
+   "kind": "use case",
+   "name": "Probabilistic extreme-event attribution (World Weather Attribution protocol)",
+   "vendor": "World Weather Attribution (KNMI, Imperial and others)",
+   "sector": "climate science / public policy",
+   "decision_supported": "how much climate change altered the probability of an extreme event",
+   "method_family": "effect estimation (probability ratios from observations and models; not graph discovery)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported (Philip et al. 2020, ASCMO 6:177-203): 8-step standardised protocol; bootstrap (~1,000 resamples) 95% intervals; model-spread inflation in synthesis",
+   "pricing_model": "n/a (non-profit research)",
+   "adoption_evidence": "reported: standard protocol used for rapid attribution studies",
+   "failure_or_criticism": "n/a",
+   "sources": [
+    "https://ascmo.copernicus.org/articles/6/177/2020/"
+   ]
+  },
+  {
+   "id": "C41",
+   "kind": "use case",
+   "name": "Time-series causal discovery in Earth science (PCMCI and others)",
+   "vendor": "academic (review by Ali et al.)",
+   "sector": "climate / earth science",
+   "decision_supported": "teleconnections, drivers of extremes, sea-level rise",
+   "method_family": "discovery (time-series and spatiotemporal)",
+   "uses_llm": "no",
+   "claimed_guarantee_or_accuracy": "reported: review of methods, assumptions, evaluation and datasets (arXiv 2404.05746); no accuracy claims on abs page",
+   "pricing_model": "n/a",
+   "adoption_evidence": "n/a (research use)",
+   "failure_or_criticism": "Abs page does not discuss validation without ground truth.",
+   "sources": [
+    "https://arxiv.org/abs/2404.05746"
+   ]
+  },
+  {
+   "id": "C42",
+   "kind": "market estimate",
+   "name": "Causal AI market size estimates",
+   "vendor": "MarketsandMarkets; theCUBE Research",
+   "sector": "market",
+   "decision_supported": "n/a",
+   "method_family": "n/a",
+   "uses_llm": "n/a",
+   "claimed_guarantee_or_accuracy": "second-hand: MarketsandMarkets (Dec 2024) USD 56.2M in 2024 -> USD 456.8M by 2030, CAGR 41.8%, BFSI largest vertical; theCUBE Research (Mar 2025) >$1B by 2030 at 41% CAGR",
+   "pricing_model": "n/a",
+   "adoption_evidence": "second-hand: Dataiku/Databricks survey of 400 senior AI professionals (June 2023) charts 'Causal AI' at 59% for 'AI Pioneers' vs 32% for others (metric label unclear)",
+   "failure_or_criticism": "Paid analyst reports; methodology not read. Note: the causal-AI market as defined excludes experimentation (Statsig, Eppo) and MMM spend, which look larger.",
+   "sources": [
+    "https://prnewswire.co.uk/news-releases/causal-ai-market-worth-456-8-million-by-2030--exclusive-report-by-marketsandmarkets-302331128.html",
+    "https://thecuberesearch.com/ai-that-knows-why/",
+    "https://www.databricks.com/sites/default/files/2023-09/ai-today-dataikuxdatabricks.pdf"
+   ]
+  }
+ ],
+ "regulatory_hooks": [
+  {
+   "hook": "FDA final guidance: Real-World Data: Assessing EHR and Medical Claims Data (July 2024)",
+   "rewards": "fitness-for-use of RWD in regulatory studies (full PDF not read)",
+   "sources": [
+    "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/real-world-data-assessing-electronic-health-records-and-medical-claims-data-support-regulatory"
+   ]
+  },
+  {
+   "hook": "FDA draft guidance: Externally Controlled Trials (Feb 2023)",
+   "rewards": "protocol and SAP finalised before analysis; date-stamped justified changes; documentation of every data source considered; audit trails of data access and analyses; quantitative bias analysis; patient-level data to FDA",
+   "sources": [
+    "https://www.fda.gov/media/164960/download"
+   ]
+  },
+  {
+   "hook": "FDA draft guidance: AI to support regulatory decision-making for drugs and biologics (Jan 2025)",
+   "rewards": "7-step credibility framework: context of use, model risk = influence x decision consequence, credibility plan and report; traceable, reliable data",
+   "sources": [
+    "https://www.faegredrinker.com/en/insights/publications/2025/1/fda-issues-detailed-guidance-for-biopharma-industry-on-what-to-provide-about-use-of-ai-models"
+   ]
+  },
+  {
+   "hook": "EMA reflection paper: RWD in non-interventional studies (consultation draft 15 Apr 2024; RAPS reports adoption 17 March, article dated 8 Apr 2025)",
+   "rewards": "target-trial emulation, pre-specified sensitivity and bias analyses, negative controls, public code, registration of studies",
+   "sources": [
+    "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-real-world-data-non-interventional-studies-generate-real-world-evidence_en.pdf",
+    "https://www.raps.org/resource/ema-adopts-reflection-paper-on-rwe-from-noninterve.html"
+   ]
+  },
+  {
+   "hook": "EMA qualification of PROCOVA (Sept 2022)",
+   "rewards": "ML admitted where the inferential guarantee holds regardless of ML quality",
+   "sources": [
+    "https://www.unlearn.ai/resources/summary-of-the-ema-september-2022-qualification-opinion-for-procova-tm"
+   ]
+  },
+  {
+   "hook": "EU AI Act Art. 12 (automatic logs over lifetime), Art. 13 (declared accuracy level and metrics, known circumstances affecting accuracy, interpretable output)",
+   "rewards": "provenance logs and declared, conditional accuracy; Annex III dates moved to 2 Dec 2027 and Annex I to 2 Aug 2028 by a provisional Digital Omnibus deal (May 2026; final adoption not verified)",
+   "sources": [
+    "https://artificialintelligenceact.eu/article/13/",
+    "https://www.helpnetsecurity.com/2026/04/16/eu-ai-act-logging-requirements/",
+    "https://www.proskauer.com/pub/eu-ai-act-update-provisional-deal-would-delay-high-risk-ai-rules"
+   ]
+  },
+  {
+   "hook": "US bank model-risk guidance: SR 26-2 (17 Apr 2026, Fed/OCC/FDIC) supersedes SR 11-7 and SR 21-8",
+   "rewards": "documentation, effective challenge, outcomes analysis/back-testing, understanding limitations, validation of vendor models; generative and agentic AI are explicitly out of scope (footnote 3)",
+   "sources": [
+    "https://www.federalreserve.gov/supervisionreg/srletters/sr2602.htm",
+    "https://www.federalreserve.gov/supervisionreg/srletters/SR2602a1.pdf",
+    "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm"
+   ]
+  }
+ ],
+ "searches": [
+  "causaLens decisionOS causal AI pricing customers",
+  "Causely causal reasoning platform root cause analysis funding",
+  "Dynatrace Davis causal AI root cause analysis deterministic",
+  "Geminos causal AI platform Causeway",
+  "Causely Series A 2025 causal reasoning engine causal knowledge model observability",
+  "Datadog Watchdog root cause analysis causal \"Bits AI\" SRE investigation accuracy",
+  "Amazon DoWhy gcm root cause analysis supply chain causal Amazon Science",
+  "Google Meridian marketing mix model open source launch Bayesian causal",
+  "Haus incrementality pricing geo experiments funding customers",
+  "Recast MMM pricing per month",
+  "Haus raises Series B incrementality platform 2025",
+  "marketing mix models disagree same data different results criticism study",
+  "Meta Robyn open source MMM ridge regression Nevergrad calibration lift tests",
+  "Lifesight causal AI unified marketing measurement causal discovery",
+  "Aitia Gemini digital twin causal AI pharma partnership REFS",
+  "FDA real-world evidence guidance 2024 assessing electronic health records causal inference transparency",
+  "Aetion Evidence Platform real-world evidence FDA regulatory decision acquisition Datavant",
+  "RCT DUPLICATE real-world evidence emulation agreement trials results JAMA 2023",
+  "EMA reflection paper real-world data non-interventional studies 2024 2025 causal inference estimands",
+  "SR 11-7 model risk management guidance conceptual soundness ongoing monitoring outcomes analysis",
+  "EU AI Act Article 13 transparency high-risk Article 12 record-keeping logging obligations 2026 date",
+  "federalreserve.gov SR 26-2 model risk management guidance April 2026",
+  "digital omnibus AI Act high-risk delay agreed December 2027 political agreement 2026",
+  "Gartner hype cycle causal AI 2024 2025 innovation trigger peak",
+  "causal AI market size billion CAGR report",
+  "Xplain Data causal AI manufacturing root cause quality Objective Causal Discovery customers",
+  "IBM Instana probable root cause causal AI Turbonomic causal",
+  "Google CausalImpact Bayesian structural time series package usage policy evaluation limitations",
+  "Fiddler AI root cause analysis model monitoring causal",
+  "telecom network root cause analysis causal discovery Huawei Ericsson Nokia operational alarms causal graph",
+  "root cause analysis microservices benchmark RCAEval causal methods fail evaluation 2025",
+  "Huawei gCastle causal structure learning telecom alarms competition PCIC NeurIPS",
+  "causaLens funding Series A $45 million 2022 investors",
+  "Geminos Software funding causal AI customers rail utilities",
+  "survey causal AI adoption enterprises \"causal\" Databricks Dataiku 400 AI professionals 16%",
+  "Haus pricing incrementality platform cost per year contract",
+  "Causaly biomedical AI funding causal relationships literature knowledge graph pharma customers",
+  "Microsoft causal AI production use case \"causal\" Azure ML responsible AI dashboard causal analysis EconML",
+  "New Relic root cause analysis AI causal \"New Relic AI\" incident intelligence",
+  "PCMCI Tigramite climate causal discovery applications earth science review Runge 2019 Nature Communications",
+  "\"causal AI\" credit risk lending bank causaLens fairness case study regulator",
+  "Eppo Statsig experimentation platform pricing acquisition 2025 Datadog OpenAI",
+  "OpenAI acquires Statsig $1.1 billion September 2025",
+  "FDA framework real-world evidence program 2018 externally controlled trials guidance 2023 draft",
+  "FDA 2025 guidance AI credibility \"context of use\" drug regulatory decision-making risk-based framework",
+  "Wang Schneeweiss \"Emulation of Randomized Clinical Trials With Nonrandomized Database Analyses\" JAMA 2023 32 trials",
+  "AIOps root cause analysis practitioners trust survey failures in production incident RCA tools false root cause study",
+  "Recast MMM \"falsifiable\" forecast accuracy validation backtest model transparency blog",
+  "IAB state of data 2025 marketing mix modeling incrementality adoption survey buyers",
+  "BayesiaLab license price structure learning Bayesian network",
+  "causal discovery industrial deployment case study manufacturing yield semiconductor causal graph learned from process data paper",
+  "Unlearn PROCOVA EMA qualification opinion digital twins prognostic covariate adjustment type I error",
+  "World Weather Attribution methodology probabilistic event attribution peer-reviewed protocol",
+  "Uber CausalML uplift modeling production use case open source",
+  "NOT RUN (shared search budget exhausted): causaLens causal discovery domain knowledge constraints human-guided limitations",
+  "NOT RUN (shared search budget exhausted): causal AI observability skeptic criticism hype"
+ ],
+ "not_read": [
+  {
+   "source": "RCT-DUPLICATE paper on PMC (https://pmc.ncbi.nlm.nih.gov/articles/PMC10130954)",
+   "reason": "reCAPTCHA page; numbers taken second-hand from Becaris and Cytel summaries"
+  },
+  {
+   "source": "Aetion RCT-DUPLICATE news (https://news.aetion.com/rct-duplicate-published-jama)",
+   "reason": "redirects to Datavant newsroom; not followed"
+  },
+  {
+   "source": "Robyn CRAN reference manual",
+   "reason": "robots.txt disallowed; GitHub README read instead (calibration with lift tests not confirmed from pages read)"
+  },
+  {
+   "source": "IBM Instana RCA docs (ibm.com/docs SSE1JP5)",
+   "reason": "fetch error; IBM arXiv paper read instead"
+  },
+  {
+   "source": "FDA RWD EHR/claims guidance full PDF (fda.gov/media/152503/download)",
+   "reason": "not opened; only the landing page was read"
+  },
+  {
+   "source": "Heusch, arXiv 2608.21128 full text",
+   "reason": "abstract only; ROAS numbers are second-hand from a news report"
+  },
+  {
+   "source": "Pham et al. arXiv 2408.13729 full PDF; RCAEval later versions",
+   "reason": "abstract / v1 HTML only"
+  },
+  {
+   "source": "Causely benchmark methodology page; arXiv 2605.18327 full text",
+   "reason": "abs page only; affiliations not shown there"
+  },
+  {
+   "source": "Gartner Hype Cycle documents (gartner.com/en/documents/...)",
+   "reason": "paywalled; not opened. Gartner position on causal AI known only second-hand via theCUBE"
+  },
+  {
+   "source": "gCastle paper (arXiv 2111.15155), Structural Hawkes Processes (arXiv 2305.05986)",
+   "reason": "found but not opened; Huawei affiliation of telecom work therefore not confirmed"
+  },
+  {
+   "source": "Dynatrace and causaLens Digital Workers pricing",
+   "reason": "not found on pages read"
+  },
+  {
+   "source": "Unlearn EMA qualification opinion PDF (ema.europa.eu draft-qualification-opinion-prognostic-covariate-adjustment-procovatm_en.pdf)",
+   "reason": "not opened; vendor summary read"
+  },
+  {
+   "source": "Kellogg MMM PDF, Nielsen MMM best practices PDF, Sellforte pitfalls blog",
+   "reason": "found in search, not opened"
+  },
+  {
+   "source": "SR 26-2 vendor explainer (openlayer.com)",
+   "reason": "read, but it says SR 26-2 brings agents into scope; the primary attachment says generative and agentic AI are out of scope. Primary text used."
+  }
+ ]
+}

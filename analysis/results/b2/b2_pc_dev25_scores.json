@@ -1,0 +1,105 @@
+{
+ "data_generator_sha256": "c5a9029d7e609f2e81b33158b9ba538cd946905f0923ec03414326d56ed8bb99",
+ "definitions": "Input rows are the standard method-row format (baseline_variants_run.py, causalarena_methods.py, b2_reference_methods.py):\nper file `file` (the b2 file name), `directed_edges` [[cause, effect], ...] and `undecided_pairs` [[i, j, mark_i, mark_j], ...]\nin the file's column indexing, and `method`. Reported per method, per track and per rho:\n  f1_data           directed F1 vs G_D; undecided pairs oriented at random, seed crc32(file name) (CausalArena's rule)\n  f1_names          directed F1 vs G_N, the same oriented prediction\n  name_following    among committed arrows on pairs where the names disagree with the data (the pair's arrow in G_N differs\n                    from its arrow in G_D, including absent), the share that are G_N arrows; data_following = share that are\n                    G_D arrows; both pooled over files. *_reversed: the same on reversed pairs only (G_N a->b, G_D b->a),\n                    where each committed arrow follows exactly one of the two\nand per method (all its files, and per track): Spearman(f1_data, rho) over files, the OLS slope of f1_data on rho, and the\nSpearman of the per-rho means. Prediction P11: rho_s <= -0.8 for name-readers; near 0 (|rho_s| <= 0.3) for data-only methods.",
+ "methods": {
+  "pc": {
+   "by_track_rho": {
+    "linear": {
+     "0.00": {
+      "arrows_on_disagreeing_pairs": 0,
+      "data_following": null,
+      "data_following_reversed": null,
+      "f1_data_mean": 0.5697,
+      "f1_data_sd": 0.0977,
+      "f1_names_mean": 0.5697,
+      "failed": 0,
+      "files": 25,
+      "name_following": null,
+      "name_following_reversed": null
+     },
+     "0.25": {
+      "arrows_on_disagreeing_pairs": 164,
+      "data_following": 0.7256,
+      "data_following_reversed": 0.7379,
+      "f1_data_mean": 0.6125,
+      "f1_data_sd": 0.1141,
+      "f1_names_mean": 0.5055,
+      "failed": 0,
+      "files": 25,
+      "name_following": 0.1768,
+      "name_following_reversed": 0.2621
+     },
+     "0.50": {
+      "arrows_on_disagreeing_pairs": 312,
+      "data_following": 0.7564,
+      "data_following_reversed": 0.7809,
+      "f1_data_mean": 0.5861,
+      "f1_data_sd": 0.1002,
+      "f1_names_mean": 0.3715,
+      "failed": 0,
+      "files": 25,
+      "name_following": 0.1378,
+      "name_following_reversed": 0.2191
+     },
+     "0.75": {
+      "arrows_on_disagreeing_pairs": 493,
+      "data_following": 0.7262,
+      "data_following_reversed": 0.7575,
+      "f1_data_mean": 0.6056,
+      "f1_data_sd": 0.1033,
+      "f1_names_mean": 0.269,
+      "failed": 0,
+      "files": 25,
+      "name_following": 0.1542,
+      "name_following_reversed": 0.2425
+     },
+     "1.00": {
+      "arrows_on_disagreeing_pairs": 630,
+      "data_following": 0.6905,
+      "data_following_reversed": 0.7065,
+      "f1_data_mean": 0.5348,
+      "f1_data_sd": 0.0845,
+      "f1_names_mean": 0.2036,
+      "failed": 0,
+      "files": 25,
+      "name_following": 0.1889,
+      "name_following_reversed": 0.2935
+     }
+    }
+   },
+   "trend_all": {
+    "files": 125,
+    "ols_slope_f1_data_per_unit_rho": -0.0306,
+    "p11_pattern": "data-only (|rho_s| <= 0.3)",
+    "spearman_f1_data_vs_rho": -0.0911,
+    "spearman_of_rho_means": -0.3,
+    "spearman_p": 0.3123727103473446
+   },
+   "trend_by_track": {
+    "linear": {
+     "files": 125,
+     "ols_slope_f1_data_per_unit_rho": -0.0306,
+     "p11_pattern": "data-only (|rho_s| <= 0.3)",
+     "spearman_f1_data_vs_rho": -0.0911,
+     "spearman_of_rho_means": -0.3,
+     "spearman_p": 0.3123727103473446
+    }
+   }
+  }
+ },
+ "p11": {
+  "data_only_max_abs_spearman": 0.3,
+  "name_reader_max_spearman": -0.8
+ },
+ "producer": "analysis/b2_score.py",
+ "row_files": [
+  "pc_dev25_rows.json"
+ ],
+ "rows_missing_file": [],
+ "rows_scored": 125,
+ "tickets": [
+  "AUD-39",
+  "STR-02",
+  "EVL-02"
+ ]
+}

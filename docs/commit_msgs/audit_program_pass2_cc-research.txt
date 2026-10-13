@@ -1,0 +1,57 @@
+Audit pass 2: A3 scored, Bayesys re-score, AB-06 grid and batch runner ready
+
+A3 knowledge elicitation (AB-07, AUD-48), from the 13 Oct live run
+(gpt-4o-2024-08-06, 914 calls, about $2.08):
+- O1 inconclusive (69.4% correct, 12.1% contradicted); O2 supported;
+  O3 supported by data; O4 refuted (0.448); O5 refuted (0.384).
+- analysis/a3_orient_only.py: exploratory, orient-only use of the tiers.
+  GES goes from 0.528 to 0.546 on semantic. Wrong tiers cost 0.19, a
+  bounded loss.
+- analysis/results/a3/CONTRACT.json: names vocabulary and metric_defs
+  added. This is contract metadata only; the scores are unchanged.
+  a3_score.py is pre-registered, so it is not edited.
+- RQ-10..14 answered. CAP-04, BLD-04 and TGT-07 unblocked.
+
+Agent probes (AB-05, AUD-37):
+- causaliq live probe ok.
+- Causal-Copilot on gpt-4o-mini crashed at judge_functions.py:562. This
+  is the upstream key bug, which has killed 16 of 115 live runs. It is
+  documented, not patched.
+- harness/agent_probe.py passes --names-map.
+
+Field audit (AB-06, AUD-38):
+- plans/make_ab06_plans.py and plans/ab06/: 4 agents x 10 semantic dev
+  scenarios x real/neutral/swapped names, 120 plans.
+- plans/ab06/BUDGET.json: estimate $58.
+- harness/agent_batch.py:
+  - resumable, with a total cap gated on run estimates (exit 3 at the
+    cap);
+  - never pays twice for a crashed run (--retry-failed overrides);
+  - counts every logged attempt.
+- analysis/ab06_score.py: F1, DV-1, name reliance, data-only floor,
+  P9/P10.
+- plans/ab06_cc_gpt4omini_s2.json: the Causal-Copilot arm on a second
+  model.
+- cc.ps1 probebatch.
+- tests/test_ab06_batch.py.
+- analysis/reports/ab06_prep.md.
+
+Second scoreboard (AB-02, AUD-34), Bayesys:
+- analysis/ab02_bayesys.py covers 6 networks, released vs 5 shuffled
+  orders, with PC, maxP, FCI and GES-BDeu.
+- P3 supported: ASIA, SPORTS and PATHFINDER are released in topological
+  order. An index tie-break gains +0.04 to +0.30 there and about 0
+  elsewhere.
+- P4 inconclusive (2 of 3 ordered networks). Its operationalisation was
+  corrected to match the wording in audit_dag.json; both readings are
+  kept.
+- The reproduction gate stays open until results_noisyPaper.xlsx is
+  available.
+- The results directory now has a per-file CONTRACT.json.
+
+Tracker:
+- jobs/patches/p04_live_results.py and p05_bayesys_ab06.py.
+- Pins refreshed: INF-01, INF-04, BND-01, AUD-48, DLV-02, AUD-37, and
+  those changed by p05.
+- Dev and prod Slack lists synced.
+- site/levels/bundles.py: dates removed, queue updated.

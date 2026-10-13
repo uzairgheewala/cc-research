@@ -1,0 +1,34 @@
+{
+ "tickets": [
+  "AUD-34",
+  "BEN-07"
+ ],
+ "producer": "analysis/ab02_bayesys.py",
+ "score_bearing": false,
+ "per_file": {
+  "alarm_order.json": {
+   "producer": "analysis/ab02_alarm_order.py",
+   "score_bearing": false
+  },
+  "bayesys.json": {
+   "producer": "analysis/ab02_bayesys.py",
+   "score_bearing": true,
+   "regime": "D",
+   "split": "all-public (measurement, no tuning)",
+   "controls": {
+    "columns_shuffled": "per-row (arm: released order or shuffled seeds 1-5)",
+    "names": "not applicable",
+    "supplier": "causal-learn 0.1.4.8 (PC, FCI, GES-BDeu)"
+   },
+   "orientation_rule": "F1_random: undecided pairs at random (per-run seed); F1_lower: earlier column -> later column",
+   "metric_defs": {
+    "F1_random": "directed F1, undecided pairs oriented at random",
+    "F1_lower": "directed F1, undecided pairs oriented earlier column -> later column (the authors' index rule)",
+    "F1_bayesys_half_credit": "Bayesys-style F1: a true adjacency with the wrong or no orientation counts 0.5 TP",
+    "S": "skeleton (adjacency) F1",
+    "c": "share of found true adjacencies with a committed arrow",
+    "q": "share of committed arrows on true adjacencies that point the right way"
+   }
+  }
+ }
+}

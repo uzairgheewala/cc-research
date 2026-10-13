@@ -1,0 +1,1192 @@
+{
+ "audit": "AU3",
+ "question": "For each cell of Q x R x W, what is identifiable, from what evidence and assumptions, at what sample or experiment cost, and what is the best known bound or impossibility result?",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-20 ",
+  "DOM-12",
+  "RQ-04"
+ ],
+ "schema": {
+  "id": "row id",
+  "question": "Q: skeleton | orientation | effects | experiment design | confidence",
+  "regime": "R: D, D+I (hard/soft, known/unknown targets), D+K (type), D+I+K",
+  "world_assumptions": "W: sufficiency, functional form, faithfulness variant, time, cycles, dimension, data type",
+  "identifiable_object": "what is identified in the population (CPDAG, I-essential graph, MPDAG, PAG, full DAG, effect set)",
+  "key_result": "one-two sentence statement, paraphrased",
+  "reference": "author, year, venue (venue marked unconfirmed where not seen on the page)",
+  "finite_sample_or_rate": "rate or finite-sample statement if known",
+  "experiment_cost": "number/choice of interventions if relevant",
+  "impossibility_or_lower_bound": "impossibility theorem or lower bound",
+  "open_problems": "what remains open or unchecked",
+  "evidence_label": "reported | second-hand | claim (vendor)",
+  "read_level": "abstract | full text (what part)",
+  "date_read": "date the sources were read",
+  "sources": "list of URLs"
+ },
+ "rows": [
+  {
+   "id": "C01",
+   "question": "skeleton",
+   "regime": "D",
+   "world_assumptions": "causally sufficient, iid, acyclic; Markov + adjacency-faithfulness; nonparametric CI tests",
+   "identifiable_object": "skeleton (adjacencies)",
+   "key_result": "Two DAGs are observationally equivalent iff they share skeleton and v-structures, so the skeleton is identified under faithfulness; PC is pointwise consistent. CPC (Ramsey et al.) needs only adjacency-faithfulness for correct adjacencies.",
+   "reference": "Verma & Pearl 1990 (UAI; arXiv 1304.1108); Ramsey, Zhang, Spirtes 2006 (UAI; arXiv 1206.6843)",
+   "finite_sample_or_rate": "pointwise only under plain faithfulness (see C05)",
+   "experiment_cost": "none (observational)",
+   "impossibility_or_lower_bound": "No uniformly consistent skeleton estimator under plain faithfulness when time order is unknown (Robins et al. 2003; Zhang & Spirtes 2003).",
+   "open_problems": "Finite-sample skeleton guarantees without strong faithfulness.",
+   "evidence_label": "reported (skeleton+v-structure criterion is the standard statement; not confirmed in the Verma-Pearl abstract I read)",
+   "read_level": "abstract; CPC from project note cluster3",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1304.1108",
+    "https://arxiv.org/abs/1206.6843"
+   ]
+  },
+  {
+   "id": "C02",
+   "question": "orientation",
+   "regime": "D",
+   "world_assumptions": "causally sufficient, iid, acyclic; Markov + faithfulness (adjacency + orientation)",
+   "identifiable_object": "CPDAG (Markov equivalence class)",
+   "key_result": "Meek rules R1-R3 applied to the pattern give the maximally oriented graph (Meek 1995, Thm 3); GES identifies the class in the large-sample limit when a perfect DAG map exists (Chickering 2002).",
+   "reference": "Meek 1995 (UAI; arXiv 1302.4972); Chickering 2002 (JMLR 3:507-554)",
+   "finite_sample_or_rate": "none for orientation per se; orientation errors propagate through R1-R3",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Edges inside undirected chain components of the CPDAG are not identifiable from D under any sample size.",
+   "open_problems": "Rates for orientation (vs skeleton) recovery; how often orientation-faithfulness fails at finite n.",
+   "evidence_label": "reported",
+   "read_level": "full text (Meek, fetched PDF); abstract (Chickering)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/pdf/1302.4972",
+    "https://www.jmlr.org/papers/v3/chickering02b.html"
+   ]
+  },
+  {
+   "id": "C03",
+   "question": "orientation",
+   "regime": "D",
+   "world_assumptions": "causally sufficient DAGs, uniform over classes",
+   "identifiable_object": "CPDAG size / share of compelled edges",
+   "key_result": "Sizes of MECs can be counted for sparse DAGs with hundreds of nodes; most classes are 'half completed' (partly oriented) with small average size; sparse class sizes grow roughly exponentially in p.",
+   "reference": "He, Jia, Yu 2015 (JMLR 16:2589-2609)",
+   "finite_sample_or_rate": "n/a (population)",
+   "experiment_cost": "n/a",
+   "impossibility_or_lower_bound": "Share of non-compelled edges is a hard ceiling for D-only orientation.",
+   "open_problems": "Distribution of MEC sizes for the graph families used in benchmarks (project measured 91.8% compelled on CausalArena semantic).",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://www.jmlr.org/papers/v16/he15a.html"
+   ]
+  },
+  {
+   "id": "C04",
+   "question": "skeleton+orientation",
+   "regime": "D",
+   "world_assumptions": "Gaussian, causally sufficient, p = O(n^a), max neighbourhood q = O(n^{1-b}), nonzero partial correlations >= c_n with 1/c_n = O(n^d), d < b/2",
+   "identifiable_object": "skeleton and CPDAG",
+   "key_result": "PC recovers the skeleton (and the CPDAG) with probability 1 - O(exp(-C n^{1-2d})).",
+   "reference": "Kalisch & Buehlmann 2007 (JMLR 8:613-636; arXiv math/0510436)",
+   "finite_sample_or_rate": "P(error) = O(exp(-C n^{1-2d})) under the c_n lower bound (a strong-faithfulness-type condition)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "The c_n condition fails with non-trivial probability for random parameters (C06).",
+   "open_problems": "Rates under weaker faithfulness.",
+   "evidence_label": "reported",
+   "read_level": "full text (theorem statement)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/pdf/math/0510436",
+    "https://jmlr.org/papers/v8/kalisch07a.html"
+   ]
+  },
+  {
+   "id": "C05",
+   "question": "skeleton / effects",
+   "regime": "D",
+   "world_assumptions": "Markov + plain faithfulness; time order unknown and/or latent confounders",
+   "identifiable_object": "none uniformly",
+   "key_result": "Under Markov + faithfulness, tests and estimators are pointwise but not uniformly consistent; no finite n guarantees approximate correctness, and no valid consistent confidence intervals exist. With an observed discrete confounder and known order, uniformly consistent tests exist.",
+   "reference": "Robins, Scheines, Spirtes, Wasserman 2003 (Biometrika 90(3):491-515); Zhang & Spirtes 2003 (UAI)",
+   "finite_sample_or_rate": "no uniform rate exists",
+   "experiment_cost": "randomised experiment restores uniform consistency (Robins et al., Remark 3)",
+   "impossibility_or_lower_bound": "IMPOSSIBILITY: no uniformly consistent test/estimator/confidence map (Thms 1,3,4); extends to inferring time order (Thm 5); Gaussian case: no nontrivial uniformly consistent test (Thm 6).",
+   "open_problems": "Which minimal strengthening (k-triangle, strong faithfulness, order knowledge) is credible in a given domain.",
+   "evidence_label": "reported",
+   "read_level": "full text (Robins); abstract (Zhang & Spirtes)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://www.cmu.edu/dietrich/philosophy/docs/spirtes/biometrika2003.pdf",
+    "https://ideas.repec.org/a/oup/biomet/v90y2003i3p491-515.html",
+    "https://arxiv.org/abs/1212.2506"
+   ]
+  },
+  {
+   "id": "C06",
+   "question": "skeleton+orientation",
+   "regime": "D",
+   "world_assumptions": "linear Gaussian, causally sufficient; lambda-strong-faithfulness with lambda ~ sqrt(deg log p / n); edge weights uniform on [-1,1], unit error variances",
+   "identifiable_object": "CPDAG (if strong faithfulness holds)",
+   "key_result": "The set of non-strong-faithful distributions has positive measure and is often large: lower bounds 1-(1-lambda)^{p-1} for trees, exponential in p^2 for cycles, in 2^p for bipartite K_{2,p-2}. Simulated 10-node DAGs (expected degree 2): share lambda-strong-unfaithful nearly 1 at lambda=0.1, ~0.9 at 0.01, ~0.7 at 0.001.",
+   "reference": "Uhler, Raskutti, Buehlmann, Yu 2013 (Ann. Statist.; DOI 10.1214/12-AOS1080; arXiv 1207.0547)",
+   "finite_sample_or_rate": "For the lower bound to vanish need p_n = o(sqrt(n/(deg log n))) (trees), o((n/(deg log n))^{1/4}) (cycles), o(log n) (bipartite)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Authors conclude high-dimensional PC consistency 'seems rather unrealistic' under uniform parameters; even trees cannot have p >> n.",
+   "open_problems": "Tightness of bounds; non-uniform parameter priors; discrete data.",
+   "evidence_label": "reported",
+   "read_level": "full text (theorems, simulations)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1207.0547",
+    "https://arxiv.org/pdf/1207.0547"
+   ]
+  },
+  {
+   "id": "C07",
+   "question": "skeleton+orientation",
+   "regime": "D",
+   "world_assumptions": "linear Gaussian, causally sufficient; k-Triangle-Faithfulness (weaker than strong faithfulness)",
+   "identifiable_object": "CPDAG and identifiable structural coefficients",
+   "key_result": "A uniformly consistent estimator of the MEC and of identifiable coefficients exists under Markov + k-Triangle-Faithfulness; strong faithfulness 'may be false with high probability'.",
+   "reference": "Spirtes & Zhang 2014 (Statist. Sci. 29(4); arXiv 1502.00829)",
+   "finite_sample_or_rate": "uniform consistency (no explicit rate in abstract)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Robins et al. impossibility under plain faithfulness is the backdrop.",
+   "open_problems": "Credibility of k-triangle-faithfulness on real data.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1502.00829"
+   ]
+  },
+  {
+   "id": "C08",
+   "question": "skeleton+orientation",
+   "regime": "D",
+   "world_assumptions": "no faithfulness assumed; categorical data",
+   "identifiable_object": "MEC (where learnable)",
+   "key_result": "No algorithm converges for all networks; any algorithm achieving the best achievable mode of convergence must converge on all faithful networks, so assuming faithfulness is 'a requirement, not an option'. Sparsest-permutation methods are consistent under conditions strictly weaker than faithfulness.",
+   "reference": "Lin & Zhang 2020 (ALT, PMLR 117:554-582); Raskutti & Uhler (arXiv 1307.0366)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "No universally convergent learner exists.",
+   "open_problems": "Finite-sample versions of the convergence-mode hierarchy.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v117/lin20a.html",
+    "https://arxiv.org/abs/1307.0366"
+   ]
+  },
+  {
+   "id": "C09",
+   "question": "skeleton (CI testing)",
+   "regime": "D",
+   "world_assumptions": "nonparametric conditional independence",
+   "identifiable_object": "n/a (test validity)",
+   "key_result": "A valid conditional independence test has no power against any alternative; finite-sample validity requires restricting the null (e.g. regression rate assumptions, as in the GCM).",
+   "reference": "Shah & Peters 2020 (Ann. Statist.; DOI 10.1214/19-AOS1857; arXiv 1804.07203)",
+   "finite_sample_or_rate": "rates only under assumptions on regression estimators",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "NO-FREE-LUNCH: every constraint-based guarantee inherits assumptions on the CI tests.",
+   "open_problems": "Practical test choice for mixed/nonlinear data at n=1000.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1804.07203"
+   ]
+  },
+  {
+   "id": "C10",
+   "question": "skeleton+orientation",
+   "regime": "D",
+   "world_assumptions": "high-dimensional sparse Gaussian (score-based)",
+   "identifiable_object": "CPDAG",
+   "key_result": "GES and adaptively restricted GES (ARGES) are consistent in several sparse high-dimensional settings; simulations favour them over PC.",
+   "reference": "Nandy, Hauser, Maathuis 2018 (Ann. Statist. 46(6A); arXiv 1507.02608)",
+   "finite_sample_or_rate": "consistency (conditions in full text, not read)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "Explicit rates for GES.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1507.02608",
+    "https://projecteuclid.org/journals/annals-of-statistics/volume-46/issue-6A/High-dimensional-consistency-in-score-based-and-hybrid-structure-learning/10.1214/17-AOS1654.full"
+   ]
+  },
+  {
+   "id": "C11",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "Bayesian networks, m variables, max in-degree k",
+   "identifiable_object": "DAG / structure (information-theoretic)",
+   "key_result": "Exact structure recovery needs Omega(m) samples for non-sparse BNs and Omega(k log m + k^2/m) for sparse BNs.",
+   "reference": "Ghoshal & Honorio (arXiv 1601.07460; venue not confirmed)",
+   "finite_sample_or_rate": "LOWER BOUND Omega(k log m + k^2/m)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Lower bound holds for any method.",
+   "open_problems": "Matching upper bounds for faithfulness-based methods.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1601.07460"
+   ]
+  },
+  {
+   "id": "C12",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "linear, acyclic, non-Gaussian errors, no hidden confounders",
+   "identifiable_object": "full DAG (unique)",
+   "key_result": "LiNGAM identifies the complete causal structure from observational data without a time order.",
+   "reference": "Shimizu, Hoyer, Hyvarinen, Kerminen 2006 (JMLR 7:2003-2030)",
+   "finite_sample_or_rate": "not in abstract",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Gaussian errors -> back to MEC.",
+   "open_problems": "Behaviour when errors are near-Gaussian at n=1000.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://www.jmlr.org/papers/v7/shimizu06a.html"
+   ]
+  },
+  {
+   "id": "C13",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "additive noise models (nonlinear f, additive noise), causal minimality, no hidden confounders",
+   "identifiable_object": "full DAG",
+   "key_result": "Bivariate ANMs are identifiable except when a differential-equation condition fails (linear-Gaussian is the classic exception); restricted multivariate ANMs identify the DAG (Thm 27); nonlinear Gaussian ANMs identifiable (Cor 30).",
+   "reference": "Hoyer et al. 2008 (NIPS 21); Peters, Mooij, Janzing, Schoelkopf 2014 (JMLR 15:2009-2053)",
+   "finite_sample_or_rate": "no rate in what I read",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Non-identifiable cases fall into five classes (Prop 22).",
+   "open_problems": "Robustness to misspecification and finite-sample independence tests.",
+   "evidence_label": "reported",
+   "read_level": "full text (theorem statements)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://papers.nips.cc/paper/2008/hash/f7664060cc52bc6f3d620bcedc94a4b6-Abstract.html",
+    "https://jmlr.org/papers/v15/peters14a.html",
+    "https://arxiv.org/pdf/1309.6779"
+   ]
+  },
+  {
+   "id": "C14",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "post-nonlinear model X2 = f2(f1(X1)+N), bivariate",
+   "identifiable_object": "causal direction",
+   "key_result": "PNL is identifiable in most cases; the non-identifiable cases are enumerated.",
+   "reference": "Zhang & Hyvarinen 2009 (UAI; arXiv 1205.2599; PMLR r7)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Enumerated exceptional cases.",
+   "open_problems": "Multivariate PNL identifiability in practice.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1205.2599",
+    "https://proceedings.mlr.press/r7/zhang09a.html"
+   ]
+  },
+  {
+   "id": "C15",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "linear Gaussian SEM with equal (or known-ratio) error variances",
+   "identifiable_object": "full DAG",
+   "key_result": "Equal error variances make the DAG identifiable (Peters & Buehlmann); with error variances known up to a constant, the true DAG uniquely minimises a reweighted l2 score (Loh & Buehlmann). Optimal sample complexity n ~ q log(d/q).",
+   "reference": "Peters & Buehlmann 2014 (Biometrika; arXiv 1205.2536); Loh & Buehlmann 2014 (JMLR 15:3065-3105); Gao, Tai, Aragam (arXiv 2201.10548)",
+   "finite_sample_or_rate": "minimax n ~ q log(d/q) (Gao et al. Thms 2.1, 3.1)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Lower bound max{log d / beta_min^2, q log(d/q)/(M^2-1)} (Gao et al. Thm 3.1).",
+   "open_problems": "Assumption is exactly what varsortability exploits in simulated benchmarks (Reisach et al. 2021); fails after standardisation.",
+   "evidence_label": "reported",
+   "read_level": "full text (Gao et al.); abstract (others)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1205.2536",
+    "https://jmlr.org/papers/v15/loh14a.html",
+    "https://arxiv.org/pdf/2201.10548",
+    "https://arxiv.org/abs/2102.13647"
+   ]
+  },
+  {
+   "id": "C16",
+   "question": "full graph",
+   "regime": "D+K (total causal order)",
+   "world_assumptions": "linear (Gaussian or not), known topological order, sparse",
+   "identifiable_object": "full DAG (parent selection only)",
+   "key_result": "With the order known, DAG estimation reduces to per-node variable selection; adaptive lasso is consistent; best-subset selection attains n ~ q log(d/q) with a matching lower bound (Gao et al. Props 4.1-4.2).",
+   "reference": "Shojaie & Michailidis 2010 (Biometrika 97(3):519-538); Gao, Tai, Aragam (arXiv 2201.10548, Sec. 4)",
+   "finite_sample_or_rate": "n ~ q log(d/q), same as undirected graphical-model selection",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Lower bound matches (Prop 4.2).",
+   "open_problems": "Rates with a noisy or partially known order.",
+   "evidence_label": "reported",
+   "read_level": "full text (Gao); abstract (Shojaie)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://academic.oup.com/biomet/article/97/3/519/219267",
+    "https://arxiv.org/pdf/2201.10548"
+   ]
+  },
+  {
+   "id": "C17",
+   "question": "orientation",
+   "regime": "D+K (required/forbidden directed edges)",
+   "world_assumptions": "causally sufficient, faithfulness, knowledge correct",
+   "identifiable_object": "MPDAG (maximally oriented PDAG)",
+   "key_result": "Meek rules R1-R4 after imposing the knowledge give the maximally oriented graph (Meek 1995, Thm 4); MPDAGs support reading possible ancestry, an adjustment criterion and IDA; effects become more identifiable with more knowledge (simulation).",
+   "reference": "Meek 1995 (UAI; arXiv 1302.4972); Perkovic, Kalisch, Maathuis 2017 (UAI; arXiv 1707.02171)",
+   "finite_sample_or_rate": "n/a (population)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Knowledge inconsistent with the CPDAG is not handled.",
+   "open_problems": "Soft/erroneous knowledge with guarantees.",
+   "evidence_label": "reported",
+   "read_level": "full text (Meek); abstract (Perkovic)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/pdf/1302.4972",
+    "https://arxiv.org/abs/1707.02171"
+   ]
+  },
+  {
+   "id": "C18",
+   "question": "orientation",
+   "regime": "D+K (tiers / temporal partial order)",
+   "world_assumptions": "causally sufficient, faithfulness, correct tiers",
+   "identifiable_object": "tiered MPDAG",
+   "key_result": "All cross-tier edges are directed; only Meek R1 is needed to complete; result is a chain graph with chordal components so CPDAG adjustment and IDA apply unchanged; fully shielded within-tier edges stay undirected; tiers give absence, never presence, of ancestral relations; earlier knowledge is more informative.",
+   "reference": "Bang & Didelez 2023 (UAI, PMLR 216:119-129; arXiv 2306.01638)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "A complete subgraph inside one tier cannot be oriented by tiers (Example 5).",
+   "open_problems": "PAG extension is a conjecture (needs no cross-tier confounding, no selection); erroneous tiers.",
+   "evidence_label": "reported",
+   "read_level": "full text",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v216/bang23a.html",
+    "https://arxiv.org/pdf/2306.01638"
+   ]
+  },
+  {
+   "id": "C19",
+   "question": "orientation / effects",
+   "regime": "D+K (pairwise direct, ancestral, non-ancestral)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "causal MPDAG + residual direct causal clauses",
+   "key_result": "Any pairwise causal knowledge set decomposes uniquely into a causal MPDAG plus a minimal residual set of direct causal clauses; consistency/equivalence checks are polynomial; effect identifiability depends only on the MPDAG (necessary and sufficient condition).",
+   "reference": "Fang, Zhao, Liu, He 2025 (JMLR 26:229); Fang & He 2020 (UAI, PMLR 124:270-279)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "Ancestral knowledge is not representable by edge orientations alone (residual clauses).",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://jmlr.org/papers/v26/23-0624.html",
+    "https://proceedings.mlr.press/v124/fang20a.html"
+   ]
+  },
+  {
+   "id": "C20",
+   "question": "full graph",
+   "regime": "D+K (partial orders)",
+   "world_assumptions": "differentiable structure learning",
+   "identifiable_object": "graph consistent with the partial order",
+   "key_result": "Partial orders are mapped to equivalent graph-space constraints with claimed correctness and completeness; reported 90% fewer samples on one real dataset.",
+   "reference": "Ban et al. 2024 (NeurIPS 2024 poster)",
+   "finite_sample_or_rate": "empirical only",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "No identifiability theorem beyond constraint equivalence in what I read.",
+   "evidence_label": "reported (abstract only)",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://neurips.cc/virtual/2024/poster/96218"
+   ]
+  },
+  {
+   "id": "C21",
+   "question": "orientation",
+   "regime": "D+K (tiers)",
+   "world_assumptions": "latent confounders allowed (FCI)",
+   "identifiable_object": "PAG refined by tiers",
+   "key_result": "FCI with tiered background knowledge is sound and complete; for other knowledge types it is not known when FCI stays complete. Local background knowledge also has sound and complete rules (Wang, Qin, Zhou).",
+   "reference": "Andrews, Spirtes, Cooper 2020 (AISTATS, PMLR 108:4002-4011); Wang, Qin, Zhou 2022 (NeurIPS 35)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Completeness of FCI under general (non-tiered) knowledge is open.",
+   "open_problems": "Selection bias with tiers not confirmed in what I read.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v108/andrews20a.html",
+    "https://proceedings.neurips.cc/paper_files/paper/2022/hash/4334031bd9d518af18a6aba32ad70c8e-Abstract.html"
+   ]
+  },
+  {
+   "id": "C22",
+   "question": "orientation",
+   "regime": "D",
+   "world_assumptions": "latent confounders and selection bias, acyclic, Markov + faithfulness",
+   "identifiable_object": "PAG (MAG equivalence class)",
+   "key_result": "FCI with added rules is complete: it recovers every feature uniquely determined by conditional independence facts; Zhang's tail rules complete the MAG-equivalence commonalities.",
+   "reference": "Zhang 2008 (Artificial Intelligence 172(16-17):1873-1896); Zhang (arXiv 1206.5282)",
+   "finite_sample_or_rate": "uniform consistency impossible (C05)",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "No uniformly consistent procedure (Robins et al. 2003).",
+   "open_problems": "Finite-sample PAG accuracy; FCI recall on autocorrelated data (see C38).",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://scholars.hkbu.edu.hk/en/publications/on-the-completeness-of-orientation-rules-for-causal-discovery-in--3/",
+    "https://arxiv.org/abs/1206.5282"
+   ]
+  },
+  {
+   "id": "C23",
+   "question": "full graph",
+   "regime": "D",
+   "world_assumptions": "linear non-Gaussian with latent confounders",
+   "identifiable_object": "finite set of models",
+   "key_result": "With latent confounders uniqueness is lost but at most a finite set of models fits the data.",
+   "reference": "Hoyer, Shimizu, Kerminen 2006 (arXiv cs/0603038)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "Non-uniqueness.",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/cs/0603038"
+   ]
+  },
+  {
+   "id": "C24",
+   "question": "skeleton (selection)",
+   "regime": "D",
+   "world_assumptions": "selection bias, parametric and non-parametric families",
+   "identifiable_object": "presence of selection bias",
+   "key_result": "Conditions under which selection bias is identifiable from observational data are given, with tests for its presence.",
+   "reference": "Kaltenpoth & Vreeken 2023 (AAAI 37(7):8177-8185)",
+   "finite_sample_or_rate": "n/a",
+   "experiment_cost": "none",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "Combining detection with PAG learning.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://ojs.aaai.org/index.php/AAAI/article/view/25987"
+   ]
+  },
+  {
+   "id": "C25",
+   "question": "orientation",
+   "regime": "D+I (hard, known targets)",
+   "world_assumptions": "causally sufficient, faithfulness",
+   "identifiable_object": "I-essential graph (interventional MEC)",
+   "key_result": "Interventional equivalence partitions DAGs more finely than observational; each class is represented by a chain graph (I-essential graph); GES generalises (GIES).",
+   "reference": "Hauser & Buehlmann 2012 (JMLR 13:2409-2464)",
+   "finite_sample_or_rate": "large-sample",
+   "experiment_cost": "see C29-C34",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://www.jmlr.org/papers/v13/hauser12a.html",
+    "https://arxiv.org/abs/1104.2808"
+   ]
+  },
+  {
+   "id": "C26",
+   "question": "orientation",
+   "regime": "D+I (soft/general, known targets)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "general-intervention I-MEC",
+   "key_result": "Characterises the I-MEC identifiable from general (not necessarily perfect) interventions and gives a provably consistent algorithm.",
+   "reference": "Yang, Katcoff, Uhler 2018 (ICML, PMLR 80:5541-5550)",
+   "finite_sample_or_rate": "consistency",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v80/yang18a.html"
+   ]
+  },
+  {
+   "id": "C27",
+   "question": "orientation",
+   "regime": "D+I (unknown targets)",
+   "world_assumptions": "causally sufficient, nonparametric",
+   "identifiable_object": "I-MEC with unknown targets",
+   "key_result": "Characterises the class identifiable from mixed observational/interventional data with partly or fully unknown targets; consistent permutation search (UT-IGSP). JCI handles unknown targets/types by context variables.",
+   "reference": "Squires, Wang, Uhler 2020 (UAI, PMLR 124:1039-1048); Mooij, Magliacane, Claassen 2020 (JMLR 21:99)",
+   "finite_sample_or_rate": "consistency",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v124/squires20a.html",
+    "https://www.jmlr.org/papers/v21/17-123.html"
+   ]
+  },
+  {
+   "id": "C28",
+   "question": "orientation",
+   "regime": "D+I (soft, unknown targets)",
+   "world_assumptions": "latent confounders allowed",
+   "identifiable_object": "Psi-PAG",
+   "key_result": "Psi-Markov property; graphical equivalence test via augmented MAGs (skeleton, unshielded colliders, discriminating paths); Psi-FCI sound and complete in the sample limit.",
+   "reference": "Jaber, Kocaoglu, Shanmugam, Bareinboim 2020 (NeurIPS 33)",
+   "finite_sample_or_rate": "sample limit only",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "full text (abstract+intro)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.neurips.cc/paper/2020/file/6cd9313ed34ef58bad3fdd504355e72c-Paper.pdf"
+   ]
+  },
+  {
+   "id": "C29",
+   "question": "experiment design",
+   "regime": "I (worst case, no prior D)",
+   "world_assumptions": "causally sufficient, acyclic, no selection",
+   "identifiable_object": "full DAG",
+   "key_result": "With unrestricted simultaneous randomisation, log2(N)+1 experiments are sufficient and in the worst case necessary; single-variable experiments need N-1.",
+   "reference": "Eberhardt, Glymour, Scheines 2005 (UAI; arXiv 1207.1389)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "log2(N)+1 multi-target; N-1 single-target",
+   "impossibility_or_lower_bound": "worst-case necessary",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract (bounded-k formula partly garbled in extraction)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1207.1389"
+   ]
+  },
+  {
+   "id": "C30",
+   "question": "experiment design",
+   "regime": "D+I (start from CPDAG / I-essential graph)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "full DAG",
+   "key_result": "ceil(log2 omega(G)) unbounded-size targets suffice and are worst-case necessary, omega = largest clique of undirected components (proves Eberhardt's conjecture); OptUnb finds them in polynomial time; a greedy single-vertex strategy is also given.",
+   "reference": "Hauser & Buehlmann 2014 (IJAR; DOI 10.1016/j.ijar.2013.11.007; arXiv 1205.4174); Eberhardt 2008 (UAI; arXiv 1206.3250)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "ceil(log2 omega)",
+   "impossibility_or_lower_bound": "worst-case necessary",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "full text (Cor 2, Prop 5)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/pdf/1205.4174",
+    "https://arxiv.org/abs/1206.3250"
+   ]
+  },
+  {
+   "id": "C31",
+   "question": "experiment design",
+   "regime": "D+I (size-k interventions)",
+   "world_assumptions": "causally sufficient, chordal skeleton",
+   "identifiable_object": "full DAG",
+   "key_result": "Any deterministic adaptive algorithm must be a separating system on complete graphs in the worst case; near-optimal separating systems; adaptive algorithm on chordal skeletons is an alpha-approximation (alpha = independence number).",
+   "reference": "Shanmugam, Kocaoglu, Dimakis, Vishwanath 2015 (NIPS; arXiv 1511.00041)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "separating-system size",
+   "impossibility_or_lower_bound": "information-theoretic lower bound also for randomized adaptive",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1511.00041"
+   ]
+  },
+  {
+   "id": "C32",
+   "question": "experiment design",
+   "regime": "D+I (atomic)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "full DAG",
+   "key_result": "Universal lower bound: at least the sum over chain components of half the largest clique size; DCT policy within a log factor (in number of maximal cliques) of optimal; an improved universal lower bound within factor 2 of optimal.",
+   "reference": "Squires et al. 2020 (arXiv 2011.00641; venue not confirmed); Porwal, Srivastava, Sinha 2022 (AISTATS, PMLR 151:5583-5603)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "atomic: >= sum_i ceil(omega_i/2)-type bound",
+   "impossibility_or_lower_bound": "LOWER BOUND, within factor 2 of optimum",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2011.00641",
+    "https://proceedings.mlr.press/v151/porwal22a.html"
+   ]
+  },
+  {
+   "id": "C33",
+   "question": "experiment design",
+   "regime": "D+I (adaptive search vs verification)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "full DAG",
+   "key_result": "Minimal verifying set characterised via covered edges; separator-based adaptive search uses O(log n) times the verification number, which is tight (Omega(log n) on some graphs); O(log n log k) for size-k interventions.",
+   "reference": "Choo, Shiragur, Bhattacharyya 2022 (NeurIPS 2022; arXiv 2206.15374)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "O(log n) x verification number",
+   "impossibility_or_lower_bound": "Omega(log n) worst-case ratio",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2206.15374",
+    "https://mlanthology.org/neurips/2022/choo2022neurips-verification"
+   ]
+  },
+  {
+   "id": "C34",
+   "question": "experiment design",
+   "regime": "D+I (orient a target subset of edges)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "target edges only",
+   "key_result": "Subset verification computable efficiently; for subset search no algorithm beats a ratio of the target edges' vertex cover in the worst case.",
+   "reference": "Choo & Shiragur (arXiv 2301.03180; venue not confirmed)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "subset verification number",
+   "impossibility_or_lower_bound": "vertex-cover-sized gap is unavoidable",
+   "open_problems": "Question-driven (effect-targeted) design bounds.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2301.03180"
+   ]
+  },
+  {
+   "id": "C35",
+   "question": "experiment design",
+   "regime": "D+I (costs / budgets)",
+   "world_assumptions": "causally sufficient",
+   "identifiable_object": "full DAG / expected oriented edges",
+   "key_result": "Minimum-cost intervention set identifying any DAG with a given skeleton is polynomial-time; with a capped number, poly-time for trees/clique trees, greedy for chordal. Budgeted k single-target non-adaptive design: objective (expected oriented edges) is submodular, greedy gives (1-1/e).",
+   "reference": "Kocaoglu, Dimakis, Vishwanath 2017 (ICML, PMLR 70:1875-1884); Ghassami, Salehkaleybar, Kiyavash, Bareinboim 2018 (ICML, PMLR 80:1724-1733)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "cost-optimal / (1-1/e) of best k",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v70/kocaoglu17a.html",
+    "https://proceedings.mlr.press/v80/ghassami18a.html"
+   ]
+  },
+  {
+   "id": "C36",
+   "question": "experiment design",
+   "regime": "D+I",
+   "world_assumptions": "latent variables allowed",
+   "identifiable_object": "full causal graph with latents",
+   "key_result": "O(d log^2 n + d^2 log n) interventions learn the graph with latents (d = degree), versus O(n^2) naive.",
+   "reference": "Kocaoglu, Shanmugam, Bareinboim 2017 (NIPS 30)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "O(d log^2 n + d^2 log n)",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.neurips.cc/paper/2017/hash/291d43c696d8c3704cdbe0a72ade5f6c-Abstract.html"
+   ]
+  },
+  {
+   "id": "C37",
+   "question": "full graph / experiment design",
+   "regime": "D+I",
+   "world_assumptions": "linear cyclic with latent variables",
+   "identifiable_object": "full linear cyclic model",
+   "key_result": "Necessary and sufficient conditions on the set of experiments for identifiability are given.",
+   "reference": "Hyttinen, Eberhardt, Hoyer 2012 (JMLR 13:3387-3439)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "set of experiments satisfying the paper's condition (not read)",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://jmlr.org/papers/v13/hyttinen12a.html"
+   ]
+  },
+  {
+   "id": "C38",
+   "question": "full graph (lagged)",
+   "regime": "D (time series)",
+   "world_assumptions": "Granger: complete system, no unmeasured confounders, no instantaneous effects, sampling at causal lag, no measurement error",
+   "identifiable_object": "lagged graph (Granger graph)",
+   "key_result": "Granger causality assesses predictiveness; it matches causal structure only under the listed assumptions, which the review calls unverifiable and unlikely to hold together; sub-sampling can make effects unidentifiable and create spurious ones.",
+   "reference": "Shojaie & Fox 2022 (Annu. Rev. Stat. Appl. 9:289-319; arXiv 2105.02675)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Omitted variables can reverse Granger conclusions (review's simulation).",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "full text (PMC)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC10571505/"
+   ]
+  },
+  {
+   "id": "C39",
+   "question": "full graph (lagged + contemporaneous)",
+   "regime": "D (time series)",
+   "world_assumptions": "causal sufficiency, Markov, faithfulness, stationarity",
+   "identifiable_object": "lagged parents (PCMCI); lagged + contemporaneous MEC (PCMCI+)",
+   "key_result": "PCMCI is consistent for lagged links with no contemporaneous effects; finite-sample false-positive control is empirical. PCMCI+ handles contemporaneous links, order-independent and oracle-consistent.",
+   "reference": "Runge et al. 2019 (Sci. Adv.; arXiv 1702.07007); Runge 2020 (UAI; arXiv 2003.03685)",
+   "finite_sample_or_rate": "no finite-sample guarantee",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "full text (PCMCI via PMC); abstract (PCMCI+)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC6881151",
+    "https://arxiv.org/abs/2003.03685"
+   ]
+  },
+  {
+   "id": "C40",
+   "question": "orientation",
+   "regime": "D (time series)",
+   "world_assumptions": "latent confounders, autocorrelation",
+   "identifiable_object": "time-series PAG",
+   "key_result": "LPCMCI is order-independent and sound and complete in the oracle case, with much higher recall than FCI variants on autocorrelated data; SVAR-FCI style methods allow contemporaneous relations and latent processes.",
+   "reference": "Gerhardus & Runge 2020 (NeurIPS 33); Malinsky & Spirtes 2018 (KDD workshop, PMLR 92:23-47)",
+   "finite_sample_or_rate": "oracle only",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.neurips.cc/paper/2020/hash/94e70705efae423efda1088614128d0b-Abstract.html",
+    "https://proceedings.mlr.press/v92/malinsky18a.html"
+   ]
+  },
+  {
+   "id": "C41",
+   "question": "full graph",
+   "regime": "D (time series)",
+   "world_assumptions": "restricted SEMs (independent noise, e.g. additive) or non-Gaussian SVAR",
+   "identifiable_object": "full summary/instantaneous graph",
+   "key_result": "TiMINo identifies lagged and instantaneous effects, possibly nonlinear and unfaithful, and non-instantaneous feedback; non-Gaussian SVAR is identifiable without prior structure knowledge.",
+   "reference": "Peters, Janzing, Schoelkopf 2013 (NIPS 26); Hyvarinen, Zhang, Shimizu, Hoyer 2010 (JMLR 11:1709-1731)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.neurips.cc/paper/2013/hash/47d1e990583c9c67424d369f3414728e-Abstract.html",
+    "https://www.jmlr.org/papers/v11/hyvarinen10a.html"
+   ]
+  },
+  {
+   "id": "C42",
+   "question": "full graph",
+   "regime": "D (subsampled time series)",
+   "world_assumptions": "measurement slower than causal timescale",
+   "identifiable_object": "set of system-timescale structures consistent with data",
+   "key_result": "Constraint satisfaction/optimisation recovers system-timescale structures consistent with the measured-timescale graph, robust to statistical conflicts.",
+   "reference": "Hyttinen, Plis, Jarvisalo, Eberhardt, Danks 2016 (PGM, PMLR 52:216-227)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Generally not unique (equivalence set; details not read).",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v52/hyttinen16.html"
+   ]
+  },
+  {
+   "id": "C43",
+   "question": "orientation",
+   "regime": "D+K (summary causal graph)",
+   "world_assumptions": "time series, causally sufficient, faithful",
+   "identifiable_object": "micro-level orientations",
+   "key_result": "Conditions under which micro-level edges can be oriented using a summary causal graph, including macro-level cycles or bidirected edges.",
+   "reference": "Loranchet & Assaad (arXiv 2508.21742; 2025-2026 preprint)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2508.21742v2"
+   ]
+  },
+  {
+   "id": "C44",
+   "question": "orientation",
+   "regime": "D (cycles)",
+   "world_assumptions": "simple SCMs with feedback, sigma-faithfulness",
+   "identifiable_object": "PAG (cyclic interpretation)",
+   "key_result": "FCI output stays correct with feedback: sound and complete for observational data from simple sigma-faithful SCMs; consistent for presence/absence of (direct) causal relations, absence of confounders and of specific cycles. Cyclic SCMs may lack solutions or unique distributions unless solvability holds.",
+   "reference": "Mooij & Claassen 2020 (UAI; arXiv 2005.00610); Bongers, Forre, Peters, Mooij 2021 (Ann. Statist. 49(5))",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Cyclic SCMs need not satisfy a Markov property without solvability.",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2005.00610",
+    "https://arxiv.org/abs/1611.06221"
+   ]
+  },
+  {
+   "id": "C45",
+   "question": "full graph",
+   "regime": "D (cycles)",
+   "world_assumptions": "linear non-Gaussian, causally sufficient, cyclic",
+   "identifiable_object": "distribution-equivalence class of SEMs",
+   "key_result": "LiNG-D outputs the distribution equivalence class; under sufficient conditions only one member is stable.",
+   "reference": "Lacerda, Spirtes, Ramsey, Hoyer 2008 (UAI; arXiv 1206.3273)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Non-unique in general.",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1206.3273"
+   ]
+  },
+  {
+   "id": "C46",
+   "question": "full graph",
+   "regime": "D (mixed)",
+   "world_assumptions": "linear mixed continuous/discrete (LiM); ordinal + exponential family linear models",
+   "identifiable_object": "full DAG (restricted models)",
+   "key_result": "LiM is identifiable under sufficient conditions; for ordered-logit and one-parameter exponential-family nodes, every ordinal-to-EF edge direction is identifiable given >=3 categories and >=3 support points, both necessary.",
+   "reference": "Zeng, Shimizu, Matsui, Sun 2022 (CLeaR, PMLR 177:994-1009); Mishra & Mitra (arXiv 2609.17942, Sept 2026 preprint)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Necessity of the 3-category / 3-point conditions (Mishra & Mitra).",
+   "open_problems": "Nonparametric mixed data: identifiable object stays the CPDAG; validity rests on mixed CI tests (C09).",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v177/zeng22a.html",
+    "https://arxiv.org/abs/2609.17942"
+   ]
+  },
+  {
+   "id": "C47",
+   "question": "effects P(Y|do(X))",
+   "regime": "D",
+   "world_assumptions": "linear Gaussian (IDA) / nonparametric (adjustment); causally sufficient",
+   "identifiable_object": "multiset of possible effects; identification status per (X,Y)",
+   "key_result": "IDA returns one effect per allowed parent set of X (min |effect| is a lower bound); the generalized adjustment criterion is sound and complete for DAGs, CPDAGs, MAGs, PAGs; an optimal (minimum asymptotic variance) adjustment set exists for linear models in DAGs/CPDAGs/MPDAGs.",
+   "reference": "Maathuis, Kalisch, Buehlmann 2009 (Ann. Statist. 37(6A); arXiv 0810.4214); Perkovic, Textor, Kalisch, Maathuis 2018 (JMLR 18:220); Henckel, Perkovic, Maathuis 2022 (JRSSB; arXiv 1907.02435)",
+   "finite_sample_or_rate": "IDA high-dim consistency (conditions not read)",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Effect not identifiable when X has undirected edges whose orientation changes the parent set.",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/0810.4214",
+    "https://jmlr.org/papers/v18/16-319.html",
+    "https://arxiv.org/abs/1907.02435"
+   ]
+  },
+  {
+   "id": "C48",
+   "question": "effects P(Y|do(X))",
+   "regime": "D+K",
+   "world_assumptions": "MPDAG (CPDAG + background knowledge), no latents",
+   "identifiable_object": "identified effect or set",
+   "key_result": "Necessary and sufficient identification criterion in MPDAGs, generalising the g-formula/truncated factorisation; strictly stronger than generalized adjustment. Local IDA with direct-causal knowledge; tiered MPDAGs keep CPDAG adjustment and IDA unchanged.",
+   "reference": "Perkovic 2020 (UAI, PMLR 124:530-539); Fang & He 2020 (UAI); Bang & Didelez 2023 (Cor 2-3)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v124/perkovic20a.html",
+    "https://proceedings.mlr.press/v124/fang20a.html",
+    "https://arxiv.org/pdf/2306.01638"
+   ]
+  },
+  {
+   "id": "C49",
+   "question": "effects P(Y|do(X))",
+   "regime": "D",
+   "world_assumptions": "latent confounders (PAG)",
+   "identifiable_object": "identified expression or proof of non-identifiability; bounds",
+   "key_result": "Complete identification algorithm given a PAG (returns an expression or certifies non-identifiability). LV-IDA returns multisets with NA where confounding cannot be ruled out; min/max bound the effect when identifiable.",
+   "reference": "Jaber, Zhang, Bareinboim 2019 (ICML, PMLR 97:2981-2989); Malinsky & Spirtes 2016 (CMU tech report 194 / PGM 2016)",
+   "finite_sample_or_rate": "LV-IDA sim, 15 vars: MSE 0.022 vs IDA 0.056; 12.7% NA (reported)",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "With latents, no uniformly consistent effect estimator or CI (Robins et al. 2003).",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract (Jaber); full text (Malinsky)",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://proceedings.mlr.press/v97/jaber19a.html",
+    "https://www.cmu.edu/dietrich/philosophy/docs/tech-reports/194_-malinsky.pdf"
+   ]
+  },
+  {
+   "id": "C50",
+   "question": "graph-feature confidence",
+   "regime": "D",
+   "world_assumptions": "any (resampling)",
+   "identifiable_object": "per-feature frequency (edge, direction-given-presence)",
+   "key_result": "Bootstrap frequencies rank features but are not calibrated probabilities; Bayesian model averaging over orders gives posterior feature probabilities; BCCD and ACI attach reliability/confidence to causal statements.",
+   "reference": "Friedman, Goldszmidt, Wyner 1999 (UAI; arXiv 1301.6695); Friedman & Koller 2000 (UAI; arXiv 1301.3856); Claassen & Heskes (arXiv 1210.4866); Magliacane, Claassen, Mooij 2016 (NIPS 29)",
+   "finite_sample_or_rate": "plain bootstrap ECE ~0.07-0.08 (second-hand, project note cluster6, Banerjee et al. 2025)",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "No coverage or calibration guarantee; posterior validity depends on model and prior.",
+   "open_problems": "Calibration at scenario-level n~25 (project DOM-08).",
+   "evidence_label": "reported; ECE second-hand",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1301.6695",
+    "https://arxiv.org/abs/1301.3856",
+    "https://arxiv.org/abs/1210.4866",
+    "https://www.arxiv.org/abs/1606.07035"
+   ]
+  },
+  {
+   "id": "C51",
+   "question": "skeleton (error control)",
+   "regime": "D",
+   "world_assumptions": "PC with CI tests",
+   "identifiable_object": "edge-wise p-values; FDR across edges",
+   "key_result": "PC-p computes edge-specific p-value upper bounds and controls FDR across edges with Benjamini-Yekutieli.",
+   "reference": "Strobl, Spirtes, Visweswaran 2019 (ACM TIST 10(5) per index; arXiv 1607.03975)",
+   "finite_sample_or_rate": "",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "Orientation-level error control.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/1607.03975"
+   ]
+  },
+  {
+   "id": "C52",
+   "question": "orientation / effects (coverage)",
+   "regime": "D",
+   "world_assumptions": "linear equal-variance or identifiable additive-error SEMs",
+   "identifiable_object": "confidence sets of orderings / effects including structure uncertainty",
+   "key_result": "Test inversion gives confidence regions for effects covering structure uncertainty (two-step intervals are over-optimistic); residual-bootstrap confidence sets of causal orderings are asymptotically valid and yield sub/supersets of ancestral relations.",
+   "reference": "Strieder, Freidling, Haffner, Drton 2021 (UAI); Strieder & Drton 2023 (J. Causal Inference); Wang, Kolar, Drton (arXiv 2305.14506)",
+   "finite_sample_or_rate": "asymptotic (1-alpha)",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "Naive bootstrap fails (non-smoothness) per Strieder & Drton (second-hand, cluster3).",
+   "open_problems": "Coverage-guaranteed sets for CPDAG/PAG features.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://mlanthology.org/uai/2021/strieder2021uai-confidence/",
+    "https://www.degruyterbrill.com/document/doi/10.1515/jci-2023-0030/html",
+    "https://arxiv.org/abs/2305.14506"
+   ]
+  },
+  {
+   "id": "C53",
+   "question": "effects after discovery",
+   "regime": "D",
+   "world_assumptions": "Gaussian DAGs, PC / constraint-based",
+   "identifiable_object": "valid CI for effect after selecting graph",
+   "key_result": "Double dipping inflates miscoverage; resampling-and-screening over perturbed PC runs gives asymptotically correct coverage for the fixed population effect; Gradu et al. give valid post-discovery inference beating data splitting.",
+   "reference": "Chang, Guo, Malinsky (arXiv 2405.06763); Gradu, Zrnic, Wang, Jordan (arXiv 2208.05949; JASA 120(550) per RePEc)",
+   "finite_sample_or_rate": "asymptotic coverage",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2405.06763",
+    "https://arxiv.org/abs/2208.05949",
+    "https://ideas.repec.org/a/taf/jnlasa/v120y2025i550p1127-1138.html"
+   ]
+  },
+  {
+   "id": "C54",
+   "question": "effects (conformal)",
+   "regime": "D+K (LLM edge prior)",
+   "world_assumptions": "identification, overlap, posterior concentration",
+   "identifiable_object": "marginal coverage of aggregated pseudo-outcome",
+   "key_result": "Conformal guarantee covers a posterior-weighted pseudo-outcome over candidate DAGs, not the effect or the graph; effect coverage is empirical (>90% on five benchmarks).",
+   "reference": "Singh et al. (CausalGuard, arXiv 2605.21928, May 2026 preprint)",
+   "finite_sample_or_rate": "finite-sample marginal (pseudo-outcome only)",
+   "experiment_cost": "",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "No conformal guarantee on graph features found.",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2605.21928"
+   ]
+  },
+  {
+   "id": "C55",
+   "question": "orientation (interventions, large graphs)",
+   "regime": "D+I (single-variable random)",
+   "world_assumptions": "epsilon-interventional faithfulness, latents allowed, random ER / scale-free graphs",
+   "identifiable_object": "orientation of true edges",
+   "key_result": "False-negative rate concentrates at O(log d / sqrt(d)) on sparse ER DAGs.",
+   "reference": "Chevalley, Mehrjou, Schwab (arXiv 2511.02536, Nov 2025 preprint)",
+   "finite_sample_or_rate": "O(log d / sqrt(d)) concentration",
+   "experiment_cost": "single-variable random interventions",
+   "impossibility_or_lower_bound": "",
+   "open_problems": "",
+   "evidence_label": "reported",
+   "read_level": "abstract",
+   "date_read": "2026-10-12",
+   "sources": [
+    "https://arxiv.org/abs/2511.02536v1"
+   ]
+  }
+ ],
+ "searches": [
+  "WebSearch: Perković \"Identifying causal effects in maximally oriented partially directed acyclic graphs\" UAI 2020",
+  "WebSearch: Bang Didelez \"Do we become wiser with time\" tiered background knowledge causal equivalence",
+  "WebSearch: Fang He \"IDA with background knowledge\" causal effects partial order",
+  "WebSearch: Zhang 2008 \"On the completeness of orientation rules ... latent confounders and selection bias\" Artificial Intelligence",
+  "WebSearch: Robins Scheines Spirtes Wasserman \"Uniform consistency in causal inference\" Biometrika 2003",
+  "WebSearch (extended): causal discovery conformal prediction confidence guarantees graph structure edges",
+  "WebSearch: \"Valid inference after causal discovery\" Gradu Zrnic Wang Jordan",
+  "WebSearch: Strobl Spirtes Visweswaran false discovery rate PC algorithm edge-specific p-values",
+  "WebSearch (extended): causal discovery abstention selective prediction coverage edge orientation guarantee 2024 2025 arXiv",
+  "WebSearch: Danks Plis \"Learning causal structure from undersampled time series\"",
+  "WebSearch: Jaber Kocaoglu Shanmugam Bareinboim \"Causal discovery from soft interventions with unknown targets\"",
+  "WebSearch: identifiability causal discovery mixed continuous discrete data theorem paper",
+  "WebSearch: Kaltenpoth Vreeken identifying selection bias from observational data AAAI 2023",
+  "WebSearch: Bongers Forré Peters Mooij Foundations of structural causal models with cycles and latent variables",
+  "WebSearch: Shojaie Fox Granger causality a review and recent advances",
+  "WebSearch: Malinsky Spirtes SVAR-FCI unmeasured confounding time series",
+  "WebSearch: Hyttinen Plis Järvisalo Eberhardt Danks subsampled time series constraint optimization",
+  "WebSearch: Runge et al. Science Advances 2019 PCMCI",
+  "WebSearch: Hoyer Shimizu Kerminen lvLiNGAM hidden variables identifiability",
+  "WebSearch: Ghassami et al. Budgeted experiment design ICML 2018",
+  "WebSearch: Loh Bühlmann high-dimensional linear causal networks inverse covariance",
+  "WebSearch: causal structure learning partial order constraints prior knowledge identifiability",
+  "WebSearch: Wang Qin Zhou local background knowledge latent variables NeurIPS 2022",
+  "WebSearch: local background knowledge / ancestral constraints Chen Van den Broeck Darwiche",
+  "WebSearch: Kalisch Bühlmann 2007 JMLR volume pages",
+  "WebSearch: Choo Shiragur Bhattacharyya verification and search NeurIPS 2022",
+  "WebSearch: Squires et al. directed clique trees NeurIPS 2020",
+  "WebSearch: Hoyer et al. nonlinear additive noise NIPS 2008",
+  "WebSearch: Zhang Hyvärinen post-nonlinear UAI 2009",
+  "WebSearch: Nandy Hauser Maathuis Annals 2018",
+  "WebSearch: Zhang Spirtes strong faithfulness UAI 2003",
+  "WebSearch: Hyttinen Eberhardt Hoyer linear cyclic latent JMLR",
+  "WebSearch: Malinsky Spirtes LV-IDA bounds",
+  "WebSearch (extended, NOT RUN - budget exhausted): conformal structure learning prediction sets over DAGs",
+  "WebFetch of ~70 primary pages (arXiv abs/PDF, PMLR, JMLR, NeurIPS proceedings, PMC); see sources per row"
+ ],
+ "not_read": [
+  {
+   "source": "Verma & Pearl 1990 full text",
+   "reason": "only the arXiv abstract was read; skeleton+v-structure criterion not confirmed verbatim"
+  },
+  {
+   "source": "Andersson, Madigan, Perlman 1997 (essential graphs); Richardson & Spirtes 2002 (ancestral graphs); Ali, Richardson, Spirtes 2009",
+   "reason": "not opened in this pass"
+  },
+  {
+   "source": "Spirtes, Glymour, Scheines, Causation, Prediction, and Search",
+   "reason": "not opened (publisher page blocked per cluster5)"
+  },
+  {
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5305170 (subsampled time series, Danks/Plis line)",
+   "reason": "reCAPTCHA page returned"
+  },
+  {
+   "source": "Kocaoglu, Jaber, Shanmugam, Bareinboim 2019 (soft interventions with latents)",
+   "reason": "not opened"
+  },
+  {
+   "source": "Cui, Groot, Heskes copula PC; Andrews, Ramsey, Cooper mixed-data scoring",
+   "reason": "search budget exhausted before lookup"
+  },
+  {
+   "source": "Conformal methods for graph structure (beyond CausalGuard)",
+   "reason": "planned search not run (shared web-search budget exhausted)"
+  },
+  {
+   "source": "Full texts of Nandy et al. 2018, Squires et al. 2020, Kocaoglu et al. 2017 ICML, Shanmugam et al. 2015, Strieder & Drton 2023",
+   "reason": "abstract-level only; exact constants/conditions not checked"
+  },
+  {
+   "source": "Eberhardt et al. 2005 bounded-k formula",
+   "reason": "abstract extraction gave '0 < K < 1/(2N)', apparently garbled; not re-read"
+  }
+ ]
+}

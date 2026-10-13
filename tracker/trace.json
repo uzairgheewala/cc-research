@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-13T02:10:28Z",
- "status_verified_utc": "2026-10-13T02:09:52Z",
+ "generated_utc": "2026-10-13T19:53:50Z",
+ "status_verified_utc": "2026-10-13T19:50:06Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -94,7 +94,9 @@
     "derived_status": "in_progress",
     "published_status": "in_progress",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "DLV-02"
+    ],
     "last_review": "2026-10-12T10:12:37Z"
    }
   },
@@ -554,6 +556,294 @@
    "level": "V3",
    "in_prod": false
   },
+  "AUD-18": {
+   "kind": "dev",
+   "title": "Field audit: every causal-discovery system, its regimes, order source and evaluation controls",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-19": {
+   "kind": "dev",
+   "title": "Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-20": {
+   "kind": "dev",
+   "title": "Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-21": {
+   "kind": "dev",
+   "title": "Own-benchmark audit: requirements, pitfalls and candidate designs",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-22": {
+   "kind": "dev",
+   "title": "Commercial audit: who buys causal analysis, for which decision, with which guarantee",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-23": {
+   "kind": "dev",
+   "title": "Engine audit: libraries, capabilities, defects; build vs reuse for the ledger",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-24": {
+   "kind": "dev",
+   "title": "Value-of-accuracy audit: how graph errors become decision errors",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-25": {
+   "kind": "dev",
+   "title": "Packaging audit: delivery modes, output requirements, regulator needs, user complaints",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-26": {
+   "kind": "dev",
+   "title": "Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-27": {
+   "kind": "dev",
+   "title": "Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-28": {
+   "kind": "dev",
+   "title": "Controlled re-score: released vs shuffled columns for every runnable baseline; PC conflict-rule mechanism",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-29": {
+   "kind": "dev",
+   "title": "Sortability of the CausalArena release (varsortability, R2-sortability)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-30": {
+   "kind": "dev",
+   "title": "Decision value (DV-1) and adjustment-identification distance for every baseline, with ceilings and the empty-graph baseline",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-31": {
+   "kind": "dev",
+   "title": "Cost of one Causal-Copilot run (the approved one-run cost check)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-32": {
+   "kind": "dev",
+   "title": "Audit program DAG: research landscape, commercial landscape, wedge and paper",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-33": {
+   "kind": "dev",
+   "title": "AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-34": {
+   "kind": "dev",
+   "title": "AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-35": {
+   "kind": "dev",
+   "title": "AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-36": {
+   "kind": "dev",
+   "title": "AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-37": {
+   "kind": "dev",
+   "title": "AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-38": {
+   "kind": "dev",
+   "title": "AB-06 LIVE: field audit of LLM-using systems under names x layout controls",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-39": {
+   "kind": "dev",
+   "title": "AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-40": {
+   "kind": "dev",
+   "title": "AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-41": {
+   "kind": "dev",
+   "title": "AB-10 Practitioner interviews (C1)",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-42": {
+   "kind": "dev",
+   "title": "AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-43": {
+   "kind": "dev",
+   "title": "AB-12 Vertical probe: root-cause analysis",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-44": {
+   "kind": "dev",
+   "title": "AB-13 Regulation and standards map: requirement -> ledger field",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-45": {
+   "kind": "dev",
+   "title": "AB-14 Market and go-to-market hypotheses for two verticals",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "todo",
+   "effective_status": "todo",
+   "level": "V2",
+   "in_prod": false
+  },
+  "AUD-46": {
+   "kind": "dev",
+   "title": "AB-15 Positioning closure: novelty matrix for L1-L5",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "AUD-47": {
+   "kind": "dev",
+   "title": "AB-17 Paper skeleton and pre-registration manifest",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "todo",
+   "effective_status": "todo",
+   "level": "V0",
+   "in_prod": false
+  },
+  "AUD-48": {
+   "kind": "dev",
+   "title": "AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms",
+   "category": "3 Audit: Causal-Copilot",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "DEC-05": {
+   "kind": "dev",
+   "title": "AB-16 Wedge decision: paper spine, venue and the Q2 build",
+   "category": "15 Decisions",
+   "status": "todo",
+   "effective_status": "todo",
+   "level": "V0",
+   "in_prod": false
+  },
   "BEN-01": {
    "kind": "dev",
    "title": "CausalArena public release inspected (families, files, graph convention)",
@@ -720,8 +1010,8 @@
    "kind": "dev",
    "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled",
    "category": "5 Targets",
-   "status": "blocked",
-   "effective_status": "blocked",
+   "status": "todo",
+   "effective_status": "todo",
    "level": "V0",
    "in_prod": false
   },
@@ -873,8 +1163,8 @@
    "kind": "dev",
    "title": "Declared knowledge as tiers, never edges",
    "category": "6 Required capabilities",
-   "status": "blocked",
-   "effective_status": "blocked",
+   "status": "todo",
+   "effective_status": "todo",
    "level": "V0",
    "in_prod": true,
    "prod_title": "",
@@ -883,11 +1173,11 @@
     "curates": [
      "CAP-04"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
+    "derived_status": "todo",
+    "published_status": "todo",
     "min_level": "V0",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "CAP-05": {
@@ -1377,9 +1667,9 @@
    "kind": "dev",
    "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
    "category": "7 Research questions",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "level": "V2",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": true,
    "prod_title": "With real names, does a model's ordering of variables get at least 70% of true edges right and contradict at most 10%?",
    "prod": {
@@ -1387,20 +1677,20 @@
     "curates": [
      "RQ-10"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
-    "min_level": "V2",
+    "derived_status": "done",
+    "published_status": "done",
+    "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "RQ-11": {
    "kind": "dev",
    "title": "O2 Neutral names give no order information",
    "category": "7 Research questions",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "level": "V2",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": true,
    "prod_title": "With neutral names, does the model supply no order information at all?",
    "prod": {
@@ -1408,20 +1698,20 @@
     "curates": [
      "RQ-11"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
-    "min_level": "V2",
+    "derived_status": "done",
+    "published_status": "done",
+    "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "RQ-12": {
    "kind": "dev",
    "title": "O3 Moved names: tiers follow the labels",
    "category": "7 Research questions",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "level": "V2",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": true,
    "prod_title": "With names moved onto other columns, does the model's ordering follow the labels instead of the data?",
    "prod": {
@@ -1429,20 +1719,20 @@
     "curates": [
      "RQ-12"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
-    "min_level": "V2",
+    "derived_status": "done",
+    "published_status": "done",
+    "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "RQ-13": {
    "kind": "dev",
    "title": "O4 Regression on model tiers reaches 0.634 (semantic)",
    "category": "7 Research questions",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "level": "V2",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": true,
    "prod_title": "Does regression on the model's ordering reach the best published 0.634 on CausalArena's semantic family with columns shuffled?",
    "prod": {
@@ -1450,20 +1740,20 @@
     "curates": [
      "RQ-13"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
-    "min_level": "V2",
+    "derived_status": "done",
+    "published_status": "done",
+    "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "RQ-14": {
    "kind": "dev",
    "title": "O5 Same for formula vs 0.524",
    "category": "7 Research questions",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "level": "V2",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": true,
    "prod_title": "Does the same reach the best published 0.524 on the formula family?",
    "prod": {
@@ -1471,11 +1761,11 @@
     "curates": [
      "RQ-14"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
-    "min_level": "V2",
+    "derived_status": "done",
+    "published_status": "done",
+    "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "RQ-15": {
@@ -1608,8 +1898,8 @@
    "kind": "dev",
    "title": "B3 declared knowledge as tiers",
    "category": "8 Build",
-   "status": "blocked",
-   "effective_status": "blocked",
+   "status": "todo",
+   "effective_status": "todo",
    "level": "V0",
    "in_prod": true,
    "prod_title": "",
@@ -1618,11 +1908,11 @@
     "curates": [
      "BLD-04"
     ],
-    "derived_status": "blocked",
-    "published_status": "blocked",
+    "derived_status": "todo",
+    "published_status": "todo",
     "min_level": "V0",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "BLD-05": {
@@ -1768,10 +2058,8 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [
-     "BLD-11"
-    ],
-    "last_review": "2026-10-12T10:12:37Z"
+    "suspect": [],
+    "last_review": "2026-10-13T02:10:38Z"
    }
   },
   "BLD-12": {
@@ -1781,6 +2069,24 @@
    "status": "done",
    "effective_status": "done",
    "level": "V3",
+   "in_prod": false
+  },
+  "BLD-13": {
+   "kind": "dev",
+   "title": "Claim-ledger record format, JSON Schema and verifier (V1-V8)",
+   "category": "8 Build",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
+   "in_prod": false
+  },
+  "BLD-14": {
+   "kind": "dev",
+   "title": "Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check",
+   "category": "8 Build",
+   "status": "todo",
+   "effective_status": "todo",
+   "level": "V2",
    "in_prod": false
   },
   "EVL-01": {
@@ -1800,7 +2106,9 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "EVL-01"
+    ],
     "last_review": "2026-10-12T10:12:37Z"
    }
   },
@@ -1821,7 +2129,9 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "EVL-02"
+    ],
     "last_review": "2026-10-12T10:12:37Z"
    }
   },
@@ -1842,7 +2152,9 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "EVL-03"
+    ],
     "last_review": "2026-10-12T10:12:37Z"
    }
   },
@@ -2231,9 +2543,9 @@
    "kind": "dev",
    "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)",
    "category": "15 Decisions",
-   "status": "open",
-   "effective_status": "open",
-   "level": "V0",
+   "status": "done",
+   "effective_status": "done",
+   "level": "V3",
    "in_prod": false
   },
   "DEC-03": {
@@ -2613,7 +2925,7 @@
     "published_status": "in_progress",
     "min_level": "V0",
     "suspect": [],
-    "last_review": "2026-10-12T10:12:37Z"
+    "last_review": "2026-10-13T18:59:29Z"
    }
   },
   "slack:C0C7Q2CA2G7/1791613039.267009": {
@@ -2638,6 +2950,18 @@
    "kind": "slack"
   },
   "slack:C0C7Q2CA2G7/1791800035.198339": {
+   "kind": "slack"
+  },
+  "slack:C0C7Q2CA2G7/1791859331.699289": {
+   "kind": "slack"
+  },
+  "slack:C0C7Q2CA2G7/1791866797.621659": {
+   "kind": "slack"
+  },
+  "slack:C0C7Q2CA2G7/1791882019.695789": {
+   "kind": "slack"
+  },
+  "slack:C0C7Q2CA2G7/1791921198.526359": {
    "kind": "slack"
   },
   "file:docs/q1/datasets.md": {
@@ -2925,6 +3249,420 @@
   "file:analysis/upstream_check.py": {
    "kind": "file"
   },
+  "file:analysis/audits/AU1_field_systems.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU1_field_systems.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU2_benchmarks.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU2_benchmarks.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU3_theory_limits.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU3_theory_limits.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU4_own_benchmark.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU4_own_benchmark.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU5_commercial.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU5_commercial.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU6_core_engines.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU6_core_engines.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU7_value_of_accuracy.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU7_value_of_accuracy.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU8_packaging.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU8_packaging.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AU0_synthesis.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AUDIT_PROGRAM.md": {
+   "kind": "file"
+  },
+  "file:analysis/authors_rule_layout_check.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/authors_rule/check.json": {
+   "kind": "file"
+  },
+  "file:analysis/engine_oracle_check.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/engine_oracle/oracle.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/engine_oracle/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/aud27_31_free_steps.md": {
+   "kind": "file"
+  },
+  "file:analysis/rescore_controls.py": {
+   "kind": "file"
+  },
+  "file:analysis/pc_upstream_run.py": {
+   "kind": "file"
+  },
+  "file:analysis/pc_orientation_order.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore/rescore.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore/pc_orientation_order.json": {
+   "kind": "file"
+  },
+  "file:analysis/sortability_audit.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/sortability/sortability.json": {
+   "kind": "file"
+  },
+  "file:analysis/decision_value.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value/decision_value.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/stability_s2/cost_per_run.json": {
+   "kind": "file"
+  },
+  "file:plans/make_audit_dag.py": {
+   "kind": "file"
+  },
+  "file:plans/audit_dag.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/audit_dag.md": {
+   "kind": "file"
+  },
+  "file:docs/decisions/2026-10-12_audit_dag.md": {
+   "kind": "file"
+  },
+  "file:analysis/baseline_variants_run.py": {
+   "kind": "file"
+  },
+  "file:analysis/rescore_controls_v2.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore_v2/rescore_v2.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore_v2/leaderboard_controlled.md": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore_v2/leaderboard_controlled.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/rescore_v2/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab01_controlled_scoreboard.md": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab02_second_scoreboard.md": {
+   "kind": "file"
+  },
+  "file:analysis/ab02_alarm_order.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/ab02/alarm_order.json": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB02_AB12_data_scouting.md": {
+   "kind": "file"
+  },
+  "file:analysis/ab02_bayesys.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/ab02/bayesys.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/ab02/bayesys_runs.jsonl": {
+   "kind": "file"
+  },
+  "file:analysis/engine_forensics.py": {
+   "kind": "file"
+  },
+  "file:analysis/engine_shims.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/engine_forensics/forensics.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/engine_forensics/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab03_engine_forensics.md": {
+   "kind": "file"
+  },
+  "file:docs/drafts/bug_reports/dodiscover_pc_oracle_cycle.md": {
+   "kind": "file"
+  },
+  "file:analysis/decision_value_v2.py": {
+   "kind": "file"
+  },
+  "file:analysis/dv_chambers_sachs.py": {
+   "kind": "file"
+  },
+  "file:analysis/ab04_figures.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value_v2/decision_value_v2.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value_v2/dv_chambers_sachs.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value_v2/risk_coverage.png": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value_v2/f1_vs_dv.png": {
+   "kind": "file"
+  },
+  "file:analysis/results/decision_value_v2/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab04_decision_value.md": {
+   "kind": "file"
+  },
+  "file:harness/agent_probe.py": {
+   "kind": "file"
+  },
+  "file:harness/probe_llm.py": {
+   "kind": "file"
+  },
+  "file:harness/probe_io.py": {
+   "kind": "file"
+  },
+  "file:harness/agents/registry.json": {
+   "kind": "file"
+  },
+  "file:docker/Dockerfile.probes": {
+   "kind": "file"
+  },
+  "file:plans/ab05_probe_causaliq.json": {
+   "kind": "file"
+  },
+  "file:plans/ab05_probe_pywhyllm.json": {
+   "kind": "file"
+  },
+  "file:plans/ab05_probe_matmcd.json": {
+   "kind": "file"
+  },
+  "file:plans/ab05_probe_vashishtha.json": {
+   "kind": "file"
+  },
+  "file:plans/ab05_cc_gpt4omini.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab05_probe_prep.md": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab05_probe_results.md": {
+   "kind": "file"
+  },
+  "file:tests/test_agent_probe.py": {
+   "kind": "file"
+  },
+  "file:plans/make_ab06_plans.py": {
+   "kind": "file"
+  },
+  "file:plans/ab06/BUDGET.json": {
+   "kind": "file"
+  },
+  "file:harness/agent_batch.py": {
+   "kind": "file"
+  },
+  "file:analysis/ab06_score.py": {
+   "kind": "file"
+  },
+  "file:plans/ab06_cc_gpt4omini_s2.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab06_prep.md": {
+   "kind": "file"
+  },
+  "file:tests/test_ab06_batch.py": {
+   "kind": "file"
+  },
+  "file:analysis/b2_generator.py": {
+   "kind": "file"
+  },
+  "file:analysis/b2_score.py": {
+   "kind": "file"
+  },
+  "file:analysis/b2_reference_methods.py": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab08_benchmark_card.md": {
+   "kind": "file"
+  },
+  "file:analysis/results/b2/b2_reference_scores.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/b2/b2_sortability.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/b2/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:tests/test_b2_generator.py": {
+   "kind": "file"
+  },
+  "file:analysis/theory_checks.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/theory/theory_checks.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/theory/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab09_theory_pack.md": {
+   "kind": "file"
+  },
+  "file:tests/test_theory.py": {
+   "kind": "file"
+  },
+  "file:docs/interviews/human_subjects_check.md": {
+   "kind": "file"
+  },
+  "file:docs/interviews/guide.md": {
+   "kind": "file"
+  },
+  "file:docs/interviews/screener.md": {
+   "kind": "file"
+  },
+  "file:docs/interviews/consent_script.md": {
+   "kind": "file"
+  },
+  "file:docs/interviews/notes_schema.json": {
+   "kind": "file"
+  },
+  "file:docs/interviews/synthesis_plan.md": {
+   "kind": "file"
+  },
+  "file:analysis/interview_synthesis.py": {
+   "kind": "file"
+  },
+  "file:tests/test_interview_synthesis.py": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB11_vendor_claims.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB11_vendor_claims.json": {
+   "kind": "file"
+  },
+  "file:analysis/ab11_teardown_run.py": {
+   "kind": "file"
+  },
+  "file:analysis/ab11_ledger_adapters.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/teardown/teardown.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/teardown/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:tests/test_ab11_adapters.py": {
+   "kind": "file"
+  },
+  "file:analysis/ab12_rca_probe.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/rca/rca_probe.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/rca/ab12_prereg.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/rca/CONTRACT.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab12_rca_probe.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB13_regulation_map.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB13_regulation_map.json": {
+   "kind": "file"
+  },
+  "file:docs/market/README.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB15_positioning.md": {
+   "kind": "file"
+  },
+  "file:analysis/audits/AB15_positioning.json": {
+   "kind": "file"
+  },
+  "file:analysis/a3_make_requests.py": {
+   "kind": "file"
+  },
+  "file:harness/tiers_runner.py": {
+   "kind": "file"
+  },
+  "file:analysis/a3_score.py": {
+   "kind": "file"
+  },
+  "file:plans/a3_prereg.json": {
+   "kind": "file"
+  },
+  "file:plans/a3_tiers_requests.jsonl": {
+   "kind": "file"
+  },
+  "file:plans/a3_scenarios.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/a3/a3.json": {
+   "kind": "file"
+  },
+  "file:analysis/results/a3/selftest.json": {
+   "kind": "file"
+  },
+  "file:analysis/a3_orient_only.py": {
+   "kind": "file"
+  },
+  "file:analysis/results/a3/a3_orient_only.json": {
+   "kind": "file"
+  },
+  "file:analysis/reports/ab07_knowledge_elicitation.md": {
+   "kind": "file"
+  },
+  "file:tests/test_tiers_runner.py": {
+   "kind": "file"
+  },
   "file:external/FETCH_REPORT.json": {
    "kind": "file"
   },
@@ -3141,6 +3879,21 @@
   "file:tracker/prod_spec.json": {
    "kind": "file"
   },
+  "file:ledger/DESIGN.md": {
+   "kind": "file"
+  },
+  "file:ledger/schema.py": {
+   "kind": "file"
+  },
+  "file:ledger/schema/ledger.schema.json": {
+   "kind": "file"
+  },
+  "file:ledger/verify.py": {
+   "kind": "file"
+  },
+  "file:tests/test_ledger_verify.py": {
+   "kind": "file"
+  },
   "file:analysis/score_record.py": {
    "kind": "file"
   },
@@ -3303,6 +4056,99 @@
   "slacklist:F0C869P25NE/Rec0C7R3XBW3Z": {
    "kind": "slacklist"
   },
+  "slacklist:F0C869P25NE/Rec0C8NNP4SKG": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C89AKB0J3": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8JEYNDJP": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8UCFQ552": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8QGQCFDG": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8KCXJKSR": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8QFDLWUA": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C89ALK3N3": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8UCGSWNQ": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8V18S6R2": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8L1QP25B": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C9KMP8G8Y": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8L1SAKK7": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8R5KE7QA": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C9KMQ1R1N": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8SU93APL": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8SU9PGAW": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8SUA82GJ": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8WQ28UDA": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8LSKQA3V": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8R4XCDCN": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8V23KD41": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C9MF41XG8": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8R4T37K8": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8MQMGRFX": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8R50M2VC": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8BNBJC9M": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8LSTV5MH": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8BNFAT9D": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8LSV3JGK": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8BNGCY31": {
+   "kind": "slacklist"
+  },
   "slacklist:F0C869P25NE/Rec0C808BFSN7": {
    "kind": "slacklist"
   },
@@ -3373,6 +4219,12 @@
    "kind": "slacklist"
   },
   "slacklist:F0C869P25NE/Rec0C7SS7F4LF": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8PBKVD5L": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8WQDBJ5S": {
    "kind": "slacklist"
   },
   "slacklist:F0C869P25NE/Rec0C8DUJJPT6": {
@@ -3502,6 +4354,9 @@
    "kind": "slacklist"
   },
   "slacklist:F0C869P25NE/Rec0C88E2D2Q1": {
+   "kind": "slacklist"
+  },
+  "slacklist:F0C869P25NE/Rec0C8R57FFGE": {
    "kind": "slacklist"
   },
   "slacklist:F0C869P25NE/Rec0C868XF8VC": {
@@ -4017,6 +4872,9 @@
   "slacklist:F0C8ADF3DNG/Rec0C8821PFFC": {
    "kind": "slacklist"
   },
+  "file:analysis/reports/audit_program_status.md": {
+   "kind": "file"
+  },
   "file:analysis/reports/q1_execution_plan.md": {
    "kind": "file"
   },
@@ -4027,6 +4885,15 @@
    "kind": "file"
   },
   "file:docs/REPO.md": {
+   "kind": "file"
+  },
+  "file:docs/drafts/bug_reports/causal_copilot_vendored_pc.md": {
+   "kind": "file"
+  },
+  "file:docs/drafts/bug_reports/gcastle_pc_one_sided_search.md": {
+   "kind": "file"
+  },
+  "file:docs/interviews/notes_template.md": {
    "kind": "file"
   }
  },
@@ -5411,6 +6278,321 @@
    "origin": "links.txt:183"
   },
   {
+   "src": "AUD-18",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:184"
+  },
+  {
+   "src": "AUD-19",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:185"
+  },
+  {
+   "src": "AUD-20",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:186"
+  },
+  {
+   "src": "AUD-21",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:187"
+  },
+  {
+   "src": "AUD-22",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:188"
+  },
+  {
+   "src": "AUD-23",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:189"
+  },
+  {
+   "src": "AUD-24",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:190"
+  },
+  {
+   "src": "AUD-25",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:191"
+  },
+  {
+   "src": "AUD-26",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:192"
+  },
+  {
+   "src": "BLD-11",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:193"
+  },
+  {
+   "src": "INF-06",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791859331.699289",
+   "note": "digest",
+   "origin": "links.txt:194"
+  },
+  {
+   "src": "AUD-27",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:195"
+  },
+  {
+   "src": "AUD-28",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:196"
+  },
+  {
+   "src": "AUD-29",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:197"
+  },
+  {
+   "src": "AUD-30",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:198"
+  },
+  {
+   "src": "AUD-31",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:199"
+  },
+  {
+   "src": "AUD-32",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:200"
+  },
+  {
+   "src": "BLD-13",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791866797.621659",
+   "note": "digest",
+   "origin": "links.txt:201"
+  },
+  {
+   "src": "AUD-32",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:202"
+  },
+  {
+   "src": "AUD-33",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:203"
+  },
+  {
+   "src": "AUD-34",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:204"
+  },
+  {
+   "src": "AUD-35",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:205"
+  },
+  {
+   "src": "AUD-36",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:206"
+  },
+  {
+   "src": "AUD-37",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:207"
+  },
+  {
+   "src": "AUD-39",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:208"
+  },
+  {
+   "src": "AUD-40",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:209"
+  },
+  {
+   "src": "AUD-41",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:210"
+  },
+  {
+   "src": "AUD-42",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:211"
+  },
+  {
+   "src": "AUD-43",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:212"
+  },
+  {
+   "src": "AUD-44",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:213"
+  },
+  {
+   "src": "AUD-46",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:214"
+  },
+  {
+   "src": "AUD-48",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:215"
+  },
+  {
+   "src": "DEC-02",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791882019.695789",
+   "note": "digest",
+   "origin": "links.txt:216"
+  },
+  {
+   "src": "AUD-34",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:217"
+  },
+  {
+   "src": "AUD-37",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:218"
+  },
+  {
+   "src": "AUD-38",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:219"
+  },
+  {
+   "src": "AUD-48",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:220"
+  },
+  {
+   "src": "BLD-04",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:221"
+  },
+  {
+   "src": "CAP-04",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:222"
+  },
+  {
+   "src": "RQ-10",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:223"
+  },
+  {
+   "src": "RQ-11",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:224"
+  },
+  {
+   "src": "RQ-12",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:225"
+  },
+  {
+   "src": "RQ-13",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:226"
+  },
+  {
+   "src": "RQ-14",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:227"
+  },
+  {
+   "src": "TGT-07",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1791921198.526359",
+   "note": "digest",
+   "origin": "links.txt:228"
+  },
+  {
    "src": "file:docs/q1/datasets.md",
    "rel": "evidences",
    "dst": "DLV-01",
@@ -6258,6 +7440,1007 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:analysis/audits/AU1_field_systems.md",
+   "rel": "evidences",
+   "dst": "AUD-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU1_field_systems.json",
+   "rel": "evidences",
+   "dst": "AUD-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU2_benchmarks.md",
+   "rel": "evidences",
+   "dst": "AUD-19",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU2_benchmarks.json",
+   "rel": "evidences",
+   "dst": "AUD-19",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU3_theory_limits.md",
+   "rel": "evidences",
+   "dst": "AUD-20",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU3_theory_limits.json",
+   "rel": "evidences",
+   "dst": "AUD-20",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU4_own_benchmark.md",
+   "rel": "evidences",
+   "dst": "AUD-21",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU4_own_benchmark.json",
+   "rel": "evidences",
+   "dst": "AUD-21",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU5_commercial.md",
+   "rel": "evidences",
+   "dst": "AUD-22",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU5_commercial.json",
+   "rel": "evidences",
+   "dst": "AUD-22",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU6_core_engines.md",
+   "rel": "evidences",
+   "dst": "AUD-23",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU6_core_engines.json",
+   "rel": "evidences",
+   "dst": "AUD-23",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU7_value_of_accuracy.md",
+   "rel": "evidences",
+   "dst": "AUD-24",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU7_value_of_accuracy.json",
+   "rel": "evidences",
+   "dst": "AUD-24",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU8_packaging.md",
+   "rel": "evidences",
+   "dst": "AUD-25",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU8_packaging.json",
+   "rel": "evidences",
+   "dst": "AUD-25",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AU0_synthesis.md",
+   "rel": "evidences",
+   "dst": "AUD-26",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AUDIT_PROGRAM.md",
+   "rel": "evidences",
+   "dst": "AUD-26",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/authors_rule_layout_check.py",
+   "rel": "evidences",
+   "dst": "AUD-26",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/authors_rule/check.json",
+   "rel": "evidences",
+   "dst": "AUD-26",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/engine_oracle_check.py",
+   "rel": "evidences",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/engine_oracle/oracle.json",
+   "rel": "evidences",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/engine_oracle/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "evidences",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/rescore_controls.py",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/pc_upstream_run.py",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/pc_orientation_order.py",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore/rescore.json",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore/pc_orientation_order.json",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "evidences",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/sortability_audit.py",
+   "rel": "evidences",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/sortability/sortability.json",
+   "rel": "evidences",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "evidences",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/decision_value.py",
+   "rel": "evidences",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value/decision_value.json",
+   "rel": "evidences",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "evidences",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/stability_s2/cost_per_run.json",
+   "rel": "evidences",
+   "dst": "AUD-31",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "evidences",
+   "dst": "AUD-31",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/make_audit_dag.py",
+   "rel": "evidences",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "evidences",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "evidences",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "evidences",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/baseline_variants_run.py",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/rescore_controls_v2.py",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore_v2/rescore_v2.json",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore_v2/leaderboard_controlled.md",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore_v2/leaderboard_controlled.json",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rescore_v2/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab01_controlled_scoreboard.md",
+   "rel": "evidences",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab02_second_scoreboard.md",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab02_alarm_order.py",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/ab02/alarm_order.json",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB02_AB12_data_scouting.md",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab02_bayesys.py",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/ab02/bayesys.json",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/ab02/bayesys_runs.jsonl",
+   "rel": "evidences",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/engine_forensics.py",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/engine_shims.py",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/engine_forensics/forensics.json",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/engine_forensics/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/drafts/bug_reports/dodiscover_pc_oracle_cycle.md",
+   "rel": "evidences",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/decision_value_v2.py",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/dv_chambers_sachs.py",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab04_figures.py",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value_v2/decision_value_v2.json",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value_v2/dv_chambers_sachs.json",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value_v2/risk_coverage.png",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value_v2/f1_vs_dv.png",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/decision_value_v2/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab04_decision_value.md",
+   "rel": "evidences",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/agent_probe.py",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/probe_llm.py",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/probe_io.py",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/agents/registry.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/Dockerfile.probes",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab05_probe_causaliq.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab05_probe_pywhyllm.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab05_probe_matmcd.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab05_probe_vashishtha.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab05_cc_gpt4omini.json",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_prep.md",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_results.md",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_agent_probe.py",
+   "rel": "evidences",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/make_ab06_plans.py",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab06/BUDGET.json",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/agent_batch.py",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab06_score.py",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ab06_cc_gpt4omini_s2.json",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_ab06_batch.py",
+   "rel": "evidences",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/b2_generator.py",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/b2_score.py",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/b2_reference_methods.py",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab08_benchmark_card.md",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/b2/b2_reference_scores.json",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/b2/b2_sortability.json",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/b2/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_b2_generator.py",
+   "rel": "evidences",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/theory_checks.py",
+   "rel": "evidences",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/theory/theory_checks.json",
+   "rel": "evidences",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/theory/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "evidences",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_theory.py",
+   "rel": "evidences",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/human_subjects_check.md",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/guide.md",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/screener.md",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/consent_script.md",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/notes_schema.json",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/interviews/synthesis_plan.md",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/interview_synthesis.py",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_interview_synthesis.py",
+   "rel": "evidences",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB11_vendor_claims.md",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB11_vendor_claims.json",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab11_teardown_run.py",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab11_ledger_adapters.py",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/teardown/teardown.json",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/teardown/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_ab11_adapters.py",
+   "rel": "evidences",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ab12_rca_probe.py",
+   "rel": "evidences",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rca/rca_probe.json",
+   "rel": "evidences",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rca/ab12_prereg.json",
+   "rel": "evidences",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/rca/CONTRACT.json",
+   "rel": "evidences",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab12_rca_probe.md",
+   "rel": "evidences",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB13_regulation_map.md",
+   "rel": "evidences",
+   "dst": "AUD-44",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB13_regulation_map.json",
+   "rel": "evidences",
+   "dst": "AUD-44",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/market/README.md",
+   "rel": "evidences",
+   "dst": "AUD-45",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "AUD-41",
+   "rel": "blocks",
+   "dst": "AUD-45",
+   "note": "AUD-41",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB15_positioning.md",
+   "rel": "evidences",
+   "dst": "AUD-46",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB15_positioning.json",
+   "rel": "evidences",
+   "dst": "AUD-46",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/a3_make_requests.py",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/tiers_runner.py",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/a3_score.py",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/a3_prereg.json",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/a3_tiers_requests.jsonl",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/a3_scenarios.json",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/a3/a3.json",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/a3/selftest.json",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/a3_orient_only.py",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/a3/a3_orient_only.json",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_tiers_runner.py",
+   "rel": "evidences",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/reports/bundle1_results.md",
    "rel": "evidences",
    "dst": "BEN-01",
@@ -6699,13 +8882,6 @@
    "origin": "catalogue"
   },
   {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "TGT-07",
-   "note": "DEC-02 (approval of the elicitation calls)",
-   "origin": "catalogue"
-  },
-  {
    "src": "file:analysis/results/error_budget/error_budget.json",
    "rel": "evidences",
    "dst": "TGT-08",
@@ -6752,13 +8928,6 @@
    "rel": "evidences",
    "dst": "TGT-13",
    "note": "",
-   "origin": "catalogue"
-  },
-  {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "CAP-04",
-   "note": "DEC-02",
    "origin": "catalogue"
   },
   {
@@ -6916,73 +9085,45 @@
    "origin": "catalogue"
   },
   {
-   "src": "file:analysis/reports/program_v2.md",
+   "src": "file:analysis/results/a3/a3.json",
    "rel": "evidences",
    "dst": "RQ-10",
    "note": "",
    "origin": "catalogue"
   },
   {
-   "src": "DEC-02",
-   "rel": "blocks",
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "evidences",
    "dst": "RQ-10",
-   "note": "DEC-02",
+   "note": "",
    "origin": "catalogue"
   },
   {
-   "src": "file:analysis/reports/program_v2.md",
+   "src": "file:analysis/results/a3/a3.json",
    "rel": "evidences",
    "dst": "RQ-11",
    "note": "",
    "origin": "catalogue"
   },
   {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "RQ-11",
-   "note": "DEC-02",
-   "origin": "catalogue"
-  },
-  {
-   "src": "file:analysis/reports/program_v2.md",
+   "src": "file:analysis/results/a3/a3.json",
    "rel": "evidences",
    "dst": "RQ-12",
    "note": "",
    "origin": "catalogue"
   },
   {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "RQ-12",
-   "note": "DEC-02",
-   "origin": "catalogue"
-  },
-  {
-   "src": "file:analysis/reports/program_v2.md",
+   "src": "file:analysis/results/a3/a3.json",
    "rel": "evidences",
    "dst": "RQ-13",
    "note": "",
    "origin": "catalogue"
   },
   {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "RQ-13",
-   "note": "DEC-02",
-   "origin": "catalogue"
-  },
-  {
-   "src": "file:analysis/reports/program_v2.md",
+   "src": "file:analysis/results/a3/a3.json",
    "rel": "evidences",
    "dst": "RQ-14",
    "note": "",
-   "origin": "catalogue"
-  },
-  {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "RQ-14",
-   "note": "DEC-02",
    "origin": "catalogue"
   },
   {
@@ -7025,13 +9166,6 @@
    "rel": "evidences",
    "dst": "BLD-01",
    "note": "",
-   "origin": "catalogue"
-  },
-  {
-   "src": "DEC-02",
-   "rel": "blocks",
-   "dst": "BLD-04",
-   "note": "DEC-02",
    "origin": "catalogue"
   },
   {
@@ -7150,6 +9284,55 @@
    "src": "file:tracker/selftest_trace.json",
    "rel": "evidences",
    "dst": "BLD-12",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:ledger/DESIGN.md",
+   "rel": "evidences",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:ledger/schema.py",
+   "rel": "evidences",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:ledger/schema/ledger.schema.json",
+   "rel": "evidences",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:ledger/verify.py",
+   "rel": "evidences",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_ledger_verify.py",
+   "rel": "evidences",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB13_regulation_map.md",
+   "rel": "evidences",
+   "dst": "BLD-14",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/audits/AB11_vendor_claims.md",
+   "rel": "evidences",
+   "dst": "BLD-14",
    "note": "",
    "origin": "catalogue"
   },
@@ -7438,6 +9621,13 @@
    "rel": "blocks",
    "dst": "EXT-01",
    "note": "Uzair's decision (DEC-03)",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "evidences",
+   "dst": "DEC-02",
+   "note": "",
    "origin": "catalogue"
   },
   {
@@ -8610,6 +10800,223 @@
    "origin": "mirrors.json"
   },
   {
+   "src": "slacklist:F0C869P25NE/Rec0C8NNP4SKG",
+   "rel": "mirrors",
+   "dst": "AUD-18",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C89AKB0J3",
+   "rel": "mirrors",
+   "dst": "AUD-19",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8JEYNDJP",
+   "rel": "mirrors",
+   "dst": "AUD-20",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8UCFQ552",
+   "rel": "mirrors",
+   "dst": "AUD-21",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8QGQCFDG",
+   "rel": "mirrors",
+   "dst": "AUD-22",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8KCXJKSR",
+   "rel": "mirrors",
+   "dst": "AUD-23",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8QFDLWUA",
+   "rel": "mirrors",
+   "dst": "AUD-24",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C89ALK3N3",
+   "rel": "mirrors",
+   "dst": "AUD-25",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8UCGSWNQ",
+   "rel": "mirrors",
+   "dst": "AUD-26",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8V18S6R2",
+   "rel": "mirrors",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8L1QP25B",
+   "rel": "mirrors",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C9KMP8G8Y",
+   "rel": "mirrors",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8L1SAKK7",
+   "rel": "mirrors",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8R5KE7QA",
+   "rel": "mirrors",
+   "dst": "AUD-31",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C9KMQ1R1N",
+   "rel": "mirrors",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8SU93APL",
+   "rel": "mirrors",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8SU9PGAW",
+   "rel": "mirrors",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8SUA82GJ",
+   "rel": "mirrors",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8WQ28UDA",
+   "rel": "mirrors",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8LSKQA3V",
+   "rel": "mirrors",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8R4XCDCN",
+   "rel": "mirrors",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8V23KD41",
+   "rel": "mirrors",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C9MF41XG8",
+   "rel": "mirrors",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8R4T37K8",
+   "rel": "mirrors",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8MQMGRFX",
+   "rel": "mirrors",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8R50M2VC",
+   "rel": "mirrors",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8BNBJC9M",
+   "rel": "mirrors",
+   "dst": "AUD-44",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8LSTV5MH",
+   "rel": "mirrors",
+   "dst": "AUD-45",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8BNFAT9D",
+   "rel": "mirrors",
+   "dst": "AUD-46",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8LSV3JGK",
+   "rel": "mirrors",
+   "dst": "AUD-47",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8BNGCY31",
+   "rel": "mirrors",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
    "src": "slacklist:F0C869P25NE/Rec0C808BFSN7",
    "rel": "mirrors",
    "dst": "BEN-01",
@@ -8774,6 +11181,20 @@
    "src": "slacklist:F0C869P25NE/Rec0C7SS7F4LF",
    "rel": "mirrors",
    "dst": "BLD-12",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8PBKVD5L",
+   "rel": "mirrors",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8WQDBJ5S",
+   "rel": "mirrors",
+   "dst": "BLD-14",
    "note": "",
    "origin": "mirrors.json"
   },
@@ -9075,6 +11496,13 @@
    "src": "slacklist:F0C869P25NE/Rec0C88E2D2Q1",
    "rel": "mirrors",
    "dst": "DEC-04",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0C8R57FFGE",
+   "rel": "mirrors",
+   "dst": "DEC-05",
    "note": "",
    "origin": "mirrors.json"
   },
@@ -10304,6 +12732,447 @@
    "origin": "scan"
   },
   {
+   "src": "file:analysis/reports/ab01_controlled_scoreboard.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab01_controlled_scoreboard.md",
+   "rel": "mentions",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab01_controlled_scoreboard.md",
+   "rel": "mentions",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab01_controlled_scoreboard.md",
+   "rel": "mentions",
+   "dst": "BND-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab02_second_scoreboard.md",
+   "rel": "mentions",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab02_second_scoreboard.md",
+   "rel": "mentions",
+   "dst": "BEN-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "mentions",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "mentions",
+   "dst": "CAP-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "mentions",
+   "dst": "CAP-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab03_engine_forensics.md",
+   "rel": "mentions",
+   "dst": "EXT-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab04_decision_value.md",
+   "rel": "mentions",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab04_decision_value.md",
+   "rel": "mentions",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab04_decision_value.md",
+   "rel": "mentions",
+   "dst": "BEN-09",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab04_decision_value.md",
+   "rel": "mentions",
+   "dst": "BLD-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_prep.md",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_results.md",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_results.md",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_results.md",
+   "rel": "mentions",
+   "dst": "CAP-10",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab05_probe_results.md",
+   "rel": "mentions",
+   "dst": "EXT-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "mentions",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "mentions",
+   "dst": "RQ-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "mentions",
+   "dst": "RQ-17",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab06_prep.md",
+   "rel": "mentions",
+   "dst": "STR-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "BLD-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "CAP-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "DEC-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "RQ-10",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "RQ-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "RQ-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "RQ-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "RQ-14",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab07_knowledge_elicitation.md",
+   "rel": "mentions",
+   "dst": "TGT-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab08_benchmark_card.md",
+   "rel": "mentions",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab08_benchmark_card.md",
+   "rel": "mentions",
+   "dst": "EVL-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab08_benchmark_card.md",
+   "rel": "mentions",
+   "dst": "STR-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "mentions",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "mentions",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "mentions",
+   "dst": "RQ-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab09_theory_pack.md",
+   "rel": "mentions",
+   "dst": "RQ-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab12_rca_probe.md",
+   "rel": "mentions",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/ab12_rca_probe.md",
+   "rel": "mentions",
+   "dst": "STR-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "AUD-31",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "BEN-09",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/aud27_31_free_steps.md",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "BLD-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "BND-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "DEC-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "DEC-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_dag.md",
+   "rel": "mentions",
+   "dst": "DEC-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_program_status.md",
+   "rel": "mentions",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/audit_program_status.md",
+   "rel": "mentions",
+   "dst": "BLD-14",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:analysis/reports/bnd04_results.md",
    "rel": "mentions",
    "dst": "BEN-08",
@@ -11354,6 +14223,454 @@
    "origin": "scan"
   },
   {
+   "src": "file:plans/a3_prereg.json",
+   "rel": "mentions",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/a3_prereg.json",
+   "rel": "mentions",
+   "dst": "DEC-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab05_cc_gpt4omini.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab05_probe_causaliq.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab05_probe_matmcd.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab05_probe_pywhyllm.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab05_probe_vashishtha.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab06_cc_gpt4omini_s2.json",
+   "rel": "mentions",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab06_cc_gpt4omini_s2.json",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/ab06_cc_gpt4omini_s2.json",
+   "rel": "mentions",
+   "dst": "BND-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-28",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-29",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-30",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-34",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-35",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-36",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-37",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-38",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-39",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-40",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-42",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-43",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-44",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-45",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-46",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-47",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "BEN-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "BLD-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "BND-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "CAP-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "CAP-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "CAP-09",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "CAP-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "CAP-15",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "DEC-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "DEC-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "DEC-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "DOM-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EVL-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EVL-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EXT-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EXT-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EXT-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "EXT-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-04",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-10",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-14",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "RQ-17",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "STR-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "STR-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "STR-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "TGT-15",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/audit_dag.json",
+   "rel": "mentions",
+   "dst": "TGT-16",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:plans/bnd06_prereg.json",
    "rel": "mentions",
    "dst": "BEN-07",
@@ -12061,6 +15378,104 @@
    "origin": "scan"
   },
   {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-32",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-33",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "mentions",
+   "dst": "AUD-48",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "mentions",
+   "dst": "DEC-02",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/decisions/2026-10-12_audit_dag.md",
+   "rel": "mentions",
+   "dst": "DEC-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/drafts/bug_reports/causal_copilot_vendored_pc.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/drafts/bug_reports/gcastle_pc_one_sided_search.md",
+   "rel": "mentions",
+   "dst": "AUD-27",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/consent_script.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/guide.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/human_subjects_check.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/notes_template.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/screener.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/interviews/synthesis_plan.md",
+   "rel": "mentions",
+   "dst": "AUD-41",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/market/README.md",
+   "rel": "mentions",
+   "dst": "AUD-45",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:docs/meeting_explainer.md",
    "rel": "mentions",
    "dst": "TEAM-02",
@@ -12093,7 +15508,22 @@
   {
    "severity": "WARN",
    "code": "W1",
-   "message": "BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-12T10:12)"
+   "message": "DLV-02 is suspect: ['DLV-02'] changed since it was last published or reviewed (2026-10-12T10:12)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "EVL-01 is suspect: ['EVL-01'] changed since it was last published or reviewed (2026-10-12T10:12)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "EVL-02 is suspect: ['EVL-02'] changed since it was last published or reviewed (2026-10-12T10:12)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "EVL-03 is suspect: ['EVL-03'] changed since it was last published or reviewed (2026-10-12T10:12)"
   }
  ]
 }

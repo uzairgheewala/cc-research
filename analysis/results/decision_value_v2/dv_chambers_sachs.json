@@ -1,0 +1,548 @@
+{
+ "tickets": [
+  "AUD-36",
+  "TGT-15",
+  "CAP-15"
+ ],
+ "benchmarks": {
+  "causal_chambers_lt": {
+   "variables": 20,
+   "targets": 11,
+   "pairs": 209,
+   "true_edges": 39,
+   "methods": {
+    "true DAG": {
+     "coverage": 1.0,
+     "claims": 209,
+     "yes": 39,
+     "no": 170,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "agreement_with_interventional_data": 0.9282
+    },
+    "true CPDAG": {
+     "coverage": 0.9904,
+     "claims": 207,
+     "yes": 37,
+     "no": 170,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "agreement_with_interventional_data": 0.9275
+    },
+    "empty graph (nothing moves)": {
+     "coverage": 1.0,
+     "claims": 209,
+     "yes": 0,
+     "no": 209,
+     "precision_committed": 0.8134,
+     "precision_yes": null,
+     "agreement_with_interventional_data": 0.8565
+    },
+    "pc": {
+     "coverage": 0.9904,
+     "claims": 207,
+     "yes": 10,
+     "no": 197,
+     "precision_committed": 0.8406,
+     "precision_yes": 0.7,
+     "agreement_with_interventional_data": 0.8647,
+     "edges_directed": 16,
+     "edges_undirected": 2,
+     "lift_over_empty_graph": 0.0272,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0299
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0263
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0191
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0048
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0239
+      }
+     }
+    },
+    "pc_maxp": {
+     "coverage": 0.9282,
+     "claims": 194,
+     "yes": 11,
+     "no": 183,
+     "precision_committed": 0.8866,
+     "precision_yes": 1.0,
+     "agreement_with_interventional_data": 0.9124,
+     "edges_directed": 14,
+     "edges_undirected": 4,
+     "lift_over_empty_graph": 0.0732,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0526
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0526
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0526
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0526
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0526
+      }
+     }
+    },
+    "ges": {
+     "coverage": 0.9713,
+     "claims": 203,
+     "yes": 28,
+     "no": 175,
+     "precision_committed": 0.9163,
+     "precision_yes": 0.8214,
+     "agreement_with_interventional_data": 0.9606,
+     "edges_directed": 29,
+     "edges_undirected": 4,
+     "lift_over_empty_graph": 0.1029,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.1041
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0981
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0861
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0622
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0143
+      }
+     }
+    },
+    "gies": {
+     "coverage": 1.0,
+     "claims": 209,
+     "yes": 43,
+     "no": 166,
+     "precision_committed": 0.8852,
+     "precision_yes": 0.6744,
+     "agreement_with_interventional_data": 0.9091,
+     "edges_directed": 33,
+     "edges_undirected": 0,
+     "lift_over_empty_graph": 0.0718,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.122
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.1053
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0718
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0048
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.1292
+      }
+     }
+    },
+    "lingam": {
+     "coverage": 1.0,
+     "claims": 209,
+     "yes": 12,
+     "no": 197,
+     "precision_committed": 0.8708,
+     "precision_yes": 1.0,
+     "agreement_with_interventional_data": 0.9139,
+     "edges_directed": 17,
+     "edges_undirected": 0,
+     "lift_over_empty_graph": 0.0574,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0574
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0574
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0574
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0574
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0574
+      }
+     }
+    },
+    "notears": {
+     "coverage": 1.0,
+     "claims": 209,
+     "yes": 2,
+     "no": 207,
+     "precision_committed": 0.8134,
+     "precision_yes": 0.5,
+     "agreement_with_interventional_data": 0.8565,
+     "edges_directed": 7,
+     "edges_undirected": 0,
+     "lift_over_empty_graph": 0.0,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0036
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0024
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": 0.0
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0048
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0144
+      }
+     }
+    }
+   },
+   "variables_kept": [
+    "red",
+    "green",
+    "blue",
+    "current",
+    "pol_1",
+    "pol_2",
+    "angle_1",
+    "angle_2",
+    "ir_1",
+    "vis_1",
+    "ir_2",
+    "vis_2",
+    "ir_3",
+    "vis_3",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32"
+   ],
+   "variables_dropped_constant_in_observational_rows": [
+    "osr_c",
+    "v_c",
+    "osr_angle_1",
+    "osr_angle_2",
+    "v_angle_1",
+    "v_angle_2",
+    "diode_ir_1",
+    "diode_vis_1",
+    "diode_ir_2",
+    "diode_vis_2",
+    "diode_ir_3",
+    "diode_vis_3",
+    "t_ir_1",
+    "t_vis_1",
+    "t_ir_2",
+    "t_vis_2",
+    "t_ir_3",
+    "t_vis_3"
+   ],
+   "pairs_where_full_graph_reachability_differs_from_kept_subgraph": 0,
+   "truth": "causalchamber graph('lt','standard') (true_adjacency in the sample)",
+   "share_of_target_pairs_moved_in_data": 0.1435
+  },
+  "sachs": {
+   "variables": 11,
+   "targets": 11,
+   "pairs": 110,
+   "true_edges": 17,
+   "methods": {
+    "true DAG": {
+     "coverage": 1.0,
+     "claims": 110,
+     "yes": 22,
+     "no": 88,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0
+    },
+    "true CPDAG": {
+     "coverage": 0.4364,
+     "claims": 48,
+     "yes": 0,
+     "no": 48,
+     "precision_committed": 1.0,
+     "precision_yes": null
+    },
+    "empty graph (nothing moves)": {
+     "coverage": 1.0,
+     "claims": 110,
+     "yes": 0,
+     "no": 110,
+     "precision_committed": 0.8,
+     "precision_yes": null
+    },
+    "pc": {
+     "coverage": 0.8727,
+     "claims": 96,
+     "yes": 2,
+     "no": 94,
+     "precision_committed": 0.8333,
+     "precision_yes": 0.5,
+     "edges_directed": 2,
+     "edges_undirected": 5,
+     "lift_over_empty_graph": 0.0333,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0068
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": true,
+       "value_per_pair_vs_nothing": 0.0045
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": 0.0
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0091
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0273
+      }
+     }
+    },
+    "pc_maxp": {
+     "coverage": 0.8182,
+     "claims": 90,
+     "yes": 0,
+     "no": 90,
+     "precision_committed": 0.8556,
+     "precision_yes": null,
+     "edges_directed": 0,
+     "edges_undirected": 7,
+     "lift_over_empty_graph": 0.0556,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      }
+     }
+    },
+    "ges": {
+     "coverage": 0.8182,
+     "claims": 90,
+     "yes": 0,
+     "no": 90,
+     "precision_committed": 0.8556,
+     "precision_yes": null,
+     "edges_directed": 0,
+     "edges_undirected": 7,
+     "lift_over_empty_graph": 0.0556,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0
+      }
+     }
+    },
+    "lingam": {
+     "coverage": 1.0,
+     "claims": 110,
+     "yes": 3,
+     "no": 107,
+     "precision_committed": 0.7727,
+     "precision_yes": 0.0,
+     "edges_directed": 3,
+     "edges_undirected": 0,
+     "lift_over_empty_graph": -0.0273,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0068
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0136
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0273
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0545
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.1091
+      }
+     }
+    },
+    "notears": {
+     "coverage": 1.0,
+     "claims": 110,
+     "yes": 2,
+     "no": 108,
+     "precision_committed": 0.7818,
+     "precision_yes": 0.0,
+     "edges_directed": 2,
+     "edges_undirected": 0,
+     "lift_over_empty_graph": -0.0182,
+     "threshold": {
+      "0.25": {
+       "p_star": 0.2,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0045
+      },
+      "0.5": {
+       "p_star": 0.3333,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0091
+      },
+      "1.0": {
+       "p_star": 0.5,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0182
+      },
+      "2.0": {
+       "p_star": 0.6667,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0364
+      },
+      "4.0": {
+       "p_star": 0.8,
+       "clears": false,
+       "value_per_pair_vs_nothing": -0.0727
+      }
+     }
+    }
+   },
+   "truth": "bnlearn sachs consensus (pgmpy 1.1.2 sachs.bif.gz sha256 ed1830fbde10...)",
+   "rows": 853,
+   "transform": "natural log of values clipped at 1e-3"
+  }
+ }
+}

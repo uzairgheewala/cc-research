@@ -1,0 +1,27 @@
+{
+ "bundle": "AB-12",
+ "tickets": ["AUD-43", "STR-06"],
+ "written": "2026-10-12, before any test-split result of any method was computed (only data layout, issue targets/root-cause labels listing, and PC timing on noissue data had been looked at)",
+ "prediction_P15": "declared topology plus abstention beats learned-graph RCA on AC@3 by at least 0.1; refuted if the gap is under 0.03 (verbatim, not changed)",
+ "P15_operationalisation": {
+  "primary": "gap = AC@3 of (d) on answered test issues minus AC@3 of (b) over all test issues (tie-aware expected AC@3, pooled over the 48 test issues of the 4 scenarios). Counts only if (d) test coverage >= 0.5; otherwise the strict metric below is the verdict.",
+  "strict": "gap = AC@3 of (d) counting abstentions as misses minus AC@3 of (b). Reported alongside; if primary and strict verdicts differ, both are stated.",
+  "verdict": "supported if gap >= 0.10; refuted if gap < 0.03; inconclusive in between. Paired bootstrap 95% CI over test issues (2000 resamples, seed 20261012) is reported but does not change the verdict."
+ },
+ "scoring": {
+  "AC@k": "1 if the single true root-cause node is within the top k, else 0 (one root cause per issue, so AC@k = top-k recall of Hardt et al.); tie-aware: when the true node sits in a tie group straddling position k, the hit is the probability under a uniform random order of the tie group, clamp((k - a)/g, 0, 1), a = number of strictly better candidates, g = tie-group size. Primary metric is tie-aware; a name-ascending deterministic tie-break is reported for per-issue ranks only.",
+  "Avg@5": "mean of AC@1..AC@5",
+  "empty output": "counts as a miss (as in the authors' evaluate())"
+ },
+ "abstention_rule": {
+  "shape": "abstain iff the candidate list is empty, or it has >= 4 candidates and the margin between the 3rd and 4th scores is <= tau (margin = 0 if s3 == s4; inf if s3 is inf and s4 finite; else (s3 - s4)/max(|s3|, 1e-12)), i.e. the top-3 set is not determined by the scores",
+  "tau_grid": [0, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5],
+  "tuning": "train split only (20 issues, all PetSearch root causes), per method: choose tau maximising tie-aware AC@3 on answered train issues subject to train coverage >= 0.5; ties -> smallest tau; if no tau reaches coverage 0.5, tau = 0",
+  "applied_to": "(d) declared traversal, (e) graph-free ranked correlation (decision uses the untruncated ranked list), plus an extra row (b+abstain) on the learned-graph traversal"
+ },
+ "learned_graph": "PC (causal-learn 0.1.4.8), Fisher-z, alpha 0.05, stable=True, uc_rule 0, uc_priority 2, on the noissue period, one graph per (scenario, target metric) using the <metric>/Average column of every service; columns with < 10 non-missing values or zero std in the normal period are excluded from PC and enter the learned graph as isolated nodes; remaining NaNs mean-imputed. Undirected and bidirected PC edges count both ways (each end is a parent of the other; paths may use them in either direction) for the primary (b); a seeded random orientation of undirected edges is a sensitivity row. The acyclicity check of the authors' traversal is skipped on learned graphs (recorded).",
+ "declared_graph": "graph.csv adjacency (A->B means A calls B), reversed into callee->caller as in baseline_anomaly_traversal.make_baseline_analyze_root_causes",
+ "anomaly_detection": "authors' DEFAULT_ANOMALY_DETECTION: dowhy MedianDeviationScorer (|x - median| / statsmodels mad, i.e. MAD scaled by 1/0.6745) fitted per service on the noissue period, threshold 5; zero-std services use |x - mean| with threshold 0; < 10 points -> no detector; analysis row = 3rd row of the issue or the first later row where the target is anomalous",
+ "column_shuffle": "one permutation of metric columns per scenario from numpy default_rng([20261012, scenario_index]); applied to noissue and issue files alike; (b) and (c) rerun (all methods rerun for completeness)",
+ "seeds": {"shuffle": 20261012, "bootstrap": 20261012, "random_orientation": "crc32(scenario|metric) ^ 20261012"}
+}

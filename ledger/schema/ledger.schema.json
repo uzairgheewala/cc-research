@@ -1,0 +1,404 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "cc-claim-ledger/0.1",
+ "title": "Claim ledger (cc-research)",
+ "type": "object",
+ "properties": {
+  "format": {
+   "const": "cc-claim-ledger/0.1"
+  },
+  "variables": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "var_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "name": {
+      "type": "string"
+     },
+     "position": {
+      "type": "integer"
+     }
+    },
+    "required": [
+     "var_id",
+     "name"
+    ],
+    "additionalProperties": true
+   }
+  },
+  "evidence": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "type": {
+      "enum": [
+       "ci_test",
+       "score_delta",
+       "functional_asymmetry",
+       "intervention_shift",
+       "knowledge_statement"
+      ]
+     },
+     "variables": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "conditioning": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "statistic": {
+      "type": "number"
+     },
+     "p_value": {
+      "type": "number"
+     },
+     "score": {
+      "type": "number"
+     },
+     "data_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "engine": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       },
+       "wheel_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       }
+      },
+      "required": [
+       "name",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "seed": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "supports": {
+      "enum": [
+       "adjacent",
+       "nonadjacent",
+       "x->y",
+       "y->x",
+       "none"
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "variables",
+     "supports"
+    ],
+    "additionalProperties": true
+   }
+  },
+  "knowledge": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "tier",
+       "required_edge",
+       "forbidden_edge",
+       "ancestral",
+       "non_ancestral"
+      ]
+     },
+     "content": {
+      "type": "object"
+     },
+     "supplier": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "enum": [
+         "person",
+         "model"
+        ]
+       },
+       "model_id": {
+        "type": "string"
+       },
+       "prompt_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "phrasing_id": {
+        "type": "string"
+       },
+       "shown": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "type"
+      ],
+      "additionalProperties": true
+     }
+    },
+    "required": [
+     "id",
+     "kind",
+     "content",
+     "supplier"
+    ],
+    "additionalProperties": true
+   }
+  },
+  "claims": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "x": {
+      "type": "string"
+     },
+     "y": {
+      "type": "string"
+     },
+     "relation": {
+      "enum": [
+       "x->y",
+       "x-y",
+       "none",
+       "x<->y"
+      ]
+     },
+     "direction_source": {
+      "enum": [
+       "data_pattern",
+       "data_form",
+       "intervention",
+       "knowledge",
+       "none"
+      ]
+     },
+     "licensed_by": {
+      "enum": [
+       "v_structure",
+       "meek_r1",
+       "meek_r2",
+       "meek_r3",
+       "meek_r4",
+       "i_essential",
+       "lingam",
+       "anm",
+       "tier",
+       "declared",
+       "adjacency_test",
+       "none"
+      ]
+     },
+     "evidence": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1
+     },
+     "data_only_relation": {
+      "enum": [
+       "x->y",
+       "x-y",
+       "none",
+       "x<->y"
+      ]
+     },
+     "knowledge": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "confidence": {
+      "type": "object",
+      "properties": {
+       "bootstrap_frequency": {
+        "type": "number"
+       },
+       "calibrated_probability": {
+        "type": "number"
+       },
+       "calibration_set": {
+        "type": "string"
+       }
+      },
+      "required": [],
+      "additionalProperties": true
+     }
+    },
+    "required": [
+     "id",
+     "x",
+     "y",
+     "relation",
+     "direction_source",
+     "licensed_by",
+     "evidence",
+     "data_only_relation"
+    ],
+    "additionalProperties": true
+   }
+  },
+  "overrides": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "knowledge": {
+      "type": "string"
+     },
+     "by": {
+      "type": "string"
+     },
+     "reason": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "knowledge",
+     "by",
+     "reason"
+    ],
+    "additionalProperties": true
+   }
+  },
+  "report": {
+   "type": "object",
+   "properties": {
+    "run_id": {
+     "type": "string"
+    },
+    "created_utc": {
+     "type": "string"
+    },
+    "regime": {
+     "enum": [
+      "D",
+      "D+I",
+      "D+K",
+      "D+I+K"
+     ]
+    },
+    "data_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "engines": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       },
+       "wheel_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       }
+      },
+      "required": [
+       "name",
+       "version"
+      ],
+      "additionalProperties": true
+     }
+    },
+    "seeds": {
+     "type": "object"
+    },
+    "invariants": {
+     "type": "object"
+    },
+    "permutation_check": {
+     "type": "object",
+     "properties": {
+      "permutations": {
+       "type": "integer"
+      },
+      "identical": {
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "permutations",
+      "identical"
+     ],
+     "additionalProperties": true
+    },
+    "ledger_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "unverifiable": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "commentary": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "run_id",
+    "regime",
+    "data_sha256",
+    "engines",
+    "permutation_check",
+    "ledger_sha256",
+    "unverifiable"
+   ],
+   "additionalProperties": true
+  }
+ },
+ "required": [
+  "format",
+  "variables",
+  "evidence",
+  "knowledge",
+  "claims",
+  "overrides",
+  "report"
+ ],
+ "additionalProperties": true
+}

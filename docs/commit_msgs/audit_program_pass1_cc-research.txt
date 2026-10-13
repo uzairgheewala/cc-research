@@ -1,0 +1,44 @@
+Audit program, first pass: 9 of 17 bundles done, live runs prepared, tracker and site in sync
+
+Tickets: AUD-32..AUD-48, DEC-02, DEC-05, BLD-14 (and blocked_by moves on TGT-07, CAP-04, RQ-10..14, BLD-04)
+
+Approval: docs/decisions/2026-10-12_audit_dag.md (DAG, $5 AB-05 cap, DEC-02). No API spend in this pass.
+
+Done (free compute and desk work)
+- AB-01 / AUD-33 controlled scoreboard: analysis/baseline_variants_run.py (PC maxP / definite maxP, GIES with targets,
+  synthetic PC with a per-file limit), analysis/rescore_controls_v2.py, analysis/results/rescore_v2/ (corrected
+  leaderboard), new rows in analysis/results/methods/ (contract: GIES files declared D+I per file).
+- AB-03 / AUD-35 engine forensics: analysis/engine_forensics.py, engine_shims.py, results/engine_forensics/, report,
+  docs/drafts/bug_reports/ (three drafts, not sent).
+- AB-04 / AUD-36 decision value: analysis/decision_value_v2.py, dv_chambers_sachs.py, ab04_figures.py,
+  results/decision_value_v2/ (two figures), report.
+- AB-08 / AUD-39 rho-dial benchmark: analysis/b2_generator.py, b2_score.py, b2_reference_methods.py, results/b2/,
+  benchmark card. Data (2,500 files, 258 MB) is not in git: regenerate with `python analysis/b2_generator.py`
+  (deterministic; --check verifies the manifest).
+- AB-09 / AUD-40 theory pack: analysis/theory_checks.py, results/theory/, report.
+- AB-11 / AUD-42 teardown: analysis/audits/AB11_vendor_claims.{md,json}, analysis/ab11_teardown_run.py,
+  ab11_ledger_adapters.py, results/teardown/ (raw tool outputs outside git: runs/ab11_teardown_raw.tgz).
+- AB-12 / AUD-43 RCA probe: analysis/ab12_rca_probe.py, results/rca/ (pre-registration ab12_prereg.json), report.
+- AB-13 / AUD-44 and AB-15 / AUD-46 desk audits: analysis/audits/AB13_regulation_map.*, AB15_positioning.*.
+- AB-02 / AUD-34 (interim): analysis/ab02_alarm_order.py, results/ab02/, report; waits on the Bayesys download.
+
+Prepared, waiting on Uzair
+- AB-05 / AUD-37: harness/agent_probe.py, probe_llm.py, probe_io.py, harness/agents/*, docker/Dockerfile.probes,
+  plans/ab05_probe_*.json, plans/ab05_cc_gpt4omini.json, report ab05_probe_prep.md.
+- AB-07 / AUD-48: analysis/a3_make_requests.py, harness/tiers_runner.py, analysis/a3_score.py, plans/a3_*.json(l)
+  (pre-registration with sha256), results/a3/selftest.json.
+- AB-10 / AUD-41: docs/interviews/*, analysis/interview_synthesis.py. AB-14: docs/market/README.md.
+- cc.ps1: new commands `plan <file> <model>`, `tiers`, `probebuild`, `probe` (INF-01, INF-04 repinned).
+
+Tracker and site
+- tracker/catalogue.py via jobs/patches/p01_register_audit_dag.py and p02_audit_bundle_results.py; snapshot includes
+  the audit bundles; site/levels/bundles.py gains the audit-program panel and the live-run queue.
+- analysis/score_record.py: names vocabulary gains "decoupled (rho dial)" (EVL-01..03 repinned).
+- Reports: analysis/reports/ab01_*, ab02_*, ab03_*, ab04_*, ab05_*, ab08_*, ab09_*, ab12_*, audit_program_status.md;
+  erratum appended to aud27_31_free_steps.md (AUD-27..31 repinned).
+- Tests: 106 run, 0 failures (13 skipped where data or agent environments are absent).
+
+Delete before committing (discarded relay drafts; copies are in tracker/relay_out/discarded/):
+  tracker/relay_out/20261013T044558Z_digest_dev.{json,md}
+  tracker/relay_out/20261013T090039Z_digest_prod.{json,md}
+  tracker/relay_out/20261013T090056Z_digest_prod.{json,md}

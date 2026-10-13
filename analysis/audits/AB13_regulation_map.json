@@ -1,0 +1,1033 @@
+{
+ "audit": "AB-13 regulation and standards map",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-44",
+  "CAP-09",
+  "EXT-02"
+ ],
+ "method_note": "Desk audit. Primary texts were read through a fetch tool that summarises each page against a prompt, so section and line locators come from those summaries and should be spot-checked against the PDF before external citation. Ledger field names are the dotted paths of ledger/schema.py (cc-claim-ledger/0.1). Gap codes G1-G10 are defined in AB13_regulation_map.md. Nothing here is legal advice.",
+ "gap_codes": {
+  "G1": "plan binding: no hash or timestamp proving the analysis configuration and knowledge were fixed before the data were seen, and no deviations list",
+  "G2": "question, estimand and context of use: no field states what causal question the graph serves or what it will be used for",
+  "G3": "data lineage: data_sha256 identifies bytes, not source, version, extraction date, cleaning, linkage, missing-data handling or variable definitions",
+  "G4": "human review: no record of who reviewed, accepted, overrode or rejected a claim, when, and why",
+  "G5": "assumptions and sensitivity: identifying assumptions (sufficiency, faithfulness, acyclicity, alpha) and sensitivity runs are not typed records",
+  "G6": "performance with intervals: calibration has a set id but no metric, interval, or proof the set is disjoint from the analysed data",
+  "G7": "audit trail: one created_utc per run; no per-record timestamps, signatures, data-access log or retention statement",
+  "G8": "multiplicity: no link between runs, so discarded runs, alternative data sources and exploratory analyses are invisible",
+  "G9": "derived quantities: no adjustment set or downstream estimate is derived from the final graph and recorded",
+  "G10": "tool lifecycle: no change log tying ledger format and engine versions across releases"
+ },
+ "rows": [
+  {
+   "instrument": "FDA draft guidance: Considerations for the Use of AI to Support Regulatory Decision-Making for Drug and Biological Products",
+   "issuer": "FDA (CDER, CBER, CDRH, CVM, OCE, OCP, OII)",
+   "status": "draft",
+   "date": "2025-01 (docket FDA-2024-D-4689; still draft on FDA page as read 2026-10-12)",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Define the question of interest and the context of use (the model's role, what output is used for, what other evidence it is combined with); then rate model risk as model influence times decision consequence and scale credibility work to it.",
+   "locator": "IV.A.1-IV.A.3 (Figure 1)",
+   "applies_to_causal_tool": "conditional: only when the AI output produces information or data used to support a regulatory decision on safety, effectiveness or quality",
+   "ledger_fields": [
+    "report.regime",
+    "claims.direction_source"
+   ],
+   "gap": "G2: no question or context-of-use field; regime and direction_source show how much knowledge shaped the output but no influence/consequence rating is recorded",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "The credibility plan describes the model: inputs, outputs, architecture, features, parameters and the rationale for the modelling approach.",
+   "locator": "IV.A.4.a.i",
+   "applies_to_causal_tool": "conditional: same context-of-use test",
+   "ledger_fields": [
+    "report.engines",
+    "evidence.engine",
+    "evidence.type",
+    "claims.licensed_by"
+   ],
+   "gap": "engine configuration (CI test, alpha, score, max conditioning size) is not a required field; licensed_by names the rule but not its parameters",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Describe development and evaluation data: how collected, processed, stored and controlled, and whether fit for use; reliable data are accurate, complete and traceable.",
+   "locator": "IV.A.4.a.ii; IV.A.4.b",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "variables.var_id",
+    "evidence.data_sha256",
+    "report.data_sha256"
+   ],
+   "gap": "G3: hashes prove which bytes were analysed, not where they came from or how they were processed",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Track software version changes during training; name the sources of any pre-trained models; manage and report model changes over the life cycle.",
+   "locator": "IV.A.4.a.iii (lines ~371-404); IV.B",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "evidence.engine.version",
+    "evidence.engine.wheel_sha256",
+    "report.engines",
+    "knowledge.supplier.model_id",
+    "format"
+   ],
+   "gap": "G10 (minor): versions are pinned per run, but there is no change log across tool releases; model_id is a free string with no snapshot date",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Give performance metrics with confidence intervals, estimate and interpret uncertainty of outputs, and consider repeatability or reproducibility studies.",
+   "locator": "IV.A.4.a.iii; IV.A.4.b (lines ~459-464)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.confidence.bootstrap_frequency",
+    "claims.confidence.calibrated_probability",
+    "claims.confidence.calibration_set",
+    "report.permutation_check",
+    "report.seeds"
+   ],
+   "gap": "G6: no calibration metric with interval; seed-to-seed repeatability is not recorded as a check the way order invariance is",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Where a human is in the loop, evaluate the performance of the human-AI team, not the model alone.",
+   "locator": "IV.A.4.b (lines ~447-449)",
+   "applies_to_causal_tool": "conditional: applies to an analyst-plus-tool workflow",
+   "ledger_fields": [
+    "knowledge.supplier.type",
+    "knowledge.supplier.shown",
+    "overrides"
+   ],
+   "gap": "G4: person-supplied knowledge is recorded, but a human's decision on the output (accept, edit, reject a claim) is not",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft AI guidance (Jan 2025)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2025-01",
+   "url": "https://www.fda.gov/media/184830/download",
+   "requirement": "Document results of the plan and any deviations from it in a credibility assessment report, held for FDA on request or submitted.",
+   "locator": "IV.A.6 (lines ~479-495)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "report",
+    "report.invariants",
+    "report.unverifiable",
+    "report.ledger_sha256"
+   ],
+   "gap": "G1: there is no plan object, so deviations cannot be stated against it",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft guidance: Real-World Evidence: Considerations Regarding Non-Interventional Studies for Drug and Biological Products",
+   "issuer": "FDA (CDER, CBER, OCE)",
+   "status": "draft",
+   "date": "2024-03",
+   "url": "https://www.fda.gov/media/177128/download",
+   "requirement": "Finalise the protocol before the study is conducted and prespecify the statistical analysis plan.",
+   "locator": "III.B (lines ~112-113); III.E (lines ~215-216)",
+   "applies_to_causal_tool": "conditional: when tool output enters a non-interventional study submitted to FDA",
+   "ledger_fields": [
+    "report.created_utc"
+   ],
+   "gap": "G1: nothing proves the engine config and knowledge set existed before the data hash was first computed",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft RWE non-interventional studies (Mar 2024)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2024-03",
+   "url": "https://www.fda.gov/media/177128/download",
+   "requirement": "Include in the protocol a causal diagram (DAGs or SWIGs given as examples) showing the theorised causal relationships, and describe the approach to causal inference.",
+   "locator": "III.C (lines ~149-151, fn 16); III.B (lines ~137-139)",
+   "applies_to_causal_tool": "yes when used to build or check that diagram",
+   "ledger_fields": [
+    "claims.relation",
+    "claims.direction_source",
+    "claims.licensed_by",
+    "claims.evidence",
+    "knowledge.kind",
+    "knowledge.content"
+   ],
+   "gap": "partial: FDA's diagram is an a priori theory; the ledger has no flag separating a prespecified hypothesised graph (as knowledge) from the discovered one, and no export of the final graph as a protocol figure",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft RWE non-interventional studies (Mar 2024)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2024-03",
+   "url": "https://www.fda.gov/media/177128/download",
+   "requirement": "The analysis plan says how confounding will be handled, including an assessment of unmeasured confounding and overadjustment on intermediates, and describes planned sensitivity analyses (what is varied and why).",
+   "locator": "III.E (lines ~226-230, ~246-247)",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "claims.relation (x<->y)",
+    "report.regime",
+    "report.unverifiable",
+    "claims.confidence.bootstrap_frequency"
+   ],
+   "gap": "G5 and G9: causal sufficiency is not recorded as an assumption; bootstrap is the only typed perturbation; no adjustment set or mediator list is derived from the final graph",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA guidance: Real-World Data: Assessing EHR and Medical Claims Data To Support Regulatory Decision-Making",
+   "issuer": "FDA (CDER, CBER, OCE)",
+   "status": "final",
+   "date": "2024-07",
+   "url": "https://www.fda.gov/media/152503/download",
+   "requirement": "Give conceptual and operational (code-based) definitions for population, exposure, outcome and covariates, with computable phenotypes in machine-processable form; disclose unmeasured or imperfectly measured confounders and justify proxies; reliability includes traceability (known provenance, e.g. an audit trail).",
+   "locator": "III; IV.B.4; IV.D.1; V.E.1, V.E.3; I (fn 11)",
+   "applies_to_causal_tool": "yes: each node of a causal graph is such a variable",
+   "ledger_fields": [
+    "variables.name",
+    "variables.var_id",
+    "claims.relation (x<->y)",
+    "evidence.data_sha256"
+   ],
+   "gap": "G3: a variable has a name and content hash but no definition, code-list hash or proxy flag; provenance stops at the hash",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA RWD EHR/claims guidance (final, Jul 2024)",
+   "issuer": "FDA",
+   "status": "final",
+   "date": "2024-07",
+   "url": "https://www.fda.gov/media/152503/download",
+   "requirement": "Describe reasons for missing data, state the missingness assumptions and run sensitivity analyses on them.",
+   "locator": "IV.C",
+   "applies_to_causal_tool": "yes: CI tests and scores depend on how missing rows were handled",
+   "ledger_fields": [
+    "evidence.data_sha256"
+   ],
+   "gap": "G3 and G5: no record of deletion or imputation, nor of the missingness assumption the tests relied on",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA guidance: Considerations for the Use of RWD and RWE to Support Regulatory Decision-Making for Drug and Biological Products",
+   "issuer": "FDA (CDER, CBER, OCE)",
+   "status": "final",
+   "date": "2023-08",
+   "url": "https://www.fda.gov/media/171667/download",
+   "requirement": "Keep audit trails from RWD extraction to dataset retention that track user access, data changes, protocol changes and analyses; electronic systems meet 21 CFR part 11.",
+   "locator": "III.B.2; III.B.6",
+   "applies_to_causal_tool": "conditional: when tool runs are analyses in a submitted study",
+   "ledger_fields": [
+    "report.created_utc",
+    "report.ledger_sha256",
+    "report.run_id"
+   ],
+   "gap": "G7: the hash gives integrity but not authenticity; there is no signature, access log or per-record timestamp",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA RWD/RWE considerations (final, Aug 2023)",
+   "issuer": "FDA",
+   "status": "final",
+   "date": "2023-08",
+   "url": "https://www.fda.gov/media/171667/download",
+   "requirement": "Document data, code and algorithms well enough for FDA to replicate the analysis.",
+   "locator": "III.B.3",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "report.engines",
+    "evidence.engine.wheel_sha256",
+    "report.seeds",
+    "evidence.seed",
+    "evidence.data_sha256",
+    "evidence.conditioning",
+    "evidence.statistic",
+    "evidence.p_value"
+   ],
+   "gap": "mostly met: engine, version, wheel hash, seed and data hash pin a rerun; missing are the engine configuration (see FDA AI row 2) and the preprocessing code hash (G3)",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA RWD/RWE considerations (final, Aug 2023)",
+   "issuer": "FDA",
+   "status": "final",
+   "date": "2023-08",
+   "url": "https://www.fda.gov/media/171667/download",
+   "requirement": "Document the data sources evaluated and why each was chosen or excluded; label analyses outside the SAP as exploratory; identify and document protocol and SAP deviations; date-stamp revisions.",
+   "locator": "III.B.2; III.B.4",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [],
+   "gap": "G1 and G8: no plan, no deviations, no exploratory flag, no links to other runs on other data",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft guidance: Considerations for the Design and Conduct of Externally Controlled Trials",
+   "issuer": "FDA (CDER, CBER, OCE)",
+   "status": "draft",
+   "date": "2023-02",
+   "url": "https://www.fda.gov/media/164960/download",
+   "requirement": "Submit the SAP before enrolment; do not make design decisions while viewing external-control outcomes; date and justify any SAP change.",
+   "locator": "III.C.1 (lines ~385-397)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "knowledge.supplier.shown",
+    "report.created_utc"
+   ],
+   "gap": "G1: supplier.shown records what a knowledge supplier saw (analogous to blinding), but there is no plan hash and no proof of ordering",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA draft ECT guidance (Feb 2023)",
+   "issuer": "FDA",
+   "status": "draft",
+   "date": "2023-02",
+   "url": "https://www.fda.gov/media/164960/download",
+   "requirement": "Describe every data source accessed while designing the control arm, including feasibility and exploratory analyses; generate audit trails of access to and analyses of those sources; make assumptions explicit and test them with sensitivity and bias analyses.",
+   "locator": "III.A.1 fn 18; III.C.1 (lines ~409-429)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "report.data_sha256",
+    "report.unverifiable"
+   ],
+   "gap": "G8, G7, G5",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA guidance: Use of Real-World Evidence to Support Regulatory Decision-Making for Medical Devices",
+   "issuer": "FDA (CDRH, CBER)",
+   "status": "final",
+   "date": "2025-12-18",
+   "url": "https://www.fda.gov/media/190201/download",
+   "requirement": "Identify the first instance of the data, keep a data audit trail and retain transformations to a common data model; name RWD sources, versions and extraction dates.",
+   "locator": "V.B.2; VII.A",
+   "applies_to_causal_tool": "conditional: device submissions",
+   "ledger_fields": [
+    "evidence.data_sha256",
+    "variables.var_id"
+   ],
+   "gap": "G3",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA final device RWE guidance (Dec 2025)",
+   "issuer": "FDA",
+   "status": "final",
+   "date": "2025-12-18",
+   "url": "https://www.fda.gov/media/190201/download",
+   "requirement": "Protocol includes causal diagrams; protocol and analysis plan are finalised before outcome data are reviewed; revisions are dated, time-stamped and justified; key design decisions and rationale documented.",
+   "locator": "VI; VI.B.3; VII.B",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.relation",
+    "claims.licensed_by",
+    "claims.direction_source"
+   ],
+   "gap": "G1: graph and per-edge rationale are present; the time-stamped plan is not",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "Guiding Principles of Good AI Practice in Drug Development",
+   "issuer": "FDA and EMA (joint)",
+   "status": "guideline",
+   "date": "2026-01-14",
+   "url": "https://www.fda.gov/media/189581/download",
+   "requirement": "Record data origin, processing steps and the reasons for analytical choices so every step can be traced and verified (principle 6); evaluate the whole system including human interaction (principle 8).",
+   "locator": "Principles 6 and 8",
+   "applies_to_causal_tool": "yes for AI used in drug development evidence",
+   "ledger_fields": [
+    "claims.evidence",
+    "claims.licensed_by",
+    "claims.direction_source",
+    "knowledge.supplier",
+    "overrides",
+    "report.ledger_sha256"
+   ],
+   "gap": "reasons for analytical choices are met at claim level (V2 closure); G3 for processing steps; G4 for human interaction",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "FDA-EMA Good AI Practice principles (Jan 2026)",
+   "issuer": "FDA and EMA",
+   "status": "guideline",
+   "date": "2026-01-14",
+   "url": "https://www.fda.gov/media/189581/download",
+   "requirement": "Give plain-language information on purpose, performance, limitations, underlying data, updates and how to understand outputs.",
+   "locator": "Principle 10",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "report.unverifiable",
+    "report.commentary",
+    "claims.direction_source"
+   ],
+   "gap": "the rendered human-readable report is promised in DESIGN.md but not specified; purpose field missing (G2)",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA Reflection paper on the use of AI in the medicinal product lifecycle (EMA/CHMP/CVMP/83833/2023)",
+   "issuer": "EMA (CHMP, CVMP)",
+   "status": "final",
+   "date": "2024-09-09",
+   "url": "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+   "requirement": "Document data sources, acquisition and every processing step in a detailed and fully traceable way, in line with GxP; keep development logs that allow secondary assessment.",
+   "locator": "2.5.1; 2.3.3.3; 2.5.3",
+   "applies_to_causal_tool": "conditional: AI used in evidence for EU medicines regulation",
+   "ledger_fields": [
+    "claims.evidence",
+    "evidence.data_sha256",
+    "evidence.engine",
+    "report.ledger_sha256"
+   ],
+   "gap": "G3 for processing before the hash; analysis steps after the hash are met",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA AI reflection paper (Sept 2024)",
+   "issuer": "EMA",
+   "status": "final",
+   "date": "2024-09-09",
+   "url": "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+   "requirement": "In pivotal trials, freeze and record the preprocessing pipeline and all models in the SAP before database lock; incremental learning is not accepted there.",
+   "locator": "2.3.3.3; 2.3.7; 2.5.2",
+   "applies_to_causal_tool": "conditional: pivotal-trial analyses",
+   "ledger_fields": [
+    "evidence.engine.wheel_sha256",
+    "report.engines",
+    "report.seeds",
+    "knowledge.supplier.model_id",
+    "knowledge.supplier.prompt_sha256"
+   ],
+   "gap": "G1: frozen components are identified, but nothing proves they were frozen before database lock",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA AI reflection paper (Sept 2024)",
+   "issuer": "EMA",
+   "status": "final",
+   "date": "2024-09-09",
+   "url": "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+   "requirement": "Prefer transparent models; black boxes need justification; explainability methods encouraged.",
+   "locator": "2.5.5",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "claims.licensed_by",
+    "claims.evidence",
+    "evidence.statistic",
+    "evidence.p_value",
+    "evidence.conditioning"
+   ],
+   "gap": "none: each mark is explained by a named rule and the tests it fired on",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA AI reflection paper (Sept 2024)",
+   "issuer": "EMA",
+   "status": "final",
+   "date": "2024-09-09",
+   "url": "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+   "requirement": "Generative language models can give plausible but wrong output, so their output needs close human supervision and quality review.",
+   "locator": "2.3.5; 2.5.6; 2.8",
+   "applies_to_causal_tool": "yes for LLM-assisted causal tools",
+   "ledger_fields": [
+    "knowledge.supplier.type",
+    "knowledge.supplier.model_id",
+    "knowledge.supplier.prompt_sha256",
+    "knowledge.supplier.shown",
+    "claims.data_only_relation"
+   ],
+   "gap": "G4: LLM statements are isolated and cannot add edges (V3), but a human's review of them is not recorded",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "CHMP Qualification opinion for Prognostic Covariate Adjustment (PROCOVA), Unlearn.AI",
+   "issuer": "EMA (CHMP)",
+   "status": "final",
+   "date": "2022-09-20 (adopted 2022-09-15)",
+   "url": "https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/qualification-opinion-prognostic-covariate-adjustment-procovatm_en.pdf",
+   "requirement": "The prognostic score is prespecified before unblinding, defined independently of the study data, and its weights are not adjusted to the trial.",
+   "locator": "Q1, Q2, Q6",
+   "applies_to_causal_tool": "precedent, not a requirement: shows the conditions under which EMA qualified an ML component",
+   "ledger_fields": [
+    "knowledge.supplier.shown",
+    "knowledge.content"
+   ],
+   "gap": "G1: binding times in DESIGN.md say knowledge is fixed before resolution, but the record cannot prove it was fixed before the data were seen",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA PROCOVA qualification opinion (Sept 2022)",
+   "issuer": "EMA (CHMP)",
+   "status": "final",
+   "date": "2022-09-20",
+   "url": "https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/qualification-opinion-prognostic-covariate-adjustment-procovatm_en.pdf",
+   "requirement": "Type I error control, unbiasedness and interval coverage do not depend on the prognostic model's performance; only efficiency does (asymptotically, under stated assumptions).",
+   "locator": "Q6; Q1; Section 4",
+   "applies_to_causal_tool": "precedent: the regulator accepted ML because the inferential guarantee is independent of ML quality",
+   "ledger_fields": [
+    "claims.data_only_relation",
+    "report.invariants",
+    "report.regime"
+   ],
+   "gap": "partial: V3 and V8 give the analogous floor for the skeleton (knowledge never connects); orientations from knowledge carry no error guarantee, and the floor's own finite-sample error is not stated",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EMA PROCOVA qualification opinion (Sept 2022)",
+   "issuer": "EMA (CHMP)",
+   "status": "final",
+   "date": "2022-09-20",
+   "url": "https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/qualification-opinion-prognostic-covariate-adjustment-procovatm_en.pdf",
+   "requirement": "Validate on data independent of both training and study data to avoid optimistic estimates; run sensitivity analyses on the assumed correlation.",
+   "locator": "Q5",
+   "applies_to_causal_tool": "precedent",
+   "ledger_fields": [
+    "claims.confidence.calibration_set"
+   ],
+   "gap": "G6: calibration_set is an id, not a data hash, so disjointness from the analysed data cannot be checked",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "ICH E9(R1) Addendum on estimands and sensitivity analysis in clinical trials",
+   "issuer": "ICH",
+   "status": "final",
+   "date": "2019-11-20 (Step 4)",
+   "url": "https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf",
+   "requirement": "Define the estimand (treatment, population, variable, intercurrent-event handling, population-level summary) in the protocol before the trial; the principles also apply to observational studies.",
+   "locator": "A.1; A.3.2-A.3.3; A.6",
+   "applies_to_causal_tool": "conditional: a discovery graph is upstream of an estimand, not an estimand; applies when the graph selects the adjustment set for one",
+   "ledger_fields": [],
+   "gap": "G2 and G9",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "ICH E9(R1) (2019)",
+   "issuer": "ICH",
+   "status": "final",
+   "date": "2019-11-20",
+   "url": "https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf",
+   "requirement": "State the key assumptions of the main estimator explicitly; plan sensitivity analyses in advance; report main, sensitivity and supplementary results, labelling each as prespecified, introduced while blinded, or post hoc.",
+   "locator": "A.5.1; A.5.2.1; A.6",
+   "applies_to_causal_tool": "yes by analogy: discovery output rests on identifying assumptions",
+   "ledger_fields": [
+    "report.invariants",
+    "report.unverifiable",
+    "report.regime"
+   ],
+   "gap": "G5 and G1: invariants I1-I7 are properties of the tool, not the world assumptions (sufficiency, faithfulness, acyclicity, alpha) the claims rest on; no prespecified/post hoc label on a run",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act, Regulation (EU) 2024/1689, Art. 6, Art. 2 and Annex III",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13; Annex III duties apply from 2027-12-02 and Annex I from 2028-08-02 after the Digital Omnibus (Council final approval 2026-06-29)",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-6",
+   "requirement": "A system is high-risk if it is a safety component of an Annex I product needing third-party assessment, or is used in an Annex III area (e.g. credit scoring, life/health insurance pricing, employment, essential benefits); an Annex III system may escape via the narrow-task or preparatory-task derogation, unless it profiles people, and the provider must document that assessment. AI used solely for scientific research, and pre-market R&D, are outside the Act.",
+   "locator": "Art. 6(1)-(4); Annex III 4, 5(a)-(c); Art. 2(6), 2(8), 2(12); Art. 113",
+   "applies_to_causal_tool": "conditional: a causal-analysis tool is not high-risk as such; it becomes high-risk when deployed for an Annex III purpose (e.g. inside credit or insurance pricing) or as part of a regulated medical device; academic research use is excluded",
+   "ledger_fields": [],
+   "gap": "G2: no intended-purpose field from which the classification could be read",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 12 and Art. 19 (record-keeping, log retention)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-12",
+   "requirement": "High-risk systems log events automatically over their lifetime, giving traceability for risk situations, post-market monitoring and operational monitoring; providers keep logs they control for at least six months.",
+   "locator": "Art. 12(1)-(2); Art. 19(1)",
+   "applies_to_causal_tool": "conditional: high-risk deployments only",
+   "ledger_fields": [
+    "report.run_id",
+    "report.created_utc",
+    "report.ledger_sha256",
+    "report.data_sha256",
+    "evidence",
+    "claims"
+   ],
+   "gap": "G7: one ledger per run is an event log for that run, but there is no cross-run log, per-event timestamp or retention statement",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 13 (transparency to deployers)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-13",
+   "requirement": "Instructions state intended purpose, accuracy levels and the metrics used, factors affecting them, and specifications of input and training/validation data.",
+   "locator": "Art. 13(3)(b)(i), (ii), (vi)",
+   "applies_to_causal_tool": "conditional: high-risk deployments",
+   "ledger_fields": [
+    "claims.confidence.calibrated_probability",
+    "claims.confidence.calibration_set",
+    "report.regime"
+   ],
+   "gap": "G6 and G2",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 13 (transparency to deployers)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-13",
+   "requirement": "Disclose foreseeable circumstances that create risk, features that help explain outputs, information for interpreting outputs, and mechanisms for collecting and interpreting logs.",
+   "locator": "Art. 13(3)(b)(iii), (iv), (vii); 13(3)(f)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.licensed_by",
+    "claims.direction_source",
+    "claims.data_only_relation",
+    "report.unverifiable",
+    "report.ledger_sha256"
+   ],
+   "gap": "none in the format; verify.py is the log-interpretation mechanism",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 14 (human oversight)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14",
+   "requirement": "Overseers must be able to understand capabilities and limits, stay aware of automation bias, interpret output correctly, and decide to disregard, override or reverse an output.",
+   "locator": "Art. 14(4)(a)-(d)",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.direction_source",
+    "claims.data_only_relation",
+    "report.unverifiable",
+    "overrides"
+   ],
+   "gap": "G4: data_only_relation shows what the data alone support (an aid against automation bias), but a human override of a claim has no record type; overrides covers only knowledge vs. intervention",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 10 (data governance)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13 (Art. 10(1) amended by Digital Omnibus per Service Desk)",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-10",
+   "requirement": "Training, validation and test data practices cover design choices, data origin and collection, preparation, the assumptions about what data represent, bias examination and data gaps.",
+   "locator": "Art. 10(2)(a)-(h)",
+   "applies_to_causal_tool": "conditional: high-risk and only where the system trains models (calibration fit counts)",
+   "ledger_fields": [
+    "claims.confidence.calibration_set",
+    "evidence.data_sha256"
+   ],
+   "gap": "G3 and G5",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Art. 17 (quality management system)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13 (Service Desk notes Omnibus amendments not yet shown)",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-17",
+   "requirement": "Providers keep a documented QMS including testing and validation procedures, data management across the data lifecycle, and record-keeping of relevant documentation.",
+   "locator": "Art. 17(1)(d), (f), (k)",
+   "applies_to_causal_tool": "conditional: provider of a high-risk system",
+   "ledger_fields": [
+    "report",
+    "report.invariants",
+    "report.permutation_check"
+   ],
+   "gap": "mostly organisational and outside the record format; the ledger can be the per-run evidence a QMS points to",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "EU AI Act Annex IV (technical documentation)",
+   "issuer": "European Parliament and Council",
+   "status": "final",
+   "date": "2024-06-13",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-4",
+   "requirement": "Document version and relation to earlier versions, design choices with rationale and assumptions, third-party pre-trained models used, datasheets on data origin and preparation, lifecycle changes, and validation and test logs that are dated and signed.",
+   "locator": "Annex IV 1(a), 1(c), 2(a), 2(b), 2(d), 2(g), 6",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.licensed_by",
+    "report.engines",
+    "evidence.engine.version",
+    "knowledge.supplier.model_id",
+    "report.permutation_check",
+    "report.invariants",
+    "format"
+   ],
+   "gap": "G7: test results exist but are unsigned; G5 assumptions; G3 datasheets; G10 change log",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "SR 26-2, Revised Guidance on Model Risk Management (supersedes SR 11-7 and SR 21-8)",
+   "issuer": "Federal Reserve Board, OCC, FDIC",
+   "status": "final",
+   "date": "2026-04-17",
+   "url": "https://www.federalreserve.gov/supervisionreg/srletters/SR2602a1.pdf",
+   "requirement": "A model is a quantitative method applying statistical or economic theory to turn inputs into estimates; generative and agentic AI are outside this guidance; it is most relevant to banking organisations over $30bn in assets and states no prescriptive requirements.",
+   "locator": "§I; §II and fn 1-3",
+   "applies_to_causal_tool": "conditional: a deterministic discovery engine used in a covered bank's decisions is a model; the LLM that supplies knowledge falls outside SR 26-2 and is left to the firm's own controls",
+   "ledger_fields": [
+    "knowledge.supplier.type",
+    "knowledge.supplier.model_id",
+    "claims.direction_source"
+   ],
+   "gap": "none for scoping: the ledger already separates the in-scope model (engines) from out-of-scope generative input (supplier type model)",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "SR 26-2 attachment (Apr 2026)",
+   "issuer": "Federal Reserve Board, OCC, FDIC",
+   "status": "final",
+   "date": "2026-04-17",
+   "url": "https://www.federalreserve.gov/supervisionreg/srletters/SR2602a1.pdf",
+   "requirement": "Document design choices, assumptions, judgements and data selection; effective challenge by objective, competent people with standing; ongoing monitoring and outcomes analysis; for vendor models, understand conceptual soundness and performance even when code is proprietary.",
+   "locator": "§III; §V; §VII",
+   "applies_to_causal_tool": "conditional",
+   "ledger_fields": [
+    "claims.licensed_by",
+    "claims.evidence",
+    "evidence.type (intervention_shift)",
+    "report.invariants",
+    "report.unverifiable",
+    "report.ledger_sha256"
+   ],
+   "gap": "G5 assumptions; G4 the challenger's findings have no record; no link from claims to later observed intervention outcomes. Met: verify.py checks claims without code or data, which suits a validator facing a vendor tool",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "SR 11-7, Guidance on Model Risk Management (superseded by SR 26-2)",
+   "issuer": "Federal Reserve Board, OCC",
+   "status": "final",
+   "date": "2011-04-04 (superseded 2026-04-17; the SR 11-7 page itself shows no superseded notice)",
+   "url": "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm",
+   "requirement": "Documentation detailed enough that parties unfamiliar with a model understand its operation, limits and key assumptions; validation covers conceptual soundness, ongoing monitoring and outcomes analysis.",
+   "locator": "letter text (documentation; validation sections)",
+   "applies_to_causal_tool": "historical: cite SR 26-2 for current US bank practice",
+   "ledger_fields": [
+    "claims.licensed_by",
+    "claims.evidence",
+    "report.unverifiable"
+   ],
+   "gap": "G5 assumptions",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "TARGET Statement: transparent reporting of observational studies emulating a target trial",
+   "issuer": "Cashin et al. (BMJ 2025;390:e087179; JAMA 2025), EQUATOR-listed",
+   "status": "guideline",
+   "date": "2025-09",
+   "url": "https://www.bmj.com/content/390/bmj-2025-087179.long",
+   "requirement": "List the assumptions needed to identify each causal estimand and the variables they involve; justify the baseline confounders chosen and say how they were measured.",
+   "locator": "Items 6g, 7g(i), 7g(ii)",
+   "applies_to_causal_tool": "yes when the graph is used to choose confounders",
+   "ledger_fields": [
+    "claims.relation",
+    "claims.evidence",
+    "knowledge.content",
+    "variables.name"
+   ],
+   "gap": "G5 and G9: confounder choice would follow from the graph, but the derived adjustment set and its assumptions are not recorded",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "TARGET Statement (2025)",
+   "issuer": "Cashin et al.",
+   "status": "guideline",
+   "date": "2025-09",
+   "url": "https://www.bmj.com/content/390/bmj-2025-087179.long",
+   "requirement": "Describe sensitivity analyses, their rationale and the biases they target, and report all their results; describe models and software; report availability of data, code and materials, and registration.",
+   "locator": "Items 7h(i), 7h(ii), 14, 18, 19",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "report.engines",
+    "evidence.engine.version",
+    "report.seeds"
+   ],
+   "gap": "G5 sensitivity; G1 registration",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "STROBE checklist (cohort, case-control, cross-sectional combined)",
+   "issuer": "STROBE Initiative",
+   "status": "guideline",
+   "date": "2007 (no update found)",
+   "url": "https://www.strobe-statement.org/download/strobe-checklist-cohort-case-control-and-cross-sectional-studies-combined",
+   "requirement": "Define every outcome, exposure, confounder and effect modifier and give data source and measurement for each; describe methods for confounding, missing data and sensitivity analyses; report which confounders were adjusted for and why.",
+   "locator": "Items 7, 8, 12(a)-(e), 16(a)",
+   "applies_to_causal_tool": "yes when results are published as an observational study",
+   "ledger_fields": [
+    "variables.name",
+    "variables.var_id",
+    "claims.relation",
+    "claims.evidence"
+   ],
+   "gap": "G3 definitions; G9 adjustment set and its reason",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "RECORD-PE (pharmacoepidemiology extension of RECORD/STROBE)",
+   "issuer": "Langan et al., BMJ 2018;363:k3532",
+   "status": "guideline",
+   "date": "2018-11",
+   "url": "https://discovery.ucl.ac.uk/id/eprint/10061956/1/bmj.k3532.full.pdf",
+   "requirement": "Give complete code lists and algorithms for exposures, outcomes and confounders; describe data cleaning and record linkage and its quality; say how readers can obtain protocol, raw data and programming code.",
+   "locator": "Items 7.1, 12.2, 12.3, 22.1",
+   "applies_to_causal_tool": "yes for database studies",
+   "ledger_fields": [
+    "variables.var_id",
+    "evidence.data_sha256",
+    "report.engines"
+   ],
+   "gap": "G3",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "Tennant et al., Use of DAGs to identify confounders in applied health research: review and recommendations (IJE 2021)",
+   "issuer": "Tennant et al., Int J Epidemiol 50(2)",
+   "status": "guideline",
+   "date": "2021",
+   "url": "https://eprints.whiterose.ac.uk/id/eprint/180527/1/dyaa213.pdf",
+   "requirement": "Make every DAG available; assume arcs exist by default and justify each omitted arc with theory or evidence (only 6% of 144 DAG papers cited sources for arcs; none tested DAG-data consistency).",
+   "locator": "Recommendations 2 and 5; Results",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "claims.relation (none)",
+    "claims.evidence",
+    "evidence.supports (nonadjacent)",
+    "evidence.conditioning",
+    "claims.licensed_by"
+   ],
+   "gap": "none: each absent pair is a claim citing the separating test; this is the strongest single fit in the map",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "Tennant et al. (IJE 2021)",
+   "issuer": "Tennant et al.",
+   "status": "guideline",
+   "date": "2021",
+   "url": "https://eprints.whiterose.ac.uk/id/eprint/180527/1/dyaa213.pdf",
+   "requirement": "State the focal relationship and estimand; state the DAG-implied adjustment set for each estimand and report its estimate even if not the main result; justify alternative sets.",
+   "locator": "Recommendations 1, 6, 7, 8",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [],
+   "gap": "G2 and G9",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "Ellison and Rhoma, DAGs as conceptual and analytical tools in applied and theoretical epidemiology (MBE 2025;22(6):1280-1306)",
+   "issuer": "Ellison and Rhoma",
+   "status": "guideline",
+   "date": "2025-04-22",
+   "url": "https://clok.uclan.ac.uk/id/eprint/54193/1/54193%20Ellison%20%26%20Rhoma%20VOR.pdf",
+   "requirement": "Report the DAG's purpose and the reasoning for its arcs (theoretical, speculative or temporal); report unmeasured variables and temporal uncertainty; use machine-readable notation; compare results across plausible alternative DAGs. A narrative review, not a consensus checklist.",
+   "locator": "Principles 3 and 4; Section 3.1; Conclusions",
+   "applies_to_causal_tool": "yes",
+   "ledger_fields": [
+    "claims.direction_source",
+    "claims.licensed_by",
+    "knowledge.kind (tier)",
+    "claims.relation (x<->y)"
+   ],
+   "gap": "G5 alternative-DAG sensitivity; machine-readable export is planned (DESIGN.md section 5) but not built",
+   "label": "read (primary)"
+  },
+  {
+   "instrument": "ROBINS-E: risk of bias in non-randomized follow-up studies of exposure effects (Environment International, Apr 2024)",
+   "issuer": "ROBINS-E development group",
+   "status": "guideline",
+   "date": "2024-04",
+   "url": "https://doaj.org/article/22d2860aab144282bee9e601f7fc66c3",
+   "requirement": "Before rating bias, specify the result being assessed and the causal effect it estimates; then judge seven bias domains (confounding first among them) and the likely direction of bias.",
+   "locator": "Preliminary considerations; domains (names second-hand)",
+   "applies_to_causal_tool": "conditional: an appraisal tool for studies a ledger might support, not a reporting duty",
+   "ledger_fields": [
+    "claims.relation (x<->y)",
+    "report.unverifiable"
+   ],
+   "gap": "G2 and G5",
+   "label": "second-hand"
+  },
+  {
+   "instrument": "W3C PROV-O: The PROV Ontology",
+   "issuer": "W3C",
+   "status": "final",
+   "date": "2013-04-30 (Recommendation)",
+   "url": "https://www.w3.org/TR/prov-o/",
+   "requirement": "Format venue: Entity, Activity, Agent with wasGeneratedBy, used, wasDerivedFrom, wasAttributedTo, wasAssociatedWith; qualified terms (qualifiedDerivation, Plan, hadPlan); no notion of rules or confidence.",
+   "locator": "Sections 3.1 (starting point), 3.3 (qualified terms)",
+   "applies_to_causal_tool": "yes as a serialisation target, not a requirement",
+   "ledger_fields": [
+    "variables",
+    "evidence",
+    "knowledge.supplier",
+    "claims.evidence",
+    "claims.licensed_by",
+    "report.engines"
+   ],
+   "gap": "licensed_by maps naturally to prov:Plan via hadPlan; confidence and direction_source need an extension vocabulary; prov_export.py not written",
+   "label": "read (primary)"
+  }
+ ],
+ "venues": [
+  {
+   "venue": "W3C AI Computed Provenance Community Group",
+   "what could be proposed": "A causal-claim profile: the PROV-O mapping in DESIGN.md section 4, plus the claim record (relation, direction_source, licensed_by as prov:Plan, data_only_relation, confidence) and the verifier checks V1-V8 as a conformance test, contributed as a use case and draft section of the group's reference specification",
+   "url": "https://www.w3.org/community/ai-computed-provenance/",
+   "fit": "best: scope is provenance for AI-assisted science on the principle that a computed result differs from an asserted one; deliverables are a reference spec plus a conformance suite; free, no W3C membership, royalty-free report. Risks: proposed 2026-08-11, 14 participants, chair unsettled, no drafts seen, page does not mention PROV-O"
+  },
+  {
+   "venue": "Any new W3C Community Group (self-proposed, e.g. 'Causal Claims CG')",
+   "what could be proposed": "A Community Group Report defining the ledger as a PROV-O profile",
+   "url": "https://www.w3.org/community/about/",
+   "fit": "fallback: free, short scope statement and a minimum number of supporters; Community Groups do not make W3C standards, only reports"
+  },
+  {
+   "venue": "OHDSI workgroups (HADES, Evidence Network, Generative AI and Analytics, Methods Research)",
+   "what could be proposed": "A ledger output from an OHDSI-style causal pipeline over OMOP CDM data, with lineage fields filled from CDM and phenotype metadata",
+   "url": "https://www.ohdsi.org/upcoming-working-group-calls/",
+   "fit": "good for RWE adoption and lineage (G3), but no workgroup is named for causal inference or discovery, and the Evidence Network 2025 OKRs say nothing about result schemas or provenance"
+  },
+  {
+   "venue": "Pistoia Alliance (Large Language Models in Life Sciences project; FAIR Implementation)",
+   "what could be proposed": "LLM-supplied knowledge records (supplier, prompt hash, shown) as an evaluation dimension in the Phase 2 benchmark",
+   "url": "https://pistoiaalliance.org/project/large-language-models-in-life-sciences/",
+   "fit": "weak to moderate: industry reach, but the project page mentions no provenance, audit or causal reasoning, and Phase 2 is seeking sponsorship"
+  },
+  {
+   "venue": "ISO/IEC JTC 1/SC 42 (ISO/IEC 42001:2023 AI management system; ISO/IEC 5338:2023 AI lifecycle processes)",
+   "what could be proposed": "Nothing directly; the ledger could be cited as per-run evidence inside a 42001 management system or a 5338 lifecycle",
+   "url": "https://www.iso.org/standard/42001",
+   "fit": "poor as a venue for a student team: participation runs through national bodies; full texts are paywalled and were not read"
+  },
+  {
+   "venue": "IEEE Standards Association (IEEE 7001-2021 Transparency of Autonomous Systems; new PAR)",
+   "what could be proposed": "A PAR for a causal-claim record, or a mapping to 7001 transparency levels",
+   "url": "https://standards.ieee.org/ieee/7001/6929/",
+   "fit": "poor: 7001 is published and targets autonomous systems; a new PAR needs a sponsor and working group; full text not read"
+  },
+  {
+   "venue": "EQUATOR Network (reporting-guideline extensions)",
+   "what could be proposed": "A TARGET or STROBE extension item for machine-discovered or LLM-assisted causal diagrams (report per-edge source and data-only graph)",
+   "url": "https://www.equator-network.org/reporting-guidelines/22462/",
+   "fit": "moderate, long-term: no formal consensus DAG reporting guideline was found, so the slot is open, but extensions need a Delphi process"
+  }
+ ],
+ "searches": [
+  "FDA real-world evidence guidance 2025 final guidance drug biological products (fda.gov)",
+  "FDA final guidance artificial intelligence regulatory decision-making drug biological products credibility 2026 (fda.gov)",
+  "FDA EMA guiding principles good AI practice drug development January 2026 (fda.gov, ema.europa.eu)",
+  "EMA qualification opinion prognostic covariate adjustment PROCOVA (ema.europa.eu)",
+  "AI Act Service Desk Article 12 record-keeping (europa.eu)",
+  "Digital Omnibus on AI adopted Official Journal 2026 high-risk application postponed December 2027 (europa.eu)",
+  "SR 26-2 model risk management supervisory guidance Federal Reserve 2026 (federalreserve.gov, occ.gov, fdic.gov)",
+  "TARGET guideline transparent reporting of observational studies emulating a target trial 2025 BMJ JAMA",
+  "reporting directed acyclic graphs recommendations epidemiology 2024 2025 checklist",
+  "STROBE-DAG OR DAG reporting guideline consensus 2025 Delphi directed acyclic graphs reporting items",
+  "Poppe Steen Loh directed acyclic graphs observational health research scoping review",
+  "RECORD-PE checklist pharmacoepidemiology BMJ 2018",
+  "ROBINS-E tool risk of bias non-randomized studies of exposures 2024",
+  "IEEE 7001-2021 transparency of autonomous systems standard (ieee.org)",
+  "OHDSI workgroup causal inference OR causal discovery OR evidence network 2025 (ohdsi.org, github.com)",
+  "W3C community group provenance causal claims OR nanopublication OR AI provenance (w3.org)",
+  "AI Computed Provenance Community Group W3C (w3.org)",
+  "Pistoia Alliance project AI provenance OR causal OR FAIR OR large language models 2025 2026 (pistoiaalliance.org)"
+ ],
+ "not_read": [
+  {
+   "source": "EU AI Act full text on EUR-Lex (HTML and PDF)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689",
+   "reason": "fetch returned only the recitals (HTML truncated near recital 60, PDF near recital 62); articles were read on the Commission's AI Act Service Desk (consolidated as at 2026-07-27, marked non-binding display) instead"
+  },
+  {
+   "source": "Digital Omnibus on AI as published in the Official Journal",
+   "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/",
+   "reason": "only the Council press release (final approval 2026-06-29) and the Service Desk's amended Art. 113 were read; OJ text not located"
+  },
+  {
+   "source": "SR 11-7 attachment PDF",
+   "url": "https://www.federalreserve.gov/supervisionreg/srletters/sr1107a1.pdf",
+   "reason": "fetch error; the SR 11-7 HTML letter page was read instead"
+  },
+  {
+   "source": "Tennant et al. 2021 on PMC",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8128477",
+   "reason": "reCAPTCHA block; read the White Rose repository PDF of the same article instead"
+  },
+  {
+   "source": "Poppe et al., How to develop causal DAGs for observational health research: a scoping review",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11875439",
+   "reason": "reCAPTCHA block"
+  },
+  {
+   "source": "Feeney, Hartwig and Davies, How to use DAGs: a guide for clinical researchers (BMJ 2025;388:e078226)",
+   "url": "https://discovery.ucl.ac.uk/id/eprint/10193453",
+   "reason": "only the repository landing page read; it is a tutorial, not a reporting guideline"
+  },
+  {
+   "source": "ROBINS-E full paper and tool",
+   "url": "https://doaj.org/article/22d2860aab144282bee9e601f7fc66c3",
+   "reason": "only the abstract record read; domain names are second-hand"
+  },
+  {
+   "source": "TARGET in JAMA and the editable checklist",
+   "url": "https://jamanetwork.com/journals/jama/fullarticle/2837724",
+   "reason": "read the BMJ version instead"
+  },
+  {
+   "source": "ISO/IEC 42001:2023 and ISO/IEC 5338:2023 full texts",
+   "url": "https://www.iso.org/standard/42001",
+   "reason": "paywalled; only catalogue pages (scope, dates) read; Annex A controls not read"
+  },
+  {
+   "source": "IEEE 7001-2021 full text",
+   "url": "https://standards.ieee.org/ieee/7001/6929/",
+   "reason": "only the catalogue page read"
+  },
+  {
+   "source": "FDA device RWE guidance Appendix A",
+   "url": "https://www.fda.gov/media/190201/download",
+   "reason": "fetch truncated before Appendix A"
+  },
+  {
+   "source": "FDA Data Standards for submissions containing RWD (2023) and FDA Registries guidance (2023)",
+   "url": "https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence",
+   "reason": "not fetched in this round"
+  },
+  {
+   "source": "FDA draft Demonstrating Substantial Evidence of Effectiveness (file dated 2026-05-29)",
+   "url": "https://www.fda.gov/media/133660/download",
+   "reason": "seen in search results only"
+  },
+  {
+   "source": "EMA reflection paper on RWD in non-interventional studies",
+   "url": "https://www.ema.europa.eu/",
+   "reason": "not fetched in this round (covered second-hand in AU5/AU8)"
+  },
+  {
+   "source": "W3C AI Computed Provenance CG GitHub repository and the remaining third of the W3C CG list page",
+   "url": "https://www.w3.org/groups/cg/",
+   "reason": "repository not opened; list page read to 100,000 characters only"
+  }
+ ]
+}

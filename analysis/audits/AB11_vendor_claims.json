@@ -1,0 +1,1105 @@
+{
+ "audit": "AB-11 teardown, documented claims",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-42",
+  "STR-06",
+  "CAP-09"
+ ],
+ "labels_note": "Every field records what vendor or maintainer documentation claims (or what AU5/AU6 recorded); nothing is a measurement. would_pass values are the audit agent's inference. 'read (primary)' = the vendor's own page was opened on 2026-10-12; 'second-hand' = row relies mainly on earlier audits.",
+ "p14": {
+  "prediction": "No tool records a per-direction source.",
+  "verdict": "Refuted in its weak form by CausalNex: every StructureModel edge carries a required 'origin' attribute in {unknown, learned, expert}. Survives in its strong form: no tool read records a typed, rule-level direction source (v-structure, Meek rule, functional form, intervention, knowledge) linked to evidence. Nearest partial records: Tetrad verbose log (free text), Tigramite 'x-x'/'o-o' marks, Datadog Bits and CloudWatch investigation step logs (for root-cause hypotheses, not edges).",
+  "label": "inference from documented claims; CausalNex origin confirmed in docs and 0.4.2 source"
+ },
+ "rows": [
+  {
+   "tool": "causaLens decisionOS (human-guided causal discovery) / Digital Workers",
+   "kind": "closed",
+   "url": "https://causalens.com/?p=2416",
+   "output_format": "Causal graph in a UI (graph type not stated on pages read). Edge types, file formats and report formats not stated. Vendor now leads with LLM 'Digital Workers' (AU5).",
+   "direction_provenance": "Not stated. The page does not say whether the graph marks expert edges versus data edges.",
+   "knowledge_input": "Tiers and 'superstructures'; forbidden edges ('not possible'); required edges (relations experts 'know exist'). A generative model 'offers directional causality suggestions' with explanations. Required edges imply knowledge can add edges (mechanism not stated).",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated on pages read. AU5: the only contractual guarantee found was 99% uptime (G-Cloud 14).",
+   "order_invariance": "Not stated.",
+   "llm_use": "LLM as domain-knowledge assistant proposing directions with explanations; separability of LLM-suggested edges from data edges not stated.",
+   "claimed_guarantees": "Claims (vendor): expert input with validation leads to more accurate graphs; no formal guarantee.",
+   "pricing_or_licence": "decisionOS ~GBP 240k per licence per year (G-Cloud 14 listing, claim (vendor), via AU5). Digital Workers: not public.",
+   "would_pass": {
+    "V2": "unknown: no per-edge evidence record documented.",
+    "V3": "no (inference): required edges are accepted as knowledge 'that exists', so knowledge can create connections.",
+    "V5": "unknown: no trace of applied vs overridden knowledge documented.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://causalens.com/?p=2416#human-guided-causal-discovery",
+    "https://causalens.com/?p=1762",
+    "AU5_commercial.md#C01"
+   ]
+  },
+  {
+   "tool": "Causely (causal reasoning for SRE / RCA)",
+   "kind": "closed",
+   "url": "https://docs.causely.ai/getting-started/how-causely-works/",
+   "output_format": "Diagnoses (current best explanation of an Issue), root causes, symptoms/signals, blast radius; delivered in UI, via MCP to agents, and as Datadog events. Internal Causality Graph is a Bayesian network.",
+   "direction_provenance": "Not per edge. Edges come from a 'built-in library of causal knowledge' plus 'predefined and learned functional relationships' over a discovered topology; output does not state which edges are learned vs predefined.",
+   "knowledge_input": "Built-in causal knowledge library (no configuration); automatically discovered topology; some dependency edges 'learned automatically from observed behavior'. No user-supplied tiers or forbidden edges documented. Knowledge does create connections (the library is the model).",
+   "uncertainty": "Causality Graph edges 'weighted with a probability'; Codebook holds root-cause signature probabilities. Output language is 'high-confidence'; no numeric confidence or calibration documented.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not stated.",
+   "llm_use": "No LLM in the causal engine per docs; LLM agents consume Causely via MCP. Contribution therefore separable by architecture (claim).",
+   "claimed_guarantees": "Claims (vendor): probabilistic engine maps symptoms to the most likely root cause; prevents degradation before SLOs are violated. AU5: '100% fault accuracy' from a self-benchmark on one demo app (reported, self).",
+   "pricing_or_licence": "Professional USD 2,000/month incl. up to 500 services; Enterprise custom; 30-day trial (pricing page, read 2026-10-12).",
+   "would_pass": {
+    "V2": "unknown: 'supporting evidence' is returned per alert triage but its schema is not documented.",
+    "V3": "no (inference): the causal structure is supplied by a built-in knowledge library, so knowledge creates connections by design.",
+    "V5": "unknown: not documented.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://docs.causely.ai/getting-started/how-causely-works/",
+    "https://docs.causely.ai/",
+    "https://www.causely.ai/pricing",
+    "https://docs.datadoghq.com/integrations/causely/"
+   ]
+  },
+  {
+   "tool": "Datadog Watchdog RCA",
+   "kind": "closed",
+   "url": "https://docs.datadoghq.com/watchdog/rca/",
+   "output_format": "Per anomaly: root cause (one of 4 types: version change, traffic increase, AWS instance failure, disk full), critical failure, impact (affected services, RUM views/users). UI only on page read.",
+   "direction_provenance": "Not stated. Page says Watchdog 'identifies interdependencies' between anomalies and components; method not described.",
+   "knowledge_input": "No user knowledge input documented. Requires APM; unified service tagging recommended. Data: APM metrics/traces/deployments, agent infra metrics, AWS status checks, log anomalies.",
+   "uncertainty": "None documented.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not stated.",
+   "llm_use": "None documented.",
+   "claimed_guarantees": "Hedged: RCA runs 'in an attempt to provide deeper insight'; no accuracy guarantee.",
+   "pricing_or_licence": "Bundled with APM (AU5); no separate price.",
+   "would_pass": {
+    "V2": "unknown: no evidence schema documented.",
+    "V3": "unknown: causal links are inferred from telemetry and APM topology; no declared-knowledge channel to test.",
+    "V5": "unknown: no knowledge channel documented.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://docs.datadoghq.com/watchdog/rca/#overview",
+    "AU5_commercial.md#C07"
+   ]
+  },
+  {
+   "tool": "Datadog Bits AI SRE / Bits Investigation",
+   "kind": "closed",
+   "url": "https://docs.datadoghq.com/bits_ai/bits_ai_sre/investigate_issues",
+   "output_format": "Investigation with an Investigation Steps view, a Hypothesis Tree view, and a conclusion that is either evidence-backed or 'inconclusive'.",
+   "direction_provenance": "For root-cause hypotheses (not graph edges): steps record 'how it evaluates evidence and makes decisions'; hypotheses are validated or invalidated against telemetry. Not a typed per-claim source field.",
+   "knowledge_input": "Datadog telemetry plus third-party tools (Grafana, Dynatrace, Sentry, Splunk, ServiceNow, Confluence; preview). Separate 'Knowledge sources' page not read. Not a graph-knowledge interface.",
+   "uncertainty": "No confidence scores documented. Abstention: marks investigation inconclusive when data is insufficient.",
+   "reproducibility": "Step record captured during the run; no re-run guarantee, model id or seed documented.",
+   "order_invariance": "Not applicable / not stated.",
+   "llm_use": "LLM agent loop (observation, reasoning, action) generates and tests hypotheses. Contribution is the whole product; not separable from evidence beyond the step log.",
+   "claimed_guarantees": "No accuracy guarantee on page; vendor blog claims up to 95% faster resolution (AU5, claim (vendor)).",
+   "pricing_or_licence": "Bits Investigation: USD 500 per 500 AI credits per month billed annually, USD 1.30/credit on demand; ~6.5 credits per investigation (pricing page).",
+   "would_pass": {
+    "V2": "unknown (closest commercial analogue): conclusions are 'evidence-backed' and steps are logged, but no claim-to-evidence id schema is documented.",
+    "V3": "unknown: not a graph tool; no data-only skeleton to compare.",
+    "V5": "unknown.",
+    "V7": "no: no order or permutation statement; LLM loop likely path-dependent (inference).",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://docs.datadoghq.com/bits_ai/bits_ai_sre/investigate_issues#investigation-steps",
+    "https://www.datadoghq.com/pricing/?product=bits-ai-sre"
+   ]
+  },
+  {
+   "tool": "Dynatrace Davis / Dynatrace Intelligence causal AI",
+   "kind": "closed",
+   "url": "https://docs.dynatrace.com/docs/dynatrace-intelligence/root-cause-analysis/event-analysis-and-correlation",
+   "output_format": "Problems with a ranked root-cause entity plus its vertical stack; affected entities. Causal graph = Smartscape topology (vertical stack and service-to-service calls).",
+   "direction_provenance": "Not per edge. Causal graph is Smartscape, 'a real-time representation of all the causal relationships'; built from ingested metrics, events, logs and traces (and custom topology extraction).",
+   "knowledge_input": "Custom topology extraction rules; event properties such as dt.event.allow_davis_merge and dt.event.is_rootcause_relevant; anomaly sensitivity. Topology rules define connections, so declared configuration can add edges.",
+   "uncertainty": "None documented (no confidence or probability on root cause).",
+   "reproducibility": "Not stated. Docs note change-point findings differ between versions.",
+   "order_invariance": "Not stated.",
+   "llm_use": "Generative AI supports natural-language investigation; docs do not say it contributes to root-cause identification (separable by claim).",
+   "claimed_guarantees": "Claims (vendor): 'deterministic, causation-based analysis'; no accuracy guarantee.",
+   "pricing_or_licence": "Full-Stack USD 58/month per 8 GiB host incl. automated RCA; Agentic Operations USD 0.10 per AI unit, ~30 units per autonomous investigation (pricing page).",
+   "would_pass": {
+    "V2": "unknown: findings per entity are evaluated but no evidence-id schema is documented.",
+    "V3": "no (inference): the causal graph is topology (observed calls plus declared extraction rules), not a skeleton tested on data; declared rules can connect entities.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://docs.dynatrace.com/docs/dynatrace-intelligence/root-cause-analysis/event-analysis-and-correlation",
+    "https://docs.dynatrace.com/docs/discover-dynatrace/platform/davis-ai",
+    "https://www.dynatrace.com/pricing/"
+   ]
+  },
+  {
+   "tool": "Microsoft (Azure ML Responsible AI causal analysis; ShowWhy; Causica; Fabric)",
+   "kind": "closed",
+   "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-causal-inference?view=azureml-api-2",
+   "output_format": "Average, cohort and individual treatment effects; policy rules for which cohorts benefit. No graph output. Fabric: no causal feature found in Microsoft docs search.",
+   "direction_provenance": "Not applicable: no graph is learned; user specifies treatment and controls.",
+   "knowledge_input": "User-chosen treatment, outcome and controls; assumes 'all potential confounders/controls' are observed.",
+   "uncertainty": "DML method supports confidence intervals (stated as a method property; dashboard display not confirmed).",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not applicable.",
+   "llm_use": "None documented.",
+   "claimed_guarantees": "Effects valid only if all confounders are observed (stated assumption, not a guarantee).",
+   "pricing_or_licence": "Azure ML consumption pricing (not read); EconML MIT. ShowWhy archived Dec 2025, Causica no releases (AU5).",
+   "would_pass": {
+    "V2": "no: effect outputs carry no evidence records for structure.",
+    "V3": "no (inference): structure is wholly declared; there is no data-only skeleton.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable to effect estimation without a learned graph.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://learn.microsoft.com/en-us/azure/machine-learning/concept-causal-inference?view=azureml-api-2",
+    "AU5_commercial.md#C16-C18"
+   ]
+  },
+  {
+   "tool": "Amazon (CloudWatch investigations; AWS DevOps Agent; DoWhy-GCM in supply chain)",
+   "kind": "closed",
+   "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations.md",
+   "output_format": "Investigations with AI-generated observations, suggestions and root-cause hypotheses, multi-resource hypothesis visualisations, natural-language explanations, an investigation report (findings, timeline, actions). DevOps Agent shares 'explored hypotheses, observations, and root cause findings'.",
+   "direction_provenance": "Per hypothesis (not per edge): user accepts or discards each suggestion; every action logged in CloudTrail. Topology is a continuously refreshed resource map (X-Ray improves it).",
+   "knowledge_input": "Telemetry sources the user enables (CloudTrail, X-Ray, Application Signals, EKS); notes/comments on findings. DevOps Agent discovers topology 'so teams don't have to manually map'. No graph-knowledge interface.",
+   "uncertainty": "None documented.",
+   "reproducibility": "Every action logged in CloudTrail 'for traceability'; data retention page not read. No model id or seed.",
+   "order_invariance": "Not stated.",
+   "llm_use": "Generative AI generates hypotheses and explanations; the human accept/discard step is recorded, so human vs AI findings are separable (claim).",
+   "claimed_guarantees": "No accuracy guarantee. 'Deterministic mathematical verification' is claimed only for release checks, not RCA. AU5: Amazon supply-chain discovery uses PC + DoWhy GCM with falsification tests (reported).",
+   "pricing_or_licence": "DevOps Agent USD 0.0083 per agent-second, billed per second; credits included with Support plans (30-100% of prior month's Support charge). CloudWatch investigations: no per-investigation price; up to 150 enhanced investigations per account per month.",
+   "would_pass": {
+    "V2": "unknown (partial): hypotheses carry observations and CloudTrail logs actions, but no per-claim evidence-id schema is documented.",
+    "V3": "unknown: no declared-knowledge channel for structure.",
+    "V5": "unknown: user notes are recorded; no rule for unused knowledge.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations.md",
+    "https://aws.amazon.com/devops-agent/features",
+    "https://aws.amazon.com/devops-agent/pricing/",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/investigations-costs.html"
+   ]
+  },
+  {
+   "tool": "Geminos CauseWay / PathWay",
+   "kind": "closed",
+   "url": "https://geminos.ai/products/geminos-causeway/",
+   "output_format": "Causal models built in a drag-and-drop environment; intervention effects, counterfactuals, root causes, knock-on impacts. File/report formats not stated.",
+   "direction_provenance": "Not stated.",
+   "knowledge_input": "Models built 'directly from expert knowledge captured in workshops'; a co-pilot proposes structure from a knowledge graph; public or private LLMs or KnowledgeWay. Knowledge defines structure, so it adds edges.",
+   "uncertainty": "Rail case reports cause probabilities; no interval or calibration statement.",
+   "reproducibility": "Not stated. 'Human-approved and fully governed, end to end' (claim).",
+   "order_invariance": "Not stated.",
+   "llm_use": "LLM co-pilot suggests variables and structure; separability not stated.",
+   "claimed_guarantees": "Claims (vendor): causal modelling makes decisions 'defensible'; higher accuracy without figures.",
+   "pricing_or_licence": "Not public; projects 'sized to a use case' (homepage).",
+   "would_pass": {
+    "V2": "unknown: no evidence record documented.",
+    "V3": "no (inference): structure is authored from expert workshops and LLM suggestions.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://geminos.ai/products/geminos-causeway/",
+    "https://www.geminos.ai/"
+   ]
+  },
+  {
+   "tool": "Xplain Data (XCD / Causal DiscoveryBot)",
+   "kind": "closed",
+   "url": "https://community.xplain-data.com/t/objectanalytics-empowers-causal-discovery/118",
+   "output_format": "Causal graph on time-stamped object data (format not stated); benchmark result shown as an image.",
+   "direction_provenance": "Not stated.",
+   "knowledge_input": "Not stated.",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated; notebook promised.",
+   "order_invariance": "Not stated.",
+   "llm_use": "None mentioned.",
+   "claimed_guarantees": "Claim (vendor forum): XCD is 'the most precise algorithm' and up to 100x faster, on one small simulated DAG.",
+   "pricing_or_licence": "Not public.",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://community.xplain-data.com/t/objectanalytics-empowers-causal-discovery/118",
+    "AU5_commercial.md#C35"
+   ]
+  },
+  {
+   "tool": "Howso Engine (causal discovery via instance-based learning)",
+   "kind": "closed",
+   "url": "https://www.howso.com/howso-causal-ai-and-causal-discovery/",
+   "output_format": "'Causal network' whose edges are entropy differences; graph type not specified. Engine outputs predictions with attribution to source data.",
+   "direction_provenance": "Mechanism stated (direction from information-content asymmetry), but no per-edge record documented.",
+   "knowledge_input": "SMEs 'can direct the analysis' toward relationships to investigate; encoding not described. Whether it can add edges not stated.",
+   "uncertainty": "Per-feature uncertainty as mean absolute error per data point; 'accuracy contributions'; no calibration statement.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not stated.",
+   "llm_use": "None mentioned.",
+   "claimed_guarantees": "Claims (vendor): 'perfect attribution back to the source data' for predictions; reduced inductive bias; no evidence given.",
+   "pricing_or_licence": "Engine open-sourced (licence not stated on pages read); pricing not public.",
+   "would_pass": {
+    "V2": "unknown: data-point attribution is claimed for predictions, not for causal edges.",
+    "V3": "unknown.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.howso.com/howso-causal-ai-and-causal-discovery/",
+    "https://docs.howso.com/"
+   ]
+  },
+  {
+   "tool": "Aitia (REFS / Gemini Digital Twins)",
+   "kind": "closed",
+   "url": "https://www.aitia.com/",
+   "output_format": "'Novel potential intervention points' (drug targets) and response biomarkers from causal models of multiomic and clinical data. Formats not stated.",
+   "direction_provenance": "Not stated.",
+   "knowledge_input": "Patient multiomic and clinical data; no knowledge interface described.",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not stated.",
+   "llm_use": "Not stated.",
+   "claimed_guarantees": "Claims (vendor): reveals 'hidden' 95% of disease-causing interactions; validated 'in the bench and the clinic' (no study details).",
+   "pricing_or_licence": "Not public; Ono deal terms undisclosed (AU5).",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.aitia.com/",
+    "AU5_commercial.md#C29"
+   ]
+  },
+  {
+   "tool": "Lifesight (causal MMM, geo-lift, causal attribution, MCP)",
+   "kind": "closed",
+   "url": "https://lifesight.io/pricing/",
+   "output_format": "Channel effects from 'Causal Marketing Mix Modeling', geo-lift tests, 'incrementality-adjusted causal attribution'; MCP into Claude/ChatGPT (AU5).",
+   "direction_provenance": "Not applicable (effect estimation; no graph). Per-claim experiment vs model source not stated.",
+   "knowledge_input": "MMM calibrated with geo tests (Precision tier).",
+   "uncertainty": "Not stated on pricing page.",
+   "reproducibility": "MCP queries logged in an audit trail (AU5, claim (vendor), June 2026).",
+   "order_invariance": "Not applicable.",
+   "llm_use": "MCP front-end for LLM assistants; LLM role in estimation not stated.",
+   "claimed_guarantees": "Claim (vendor): 'Highly accurate, industry-leading forecasting'.",
+   "pricing_or_licence": "No public prices; single annual subscription by 'data and marketing maturity'; tiers Performance, Precision, Enterprise.",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable to MMM without a learned graph.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://lifesight.io/pricing/",
+    "AU5_commercial.md#C25"
+   ]
+  },
+  {
+   "tool": "Recast (Bayesian MMM + GeoLift)",
+   "kind": "closed",
+   "url": "https://getrecast.com/",
+   "output_format": "Time-varying channel ROIs, promo lift, multi-stage funnel; performance scorecards; live accuracy dashboards.",
+   "direction_provenance": "Not applicable (MMM). Lift results 'feed back' into the MMM; per-estimate source not stated.",
+   "knowledge_input": "GeoLift experiment results update MMM estimates (mechanism not stated as priors on page read).",
+   "uncertainty": "Bayesian model named; interval reporting not described on homepage.",
+   "reproducibility": "Out-of-sample accuracy customers 'can audit'; SOC 2 (security, not reproducibility).",
+   "order_invariance": "Not applicable.",
+   "llm_use": "None stated.",
+   "claimed_guarantees": "Claims (vendor): '95%+' predictive accuracy against real-world results; holdout accuracy 94.4% shown (self-reported). Vendor blog: no MMM can guarantee being right (AU5).",
+   "pricing_or_licence": "Not public. Costbench (second-hand): median USD 6,000/yr from 3 buyer reports, while its FAQ puts the category at USD 5k-50k/month; GeoLift ~USD 100/month after trial.",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://getrecast.com/",
+    "https://costbench.com/software/marketing-attribution/recast"
+   ]
+  },
+  {
+   "tool": "Mutinex (GrowthOS MMM, MAITE)",
+   "kind": "closed",
+   "url": "https://mutinex.co/",
+   "output_format": "Commercial mix model ('built in a day'); MAITE AI consultant for analysis and recommendations.",
+   "direction_provenance": "Not applicable; the word 'causal' does not appear on the homepage.",
+   "knowledge_input": "Not stated.",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated. Publishes an 'Open MMM Validation Framework' (licence not stated).",
+   "order_invariance": "Not applicable.",
+   "llm_use": "MAITE AI assistant; model not named.",
+   "claimed_guarantees": "Claim (vendor): lift marketing ROI by up to 20% (no method).",
+   "pricing_or_licence": "Not public (demo only).",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://mutinex.co/"
+   ]
+  },
+  {
+   "tool": "Haus (geo incrementality experiments, Causal MMM, Architect agent)",
+   "kind": "closed",
+   "url": "https://www.haus.io/",
+   "output_format": "Incrementality test results with a 'Confidence Interval' label in the dashboard; 'Incrementality-powered MMM' refreshed weekly; Architect agent recommendations.",
+   "direction_provenance": "Not applicable (experiments and MMM). Experiment-backed vs model estimates not labelled per claim on pages read.",
+   "knowledge_input": "Test design with Haus experts; experiments feed MMM (Causal MMM in Plus/Enterprise tiers).",
+   "uncertainty": "Confidence intervals shown; computation not described.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not applicable.",
+   "llm_use": "Architect uses 'causal data and frontier AI'; separability not stated.",
+   "claimed_guarantees": "Claims (vendor): 'unmatched precision'; AU5: '4x more precise' (claim (vendor)).",
+   "pricing_or_licence": "No public prices (tiers Basics, Core, Plus, Enterprise). Vendr: median USD 150,000/yr, range 132k-168k (second-hand).",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.haus.io/",
+    "https://www.haus.io/pricing",
+    "https://vendr.com/marketplace/haus-analytics"
+   ]
+  },
+  {
+   "tool": "Unlearn.AI (digital twins, PROCOVA)",
+   "kind": "closed",
+   "url": "https://www.unlearn.ai/",
+   "output_format": "Per-participant forecasts of clinical outcomes ('digital twins') used as covariates or comparators.",
+   "direction_provenance": "Not applicable: no causal graph; randomisation supplies identification.",
+   "knowledge_input": "Not applicable.",
+   "uncertainty": "Power figures (70% with PSM to 86%); AU5: PROCOVA stays an unbiased ANCOVA whatever the model quality (EMA-qualified 2022).",
+   "reproducibility": "Not stated on homepage.",
+   "order_invariance": "Not applicable.",
+   "llm_use": "No LLM stated.",
+   "claimed_guarantees": "Claims (vendor): results 'closer to the randomized result than PSM'; ~20% cost savings.",
+   "pricing_or_licence": "Not public.",
+   "would_pass": {
+    "V2": "unknown.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.unlearn.ai/",
+    "AU5_commercial.md#C32"
+   ]
+  },
+  {
+   "tool": "DoWhy (PyWhy)",
+   "kind": "open",
+   "url": "https://www.pywhy.org/dowhy/main/user_guide/modeling_causal_relations/index.html",
+   "output_format": "Takes a user DAG (networkx); effect estimates, refutations, GCM attributions. Does 'not implement graph discovery algorithms'; CDT example, dodiscover and causal-learn listed as TBD.",
+   "direction_provenance": "None: edges are inputs. falsify_graph tests a given DAG and can 'suggest' edge removals via causal minimality.",
+   "knowledge_input": "The whole graph is domain knowledge. falsify_graph supports edges_to_keep.",
+   "uncertainty": "falsify_graph returns LMC and informativeness p-values vs random node permutations; effect CIs via estimators.",
+   "reproducibility": "Seeds via set_random_seed in examples; no run manifest.",
+   "order_invariance": "falsify_graph compares against node permutations of the DAG (a falsification baseline, not an order-invariance check). DESIGN.md cites DoWhy #1695 for order dependence (not re-read).",
+   "llm_use": "None in DoWhy core (see PyWhy-LLM).",
+   "claimed_guarantees": "Docs: falsification 'cannot conclude that a graph is valid'; learned graphs 'should be not used directly'.",
+   "pricing_or_licence": "MIT.",
+   "would_pass": {
+    "V2": "no: graph edges have no evidence records; falsification results are graph-level.",
+    "V3": "no (inference): all connections come from the user's graph.",
+    "V5": "unknown: edges_to_keep overrides suggestions but no override log is documented.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.pywhy.org/dowhy/main/user_guide/modeling_causal_relations/index.html",
+    "https://www.pywhy.org/dowhy/main/user_guide/modeling_causal_relations/learning_causal_structure.html",
+    "https://www.pywhy.org/dowhy/main/example_notebooks/gcm_falsify_dag.html"
+   ]
+  },
+  {
+   "tool": "dodiscover (PyWhy)",
+   "kind": "open",
+   "url": "https://www.pywhy.org/dodiscover/dev/index.html",
+   "output_format": "Causal graphs on networkx MixedEdgeGraph: DAGs/ADMGs, CPDAGs, PAGs (and Psi-PAGs per AU6).",
+   "direction_provenance": "Not stated.",
+   "knowledge_input": "'Context for causal discovery' API (included/excluded edges per AU6); applied in skeleton phase only (AU6, dodiscover #46).",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated; unreleased v0.1 devel; dormant since 2024-11 (AU6).",
+   "order_invariance": "Not stated.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "MIT (AU6; licence type not shown on page read).",
+   "would_pass": {
+    "V2": "no: no per-edge evidence documented.",
+    "V3": "unknown: included-edge semantics not documented on page read.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.pywhy.org/dodiscover/dev/index.html",
+    "AU6_core_engines.md#F7"
+   ]
+  },
+  {
+   "tool": "causal-learn (PyWhy)",
+   "kind": "open",
+   "url": "https://causal-learn.readthedocs.io/en/latest/search_methods_index/Constraint-based%20causal%20discovery%20methods/PC.html",
+   "output_format": "CausalGraph with adjacency matrix cg.G.graph encoding directed, undirected and bidirected edges (PC); PAG for FCI. In-memory objects; no report.",
+   "direction_provenance": "Not recorded. uc_rule and uc_priority set the collider rule and conflict policy, but no per-edge reason is stored.",
+   "knowledge_input": "BackgroundKnowledge: tiers, required and forbidden edges (AU6). Docs: background_knowledge will 'Add prior edges according to assigned causal connections'. DESIGN.md cites issues #219, #171, #266 where declared knowledge was ignored.",
+   "uncertainty": "None built in for PC.",
+   "reproducibility": "Fisher-z PC has no RNG (AU6 code reading); no run manifest.",
+   "order_invariance": "stable=True default (Colombo & Maathuis cited); orientation conflicts set by uc_priority. AU6: Causal-Copilot's fork breaks two-sided skeleton tests.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "MIT.",
+   "would_pass": {
+    "V2": "no: no per-edge evidence ids (sepsets are internal).",
+    "V3": "unknown: docs say knowledge adds prior edges; the issues cited in DESIGN.md say it is sometimes ignored.",
+    "V5": "no (inference): issues show declared knowledge ignored without a trace.",
+    "V7": "no: stable skeleton by default, but no permutation check is reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://causal-learn.readthedocs.io/en/latest/search_methods_index/Constraint-based%20causal%20discovery%20methods/PC.html#parameters",
+    "AU6_core_engines.md#F1"
+   ]
+  },
+  {
+   "tool": "PyWhy-LLM",
+   "kind": "open",
+   "url": "https://github.com/py-why/pywhy-llm",
+   "output_format": "Suggested DAG, pairwise relations, confounders, backdoor/mediator/IV sets, critiques of edges, negative controls. Return format not specified in README.",
+   "direction_provenance": "Directions come from the LLM (and CauseNet retrieval in AugmentedModelSuggester). Whether reasoning text is returned per pair is not stated.",
+   "knowledge_input": "It is itself a knowledge source; no data-driven discovery in README.",
+   "uncertainty": "None documented.",
+   "reproducibility": "Model passed as an argument (e.g. 'gpt-4'); no caching, seed or prompt hashing documented.",
+   "order_invariance": "Not stated.",
+   "llm_use": "The whole product: LLM suggests and critiques structure. Separable because nothing else contributes.",
+   "claimed_guarantees": "None; self-labelled 'Experimental'.",
+   "pricing_or_licence": "MIT.",
+   "would_pass": {
+    "V2": "no: LLM suggestions carry no evidence records.",
+    "V3": "no (inference): LLM-suggested DAGs connect pairs with no data test.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://github.com/py-why/pywhy-llm#readme"
+   ]
+  },
+  {
+   "tool": "Tetrad (CMU)",
+   "kind": "open",
+   "url": "https://tetrad-manual.readthedocs.io/en/latest/_sources/algorithms/pc.md.txt",
+   "output_format": "CPDAG (PC), PAG (FCI family), DAG; GUI and JSON graph export; bootstrap ensemble graphs; edge annotations (e.g. dd/pd, nl/pl for PAGs).",
+   "direction_provenance": "Partial: PC 'verbose' prints 'detailed CI-test and orientation decisions' as free text. MeekRules.getChangedEdges records which edges changed but not which rule (javadoc 7.6.9). No structured per-edge source field.",
+   "knowledge_input": "Knowledge box: tiers ('only allowed from earlier tiers to later tiers'), forbidden edges, required edges that 'must appear if compatible'; respected in adjacency removal and orientation. Required edges can therefore add connections.",
+   "uncertainty": "Bootstrap: per pair, edge/no-edge frequencies and orientation-type frequencies; ensembles Highest, Majority, Preserved, Threshold. Docs: 'Bootstrapping does not validate assumptions'. Frequencies, not calibrated probabilities.",
+   "reproducibility": "Seed option for bootstrapping ('Allows reproducible bootstrapping'); -1 disables. AU6: BFCI/GFCI RNG nondeterminism under investigation (2026-07).",
+   "order_invariance": "PC option stableFas ('order-independent edge removals'); colliderOrientationStyle (standard, conservative...). No permutation-check output.",
+   "llm_use": "None in core.",
+   "claimed_guarantees": "Docs: knowledge enforced 'where compatible'; overly aggressive constraints 'can force algorithms to miss valid models'.",
+   "pricing_or_licence": "GPL-3.0.",
+   "would_pass": {
+    "V2": "no (partial): the verbose log narrates CI tests and orientations, but the decisions are not stored as records linked to edges.",
+    "V3": "no (inference): required edges 'must appear if compatible', so knowledge can connect a pair the tests separated.",
+    "V5": "unknown: 'enforced where compatible' implies silent non-enforcement elsewhere; no override list documented.",
+    "V7": "no: stableFas exists but orientation order effects and a permutation check are not reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/algorithms/pc.md.txt#parameters",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/tetrad-interface/box-by-box/knowledge-box.md.txt",
+    "https://tetrad-manual.readthedocs.io/en/latest/_sources/tetrad-interface/detail-callouts/detail-bootstrapping.md.txt",
+    "https://www.phil.cmu.edu/tetrad-javadocs/7.6.9/edu/cmu/tetrad/search/utils/MeekRules.html#getChangedEdges()"
+   ]
+  },
+  {
+   "tool": "py-tetrad",
+   "kind": "open",
+   "url": "https://github.com/cmu-phil/tetrad",
+   "output_format": "As Tetrad, called from Python (Java JDK 25+ required per Tetrad README).",
+   "direction_provenance": "As Tetrad (verbose log only).",
+   "knowledge_input": "As Tetrad.",
+   "uncertainty": "As Tetrad.",
+   "reproducibility": "Not stated; v0.2.0 git install (AU6).",
+   "order_invariance": "As Tetrad.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "MIT wrapper calling GPL-3 Tetrad (AU6).",
+   "would_pass": {
+    "V2": "no (as Tetrad).",
+    "V3": "no (as Tetrad).",
+    "V5": "unknown (as Tetrad).",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "second-hand",
+   "locators": [
+    "https://github.com/cmu-phil/tetrad#readme",
+    "AU6_core_engines.md#engine-table"
+   ]
+  },
+  {
+   "tool": "causal-cmd (Tetrad CLI)",
+   "kind": "open",
+   "url": "https://bd2kccd.github.io/docs/causal-cmd/",
+   "output_format": "Default output `<algorithm>_<timestamp>.txt` that is 'a log and result'; optional --json-graph (Tetrad GUI JSON). Edge lines like 'A --- B', '-->', '<->', 'o->', 'o-o'.",
+   "direction_provenance": "The .txt is a run log plus result; no per-edge reason documented.",
+   "knowledge_input": "Knowledge file: /knowledge with addtemporal tiers (asterisk forbids within tier), forbiddirect, requiredirect.",
+   "uncertainty": "numberResampling, resamplingEnsemble (Preserved, Highest, Majority), percentResampleSize, saveBootstrapGraphs, addOriginalDataset.",
+   "reproducibility": "seed parameter ('-1 = off', default off); log file with timestamp; version 7.6.10. AU6: py-causal #91 reported nondeterministic PC runs (2019).",
+   "order_invariance": "No stable/order option in the FGES listing read; symmetricFirstStep only.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "GPL per pom (AU6); not stated on pages read.",
+   "would_pass": {
+    "V2": "no: log is free text, not claim-linked evidence.",
+    "V3": "no (inference): requiredirect follows Tetrad's required-edge semantics.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://bd2kccd.github.io/docs/causal-cmd/#command-line-usage",
+    "https://bd2kccd.github.io/docs/causal-cmd/#sample-prior-knowledge-file"
+   ]
+  },
+  {
+   "tool": "pgmpy",
+   "kind": "open",
+   "url": "https://pgmpy.org/api/generated/structure_learning/pgmpy.causal_discovery.PC.html",
+   "output_format": "pgmpy DAG or PDAG (return_type dag, cpdag, pdag, skeleton); BN objects; attributes skeleton_, separating_sets_, adjacency_matrix_, causal_graph_.",
+   "direction_provenance": "Not recorded; no attribute stores orientation reasons. ExpertInLoop orients each added edge by LLM or user; whether the output marks which edges were LLM-oriented is not stated.",
+   "knowledge_input": "ExpertKnowledge: required_edges, forbidden_edges, temporal_order, search_space. PC enforce_expert_knowledge=True guarantees a required adjacency (direction not guaranteed); False gives 'u -> v or no edge'. Conflicts: 'the edge is ignored and a warning is raised'.",
+   "uncertainty": "None for PC documented.",
+   "reproducibility": "stable and parallel variants give the same result every run; no seed parameter; ExpertInLoop use_cache=True caches LLM orientations. AU6: GES made deterministic across hash seeds 2026-04.",
+   "order_invariance": "variant='stable' default (order-independent skeleton cited); 'orig' 'Might not give the same results in different runs'.",
+   "llm_use": "ExpertInLoop: default orientation_fn llm_pairwise_orient with gemini/gemini-1.5-flash; LLM can return None ('no edge'), so it can remove a candidate edge. Separability not documented.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "MIT.",
+   "would_pass": {
+    "V2": "no (partial): separating_sets_ are kept for non-adjacent pairs, but oriented edges cite no evidence.",
+    "V3": "no (inference) with enforce_expert_knowledge=True (knowledge guarantees adjacency); yes-like with False. Default not read.",
+    "V5": "no: conflicting knowledge is ignored with a warning, not recorded as an override.",
+    "V7": "no: stable by default, but no permutation check reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://pgmpy.org/api/generated/structure_learning/pgmpy.causal_discovery.PC.html",
+    "https://pgmpy.org/api/generated/structure_learning/pgmpy.causal_discovery.ExpertKnowledge.html",
+    "https://pgmpy.org/api/generated/structure_learning/pgmpy.estimators.ExpertInLoop.html"
+   ]
+  },
+  {
+   "tool": "bnlearn (R)",
+   "kind": "open",
+   "url": "https://www.bnlearn.com/documentation/man/constraint.html",
+   "output_format": "Object of class bn (DAG or partially directed); boot.strength data frame; averaged.network.",
+   "direction_provenance": "Not recorded. debug=TRUE prints 'a lot of debugging output' (content not described).",
+   "knowledge_input": "whitelist ('always included in the network'), blacklist (never included; whitelist wins); whitelisting both directions forces adjacency, direction left to the algorithm.",
+   "uncertainty": "boot.strength: arc strength = bootstrap frequency, plus direction probability conditional on presence; docs call strength 'confidence'; threshold computed automatically. No calibration statement.",
+   "reproducibility": "Hill-climbing random restarts; no seed documentation on pages read (R set.seed by convention).",
+   "order_invariance": "pc.stable offered (Colombo & Maathuis cited); no order statement for other algorithms (AU6: HC order-sensitive, second-hand).",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "GPL (>=2) (AU6).",
+   "would_pass": {
+    "V2": "no: no per-arc evidence ids.",
+    "V3": "no (inference): whitelisted arcs are 'always included', regardless of tests.",
+    "V5": "yes (inference) for white/black lists: hard constraints are always applied or the call errors (cycles).",
+    "V7": "no: no permutation check reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.bnlearn.com/examples/whitelist/",
+    "https://www.bnlearn.com/documentation/man/arc.strength.html",
+    "https://www.bnlearn.com/documentation/man/constraint.html"
+   ]
+  },
+  {
+   "tool": "pcalg (R)",
+   "kind": "open",
+   "url": "https://www.rdocumentation.org/packages/pcalg/versions/2.7-12/topics/pc",
+   "output_format": "pcAlgo object (CPDAG estimate), fciAlgo (PAG); IDA/adjustment utilities.",
+   "direction_provenance": "Not recorded; verbose 'detailed output' (whether it names rules not stated).",
+   "knowledge_input": "fixedGaps ('guaranteed to be absent'), fixedEdges ('never considered for removal', so 'guaranteed to be present'); addBgKnowledge for orientations (AU6).",
+   "uncertainty": "None for pc.",
+   "reproducibility": "No RNG for pc (AU6); u2pd='rand' introduces randomness when the CPDAG is invalid.",
+   "order_invariance": "Strongest documented option: skel.method='stable' (default) gives an 'order-independent skeleton'; conservative or maj.rule plus solve.confl gives 'fully order-independent output'.",
+   "llm_use": "None.",
+   "claimed_guarantees": "Order independence as above (documented property of options).",
+   "pricing_or_licence": "GPL (>=2) (AU6).",
+   "would_pass": {
+    "V2": "no: sepsets kept, but no per-edge evidence records.",
+    "V3": "no (inference): fixedEdges are kept whatever the tests say.",
+    "V5": "yes (inference) for fixedGaps/fixedEdges (guaranteed); unknown for addBgKnowledge.",
+    "V7": "no: order independence can be guaranteed by options, but no permutation check is reported; V7 would pass only if the ledger records the option as the check.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://www.rdocumentation.org/packages/pcalg/versions/2.7-12/topics/pc#arguments"
+   ]
+  },
+  {
+   "tool": "gCastle (Huawei Noah's Ark)",
+   "kind": "open",
+   "url": "https://pypi.org/project/gcastle/",
+   "output_format": "causal_matrix adjacency (numpy) per algorithm; GraphDAG plots; MetricsDAG (F1, SHD, FDR, TPR, NNZ).",
+   "direction_provenance": "Not recorded.",
+   "knowledge_input": "'prior injection' preprocessing; PrioriKnowledge for PC and TTPM (AU6). Semantics of required edges not read.",
+   "uncertainty": "None documented.",
+   "reproducibility": "Seeds in simulators; AU6: PC deterministic given column order.",
+   "order_invariance": "Not stated. AU6 (code reading): default PC variant tests one side and is order-dependent by construction.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated; no 'trustworthy' claim on PyPI page despite the repo name.",
+   "pricing_or_licence": "Apache-2.0; 1.0.4 (2025-03-07).",
+   "would_pass": {
+    "V2": "no.",
+    "V3": "unknown.",
+    "V5": "unknown.",
+    "V7": "no: default PC is order-dependent (AU6) and no check is reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://pypi.org/project/gcastle/",
+    "AU6_core_engines.md#F2"
+   ]
+  },
+  {
+   "tool": "CausalNex (QuantumBlack / McKinsey)",
+   "kind": "open",
+   "url": "https://causalnex.readthedocs.io/en/latest/causalnex.structure.StructureModel.html",
+   "output_format": "StructureModel (networkx DiGraph) with weighted directed edges; Bayesian network on top. Weights can be thresholded (remove_edges_below_threshold, threshold_till_dag).",
+   "direction_provenance": "YES, coarse: every edge has a required attribute 'origin' in {unknown, learned, expert} describing 'how the edge was created'; from_pandas sets origin='learned' (0.4.2 source); edges_with_origin() lists them. Not rule-level (no v-structure vs functional vs intervention) and no evidence link; add_edge defaults to 'unknown', and the tutorial adds expert edges without setting origin.",
+   "knowledge_input": "tabu_edges, tabu_parent_nodes, tabu_child_nodes fix weights at zero (forbidden only, before learning). After learning, users add/remove edges freely (add_edge), so knowledge can add connections.",
+   "uncertainty": "None; weights are thresholded, not described as confidence.",
+   "reproducibility": "Not stated. End of life declared 2026-06-24; final 0.12.2 (AU6).",
+   "order_invariance": "Not stated.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "Apache-2.0 (AU6).",
+   "would_pass": {
+    "V2": "no: origin is a label, not a link to evidence.",
+    "V3": "no (inference): post-hoc add_edge (origin expert or unknown) can connect any pair; tabu-only knowledge before learning would pass.",
+    "V5": "unknown: tabu constraints are hard bounds (honoured), but post-hoc removals leave no record.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://causalnex.readthedocs.io/en/latest/causalnex.structure.StructureModel.html#causalnex.structure.StructureModel",
+    "https://causalnex.readthedocs.io/en/0.4.2/_modules/causalnex/structure/notears.html",
+    "https://causalnex.readthedocs.io/en/latest/03_tutorial/01_first_tutorial.html"
+   ]
+  },
+  {
+   "tool": "Causal-Copilot (Wang et al. 2025)",
+   "kind": "open",
+   "url": "https://github.com/Lancelot39/Causal-Copilot",
+   "output_format": "PDF report (LaTeX template) with methods, visuals and findings; causal graph visualisations in OUTPUT_GRAPH_DIR; tabular and time-series.",
+   "direction_provenance": "Not stated. README: LLM 'refines the causal graph (pruning, edge re-direction)' using prior knowledge; no per-edge data-vs-LLM label.",
+   "knowledge_input": "LLM turns user text into forbidden, required and tier JSON (AU6); LLM prior knowledge for refinement. Project measurement: refinement can add and delete connections (DESIGN.md S1/S2).",
+   "uncertainty": "README: 'bootstrap edge-uncertainty checks' (counts and thresholds not given).",
+   "reproducibility": "Requirements files, Dockerfiles, Python 3.10; example models gpt-4o, claude-sonnet-4; no seeds or pinned model snapshot documented.",
+   "order_invariance": "Not stated. Project audits (AUD-27/28, AU6 F1): vendored causal-learn fork is order-dependent.",
+   "llm_use": "LLM picks and tunes algorithms, generates code, parses queries, refines the graph, checks consistency. Not separable in the output.",
+   "claimed_guarantees": "Claim (authors): 'superior performance compared to existing baselines'; 'reliable, scalable, and extensible' (abstract).",
+   "pricing_or_licence": "MIT.",
+   "would_pass": {
+    "V2": "no: report prose is not tied to evidence records (DESIGN.md row 6).",
+    "V3": "no (measured by project, not by this audit): refinement adds and deletes connections.",
+    "V5": "no: GPU PC path drops background knowledge (AU6 wrapper comment).",
+    "V7": "no: order-dependent fork; no permutation check.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://github.com/Lancelot39/Causal-Copilot#readme",
+    "https://arxiv.org/abs/2504.13263",
+    "AU6_core_engines.md#F9"
+   ]
+  },
+  {
+   "tool": "CausalML (Uber)",
+   "kind": "open",
+   "url": "https://causalml.readthedocs.io/en/latest/about.html",
+   "output_format": "Uplift / CATE estimates from experimental or observational data; no graph output.",
+   "direction_provenance": "Not applicable.",
+   "knowledge_input": "User chooses treatment, outcome, features.",
+   "uncertainty": "Not stated on about page.",
+   "reproducibility": "Not stated.",
+   "order_invariance": "Not applicable.",
+   "llm_use": "None stated.",
+   "claimed_guarantees": "Estimation 'without strong assumptions on the model form' (claim).",
+   "pricing_or_licence": "Apache-2.0 (AU5/AU6; not on page read).",
+   "would_pass": {
+    "V2": "unknown: no graph.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://causalml.readthedocs.io/en/latest/about.html"
+   ]
+  },
+  {
+   "tool": "EconML (PyWhy / Microsoft)",
+   "kind": "open",
+   "url": "https://github.com/py-why/EconML",
+   "output_format": "Heterogeneous treatment effect estimators; effect_inference summary frames; CATE interpreters (SingleTreeCateInterpreter, policy trees, SHAP).",
+   "direction_provenance": "Not applicable: structure (T, Y, X, W, Z) is user-specified.",
+   "knowledge_input": "User-declared treatment, outcome, controls and instruments; 'some methods assume no unobserved confounders'.",
+   "uncertainty": "'Most methods provide confidence intervals' (OLS, bootstrap, Bootstrap-of-Little-Bags).",
+   "reproducibility": "Not stated on README; v0.17.0 (2026-07-31).",
+   "order_invariance": "Not applicable.",
+   "llm_use": "None.",
+   "claimed_guarantees": "Validity conditional on stated assumptions (unconfoundedness or a valid instrument).",
+   "pricing_or_licence": "MIT (AU6).",
+   "would_pass": {
+    "V2": "unknown: no graph.",
+    "V3": "unknown: no graph.",
+    "V5": "unknown.",
+    "V7": "unknown: not applicable.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://github.com/py-why/EconML#readme"
+   ]
+  },
+  {
+   "tool": "cdt (Causal Discovery Toolbox)",
+   "kind": "open",
+   "url": "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/index.html",
+   "output_format": "Graph and pairwise methods incl. wrappers of bnlearn, kpcalg and pcalg; networkx outputs (AU6).",
+   "direction_provenance": "Not recorded (not stated).",
+   "knowledge_input": "Not stated on index page.",
+   "uncertainty": "Not stated.",
+   "reproducibility": "Not stated; 0.6.0; low activity (AU6).",
+   "order_invariance": "Not stated.",
+   "llm_use": "None.",
+   "claimed_guarantees": "None stated.",
+   "pricing_or_licence": "MIT (page); Apache on PyPI (AU6).",
+   "would_pass": {
+    "V2": "no.",
+    "V3": "unknown.",
+    "V5": "unknown.",
+    "V7": "no: no permutation check in any documented output; V7 needs one in the report",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/index.html"
+   ]
+  },
+  {
+   "tool": "Tigramite (PCMCI family)",
+   "kind": "open",
+   "url": "https://jakobrunge.github.io/tigramite/",
+   "output_format": "Time-lagged graphs: PCMCI (lagged directed + contemporaneous undirected), PCMCI+ ('Time series CPDAG'), LPCMCI ('Time series PAG'), RPCMCI (per regime), J-PCMCI+; graph array with marks '-->', 'o-o' (undecided), 'x-x' (conflict); val_matrix, p_matrix.",
+   "direction_provenance": "Partial, by mark only: 'x-x' records that orientation rules conflicted and 'o-o' that they could not decide; no per-edge reason otherwise.",
+   "knowledge_input": "link_assumptions: '-->' means a link 'must exist'; '-?>' means optional but oriented if present; unlisted links are absent. So knowledge can add connections.",
+   "uncertainty": "p_matrix and val_matrix quantify adjacencies only, 'not for contemporaneous directionality'; bootstrap CIs listed as a feature.",
+   "reproducibility": "RPCMCI seed; AU6: 'seeds handled'.",
+   "order_invariance": "PCMCI+ is 'fully order independent' only with contemp_collider_rule majority or conservative and conflict_resolution=True.",
+   "llm_use": "None.",
+   "claimed_guarantees": "Provided 'without any warranty'; order independence as above is a documented property.",
+   "pricing_or_licence": "GPL-3.0.",
+   "would_pass": {
+    "V2": "no (partial): p-values per adjacency, but no evidence ids per direction.",
+    "V3": "no (inference): a '-->' link assumption forces a link to exist.",
+    "V5": "yes (inference): link assumptions are hard constraints.",
+    "V7": "no: options make it order-independent but no permutation check is reported.",
+    "_label": "inference (AB-11 agent) from documented claims; nothing was run"
+   },
+   "label": "read (primary)",
+   "locators": [
+    "https://jakobrunge.github.io/tigramite/#tigramite.pcmci.PCMCI.run_pcmciplus",
+    "https://github.com/jakobrunge/tigramite#readme"
+   ]
+  }
+ ],
+ "pricing_signals": [
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "Causely",
+   "price_point": "USD 2,000 per month (Professional, up to 500 services); Enterprise custom",
+   "unit": "per month per account (<=500 services)",
+   "url": "https://www.causely.ai/pricing",
+   "label": "claim (vendor), public pricing page"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "Datadog Bits Investigation (Bits AI SRE)",
+   "price_point": "USD 500 per 500 AI credits per month billed annually; USD 1.30 per credit on demand; ~6.5 credits per autonomous investigation (about USD 6.50-8.45 per investigation, own arithmetic)",
+   "unit": "per AI credit / per investigation",
+   "url": "https://www.datadoghq.com/pricing/?product=bits-ai-sre",
+   "label": "claim (vendor), public pricing page; per-investigation figure is arithmetic"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "Datadog Watchdog RCA",
+   "price_point": "bundled with APM; no separate price",
+   "unit": "n/a",
+   "url": "https://docs.datadoghq.com/watchdog/rca/",
+   "label": "read (primary); bundling per AU5"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "Dynatrace",
+   "price_point": "Full-Stack Monitoring USD 58 per month per 8 GiB host (USD 0.01 per memory-GiB-hour), includes automated RCA; Agentic Operations USD 0.10 per AI unit, ~30 units per autonomous investigation (~USD 3.00)",
+   "unit": "per host-month; per AI unit / investigation",
+   "url": "https://www.dynatrace.com/pricing/",
+   "label": "claim (vendor), public rate card"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "AWS DevOps Agent",
+   "price_point": "USD 0.0083 per agent-second (about USD 29.88 per agent-hour, own arithmetic); credits included with Support plans at 30-100% of prior month's Support charge; 2-month trial",
+   "unit": "per agent-second",
+   "url": "https://aws.amazon.com/devops-agent/pricing/",
+   "label": "claim (vendor), public pricing page"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "Amazon CloudWatch investigations",
+   "price_point": "no per-investigation price; underlying API usage may be billed; up to 150 enhanced investigations per account per month, 2 concurrent",
+   "unit": "quota per account-month",
+   "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations.md",
+   "label": "read (primary)"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "PagerDuty AIOps (incl. Probable Origin RCA)",
+   "price_point": "from USD 699 per month, consumption-based on accepted events; 16% off annual",
+   "unit": "per month",
+   "url": "https://www.pagerduty.com/pricing/aiops/",
+   "label": "claim (vendor), public pricing page (vendor outside the AB-11 list, added as a buyer signal)"
+  },
+  {
+   "vertical": "IT incident analysis / AIOps RCA",
+   "vendor": "causaLens decisionOS",
+   "price_point": "~GBP 240,000 per licence per year",
+   "unit": "per licence-year",
+   "url": "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/services/374127438578607",
+   "label": "claim (vendor) via AU5; not re-read"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Haus",
+   "price_point": "median USD 150,000 per year, range 132k-168k; redline threshold ~USD 100k; no public list price (tiers Basics, Core, Plus, Enterprise)",
+   "unit": "annual contract value",
+   "url": "https://vendr.com/marketplace/haus-analytics",
+   "label": "second-hand (Vendr); number of purchases not stated"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Recast",
+   "price_point": "no public price; costbench median USD 6,000 per year from 3 buyer reports, while costbench FAQ puts the MMM tier at USD 5,000-50,000 per month; GeoLift by Recast ~USD 100/month after 6-month trial",
+   "unit": "annual contract / per month",
+   "url": "https://costbench.com/software/marketing-attribution/recast",
+   "label": "second-hand (aggregator), internally inconsistent; do not use for sizing without more data"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Lifesight",
+   "price_point": "no public price; single annual subscription priced by 'data and marketing maturity'",
+   "unit": "annual subscription",
+   "url": "https://lifesight.io/pricing/",
+   "label": "read (primary)"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Mutinex",
+   "price_point": "no public price (demo only)",
+   "unit": "n/a",
+   "url": "https://mutinex.co/",
+   "label": "read (primary)"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Haus (funding)",
+   "price_point": "USD 20M raise led by 01 Advisors (buyer/investor signal, not price)",
+   "unit": "funding round",
+   "url": "https://haus.io/blog/haus-announces-20m-raise-led-by-01-advisors",
+   "label": "claim (vendor) via AU5"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "Google Meridian / Meta Robyn",
+   "price_point": "free, open source (price floor for MMM software)",
+   "unit": "n/a",
+   "url": "https://blog.google/products/ads-commerce/meridian-marketing-mix-model-open-to-everyone/",
+   "label": "via AU5"
+  },
+  {
+   "vertical": "marketing measurement / incrementality",
+   "vendor": "survey (EMARKETER/TransUnion)",
+   "price_point": "46.9% of US marketers plan more MMM investment; 52% run incrementality tests",
+   "unit": "buyer survey",
+   "url": "https://www.emarketer.com/content/mmm--incrementality--other-measurement-trends-that-will-define-2026",
+   "label": "second-hand via AU5"
+  }
+ ],
+ "searches": [
+  "CausalNex StructureModel add_edge origin \"learned\" \"expert\"",
+  "Tetrad MeekRules log \"Orienting edge\" knowledge TetradLogger",
+  "Datadog Watchdog root cause analysis documentation causal",
+  "Tetrad manual \"required\" edges knowledge tiers bootstrapping \"edge type\" probabilities PC-Stable",
+  "pgmpy ExpertKnowledge required_edges forbidden_edges temporal_order enforce_expert_knowledge PC",
+  "pgmpy.org ExpertKnowledge class documentation causal discovery (pgmpy.org, github.com)",
+  "Causely documentation causal model root cause inference confidence \"causal graph\" docs.causely.ai",
+  "Datadog Bits AI SRE documentation investigation hypotheses evidence root cause",
+  "Amazon CloudWatch investigations root cause hypothesis documentation AWS DevOps Agent",
+  "docs.causely.ai root cause causal reasoning engine how it works symptoms causal model",
+  "Causely \"causal model\" root cause \"probability\" symptoms \"how Causely works\" codebook knowledge (causely.ai)",
+  "Dynatrace Davis root cause analysis documentation causal Smartscape \"root cause\" deterministic fault tree (dynatrace.com)",
+  "causaLens decisionOS documentation causal discovery domain knowledge constraints edges \"causal graph\"",
+  "Geminos Causeway causal model knowledge data platform documentation",
+  "Xplain Data Causal Discovery Bot \"Object Analytics\" causal discovery how it works",
+  "Howso Engine causal discovery documentation \"causal\" attribution auditability",
+  "Howso causal discovery \"Howso\" engine causal relationships feature (howso.com)",
+  "Recast MMM pricing per month",
+  "Microsoft Fabric causal inference OR \"causal discovery\" feature documentation (learn.microsoft.com)",
+  "Haus incrementality raises Series B 2025 funding customers"
+ ],
+ "not_read": [
+  {
+   "source": "https://cmu-phil.github.io/tetrad/manual/",
+   "reason": "fetch error; ReadTheDocs manual sources read instead"
+  },
+  {
+   "source": "https://www.cmu.edu/dietrich/philosophy/tetrad/use-tetrad/tetrad-manual.html",
+   "reason": "fetch error"
+  },
+  {
+   "source": "https://tetrad-manual.readthedocs.io/en/latest/tetrad-interface/detail-callouts/detail-bootstrapping.html",
+   "reason": "HTML body not returned; the .md.txt source was read instead"
+  },
+  {
+   "source": "https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle",
+   "reason": "robots disallowed; PyPI page and AU6 code reading used"
+  },
+  {
+   "source": "https://getrecast.com/pricing/",
+   "reason": "fetch error; homepage and costbench (second-hand) used"
+  },
+  {
+   "source": "https://causalnex.readthedocs.io/en/latest/_modules/causalnex/structure/notears.html",
+   "reason": "fetch error; 0.4.2 source module read instead (origin='learned' confirmed there only)"
+  },
+  {
+   "source": "https://econml.azurewebsites.net/spec/overview.html -> https://www.pywhy.org/EconML/spec/overview.html",
+   "reason": "navigation only, no body; GitHub README used"
+  },
+  {
+   "source": "https://www.datadoghq.com/pricing/?product=bits-ai-sre (characters 100000+)",
+   "reason": "truncated; Watchdog tier checkmarks not read"
+  },
+  {
+   "source": "https://github.com/bd2kccd/causal-cmd",
+   "reason": "README lacks details; docs site read instead"
+  },
+  {
+   "source": "https://docs.datadoghq.com/bits_ai/ (Knowledge sources page)",
+   "reason": "not opened"
+  },
+  {
+   "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations-HypothesisVisualization.md",
+   "reason": "not opened"
+  },
+  {
+   "source": "https://www.aitia.com/our-science/",
+   "reason": "not opened"
+  },
+  {
+   "source": "https://geminos.ai/products/geminos-pathway/",
+   "reason": "not opened"
+  },
+  {
+   "source": "https://github.com/howsoai (licence)",
+   "reason": "not opened"
+  },
+  {
+   "source": "Tigramite API page for run_bootstrap_of",
+   "reason": "not opened; bootstrap output not confirmed"
+  },
+  {
+   "source": "pcalg verbose and bnlearn debug output content",
+   "reason": "not documented on pages read; would need a run (not allowed in this desk audit)"
+  },
+  {
+   "source": "causal-learn issues #219, #171, #266; DoWhy #1695; Tetrad #1954",
+   "reason": "cited from DESIGN.md, not re-read today"
+  },
+  {
+   "source": "py-tetrad README",
+   "reason": "not opened; row relies on Tetrad README and AU6"
+  },
+  {
+   "source": "causaLens G-Cloud 14 listing",
+   "reason": "not re-read; AU5 figure reused"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "ticket": "AUD-37",
+ "bundle": "AB-05",
+ "agent": "vashishtha",
+ "status": "READY - inside the AB-05 cap approved 2026-10-12 ($5 in total; the four probes cap at $3.55 together, Causal-Copilot second model about $0.03-0.46). Model choice follows each agent's documented default where noted in deviation_from_brief_model.",
+ "run": {
+  "scenario": "/research/external/causalarena/scm/semantic/data/semantic_obs_only/semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+  "shuffle_seed": 20261010,
+  "model": "gpt-4o",
+  "agent_opts": {
+   "subgraph_model": "gpt-4o-mini"
+  },
+  "max_calls": 3501,
+  "max_usd": 1.27,
+  "out": "/research/runs/ab05/vashishtha/",
+  "out_stub": "/research/runs/ab05/stub_plan/vashishtha/"
+ },
+ "basis": {
+  "stub_summary": "runs/ab05/stub/vashishtha_mini/semantic/summary.json",
+  "stub_calls": 2334,
+  "stub_prompt_tokens": 884366,
+  "stub_completion_tokens": 520235,
+  "token_counter": "tiktoken:cl100k_base",
+  "est_usd_at_plan_prices": 0.8456,
+  "est_usd_if_all_gpt4o": 7.4133,
+  "max_usd_by_1_5x_rule": 1.27,
+  "max_usd_floor_for_last_call": 0.87,
+  "note": "ESTIMATE: prompt tokens counted locally (tiktoken:cl100k_base); completion lengths assumed (adapter constants, recorded per call in calls.jsonl)"
+ },
+ "deviation_from_brief_model": "the repository's documented two-model split (README: --subgraph-model gpt-4o-mini --expert-model gpt-4o): the C(d,3) = 2,300 triplet calls use gpt-4o-mini and only the tie-breaker calls use gpt-4o; all-gpt-4o is estimated at $7.35 (x1.5 = $11.03)",
+ "agent_repo": {
+  "url": "https://github.com/AniketVashishtha/Causal_Order_Imperfect_Experts",
+  "commit": "ad609dbd3d93e50d890c9967eb746945546515d1",
+  "licence": "none shown in the repository: evaluation use only, never redistribute (not copied into any image or this kit; cloned at build time)"
+ },
+ "launch": "python /research/harness/agent_probe.py --plan /research/plans/ab05_probe_vashishtha.json [--stub]",
+ "budget_check": {
+  "sum_max_usd_all_four": 3.55,
+  "limit": 4.0
+ }
+}

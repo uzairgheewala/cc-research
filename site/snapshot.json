@@ -16,8 +16,11 @@
    "id": "BND-01",
    "llm_cost": "none",
    "note": "Closed 2026-10-11 after Uzair's container smoke run: J1 (shell and container) and J2 pass; 18 unit tests pass; every result directory has a CONTRACT.json (check_scores: none non-conforming).",
+   "plan": "q1",
+   "serves": [],
    "status": "done",
    "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene",
+   "track": null,
    "uzair_actions": [
     "cc.ps1 compute smoke (no API key mounted; no cost)"
    ],
@@ -40,8 +43,11 @@
    "id": "BND-02",
    "llm_cost": "none",
    "note": "REP-13, DOM-08, DOM-10, DOM-11, DOM-12 done; DOM-07 waits on CausalArena appendix B (unreadable so far).",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "Primary sources: literature re-reads, deep reads, method choices",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-11",
@@ -60,8 +66,11 @@
    "id": "BND-03",
    "llm_cost": "none",
    "note": "Static audit done (gates A1, A2 pass); open: REP-03 live-only claims, AUD-14 one offline stub run of a time-series wrapper.",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-11",
@@ -81,8 +90,11 @@
    "id": "BND-04",
    "llm_cost": "none",
    "note": "Built 2026-10-10: RQ-16, REP-06, BEN-08 done; marked done 2026-10-11 once BND-01 closed (W3). BEN-11 continues in BND-06.",
+   "plan": "q1",
+   "serves": [],
    "status": "done",
    "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)",
+   "track": null,
    "uzair_actions": [
     "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
    ],
@@ -104,8 +116,11 @@
    "id": "BND-05",
    "llm_cost": "none",
    "note": "Built 2026-10-10; gates D1-D11 pass and the rebuild is byte-identical (--check). Marked done 2026-10-11 once BND-01 closed (rule W3).",
+   "plan": "q1",
+   "serves": [],
    "status": "done",
    "title": "Freeze the Quarter 1 dataset suite",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-13",
@@ -127,8 +142,11 @@
    "id": "BND-06",
    "llm_cost": "none",
    "note": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11.",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)",
+   "track": null,
    "uzair_actions": [
     "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
    ],
@@ -150,8 +168,11 @@
    "id": "BND-07",
    "llm_cost": "none",
    "note": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here).",
+   "plan": "q1",
+   "serves": [],
    "status": "done",
    "title": "Causal Chambers and intervention audit (no LLM)",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-17",
@@ -172,8 +193,11 @@
    "id": "BND-08",
    "llm_cost": "30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls",
    "note": "Live run 11-12 Oct: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1 SUPPORTED, M2 REFUTED (5/10), M3 SUPPORTED, M4 SUPPORTED, M5 not run; L1 and Q1-Q3 pass; about $12.7. Open: DLV-02's gap (6 arms without a completed run), Uzair's call.",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
+   "track": null,
    "uzair_actions": [
     "cc.ps1 plan plans/bundle7_stub.json (stub LLM, free)",
     "approve the cost the stub measured",
@@ -196,8 +220,11 @@
    "id": "BND-09",
    "llm_cost": "none",
    "note": "Done 2026-10-11. Dev, 92 files (69 live tables, 23 CausalArena dev replays): R1 0.79 INCONCLUSIVE, R2 0.96 SUPPORTED, R3 +0.023 SUPPORTED; non-directed edges kept 95% vs the pipeline's 30%. Frozen: RULE.json sha256 da3cb260..., 01:11:03Z.",
+   "plan": "q1",
+   "serves": [],
    "status": "done",
    "title": "Refinement v1 (no LLM): develop and freeze on the dev split",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-17",
@@ -214,8 +241,11 @@
    "id": "BND-10",
    "llm_cost": "none",
    "note": "Measured 2026-10-12 (must-show complete; marked done once BND-08 closes, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. Live S2 alone: R1 REFUTED 17/30, R2 SUPPORTED 30/30. TGT-09 not met; carried to BND-11 (v2).",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "Refinement v1: held-out test",
+   "track": null,
    "uzair_actions": [],
    "window": [
     "2026-10-25",
@@ -238,8 +268,11 @@
    "id": "BND-11",
    "llm_cost": "about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each",
    "note": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live.",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "LIVE: Refinement v2, names only where the data are silent",
+   "track": null,
    "uzair_actions": [
     "approve; run plans/bundle10_live.json"
    ],
@@ -264,8 +297,11 @@
    "id": "BND-12",
    "llm_cost": "second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k)",
    "note": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair.",
+   "plan": "q1",
+   "serves": [],
    "status": "in_progress",
    "title": "LIVE: second model and external replications",
+   "track": null,
    "uzair_actions": [
     "choose the second model",
     "approve and run each part's plan file"
@@ -291,8 +327,11 @@
    "id": "BND-13",
    "llm_cost": "none",
    "note": "",
+   "plan": "q1",
+   "serves": [],
    "status": "todo",
    "title": "Quarter 1 checkpoint package (2 Nov)",
+   "track": null,
    "uzair_actions": [
     "submit the checkpoint"
    ],
@@ -320,8 +359,11 @@
    "id": "BND-14",
    "llm_cost": "none",
    "note": "",
+   "plan": "q1",
+   "serves": [],
    "status": "todo",
    "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)",
+   "track": null,
    "uzair_actions": [
     "run the one reproduction command on a clean checkout",
     "submit"
@@ -330,10 +372,447 @@
     "2026-11-16",
     "2026-12-03"
    ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "AUD-33"
+   ],
+   "id": "AB-01",
+   "llm_cost": "none",
+   "note": "Controlled leaderboard written; see ab01 report.",
+   "plan": "audit",
+   "serves": [
+    "L1"
+   ],
+   "status": "done",
+   "title": "Controlled scoreboard, CausalArena complete",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-12",
+    "2026-10-17"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-01"
+   ],
+   "closes": [
+    "AUD-34"
+   ],
+   "id": "AB-02",
+   "llm_cost": "none",
+   "note": "Bayesys: 3 of 6 networks in topological column order (P3 supported); index tie-break worth up to +0.30 there. P4 mixed. Reproduction waits on the published xlsx.",
+   "plan": "audit",
+   "serves": [
+    "L1"
+   ],
+   "status": "blocked",
+   "title": "Second scoreboard: do the layout and conflict channels exist elsewhere?",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "AUD-35"
+   ],
+   "id": "AB-03",
+   "llm_cost": "none",
+   "note": "dodiscover PC fails the oracle test (cyclic output); pgmpy, tigramite correct.",
+   "plan": "audit",
+   "serves": [
+    "L1",
+    "L4"
+   ],
+   "status": "done",
+   "title": "Engine forensics across the tools agents call",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-01"
+   ],
+   "closes": [
+    "AUD-36"
+   ],
+   "id": "AB-04",
+   "llm_cost": "none",
+   "note": "Five benchmarks; learned graphs near 'nothing moves' on CausalArena, clearer lift on Causal Chambers.",
+   "plan": "audit",
+   "serves": [
+    "L3"
+   ],
+   "status": "done",
+   "title": "Decision-value scoreboard",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-14",
+    "2026-10-28"
+   ]
+  },
+  {
+   "approval_needed": "approved 2026-10-12 ($5 cap)",
+   "blocked_by": [],
+   "closes": [
+    "AUD-37"
+   ],
+   "id": "AB-05",
+   "llm_cost": "one run per agent on one public scenario: Vashishtha et al. order elicitor, PyWhy-LLM pairwise, MATMCD, causaliq-knowledge, Causal-Copilot on a second model; cap $5 in total",
+   "note": "causaliq live ok; Causal-Copilot gpt-4o-mini hit the upstream key crash; 3 probes to run.",
+   "plan": "audit",
+   "serves": [
+    "L2"
+   ],
+   "status": "blocked",
+   "title": "LIVE (small): agent probes, install and one-run cost per agent",
+   "track": "research",
+   "uzair_actions": [
+    "approve the cap",
+    "cc.ps1 plan plans/ab05_probe_<agent>.json for each"
+   ],
+   "window": [
+    "2026-10-14",
+    "2026-10-20"
+   ]
+  },
+  {
+   "approval_needed": "yes",
+   "blocked_by": [
+    "AB-05",
+    "AB-04",
+    "AB-01"
+   ],
+   "closes": [
+    "AUD-38"
+   ],
+   "id": "AB-06",
+   "llm_cost": "set from AB-05: about 3 arms x 10 dev scenarios x the agents that ran; Causal-Copilot $0.46/run measured; budget proposed in the AB-05 report before any spend",
+   "note": "120-run agent grid and the Causal-Copilot arm are ready; waits on your live runs.",
+   "plan": "audit",
+   "serves": [
+    "L2"
+   ],
+   "status": "blocked",
+   "title": "LIVE: field audit under names x layout controls",
+   "track": "research",
+   "uzair_actions": [
+    "approve budget from AB-05",
+    "run the plan files"
+   ],
+   "window": [
+    "2026-10-21",
+    "2026-11-14"
+   ]
+  },
+  {
+   "approval_needed": "approved 2026-10-12 (DEC-02)",
+   "blocked_by": [
+    "AB-01"
+   ],
+   "closes": [
+    "AUD-48"
+   ],
+   "id": "AB-07",
+   "llm_cost": "about 900 short calls (DEC-02): tiers only, three phrasings, three name arms, 50 semantic + 50 formula scenarios",
+   "note": "Model orders 69% of true edges from names (12% contradicted); follows moved labels; tiers alone 0.448.",
+   "plan": "audit",
+   "serves": [
+    "L2",
+    "L4"
+   ],
+   "status": "done",
+   "title": "LIVE: knowledge elicitation (A3), what can a model supply?",
+   "track": "research",
+   "uzair_actions": [
+    "decide DEC-02",
+    "run the plan file"
+   ],
+   "window": [
+    "2026-10-16",
+    "2026-10-28"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-04"
+   ],
+   "closes": [
+    "AUD-39"
+   ],
+   "id": "AB-08",
+   "llm_cost": "none",
+   "note": "2,500-file rho-dial benchmark; reference curves as predicted.",
+   "plan": "audit",
+   "serves": [
+    "L2",
+    "L3"
+   ],
+   "status": "done",
+   "title": "Name-reliance benchmark (decoupled semantics, B2)",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-21",
+    "2026-11-14"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "AUD-40"
+   ],
+   "id": "AB-09",
+   "llm_cost": "none",
+   "note": "T1-T4 hold; T5 restated; 7,151 rows checked.",
+   "plan": "audit",
+   "serves": [
+    "L5"
+   ],
+   "status": "done",
+   "title": "Theory pack",
+   "track": "research",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-15",
+    "2026-11-07"
+   ]
+  },
+  {
+   "approval_needed": "yes",
+   "blocked_by": [],
+   "closes": [
+    "AUD-41"
+   ],
+   "id": "AB-10",
+   "llm_cost": "none",
+   "note": "Kit ready. Waits on Uzair: IRB question to course staff, then interviews.",
+   "plan": "audit",
+   "serves": [
+    "C1"
+   ],
+   "status": "blocked",
+   "title": "Practitioner interviews",
+   "track": "commercial",
+   "uzair_actions": [
+    "recruit and run the interviews"
+   ],
+   "window": [
+    "2026-10-14",
+    "2026-11-07"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-04"
+   ],
+   "closes": [
+    "AUD-42"
+   ],
+   "id": "AB-11",
+   "llm_cost": "none",
+   "note": "33 tools by docs, 10 by hand; no tool records evidence-linked direction sources.",
+   "plan": "audit",
+   "serves": [
+    "C1",
+    "L4"
+   ],
+   "status": "done",
+   "title": "Competitive teardown",
+   "track": "commercial",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-15",
+    "2026-10-31"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-04"
+   ],
+   "closes": [
+    "AUD-43"
+   ],
+   "id": "AB-12",
+   "llm_cost": "none",
+   "note": "PetShop: declared topology + abstention 0.93 AC@3 vs PC graph 0.21 (P15 supported).",
+   "plan": "audit",
+   "serves": [
+    "C2"
+   ],
+   "status": "done",
+   "title": "Vertical probe: root-cause analysis",
+   "track": "commercial",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-20",
+    "2026-11-07"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "AUD-44"
+   ],
+   "id": "AB-13",
+   "llm_cost": "none",
+   "note": "50 requirements mapped; 5 ledger gaps (BLD-14); venue W3C AI provenance CG.",
+   "plan": "audit",
+   "serves": [
+    "C3"
+   ],
+   "status": "done",
+   "title": "Regulation and standards map",
+   "track": "commercial",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-14",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-10",
+    "AB-13"
+   ],
+   "closes": [
+    "AUD-45"
+   ],
+   "id": "AB-14",
+   "llm_cost": "none",
+   "note": "Scaffold only; waits on AB-10.",
+   "plan": "audit",
+   "serves": [
+    "C3"
+   ],
+   "status": "todo",
+   "title": "Market and go-to-market hypotheses",
+   "track": "commercial",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-27",
+    "2026-11-12"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "AUD-46"
+   ],
+   "id": "AB-15",
+   "llm_cost": "none",
+   "note": "All five claims partly open; mandatory citations listed.",
+   "plan": "audit",
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+   ],
+   "status": "done",
+   "title": "Positioning closure",
+   "track": "wedge",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-12",
+    "2026-10-22"
+   ]
+  },
+  {
+   "approval_needed": "yes",
+   "blocked_by": [
+    "AB-01",
+    "AB-02",
+    "AB-03",
+    "AB-04",
+    "AB-05",
+    "AB-09",
+    "AB-10",
+    "AB-11",
+    "AB-15"
+   ],
+   "closes": [
+    "DEC-05"
+   ],
+   "id": "AB-16",
+   "llm_cost": "none",
+   "note": "Decide once the evidence is in.",
+   "plan": "audit",
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "C1",
+    "C2",
+    "C3"
+   ],
+   "status": "todo",
+   "title": "Wedge decision (gate)",
+   "track": "wedge",
+   "uzair_actions": [
+    "decide"
+   ],
+   "window": [
+    "2026-11-03",
+    "2026-11-14"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "AB-16"
+   ],
+   "closes": [
+    "AUD-47"
+   ],
+   "id": "AB-17",
+   "llm_cost": "none",
+   "note": "After AB-16.",
+   "plan": "audit",
+   "serves": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+   ],
+   "status": "todo",
+   "title": "Paper skeleton and pre-registration",
+   "track": "wedge",
+   "uzair_actions": [],
+   "window": [
+    "2026-11-10",
+    "2026-11-21"
+   ]
   }
  ],
- "generated_utc": "2026-10-13T02:10:40Z",
- "hash": "b1411defa2d04d0d8d4da0801bf42d01e029c3489bdaded6cdaa20663782e79a",
+ "generated_utc": "2026-10-13T19:53:50Z",
+ "hash": "2e8bede5bb07d2e87941f978666f62c47966807e9eb8136631ff763321b48d0d",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -750,6 +1229,294 @@
    "title": "Upstream branches newer than a31aa7c"
   },
   {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-18",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Field audit: every causal-discovery system, its regimes, order source and evaluation controls"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-19",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-20",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-21",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Own-benchmark audit: requirements, pitfalls and candidate designs"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-22",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Commercial audit: who buys causal analysis, for which decision, with which guarantee"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-23",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Engine audit: libraries, capabilities, defects; build vs reuse for the ledger"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-24",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Value-of-accuracy audit: how graph errors become decision errors"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-25",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Packaging audit: delivery modes, output requirements, regulator needs, user complaints"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-26",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-27",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-28",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Controlled re-score: released vs shuffled columns for every runnable baseline; PC conflict-rule mechanism"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-29",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Sortability of the CausalArena release (varsortability, R2-sortability)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-30",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Decision value (DV-1) and adjustment-identification distance for every baseline, with ceilings and the empty-graph baseline"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-31",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Cost of one Causal-Copilot run (the approved one-run cost check)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-32",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Audit program DAG: research landscape, commercial landscape, wedge and paper"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-33",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-34",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "blocked",
+   "title": "AB-02 Second scoreboard: layout and conflict channels on other public benchmarks"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-35",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-36",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-37",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "blocked",
+   "title": "AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-38",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "blocked",
+   "title": "AB-06 LIVE: field audit of LLM-using systems under names x layout controls"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-39",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-40",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-41",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "blocked",
+   "title": "AB-10 Practitioner interviews (C1)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-42",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-43",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-12 Vertical probe: root-cause analysis"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-44",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-13 Regulation and standards map: requirement -> ledger field"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-45",
+   "kind": "task",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "AB-14 Market and go-to-market hypotheses for two verticals"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-46",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-15 Positioning closure: novelty matrix for L1-L5"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-47",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "AB-17 Paper skeleton and pre-registration manifest"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-48",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-05",
+   "kind": "decision",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "AB-16 Wedge decision: paper spine, venue and the Q2 build"
+  },
+  {
    "category": "4 Audit: benchmarks and data",
    "id": "BEN-01",
    "kind": "task",
@@ -917,7 +1684,7 @@
    "kind": "target",
    "level": "V0",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "todo",
    "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled"
   },
   {
@@ -1034,7 +1801,7 @@
    "kind": "task",
    "level": "V0",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "todo",
    "title": "Declared knowledge as tiers, never edges"
   },
   {
@@ -1248,45 +2015,45 @@
    "category": "7 Research questions",
    "id": "RQ-10",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "done",
    "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted"
   },
   {
    "category": "7 Research questions",
    "id": "RQ-11",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "done",
    "title": "O2 Neutral names give no order information"
   },
   {
    "category": "7 Research questions",
    "id": "RQ-12",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "done",
    "title": "O3 Moved names: tiers follow the labels"
   },
   {
    "category": "7 Research questions",
    "id": "RQ-13",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "done",
    "title": "O4 Regression on model tiers reaches 0.634 (semantic)"
   },
   {
    "category": "7 Research questions",
    "id": "RQ-14",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "done",
    "title": "O5 Same for formula vs 0.524"
   },
   {
@@ -1349,7 +2116,7 @@
    "kind": "task",
    "level": "V0",
    "pillar": "P2",
-   "status": "blocked",
+   "status": "todo",
    "title": "B3 declared knowledge as tiers"
   },
   {
@@ -1423,6 +2190,24 @@
    "pillar": "spine",
    "status": "done",
    "title": "Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-13",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Claim-ledger record format, JSON Schema and verifier (V1-V8)"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-14",
+   "kind": "task",
+   "level": "V2",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check"
   },
   {
    "category": "9 Evaluation protocol",
@@ -1788,9 +2573,9 @@
    "category": "15 Decisions",
    "id": "DEC-02",
    "kind": "decision",
-   "level": "V0",
+   "level": "V3",
    "pillar": "spine",
-   "status": "open",
+   "status": "done",
    "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)"
   },
   {
@@ -2013,16 +2798,16 @@
  "lists": {
   "dev": {
    "pending_removals": 0,
-   "pending_updates": 16,
-   "rows": 186,
-   "rows_sha256": "dd89652ed78f3744a1914d48e6199e40f337a68fb1d1006377104cbaaa388014",
+   "pending_updates": 3,
+   "rows": 220,
+   "rows_sha256": "43f1f39fe80887d286b423324329a46bbc2fc751da272a2860064fa92d332cd1",
    "slack_list": "F0C869P25NE"
   },
   "prod": {
    "pending_removals": 0,
-   "pending_updates": 8,
+   "pending_updates": 0,
    "rows": 67,
-   "rows_sha256": "da4be2063122064fd4211c7983c5efe8f838ba7bf40f2688adf40112244c4027",
+   "rows_sha256": "1bc5079c72573b864e64d062580ecce9b5fe1afc4dd0f12eed91293ec04179ed",
    "slack_list": "F0C8ADF3DNG"
   }
  },
@@ -2785,6 +3570,31 @@
     "BND-14"
    ],
    "title": "Quarter 1 final"
+  },
+  {
+   "date": "2026-10-28",
+   "id": "AM-1",
+   "requires": [
+    "AB-01",
+    "AB-04"
+   ],
+   "title": "Controlled scoreboard and decision value published internally"
+  },
+  {
+   "date": "2026-11-14",
+   "id": "AM-2",
+   "requires": [
+    "AB-16"
+   ],
+   "title": "Wedge decision"
+  },
+  {
+   "date": "2026-11-21",
+   "id": "AM-3",
+   "requires": [
+    "AB-17"
+   ],
+   "title": "Paper skeleton and pre-registration"
   }
  ],
  "schema": 1,
@@ -2807,5 +3617,5 @@
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
   "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
  },
- "status_verified_utc": "2026-10-13T02:09:52Z"
+ "status_verified_utc": "2026-10-13T19:50:06Z"
 }

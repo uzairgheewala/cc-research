@@ -1,0 +1,170 @@
+{
+ "tickets": [
+  "AUD-48",
+  "BLD-04",
+  "CAP-04"
+ ],
+ "status": "exploratory, post hoc (not pre-registered)",
+ "families": {
+  "semantic": {
+   "PC upstream, default rule": {
+    "data only": {
+     "files": 225,
+     "directed_f1": 0.3561,
+     "dv1_precision": 0.6622,
+     "dv1_coverage": 0.9484
+    },
+    "+ model tiers": {
+     "files": 225,
+     "directed_f1": 0.485,
+     "dv1_precision": 0.7162,
+     "dv1_coverage": 0.9855
+    },
+    "+ oracle depth": {
+     "files": 225,
+     "directed_f1": 0.6131,
+     "dv1_precision": 0.762,
+     "dv1_coverage": 0.9973
+    },
+    "+ moved tiers": {
+     "files": 225,
+     "directed_f1": 0.3012,
+     "dv1_precision": 0.653,
+     "dv1_coverage": 0.9915
+    }
+   },
+   "PC upstream, maxP": {
+    "data only": {
+     "files": 225,
+     "directed_f1": 0.4623,
+     "dv1_precision": 0.7121,
+     "dv1_coverage": 0.9371
+    },
+    "+ model tiers": {
+     "files": 225,
+     "directed_f1": 0.5073,
+     "dv1_precision": 0.728,
+     "dv1_coverage": 0.9824
+    },
+    "+ oracle depth": {
+     "files": 225,
+     "directed_f1": 0.6131,
+     "dv1_precision": 0.7633,
+     "dv1_coverage": 0.9913
+    },
+    "+ moved tiers": {
+     "files": 225,
+     "directed_f1": 0.3169,
+     "dv1_precision": 0.657,
+     "dv1_coverage": 0.9877
+    }
+   },
+   "GES (BIC)": {
+    "data only": {
+     "files": 225,
+     "directed_f1": 0.5279,
+     "dv1_precision": 0.7533,
+     "dv1_coverage": 0.9509
+    },
+    "+ model tiers": {
+     "files": 225,
+     "directed_f1": 0.5463,
+     "dv1_precision": 0.7835,
+     "dv1_coverage": 0.9881
+    },
+    "+ oracle depth": {
+     "files": 225,
+     "directed_f1": 0.6578,
+     "dv1_precision": 0.8624,
+     "dv1_coverage": 0.9927
+    },
+    "+ moved tiers": {
+     "files": 225,
+     "directed_f1": 0.3417,
+     "dv1_precision": 0.6429,
+     "dv1_coverage": 0.991
+    }
+   }
+  },
+  "formula": {
+   "PC upstream, default rule": {
+    "data only": {
+     "files": 175,
+     "directed_f1": 0.2983,
+     "dv1_precision": 0.7334,
+     "dv1_coverage": 0.9527
+    },
+    "+ model tiers": {
+     "files": 175,
+     "directed_f1": 0.4267,
+     "dv1_precision": 0.7645,
+     "dv1_coverage": 0.9878
+    },
+    "+ oracle depth": {
+     "files": 175,
+     "directed_f1": 0.5405,
+     "dv1_precision": 0.7971,
+     "dv1_coverage": 0.9954
+    },
+    "+ moved tiers": {
+     "files": 175,
+     "directed_f1": 0.2468,
+     "dv1_precision": 0.7136,
+     "dv1_coverage": 0.991
+    }
+   },
+   "PC upstream, maxP": {
+    "data only": {
+     "files": 175,
+     "directed_f1": 0.36,
+     "dv1_precision": 0.7605,
+     "dv1_coverage": 0.9455
+    },
+    "+ model tiers": {
+     "files": 175,
+     "directed_f1": 0.4376,
+     "dv1_precision": 0.7679,
+     "dv1_coverage": 0.9852
+    },
+    "+ oracle depth": {
+     "files": 175,
+     "directed_f1": 0.5405,
+     "dv1_precision": 0.7984,
+     "dv1_coverage": 0.9921
+    },
+    "+ moved tiers": {
+     "files": 175,
+     "directed_f1": 0.2595,
+     "dv1_precision": 0.7147,
+     "dv1_coverage": 0.9907
+    }
+   },
+   "GES (BIC)": {
+    "data only": {
+     "files": 184,
+     "directed_f1": 0.4667,
+     "dv1_precision": 0.8058,
+     "dv1_coverage": 0.9695
+    },
+    "+ model tiers": {
+     "files": 184,
+     "directed_f1": 0.5102,
+     "dv1_precision": 0.8206,
+     "dv1_coverage": 0.9873
+    },
+    "+ oracle depth": {
+     "files": 184,
+     "directed_f1": 0.6034,
+     "dv1_precision": 0.8995,
+     "dv1_coverage": 0.9925
+    },
+    "+ moved tiers": {
+     "files": 184,
+     "directed_f1": 0.3184,
+     "dv1_precision": 0.6975,
+     "dv1_coverage": 0.9961
+    }
+   }
+  }
+ }
+}

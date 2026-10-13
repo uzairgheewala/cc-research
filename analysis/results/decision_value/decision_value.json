@@ -1,0 +1,530 @@
+{
+ "tickets": [
+  "AUD-30",
+  "AUD-24",
+  "EVL-03",
+  "TGT-15"
+ ],
+ "families": {
+  "semantic": {
+   "PC (upstream causal-learn)": {
+    "released": {
+     "files": 225,
+     "pairs": 18630,
+     "coverage": 0.9484,
+     "precision_committed": 0.6622,
+     "precision_yes": 0.5561,
+     "precision_no": 0.6717,
+     "forced_precision": 0.652,
+     "abstain_share_truly_moved": 0.4651,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.8783,
+     "ancestor_aid": 0.3166,
+     "oset_aid": 0.3287,
+     "parent_aid": 0.5394,
+     "aid_graphs_refused": 20
+    },
+    "shuffled": {
+     "files": 226,
+     "pairs": 18693,
+     "coverage": 0.9465,
+     "precision_committed": 0.6955,
+     "precision_yes": 0.7177,
+     "precision_no": 0.6934,
+     "forced_precision": 0.6868,
+     "abstain_share_truly_moved": 0.533,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.8826,
+     "ancestor_aid": 0.2914,
+     "oset_aid": 0.3049,
+     "parent_aid": 0.4833,
+     "aid_graphs_refused": 11
+    }
+   },
+   "PC (Causal-Copilot copy)": {
+    "released": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 0.9458,
+     "precision_committed": 0.6431,
+     "precision_yes": 0.4721,
+     "precision_no": 0.6618,
+     "forced_precision": 0.6327,
+     "abstain_share_truly_moved": 0.452,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.8608,
+     "ancestor_aid": 0.3317,
+     "oset_aid": 0.3462,
+     "parent_aid": 0.5604,
+     "aid_graphs_refused": 40
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 0.945,
+     "precision_committed": 0.6893,
+     "precision_yes": 0.6719,
+     "precision_no": 0.6914,
+     "forced_precision": 0.6795,
+     "abstain_share_truly_moved": 0.5114,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.8656,
+     "ancestor_aid": 0.295,
+     "oset_aid": 0.3124,
+     "parent_aid": 0.4834,
+     "aid_graphs_refused": 32
+    }
+   },
+   "GES (BIC)": {
+    "released": {
+     "files": 225,
+     "pairs": 18630,
+     "coverage": 0.9509,
+     "precision_committed": 0.7533,
+     "precision_yes": 0.67,
+     "precision_no": 0.788,
+     "forced_precision": 0.7398,
+     "abstain_share_truly_moved": 0.4792,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.7205,
+     "ancestor_aid": 0.266,
+     "oset_aid": 0.3072,
+     "parent_aid": 0.3945,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 226,
+     "pairs": 18693,
+     "coverage": 0.9506,
+     "precision_committed": 0.7533,
+     "precision_yes": 0.6703,
+     "precision_no": 0.788,
+     "forced_precision": 0.7396,
+     "abstain_share_truly_moved": 0.4756,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.7205,
+     "ancestor_aid": 0.2657,
+     "oset_aid": 0.3063,
+     "parent_aid": 0.3939,
+     "aid_graphs_refused": 0
+    }
+   },
+   "FCI (PAG; undecided marks as undirected)": {
+    "released": {
+     "files": 225,
+     "pairs": 18630,
+     "coverage": 0.4084,
+     "precision_committed": 0.7121,
+     "precision_yes": 0.7528,
+     "precision_no": 0.7106,
+     "forced_precision": 0.5192,
+     "abstain_share_truly_moved": 0.386,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.9309,
+     "ancestor_aid": 0.6574,
+     "oset_aid": 0.66,
+     "parent_aid": 0.7372,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 226,
+     "pairs": 18693,
+     "coverage": 0.4082,
+     "precision_committed": 0.7193,
+     "precision_yes": 0.7667,
+     "precision_no": 0.7175,
+     "forced_precision": 0.5245,
+     "abstain_share_truly_moved": 0.3902,
+     "share_of_pairs_truly_moved": 0.3532,
+     "agreement_with_data_committed": 0.9347,
+     "ancestor_aid": 0.6596,
+     "oset_aid": 0.6623,
+     "parent_aid": 0.734,
+     "aid_graphs_refused": 1
+    }
+   },
+   "DirectLiNGAM": {
+    "released": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 0.6529,
+     "precision_yes": 0.6443,
+     "precision_no": 0.6532,
+     "forced_precision": 0.6529,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.9114,
+     "ancestor_aid": 0.2825,
+     "oset_aid": 0.2819,
+     "parent_aid": 0.5376,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 0.6522,
+     "precision_yes": 0.6404,
+     "precision_no": 0.6526,
+     "forced_precision": 0.6522,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.9108,
+     "ancestor_aid": 0.2828,
+     "oset_aid": 0.2822,
+     "parent_aid": 0.539,
+     "aid_graphs_refused": 0
+    }
+   },
+   "NOTEARS": {
+    "released": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 0.6456,
+     "precision_yes": 0.571,
+     "precision_no": 0.647,
+     "forced_precision": 0.6456,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.9096,
+     "ancestor_aid": 0.2776,
+     "oset_aid": 0.2767,
+     "parent_aid": 0.5433,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 0.6452,
+     "precision_yes": 0.5583,
+     "precision_no": 0.6468,
+     "forced_precision": 0.6452,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.9093,
+     "ancestor_aid": 0.2773,
+     "oset_aid": 0.2764,
+     "parent_aid": 0.5431,
+     "aid_graphs_refused": 0
+    }
+   },
+   "ceiling: true CPDAG": {
+    "reference": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 0.9253,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "precision_no": 1.0,
+     "forced_precision": 0.9537,
+     "abstain_share_truly_moved": 0.3806,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.7032,
+     "ancestor_aid": 0.0977,
+     "oset_aid": 0.0977,
+     "parent_aid": 0.0977,
+     "aid_graphs_refused": 0
+    }
+   },
+   "ceiling: true DAG": {
+    "reference": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "precision_no": 1.0,
+     "forced_precision": 1.0,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.7063,
+     "ancestor_aid": 0.0,
+     "oset_aid": 0.0,
+     "parent_aid": 0.0,
+     "aid_graphs_refused": 0
+    }
+   },
+   "baseline: empty graph (nothing moves)": {
+    "reference": {
+     "files": 250,
+     "pairs": 20750,
+     "coverage": 1.0,
+     "precision_committed": 0.6431,
+     "precision_yes": null,
+     "precision_no": 0.6431,
+     "forced_precision": 0.6431,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.3569,
+     "agreement_with_data_committed": 0.9144,
+     "ancestor_aid": 0.26,
+     "oset_aid": 0.26,
+     "parent_aid": 0.4946,
+     "aid_graphs_refused": 0
+    }
+   }
+  },
+  "formula": {
+   "PC (upstream causal-learn)": {
+    "released": {
+     "files": 175,
+     "pairs": 24450,
+     "coverage": 0.9527,
+     "precision_committed": 0.7334,
+     "precision_yes": 0.6183,
+     "precision_no": 0.7394,
+     "forced_precision": 0.7259,
+     "abstain_share_truly_moved": 0.5739,
+     "share_of_pairs_truly_moved": 0.2922,
+     "agreement_with_data_committed": 0.9229,
+     "ancestor_aid": 0.2669,
+     "oset_aid": 0.2724,
+     "parent_aid": 0.4461,
+     "aid_graphs_refused": 4
+    },
+    "shuffled": {
+     "files": 177,
+     "pairs": 24688,
+     "coverage": 0.9534,
+     "precision_committed": 0.7547,
+     "precision_yes": 0.7785,
+     "precision_no": 0.7533,
+     "forced_precision": 0.7488,
+     "abstain_share_truly_moved": 0.629,
+     "share_of_pairs_truly_moved": 0.2927,
+     "agreement_with_data_committed": 0.919,
+     "ancestor_aid": 0.2507,
+     "oset_aid": 0.2571,
+     "parent_aid": 0.4013,
+     "aid_graphs_refused": 3
+    }
+   },
+   "PC (Causal-Copilot copy)": {
+    "released": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 0.9515,
+     "precision_committed": 0.7287,
+     "precision_yes": 0.5873,
+     "precision_no": 0.7385,
+     "forced_precision": 0.7208,
+     "abstain_share_truly_moved": 0.5664,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9095,
+     "ancestor_aid": 0.2662,
+     "oset_aid": 0.2748,
+     "parent_aid": 0.4534,
+     "aid_graphs_refused": 20
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 0.9511,
+     "precision_committed": 0.7546,
+     "precision_yes": 0.7253,
+     "precision_no": 0.757,
+     "forced_precision": 0.7484,
+     "abstain_share_truly_moved": 0.6269,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9012,
+     "ancestor_aid": 0.25,
+     "oset_aid": 0.2598,
+     "parent_aid": 0.4072,
+     "aid_graphs_refused": 15
+    }
+   },
+   "GES (BIC)": {
+    "released": {
+     "files": 184,
+     "pairs": 25382,
+     "coverage": 0.9695,
+     "precision_committed": 0.8058,
+     "precision_yes": 0.6678,
+     "precision_no": 0.8563,
+     "forced_precision": 0.7937,
+     "abstain_share_truly_moved": 0.4083,
+     "share_of_pairs_truly_moved": 0.2878,
+     "agreement_with_data_committed": 0.7253,
+     "ancestor_aid": 0.2204,
+     "oset_aid": 0.2593,
+     "parent_aid": 0.3115,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 182,
+     "pairs": 25043,
+     "coverage": 0.9692,
+     "precision_committed": 0.8029,
+     "precision_yes": 0.6659,
+     "precision_no": 0.8526,
+     "forced_precision": 0.7915,
+     "abstain_share_truly_moved": 0.4352,
+     "share_of_pairs_truly_moved": 0.2902,
+     "agreement_with_data_committed": 0.7263,
+     "ancestor_aid": 0.2211,
+     "oset_aid": 0.259,
+     "parent_aid": 0.3111,
+     "aid_graphs_refused": 0
+    }
+   },
+   "FCI (PAG; undecided marks as undirected)": {
+    "released": {
+     "files": 178,
+     "pairs": 24669,
+     "coverage": 0.6509,
+     "precision_committed": 0.7841,
+     "precision_yes": 0.8682,
+     "precision_no": 0.7826,
+     "forced_precision": 0.6505,
+     "abstain_share_truly_moved": 0.4012,
+     "share_of_pairs_truly_moved": 0.2894,
+     "agreement_with_data_committed": 0.9568,
+     "ancestor_aid": 0.4459,
+     "oset_aid": 0.4457,
+     "parent_aid": 0.5465,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 176,
+     "pairs": 24512,
+     "coverage": 0.6434,
+     "precision_committed": 0.7842,
+     "precision_yes": 0.8251,
+     "precision_no": 0.7833,
+     "forced_precision": 0.6479,
+     "abstain_share_truly_moved": 0.4021,
+     "share_of_pairs_truly_moved": 0.2914,
+     "agreement_with_data_committed": 0.9545,
+     "ancestor_aid": 0.4498,
+     "oset_aid": 0.4506,
+     "parent_aid": 0.5473,
+     "aid_graphs_refused": 1
+    }
+   },
+   "DirectLiNGAM": {
+    "released": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 0.71,
+     "precision_yes": 0.5486,
+     "precision_no": 0.7216,
+     "forced_precision": 0.71,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9056,
+     "ancestor_aid": 0.2471,
+     "oset_aid": 0.2485,
+     "parent_aid": 0.4301,
+     "aid_graphs_refused": 0
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 0.7083,
+     "precision_yes": 0.5363,
+     "precision_no": 0.7205,
+     "forced_precision": 0.7083,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9063,
+     "ancestor_aid": 0.2487,
+     "oset_aid": 0.2499,
+     "parent_aid": 0.4353,
+     "aid_graphs_refused": 0
+    }
+   },
+   "NOTEARS": {
+    "released": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 0.703,
+     "precision_yes": 0.4945,
+     "precision_no": 0.7123,
+     "forced_precision": 0.703,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.928,
+     "ancestor_aid": 0.2504,
+     "oset_aid": 0.252,
+     "parent_aid": 0.4889,
+     "aid_graphs_refused": 9
+    },
+    "shuffled": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 0.7033,
+     "precision_yes": 0.4976,
+     "precision_no": 0.7123,
+     "forced_precision": 0.7033,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9282,
+     "ancestor_aid": 0.2505,
+     "oset_aid": 0.2522,
+     "parent_aid": 0.4906,
+     "aid_graphs_refused": 8
+    }
+   },
+   "ceiling: true CPDAG": {
+    "reference": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 0.9594,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "precision_no": 1.0,
+     "forced_precision": 0.9871,
+     "abstain_share_truly_moved": 0.6823,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.7207,
+     "ancestor_aid": 0.0426,
+     "oset_aid": 0.0426,
+     "parent_aid": 0.0426,
+     "aid_graphs_refused": 0
+    }
+   },
+   "ceiling: true DAG": {
+    "reference": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 1.0,
+     "precision_yes": 1.0,
+     "precision_no": 1.0,
+     "forced_precision": 1.0,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.706,
+     "ancestor_aid": 0.0,
+     "oset_aid": 0.0,
+     "parent_aid": 0.0,
+     "aid_graphs_refused": 0
+    }
+   },
+   "baseline: empty graph (nothing moves)": {
+    "reference": {
+     "files": 250,
+     "pairs": 34115,
+     "coverage": 1.0,
+     "precision_committed": 0.7035,
+     "precision_yes": null,
+     "precision_no": 0.7035,
+     "forced_precision": 0.7035,
+     "abstain_share_truly_moved": null,
+     "share_of_pairs_truly_moved": 0.2965,
+     "agreement_with_data_committed": 0.9656,
+     "ancestor_aid": 0.2207,
+     "oset_aid": 0.2207,
+     "parent_aid": 0.405,
+     "aid_graphs_refused": 0
+    }
+   }
+  }
+ }
+}

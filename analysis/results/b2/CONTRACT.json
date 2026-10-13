@@ -1,0 +1,59 @@
+{
+ "producer": "analysis/b2_reference_methods.py (rows), analysis/b2_score.py (b2_reference_scores.json, b2_pc_dev25_scores.json), analysis/b2_generator.py (b2_sortability.json)",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-39",
+  "STR-02",
+  "EVL-02"
+ ],
+ "regime": "D",
+ "split": "dev",
+ "controls": {
+  "columns_shuffled": "always",
+  "names": "decoupled (rho dial)",
+  "supplier": "b2 generator"
+ },
+ "orientation_rule": "random: undecided pairs oriented with seed crc32(file name)",
+ "metric_defs": {
+  "directed_f1": "F1 over directed edges vs G_D (the file's g), undecided pairs at random (seed crc32(file name))",
+  "directed_precision": "precision over directed edges vs G_D, same rule",
+  "directed_recall": "recall over directed edges vs G_D, same rule",
+  "shd": "structural Hamming distance vs G_D: one per unordered pair whose predicted arrows differ from the true arrow(s)",
+  "seconds": "wall time",
+  "f1_data": "= directed_f1 (vs G_D)",
+  "f1_names": "directed F1 vs G_N (the file's g_names), same oriented prediction",
+  "name_following": "among committed arrows on pairs where G_N and G_D differ, the share that are G_N arrows (pooled over files)",
+  "data_following": "same pairs, the share that are G_D arrows",
+  "spearman_f1_data_vs_rho": "Spearman correlation of per-file f1_data with rho, per method (P11: <= -0.8 name-reader, |.| <= 0.3 data-only)"
+ },
+ "per_file": {
+  "names_oracle_rows.json": {
+   "regime": "D+K",
+   "controls": {
+    "knowledge_source": "names oracle: returns g_names (G_N) exactly; reads no data"
+   }
+  },
+  "pc_rows.json": {
+   "regime": "D",
+   "controls": {
+    "knowledge_source": null
+   }
+  },
+  "pc_dev25_rows.json": {
+   "regime": "D",
+   "controls": {
+    "knowledge_source": null
+   }
+  }
+ },
+ "notes": "controls.names 'decoupled (rho dial)' is not yet one of score_record.NAMES; add it there before check_scores.py is run on this directory.",
+ "files": {
+  "names_oracle_rows.json": "names oracle, 25 dev scenarios x 5 rho x 2 tracks x rep000",
+  "pc_rows.json": "PC (causal-learn 0.1.4.8), 6 dev scenarios (first of each of the first 6 domains) x 5 rho x 2 tracks x rep000",
+  "pc_dev25_rows.json": "PC, all 25 dev scenarios x 5 rho x linear x rep000 (extension check of flatness)",
+  "b2_reference_scores.json": "b2_score.py on names_oracle_rows.json + pc_rows.json",
+  "b2_pc_dev25_scores.json": "b2_score.py on pc_dev25_rows.json",
+  "b2_sortability.json": "generator leakage summary by track x rho over all 2500 files (dev and test; measurement only, no tuning on test)"
+ },
+ "shd_variant": "pair-level SHD (causalarena_io.directed_scores): one per unordered pair whose predicted arrow set differs from the true one, after the random rule"
+}

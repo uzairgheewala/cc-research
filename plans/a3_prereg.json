@@ -1,0 +1,71 @@
+{
+ "ticket": "AUD-48",
+ "decision": "DEC-02 approved 2026-10-12 (docs/decisions/2026-10-12_audit_dag.md)",
+ "requests_file": "plans/a3_tiers_requests.jsonl",
+ "requests": 900,
+ "requests_sha256": "64a7fe3e76d6d7b007d33abb8d6bd556e55eb6a13334c6cd780cb2133bbe20c4",
+ "scenarios_file_sha256": "7aab17bb6d6531e6d461be69177bbfb5a83b03eedfbd0f280e71208a0546e630",
+ "templates": {
+  "p0": {
+   "sha256": "ae18ea259c47b6be322f0987115298fb4fcb7ec414ce85d138d2e04ee975f546",
+   "text": "Below are the variables measured in one system, listed in random order:\n{names}\n\nSort them into tiers by causal order: tier 1 holds variables that nothing else in the list causes (inputs, settings, background conditions); each later tier may be caused only by variables in earlier tiers; the last tier holds the most downstream outcomes. Use as many tiers as you need. Put every variable in exactly one tier, spelled exactly as given. If the names give you no basis to order some variables, put them together in one tier.\nReply with JSON only: {{\"tiers\": [[\"name\", ...], [\"name\", ...], ...]}} with the earliest tier first."
+  },
+  "p1": {
+   "sha256": "fd84ef9be19849bf4a0779b6dd9af9844ca0088fd527a11fca7c523e9510eb30",
+   "text": "Variables (random order):\n{names}\n\nUsing only what these names mean, group them into an ordered list of tiers so that a variable can only be influenced by variables in earlier tiers. First tier = root causes / inputs; last tier = final outcomes. Every variable must appear exactly once, spelled exactly as listed. Variables you cannot order go in the same tier.\nAnswer with JSON only, earliest tier first: {{\"tiers\": [[...], [...]]}}"
+  },
+  "p2": {
+   "sha256": "bff2fd9174c12505ed753eeb11b141dc87a806376a06697ab6c6c94a72c9b62d",
+   "text": "A dataset has these columns (shown in random order):\n{names}\n\nWhich come first causally? Partition the columns into tiers ordered from upstream to downstream: nothing in a tier causes anything in an earlier tier. Include each column exactly once with its exact spelling; if you cannot tell the order of some columns, keep them in a single tier rather than guessing.\nReturn only this JSON: {{\"tiers\": [[\"col\", ...], ...]}} (upstream tier first)."
+  }
+ },
+ "generator_sha256": "6d2f6d11bcd214a5addea36c1ab132274eac8e873b9f0c53f93f4f9ce7f0029a",
+ "scorer": "analysis/a3_score.py",
+ "scorer_sha256": "49cc38794cd8c8f0f1292512f257e3a2db75b6888c7eea165e3cb3147267526d",
+ "thresholds": {
+  "O1": {
+   "claim": "with real names the model's tiers order true edges correctly (semantic)",
+   "support": "correct >= 0.70 and contradicted <= 0.10",
+   "refute": "correct < 0.50 or contradicted > 0.25"
+  },
+  "O2": {
+   "claim": "with neutral names it supplies nothing",
+   "support": "correct - contradicted <= 0.05",
+   "refute": "correct - contradicted > 0.15"
+  },
+  "O3": {
+   "claim": "with moved names its tiers follow the labels",
+   "support": "by label: as O1; by data: correct - contradicted <= 0.05",
+   "refute": "by data: correct - contradicted > 0.15"
+  },
+  "O4": {
+   "claim": "regression on the model's tiers (real names, shuffled columns) reaches the best published semantic number",
+   "support": "mean directed F1 >= 0.634 on public semantic",
+   "refute": "<= 0.50"
+  },
+  "O5": {
+   "claim": "the same on formula against 0.524",
+   "support": ">= 0.524",
+   "refute": "<= 0.40"
+  }
+ },
+ "scoring_rules": {
+  "edge_order": "a true edge u->v is 'correct' if tier(u) < tier(v), 'contradicted' if tier(u) > tier(v), 'tied' otherwise; shares are over all true edges of the scenario; a variable missing from a reply makes the request an abstention",
+  "aggregation": "per arm and family: mean over scenarios of the per-scenario shares, for each phrasing and for the consensus tiers (median tier position across the three phrasings after normalising each to [0, 1]); verdicts use consensus",
+  "abstention": "an abstained request (invalid twice) counts as no information: correct = contradicted = 0 for that scenario/phrasing; reported separately",
+  "O4_O5": "analysis/order_value.tier_regression (alpha 0.01) on all 5 replicate obs_only files of each scenario, consensus tiers; directed F1 against the true graph; columns order is irrelevant to the regression and recorded as shuffled",
+  "splits": "verdicts on all 50 + 50 public scenarios; dev and test halves (plans/splits.json) reported separately"
+ },
+ "model": "gpt-4o",
+ "temperature": 0,
+ "max_tokens": 1500,
+ "retries": 1,
+ "call_cap": 1800,
+ "estimate": {
+  "prompt_tokens": 190164,
+  "completion_tokens": 266292,
+  "usd_at_gpt4o_list": 3.14,
+  "method": "chars/4 for prompts; 12 tokens per name + 20 for replies"
+ },
+ "written_before_any_live_call": true
+}

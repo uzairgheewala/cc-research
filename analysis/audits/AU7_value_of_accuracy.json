@@ -1,0 +1,787 @@
+{
+ "audit": "AU7",
+ "question": "How do errors in a learned causal graph turn into errors in the decisions it is used for, and at what accuracy (or with what guarantees) does a causal-discovery tool become worth using? Does moving directed-edge F1 from 0.63 toward the 0.957 identifiability limit matter downstream, or do reliability, calibrated confidence and abstention matter more?",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-24 ",
+  "TGT-08",
+  "EVL-03"
+ ],
+ "schema": {
+  "id": "row id V01..V45",
+  "setting": "task, data and scale studied",
+  "graph_metric": "graph-level quantity (SHD, F1, SID input, expert accuracy, graph source)",
+  "downstream_metric": "decision-level quantity (SID/AID, interventional distance, ATE, regret, top-k RCA accuracy, validation hit rate)",
+  "relation_found": "what the source reports, quantified where reported",
+  "threshold_or_target": "explicit threshold or target stated by the source; null if none",
+  "population": "synthetic / semi-synthetic / testbed / real / theory / review",
+  "reference": "authors, venue or arXiv id",
+  "label": "reported (authors' own page, read 2026-10-12) / second-hand (from an earlier project note, not re-opened) / measured (ours, from project files)",
+  "sources": "URLs",
+  "read_on": "date the source was read (or the prior note's date for second-hand rows)"
+ },
+ "rows": [
+  {
+   "id": "V01",
+   "setting": "DAG estimates of a known DAG (illustrative example)",
+   "graph_metric": "SHD",
+   "downstream_metric": "SID (pairs with wrongly inferred p(x_j|do(x_i)) under parent adjustment)",
+   "relation_found": "Two estimates with equal SHD to the truth differ in SID (one adds an edge, harmless for interventions; one reverses an edge).",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Peters & Bühlmann, Neural Computation 27:771-799 (2015)",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/SID-final.pdf",
+    "https://ar5iv.labs.arxiv.org/html/1306.1043"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V02",
+   "setting": "Theory",
+   "graph_metric": "edge superset",
+   "downstream_metric": "SID",
+   "relation_found": "SID(G,H)=0 iff G is a subgraph of H: extra edges cost nothing for intervention prediction.",
+   "threshold_or_target": null,
+   "population": "theory",
+   "reference": "Peters & Bühlmann 2015, Prop. 3",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/SID-final.pdf",
+    "https://ar5iv.labs.arxiv.org/html/1306.1043"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V03",
+   "setting": "Simulation p=40, n=100",
+   "graph_metric": "SHD",
+   "downstream_metric": "SID",
+   "relation_found": "PC best on SHD and worst on SID (authors' statement).",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Peters & Bühlmann 2015, Sec. 3.2",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/SID-final.pdf",
+    "https://ar5iv.labs.arxiv.org/html/1306.1043"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V04",
+   "setting": "Simulation p=5, n=100",
+   "graph_metric": "SHD (PC beats random)",
+   "downstream_metric": "SID upper bound for CPDAG",
+   "relation_found": "A random graph scored below PC's SID upper bound in 77 of 100 experiments.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Peters & Bühlmann 2015, Sec. 3.2",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/SID-final.pdf",
+    "https://ar5iv.labs.arxiv.org/html/1306.1043"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V05",
+   "setting": "300 pairs of 30-node graphs differing by one edge",
+   "graph_metric": "SHD = 1",
+   "downstream_metric": "ancestor-, O-set-, parent-AID",
+   "relation_found": "Mean mis-identified pairs 2.0 (ancestor), 5.9 (O-set), 11.2 (parent) for a single-edge difference.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Henckel, Würtzen, Weichwald, arXiv 2402.08616 (gadjid)",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2402.08616",
+    "https://arxiv.org/abs/2402.08616"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V06",
+   "setting": "Extreme cases and inter-metric agreement",
+   "graph_metric": "SHD",
+   "downstream_metric": "AID variants",
+   "relation_found": "Fully connected guess vs empty truth: SHD maximal, AID 0. Correlations between AIDs 0.09-0.73; authors: choice of distance is practically important.",
+   "threshold_or_target": null,
+   "population": "synthetic/theory",
+   "reference": "Henckel et al., arXiv 2402.08616",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2402.08616",
+    "https://arxiv.org/abs/2402.08616"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V07",
+   "setting": "Theory and runtime",
+   "graph_metric": "causal order",
+   "downstream_metric": "ancestor-AID",
+   "relation_found": "Ancestor-AID is zero iff the guess respects the true causal orders. gadjid runs in ms at p=1000 vs hours for SID.",
+   "threshold_or_target": null,
+   "population": "theory",
+   "reference": "Henckel et al., arXiv 2402.08616",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2402.08616",
+    "https://arxiv.org/abs/2402.08616"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V08",
+   "setting": "ADMGs with latents, single edits",
+   "graph_metric": "SHD (each edit = 1)",
+   "downstream_metric": "Fixing Identification Distance (estimand overlap)",
+   "relation_found": "Mean FID: reversal 0.336, add/del directed 0.138/0.130, bidirected edits ~0.15-0.23; FID-SHD Pearson r=0.82 with wide spread within SHD bins.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Li & Kilbertus, arXiv 2510.25037",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/pdf/2510.25037v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V09",
+   "setting": "Software systems (Postgres etc.) plus synthetic BNs",
+   "graph_metric": "SHD, SID",
+   "downstream_metric": "Total variation distance of interventional distributions",
+   "relation_found": "SHD-SID strongly correlated; SHD-TVD only very weakly (qualitative). Algorithm orderings differ between synthetic and empirical data. 6/91 papers used empirical data with interventional measures.",
+   "threshold_or_target": "Recommend interventional measures on empirical data",
+   "population": "synthetic + real",
+   "reference": "Gentzel, Garant, Jensen, NeurIPS 2019",
+   "label": "reported",
+   "sources": [
+    "https://ar5iv.labs.arxiv.org/html/1910.05387",
+    "https://neurips.cc/virtual/2019/poster/14149"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V10",
+   "setting": "Literature review of discovery evaluation",
+   "graph_metric": "structural metrics (86% sim / 54% real use only these)",
+   "downstream_metric": "interventional metrics",
+   "relation_found": "Interventional metrics in 9.1% (sim) / 7.5% (real) of studies; unused 89% of the time when real data contain interventions; Sachs plateau SHD ~12; practitioners use discovery as exploratory tool.",
+   "threshold_or_target": "Recommend interventional metrics on unseen interventions",
+   "population": "review",
+   "reference": "Brouillard et al., arXiv 2412.01953v2",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2412.01953v2",
+    "https://arxiv.org/abs/2412.01953"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V11",
+   "setting": "Bayesian causal discovery",
+   "graph_metric": "E-SHD and other posterior metrics",
+   "downstream_metric": "quality of posterior approximation",
+   "relation_found": "Many metrics fail to correlate strongly with posterior approximation quality, especially at small n.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Karimi Mamaghan et al., ICML 2024 (PMLR 235)",
+   "label": "reported",
+   "sources": [
+    "https://proceedings.mlr.press/v235/karimi-mamaghan24a.html"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V12",
+   "setting": "Risk estimation from interventional data, p in {25..200}",
+   "graph_metric": "(none; replaces structural metric)",
+   "downstream_metric": "causal risk = Jaccard distance of descendant sets, estimated with two-sample tests on interventional data",
+   "relation_found": "Estimated risk differences between methods usually have the correct sign ('large majority'); needs interventions on some nodes.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Eigenmann, Mukherjee, Maathuis, UAI 2020 (PMLR 124)",
+   "label": "reported",
+   "sources": [
+    "https://proceedings.mlr.press/v124/eigenmann20a.html",
+    "https://arxiv.org/pdf/2006.15387"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V13",
+   "setting": "Theory, causal sufficiency",
+   "graph_metric": "D_top (order divergence)",
+   "downstream_metric": "validity of adjustment sets for all pairs",
+   "relation_found": "D_top=0 iff the order gives a valid adjustment set for every treatment-outcome pair (Prop. 3.3); predecessors in a topological order are a valid set (Prop. 3.2).",
+   "threshold_or_target": null,
+   "population": "theory",
+   "reference": "Vashishtha et al., arXiv 2310.15117",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2310.15117"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V14",
+   "setting": "Real game telemetry (77,698 users; n=1,170 analytic)",
+   "graph_metric": "SHD vs a domain-admissible baseline graph",
+   "downstream_metric": "identified ATE (doubly robust)",
+   "relation_found": "PC (SHD 15) and BOSS (SHD 33) converge to ATE ~0.144; CFCI lowest SHD (11) but identifiable in one configuration only.",
+   "threshold_or_target": "Trust rule: CI excludes 0 and ATE defined",
+   "population": "real",
+   "reference": "Dang, Pham, Nguyen, arXiv 2602.08340",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2602.08340v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V15",
+   "setting": "Graph with sure/forbidden/uncertain edges",
+   "graph_metric": "edge uncertainty set",
+   "downstream_metric": "ATE bounds over consistent DAGs",
+   "relation_found": "Bound coverage 0.93-0.99 (synthetic); IHDP bounds [2.4, 7.2] around true 4.7; PC-derived edge sets may exclude the truth.",
+   "threshold_or_target": null,
+   "population": "synthetic + semi-synthetic",
+   "reference": "Padh, Li, Casolo, Kilbertus, arXiv 2502.17030 (PMLR v275)",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2502.17030v2",
+    "https://proceedings.mlr.press/v275/padh25a.html"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V16",
+   "setting": "CausalArena semantic scenario, 25 vars, PC CPDAG",
+   "graph_metric": "skeleton recall (0.52 for PC on semantic)",
+   "downstream_metric": "IDA candidate parent sets",
+   "relation_found": "True parent set of X among IDA candidates for only 7/25 variables; 52% of pairs single-valued within PC's class; 600 pairs in 0.06 s.",
+   "threshold_or_target": null,
+   "population": "synthetic (benchmark)",
+   "reference": "Project note dom09_what_if.md",
+   "label": "measured (ours)",
+   "sources": [
+    "file:///mnt/user-data/uploads/Fall 2026--DSC 180A/cc-research/analysis/literature/dom09_what_if.md"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V17",
+   "setting": "Causal Bayesian optimisation, unknown graph (ER 10-100 nodes, DREAM E. coli)",
+   "graph_metric": "recovery of target's direct parents",
+   "downstream_metric": "best value found / convergence",
+   "relation_found": "Only target's parents matter under their assumptions; CBO-U converges to true-graph optimum; CBO with wrong graph worse on average (no numeric regret in text read).",
+   "threshold_or_target": null,
+   "population": "synthetic + semi-synthetic",
+   "reference": "Durand, Annadani, Bauer, Parbhoo, arXiv 2503.19554",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2503.19554v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V18",
+   "setting": "Causal bandits, unknown graph, causal sufficiency",
+   "graph_metric": "parent-set identification",
+   "downstream_metric": "cumulative regret",
+   "relation_found": "Learning the parent set is suboptimal and can conflict with regret minimisation; near-optimal algorithms skip graph recovery.",
+   "threshold_or_target": null,
+   "population": "theory + synthetic",
+   "reference": "Shahverdikondori, Etesami, Kiyavash, arXiv 2510.16811",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/abs/2510.16811"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V19",
+   "setting": "Causal bandits with latents",
+   "graph_metric": "partial structure (ancestors of reward + some confounders)",
+   "downstream_metric": "sublinear regret",
+   "relation_found": "Recovering the induced subgraph on An(Y) and a characterised confounder set suffices; full discovery unnecessary.",
+   "threshold_or_target": null,
+   "population": "theory + synthetic",
+   "reference": "Elahi, Ghasemi, Kocaoglu, arXiv 2411.04054",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2411.04054v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V20",
+   "setting": "Microservice RCA (Online Boutique, Sock Shop, Train Ticket; CIRCA/RCD/CausIL synthetic)",
+   "graph_metric": "directed F1 0.1-0.54 for 9 discovery methods",
+   "downstream_metric": "AC@k, Avg@5",
+   "relation_found": "PC/FCI/Granger/LiNGAM-based RCA 'similar to Dummy'; non-causal BARO Avg@5 0.94 (OB CPU) / 0.81 (TT CPU); CausalRCA 0.97 / 0.53 but 0.05 on CIRCA10; no correlation analysis reported.",
+   "threshold_or_target": null,
+   "population": "synthetic + testbed",
+   "reference": "Pham et al., ASE 2024, arXiv 2408.13729",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2408.13729v1",
+    "https://conf.researchr.org/details/ase-2024/ase-2024-research/57/Root-Cause-Analysis-for-Microservice-System-based-on-Causal-Inference-How-Far-Are-We"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V21",
+   "setting": "RCAEval benchmark, 735 failure cases, 3 systems",
+   "graph_metric": "(graph methods vs not)",
+   "downstream_metric": "AC@k, Avg@5",
+   "relation_found": "Text: CIRCA and RCD best (Avg@5 0.46, 0.54); Table 6: BARO ~0.80, TraceRCA 0.77. Text/table inconsistent; re-read before citing.",
+   "threshold_or_target": null,
+   "population": "testbed",
+   "reference": "Pham et al., RCAEval, WWW 2025, arXiv 2412.17015",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2412.17015v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V22",
+   "setting": "PetShop: 41 AWS services, 68 injected issues",
+   "graph_metric": "service map given vs no graph",
+   "downstream_metric": "top-k recall",
+   "relation_found": "Methods with the service map usually better (CIRCA top-3 0.86-1.00 in 4/6 settings); without a graph none beat ranked correlation; correlation best at top-1.",
+   "threshold_or_target": null,
+   "population": "real cloud testbed",
+   "reference": "Hardt et al., CLeaR 2024 (PMLR 236), arXiv 2311.04806",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2311.04806v2",
+    "https://proceedings.mlr.press/v236/hardt24a.html"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V23",
+   "setting": "99 real Oracle DB faults (bank)",
+   "graph_metric": "structural (knowledge) graph vs PC/PCTS-learned graphs",
+   "downstream_metric": "AC@1, AC@5, Avg@5",
+   "relation_found": "CIRCA + structural graph AC@5 0.763 (Avg@5 0.603) vs random-walk + PCTS AC@5 0.449 (Avg@5 0.290), ~40x slower; graph effect not isolated from scorer.",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Li et al., CIRCA, KDD 2022, arXiv 2206.05871",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/pdf/2206.05871"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V24",
+   "setting": "Sock-shop and synthetic (10-500 nodes)",
+   "graph_metric": "local (RCD) vs full-graph (Psi-PC) learning",
+   "downstream_metric": "top-k recall, runtime",
+   "relation_found": "RCD ~98% top-1 synthetic; Sock-shop top-1 0.11-0.71, sometimes below epsilon-Diagnosis; Psi-PC matches on synthetic but >150 min at 500 nodes vs ~22 s.",
+   "threshold_or_target": null,
+   "population": "synthetic + testbed",
+   "reference": "Ikram et al., NeurIPS 2022",
+   "label": "reported",
+   "sources": [
+    "https://par.nsf.gov/servlets/purl/10495798",
+    "https://proceedings.neurips.cc/paper_files/paper/2022/hash/c9fcd02e6445c7dfbad6986abee53d0d-Abstract.html"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V25",
+   "setting": "Deployed RCA, e-commerce, 5,000 services, 952 incidents",
+   "graph_metric": "rule/event graph (not learned)",
+   "downstream_metric": "top-1, top-3 accuracy",
+   "relation_found": "78% top-1, 95% top-3 on labelled production incidents; users rated it helpful.",
+   "threshold_or_target": "Operational level in use (authors' deployment)",
+   "population": "real",
+   "reference": "Groot, arXiv 2108.00344",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/abs/2108.00344"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V26",
+   "setting": "Deployed RCA, AWS cloud network, 35 labelled incidents",
+   "graph_metric": "Granger-learned event graph (cycles, some edges contradict domain knowledge)",
+   "downstream_metric": "recall@3, exact match",
+   "relation_found": "Recall@3 85.7%, exact 74.3% vs rule baseline 62.8% / 48.6%; graph quality not analysed against RCA accuracy.",
+   "threshold_or_target": "Operational level in use (authors' deployment)",
+   "population": "real",
+   "reference": "Chraim, Janzing, Evans, arXiv 2606.13532",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/pdf/2606.13532"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V27",
+   "setting": "Yeast, 5,361 genes, 63 observational profiles vs 234 knockouts",
+   "graph_metric": "IDA ranking from estimated CPDAG",
+   "downstream_metric": "precision of top-q predicted effects in true top 10%",
+   "relation_found": "Top 50: IDA 33 (66%), Lasso 10, elastic net 8, random 5 +- 2.1. DREAM4 10-gene: IDA 4,4,5,1,2 TPs at q=10 vs Lasso 1,1,0,1,2.",
+   "threshold_or_target": null,
+   "population": "real + simulated",
+   "reference": "Maathuis, Colombo, Kalisch, Bühlmann, Nature Methods 2010",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/maathuisetal2010.pdf"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V28",
+   "setting": "Yeast, 6,170 genes, 160 obs + 1,479 deletions, held-out blocks",
+   "graph_metric": "ICP confidence-based edge ranking (few predictions)",
+   "downstream_metric": "strong intervention effects (SIE) in held-out deletions",
+   "relation_found": "Top 4 edges all SIEs; 7 of top 20 vs 0.03 expected by random.",
+   "threshold_or_target": "Few but reliable predictions",
+   "population": "real",
+   "reference": "Meinshausen et al., PNAS 2016",
+   "label": "reported",
+   "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC4941490"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V29",
+   "setting": "Arabidopsis flowering time; yeast",
+   "graph_metric": "CStaR (IDA + stability selection) ranking",
+   "downstream_metric": "mutant validation; yeast ROC vs plain IDA",
+   "relation_found": "4 of 9 testable top-ranked mutants showed an effect (p<0.05, unadjusted); clear improvement over plain IDA on yeast (plot only).",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Stekhoven et al., Bioinformatics 2012",
+   "label": "reported",
+   "sources": [
+    "https://stat.ethz.ch/Manuscripts/buhlmann/cstar.pdf"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V30",
+   "setting": "DREAM5 E. coli / S. aureus community networks",
+   "graph_metric": "community-integrated network (~50% precision, ~1,700 edges)",
+   "downstream_metric": "experimental support of novel predictions",
+   "relation_found": "23 of 53 tested novel E. coli interactions supported (43%).",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Marbach et al., Nature Methods 2012",
+   "label": "reported",
+   "sources": [
+    "https://www.nature.com/articles/nmeth.2016"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V31",
+   "setting": "Single-cell GRN inference on curated Boolean models",
+   "graph_metric": "AUPRC / early precision",
+   "downstream_metric": "(none beyond graph)",
+   "relation_found": "Many algorithms near random early precision on at least one curated model; prior reports on experimental data near random.",
+   "threshold_or_target": null,
+   "population": "simulated from curated models",
+   "reference": "Pratapa et al. (BEELINE), bioRxiv 642926 preprint (Nature Methods 2020)",
+   "label": "reported",
+   "sources": [
+    "https://www.biorxiv.org/content/10.1101/642926.full.pdf"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V32",
+   "setting": "Perturb-seq K562 / RPE1",
+   "graph_metric": "biological precision/recall vs databases",
+   "downstream_metric": "mean Wasserstein of predicted edges; false omission rate",
+   "relation_found": "Interventional methods no better than observational; GRNBoost and sortnregress top; methods at precision-recall extremes (NOTEARS-linear 0.88 / ~0).",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Chevalley et al., CausalBench, arXiv 2210.17283",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2210.17283v2"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V33",
+   "setting": "Alzheimer's (ADNI, 8-edge literature gold standard)",
+   "graph_metric": "precision / recall",
+   "downstream_metric": "(no downstream decision measured)",
+   "relation_found": "FGES 0.44/0.60 -> 0.71/0.68 with trivial knowledge; single wrong CI test created false collider that propagated (FCI).",
+   "threshold_or_target": "Use longitudinal data and maximal prior knowledge",
+   "population": "real",
+   "reference": "Shen, Ma, Vemuri, Simon, Sci. Rep. 2020",
+   "label": "reported",
+   "sources": [
+    "https://www.nature.com/articles/s41598-020-59669-x"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V34",
+   "setting": "COVID-19 UK, 17 variables, 28 algorithms / 63 runs",
+   "graph_metric": "agreement with author-built common-knowledge graph (37 edges)",
+   "downstream_metric": "predictive and interventional inference (results not read)",
+   "relation_found": "Knowledge graph is observational, not interventional, per authors; results section not reached.",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Constantinou et al., arXiv 2305.03859",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/abs/2305.03859v1",
+    "https://arxiv.org/pdf/2305.03859v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V35",
+   "setting": "Applied health research, 234 articles, 144 DAGs",
+   "graph_metric": "expert-drawn DAG density (median 12 nodes, 46% saturation)",
+   "downstream_metric": "adjustment practice",
+   "relation_found": "No article tested its DAG against data; 73% reported estimates from other or unclear adjustment sets.",
+   "threshold_or_target": "Assume arcs exist unless justified",
+   "population": "real (literature)",
+   "reference": "Tennant et al., IJE 2021",
+   "label": "reported",
+   "sources": [
+    "https://eprints.whiterose.ac.uk/id/eprint/180527/1/dyaa213.pdf",
+    "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8128477/"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V36",
+   "setting": "Survey of epidemiologists (439 responses)",
+   "graph_metric": "how DAGs are built",
+   "downstream_metric": "practice / knowledge",
+   "relation_found": "~60% use causal graphs; ~20% of users build them systematically; ~half know omitting an arrow is the stronger assumption.",
+   "threshold_or_target": null,
+   "population": "real (survey)",
+   "reference": "medRxiv 2020.01.17.20017939 (KAP survey; authors not captured)",
+   "label": "reported",
+   "sources": [
+    "https://www.medrxiv.org/content/10.1101/2020.01.17.20017939.full.pdf"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V37",
+   "setting": "Expert-in-the-loop DAG refinement",
+   "graph_metric": "expert orientation accuracy",
+   "downstream_metric": "structure accuracy vs data-only",
+   "relation_found": "Beats purely data-driven learning once new-edge orientation is right in at least 2 of 3 cases.",
+   "threshold_or_target": "Expert orientation accuracy >= 2/3",
+   "population": "synthetic",
+   "reference": "Ankan & Textor, UAI 2025 (PMLR 286)",
+   "label": "reported",
+   "sources": [
+    "https://proceedings.mlr.press/v286/ankan25a.html"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V38",
+   "setting": "Active knowledge requests in Tabu, 16 networks, limit 0.5n queries",
+   "graph_metric": "simulated expert accuracy",
+   "downstream_metric": "DAG F1 gain",
+   "relation_found": "Gain 0.207 (perfect), 0.138 (0.9), 0.096 (0.8), 0.063 (0.67); accuracy worsens at 0.5.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Kitson & Constantinou, arXiv 2310.11154",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/pdf/2310.11154v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V39",
+   "setting": "Lay STEM annotators (15) on 4-8 node BNLearn graphs",
+   "graph_metric": "D_top, SHD",
+   "downstream_metric": "(none)",
+   "relation_found": "Triplet prompting: SHD 1.67-11.33, D_top mostly 0; pairwise produced cycles on two graphs.",
+   "threshold_or_target": null,
+   "population": "real humans, benchmark graphs",
+   "reference": "Vashishtha et al., arXiv 2310.15117",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/html/2310.15117"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V40",
+   "setting": "CAWS 2021 round table (61 participants, 15% industry)",
+   "graph_metric": "(none)",
+   "downstream_metric": "stated needs",
+   "relation_found": "Reliability on finite real data uncertain; need gold-standard datasets, mixed-type methods, communication guidelines; many scientists doubt causal analysis.",
+   "threshold_or_target": null,
+   "population": "practitioners",
+   "reference": "Kummerfeld et al., PMLR 160",
+   "label": "reported",
+   "sources": [
+    "https://proceedings.mlr.press/v160/kummerfeld21a/kummerfeld21a.pdf"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V41",
+   "setting": "Assembly line (manufacturing)",
+   "graph_metric": "standard structure-learning evaluation + expert review",
+   "downstream_metric": "none measured",
+   "relation_found": "No downstream yield or cost measured; experts found results promising.",
+   "threshold_or_target": null,
+   "population": "real",
+   "reference": "Marazopoulou, Ghosh, Lade, Jensen, arXiv 1605.04056",
+   "label": "reported",
+   "sources": [
+    "https://arxiv.org/abs/1605.04056v2"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V42",
+   "setting": "Interactive causal lab tasks (CausaLab)",
+   "graph_metric": "edge F1 0.471",
+   "downstream_metric": "task accuracy 92% (observational-only GPT-5.2)",
+   "relation_found": "Task accuracy high despite low edge F1.",
+   "threshold_or_target": null,
+   "population": "synthetic",
+   "reference": "Yang et al., arXiv 2605.26029 (via cluster9 note)",
+   "label": "second-hand",
+   "sources": [
+    "https://arxiv.org/abs/2605.26029"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V43",
+   "setting": "LLM + data fusion, 26 networks, obfuscated names",
+   "graph_metric": "LLM orientation accuracy vs edge recall",
+   "downstream_metric": "fused F1",
+   "relation_found": "LLM orientation 96% but edge recall 60.3%; fusion F1 0.760 vs data 0.662 vs LLM 0.572.",
+   "threshold_or_target": null,
+   "population": "synthetic (benchmark networks)",
+   "reference": "Kitson & Constantinou, arXiv 2608.27472 (via cluster4 note)",
+   "label": "second-hand",
+   "sources": [
+    "https://arxiv.org/html/2608.27472v1"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V44",
+   "setting": "LLM as epsilon-expert orienting MEC edges",
+   "graph_metric": "p(true graph in returned class) >= 1-eta",
+   "downstream_metric": "guarantee validity",
+   "relation_found": "Guarantee broke in the authors' own LLM test (ALARM excluded truth even at small eta; overconfident LLM).",
+   "threshold_or_target": null,
+   "population": "benchmark networks",
+   "reference": "Long et al., arXiv 2307.02390 (via cluster4 note)",
+   "label": "second-hand",
+   "sources": [
+    "https://arxiv.org/abs/2307.02390"
+   ],
+   "read_on": "2026-10-12"
+  },
+  {
+   "id": "V45",
+   "setting": "LLM pairwise direct-edge judgements, 12 models, 6 graphs",
+   "graph_metric": "verbalised / agreement confidence",
+   "downstream_metric": "calibration (ECE, AUROC)",
+   "relation_found": "Verbalised ECE ~0.21, AUROC 0.448; cross-prompt agreement ECE 0.016, AUROC 0.772; >80% of reversed/indirect false positives at confidence 80-100.",
+   "threshold_or_target": null,
+   "population": "benchmark networks",
+   "reference": "Kumar et al., arXiv 2608.23660 (via cluster4 note)",
+   "label": "second-hand",
+   "sources": [
+    "https://arxiv.org/html/2608.23660v1"
+   ],
+   "read_on": "2026-10-12"
+  }
+ ],
+ "proposals": {
+  "DV-1": "Held-out interventional claim accuracy with risk-coverage: label (t,y) up/down/none from CausalArena obs+int rows (3-7 targets per scenario, 28-67 rows each; resampling interventions) or Causal Chambers lt_interventions_standard_v1 via Mann-Whitney + BH; method claims from obs rows + output graph (descendant/sign via IDA/MPDAG or abstain); report precision of committed claims, coverage, AURC, precision at 50%/80% coverage; ceiling = true graph + obs rows; all on column-shuffled inputs.",
+  "DV-2": "Target-choice regret (pick the released target with largest predicted effect on y, regret vs best observed shift, abstain at cost c) and experiment lift (precision@q of top-q ranked (t,y) claims / base rate).",
+  "companion": "ancestor-AID and O-set-AID via gadjid next to F1, on shuffled inputs."
+ },
+ "searches": [
+  "Root Cause Analysis for Microservices based on Causal Inference: How Far Are We? causal discovery graph quality RCA accuracy",
+  "RCAEval benchmark root cause analysis microservice arXiv Pham",
+  "PetShop dataset root cause analysis causal discovery benchmark Hardt arXiv",
+  "Gentzel Garant Jensen \"The Case for Evaluating Causal Models Using Interventional Measures and Empirical Data\"",
+  "Ikram root cause analysis of failures in microservices through causal discovery NeurIPS 2022 RCD top-k",
+  "Peters Bühlmann structural intervention distance SID causal graphs arXiv 1306.1043",
+  "Eigenmann Mukherjee Maathuis \"Evaluation of causal structure learning algorithms via risk estimation\" UAI 2020",
+  "Maathuis Colombo Kalisch Bühlmann 2010 Nature Methods predicting causal effects large-scale systems observational data yeast knockouts IDA",
+  "Meinshausen Hauser Mooij Peters Versteeg Bühlmann \"Methods for causal inference from gene perturbation experiments and validation\" PNAS 2016",
+  "Stekhoven Moraes Sveinbjörnsson Hennig Maathuis Bühlmann causal stability ranking Arabidopsis flowering time validation mutants",
+  "CausalBench Chevalley large-scale benchmark network inference single-cell perturbation data Wasserstein false omission rate results",
+  "BEELINE Pratapa 2020 benchmarking gene regulatory network inference single-cell AUPRC ratio random predictor",
+  "Constantinou \"Open problems in causal structure learning: A case study of COVID-19 in the UK\" knowledge-based graph algorithms agreement",
+  "inter-rater agreement directed acyclic graphs drawn by different researchers same research question epidemiology study",
+  "Tennant 2021 \"Use of directed acyclic graphs (DAGs) to identify confounders in applied health research\" review recommendations International Journal of Epidemiology",
+  "causal Bayesian optimization misspecified causal graph regret unknown graph learned graph",
+  "\"Your Assumed DAG is Wrong and Here's How To Deal With It\" Padh Kilbertus",
+  "simulation study consequences of misspecified DAG for confounder adjustment bias missing arc reversed arc effect estimate",
+  "causal discovery downstream effect estimation error correlation with SHD benchmark study graph errors propagate ATE",
+  "decision-focused evaluation causal discovery regret policy learned graph \"decision\" causal structure learning value",
+  "\"Effect-Level Validation for Causal Discovery\" arXiv",
+  "interview study causal inference practitioners industry needs challenges causal discovery adoption survey",
+  "survey of practitioners causal discovery \"practitioners\" trust uncertainty requirements questionnaire 2024 2025",
+  "industry experience causal discovery deployed root cause analysis production lessons learned accuracy engineers trust top-1 top-3",
+  "causal discovery manufacturing root cause analysis case study evaluation downstream value production line review",
+  "NOT PERFORMED (web-search budget exhausted): root cause analysis sensitivity to causal graph errors misspecified graph missing edges reversed edges top-k accuracy degrades"
+ ],
+ "not_read": [
+  {
+   "source": "https://arxiv.org/html/2307.04988v1",
+   "reason": "HTTP 429 from fetch proxy; only abstract page (https://arxiv.org/abs/2307.04988) read"
+  },
+  {
+   "source": "https://arxiv.org/pdf/2305.03859v1",
+   "reason": "results sections not surfaced by four fetches at different offsets; methods and tables only"
+  },
+  {
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12805448",
+   "reason": "reCAPTCHA page"
+  },
+  {
+   "source": "https://proceedings.mlr.press/v162/budhathoki22a.html",
+   "reason": "abstract only; PDF not read; graph-robustness experiments unknown"
+  },
+  {
+   "source": "https://arxiv.org/abs/2503.01139",
+   "reason": "abstract only; human vs LLM numbers not seen (cluster4 numbers not re-verified)"
+  },
+  {
+   "source": "https://arxiv.org/abs/2411.03028v1",
+   "reason": "abstract only, no numbers"
+  },
+  {
+   "source": "BEELINE Nature Methods 2020 final version",
+   "reason": "read the bioRxiv preprint PDF instead"
+  },
+  {
+   "source": "Cinelli & Hazlett omitted-variable bias (JRSSB 2020)",
+   "reason": "not opened; the bias formula in the .md is labelled our derivation"
+  },
+  {
+   "source": "industry talks / practitioner surveys with numeric accuracy thresholds",
+   "reason": "not located before the web-search budget ran out"
+  }
+ ]
+}

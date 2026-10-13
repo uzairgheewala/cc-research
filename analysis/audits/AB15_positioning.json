@@ -1,0 +1,684 @@
+{
+ "audit": "AB-15 positioning closure",
+ "written": "2026-10-12",
+ "tickets": [
+  "AUD-46",
+  "DOM-07"
+ ],
+ "scope_note": "Desk search for the closest prior result to each candidate claim L1-L5 (AB-15). Labels: 'read (primary)' = the fetch tool returned the paper's own text (abs/HTML/PDF/README/source/docs) and the statement was located there; 'abstract only' = only the abstract or landing page was readable; 'second-hand' = taken from an earlier audit or a non-primary page. Quotes are under 15 words. Every reading went through a summarising fetch tool, so section locators come from that tool and should be spot-checked before they go into a paper.",
+ "rows": [
+  {
+   "claim": "L1",
+   "nearest_prior": "Order dependence of PC, including conflicting v-structures resolved by order; PC-stable, CPC/MPC, and list/bi-directed conflict marking",
+   "citation": "Colombo, D. and Maathuis, M. H., Order-Independent Constraint-Based Causal Structure Learning, JMLR 15(116):3921-3962, 2014",
+   "url": "https://jmlr.org/papers/v15/colombo14a.html",
+   "what_it_shows": "Three places where PC's output depends on variable order: the skeleton, v-structure decisions and orientation rules. Example 3: when two v-structures conflict, the pcalg implementation overwrites, so the result depends on which triple comes last. The paper proposes PC-stable, conservative PC (CPC) and majority-rule PC (MPC), plus a list option that marks conflicts with a bi-directed edge. Simulations: 250 DAGs with p = 1000, n = 50 and 20 random orderings. The stable versions reduce the variance of SHD across orderings. Appendix A.1: in low dimensions most of the order dependence is in the orientations.",
+   "difference_from_ours": "They show variance across random orders and treat it as noise. We show a signed, systematic effect: in the column order of a public benchmark release (causal order), causal-learn's default rule (keep existing colliders) orients worse than under shuffled columns (q 0.59 vs 0.74); 'overwrite' reverses the sign (0.89 vs 0.73); maxP removes the effect. We tie this to a published scoreboard number (PC 0.07 F1 lower in released order). The mechanism is theirs. What we add is the direction, its size on a scoreboard, and the layout link.",
+   "overlap": "substantial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 3.3, Example 3: 'conflicting edges are simply overwritten'; Sec. 4.2-4.3 (CPC, MPC, lists); Sec. 5.3, Fig. 8(a); App. A.1. Read from a mirror copy of the paper (home.ipipan.waw.pl), abstract from jmlr.org"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "Conservative PC: an unshielded triple whose separating sets disagree is marked ambiguous and left unoriented",
+   "citation": "Ramsey, J., Zhang, J. and Spirtes, P., Adjacency-Faithfulness and Conservative Causal Inference, UAI 2006 (venue from the file name and common citation; not stated in the fetched text)",
+   "url": "https://www.cmu.edu/dietrich/philosophy/docs/spirtes/uai06.pdf",
+   "what_it_shows": "CPC's step S3' orients a collider only when B is in none of the separating sets, and a non-collider only when B is in all of them. Otherwise it marks the triple and does not apply Meek's rules to it. This is an order-free way to handle disagreeing separating sets.",
+   "difference_from_ours": "This is the standard fix and does not measure how a layout biases default PC. We use maxP and definite maxP as the order-free arms and should add CPC as a third arm. The finding that the default rule reads the layout is not in this paper.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Step S3' (a)-(c): triples where 'the separating sets disagree' are marked"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "maxP collider orientation (PC-Max)",
+   "citation": "Ramsey, J., Improving Accuracy and Scalability of the PC Algorithm by Maximizing P-value, arXiv 1610.00378, 2016",
+   "url": "https://export.arxiv.org/abs/1610.00378",
+   "what_it_shows": "For each unshielded triple, PC-Max uses the conditioning set with the highest p-value to decide the collider, avoids bi-directed edges, and borrows parallelisation from PC-stable. The abstract claims good accuracy and scaling.",
+   "difference_from_ours": "The abstract does not claim order independence and gives no layout experiment. Our measurement (q 0.827 vs 0.828 released vs shuffled) is a new empirical check that maxP removes the layout channel on a benchmark. The method is not ours.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract: picks the highest-p set 'so that there are no ambiguities'"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "Variable (column) order changes structure-learning results on bnlearn networks",
+   "citation": "Kitson, N. K. and Constantinou, A. C., The impact of variable ordering on Bayesian network structure learning, Data Mining and Knowledge Discovery 38(4):2545-2569, 2024 (arXiv 2206.08952)",
+   "url": "https://link.springer.com/article/10.1007/s10618-024-01044-9",
+   "what_it_shows": "Mean F1 changes when the variable order goes from worst to optimal: hill-climbing 0.412 (alphabetic to optimal 0.215), TABU 0.278, MMHC 0.261, H2PC 0.256, GS 0.104, PC-Stable 0.036, Inter-IAMB 0.021. The 'optimal' order is consistent with the topological order. The mechanism they explain is score-equivalent ties in HC broken by variable order. They call PC-Stable's sensitivity surprising but give no mechanism for it.",
+   "difference_from_ours": "This is the strongest prior for the general claim that order moves scores, and the HC effect is larger than ours. It does not test released benchmark files against shuffled columns as a leak, does not explain PC's sensitivity through conflict rules, does not cover the benchmark authors' index rule or engine copies, and does not report which way PC moves under topological order. Our L1 must cite it as establishing that order matters.",
+   "overlap": "substantial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 3.2 (HC 0.412, 0.215), Sec. 3.3 (PC-Stable 0.036; 'The sensitivity of PC-Stable is surprising'), Sec. 4"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "HC-Stable and Tabu-Stable remove order instability; PC-Stable keeps a considerable amount",
+   "citation": "Kitson, N. K. and Constantinou, A. C., Eliminating Variable Order Instability in Greedy Score-Based Structure Learning, PGM 2024, PMLR 246:147-163; extended as Stable Structure Learning with HC-Stable and Tabu-Stable Algorithms, arXiv 2504.01740",
+   "url": "https://arxiv.org/html/2504.01740v1",
+   "what_it_shows": "Across random column orders, F1 SD is about 0.08-0.09 for HC and Tabu and about 0.003 for the stable variants. bnlearn's PC-Stable has categorical F1 SD 0.0367, and 12.9% (categorical) and 28.3% (continuous) of its runs return a non-extendable PDAG.",
+   "difference_from_ours": "They measure spread under random orders and fix the score-based algorithms. They do not separate PC's skeleton from its collider-conflict step, do not test the benchmark release order against shuffled order, and do not check engines against a d-separation oracle. This is the paper the brief calls 'Kitson & Constantinou 2026'. The only 2026 Kitson & Constantinou paper found (arXiv 2608.27472) is about LLM fusion, not order.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "arXiv 2504.01740 Sec. 5.1 (Table 4), Sec. 5.3, Table 10; PGM abstract on PMLR v246"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "The benchmark authors' own rule orients undecided pairs by node index",
+   "citation": "LAMDA-Tabular, TabCausal baselines README (CausalArena code release), GitHub",
+   "url": "https://github.com/LAMDA-Tabular/TabCausal/blob/main/baselines/README.md",
+   "what_it_shows": "PC, GES/GIES and CDIS can return partially directed graphs. Uncertain edges are not randomised. The default 'liberal' strategy orients them from the smaller node index to the larger. Probabilistic outputs are thresholded at 0.5, and value columns are z-scored per graph.",
+   "difference_from_ours": "This documents the rule. It is the object we measure, not a prior result about its effect. The README does not say the release puts columns in causal order or that the rule therefore picks the true direction. Our measurement: +0.022 for GES and +0.221 for FCI from this rule, gone under shuffling.",
+   "overlap": "none",
+   "label": "read (primary)",
+   "quote_or_locator": "README, partially directed outputs: 'uncertain edges were not randomized'; liberal = smaller index to larger index"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "CausalArena main text: conversion rules deferred to an appendix; varsortability cited as a generator artifact",
+   "citation": "Li, Z.-R., Liu, S.-Y., Wang, T.-Z. and Ye, H.-J., CausalArena: Benchmarking Causal Discovery in the Foundation Model Era, arXiv 2609.11897v1, 2026",
+   "url": "https://arxiv.org/html/2609.11897v1",
+   "what_it_shows": "Section 4.5 says thresholding, CPDAG/PAG conversion rules and wrapper defaults are in Section B. The main metrics are directed P/R/F1 and SHD. Section 2.3 cites varsortability as a generator artifact. The main text names no library version and gives no column-order statement.",
+   "difference_from_ours": "The paper does not report any layout effect. Appendices B-C could not be read: the HTML ends mid-Sec. 6.2 and the PDF has no text layer, so whether they mention the index rule is unverified from the paper itself. The README row above confirms the rule from the code release.",
+   "overlap": "none",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 4.5 (metrics; conversion deferred to Sec. B); Sec. 2.3 (varsortability). Appendices B-C NOT read"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "gCastle PC searches separating sets on one side in its 'original' and 'stable' variants (source code)",
+   "citation": "Huawei Noah's Ark Lab, gCastle castle.algorithms.pc.pc source (docs build, latest)",
+   "url": "https://gcastle.readthedocs.io/en/latest/_modules/castle/algorithms/pc/pc.html",
+   "what_it_shows": "In 'original' and 'stable', find_skeleton loops over combinations(nodes, 2) and draws conditioning sets only from adj(i) minus j, so pair (j, i) is never tested from j's side. 'parallel' tests both sides. The default variant is 'original'.",
+   "difference_from_ours": "The source confirms the mechanism behind our perfect-oracle failures (456/720 and 460/720 exact). I found no published paper or report that names this defect. GitHub issue search was blocked (robots), so an existing issue cannot be ruled out. Our contribution is the oracle demonstration and its prevalence, not the code reading.",
+   "overlap": "none",
+   "label": "read (primary)",
+   "quote_or_locator": "find_skeleton: 'z = adj_i - {j}  # adj(C, i)\\{j}'; signature variant='original'"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "causal-learn exposes several collider-conflict priorities; default is 'prioritize existing colliders'",
+   "citation": "causal-learn documentation, PC (py-why), latest; and py-why/causal-learn GitHub issues #133 and #175",
+   "url": "https://causal-learn.readthedocs.io/en/latest/search_methods_index/Constraint-based%20causal%20discovery%20methods/PC.html",
+   "what_it_shows": "uc_rule: 0 uc_sepset (default), 1 maxP, 2 definite maxP. uc_priority: 0 overwrite, 1 orient bi-directed, 2 prioritize existing colliders (default), 3 and 4 stronger colliders. stable=True by default. Issue #133: PC with a d-separation oracle returned an undirected graph, which the maintainers explained was correct (no v-structures). Issue #175: Tetrad and causal-learn PC gave the same adjacencies but different orientations, which Ramsey attributed to sepset handling.",
+   "difference_from_ours": "The library designers clearly know conflicts need a rule, but the docs say nothing about how the default interacts with column order. Our q table shows default and overwrite move in opposite directions under causal order. Note: a maintainer comment in issue #175 says causal-learn PC defaults to PC-Max, which conflicts with these docs (uc_rule default 0). Our runs should state the uc_rule and uc_priority used. Oracle testing is established practice, and neither issue reports a skeleton defect. Ours is a skeleton defect in Causal-Copilot's copy and in gCastle defaults, not in upstream causal-learn.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Parameters uc_rule, uc_priority ('Default: 2'), stable; issues #133 and #175 threads"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "Benchmark leak through marginal statistics (varsortability; R2-sortability)",
+   "citation": "Reisach, A., Seiler, C. and Weichwald, S., Beware of the Simulated DAG! Causal Discovery Benchmarks May Be Easy to Game, NeurIPS 2021; and Reisach, A., Tami, M., Seiler, C., Chambaz, A. and Weichwald, S., A Scale-Invariant Sorting Criterion to Find a Causal Order in Additive Noise Models, NeurIPS 2023",
+   "url": "https://neurips.cc/virtual/2021/poster/26590",
+   "what_it_shows": "Marginal variance tends to rise along the causal order in simulated additive-noise models, so a trivial sort-and-regress baseline can match continuous methods. Standardisation removes this, and the methods then fail. The 2023 paper shows R^2 rising along the causal order survives standardisation, and that R2-SortnRegress is competitive (poster https://neurips.cc/virtual/2023/poster/70483).",
+   "difference_from_ours": "This is the leak-through-data-statistics precedent. Ours is a leak through the file layout (column index) and the scoring rule, which survives standardisation. CausalArena's varsortability is exactly 0.5 (standardised), so our layout effect is a separate channel. We measured R2-sortability on CausalArena (semantic 0.545, formula 0.603 on average; up to 0.95 for single scenarios), so the layout channels operate separately from it.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "NeurIPS 2021 and NeurIPS 2023 poster abstracts"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "A benchmark that permutes node indices as a precaution, uses causal-learn PC, and reports no order analysis",
+   "citation": "Deb, S., Shah, D. and Krishnan, A., Active Causal Discovery Benchmark: Evaluating LLM Agents Under Budgeted Interventions, arXiv 2609.31675, 2026",
+   "url": "https://arxiv.org/html/2609.31675",
+   "what_it_shows": "Sec. 3.1 randomly permutes node indices so names do not leak topology. PC from causal-learn (Fisher-z, alpha 0.05) plus a greedy orientation heuristic is the best non-oracle method. A random-DAG floor scores 23.6% directed F1.",
+   "difference_from_ours": "ACDB applies the control (permutation) but does not measure what it removes. We measure the size of the leak on a benchmark that does not permute.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 3.1 (permute node indices); Sec. 4 (causal-learn PC); Table 2"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "PC's v-structure seeding assumes perfect CI tests and an exhaustive separating-set search",
+   "citation": "Lyu, R., Turcan, A., Zhang, M. J. and Wilder, B., Improving constraint-based discovery with robust propagation and reliable LLM priors (MosaCD), arXiv 2509.23570, 2025",
+   "url": "https://arxiv.org/html/2509.23570",
+   "what_it_shows": "Errors from imperfect CI tests or a non-exhaustive search cascade through propagation. MosaCD orients high-confidence seeds first and filters LLM seeds with shuffled queries.",
+   "difference_from_ours": "This is general motivation and does not test any implementation. We show that a specific shipped copy and two gCastle defaults skip part of the separating-set search, and how often that matters with a perfect oracle.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Intro/Sec. 2: 'exhaustive search of separating subsets' assumption"
+  },
+  {
+   "claim": "L1",
+   "nearest_prior": "Gap between giving and hiding causal order information to LLM systems",
+   "citation": "Batzoglou, S., ReplaySCM: A Benchmark for Executable Causal Mechanism Induction from Interventions, arXiv 2605.08197, 2026",
+   "url": "https://arxiv.org/abs/2605.08197",
+   "what_it_shows": "Settings Ordered, Block-order, Hidden-order and Hidden-roots: replay accuracy drops sharply when order or root information is hidden, and the Ordered vs Hidden-order gap persists with more evidence.",
+   "difference_from_ours": "Here order is disclosed on purpose, as an input. We study order leaking unintentionally through column position into engines and scoring rules.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract (four disclosure settings; Ordered vs Hidden-order gap)"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "LLMs with algorithm outputs collapse when variable names are permuted over the same data",
+   "citation": "Dong, J., Liu, Y., Aloui, A., Tarokh, V. and Carlson, D., CARE: Turning LLMs Into Causal Reasoning Expert, arXiv 2511.16016",
+   "url": "https://arxiv.org/html/2511.16016v1",
+   "what_it_shows": "Original, Random and Permuted name conditions (permuted = names shuffled, data unchanged) on ASIA (8 nodes), SURVEY (6), EARTHQUAKE (5) and ALARM (37). GPT-4.1-mini with algorithm outputs on ASIA: 0.858 original vs 0.137 permuted (Table 2). With original names and no data it scores 0.977. Column-order randomisation is used as training augmentation but not measured.",
+   "difference_from_ours": "CARE already establishes name reliance with a swap-like control, so 'LLM methods lose F1 under swapped names' is not new. Still open: end-to-end agent systems (Causal-Copilot and others), names crossed with column layout, non-bnlearn 20-40-variable graphs, several systems, and a dose-response in the share of swapped names. CARE's graphs are famous bnlearn ones (a memorisation confound), and its systems are prompted LLMs, not agents.",
+   "overlap": "substantial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 4 Table 1; Sec. 6.2-6.3 Table 2; App. C.4 (column reordering not ablated)"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "LLMs answer causal questions from text metadata, not from the data",
+   "citation": "Kiciman, E., Ness, R., Sharma, A. and Tan, C., Causal Reasoning and Large Language Models: Opening a New Frontier for Causality, arXiv 2305.00050 (v3 2024; TMLR per earlier audit, second-hand)",
+   "url": "https://arxiv.org/abs/2305.00050",
+   "what_it_shows": "GPT-3.5/4 do well on pairwise causal discovery from names and metadata. The authors argue memorisation alone does not explain this and suggest combining LLMs with data methods.",
+   "difference_from_ours": "This is the founding observation that LLMs use metadata. It runs no swap control on discovery systems that also see the data.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract: works 'by operating on the text metadata'"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Memorisation of bnlearn graphs checked directly",
+   "citation": "Babakov, N., Reiter, E. and Bugarin-Diz, A., CausalGraphBench: a Benchmark for Evaluating Language Models capabilities of Causal Graph discovery, ACL 2025 Student Research Workshop, pp. 240-258",
+   "url": "https://preview.aclanthology.org/landing_page/2025.acl-srw.16.pdf",
+   "what_it_shows": "Sec. 4.4: two-step contamination probe (list the nodes, then rebuild the edges). Contamination is confirmed for 'cancer' in both models tested. On small contaminated graphs, baseline SHD is much lower (0.06 vs 0.8-0.99). No renaming control.",
+   "difference_from_ours": "This is the closest real paper to the brief's 'LLMs memorise BNLearn'. I could not find a paper with that exact title. It measures recall of famous graphs, not reliance on names when names and data disagree.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 4.4; Tables 4-6"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Post-cutoff science graphs as a leakage-resistant benchmark",
+   "citation": "Srivastava, A., Nagalapatti, L., Jajoo, G., Vashishtha, A., Krishnamurthy, P. and Sharma, A., Realizing LLMs' Causal Potential Requires Science-Grounded, Novel Benchmarks, arXiv 2510.16530, 2025",
+   "url": "https://arxiv.org/abs/2510.16530",
+   "what_it_shows": "LLMs are near perfect on BNLearn but much worse on graphs taken from papers published after their training cutoff. Using LLM predictions as priors for PC helps.",
+   "difference_from_ours": "Their control for memorisation is novelty (post-cutoff graphs). Ours is a names swap on fixed data. The two are complementary, and their abstract has no swap arm.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Causal-relation recognition tracks frequency in pre-training data",
+   "citation": "Feng, T., Qu, L., Tandon, N., Li, Z., Kang, X. and Haffari, G., On the Reliability of Large Language Models for Causal Discovery, ACL 2025 (long), pp. 9565-9590; and Chi, H. et al., Unveiling Causal Reasoning in Large Language Models: Reality or Mirage? (CausalProbe-2024), arXiv 2506.21215 (abstract only; NeurIPS 2024 per earlier audit, second-hand)",
+   "url": "https://aclanthology.org/2025.acl-long.471",
+   "what_it_shows": "With OLMo and BLOOM, whose corpora are open, models recognise frequent causal relations but generalise poorly to rare or new ones. Wrong relations in the corpus and context also affect predictions. CausalProbe-2024: LLMs score much lower on a fresh causal QA corpus than on older benchmarks, which the authors read as reliance on stored knowledge.",
+   "difference_from_ours": "This is mechanism-level evidence that names carry memorised relations. The abstract does not describe a name-swap control on tabular discovery. An earlier audit (AU2) recorded fictitious-term probes from the full paper; that is second-hand here. CausalProbe is QA without tabular data or a name swap.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "ACL Anthology abstract"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Variable refactorisation (renaming A, B, C to Z, Y, W) as a robustness test",
+   "citation": "Jin, Z. et al., Can Large Language Models Infer Causation from Correlation? (Corr2Cause), ICLR 2024 (venue from the repository README)",
+   "url": "https://github.com/causalNLP/causalNLI",
+   "what_it_shows": "The release includes a paraphrased test set and a 'variable refactor' set that swaps symbol names, used for robustness tests.",
+   "difference_from_ours": "The names are abstract symbols, so the swap tests symbol robustness, not semantic name reliance. The task is natural-language inference, not discovery from data.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "README data list: 'data_2class_from_Z' variable refactor"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Name obfuscation (neutral but meaningful aliases) before querying the LLM",
+   "citation": "Kitson, N. K. and Constantinou, A. C., LLM-Augmented Causal Discovery: Probabilistic Fusion of Edge Existence and Orientation, arXiv 2608.27472, 2026 (PGM 2026 poster)",
+   "url": "https://arxiv.org/html/2608.27472v1",
+   "what_it_shows": "Sec. 2.2 replaces names with neutral aliases ('asia' to 'endemic_travel'). Sec. 3.4: obfuscation substantially reduced how easily benchmarks could be identified. There is no ablation of obfuscated against original names and no column-order experiment.",
+   "difference_from_ours": "Obfuscation keeps the meaning, so a correct prior can survive. A swap makes names point the wrong way. They do not measure F1 loss from names.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 2.2, Sec. 3.4"
+  },
+  {
+   "claim": "L2",
+   "nearest_prior": "Names-only ablation and a CauseNet-grounded protocol against memorisation",
+   "citation": "Li, Z. and Russo, F., Leveraging Large Language Models for Causal Discovery: a Constraint-based, Argumentation-driven Approach, UAI 2026, PMLR 337:3631-3667 (arXiv 2602.16481)",
+   "url": "https://arxiv.org/html/2602.16481v2",
+   "what_it_shows": "Sec. 5 grounds random DAG topologies in CauseNet to reduce full-graph leakage and keeps names semantic on purpose. Tabs. 7-8 are a names-only lower-information stress test. Noisy, human-written and obfuscated metadata are left as future work (Sec. 6.1).",
+   "difference_from_ours": "This paper avoids memorisation by choice of graph. It neither swaps names nor varies layout.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 5; Sec. 6.1 (future robustness tests); Tabs. 7-8"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Adjustment identification distance (AID) and the gadjid package",
+   "citation": "Henckel, L., Wurtzen, T. and Weichwald, S., Adjustment Identification Distance: A gadjid for Causal Structure Learning, UAI 2024, PMLR 244",
+   "url": "https://proceedings.mlr.press/v244/henckel24a.html",
+   "what_it_shows": "Distances count causal effects that a guessed graph identifies wrongly. The paper generalises SID to CPDAGs and causal orders and is much faster. The empty graph appears only in theoretical examples (Corollary 8, Sec. 5.1, App. C Ex. 19: an empty guess against a complete DAG gives distance p(p-1)/2). Its experiments do not compare learned graphs with trivial graphs.",
+   "difference_from_ours": "We use their metric. The finding that no reproduced method beats the empty graph on ancestor AID for a public benchmark is not in the paper.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Abstract; Sec. 3.2 Cor. 8; Sec. 5.1; App. C Ex. 19; Sec. 7"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Structural intervention distance (SID)",
+   "citation": "Peters, J. and Buhlmann, P., Structural Intervention Distance for Evaluating Causal Graphs, Neural Computation 27:771-799, 2015",
+   "url": "https://stat.ethz.ch/Manuscripts/buhlmann/SID-final.pdf",
+   "what_it_shows": "SID counts ordered pairs whose intervention distribution the estimate gets wrong. It is asymmetric, and an empty estimate scores 0 only if the truth is empty (Prop. 3). A symmetrised variant was rejected partly because it is always zero when one argument is empty.",
+   "difference_from_ours": "SID scores structure through intervention questions but does not report the empty graph as a baseline on real or benchmark data. Our DV-1 asks a binary 'does Y move' question with abstention and coverage, which SID does not model.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 2.1, Prop. 2-3, Sec. 2.3, Sec. 2.4.4"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Evaluate causal models with interventional measures, not structural ones",
+   "citation": "Gentzel, A., Garant, D. and Jensen, D., The Case for Evaluating Causal Models Using Interventional Measures and Empirical Data, NeurIPS 2019",
+   "url": "https://neurips.cc/virtual/2019/poster/14149",
+   "what_it_shows": "Surveyed evaluations rarely use interventional measures, and when used they give substantially different results from structural measures.",
+   "difference_from_ours": "This is the general argument L3 rests on. Our addition is a specific trivial baseline ('nothing moves') and a ceiling (true CPDAG) on a public discovery leaderboard.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "NeurIPS 2019 abstract"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Negative controls: random guessing can score high on precision and recall",
+   "citation": "Petersen, A. H., Are you doing better than random guessing? A call for using negative controls when evaluating causal discovery algorithms, arXiv 2412.10039",
+   "url": "https://arxiv.org/html/2412.10039v1",
+   "what_it_shows": "Under random guessing, expected precision equals the true graph's density and expected F1 rises with the number of edges guessed. The paper proposes an exact hypergeometric test, and in one dense example PC was not significantly better than random. The empty graph is not discussed.",
+   "difference_from_ours": "Their negative control is for skeleton metrics. Ours is the decision-question control, where the empty graph is strong because most pairs have no effect. Both say 'compare to a trivial baseline'.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Abstract; Sec. 2, 4, 6.1"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Prediction success and structure recovery diverge",
+   "citation": "Yang, J., Zhang, D. et al., CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists, arXiv 2605.26029, 2026",
+   "url": "https://arxiv.org/abs/2605.26029",
+   "what_it_shows": "In the 6-node observational setting, GPT-5.2-high reaches 92% task accuracy but 0.471 all-edge F1.",
+   "difference_from_ours": "This shows the reverse gap (good prediction, poor graph). We show learned graphs adding little decision value over 'nothing moves' while the true CPDAG is near perfect.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Effects predicted from an observational equivalence class and checked against knock-outs (IDA)",
+   "citation": "Maathuis, M. H., Colombo, D., Kalisch, M. and Buhlmann, P., Predicting causal effects in large-scale systems from observational data, Nature Methods 7(4), 2010",
+   "url": "https://stat.ethz.ch/Manuscripts/buhlmann/maathuisetal2010.pdf",
+   "what_it_shows": "IDA bounds total effects without knowing the DAG. On yeast it finds significantly more true positives than random among the strongest effects, checked against 234 knock-outs.",
+   "difference_from_ours": "This is a decision-style evaluation (top effects vs interventions) with a random baseline. It does not use an empty-graph baseline and does not compare learned graphs with the CPDAG ceiling on a benchmark.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Nature Methods correspondence, yeast and DREAM4 results"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Learn only the intervention-target relations needed for a downstream question",
+   "citation": "Asiaee, A., Aryan, K. and Long, J. P., Partial Causal Structure Learning for Valid Selective Conformal Inference under Interventions, arXiv 2603.02204, 2026",
+   "url": "https://arxiv.org/abs/2603.02204",
+   "what_it_shows": "The method learns which interventions leave a target unaffected, enough to choose calibration sets, and quantifies how coverage degrades when that set is wrong.",
+   "difference_from_ours": "It answers the same 'does setting T move Y' question but uses it as an input to conformal coverage. It does not use it to score learned graphs against an empty baseline.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract"
+  },
+  {
+   "claim": "L3",
+   "nearest_prior": "Abstention as a scored outcome on causal questions over data",
+   "citation": "Leban, A. and Sun, Y., CausalDS: Benchmarking Causal Reasoning in Data-Science Agents, arXiv 2607.08093, 2026",
+   "url": "https://arxiv.org/abs/2607.08093",
+   "what_it_shows": "Synthetic SCM scenes with stories. Tasks span Pearl's three rungs, and abstaining when no answer is warranted is a scored outcome.",
+   "difference_from_ours": "It scores agents on effect questions with abstention, not learned graphs on 'does Y move' at stated coverage. It has no empty-graph or CPDAG reference.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract: abstention is a 'first-class scored outcome'"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Every edge must be traceable to an auditable evidence source ('decision traceability')",
+   "citation": "Thorat, A., Kolla, R. K., Bhat, V. K., Chauhan, H. V. S. and Pedanekar, N., GENESIS: Towards Explainable Causal Discovery, arXiv 2608.03868, 2026",
+   "url": "https://arxiv.org/abs/2608.03868",
+   "what_it_shows": "Hybrid discovery that scores three-node motifs, refines with data, and uses domain knowledge only when statistics are insufficient. Each edge is backed by statistical evidence, Markov-blanket consistency or domain reasoning. The authors report 100% traceability.",
+   "difference_from_ours": "This is the closest prior for per-edge provenance in discovery. From the abstract it types edges (not directions) by three source kinds. It does not state that knowledge cannot add adjacencies, an order-invariance declaration, a verifier over a stored record, or a data-only floor. The full paper must be read before we claim the record format is new.",
+   "overlap": "substantial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract ('decision traceability')"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Knowledge orients surviving adjacencies only and cannot add edges",
+   "citation": "Li, Z. and Russo, F., Leveraging Large Language Models for Causal Discovery: a Constraint-based, Argumentation-driven Approach, UAI 2026, PMLR 337:3631-3667",
+   "url": "https://arxiv.org/html/2602.16481v2",
+   "what_it_shows": "Sec. 4.2: LLM-required arrows are enforced only on edges that survive the data skeleton. They enter as hard directional facts, and conflicts are resolved by relaxing CI statements. There is no formal robustness result, and low-quality LLM cells show harm (mean delta F1 -0.122, Sec. 6.2, Fig. 4).",
+   "difference_from_ours": "The rule 'knowledge never adds a connection' is already a design rule here. We add per-direction source typing, a verifier that checks the rule on a stored record, order invariance, and a floor. Their measured harm also shows that orient-only rules alone do not bound harm, which our L5 bound has to explain.",
+   "overlap": "substantial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 4.2: 'LLMs orient surviving adjacencies only; they cannot add edges'; Sec. 6.2"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Per-edge provenance channels in an LLM DAG-authoring tool",
+   "citation": "Sheu, Y. et al., DAGForge: Auditable Causal DAG Authoring with Biomedical Literature, arXiv 2607.21859, 2026",
+   "url": "https://www.alphaxiv.org/abs/2607.21859.md",
+   "what_it_shows": "Each edge carries confidence, provenance, rationale and verified citations. Provenance channels separate retrieved literature, UMLS, temporal information, user constraints, solver decisions and model prior. 'Prior-only' judgments are labelled (45 of 161).",
+   "difference_from_ours": "The provenance typing is close to ours, but knowledge can add edges, nothing is checked against data, and there is no floor or order-invariance check. It is a literature tool, not discovery from data.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Methods/provenance description (read via the alphaxiv mirror of the arXiv paper)"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Background knowledge orients existing edges, then Meek rules; inconsistent knowledge returns NULL",
+   "citation": "pcalg R package, addBgKnowledge documentation (Kalisch et al.; CRAN)",
+   "url": "https://rdrr.io/cran/pcalg/man/addBgKnowledge.html",
+   "what_it_shows": "The orientation x -> y is added only where the edge already exists in the (C)PDAG, followed by Meek (1995) propagation. The function returns NULL if the knowledge is consistent with no DAG in the class.",
+   "difference_from_ours": "'Knowledge cannot add a connection' is long-standing practice in orient-only interfaces. The function records no per-direction source and makes no floor claim.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Description and Value sections"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Tetrad knowledge: tiers, required and forbidden edges",
+   "citation": "Tetrad manual, Knowledge Box (CMU, tetrad-manual.readthedocs.io)",
+   "url": "https://tetrad-manual.readthedocs.io/en/latest/_sources/tetrad-interface/box-by-box/knowledge-box.md.txt",
+   "what_it_shows": "Knowledge encodes forbidden edges, required edges and tiers. Required edges 'must appear if compatible'. The page does not say whether output records which edges came from knowledge.",
+   "difference_from_ours": "The input format exists (and causal-cmd reads knowledge files, second-hand from AU6). It has no output-side provenance and no verifier.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Knowledge Box page"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Generic provenance vocabulary",
+   "citation": "W3C, PROV-O: The PROV Ontology, W3C Recommendation, 30 April 2013",
+   "url": "https://www.w3.org/TR/prov-o/",
+   "what_it_shows": "Entity, Activity and Agent, with wasGeneratedBy, used, wasDerivedFrom and wasAttributedTo. wasInfluencedBy is the broadest relation. There is no causal-claim vocabulary.",
+   "difference_from_ours": "This is our export target, not a competitor. Typing a direction by its evidence source needs our own vocabulary on top.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 3.1 starting-point terms"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Per-source edge-state distributions fused from LLM and data learners",
+   "citation": "Kitson, N. K. and Constantinou, A. C., LLM-Augmented Causal Discovery: Probabilistic Fusion of Edge Existence and Orientation, arXiv 2608.27472, 2026",
+   "url": "https://arxiv.org/html/2608.27472v1",
+   "what_it_shows": "Each edge gets a distribution over forward, backward, undirected and absent. LLM and data distributions are averaged 50/50 and thresholded at 0.3, so an LLM-only edge can enter (inference). Fusion trails the better single source in 4 of 26 networks. Calibration is not assessed.",
+   "difference_from_ours": "Per-source support is kept during fusion, but the final DAG does not record which source supplied each edge, knowledge can add edges, and there is no floor.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 2.1-2.3, Table 5 / App. C, Sec. 4"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Calibrated edge probabilities and abstention components",
+   "citation": "Jabbari, F., Naeini, M. P. and Cooper, G. F., Obtaining Accurate Probabilistic Causal Inference by Post-Processing Calibration, arXiv 1712.08626; Kummerfeld, E. and Rix, A., arXiv 1910.02047; Ruiz, M. et al., Causal-Audit, arXiv 2604.02488 (abstract only)",
+   "url": "https://ar5iv.labs.arxiv.org/html/1712.08626",
+   "what_it_shows": "Calibrates bootstrap RFCI edge-type probabilities with a small calibration set, which improves calibration and often precision and recall. Kummerfeld and Rix find bootstrap edge-frequency calibration varies by setting and is sometimes poor. Causal-Audit recommends or abstains per dataset for time-series discovery.",
+   "difference_from_ours": "These are calibration and abstention pieces with no per-direction provenance; Causal-Audit abstains per dataset, ours per claim.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Abstract; first results table (first 100k characters read)"
+  },
+  {
+   "claim": "L4",
+   "nearest_prior": "Execution-grounded verification of causal analyses by LLMs",
+   "citation": "Zhang, Y., Correia, R., Parra, I. M. and Xie, Y., CausalVerify: End-to-End Verification of Causal Analyses by Language Models, arXiv 2609.07944, 2026",
+   "url": "https://arxiv.org/abs/2609.07944",
+   "what_it_shows": "Four layers: method recognition, design specification, executable implementation, estimand recovery. Of 426 runnable workflows, 15.5% fail verification, and swapping in the reference design raises joint recovery from 15.0% to 51.5%.",
+   "difference_from_ours": "This verifies effect-estimation workflows against a reference estimator. It does not type edge directions or check knowledge constraints. Only the name overlaps.",
+   "overlap": "none",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract (v2, 26 Sep 2026)"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Bound on harm from wrong priors: order-consistent wrong priors cost at most one SHD; order-reversed priors cause quasi-circles",
+   "citation": "Chen, L., Ban, T., Wang, X., Lyu, D. and Chen, H., Mitigating Prior Errors in Causal Structure Learning: Towards LLM driven Prior Knowledge, arXiv 2306.07032",
+   "url": "https://arxiv.org/html/2306.07032v1",
+   "what_it_shows": "Hard edge priors in score-based HC: order-reversed priors can raise SHD a lot, while order-consistent or irrelevant priors raise it by at most one up to equivalence (Sec. 1, Lemmas 1-4, assuming enough data, a consistent score and faithfulness). There is no numeric worst-case bound, and the quasi-circle condition holds only with a probability (about 0.75-0.89 on ER graphs).",
+   "difference_from_ours": "This is the closest prior to a 'bounded harm of wrong knowledge' statement. Ours is for orientation-only knowledge on a fixed data skeleton, expressed through F1 = S x a: wrong knowledge can only lower a, never S. The setting (constraint-based, orient-only) and the form of the bound differ. Constantinou, Guo and Kitson (KAIS 2023, read) test only correct knowledge sampled from the true graph, so they give no harm evidence.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 1, Sec. 4.2-4.3 (Lemmas 1-4), Sec. 6.3-6.5"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Order dependence of PC's collider-conflict resolution (theory)",
+   "citation": "Colombo, D. and Maathuis, M. H., Order-Independent Constraint-Based Causal Structure Learning, JMLR 2014",
+   "url": "https://jmlr.org/papers/v15/colombo14a.html",
+   "what_it_shows": "Example 3 proves by construction that overwriting conflicting v-structures makes the output depend on order. Lists with bi-directed marks make the output order-free (Example 6).",
+   "difference_from_ours": "Our theory item 'order dependence of PC conflict rules' is already proved here. What we can add is a statement about direction: under a causal column order, 'keep first' tends to keep the collider decided from earlier (upstream) triples. That needs a proof or should be presented as an empirical regularity.",
+   "overlap": "scoops",
+   "label": "read (primary)",
+   "quote_or_locator": "Sec. 3.3 Example 3; Sec. 4.3 Example 6"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Robust discovery under imperfect structural constraints, with asymptotic theory",
+   "citation": "Wang, Z., Lin, X., He, C. and Gao, X., Robust Causal Discovery under Imperfect Structural Constraints (RoaDs), arXiv 2511.06790 (AAAI per search result; not confirmed)",
+   "url": "https://arxiv.org/html/2511.06790v1",
+   "what_it_shows": "Consistency when constraints are consistent (Thms 1-2, 5). No bound on harm from inconsistent constraints and no never-worse-than-data guarantee. Robustness is shown by experiment.",
+   "difference_from_ours": "The paper itself names the gap our bounded-harm and floor statements would fill.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Definition 2; Thms 1, 2, 5; App. B-C; discussion of the asymptotic gap"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Deferral between data method and LLM expert",
+   "citation": "Clivio, O., Mahajan, D., Taslakian, P., Magliacane, S., Mitliagkas, I., Zantedeschi, V. and Drouin, A., Learning to Defer for Causal Discovery with Imperfect Experts, arXiv 2502.13132; and Long, S., Piche, A., Zantedeschi, V., Schuster, T. and Drouin, A., Causal Discovery with Language Models as Imperfect Experts, arXiv 2307.02390 (abstract only)",
+   "url": "https://ar5iv.labs.arxiv.org/html/2502.13132",
+   "what_it_shows": "Learns per pair whether to trust the data method or the LLM. Its consistency bounds concern the surrogate loss, there is no test-time never-worse guarantee, and it never abstains. Long et al. query an imperfect expert about orientations and amend its answers with acyclicity and CI consistency, with no harm bound stated in the abstract.",
+   "difference_from_ours": "Our floor is a construction (data-only output is always kept unless replaced under typed rules), not a learned deferral.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "Abstract; Sec. 2, 2.1, 2.2"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Causal order as the robust object to elicit from imperfect experts",
+   "citation": "Vashishtha, A., Reddy, A. G., Kumar, A., Bachu, S., Balasubramanian, V. N. and Sharma, A., Causal Order: The Key to Leveraging Imperfect Experts in Causal Inference, arXiv 2310.15117 (ICLR 2025 per earlier audit; second-hand)",
+   "url": "https://arxiv.org/abs/2310.15117",
+   "what_it_shows": "With a perfect expert the causal order is always correct while the graph can be wrong. An expert-provided order reduces error in downstream discovery and effect inference.",
+   "difference_from_ours": "This supports the decision-value-ceiling argument that order, not the edge set, carries the decision. The abstract gives no ceiling or bound.",
+   "overlap": "partial",
+   "label": "abstract only",
+   "quote_or_locator": "Abstract"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Which intervention questions are answerable from an equivalence class",
+   "citation": "Zhang, J., Causal Reasoning with Ancestral Graphs, JMLR 9:1437-1474, 2008; and Fang, Z., Zhao, R., Liu, Y. and He, Y., On the Representation of Pairwise Causal Background Knowledge and Its Applications in Causal Inference, arXiv 2207.05067",
+   "url": "https://jmlr.org/papers/v9/zhang08a.html",
+   "what_it_shows": "Zhang extends do-calculus to PAGs. Fang et al. show that effect identifiability depends only on the decomposed MPDAG, and give a local IDA-type method for effects that are not identified.",
+   "difference_from_ours": "The theory behind the 'CPDAG ceiling' (which 'does Y move' answers the equivalence class settles) is established. Our contribution is to measure it as a ceiling (precision 1.000 at 92.5% coverage) next to learned graphs and the empty graph.",
+   "overlap": "substantial",
+   "label": "abstract only",
+   "quote_or_locator": "Both abstracts"
+  },
+  {
+   "claim": "L5",
+   "nearest_prior": "Directed F1 separated into skeleton and orientation layers",
+   "citation": "Deb, S., Shah, D. and Krishnan, A., Active Causal Discovery Benchmark, arXiv 2609.31675; and Petersen, A. H., arXiv 2412.10039",
+   "url": "https://arxiv.org/html/2609.31675",
+   "what_it_shows": "ACDB reports skeleton F1, compelled F1 and directed P/R/F1 as separate layers and decomposes precision and recall. Petersen derives expected precision, recall and F1 under random guessing.",
+   "difference_from_ours": "Neither states the identity F1 = S x a with a = c q + (1-c)/2. The identity is elementary algebra (directed true positives = skeleton true positives x share correctly oriented), so we should present it as bookkeeping that makes the error budget exact, not as a theorem.",
+   "overlap": "partial",
+   "label": "read (primary)",
+   "quote_or_locator": "ACDB Sec. 3.3-4 metrics; Petersen Sec. 2, 4"
+  }
+ ],
+ "novelty_matrix": {
+  "L1": {
+   "verdict": "partly open",
+   "why": "Order dependence of PC (skeleton and conflicting v-structures) is established (Colombo & Maathuis 2014), and order moving structure-learning scores is established for HC/Tabu and weakly for PC-Stable (Kitson & Constantinou 2024, 2025). Open as far as this search reached: (a) quantifying the benchmark authors' index rule on a public leaderboard; (b) the signed bias of PC's default conflict priority when the release puts columns in causal order, and maxP removing it; (c) shipped engine copies (Causal-Copilot's copy, gCastle 'original'/'stable') failing a perfect-oracle test on about 36% of problems. No public report of (c) was found, but GitHub issue search for gCastle was blocked.",
+   "must_cite": [
+    "Colombo & Maathuis 2014 JMLR",
+    "Ramsey, Zhang & Spirtes UAI 2006 (CPC)",
+    "Ramsey 2016 arXiv 1610.00378 (maxP)",
+    "Kitson & Constantinou 2024 DMKD",
+    "Kitson & Constantinou PGM 2024 / arXiv 2504.01740",
+    "Reisach et al. NeurIPS 2021",
+    "Reisach et al. NeurIPS 2023",
+    "CausalArena arXiv 2609.11897 + TabCausal README",
+    "causal-learn PC docs"
+   ]
+  },
+  "L2": {
+   "verdict": "partly open",
+   "why": "CARE already shows LLMs given algorithm outputs collapse under permuted names (for example 0.858 to 0.137 on ASIA, with ALARM at 37 nodes). Single-system name reliance is therefore not new. Open: a field-level result on end-to-end agents (>= 3 systems), crossed with column layout, on non-bnlearn 20-40-variable graphs, with a dose-response in the share of swapped names.",
+   "must_cite": [
+    "Dong et al. CARE arXiv 2511.16016",
+    "Kiciman et al. arXiv 2305.00050",
+    "Babakov et al. CausalGraphBench ACL SRW 2025",
+    "Srivastava et al. arXiv 2510.16530",
+    "Feng et al. ACL 2025",
+    "Jin et al. Corr2Cause ICLR 2024",
+    "Kitson & Constantinou arXiv 2608.27472",
+    "Li & Russo UAI 2026"
+   ]
+  },
+  "L3": {
+   "verdict": "partly open",
+   "why": "Interventional and identification-based evaluation exists (SID 2015, AID 2024) and is advocated (Gentzel et al. 2019); random-guess controls exist for skeleton metrics (Petersen); the theory of which questions a CPDAG settles exists. No paper found reports the empty graph ('nothing moves') as a baseline on a public discovery leaderboard's decision questions with the CPDAG as ceiling. The claim rests on one benchmark and must be stated as such until AB-04 repeats it.",
+   "must_cite": [
+    "Peters & Buhlmann 2015",
+    "Henckel, Wurtzen & Weichwald UAI 2024",
+    "Gentzel, Garant & Jensen NeurIPS 2019",
+    "Petersen arXiv 2412.10039",
+    "Maathuis et al. Nature Methods 2010 (IDA)",
+    "CausaLab arXiv 2605.26029"
+   ]
+  },
+  "L4": {
+   "verdict": "partly open",
+   "why": "Each ingredient has precedent: orient-only knowledge (pcalg addBgKnowledge; Li & Russo state LLMs 'cannot add edges'), per-edge provenance (GENESIS 'decision traceability'; DAGForge provenance channels), PROV-O, and calibrated edge probabilities. Not found: a record that types each direction by source and is checked by a verifier for knowledge-never-connects, interventions-outrank-knowledge, order invariance and a data-only floor. GENESIS was read at abstract level only and could close part of this.",
+   "must_cite": [
+    "Thorat et al. GENESIS arXiv 2608.03868",
+    "Li & Russo UAI 2026",
+    "Sheu et al. DAGForge arXiv 2607.21859",
+    "pcalg addBgKnowledge",
+    "Tetrad knowledge",
+    "W3C PROV-O",
+    "Kitson & Constantinou arXiv 2608.27472",
+    "Jabbari et al. arXiv 1712.08626"
+   ]
+  },
+  "L5": {
+   "verdict": "partly open",
+   "why": "Split by item. Conflict-rule order dependence: closed (Colombo & Maathuis 2014). Decision-value ceiling: the theory is established (Zhang 2008; Fang et al.; IDA), so only its measurement is ours. F1 = S x a: not found in print but elementary, so present it as an identity, not a result. Bounded harm with orient-only knowledge: partly open; Chen, Ban et al. bound order-consistent prior errors in score-based search, and Li & Russo measure harm under orient-only rules without a bound. Error budget: no prior found.",
+   "must_cite": [
+    "Colombo & Maathuis 2014",
+    "Chen, Ban et al. arXiv 2306.07032",
+    "Zhang JMLR 2008",
+    "Fang et al. arXiv 2207.05067",
+    "Vashishtha et al. arXiv 2310.15117",
+    "Wang et al. arXiv 2511.06790",
+    "Clivio et al. arXiv 2502.13132"
+   ]
+  }
+ },
+ "searches": [
+  "Kitson Constantinou variable order sensitivity structure learning 2026 arXiv",
+  "Kitson Constantinou 2026 column order structure learning obfuscated variable names LLM",
+  "Kitson Constantinou 2026 arXiv structure learning stability ordering \"Kitson\" causaliq",
+  "Colombo Maathuis order-independent constraint-based causal structure learning JMLR 2014 conflicting v-structures",
+  "Ramsey 2016 maxP \"Improving accuracy and scalability of the PC algorithm by maximizing p-value\"",
+  "causal-learn PC skeleton bug separating set issue github py-why",
+  "gCastle PC algorithm variant original stable bug skeleton github issue",
+  "gcastle PC \"adj(C, i)\" one side conditioning set wrong result d-separation oracle issue huawei-noah trustworthyAI",
+  "Reisach \"Beware of the Simulated DAG\" varsortability NeurIPS 2021",
+  "Reisach Tami Seiler Weichwald Buhlmann \"A Scale-Invariant Sorting Criterion\" R2-sortability NeurIPS 2023",
+  "causal discovery benchmark column order leak topological order variables ordered \"causal order\" index tie-breaking evaluation pitfall",
+  "causal discovery synthetic benchmark adjacency \"lower triangular\" variables not permuted leak causal order evaluation artifact",
+  "causal discovery benchmark shuffle column order permutation results change \"variable order\" sensitivity evaluation recommendation randomize column order 2025 2026",
+  "CPDAG to DAG conversion evaluation undirected edges oriented arbitrarily bias benchmark score \"undirected edges\" counted as correct half",
+  "Henckel Wurtzen Weichwald adjustment identification distance gadjid causal graph evaluation",
+  "Peters Buhlmann \"Structural Intervention Distance\" Neural Computation 2015",
+  "causal discovery evaluation \"empty graph\" baseline interventional distribution prediction learned graphs no better",
+  "\"empty graph\" achieves lower SHD than causal discovery methods sparse graphs baseline",
+  "decision-focused evaluation of causal discovery \"does intervening on X change Y\" ancestral relation accuracy benchmark learned graph",
+  "Gentzel Garant Jensen \"The Case for Evaluating Causal Models Using Interventional Measures and Empirical Data\" NeurIPS 2019",
+  "LLM causal discovery variable names shuffled permuted swapped data unchanged memorization bnlearn evaluation",
+  "Feng 2025 ACL \"causal\" LLM occurrence controlled fictitious terms \"causal parrots\" variable name perturbation",
+  "LLMs memorize bnlearn causal graphs memorization test benchmark contamination causal discovery",
+  "LLM-assisted causal discovery \"misleading\" variable names semantic conflict with data adversarial names robustness 2026",
+  "Jin Corr2Cause variable refactorization paraphrase robustness \"Can Large Language Models Infer Causation from Correlation\" ICLR 2024",
+  "LLM causal discovery position bias order of variables in prompt causal order listed first earlier variable cause bias",
+  "Tetrad knowledge file tiers required forbidden edges causal-cmd knowledge format",
+  "causal discovery edge confidence calibration selective prediction abstention bootstrap calibrated edge probabilities",
+  "causal discovery output provenance per edge \"source\" knowledge vs data audit trail LLM-assisted causal graph explanation which evidence oriented each edge",
+  "risk-coverage curve causal discovery abstain uncertain edges \"selective\" causal structure learning precision at coverage",
+  "LLM priors causal discovery guarantee \"no worse than\" data-only robust to incorrect prior knowledge imperfect expert",
+  "\"causal discovery with imperfect\" knowledge OR expert theoretical guarantee wrong background knowledge constraint-based",
+  "Constantinou Guo Kitson \"The impact of prior knowledge on causal structure learning\" Knowledge and Information Systems incorrect knowledge",
+  "PC algorithm background knowledge orient only cannot add adjacency soundness wrong knowledge Meek 1995 \"background knowledge\" error propagation bound",
+  "directed edge F1 decomposition skeleton F1 orientation accuracy undirected edges random orientation expected F1 causal discovery evaluation",
+  "\"arrowhead precision\" \"adjacency precision\" causal discovery evaluation directed F1 equals adjacency F1 times orientation accuracy",
+  "fraction of causal relations identifiable from CPDAG definite ancestors Markov equivalence class proportion of identifiable causal effects",
+  "Roumpelaki Borboudakis Triantafillou Tsamardinos \"marginal causal consistency\" OR \"Zhang 2006 causal reasoning with ancestral graphs\" definite causal relation PAG"
+ ],
+ "not_read": [
+  {
+   "work": "CausalArena (arXiv 2609.11897) Appendices B-C",
+   "why": "The arXiv HTML returned by the fetch tool ends mid-Sec. 6.2 (77k characters) and the PDF had no text layer. The index rule is instead confirmed from the TabCausal baselines README (primary code documentation). Whether the paper's appendix states the rule or the column order is unverified."
+  },
+  {
+   "work": "Kitson & Constantinou 2026 on variable-order sensitivity",
+   "why": "Could not confirm that a 2026 paper with this topic exists. The order-sensitivity papers found are DMKD 2024 (arXiv 2206.08952), PGM 2024 and arXiv 2504.01740, all read. Their 2026 paper (arXiv 2608.27472, PGM 2026 poster) is about LLM fusion and does not study order."
+  },
+  {
+   "work": "\"LLMs memorise BNLearn\" (exact title)",
+   "why": "No paper with this title was found. CausalGraphBench (ACL SRW 2025) and Srivastava et al. (arXiv 2510.16530) cover the point and were used instead."
+  },
+  {
+   "work": "gCastle (huawei-noah/trustworthyAI) GitHub issues",
+   "why": "Fetch blocked by robots.txt, so I cannot rule out an existing public report of the one-sided separating-set search."
+  },
+  {
+   "work": "GENESIS (arXiv 2608.03868) full text",
+   "why": "Abstract only. This is the highest-risk prior for L4 and must be read in full before the ledger is called new."
+  },
+  {
+   "work": "arXiv 2606.01789 (first fetch)",
+   "why": "arxiv.org returned HTTP 429 and the page was not retried there. Read later via the alphaxiv mirror: it is Zhang et al., 'Consistency evaluation of benchmarks used for causal discovery', unrelated to order."
+  },
+  {
+   "work": "Tetrad PC-Max manual page body",
+   "why": "Fetch returned only navigation; maxP claims rest on Ramsey 2016's abstract and causal-learn docs."
+  },
+  {
+   "work": "Peters & Buhlmann 2015, publisher page (direct.mit.edu)",
+   "why": "Client error. The ETH author manuscript was read instead."
+  },
+  {
+   "work": "Full texts of Gentzel et al. 2019, Kiciman et al., Feng et al., Ban et al. (2306.16902), ILS-CSL (2311.11689), Takayama et al. SCP (2402.01454), Long et al. (2307.02390), Verma et al. (TMLR 2026), Vashishtha et al. (2310.15117), Zhang 2008, Fang et al. (2207.05067), Ramsey 2016, CausalDS, CausaLab, ReplaySCM, CausalVerify",
+   "why": "Read at abstract level only (time budget). Each row is labelled 'abstract only'."
+  },
+  {
+   "work": "Perkovic et al. on identification in MPDAGs; Tetrad adjacency/arrowhead precision definitions",
+   "why": "Not checked; would firm up the L5 ceiling and the F1 identity rows."
+  },
+  {
+   "work": "Venues stated only second-hand",
+   "why": "CausalProbe-2024 NeurIPS 2024, Kiciman TMLR, Vashishtha ICLR 2025, RoaDs AAAI and CPC UAI 2006 were not confirmed on a primary venue page."
+  }
+ ],
+ "also_checked_not_tabled": [
+  {
+   "work": "Li, X. et al., Causal Ensemble Agent, arXiv 2606.10607",
+   "note": "read (primary): removing names and descriptions costs 41.7% on one measure (Sec. 4.2); no swap or layout arm"
+  },
+  {
+   "work": "Velev & Lessmann, arXiv 2409.19377",
+   "note": "read (primary): multi-metric DOS score with SID and causal-order distance; no trivial baseline"
+  },
+  {
+   "work": "Wu, Yu, Wu & Tan, arXiv 2506.00844",
+   "note": "abstract only: position that LLMs should not decide existence or direction of causal links"
+  },
+  {
+   "work": "Constantinou, Guo & Kitson, KAIS 2023",
+   "note": "read (primary): only correct knowledge tested"
+  },
+  {
+   "work": "Rehak et al., Metrics for the Evaluation of Learned Causal Graphs Based on Ground Truth (KIT/Fraunhofer)",
+   "note": "read (primary): proposes nCED; uses the empty graph as a reference point in experiments; no interventional metric"
+  }
+ ]
+}

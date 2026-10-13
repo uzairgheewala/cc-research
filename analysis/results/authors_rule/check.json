@@ -1,0 +1,52 @@
+{
+ "family": "semantic (public 50 scenarios x 5 files)",
+ "tickets": [
+  "BEN-07",
+  "REP-07"
+ ],
+ "rule": "undecided pairs oriented lower column index -> higher (authors' rule) vs at random (expected)",
+ "methods": {
+  "PC": {
+   "released_order": {
+    "files": 250,
+    "f1_authors_rule": 0.3962,
+    "f1_random_rule": 0.3346,
+    "layout_gain": 0.0616
+   },
+   "shuffled_order": {
+    "files": 250,
+    "f1_authors_rule": 0.4255,
+    "f1_random_rule": 0.4279,
+    "layout_gain": -0.0025
+   }
+  },
+  "GES": {
+   "released_order": {
+    "files": 225,
+    "f1_authors_rule": 0.5502,
+    "f1_random_rule": 0.5279,
+    "layout_gain": 0.0222
+   },
+   "shuffled_order": {
+    "files": 226,
+    "f1_authors_rule": 0.5271,
+    "f1_random_rule": 0.5281,
+    "layout_gain": -0.001
+   }
+  },
+  "FCI": {
+   "released_order": {
+    "files": 225,
+    "f1_authors_rule": 0.5784,
+    "f1_random_rule": 0.3575,
+    "layout_gain": 0.2209
+   },
+   "shuffled_order": {
+    "files": 226,
+    "f1_authors_rule": 0.355,
+    "f1_random_rule": 0.3613,
+    "layout_gain": -0.0063
+   }
+  }
+ }
+}

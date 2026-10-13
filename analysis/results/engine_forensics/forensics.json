@@ -1,0 +1,197 @@
+{
+ "tickets": [
+  "AUD-35",
+  "AUD-23",
+  "CAP-05",
+  "CAP-11"
+ ],
+ "dags": 120,
+ "perms_per_dag": 6,
+ "seed": 20261013,
+ "same_dags_as": "analysis/results/engine_oracle/oracle.json (AUD-27)",
+ "engines": {
+  "pgmpy_orig_unbounded": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "pgmpy_orig_default5": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "pgmpy_stable_unbounded": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "pgmpy_stable_default5": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "pgmpy_parallel_unbounded": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "pgmpy_parallel_default5": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "dodiscover_pc": {
+   "runs": 717,
+   "errors": 3,
+   "exact_equivalence_class": 597,
+   "exact_skeleton": 717,
+   "dags": 120,
+   "dags_order_invariant": 88,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "orientation only, order dependent"
+  },
+  "dodiscover_fci_skeleton": {
+   "runs": 717,
+   "errors": 0,
+   "exact_equivalence_class": 717,
+   "exact_skeleton": 717,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct"
+  },
+  "tigramite_pcmciplus": {
+   "runs": 720,
+   "errors": 0,
+   "exact_equivalence_class": 720,
+   "exact_skeleton": 720,
+   "dags": 120,
+   "dags_order_invariant": 120,
+   "skeleton_extra_adjacencies": 0,
+   "skeleton_missing_adjacencies": 0,
+   "defect_class": "correct",
+   "runs_with_conflict_marks": 0
+  }
+ },
+ "errors": {
+  "dodiscover": {
+   "count": 3,
+   "first": "NetworkXError: The edge v3-v2 not in graph."
+  }
+ },
+ "determinism": {
+  "engine": "Causal-Copilot vendored causal-learn FCI, joblib threading",
+  "runs": 3,
+  "dags": 40,
+  "dags_with_differing_output": 0
+ },
+ "engine_versions": {
+  "pgmpy": "1.1.2 (PyPI)",
+  "dodiscover": "git main 6e64456198a5b66e515f250a8f4b143ebc31c9a6 (0.0.0.dev0), pywhy-graphs 0.1.0",
+  "tigramite": "5.2.10.1 (PyPI)",
+  "networkx (venv2)": "3.6.1",
+  "vendored causal-learn": "Causal-Copilot a31aa7c externals/causal-learn"
+ },
+ "minimal_counterexample_dodiscover_pc": {
+  "p": 5,
+  "true_dag": [
+   [
+    4,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    2
+   ]
+  ],
+  "true_cpdag_directed": [
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4,
+    2
+   ]
+  ],
+  "true_cpdag_undirected": [],
+  "dodiscover_directed": [
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    4,
+    1
+   ]
+  ],
+  "dodiscover_undirected": [],
+  "note": "output contains the directed cycle 4->1->2->4; with oracle CI tests the correct output is the true CPDAG (Meek rule 2 orients 4->2). Found by search over 3000 random 4-6 node DAGs, columns in index order, 2026-10-12."
+ },
+ "nondeterminism": {
+  "dodiscover_pc": "3 of 720 runs raised NetworkXError 'The edge v3-v2 not in graph' in the forensics run; a rerun of the same 720 inputs raised none",
+  "vendored_fci": "3 x 40 DAGs identical under joblib threading in this run; the 533 vs 531 difference seen in AUD-27 was not reproduced (it involved all 120 DAGs x 6 orders)"
+ }
+}

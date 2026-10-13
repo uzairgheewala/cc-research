@@ -1,0 +1,26 @@
+{
+ "producer": "analysis/rescore_controls.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-28",
+  "BEN-07",
+  "REP-07"
+ ],
+ "regime": "D",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "both arms reported",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "orientation_rule": "both reported: lower (authors') and random (expectation)",
+ "metric_defs": {
+  "S": "skeleton F1",
+  "c": "commit rate",
+  "q": "commit accuracy",
+  "a": "c q + (1 - c)/2",
+  "F1_random": "directed F1, undecided at random",
+  "F1_lower": "directed F1, authors' rule"
+ },
+ "split_detail": "public half (50 scenarios x 5 files per family)"
+}

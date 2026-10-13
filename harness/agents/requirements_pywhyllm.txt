@@ -1,0 +1,64 @@
+# AB-05 (AUD-37) pinned requirements for the 'pywhyllm' probe: installed with  pip install --target /opt/probes/pywhyllm -r this-file
+# Resolved for Python 3.10 / linux x86_64 (the cc-research image) with:
+#   uv pip compile --python-version 3.10 --python-platform x86_64-manylinux_2_28 --exclude-newer 2026-01-06T00:00:00Z
+# i.e. the newest versions available on the agent repository's last commit date. Top-level inputs:
+#   guidance>=0.2
+#   openai>=1.70
+#   pydantic>=2.11
+#   networkx<=3.2.1
+#   numpy
+#   httpx
+#   tiktoken
+#   python-dotenv
+# Verified locally: installed into a --target dir, imported and stub-run end to end (Python 3.10.20).
+
+annotated-types==0.7.0
+anyio==4.12.0
+asttokens==3.0.1
+certifi==2026.1.4
+charset-normalizer==3.4.4
+comm==0.2.3
+decorator==5.2.1
+distro==1.9.0
+exceptiongroup==1.3.1
+executing==2.2.1
+guidance==0.3.0
+guidance-stitch==0.1.5
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.11
+ipython==8.38.0
+ipywidgets==8.1.8
+jedi==0.19.2
+jinja2==3.1.6
+jiter==0.12.0
+jupyterlab-widgets==3.0.16
+llguidance==1.1.0
+markupsafe==3.0.3
+matplotlib-inline==0.2.1
+networkx==3.2.1
+numpy==2.2.6
+openai==2.14.0
+parso==0.8.5
+pexpect==4.9.0
+prompt-toolkit==3.0.52
+psutil==7.2.1
+ptyprocess==0.7.0
+pure-eval==0.2.3
+pydantic==2.12.5
+pydantic-core==2.41.5
+pygments==2.19.2
+python-dotenv==1.2.1
+regex==2025.11.3
+requests==2.32.5
+sniffio==1.3.1
+stack-data==0.6.3
+tiktoken==0.12.0
+tqdm==4.67.1
+traitlets==5.14.3
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+urllib3==2.6.2
+wcwidth==0.2.14
+widgetsnbextension==4.0.15
