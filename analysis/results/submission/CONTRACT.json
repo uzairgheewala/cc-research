@@ -1,0 +1,37 @@
+{
+ "tickets": ["CAP-17", "BND-06", "REP-07", "BEN-07", "BEN-11"],
+ "producer": "analysis/package_submission.py (packages and validator_output.txt; validator: external/causalarena/tools/validate_submission.py, unmodified)",
+ "score_bearing": true,
+ "regime": "D",
+ "split": "all-public (measurement, no tuning)",
+ "controls": {
+  "columns_shuffled": "per-package: <method>__released = false, <method>__shuffled = true (seed 20261010 + crc32(file name); graph mapped back before scoring)",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "per_file": {
+  "pc__released": {"controls": {"columns_shuffled": false}},
+  "pc__shuffled": {"controls": {"columns_shuffled": true}},
+  "gesbic__released": {"controls": {"columns_shuffled": false}},
+  "gesbic__shuffled": {"controls": {"columns_shuffled": true}},
+  "fci__released": {"controls": {"columns_shuffled": false}},
+  "fci__shuffled": {"controls": {"columns_shuffled": true}},
+  "lingam__released": {"controls": {"columns_shuffled": false}},
+  "lingam__shuffled": {"controls": {"columns_shuffled": true}},
+  "notears__released": {"controls": {"columns_shuffled": false}},
+  "notears__shuffled": {"controls": {"columns_shuffled": true}},
+  "validator_output.txt": {"score_bearing": false},
+  "packages.json": {"score_bearing": false}
+ },
+ "orientation_rule": "undecided pairs oriented at random with seed crc32(file name) (CausalArena Appendix B.2/B.4); the adjacency in predictions/*.npz is that oriented graph; committed arrows and undecided pairs are stored beside it",
+ "shd_variant": "one per unordered pair whose predicted arrows differ from the true arrow(s) (REP-06)",
+ "metric_defs": {
+  "directed_f1": "summary.csv f1: F1 over directed edges after the orientation rule",
+  "directed_precision": "summary.csv precision, same rule",
+  "directed_recall": "summary.csv recall, same rule",
+  "shd": "summary.csv shd, variant in shd_variant",
+  "nshd": "shd / (d (d - 1) / 2); our definition, the CausalArena template does not define it",
+  "seconds": "summary.csv runtime_sec: wall time of the method call on one file"
+ },
+ "note": "Nothing here has been submitted. status timeout/failed rows leave graph metrics blank (allowed by the summary schema); our own family means score those files as empty graphs. Families present per package are listed in each manifest.json (row_sources, families_missing)."
+}

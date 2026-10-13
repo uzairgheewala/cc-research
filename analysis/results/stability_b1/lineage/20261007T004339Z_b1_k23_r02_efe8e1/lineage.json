@@ -1,0 +1,874 @@
+{
+ "run_id": "20261007T004339Z_b1_k23_r02_efe8e1",
+ "dataset": "/research/datasets/suite_b1/k23/k23.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.1,
+  "indep_test": "rcit",
+  "depth": 6
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [
+  "background_knowledge"
+ ],
+ "variables": [
+  "displacement",
+  "weight",
+  "acceleration",
+  "horsepower",
+  "mpg"
+ ],
+ "n_pairs": 10,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 6,
+   "S1 after bootstrap edits": 3,
+   "S2 after LLM review": 5,
+   "S3 after KCI pruning": 5,
+   "S4 final (after cycle step)": 5
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 3,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 1,
+  "llm_calls": 5,
+  "llm_distinct_pairs_answered": 10,
+  "llm_self_pairs_answered": 5,
+  "llm_letters": {
+   "B": 2,
+   "C": 5,
+   "A": 3
+  },
+  "llm_added": 4,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 0,
+  "llm_removed": 2,
+  "llm_reoriented": 0,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 5,
+  "final_edges_set_by": {
+   "algorithm (unchanged)": 1,
+   "llm": 4
+  },
+  "final_edges_identical_to_algorithm_output": 1,
+  "final_edges_with_no_adjacency_in_algorithm_output": 3
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "displacement",
+    "acceleration"
+   ],
+   "was": "displacement o-> acceleration",
+   "most_frequent_bootstrap_status": "displacement o-> acceleration",
+   "frequency": 0.65
+  }
+ ],
+ "llm_added": [
+  {
+   "pair": [
+    "displacement",
+    "horsepower"
+   ],
+   "from": "displacement   horsepower (no edge)",
+   "to": "displacement->horsepower",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.25
+  },
+  {
+   "pair": [
+    "weight",
+    "mpg"
+   ],
+   "from": "weight   mpg (no edge)",
+   "to": "weight->mpg",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.15
+  },
+  {
+   "pair": [
+    "acceleration",
+    "horsepower"
+   ],
+   "from": "acceleration   horsepower (no edge)",
+   "to": "horsepower->acceleration",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.05
+  },
+  {
+   "pair": [
+    "horsepower",
+    "mpg"
+   ],
+   "from": "horsepower   mpg (no edge)",
+   "to": "horsepower->mpg",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.55
+  }
+ ],
+ "llm_removed": [
+  {
+   "pair": [
+    "weight",
+    "horsepower"
+   ],
+   "from": "horsepower o-> weight",
+   "to": "weight   horsepower (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.05
+  },
+  {
+   "pair": [
+    "acceleration",
+    "mpg"
+   ],
+   "from": "acceleration <-> mpg",
+   "to": "acceleration   mpg (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.05
+  }
+ ],
+ "llm_reoriented": [],
+ "final_edges": [
+  {
+   "edge": "weight->displacement",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.4
+  },
+  {
+   "edge": "displacement->horsepower",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.25
+  },
+  {
+   "edge": "weight->mpg",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.15
+  },
+  {
+   "edge": "horsepower->acceleration",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.05
+  },
+  {
+   "edge": "horsepower->mpg",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.55
+  }
+ ],
+ "truth_kind": "reference graph autompg_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 4,
+   "adj_fp": 2,
+   "adj_fn": 1,
+   "adj_precision": 0.6666666666666666,
+   "adj_recall": 0.8,
+   "adj_f1": 0.7272727272727272,
+   "true_edges_correctly_directed": 1,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 3,
+   "dir_predicted": 2,
+   "dir_tp": 1,
+   "dir_precision": 0.5,
+   "dir_recall": 0.2,
+   "dir_f1": 0.28571428571428575,
+   "shd_vs_true_dag": 6,
+   "shd_vs_true_cpdag": 7
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 2,
+   "adj_fp": 1,
+   "adj_fn": 3,
+   "adj_precision": 0.6666666666666666,
+   "adj_recall": 0.4,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 2,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 6,
+   "shd_vs_true_cpdag": 6
+  },
+  "S2 after LLM review": {
+   "adj_tp": 1,
+   "adj_fp": 4,
+   "adj_fn": 4,
+   "adj_precision": 0.2,
+   "adj_recall": 0.2,
+   "adj_f1": 0.20000000000000004,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 1,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 5,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 9,
+   "shd_vs_true_cpdag": 9
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 1,
+   "adj_fp": 4,
+   "adj_fn": 4,
+   "adj_precision": 0.2,
+   "adj_recall": 0.2,
+   "adj_f1": 0.20000000000000004,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 1,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 5,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 9,
+   "shd_vs_true_cpdag": 9
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 1,
+   "adj_fp": 4,
+   "adj_fn": 4,
+   "adj_precision": 0.2,
+   "adj_recall": 0.2,
+   "adj_f1": 0.20000000000000004,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 1,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 5,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 9,
+   "shd_vs_true_cpdag": 9
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "displacement",
+    "weight"
+   ],
+   "types": [
+    "weight->displacement",
+    "weight->displacement",
+    "weight->displacement",
+    "weight->displacement",
+    "weight->displacement"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.4,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.15,
+    "no edge": 0.4
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(displacement, weight)",
+     "letter": "B",
+     "explanation": "Heavier vehicles often require larger engine displacement to provide sufficient power and performance, indicating that weight influences displacement;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "displacement",
+    "acceleration"
+   ],
+   "types": [
+    "displacement o-> acceleration",
+    "displacement   acceleration (no edge)",
+    "displacement   acceleration (no edge)",
+    "displacement   acceleration (no edge)",
+    "displacement   acceleration (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "displacement o-> acceleration",
+     "to": "displacement   acceleration (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.25,
+    "a o-> b": 0.65,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(displacement, acceleration)",
+     "letter": "C",
+     "explanation": "Displacement affects acceleration indirectly through horsepower, but there is no direct causal relationship between displacement and acceleration."
+    }
+   ],
+   "truth": "acceleration -> displacement"
+  },
+  {
+   "pair": [
+    "displacement",
+    "horsepower"
+   ],
+   "types": [
+    "displacement   horsepower (no edge)",
+    "displacement   horsepower (no edge)",
+    "displacement->horsepower",
+    "displacement->horsepower",
+    "displacement->horsepower"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "displacement   horsepower (no edge)",
+     "to": "displacement->horsepower"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.25,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.25,
+    "no edge": 0.25
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(displacement, horsepower)",
+     "letter": "A",
+     "explanation": "Larger engine displacement generally leads to higher horsepower as it allows for more air and fuel to be combusted, increasing power output;"
+    }
+   ],
+   "truth": "horsepower -> displacement"
+  },
+  {
+   "pair": [
+    "displacement",
+    "mpg"
+   ],
+   "types": [
+    "displacement   mpg (no edge)",
+    "displacement   mpg (no edge)",
+    "displacement   mpg (no edge)",
+    "displacement   mpg (no edge)",
+    "displacement   mpg (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(displacement, mpg)",
+     "letter": "C",
+     "explanation": "Displacement and MPG are related through other factors like engine efficiency and vehicle design, but displacement does not directly cause changes in MPG;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "weight",
+    "acceleration"
+   ],
+   "types": [
+    "weight->acceleration",
+    "weight   acceleration (no edge)",
+    "weight   acceleration (no edge)",
+    "weight   acceleration (no edge)",
+    "weight   acceleration (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "weight->acceleration",
+     "to": "weight   acceleration (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.2,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.4,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.4
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(weight, acceleration)",
+     "letter": "C",
+     "explanation": "Weight and acceleration are not directly causally related, as acceleration is more directly influenced by engine power and vehicle dynamics rather than weight alone;"
+    }
+   ],
+   "truth": "weight -> acceleration"
+  },
+  {
+   "pair": [
+    "weight",
+    "horsepower"
+   ],
+   "types": [
+    "horsepower o-> weight",
+    "horsepower o-> weight",
+    "weight   horsepower (no edge)",
+    "weight   horsepower (no edge)",
+    "weight   horsepower (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "horsepower o-> weight",
+     "to": "weight   horsepower (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.3,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.25,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.15,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(weight, horsepower)",
+     "letter": "C",
+     "explanation": "There is no direct causal relationship between weight and horsepower, as horsepower is a measure of engine power and not directly influenced by the vehicle's weight."
+    }
+   ],
+   "truth": "horsepower -> weight"
+  },
+  {
+   "pair": [
+    "weight",
+    "mpg"
+   ],
+   "types": [
+    "weight <-> mpg",
+    "weight   mpg (no edge)",
+    "weight->mpg",
+    "weight->mpg",
+    "weight->mpg"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "weight <-> mpg",
+     "to": "weight   mpg (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "weight   mpg (no edge)",
+     "to": "weight->mpg"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.3,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.3,
+    "no edge": 0.15
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(weight, mpg)",
+     "letter": "A",
+     "explanation": "Heavier vehicles tend to have lower fuel efficiency because more energy is required to move a larger mass, leading to decreased miles per gallon;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "acceleration",
+    "horsepower"
+   ],
+   "types": [
+    "acceleration   horsepower (no edge)",
+    "acceleration   horsepower (no edge)",
+    "horsepower->acceleration",
+    "horsepower->acceleration",
+    "horsepower->acceleration"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "acceleration   horsepower (no edge)",
+     "to": "horsepower->acceleration"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.25,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.45,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.25,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(acceleration, horsepower)",
+     "letter": "B",
+     "explanation": "Higher horsepower typically leads to better acceleration, as more power allows a vehicle to increase its speed more quickly;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "acceleration",
+    "mpg"
+   ],
+   "types": [
+    "acceleration <-> mpg",
+    "acceleration <-> mpg",
+    "acceleration   mpg (no edge)",
+    "acceleration   mpg (no edge)",
+    "acceleration   mpg (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "acceleration <-> mpg",
+     "to": "acceleration   mpg (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.6,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(acceleration, mpg)",
+     "letter": "C",
+     "explanation": "Acceleration and MPG are not directly causally related, as acceleration is more influenced by horsepower and vehicle dynamics, while MPG is affected by factors like weight and engine efficiency;"
+    }
+   ],
+   "truth": "acceleration -> mpg"
+  },
+  {
+   "pair": [
+    "horsepower",
+    "mpg"
+   ],
+   "types": [
+    "horsepower   mpg (no edge)",
+    "horsepower   mpg (no edge)",
+    "horsepower->mpg",
+    "horsepower->mpg",
+    "horsepower->mpg"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "horsepower   mpg (no edge)",
+     "to": "horsepower->mpg"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.3,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.55
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(horsepower, mpg)",
+     "letter": "A",
+     "explanation": "Higher horsepower typically leads to lower MPG due to increased fuel consumption as more power generally requires more fuel;"
+    }
+   ],
+   "truth": "no edge"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    4,
+    3
+   ],
+   [
+    4,
+    1,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    4,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ]
+ }
+}

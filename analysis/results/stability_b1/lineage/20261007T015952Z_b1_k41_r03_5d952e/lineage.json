@@ -1,0 +1,850 @@
+{
+ "run_id": "20261007T015952Z_b1_k41_r03_5d952e",
+ "dataset": "/research/datasets/suite_b1/k41/k41.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.1,
+  "indep_test": "rcit",
+  "depth": 6
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [
+  "background_knowledge"
+ ],
+ "variables": [
+  "Altitude",
+  "Temperature",
+  "Precipitation",
+  "Longitude",
+  "Sunshine hours"
+ ],
+ "n_pairs": 10,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 6,
+   "S1 after bootstrap edits": 0,
+   "S2 after LLM review": 4,
+   "S3 after KCI pruning": 4,
+   "S4 final (after cycle step)": 4
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 6,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 1,
+  "llm_calls": 5,
+  "llm_distinct_pairs_answered": 10,
+  "llm_self_pairs_answered": 5,
+  "llm_letters": {
+   "A": 2,
+   "C": 6,
+   "B": 2
+  },
+  "llm_added": 4,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 0,
+  "llm_removed": 0,
+  "llm_reoriented": 0,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 4,
+  "final_edges_set_by": {
+   "llm": 4
+  },
+  "final_edges_identical_to_algorithm_output": 0,
+  "final_edges_with_no_adjacency_in_algorithm_output": 2
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "Precipitation",
+    "Longitude"
+   ],
+   "was": "Longitude->Precipitation",
+   "most_frequent_bootstrap_status": "Longitudeidirected",
+   "frequency": 0.5
+  }
+ ],
+ "llm_added": [
+  {
+   "pair": [
+    "Altitude",
+    "Temperature"
+   ],
+   "from": "Altitude   Temperature (no edge)",
+   "to": "Altitude->Temperature",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Altitude",
+    "Precipitation"
+   ],
+   "from": "Altitude   Precipitation (no edge)",
+   "to": "Altitude->Precipitation",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Temperature",
+    "Precipitation"
+   ],
+   "from": "Temperature   Precipitation (no edge)",
+   "to": "Precipitation->Temperature",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.3
+  },
+  {
+   "pair": [
+    "Temperature",
+    "Sunshine hours"
+   ],
+   "from": "Temperature   Sunshine hours (no edge)",
+   "to": "Sunshine hours->Temperature",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  }
+ ],
+ "llm_removed": [],
+ "llm_reoriented": [],
+ "final_edges": [
+  {
+   "edge": "Altitude->Temperature",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Altitude->Precipitation",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Precipitation->Temperature",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.3
+  },
+  {
+   "edge": "Sunshine hours->Temperature",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  }
+ ],
+ "truth_kind": "reference graph dwd_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 4,
+   "adj_fp": 2,
+   "adj_fn": 0,
+   "adj_precision": 0.6666666666666666,
+   "adj_recall": 1.0,
+   "adj_f1": 0.8,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 4,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 6,
+   "shd_vs_true_cpdag": 6
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 0,
+   "adj_fp": 0,
+   "adj_fn": 4,
+   "adj_precision": null,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 0,
+   "dir_tp": 0,
+   "dir_precision": null,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 4,
+   "shd_vs_true_cpdag": 4
+  },
+  "S2 after LLM review": {
+   "adj_tp": 2,
+   "adj_fp": 2,
+   "adj_fn": 2,
+   "adj_precision": 0.5,
+   "adj_recall": 0.5,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 4,
+   "dir_tp": 2,
+   "dir_precision": 0.5,
+   "dir_recall": 0.5,
+   "dir_f1": 0.5,
+   "shd_vs_true_dag": 4,
+   "shd_vs_true_cpdag": 5
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 2,
+   "adj_fp": 2,
+   "adj_fn": 2,
+   "adj_precision": 0.5,
+   "adj_recall": 0.5,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 4,
+   "dir_tp": 2,
+   "dir_precision": 0.5,
+   "dir_recall": 0.5,
+   "dir_f1": 0.5,
+   "shd_vs_true_dag": 4,
+   "shd_vs_true_cpdag": 5
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 2,
+   "adj_fp": 2,
+   "adj_fn": 2,
+   "adj_precision": 0.5,
+   "adj_recall": 0.5,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 4,
+   "dir_tp": 2,
+   "dir_precision": 0.5,
+   "dir_recall": 0.5,
+   "dir_f1": 0.5,
+   "shd_vs_true_dag": 4,
+   "shd_vs_true_cpdag": 5
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "Altitude",
+    "Temperature"
+   ],
+   "types": [
+    "Altitude <-> Temperature",
+    "Altitude   Temperature (no edge)",
+    "Altitude->Temperature",
+    "Altitude->Temperature",
+    "Altitude->Temperature"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Altitude <-> Temperature",
+     "to": "Altitude   Temperature (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Altitude   Temperature (no edge)",
+     "to": "Altitude->Temperature"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.3,
+    "a o-> b": 0.2,
+    "b o-> a": 0.4,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Altitude, Temperature)",
+     "letter": "A",
+     "explanation": "Generally, temperature decreases with increasing altitude due to the thinning atmosphere, following the lapse rate principle;"
+    }
+   ],
+   "truth": "Altitude -> Temperature"
+  },
+  {
+   "pair": [
+    "Altitude",
+    "Precipitation"
+   ],
+   "types": [
+    "Altitude <-> Precipitation",
+    "Altitude   Precipitation (no edge)",
+    "Altitude->Precipitation",
+    "Altitude->Precipitation",
+    "Altitude->Precipitation"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Altitude <-> Precipitation",
+     "to": "Altitude   Precipitation (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Altitude   Precipitation (no edge)",
+     "to": "Altitude->Precipitation"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.25,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Altitude, Precipitation)",
+     "letter": "A",
+     "explanation": "Higher altitudes can lead to increased precipitation due to orographic lift, where moist air rises and cools, leading to rain or snow."
+    }
+   ],
+   "truth": "Altitude -> Precipitation"
+  },
+  {
+   "pair": [
+    "Altitude",
+    "Longitude"
+   ],
+   "types": [
+    "Altitude   Longitude (no edge)",
+    "Altitude   Longitude (no edge)",
+    "Altitude   Longitude (no edge)",
+    "Altitude   Longitude (no edge)",
+    "Altitude   Longitude (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.1,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.75
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Altitude, Longitude)",
+     "letter": "C",
+     "explanation": "Altitude and longitude are independent geographical coordinates, with no causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Altitude",
+    "Sunshine hours"
+   ],
+   "types": [
+    "Sunshine hours o-> Altitude",
+    "Altitude   Sunshine hours (no edge)",
+    "Altitude   Sunshine hours (no edge)",
+    "Altitude   Sunshine hours (no edge)",
+    "Altitude   Sunshine hours (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Sunshine hours o-> Altitude",
+     "to": "Altitude   Sunshine hours (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.3,
+    "a o-> b": 0.05,
+    "b o-> a": 0.4,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.25
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Altitude, Sunshine hours)",
+     "letter": "C",
+     "explanation": "Altitude does not directly cause changes in sunshine hours, as sunshine hours are more influenced by geographical location and weather patterns;"
+    }
+   ],
+   "truth": "Altitude -> Sunshine hours"
+  },
+  {
+   "pair": [
+    "Temperature",
+    "Precipitation"
+   ],
+   "types": [
+    "Temperature   Precipitation (no edge)",
+    "Temperature   Precipitation (no edge)",
+    "Precipitation->Temperature",
+    "Precipitation->Temperature",
+    "Precipitation->Temperature"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Temperature   Precipitation (no edge)",
+     "to": "Precipitation->Temperature"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.1,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.45,
+    "no edge": 0.3
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Temperature, Precipitation)",
+     "letter": "B",
+     "explanation": "Changes in temperature can influence precipitation patterns by affecting evaporation rates and atmospheric moisture capacity;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Temperature",
+    "Longitude"
+   ],
+   "types": [
+    "Temperature <-> Longitude",
+    "Temperature   Longitude (no edge)",
+    "Temperature   Longitude (no edge)",
+    "Temperature   Longitude (no edge)",
+    "Temperature   Longitude (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Temperature <-> Longitude",
+     "to": "Temperature   Longitude (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.35,
+    "a o-> b": 0.25,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.15,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Temperature, Longitude)",
+     "letter": "C",
+     "explanation": "Longitude does not directly affect temperature, as it is a geographical coordinate that does not influence climatic conditions."
+    }
+   ],
+   "truth": "Longitude -> Temperature"
+  },
+  {
+   "pair": [
+    "Temperature",
+    "Sunshine hours"
+   ],
+   "types": [
+    "Temperature   Sunshine hours (no edge)",
+    "Temperature   Sunshine hours (no edge)",
+    "Sunshine hours->Temperature",
+    "Sunshine hours->Temperature",
+    "Sunshine hours->Temperature"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Temperature   Sunshine hours (no edge)",
+     "to": "Sunshine hours->Temperature"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.05,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.85
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Temperature, Sunshine hours)",
+     "letter": "B",
+     "explanation": "Sunshine hours directly affect temperature as increased sunlight leads to higher temperatures due to solar radiation;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Precipitation",
+    "Longitude"
+   ],
+   "types": [
+    "Longitude->Precipitation",
+    "Precipitation   Longitude (no edge)",
+    "Precipitation   Longitude (no edge)",
+    "Precipitation   Longitude (no edge)",
+    "Precipitation   Longitude (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Longitude->Precipitation",
+     "to": "Precipitation   Longitude (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.05,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.2,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Precipitation, Longitude)",
+     "letter": "C",
+     "explanation": "Longitude itself does not directly affect precipitation, as precipitation is more influenced by latitude and local climatic conditions;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Precipitation",
+    "Sunshine hours"
+   ],
+   "types": [
+    "Precipitation   Sunshine hours (no edge)",
+    "Precipitation   Sunshine hours (no edge)",
+    "Precipitation   Sunshine hours (no edge)",
+    "Precipitation   Sunshine hours (no edge)",
+    "Precipitation   Sunshine hours (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.05,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.65
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Precipitation, Sunshine hours)",
+     "letter": "C",
+     "explanation": "Precipitation and sunshine hours are generally independent as precipitation is more influenced by atmospheric conditions, while sunshine hours depend on cloud cover and geographical location;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Longitude",
+    "Sunshine hours"
+   ],
+   "types": [
+    "Sunshine hours o-> Longitude",
+    "Longitude   Sunshine hours (no edge)",
+    "Longitude   Sunshine hours (no edge)",
+    "Longitude   Sunshine hours (no edge)",
+    "Longitude   Sunshine hours (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Sunshine hours o-> Longitude",
+     "to": "Longitude   Sunshine hours (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.15,
+    "a o-> b": 0.05,
+    "b o-> a": 0.4,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.1
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Longitude, Sunshine hours)",
+     "letter": "C",
+     "explanation": "Longitude itself does not directly affect sunshine hours, as sunshine is more influenced by latitude and seasonal changes rather than east-west positioning;"
+    }
+   ],
+   "truth": "no edge"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    3,
+    3,
+    0,
+    4
+   ],
+   [
+    0,
+    0,
+    0,
+    3,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    4
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

@@ -1,0 +1,741 @@
+"""The goals tracker: every item as a ticket with a stable ID, a closing criterion and machine-checkable evidence.
+
+Edit this file to add, change or close items; then run `python tracker/verify.py`. Never reuse an ID.
+Status values: done, in_progress, todo, blocked, open (see README.md for the meaning and the emoji).
+Kinds: task, target, question, decision, rule, deadline, risk, stretch.
+Evidence paths: relative to cc-research/ ; "repo:" = relative to ../Causal-Copilot ; "project:" = claude.ai project doc ;
+"slack:CHANNEL[/TS]" / "url:" / "chat:" = pointers that cannot be checked from here. Typed links between tickets: links.txt (LINKS.md).
+Check types (see verify.py): json, exists, absent, grep, runs (optionally restricted to a manifest), manifest.
+A done ticket must never pin a growing collection (a whole directory, runs/*): pin a dated manifest under manifests/evidence/ instead.
+"""
+
+P4B = "analysis/results/stability_p4b/stability.json"
+B1 = "analysis/results/stability_b1/stability.json"
+PS = "analysis/results/stability_b1/partial_stages.json"
+LS = "analysis/results/stability_b1/neutral_leak_scan.json"
+EB = "analysis/results/error_budget/error_budget.json"
+OV = "analysis/results/error_budget/order_value.json"
+CAL = "analysis/results/causalarena_calibration/"
+OB, SO, PCC, COC, DMC = CAL + "order_baseline.json", CAL + "sortability.json", CAL + "pc_calibration.json", CAL + "column_order_check.json", CAL + "dataset_match_check.json"
+OFF = "analysis/results/offline/refinement_offline_seeds_summary.json"
+INV = "analysis/results/llm_inventory/llm_inventory.md"
+FR = "external/FETCH_REPORT.json"
+LB = "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv"
+RL = "external/causalarena/results/tables/real/real_method_summary.csv"
+R = "analysis/reports/"
+SNAP = "docs/project_snapshots/2026-10-09/"
+LED = SNAP + "causal-copilot-research-ledger.md"
+B3 = "analysis/reports/bnd03/"
+LB2 = "analysis/literature/bnd02/"
+CIT = "analysis/results/bnd03_citations.json"
+PROT = "analysis/results/causalarena_calibration/protocol_check.json"
+MV = "analysis/results/methods/"
+IA = "analysis/results/intervention_audit/intervention_audit.json"
+
+
+def J(path, ptr, op, v=None, tol=None):
+    return {"t": "json", "path": path, "ptr": ptr, "op": op, "v": v, "tol": tol}
+
+
+def G(path, pattern):
+    return {"t": "grep", "path": path, "pattern": pattern}
+
+
+def item(id, cat, title, status, kind="task", criterion="", evidence=(), checks=(), reproduce="", reopen_if=(), due=None, blocked_by=None, note=""):
+    return dict(id=id, cat=cat, title=title, status=status, kind=kind, criterion=criterion, evidence=list(evidence),
+                checks=list(checks), reproduce=reproduce, reopen_if=list(reopen_if), due=due, blocked_by=blocked_by, note=note)
+
+
+CATS = {"DLV": "0 Quarter 1 deliverables", "REP": "1 Replication", "DOM": "2 Domain exploration", "AUD": "3 Audit: Causal-Copilot", "BEN": "4 Audit: benchmarks and data",
+        "TGT": "5 Targets", "CAP": "6 Required capabilities", "RQ": "7 Research questions", "BLD": "8 Build", "EVL": "9 Evaluation protocol",
+        "INF": "10 Infrastructure", "CRS": "11 Course", "TEAM": "12 Team and communication", "EXT": "13 External outputs",
+        "STR": "14 Stretch", "DEC": "15 Decisions", "RSK": "15 Risks", "BND": "16 Bundles"}
+
+CODE_ID = "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+
+ITEMS = [
+# ---------------- 0 Quarter 1 deliverables: run Causal-Copilot on chosen datasets; rigorous exploration and refinement within them
+item("DLV-01", "DLV", "Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset", "done",
+     criterion="docs/q1/datasets.md holds one card per dataset (source, reference graph and how far it can be trusted, variables, rows, "
+               "why chosen, sha256 of every arm) and the suite is declared frozen",
+     evidence=["docs/q1/datasets.md", "manifests/evidence/suite_q1_2026-10-10.sha256", "datasets/suite_q1s2/MAPPING.json",
+               "analysis/make_suite_ca.py", "analysis/make_dataset_cards.py"], due="2026-11-02",
+     checks=[G("docs/q1/datasets.md", r"\*\*Status: frozen\.\*\* Manifest `manifests/evidence/suite_q1_2026-10-10\.sha256`"),
+             {"t": "count", "glob": "datasets/suite_q1s2/q*/q*.csv", "eq": 30}]
+            + [J("datasets/suite_q1s2/MAPPING.json", ["gates", "s2_%02d" % _k], "true") for _k in range(1, 11)],
+     reproduce="python analysis/make_suite_ca.py --check && python analysis/reference_reliability.py && python analysis/make_dataset_cards.py --date 2026-10-10",
+     reopen_if=["any file listed in manifests/evidence/suite_q1_2026-10-10.sha256 changes (F9)"],
+     note="S1: Sachs (4 arms) and abalone, Auto MPG, concrete, DWD (3 arms each). S2: 10 CausalArena semantic test scenarios, "
+          "columns shuffled, real/neutral/swapped, gates D1-D11 pass. One swapped labelling (s2_03) is the best found within the "
+          "search budget (2 shared pairs), not proved minimal; recorded in its card."),
+item("DLV-02", "DLV", "Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded", "in_progress",
+     criterion="Every dataset in the frozen suite has completed live runs in each name arm (real, neutral, moved), every run recorded "
+               "and the code tree verified before and after",
+     evidence=["runs/*/meta.json", "plans/results/"], checks=[{"t": "runs", "live": True, "tree_ok": True}],
+     note="Recorded: 84 live runs on S1 (Sachs + 4 bundle-1 families) and 30 on S2 (11-12 Oct). Gap: 6 S2 arms (q011, q033, q041, q051, "
+          "q071, q101) have no completed run; their only run crashed at the cycle step and is scored at S3. Closing needs Uzair's choice: rerun "
+          "those 6 (about $2.5; likely to crash again) or restate the criterion as 'reached S3'."),
+item("DLV-03", "DLV", "Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage", "in_progress",
+     criterion="A report section giving, per dataset and name arm, the score at each stage (S0-S4), which step set each final edge, "
+               "crashes and stability, with every number tied to a tracker check",
+     evidence=["analysis/reports/bundle1_results.md", "analysis/reports/pass4b_results.md", "analysis/reports/bnd08_s2_results.md"],
+     note="Measurements exist for S1 (AUD-03 to AUD-09, RQ-01 to RQ-03) and S2 (AUD-10, stage table per arm); the Q1 write-up is not done."),
+item("DLV-04", "DLV", "Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets", "todo",
+     criterion="A refinement variant evaluated on the frozen suite under the same controls: adjacency F1 never below the algorithm's "
+               "output, no crashes from malformed model output, every LLM-set edge labelled with its source"),
+item("DLV-05", "DLV", "Q1 checkpoint (Mon 2 Nov)", "todo", kind="deadline", due="2026-11-02",
+     criterion="Checkpoint submitted, covering the frozen suite (DLV-01), the runs (DLV-02) and the exploration so far (DLV-03)"),
+item("DLV-06", "DLV", "Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)", "todo", kind="deadline", due="2026-12-04",
+     criterion="Report covering DLV-01 to DLV-04, every number reproducible from cc-research with the command named next to it"),
+# ---------------- 1 Replication
+item("REP-01", "REP", "Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded", "done",
+     criterion="At least one completed live run per pass; every run has meta.json, llm_calls.jsonl, artifacts and state snapshots",
+     evidence=["manifests/evidence/plans_results_2026-10-09.sha256", "manifests/evidence/runs_live_2026-10-09.sha256"],
+     checks=[{"t": "runs", "live": True, "manifest": "manifests/evidence/runs_live_2026-10-09.sha256", "expect_total": 84, "expect_completed": 72},
+             {"t": "manifest", "path": "manifests/evidence/runs_live_2026-10-09.sha256"}, {"t": "manifest", "path": "manifests/evidence/plans_results_2026-10-09.sha256"}],
+     reproduce="cc.ps1 plan <plan file> (spends API credit)", reopen_if=[CODE_ID]),
+item("REP-02", "REP", "Code untouched before and after every run (1,332 files byte-identical)", "done",
+     criterion="Every live run's meta.json records tree_identity_after.ok and no unexpected files in the repo",
+     evidence=["manifests/baseline_a31aa7c.sha256", "manifests/evidence/runs_live_2026-10-09.sha256"],
+     checks=[{"t": "runs", "live": True, "tree_ok": True}, {"t": "manifest", "path": "manifests/evidence/runs_live_2026-10-09.sha256"}],
+     reproduce="cd Causal-Copilot && sha256sum -c ../cc-research/manifests/baseline_a31aa7c.sha256", reopen_if=[CODE_ID]),
+item("REP-03", "REP", "Reproduce the paper's headline claims (arXiv 2504.13263)", "in_progress",
+     criterion="Each headline claim marked reproduced / not reproducible (with the reason) / not attempted",
+     evidence=[B3 + "rep03_headline_claims.md", R + "pass4b_results.md", "project:claude/causal-copilot-research-ledger.md (I1, F17, F18, F19)",
+               "repo:causal_discovery/evaluation/benchmarking_integrated.py", "repo:causal_discovery/tests/benchmarking_config.py"],
+     checks=[G("repo:causal_discovery/tests/benchmarking_config.py", r"heavy_benchmarking_v6"), G(B3 + "rep03_headline_claims.md", r"\| 22 \|"),
+             J(CIT, ["files", "rep03_headline_claims.md", "unresolved_citations"], "len_eq", 0)],
+     note="22 claims tabled (BND-03): none reproducible from the repo (data absent; the scorer scores pre-refinement output and orients "
+          "non-directed edges from the truth, evaluator.py:154-215). Live-only claims stay 'not attempted' until BND-08/12."),
+item("REP-04", "REP", "Check the paper's text against the code (divergences D1-D9)", "done",
+     criterion="Every methods-section claim about refinement and error handling checked against code and runs",
+     evidence=[B3 + "rep04_paper_vs_code.md", CIT, "project:claude/causal-copilot-research-ledger.md (PAPER-vs-CODE)", R + "pass3_llm_dependency_map.md"],
+     checks=[G("repo:postprocess/judge_functions.py", r"return response\['nodes'\]"), G(B3 + "rep04_paper_vs_code.md", r"D23"),
+             J(CIT, ["files", "rep04_paper_vs_code.md", "unresolved_citations"], "len_eq", 0),
+             J(CIT, ["files", "rep04_paper_vs_code.md", "uncited_findings"], "len_eq", 0)],
+     reproduce="python analysis/check_citations.py analysis/reports/bnd03/*.md docs/q1/scope_note.md",
+     note="Full pass over the methods sections (BND-03): 45 claims, divergences D10-D23 added to D1-D9; every code citation resolves in the a31aa7c tree (gate A1)."),
+item("REP-05", "REP", "Reproduce CausalArena's published PC baseline (scorer calibration, F1)", "done",
+     criterion="Published configuration on the 250 public semantic files; mean F1 within 3 standard errors of 0.333",
+     evidence=[PCC, "analysis/causalarena_pc_calibration.py", LB],
+     checks=[J(PCC, ["gate_C1_official_configuration_reproduces_published_F1"], "true"), J(PCC, ["complete"], "true")],
+     reproduce="python analysis/causalarena_pc_calibration.py --root external/causalarena --out analysis/results/causalarena_calibration (resumable, about 10 min)",
+     reopen_if=["CausalArena release files change", "their evaluation code shows a different orientation rule"]),
+item("REP-06", "REP", "Explain why SHD does not reproduce (ours 37.5, published 33.5)", "done", kind="question",
+     criterion="A definition or data difference identified that accounts for the gap, or a documented reason it cannot be settled",
+     evidence=[PCC, PROT, "analysis/causalarena_protocol_check.py", LB2 + "dom07_deep_reads.md"],
+     checks=[J(PCC, ["gate_C2_official_configuration_reproduces_published_SHD"], "false"), J(PROT, ["verdict", "shd_reproduced_under_code_rule"], "true"),
+             J(PROT, ["verdict", "f1_reproduced_under_code_rule"], "false"), J(PROT, ["verdict", "any_rule_reproduces_both"], "false"),
+             J(PROT, ["facts", "P2_liberal_orientation", "found"], "true")],
+     reproduce="python analysis/causalarena_protocol_check.py --clone $HOME/scratch/tabcausal",
+     note="Not settleable from public data. The authors' baseline code orients undecided CPDAG edges lower index -> higher ('liberal', "
+          "TabCausal run_pc.py) and counts a reversal once; under that rule our SHD is 35.43 (within 2.81 of 33.52) but F1 0.396 "
+          "(published 0.333, tolerance 0.045); under random orientation F1 matches and SHD does not. The published means also cover "
+          "50 unreleased scenarios. The paper's appendix B (which states the rule) could not be read."),
+item("REP-07", "REP", "Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, AVICI, CDFM (CPU)", "in_progress",
+     criterion="Each row within tolerance of the published mean, or the gap explained",
+     evidence=[MV + "bnd06_verdicts.json", MV + "bnd06_families.json", R + "bnd06_interim.md", R + "bnd06_families.md", R + "bnd04_results.md"],
+     checks=[J(MV + "bnd06_verdicts.json", ["methods", "lingam", "vs_published_authors_rule", "f1_within"], "true"),
+             J(MV + "bnd06_c1_recheck.json", ["gate_C1_published_PC_F1_reproduced"], "true")],
+     note="Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within "
+          "after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored "
+          "empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; "
+          "NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run."),
+item("REP-08", "REP", "Reproduce the R2-sortability analysis (Reisach et al. 2023) on CausalArena", "done",
+     criterion="R2-sortability and R2-SortnRegress computed on all public semantic and formula files",
+     evidence=[SO, "analysis/causalarena_sortability.py"],
+     checks=[J(SO, ["semantic", "scenarios"], "eq", 50), J(SO, ["formula", "scenarios"], "eq", 50),
+             J(SO, ["semantic", "r2_sortability_mean"], "approx", 0.571, 0.001)],
+     reproduce="python analysis/causalarena_sortability.py --root external/causalarena --out analysis/results/causalarena_calibration"),
+item("REP-09", "REP", "Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score", "done",
+     criterion="Within the reported ranges on the same subgraph, or the difference explained",
+     evidence=["analysis/rep09_ges.py", "analysis/results/chambers/rep09_ges.json", "analysis/reports/bnd07_chambers.md", "manifests/evidence/chambers_extracted_2026-10-12.sha256"],
+     checks=[J("analysis/results/chambers/rep09_ges.json", ["verdict"], "eq", "supported"), J("analysis/results/chambers/rep09_ges.json", ["ours", "cpdag_identical_to_authors"], "true")],
+     note="GES (BIC, forward/backward/turning) on lt uniform_reference, 10,000 rows, the authors' 20 variables: CPDAG identical to the "
+          "authors'; 12 DAGs, precision 0.55-0.60, recall 0.564-0.615 (reported 0.55-0.60 / 0.56-0.62). CDFM's 0.727 recorded as not "
+          "reproducible here: checkpoint only on huggingface.co (blocked by the egress allowlist) and its chamber protocol not pinned."),
+item("REP-10", "REP", "Reproduce CARE's moved-names control on one classic graph", "todo",
+     criterion="Our protocol gives the same direction of effect as CARE's on the same graph and model family"),
+item("REP-11", "REP", "Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)", "in_progress",
+     criterion="Within their reported values, or the difference explained",
+     evidence=["analysis/rep11_sachs_data.py", "analysis/results/rep11/rep11_sachs_data.json", "analysis/reports/rep11_sachs_data.md"],
+     checks=[J("analysis/results/rep11/rep11_sachs_data.json", ["verdicts", "ensemble_f1_primary_B", "verdict"], "eq", "reproduced")],
+     note="Data part (no LLM) reproduced within 0.05 with Python stand-ins for bnlearn/Tetrad: ensemble F1 0.647 vs 0.606, single-run mean "
+          "0.259 vs 0.293; merge, DAG conversion and F1 cross-checked against the authors' PyPI code (identical). Conditional: Sachs has no "
+          "data-identifiable direction, so the ensemble's arrows come from Tabu-Stable's orientation. Open: LLM 0.40 and fused 0.73 (BND-12, live)."),
+item("REP-12", "REP", "Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)", "open", kind="question",
+     criterion="CausalMan data obtained and the run scored, or recorded as unobtainable", evidence=[LB2 + "rep12_causalman.md"],
+     note="Obtainable (BND-02): Zenodo record 13871097, CC BY 4.0, 11.2 GB; published score F1 0.078 (std 0.012), FCI on the 53-node set. "
+          "Not downloaded; a live run is a Q2 candidate."),
+item("REP-13", "REP", "Re-read every second-hand literature claim before it enters the report", "done",
+     criterion="Every claim marked A in the reports either re-read in the primary source (marked V) or removed",
+     evidence=[LB2 + "rep13_claims.md", LB2 + "rep13_claims.json", R + "pass6_literature_map.md", R + "pass7_framing_test_and_candidates.md"],
+     checks=[J(LB2 + "rep13_claims.json", [], "len_eq", 72), G(R + "pass6_literature_map.md", r"As of 2026-10-10 no A claims remain"),
+             G(R + "pass6_literature_map.md", r"## Verification update \(2026-10-10, REP-13\)"),
+             G(R + "pass7_framing_test_and_candidates.md", r"Verification update \(2026-10-10, REP-13\)")],
+     note="72 claims: 55 confirmed, 17 corrected (corrections written into pass 6 and pass 7, superseding the text), 0 removed; Friedman et al. "
+          "UAI 1999 confirmed separately. Read through a summarising fetch tool: quotes to be checked against the PDF before a mentor or course document."),
+# ---------------- 2 Domain
+item("DOM-01", "DOM", "Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means", "done",
+     criterion="Written down with the measurement axes",
+     evidence=["project:claude/causal-copilot-ceiling-and-positioning.md", R + "pass5_identifiability_vs_encoding.md"],
+     checks=[{"t": "exists", "path": R + "pass5_identifiability_vs_encoding.md"}]),
+item("DOM-02", "DOM", "Literature map in 9 clusters", "done",
+     criterion="One saved report per cluster plus a synthesis",
+     evidence=[R + "pass6_literature_map.md", "manifests/evidence/DOM-02_analysis_literature_agent_reports_2026-10-10.sha256"],
+     checks=[{"t": "count", "glob": "analysis/literature/agent_reports/cluster*.md", "eq": 9}],
+     note="Agent reports are second-hand (A) until re-read; see REP-13."),
+item("DOM-03", "DOM", "Benchmark landscape and what '100%' means on each", "done",
+     evidence=[SNAP + "benchmark-targets.md", "project:claude/benchmark-targets.md"], checks=[G(SNAP + "benchmark-targets.md", r"Better targets")], criterion="Each benchmark: truth source, size, best result, agents evaluated, name control"),
+item("DOM-04", "DOM", "Nearest prior work for each claim we might make", "done",
+     evidence=[R + "program_v2.md", "analysis/literature/agent_reports/cluster6_evidence_fusion_and_warrants.md",
+               "analysis/literature/agent_reports/cluster8_benchmark_leakage_and_ceilings.md"],
+     checks=[G(R + "program_v2.md", r"Position against the nearest work")], criterion="A positioning table naming what each nearest work does and does not do"),
+item("DOM-05", "DOM", "Commercial landscape, first pass", "done",
+     evidence=["docs/project_snapshots/2026-10-10/causal-copilot-ceiling-and-positioning.md", "project:claude/causal-copilot-ceiling-and-positioning.md (section 4)"],
+     checks=[G("docs/project_snapshots/2026-10-10/causal-copilot-ceiling-and-positioning.md", r"## 4\. Value"),
+             G("docs/project_snapshots/2026-10-10/causal-copilot-ceiling-and-positioning.md", r"Buyers pay for decisions, not graphs")],
+     criterion="Who pays, for what decision"),
+item("DOM-06", "DOM", "Weighing against the WorldReset forecasting project", "done",
+     evidence=["docs/project_snapshots/2026-10-10/causal-vs-worldreset-weighing.md", "project:claude/causal-vs-worldreset-weighing.md"],
+     checks=[G("docs/project_snapshots/2026-10-10/causal-vs-worldreset-weighing.md", r"## Course constraints"),
+             G("docs/project_snapshots/2026-10-10/causal-vs-worldreset-weighing.md", r"## Weighing")],
+     criterion="Written comparison on course constraints, feasibility and value"),
+item("DOM-07", "DOM", "Deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation", "in_progress",
+     criterion="Notes per work with quotes checked against the primary text", evidence=[LB2 + "dom07_deep_reads.md", PROT],
+     note="CausalDS, CARE, ACI, Li & Russo done. CausalArena appendices B-C could not be read (HTML stops in section 6.2, PDF text empty); "
+          "the scoring protocol was taken from the authors' baseline code instead (protocol_check.json). Closes when appendix B is read."),
+item("DOM-08", "DOM", "Choose a calibration method for bootstrap confidence", "done", criterion="Method chosen with the evidence for it",
+     evidence=[LB2 + "dom08_calibration_choice.md"], checks=[G(LB2 + "dom08_calibration_choice.md", r"## Recommendation")],
+     note="Platt scaling fitted with whole scenarios held out (5 folds); raw frequency as the baseline; isotonic as a diagnostic; conformal deferred; Brier score primary."),
+item("DOM-09", "DOM", "What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)", "done",
+     criterion="Short survey with run times on one 25-variable scenario",
+     evidence=["analysis/literature/dom09_what_if.md", "analysis/dom09_ida_timing.py", "analysis/results/dom09/ida_timing.json"],
+     checks=[J("analysis/results/dom09/ida_timing.json", ["variables"], "eq", 25), J("analysis/results/dom09/ida_timing.json", ["ordered_pairs"], "eq", 600)],
+     note="Local IDA on PC's CPDAG at 25 variables: 600 pairs in 0.06 s; 52% identified within the class; true parents among the candidates "
+          "for only 7 of 25 X. Computation is not the obstacle; skeleton recall is."),
+item("DOM-10", "DOM", "Active experiment-design baselines: which to implement", "done", criterion="Two baselines chosen with code located",
+     evidence=[LB2 + "dom10_active_design_baselines.md"], checks=[G(LB2 + "dom10_active_design_baselines.md", r"github\.com/yannadani/cbed")],
+     note="CBED (MIT, Python/JAX) and pcalg::opt.target (GPL, R). R is not installable in either sandbox (CRAN blocked); recorded for Q2."),
+item("DOM-11", "DOM", "Pretrained discovery models: order-invariance by design, CPU checkpoints", "done",
+     criterion="Table per model, checked against code, not abstracts", evidence=[LB2 + "dom11_pretrained_models.md"],
+     checks=[G(LB2 + "dom11_pretrained_models.md", r"AVICI")],
+     note="Only AVICI, FoundCause and Arrow state variable-order equivariance; Arrow has no released weights; TabCausal, SEA and CauScale code carry no licence."),
+item("DOM-12", "DOM", "Hidden common causes, time series, 100+ variables", "done", kind="stretch",
+     criterion="Scoping note: what Causal-Copilot offers for hidden confounders, time series and 100+ variables, what Q1 covers, what moves to Q2",
+     evidence=["docs/q1/scope_note.md", B3 + "dom12_scope_code_facts.md", CIT],
+     checks=[J(CIT, ["files", "scope_note.md", "uncited_findings"], "len_eq", 0), J(CIT, ["files", "dom12_scope_code_facts.md", "unresolved_citations"], "len_eq", 0)],
+     note="Proposal: Q1 measures what happens to PAG marks; time series and 100+ variables move to Q2. G1 (16 Oct) confirms or changes it."),
+# ---------------- 3 Audit Causal-Copilot
+item("AUD-01", "AUD", "Architecture map: 8-step CLI path, state object, LLM call points, storage", "done",
+     criterion="Facts F1-F30 in the ledger, each with file:line", evidence=[LED, "project:claude/causal-copilot-research-ledger.md (FACTS)"],
+     checks=[G(LED, r"F1\. Entry points"), G(LED, r"F30\.")],
+     note="Only in the ledger; no standalone report in cc-research.", reopen_if=[CODE_ID]),
+item("AUD-02", "AUD", "LLM dependency map: 51 call sites, 88 logical points, 29 decisions, 3 graph-writing points", "done",
+     criterion="Static scan reconciled with recorded calls; gates G1-G4 pass",
+     evidence=[INV, "analysis/results/llm_inventory/llm_inventory.csv", R + "pass3_llm_dependency_map.md"],
+     checks=[G(INV, r"G1_ast_matches_text: \*\*PASS"), G(INV, r"G2_all_points_classified: \*\*PASS"),
+             G(INV, r"G3_every_recorded_caller_is_a_known_site: \*\*PASS"), G(INV, r"G4_recorded_flags_match_static: \*\*PASS"),
+             G(INV, r"Call sites that issue a request \(AST\): 51")],
+     reproduce="python analysis/llm_inventory_scan.py && python analysis/llm_inventory_build.py", reopen_if=[CODE_ID]),
+item("AUD-03", "AUD", "Edge lineage tool: every final edge traced to the step that set it", "done",
+     criterion="Lineage gates A-F pass on every completed run analysed",
+     evidence=["analysis/lineage.py", "manifests/evidence/AUD-03_analysis_results_lineage_2026-10-10.sha256", "manifests/evidence/AUD-03_analysis_results_stability_b1_lineage_2026-10-10.sha256", B1],
+     checks=[J(B1, ["gates", "T5_scores_recomputed_equal_lineage"], "true"), J(P4B, ["gates", "T5_scores_recomputed_equal_lineage"], "true")],
+     reopen_if=[CODE_ID]),
+item("AUD-04", "AUD", "Refinement audit without the LLM: bootstrap step deletes non-directed edges", "done",
+     criterion="Offline cells over seeds 0-2 complete (gate S1); live: S1 below S0 in every bundle-1 arm",
+     evidence=[OFF, "analysis/results/offline/refinement_offline_seeds.md", R + "pass4a_edge_lineage.md", B1],
+     checks=[J(OFF, ["gate_S1"], "true")],
+     reproduce="python analysis/refinement_offline.py ... (see analysis/README.md)", reopen_if=[CODE_ID]),
+item("AUD-05", "AUD", "Name controls on 5 datasets: real 93% / neutral 0% / moved 90% of final edges written by the LLM", "done",
+     criterion="Pre-registered predictions evaluated by stability.py with gates T1-T6 passing",
+     evidence=[P4B, B1, R + "pass4b_results.md", R + "bundle1_results.md"],
+     checks=[J(P4B, ["predictions", "P1", "verdict"], "eq", "SUPPORTED"), J(B1, ["predictions", "N2", "verdict"], "eq", "SUPPORTED"),
+             J(B1, ["gates", "T2_min_runs_per_arm"], "true")],
+     reproduce="python analysis/stability.py --runs-dir runs --label b1 --mapping datasets/suite_b1/MAPPING.json --repo <repo> --out analysis/results/stability_b1",
+     reopen_if=["new runs with label b1 or p4b are added"]),
+item("AUD-06", "AUD", "Reliability: 12 of 84 runs crashed; cycle step failed 9 of 9; one request got 3 answers", "done",
+     criterion="Every failure diagnosed to file:line from run records",
+     evidence=[PS, "manifests/evidence/runs_live_2026-10-09.sha256", R + "bundle1_results.md"],
+     checks=[{"t": "runs", "live": True, "manifest": "manifests/evidence/runs_live_2026-10-09.sha256", "expect_failed": 12},
+             J(PS, ["cycle_step", "of_which_completed"], "eq", 0), J(PS, ["gates", "Q2_cycle_crashes_have_cycle_in_S3"], "true")]),
+item("AUD-07", "AUD", "Stability: algorithm choice stable; edge decisions vary; bootstrap seeded by accident; numpy unseeded", "done",
+     evidence=[P4B, B1, "project:claude/causal-copilot-research-ledger.md (F8a, F29)"], checks=[J(B1, ["predictions", "P5", "verdict"], "eq", "exploratory")],
+     criterion="Per-arm stability tables produced for every arm"),
+item("AUD-08", "AUD", "Survivor-bias check: crashed runs do not change conclusions", "done",
+     criterion="S3 scores over all runs vs completed only, gates Q1-Q3 pass", evidence=[PS, "analysis/partial_stages.py"],
+     checks=[J(PS, ["gates", "Q1_rebuilt_S2_S3_equal_recorded"], "true"), J(PS, ["gates", "Q3_all_runs_accounted"], "true")]),
+item("AUD-09", "AUD", "Leak scan of neutral-name arms: no real name in any prompt before the final graph", "done",
+     criterion="Gate L1: zero leaks; template text present in every arm is not a leak", evidence=[LS, "analysis/neutral_leak_scan.py"],
+     checks=[J(LS, ["gate_L1_no_leak_before_final_graph"], "true"), J(LS, ["requests_scanned"], "ge", 300)],
+     reproduce="python analysis/neutral_leak_scan.py --runs-dir runs --label b1 --mapping datasets/suite_b1/MAPPING.json --out analysis/results/stability_b1"),
+item("AUD-10", "AUD", "Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]", "done",
+     criterion="30 runs analysed with T-gates and S3 endpoint",
+     evidence=["plans/bnd08_live.json", "analysis/s2_analysis.py", "manifests/evidence/bnd08_prereg_2026-10-11.sha256",
+               "analysis/results/stability_s2/s2_verdicts.json", "analysis/results/stability_s2/partial_stages.json", "analysis/results/stability_s2/bnd08_summary.json", "analysis/reports/bnd08_s2_results.md"],
+     checks=[J("analysis/results/stability_s2/s2_verdicts.json", ["M2", "verdict"], "eq", "REFUTED"), J("analysis/results/stability_s2/s2_verdicts.json", ["M3", "verdict"], "eq", "SUPPORTED"),
+             J("analysis/results/stability_s2/s2_verdicts.json", ["M4", "verdict"], "eq", "SUPPORTED"), J("analysis/results/stability_s2/bnd08_summary.json", ["Q_gates", "Q3_all_runs_accounted"], "true"),
+             J("analysis/results/stability_s2/bnd08_summary.json", ["L1_neutral_leak_scan"], "true"), J("analysis/results/stability_s2/bnd08_summary.json", ["all_code_identity_ok"], "true")],
+     note="30 live runs 11-12 Oct (gpt-4o-2024-08-06), all reached S3. M2 REFUTED (real-name lift >= 0.10 in 5 of 10 families; mean +0.09), "
+          "M3 SUPPORTED (swapped: 81 of 101 LLM-set edges follow labels), M4 SUPPORTED (neutral S3 below plain PC in 8 of 10), M1 SUPPORTED "
+          "(dev replay 19 of 23). Without s2_02: M2 5 of 9, INCONCLUSIVE."),
+item("AUD-11", "AUD", "Behaviour at 20-40 variables: cost, runtime, crash rate", "done",
+     criterion="Measured on a stub run, then on A2's live runs",
+     evidence=["plans/bnd08_stub.json", "analysis/stub_cost.py", "analysis/results/stub_cost/bnd08_estimate.json",
+               "analysis/reports/bnd08_stub_measurement.md", "analysis/results/stability_s2/bnd08_summary.json", "analysis/reports/bnd08_s2_results.md"],
+     checks=[J("analysis/results/stub_cost/bnd08_estimate.json", ["stub_runs"], "len_eq", 6),
+             J("analysis/results/stability_s2/bnd08_summary.json", ["cost", "prompt_tokens"], "eq", 3316360),
+             J("analysis/results/stability_s2/bnd08_summary.json", ["crashes", "runs_cyclic_by_pipeline_test"], "eq", 6)],
+     note="Live at 20-25 variables: 110k prompt + 14.6k completion tokens per run (about $12.7 for 30 at $2.50/$10 per M; the stub estimate "
+          "was low because live runs chose FCI, the stub PC); 302-1130 s per run; 6 of 30 crashed at the cycle step (real 5, swapped 1, neutral 0)."),
+item("AUD-12", "AUD", "Effect-estimation module (causal_inference/)", "done", criterion="Read and audited like the discovery path",
+     evidence=[B3 + "aud12_effect_estimation.md", B3 + "evidence/mt_confounders_output.txt", CIT],
+     checks=[J(CIT, ["files", "aud12_effect_estimation.md", "unresolved_citations"], "len_eq", 0), J(CIT, ["files", "aud12_effect_estimation.md", "uncited_findings"], "len_eq", 0),
+             G("repo:causal_inference/inference.py", r"def sensitivity_analysis")],
+     note="Reachable only from the web demo; causal_inference/main.py is broken (:32, :39); <-> and o-> treated as parents when choosing "
+          "confounders (inference.py:242-246, micro-test); 'metalearners' has no wrapper; 'counterfactual' runs an interventional shift."),
+item("AUD-13", "AUD", "Second model besides GPT-4o", "todo", criterion="Bundle-1 arms repeated with one other model"),
+item("AUD-14", "AUD", "Torch-based and time-series wrappers, web-demo path, report quality", "in_progress",
+     criterion="Torch and time-series wrappers, the web-demo path and report generation audited like the discovery path (file:line findings; one stub run where it runs offline)",
+     evidence=[B3 + "aud14_wrappers_webdemo_report.md", CIT],
+     checks=[J(CIT, ["files", "aud14_wrappers_webdemo_report.md", "unresolved_citations"], "len_eq", 0), J(CIT, ["files", "aud14_wrappers_webdemo_report.md", "uncited_findings"], "len_eq", 0)],
+     note="Static audit done (BND-03): CORL crashes program.py (corl.py:93 vs program.py:53); Granger needs integer column names; the CLI "
+          "time-series path plots a None revised_graph (main.py:307, code trace); the report's fixed text claims voting and 'top three' "
+          "algorithms the code does not do. Still open: one offline stub run of a time-series wrapper."),
+item("AUD-15", "AUD", "Upstream branches newer than a31aa7c", "done", criterion="Diff of refinement and crash points against main",
+     evidence=[B3 + "aud15_upstream.md", "analysis/results/upstream/upstream_check.json", "analysis/upstream_check.py"],
+     checks=[J("analysis/results/upstream/upstream_check.json", ["summary", "main_is_base"], "true"),
+             J("analysis/results/upstream/upstream_check.json", ["summary", "branches"], "eq", 19),
+             J("analysis/results/upstream/upstream_check.json", ["summary", "branches_without_crash_line", "C2"], "len_eq", 0)],
+     reproduce="python analysis/upstream_check.py --clone $HOME/scratch/cc_up",
+     reopen_if=["upstream main moves past a31aa7c (re-run the check)"],
+     note="Upstream main is still a31aa7c. C1 (cycle step) is a regression from defa4df (2025-06-26), which dropped the structured-output "
+          "schema; no branch fixes C1 or C2."),
+# ---------------- 4 Benchmarks
+item("BEN-01", "BEN", "CausalArena public release inspected (families, files, graph convention)", "done",
+     criterion="Layout documented; graph convention checked against graph.json for all 50 semantic scenarios",
+     evidence=[R + "bundle1_results.md (section 7)", FR, "external/causalarena/MANIFEST.json"],
+     checks=[J(FR, ["errors"], "len_eq", 0)]),
+item("BEN-02", "BEN", "Column-order leak: every true edge runs earlier column -> later column in every released file", "done",
+     criterion="Checked over every released obs file of all three families; order-reading baseline vs shuffled",
+     evidence=[COC, OB, "analysis/column_order_check.py", "analysis/causalarena_order_baseline.py"],
+     checks=[J(COC, ["semantic", "share"], "eq", 1.0), J(COC, ["formula", "share"], "eq", 1.0), J(COC, ["synthetic", "share"], "eq", 1.0),
+             J(COC, ["synthetic", "true_edges"], "eq", 50421), J(OB, ["families", "semantic", "as_released", "f1"], "approx", 0.68, 0.001),
+             J(OB, ["families", "semantic", "columns_shuffled", "f1"], "approx", 0.269, 0.001)],
+     reproduce="python analysis/column_order_check.py --root external/causalarena --out analysis/results/causalarena_calibration",
+     reopen_if=["CausalArena release files change"]),
+item("BEN-03", "BEN", "Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions", "done",
+     criterion="Computed per scenario; equivalence-class routine matches the validated one (gate B1)", evidence=[EB, "analysis/error_budget.py"],
+     checks=[J(EB, ["gates", "B1_cpdag_equals_cc_graph"], "true"), J(EB, ["families", "semantic", "ceiling_obs_mean"], "approx", 0.957, 0.001),
+             J(EB, ["families", "formula", "ceiling_obs_mean"], "approx", 0.971, 0.001)],
+     reproduce="python analysis/error_budget.py --root external/causalarena --pc analysis/results/causalarena_calibration/pc_rows_v2.jsonl --out analysis/results/error_budget"),
+item("BEN-04", "BEN", "Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%", "done",
+     evidence=[EB], criterion="From stored PC runs in the published configuration",
+     checks=[J(EB, ["pc_semantic_n1000", "pc_skeleton_with_perfect_orientation_f1"], "approx", 0.611, 0.001),
+             J(EB, ["pc_semantic_n1000", "accuracy_of_committed_directions"], "approx", 0.544, 0.001)]),
+item("BEN-05", "BEN", "Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)", "done",
+     evidence=[OV, "analysis/order_value.py"], criterion="Table over 5 granularities of tier knowledge",
+     checks=[J(OV, [1, "PC skeleton re-oriented, F1"], "approx", 0.47, 0.001), J(OV, [5, "regression on earlier tiers, F1"], "approx", 0.714, 0.001)]),
+item("BEN-06", "BEN", "Repo datasets vs CausalArena index: Auto MPG does not match", "done",
+     evidence=[DMC, "analysis/dataset_match_check.py"], criterion="Variables, edges, rows compared for all four families",
+     checks=[J(DMC, ["autompg", "match"], "false"), J(DMC, ["abalone", "match"], "true"), J(DMC, ["concrete", "match"], "true"), J(DMC, ["dwd", "match"], "true")]),
+item("BEN-07", "BEN", "Do CausalArena's wrappers shuffle columns; are top methods affected?", "in_progress", kind="question",
+     criterion="For every method we can run, F1 on released vs shuffled column order measured; whether CausalArena's own wrappers shuffle stated from their code or recorded as unknowable",
+     evidence=[PROT, MV + "bnd06_verdicts.json", MV + "bnd06_families.json", MV + "pc_skeleton_order_vendored.json", MV + "pc_skeleton_order_upstream.json",
+               R + "bnd06_interim.md", R + "bnd06_families.md", "plans/bnd06_prereg.json"],
+     checks=[J(PROT, ["facts", "P2_liberal_orientation", "found"], "true"), J(MV + "bnd06_verdicts.json", ["Q4c", "verdict"], "eq", "REFUTED"),
+             J(MV + "pc_skeleton_order_vendored.json", ["files_with_different_skeleton"], "eq", 21),
+             J(MV + "pc_skeleton_order_upstream.json", ["files_with_different_skeleton"], "eq", 0)],
+     note="Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, "
+          "DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: "
+          "Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. "
+          "Open: AVICI (pretrained; checkpoint download blocked)."),
+item("BEN-08", "BEN", "SHD definition mismatch (see REP-06)", "done", kind="question",
+     criterion="The SHD variant that reproduces the published 33.5 identified on the stored PC outputs, or every candidate variant shown not to",
+     evidence=[PROT, PCC, "analysis/shd_variants.py"],
+     checks=[J(PROT, ["facts", "P1_shd_formula", "found"], "true"), J(PROT, ["ours_public_50_by_rule", "lower", "shd_within"], "true")],
+     note="The authors' SHD counts a reversal once (metrics.py: sum(diff) - 0.5*sum(diff*diff.T)), which is our pair-level SHD; with their "
+          "orientation rule it gives 35.43 on the public 50 (within tolerance of 33.52). F1 then does not match (REP-06)."),
+item("BEN-09", "BEN", "Replay sampler: which declared interventions are interventions in name only", "done",
+     criterion="For every declared intervention in the replay sampler's data, whether the target's distribution moves (KS, Holm 1%); the in-name-only count reported",
+     evidence=["analysis/intervention_audit.py", IA],
+     checks=[J(IA, ["families", "semantic", "declared_target_instances"], "eq", 945), J(IA, ["families", "semantic", "in_name_only"], "eq", 252),
+             J(IA, ["families", "formula", "declared_target_instances"], "eq", 1520), J(IA, ["families", "formula", "in_name_only"], "eq", 1354)],
+     reproduce="python analysis/intervention_audit.py --out analysis/results/intervention_audit/intervention_audit.json",
+     note="On the released obs+int files (produced by the same generator spec the replay sampler executes): no detectable shift in the target "
+          "or any child for 252 of 945 declared interventions (semantic) and 1,354 of 1,520 (formula), KS with Holm at 1%. About 28 "
+          "intervened rows per target, so shifts below roughly KS D 0.4 go undetected: 'no detectable effect', not proof of none. "
+          "Most targets are roots (655 / 1,200), resampled per the release's semantics."),
+item("BEN-10", "BEN", "Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample", "done",
+     evidence=[FR, "analysis/results/chambers/mapping.json", "analysis/results/chambers/one_layer_deep.json", "analysis/results/chambers/sample/obs_int_sample.npz", "analysis/results/chambers/sample/README.md",
+               "analysis/chambers_map.py", "analysis/chambers_validate.py", "analysis/chambers_sample.py", "analysis/reports/bnd07_chambers.md",
+               "manifests/evidence/chambers_extracted_2026-10-12.sha256"],
+     checks=[J(FR, ["extracted"], "len_eq", 8), J("analysis/results/chambers/one_layer_deep.json", ["part_a_our_check", "lt_validate_v1", "children_shift"], "eq", 57),
+             J("analysis/results/chambers/one_layer_deep.json", ["part_a_our_check", "lt_validate_v1", "non_descendants_shift"], "eq", 0),
+             J("analysis/results/chambers/one_layer_deep.json", ["part_a_our_check", "wt_validate_v1", "non_descendants_shift"], "eq", 0),
+             J("analysis/results/chambers/sample/sample_status.json", ["built"], "true"), {"t": "manifest", "path": "manifests/evidence/chambers_extracted_2026-10-12.sha256"}],
+     note="All 8 datasets use the 'standard' configuration: lt 38 variables / 57 edges, wt 32 / 42, every edge input -> output (longest "
+          "path 1). On the validation data: lt 57/57 children shift, wt 40/42 (load_out -> pressure_intake p 0.082; osr_downwind -> "
+          "pressure_downwind fails only after Holm over 868 tests); 0 non-descendant shifts in either. Sample: 6,200 rows, 53 regimes."),
+item("BEN-11", "BEN", "Error budgets for GES, FCI, pretrained models; formula and synthetic families", "in_progress",
+     criterion="Error budgets (ceiling -> skeleton -> direction) for GES, FCI, DirectLiNGAM, NOTEARS and CPU-runnable pretrained models on semantic, formula and a 100-file synthetic sample",
+     evidence=[MV + "error_budget_gesbic.json", MV + "error_budget_fci.json", MV + "error_budget_lingam_semantic.json", MV + "error_budget_notears_semantic.json",
+               MV + "error_budget_pc_semantic.json", MV + "error_budget_gesbic_formula.json", MV + "error_budget_fci_formula.json",
+               MV + "error_budget_lingam_formula.json", MV + "error_budget_notears_formula.json", MV + "error_budget_gesbic_synthetic100.json",
+               MV + "error_budget_fci_synthetic100.json", MV + "error_budget_lingam_synthetic100.json", MV + "error_budget_notears_synthetic100.json",
+               R + "bnd06_families.md"],
+     checks=[J(MV + "error_budget_lingam_semantic.json", ["files"], "eq", 250), J(MV + "error_budget_notears_formula.json", ["files"], "eq", 250)],
+     note="Done for PC, GES, FCI, DirectLiNGAM, NOTEARS x semantic, formula, synthetic100 (15 budgets; failed files scored empty and counted). "
+          "Open: pretrained models (AVICI checkpoint blocked by the egress allowlist; Uzair can download two files by hand)."),
+item("BEN-12", "BEN", "Reliability of real-data reference graphs", "done",
+     evidence=["analysis/reference_reliability.py", "analysis/results/reference_reliability/reliability.json", "external/bnlearn_sachs/sachs.bif.gz"],
+     checks=[J("analysis/results/reference_reliability/reliability.json", ["families", "sachs", "tier"], "eq", "contested"),
+             J("analysis/results/reference_reliability/reliability.json", ["families", "sachs", "repo_vs_bnlearn", "shared_adjacencies"], "eq", 16),
+             J("analysis/results/reference_reliability/reliability.json", ["families", "autompg", "tier"], "eq", "mismatched"),
+             J("analysis/results/reference_reliability/reliability.json", ["families", "s2_01", "tier"], "eq", "exact")],
+     reproduce="python analysis/reference_reliability.py",
+     note="Sachs: repo 19 edges vs bnlearn 17 (16 shared adjacencies, 1 reversed: PIP3-Plcg) vs CausalArena 20 (edge list not "
+          "available here). Auto MPG mismatched. Abalone, concrete, DWD: provenance only. S2: exact (simulator graph)."),
+# ---------------- 5 Targets
+item("TGT-01", "TGT", "Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957", "todo", kind="target", evidence=[LB, EB]),
+item("TGT-02", "TGT", "Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974", "todo", kind="target", evidence=[LB, EB]),
+item("TGT-03", "TGT", "Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971", "todo", kind="target", evidence=[LB, EB]),
+item("TGT-04", "TGT", "Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993", "todo", kind="target", evidence=[LB, EB]),
+item("TGT-05", "TGT", "Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)", "todo", kind="target", evidence=[RL]),
+item("TGT-06", "TGT", "Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)", "todo", kind="target"),
+item("TGT-07", "TGT", "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled", "blocked", kind="target",
+     blocked_by="DEC-02 (approval of the elicitation calls)"),
+item("TGT-08", "TGT", "Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)", "open", kind="target", evidence=[EB]),
+item("TGT-09", "TGT", "Never below the system's own data-only output", "in_progress", kind="target",
+     criterion="BND-10: frozen refinement v1 keeps adjacency F1 >= the algorithm's own output - 0.02 in >= 90% of held-out files (R1), on the test replay and the live S2 tables",
+     evidence=["analysis/results/refinement_v1/test_replay.json", "analysis/results/refinement_v1/test_live_s2.json",
+               "analysis/results/refinement_v1/access_log.jsonl", "analysis/reports/bnd09_bnd10_refinement.md"],
+     checks=[J("analysis/results/refinement_v1/test_live_s2.json", ["pooled_test", "R1", "verdict"], "eq", "INCONCLUSIVE"),
+             J("analysis/results/refinement_v1/test_live_s2.json", ["mode"], "eq", "test")],
+     note="Not met by v1: pooled held-out R1 40 of 55 (0.73; replay 23/25, live S2 17/30). v1 drops true edges with low resample frequency "
+          "under FCI+RCIT. Carried to v2 in BND-11 (DAG changed 12 Oct)."),
+item("TGT-10", "TGT", "Zero change when columns are shuffled", "todo", kind="target"),
+item("TGT-11", "TGT", "Bounded harm when names are wrong", "todo", kind="target"),
+item("TGT-12", "TGT", "Calibration better than raw bootstrap frequencies on held-out scenarios", "todo", kind="target"),
+item("TGT-13", "TGT", "Zero crashes from malformed model output", "in_progress", kind="target",
+     evidence=["harness/names_runner.py", "tests/test_refinement_v2.py"], checks=[G("harness/names_runner.py", r"never raised")],
+     note="BND-11 names runner: invalid reply -> one retry -> abstention; API errors recorded the same way. Offline stub with injected "
+          "malformed replies: 25 invalid replies, no exception. Closes on the live names run (crash count 0)."),
+item("TGT-14", "TGT", "Within the scoreboard's 1-hour budget per graph", "todo", kind="target"),
+item("TGT-15", "TGT", "Held-out interventional predictions better than regression on all variables", "todo", kind="target"),
+item("TGT-16", "TGT", "Experiment choice better than random on recorded Causal Chambers experiments", "todo", kind="target"),
+# ---------------- 6 Capabilities
+item("CAP-01", "CAP", "Skeleton recall at variables with many causes (joint test per candidate edge)", "todo"),
+item("CAP-02", "CAP", "Direction from the numbers (PC: 54%)", "todo"),
+item("CAP-03", "CAP", "Use intervention data", "todo"),
+item("CAP-04", "CAP", "Declared knowledge as tiers, never edges", "blocked", blocked_by="DEC-02"),
+item("CAP-05", "CAP", "Invariance to column order", "todo"),
+item("CAP-06", "CAP", "Keep 'direction unknown' edges", "done",
+     criterion="Refinement v1 keeps the algorithm's undirected edges unless the data contradict them; survival rate reported against the pipeline's 15-31%",
+     evidence=["analysis/refinement_v1.py", "analysis/results/refinement_v1/dev.json", "analysis/results/refinement_v1/RULE.json", "analysis/reports/bnd09_bnd10_refinement.md"],
+     checks=[J("analysis/results/refinement_v1/dev.json", ["summary", "all_edges_sourced"], "true"),
+             J("analysis/results/refinement_v1/dev.json", ["summary", "nondirected_survival", "survive_v1"], "ge", 600),
+             J("analysis/results/refinement_v1/RULE.json", ["KEEP"], "eq", 0.5)],
+     note="Frozen 2026-10-11 (RULE.json sha256 da3cb260...). Dev (92 files: 69 live tables + 23 CausalArena dev replays): v1 keeps 663 of 697 "
+          "non-directed algorithm edges (95%), the pipeline's bootstrap step 206 (30%). Test replay (25 files): 109 of 117 vs 61."),
+item("CAP-07", "CAP", "Calibrated confidence per claim", "todo"),
+item("CAP-08", "CAP", "Abstention / selective claims", "todo"),
+item("CAP-09", "CAP", "Provenance per edge with an independent checker", "todo"),
+item("CAP-10", "CAP", "Robustness to malformed model output", "in_progress",
+     evidence=["harness/names_runner.py", "analysis/refinement_v2.py", "tests/test_refinement_v2.py", "analysis/reports/bnd11_prep.md"],
+     checks=[J("tests/last_run.json", ["ok"], "true")],
+     note="Schema-validated replies, one retry, then abstain; built and unit-tested (parse rule shared with refinement_v2). Closes on BND-11's live names run."),
+item("CAP-11", "CAP", "Determinism (same inputs, same ledger hash)", "todo"),
+item("CAP-12", "CAP", "Runtime at 20-40 variables", "todo"),
+item("CAP-13", "CAP", "Nonlinear and mixed-type dependence", "todo"),
+item("CAP-14", "CAP", "Hidden common causes (PAG marks)", "todo"),
+item("CAP-15", "CAP", "'What if we set X?' with identification status and bounds", "todo"),
+item("CAP-16", "CAP", "Choose the next experiment", "todo"),
+item("CAP-17", "CAP", "Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)", "done",
+     criterion="Every Q1 row packaged in CausalArena's submission format (summary.csv, predictions, manifest.json) and passed through tools/validate_submission.py",
+     evidence=["analysis/package_submission.py", "analysis/results/submission/validator_output.txt", "analysis/results/submission/packages.json"],
+     checks=[G("analysis/results/submission/validator_output.txt", r"exit code 0"), G("analysis/results/submission/packages.json", r"notears__shuffled")],
+     note="10 packages (PC, GES, FCI, DirectLiNGAM, NOTEARS x released / shuffled columns), 600 rows each (semantic 250, formula 250, "
+          "synthetic100); the official validator exits 0 on all 10. Nothing submitted."),
+item("CAP-18", "CAP", "Cost per run measured at 25 variables", "todo"),
+# ---------------- 7 Research questions
+item("RQ-01", "RQ", "P1-P3 (pass 4b, Sachs): supported", "done", kind="question", evidence=[P4B, R + "pass4b_results.md"],
+     criterion="Verdicts computed by pre-registered thresholds in stability.py",
+     checks=[J(P4B, ["predictions", k, "verdict"], "eq", "SUPPORTED") for k in ("P1", "P2", "P3")]),
+item("RQ-02", "RQ", "N2 (bundle 1): supported", "done", kind="question", evidence=[B1], checks=[J(B1, ["predictions", "N2", "verdict"], "eq", "SUPPORTED")]),
+item("RQ-03", "RQ", "N1, N4, P3 (bundle 1): tested, inconclusive", "done", kind="question", evidence=[B1, R + "bundle1_results.md"],
+     checks=[J(B1, ["predictions", k, "verdict"], "eq", "INCONCLUSIVE") for k in ("N1", "N4", "P3")],
+     note="Closed as tested; the questions themselves remain open."),
+] + [item("RQ-%02d" % (4 + i), "RQ", t, "open", kind="question", evidence=[R + "program_v2.md"]) for i, t in enumerate([
+    "T1 Order source explains most directed-edge accuracy", "T2 Deployed agents take order from names and layout",
+    "T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target)",
+    "T4 Calibrated, machine-checkable claims with abstention", "T5 What-if answers with identification status",
+    "T6 Experiment choice beats random on recorded experiments"])] + [
+    item("RQ-%02d" % (10 + i), "RQ", t, "blocked", kind="question", blocked_by="DEC-02", evidence=[R + "program_v2.md"]) for i, t in enumerate([
+    "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted", "O2 Neutral names give no order information",
+    "O3 Moved names: tiers follow the labels", "O4 Regression on model tiers reaches 0.634 (semantic)", "O5 Same for formula vs 0.524"])] + [
+    item("RQ-%02d" % (15 + i), "RQ", t, "open", kind="question") for i, t in enumerate([
+    "Do LLM-written semantic graphs inflate name-based scores?", "Does PC's error pattern hold for other algorithms?",
+    "Do results hold for a second model?"])] + [
+# ---------------- 8 Build
+item("BLD-01", "BLD", "Recording harness and analysis tools", "done", evidence=["manifests/evidence/BLD-01_tools_2026-10-12.sha256", "analysis/README.md"],
+     checks=[{"t": "exists", "path": p} for p in ("harness/run_traced.py", "harness/run_plan.py", "harness/cc_trace.py", "analysis/lineage.py", "analysis/stability.py")]
+            + [{"t": "manifest", "path": "manifests/evidence/BLD-01_tools_2026-10-12.sha256"}],
+     criterion="Every tool listed in analysis/README.md with its gates",
+     note="Tool manifest re-taken 2026-10-12 after neutral_leak_scan.py learned label variants and scenario words from MAPPING "
+          "(rerun on bundle 1: identical result, 0 leaks); the 10-09 manifest stays as history."),
+item("BLD-02", "BLD", "B1 data-only claim ledger with invariants I1-I4, I7", "todo"),
+item("BLD-03", "BLD", "B2 interventions as order evidence", "todo"),
+item("BLD-04", "BLD", "B3 declared knowledge as tiers", "blocked", blocked_by="DEC-02"),
+item("BLD-05", "BLD", "B4 confidence, calibration, selective output", "todo"),
+item("BLD-06", "BLD", "Drop-in replacement for Causal-Copilot's refinement stage", "in_progress",
+     evidence=["analysis/refinement_v1.py", "analysis/refinement_v2.py", "analysis/results/refinement_v2/" + "RULE.json", "analysis/results/refinement_v2/" + "dev.json", "analysis/reports/bnd11_prep.md"],
+     checks=[J("analysis/results/refinement_v2/" + "dev.json", ["summary", "all_edges_sourced"], "true"), J("analysis/results/refinement_v2/" + "dev.json", ["summary", "R1", "verdict"], "eq", "SUPPORTED")],
+     note="v1 frozen and tested (BND-10). v2 frozen 2026-10-12 (sha256 443354d8...): data part never deletes algorithm adjacencies; dev R1-R3 "
+          "supported (92 files). Held-out: formula test replay (compute job) and the live names run (R4-R6)."),
+item("BLD-07", "BLD", "C1 what-if answers with identification status and bounds", "todo"),
+item("BLD-08", "BLD", "C2 next-experiment choice from recorded pool", "todo"),
+item("BLD-09", "BLD", "Scoreboard-format export", "todo"),
+item("BLD-10", "BLD", "Evidence tracker for this list (catalogue, verify, Slack List mirror)", "done", evidence=["tracker/verify.py", "tracker/README.md"],
+     checks=[{"t": "exists", "path": "tracker/verify.py"}, {"t": "exists", "path": "tracker/status.json"}]),
+item("BLD-11", "BLD", "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract", "done",
+     criterion="Typed link registry with prod namespace, immutable IDs, derived prod status, suspect-link reviews and Slack mirror check; "
+               "every failure mode in LINKS.md section 6 caught by the self-test; AGENTS.md read by CLAUDE.md",
+     evidence=["tracker/trace.py", "tracker/LINKS.md", "tracker/selftest_trace.py", "tracker/selftest_trace.json", "AGENTS.md", "CLAUDE.md"],
+     checks=[J("tracker/selftest_trace.json", ["ok"], "true"), J("tracker/selftest_trace.json", ["total"], "ge", 26),
+             G("CLAUDE.md", r"@AGENTS\.md"), G("AGENTS.md", r"Never send a message in #causal-discovery")],
+     reproduce="python tracker/selftest_trace.py", reopen_if=["trace.py or LINKS.md changes without a passing self-test"]),
+item("BLD-12", "BLD", "Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts", "done",
+     criterion="Uzair's curation applied as prod rows with derived statuses and overclaim gates; relay.py prepares, records and checks "
+               "messages per channel; every new failure mode caught by the self-test",
+     evidence=["tracker/relay.py", "tracker/RELAY.md", "tracker/prod_spec.json", "tracker/selftest_trace.json"],
+     checks=[J("tracker/selftest_trace.json", ["ok"], "true"), J("tracker/selftest_trace.json", ["total"], "ge", 40),
+             G("tracker/RELAY.md", r"A prod message is sent only by Uzair"), G("tracker/prod_spec.json", r"Replicate Causal-Copilot paper claims and results")],
+     reproduce="python tracker/selftest_trace.py", reopen_if=["prod_spec.json changes without prod-apply; relay.py changes without a passing self-test"]),
+# ---------------- 9 Evaluation protocol
+item("EVL-01", "EVL", "Every score states its regime (D / D+I / D+K / D+I+K)", "done", kind="rule",
+     criterion="Every results directory carries a CONTRACT.json stating its regime (per file where mixed) and every new score row states it; analysis/check_scores.py rejects any that do not",
+     evidence=[R + "program_v2.md", "analysis/score_record.py", "analysis/check_scores.py"],
+     checks=[J("analysis/results/score_contract_report.json", ["nonconforming"], "len_eq", 0), G("analysis/score_record.py", r'REGIMES = \{"D", "D\+I", "D\+K", "D\+I\+K"\}')]),
+item("EVL-02", "EVL", "Controls on every score (columns shuffled; names real/neutral/moved; supplier; interventions)", "done", kind="rule",
+     criterion="Every score states its controls (column order, name arm, supplier, knowledge source when K is present); the checker rejects any that do not. "
+               "A score without a shuffled-column counterpart says so in its controls; the Q1 suite S2 and BND-06 add the shuffled arms.",
+     evidence=[R + "program_v2.md", "analysis/score_record.py", "analysis/check_scores.py"],
+     checks=[J("analysis/results/score_contract_report.json", ["nonconforming"], "len_eq", 0), G("analysis/score_record.py", r"regime includes K but controls.knowledge_source is missing")]),
+item("EVL-03", "EVL", "Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional error, cost", "done", kind="rule",
+     criterion="The metric set is defined once (score_record.STANDARD_METRICS); every reported metric is defined in its directory's contract, with the SHD variant and the orientation rule named",
+     evidence=["analysis/cc_graph.py", "analysis/error_budget.py", "analysis/score_record.py"],
+     checks=[J("analysis/results/score_contract_report.json", ["nonconforming"], "len_eq", 0), G("analysis/score_record.py", r"an SHD metric is reported but shd_variant is not named")]),
+item("EVL-04", "EVL", "Predictions and thresholds fixed in code before every live run", "done", kind="rule",
+     evidence=["analysis/stability.py"], checks=[G("analysis/stability.py", r"P1_HI, P1_LO, P1_N"), G("analysis/stability.py", r"N4_HI, N4_LO, N4_N")]),
+item("EVL-05", "EVL", "Development / held-out split by scenario number before any tuning", "done", kind="rule",
+     criterion="plans/splits.json frozen before any tuning: 25 / 25 scenarios per family, disjoint, regenerable byte-for-byte; earlier data declared dev",
+     evidence=["plans/splits.json", "analysis/make_splits.py"],
+     checks=[J("plans/splits.json", ["families", "semantic", "dev"], "len_eq", 25), J("plans/splits.json", ["families", "semantic", "test"], "len_eq", 25),
+             J("plans/splits.json", ["families", "formula", "dev"], "len_eq", 25), J("plans/splits.json", ["families", "semantic", "s2_test_scenarios"], "len_eq", 10),
+             J("tests/last_run.json", ["ok"], "true")],
+     reproduce="python analysis/make_splits.py --root external/causalarena --out plans/splits.json (unit test checks byte identity)"),
+item("EVL-06", "EVL", "Stage-by-stage scoring of any pipeline", "done", kind="rule", evidence=["analysis/lineage.py", "analysis/partial_stages.py"],
+     checks=[{"t": "exists", "path": "analysis/partial_stages.py"}]),
+item("EVL-07", "EVL", "Must-show list and gates for every live step", "done", kind="rule",
+     evidence=[R + "bundle1_design.md", R + "pass4b_design.md"], checks=[G(R + "bundle1_design.md", r"Must-show list")]),
+# ---------------- 10 Infrastructure
+item("INF-01", "INF", "Harness v3, Docker image, cc.ps1 commands, stub LLM, plan runner, fetcher", "done",
+     evidence=["cc.ps1", "harness/fetch_external.py", "manifests/evidence/INF-01_docker_2026-10-10.sha256"], checks=[G("cc.ps1", r'"fetch"'), G("harness/fetch_external.py", r"begin_source")]),
+item("INF-02", "INF", "Analysis tools with gates", "done", evidence=["analysis/README.md"], checks=[G("analysis/README.md", r"Tools and their gates")]),
+item("INF-03", "INF", "External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets)", "done", evidence=[FR],
+     checks=[J(FR, ["errors"], "len_eq", 0), J(FR, ["extracted"], "len_eq", 8)]),
+item("INF-04", "INF", "Compute-job command on Uzair's machine (sandbox caps steps at 180 s)", "done",
+     criterion="cc.ps1 compute runs a jobkit script in the container with no network, the repo read-only and an empty .env; "
+               "J1 (chunked == one-shot output hash, in the shell and in the container) and J2 (no key, no network, empty .env) pass",
+     evidence=["harness/compute_job.py", "analysis/jobkit.py", "analysis/smoke_job.py", "cc.ps1", "jobs/gates.json", "jobs/smoke_container/log.jsonl"],
+     checks=[J("jobs/gates.json", ["J1_shell"], "true"), J("jobs/gates.json", ["J1_container"], "true"), J("jobs/gates.json", ["J2"], "true")],
+     reproduce="powershell -ExecutionPolicy Bypass -File .\\cc.ps1 compute smoke_container.json ; python analysis/job_gates.py",
+     note="Container run 2026-10-11 (Uzair): 4 chunks, each stopped by its 4 s budget and resumed; output sha256 84e50886... identical to "
+          "the one-shot and shell runs; J2 printed in every chunk: no secret-like variables, no network, /app/.env size 0."),
+item("INF-05", "INF", "Unit tests for our code; caching by content hash", "done",
+     criterion="Unit tests for the scorer, graph conversions, CPDAG/Meek, job resumption, the score contract and the splits pass; jobkit keys cached results by input sha256",
+     evidence=["tests/test_core.py", "tests/run_tests.py", "analysis/jobkit.py"],
+     checks=[J("tests/last_run.json", ["ok"], "true"), J("tests/last_run.json", ["ran"], "ge", 18), G("analysis/jobkit.py", r"def input_key")],
+     reproduce="python tests/run_tests.py"),
+item("INF-06", "INF", "Public repository preparation (no keys, licences, no redistribution, run-record size)", "todo"),
+item("INF-07", "INF", "One command reproduces every number in the report", "todo"),
+# ---------------- 11 Course
+item("CRS-01", "CRS", "TA check-in 1 (TA: Nate)", "todo", kind="deadline", due="2026-10-19"),
+item("CRS-02", "CRS", "Quarter 1 checkpoint", "todo", kind="deadline", due="2026-11-02"),
+item("CRS-03", "CRS", "TA check-in 2", "todo", kind="deadline", due="2026-11-20"),
+item("CRS-04", "CRS", "Quarter 1 final (50%)", "todo", kind="deadline", due="2026-12-04"),
+item("CRS-05", "CRS", "Quarter 2 proposal: written proposal, weekly schedule, 2-3 min pitch (15%)", "todo", kind="deadline"),
+item("CRS-06", "CRS", "Quarter 2 deliverables: public repo, website, PDF report, poster; showcase 2nd week of March 2027", "todo", kind="deadline"),
+item("CRS-07", "CRS", "Decision gate G1", "todo", kind="deadline", due="2026-10-16"),
+# ---------------- 12 Team
+item("TEAM-01", "TEAM", "Causal Discovery section for the shared mentor document", "in_progress",
+     evidence=["project:claude/shared-doc-causal-section-draft.md"], note="v3 ready; 'Proposed project' part waits on DEC-01."),
+item("TEAM-02", "TEAM", "Plain-language explainer for meetings, saved as a file", "done", evidence=["docs/meeting_explainer.md", R + "bundle1_results.md"],
+     criterion="docs/meeting_explainer.md exists and matches current numbers",
+     checks=[G("docs/meeting_explainer.md", r"directed-edge F1\) \*\*0\.68\*\*"), G(R + "bundle1_results.md", r"directed-edge F1 0\.09 -> 0\.68"),
+             G("docs/meeting_explainer.md", r"\*\*0\.02\*\*; with swapped names to \*\*0\.07\*\*"), G(R + "bundle1_results.md", r"0\.08 -> 0\.02; swapped \(13\) 0\.50 -> 0\.26, 0\.04 -> 0\.07"),
+             G(R + "bundle1_results.md", r"real 141 of 152 \(93%\).*swapped 112 of 125 \(90%\)"), G(R + "bundle1_results.md", r"Total crashes: 12 of 84"),
+             G(R + "bundle1_results.md", r"100 of 336 \(29\.8%\)")],
+     reopen_if=["a newer run set supersedes bundle 1's numbers (the explainer must be regenerated)"],
+     note="Written 2026-10-10 for TA check-in 1 (19-23 Oct); each number is tied to its source line by a check."),
+item("TEAM-03", "TEAM", "Recruit at least one teammate", "todo"),
+item("TEAM-04", "TEAM", "Ask the mentor: group of 2-3 in Q2? Scope of 'replicate, measure, strengthen'?", "todo"),
+item("TEAM-05", "TEAM", "Do not count on answers from Prof. Huang's group", "done", kind="rule", evidence=[LED, "project:claude/causal-copilot-research-ledger.md (DECISIONS)"],
+     checks=[G(LED, r"do not count on any answer from Prof\. Huang")]),
+item("TEAM-06", "TEAM", "Weekly status post", "todo"),
+item("TEAM-07", "TEAM", "Tailored public goals post in #causal-discovery", "done", evidence=["slack:C0C8CQK1XME/1791580546.004809", "slack:C0C8CQK1XME/1791613267.243749", "tracker/relay_out/20261010T061713Z_digest_prod.md"],
+     checks=[G("tracker/relay_out/20261010T061713Z_digest_prod.md", r"first digest, no earlier baseline")],
+     criterion="Goals index, status legend and the first prod digest posted in #causal-discovery",
+     note="Index and status legend posted by Uzair on 9 Oct; first prod digest sent by Uzair (ts 1791613267.243749, recorded 11 Oct)."),
+# ---------------- 13 External
+item("EXT-01", "EXT", "Note to CausalArena's maintainers about column order", "open", kind="decision", blocked_by="Uzair's decision (DEC-03)",
+     evidence=[PROT, R + "bnd04_results.md"],
+     note="Strengthened by BND-04: the authors' own baseline code orients undecided edges by column index on a topologically ordered release "
+          "(PC F1 0.335 -> 0.396, FCI 0.322 -> 0.521 under that rule)."),
+item("EXT-02", "EXT", "Scoreboard submission package with regime and controls stated", "todo"),
+item("EXT-03", "EXT", "Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer)", "open", kind="decision",
+     note="Evidence grows: 15 of 15 live entries into the cycle step crashed at judge_functions.py:562 (9 bundle 1, 6 S2)."),
+item("EXT-04", "EXT", "Paper: evaluations track or workshop", "todo"),
+item("EXT-05", "EXT", "Course website, poster, report", "todo"),
+# ---------------- 14 Stretch
+item("STR-01", "STR", "E1 Field-wide audit of agents and LLM-assisted methods", "open", kind="stretch"),
+item("STR-02", "STR", "E2 Public agent track", "open", kind="stretch"),
+item("STR-03", "STR", "E3 Real experiments via the Causal Chambers remote lab", "open", kind="stretch"),
+item("STR-04", "STR", "E4 Learned fusion (pretrained network with unreliable tier statements)", "open", kind="stretch"),
+item("STR-05", "STR", "E5 Hidden confounders, time series, 100+ variables", "open", kind="stretch"),
+item("STR-06", "STR", "Product angle: auditable causal analyst", "open", kind="stretch"),
+# ---------------- 15 Decisions and risks
+item("DEC-01", "DEC", "Adopt, redirect or enlarge program v2; which of E1-E5 in scope", "open", kind="decision"),
+item("DEC-02", "DEC", "Approve the tier-elicitation test (~900 short calls through Uzair's key)", "open", kind="decision"),
+item("DEC-03", "DEC", "Whether to tell CausalArena's maintainers about the column order", "open", kind="decision"),
+item("DEC-04", "DEC", "Connect Slack; tracker in private #cd-tracker", "done", kind="decision", evidence=[LED, "slack:C0C7Q2CA2G7"],
+     checks=[G(LED, r"#cd-tracker \(C0C7Q2CA2G7")]),
+] + [item("RSK-%02d" % (1 + i), "RSK", t, "open", kind="risk") for i, t in enumerate([
+    "LLM-written semantic graphs make names 'work' for the wrong reason (guard: formula + Causal Chambers alongside)",
+    "Data-only system may not reach GIES 0.552 (guard: claim targets only where they hold)",
+    "Scope too large for one person (guard: decision gates; tracks shrink in fixed order)",
+    "Prior work closes the gap first (guard: dated measurements; positioning kept current)",
+    "Benchmark files change (guard: dated result; shuffling stays a required control)",
+    "Model snapshot changes mid-study (guard: snapshot per call; one per comparison)",
+    "Thresholds tuned after seeing results (guard: thresholds in code, hashed plans, held-out split)",
+    "Sandbox limits 180 s per step (guard: compute command on Uzair's machine)"])]
+
+
+# ---------------- 16 Bundles: definitions come from plans/q1_dag.json (approved 2026-10-10); status and evidence are set here.
+# A bundle's must-show list is its closing criterion; it may be marked done only when every ticket it closes is done (trace T11).
+BUNDLE_STATUS = {"BND-01": "done", "BND-02": "in_progress", "BND-03": "in_progress", "BND-04": "done", "BND-05": "done",
+                 "BND-06": "in_progress", "BND-07": "done", "BND-08": "in_progress", "BND-09": "done", "BND-10": "in_progress", "BND-11": "in_progress", "BND-12": "in_progress"}
+BUNDLE_EVIDENCE = {"BND-01": ["jobs/gates.json", "jobs/smoke_container/log.jsonl", "jobs/smoke/log.jsonl", "tests/last_run.json", "plans/splits.json",
+                              "analysis/check_scores.py"],
+                   "BND-05": ["datasets/suite_q1s2/MAPPING.json", "manifests/evidence/suite_q1_2026-10-10.sha256", "docs/q1/datasets.md",
+                              "docs/meeting_explainer.md", "analysis/results/reference_reliability/reliability.json"],
+                   "BND-04": [MV + "bnd04_verdicts.json", R + "bnd04_results.md", MV + "gesbic_semantic_obs.json", MV + "fci_semantic_obs.json", PROT],
+                   "BND-03": [B3 + "rep04_paper_vs_code.md", B3 + "rep03_headline_claims.md", B3 + "aud12_effect_estimation.md",
+                              B3 + "aud14_wrappers_webdemo_report.md", B3 + "aud15_upstream.md", CIT, "analysis/results/bnd03_tree_check.json"],
+                   "BND-02": [LB2 + "rep13_claims.md", LB2 + "dom07_deep_reads.md", LB2 + "dom08_calibration_choice.md",
+                              LB2 + "dom10_active_design_baselines.md", LB2 + "dom11_pretrained_models.md", LB2 + "rep12_causalman.md"],
+                   "BND-08": ["analysis/results/stability_s2/bnd08_summary.json", "analysis/reports/bnd08_s2_results.md", "plans/results/20261012T002122Z_bnd08_live.result.json", "plans/bnd08_stub.json", "plans/bnd08_live.json", "analysis/s2_analysis.py", "analysis/bootstrap_replay_ca.py",
+                              "manifests/evidence/bnd08_prereg_2026-10-11.sha256"],
+                   "BND-06": [MV + "bnd06_verdicts.json", MV + "bnd06_families.json", MV + "bnd06_c1_recheck.json", R + "bnd06_interim.md",
+                              R + "bnd06_families.md", "plans/bnd06_prereg.json", "analysis/notears_linear.py", "analysis/results/submission/validator_output.txt"],
+                   "BND-07": ["analysis/intervention_audit.py", IA, "external/causalchamber_pkg/causalchamber-0.2.8-py3-none-any.whl",
+                              "analysis/results/chambers/mapping.json", "analysis/results/chambers/one_layer_deep.json", "analysis/results/chambers/rep09_ges.json", "analysis/reports/bnd07_chambers.md"],
+                   "BND-09": ["analysis/refinement_v1.py", "analysis/results/refinement_v1/dev.json", "analysis/results/refinement_v1/dev_exploratory.json",
+                              "analysis/results/refinement_v1/RULE.json", "analysis/reports/bnd09_bnd10_refinement.md", "jobs/bootstrap_replay_ca_dev/out/replay_dev.json"],
+                   "BND-12": ["analysis/results/rep11/rep11_sachs_data.json", "analysis/reports/rep11_sachs_data.md"],
+                   "BND-11": ["analysis/refinement_v2.py", "analysis/results/refinement_v2/" + "RULE.json", "analysis/results/refinement_v2/" + "dev.json", "plans/bnd11_names_requests.jsonl",
+                              "harness/names_runner.py", "analysis/reports/bnd11_prep.md", "manifests/evidence/bnd11_prereg_2026-10-12.sha256"],
+                   "BND-10": ["analysis/results/refinement_v1/test_live_s2.json", "analysis/refinement_v1_test_live.py", "analysis/results/refinement_v1/test_replay.json", "analysis/results/refinement_v1/access_log.jsonl",
+                              "analysis/reports/bnd09_bnd10_refinement.md", "jobs/bootstrap_replay_ca_test/out/replay_test.json"]}
+BUNDLE_CHECKS = {"BND-01": [J("jobs/gates.json", ["J1_shell"], "true"), J("jobs/gates.json", ["J1_container"], "true"), J("jobs/gates.json", ["J2"], "true"),
+                            J("tests/last_run.json", ["ok"], "true")],
+                 "BND-05": [{"t": "manifest", "path": "manifests/evidence/suite_q1_2026-10-10.sha256"},
+                            {"t": "exists", "path": "docs/meeting_explainer.md"},
+                            G("docs/q1/datasets.md", r"### s2_10: ")],
+                 "BND-03": [J(CIT, ["ok"], "true"), J("analysis/results/bnd03_tree_check.json", ["ok"], "true")],
+                 "BND-04": [J(MV + "bnd04_verdicts.json", ["gates", "C1"], "true")],
+                 "BND-08": [{"t": "manifest", "path": "manifests/evidence/bnd08_prereg_2026-10-11.sha256"}],
+                 "BND-09": [J("analysis/results/refinement_v1/dev.json", ["summary", "R3", "verdict"], "eq", "SUPPORTED"),
+                            J("analysis/results/refinement_v1/RULE.json", ["sha256"], "eq", "da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f95287a962")],
+                 "BND-11": [{"t": "manifest", "path": "manifests/evidence/bnd11_prereg_2026-10-12.sha256"}],
+                 "BND-10": [J("analysis/results/refinement_v1/test_live_s2.json", ["pooled_test", "files"], "eq", 55),
+                            J("analysis/results/refinement_v1/test_replay.json", ["summary", "files"], "eq", 25),
+                            J("analysis/results/refinement_v1/test_replay.json", ["rule_sha256"], "eq", "da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f95287a962")]}
+BUNDLE_NOTE = {"BND-01": "Closed 2026-10-11 after Uzair's container smoke run: J1 (shell and container) and J2 pass; 18 unit tests pass; every result directory has a CONTRACT.json (check_scores: none non-conforming).",
+               "BND-05": "Built 2026-10-10; gates D1-D11 pass and the rebuild is byte-identical (--check). Marked done 2026-10-11 once BND-01 closed (rule W3).",
+               "BND-04": "Built 2026-10-10: RQ-16, REP-06, BEN-08 done; marked done 2026-10-11 once BND-01 closed (W3). BEN-11 continues in BND-06.",
+               "BND-03": "Static audit done (gates A1, A2 pass); open: REP-03 live-only claims, AUD-14 one offline stub run of a time-series wrapper.",
+               "BND-02": "REP-13, DOM-08, DOM-10, DOM-11, DOM-12 done; DOM-07 waits on CausalArena appendix B (unreadable so far).",
+               "BND-08": "Live run 11-12 Oct: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1 SUPPORTED, M2 REFUTED (5/10), M3 SUPPORTED, M4 SUPPORTED, M5 not run; L1 and Q1-Q3 pass; about $12.7. Open: DLV-02's gap (6 arms without a completed run), Uzair's call.",
+               "BND-06": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11.",
+               "BND-07": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here).",
+               "BND-09": "Done 2026-10-11. Dev, 92 files (69 live tables, 23 CausalArena dev replays): R1 0.79 INCONCLUSIVE, R2 0.96 SUPPORTED, R3 +0.023 SUPPORTED; non-directed edges kept 95% vs the pipeline's 30%. Frozen: RULE.json sha256 da3cb260..., 01:11:03Z.",
+               "BND-12": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair.",
+               "BND-11": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live.",
+               "BND-10": "Measured 2026-10-12 (must-show complete; marked done once BND-08 closes, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. Live S2 alone: R1 REFUTED 17/30, R2 SUPPORTED 30/30. TGT-09 not met; carried to BND-11 (v2)."}
+
+
+def _bundle_items():
+    import json as _json, os as _os
+    plan = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "plans", "q1_dag.json"), encoding="utf-8"))
+    out = []
+    for b in plan["bundles"]:
+        out.append(item(b["id"], "BND", b["title"], BUNDLE_STATUS.get(b["id"], "todo"), kind="bundle",
+                        criterion="Must show: " + "; ".join(b["must_show"]), due=b["window"][1],
+                        evidence=BUNDLE_EVIDENCE.get(b["id"], ()), checks=BUNDLE_CHECKS.get(b["id"], ()),
+                        note=(BUNDLE_NOTE.get(b["id"], "") + " " if b["id"] in BUNDLE_NOTE else "")
+                             + "Runner: %s. API spend: %s." % (b["runner"], b["llm_cost"])))
+    return out
+
+
+ITEMS += _bundle_items()
+
+
+# ---------------- Items created in comprehensions, replaced by id (BND-04, 2026-10-10)
+_OVERRIDE = {i["id"]: i for i in [
+item("RQ-16", "RQ", "Does PC's error pattern hold for other algorithms?", "done", kind="question",
+     criterion="Q4a-b verdicts (GES and FCI direction accuracy and the cost of direction errors) from BND-04",
+     evidence=[MV + "bnd04_verdicts.json", MV + "error_budget_gesbic.json", MV + "error_budget_fci.json", R + "bnd04_results.md"],
+     checks=[J(MV + "bnd04_verdicts.json", ["Q4a", "verdict"], "eq", "REFUTED"), J(MV + "bnd04_verdicts.json", ["Q4b", "verdict"], "eq", "INCONCLUSIVE"),
+             J(MV + "bnd04_verdicts.json", ["gates", "C1"], "true"), J(MV + "bnd04_verdicts.json", ["gates", "files_250_each"], "true")],
+     reproduce="python analysis/method_error_budget.py --rows analysis/results/methods/gesbic_semantic_obs.json --published GIES --out analysis/results/methods/error_budget_gesbic.json; same for fci; python analysis/bnd04_summary.py",
+     note="No. Committed-direction accuracy GES 0.807, FCI 0.798 (PC 0.544): Q4a refuted. Cost of direction errors GES 0.117, FCI 0.228 "
+          "(PC 0.276): Q4b inconclusive. FCI's cost is undecided pairs (73% of found true adjacencies), not wrong arrows. "
+          "PC's 0.544 is for the released (topological) order; shuffled it is 0.722 (BND-06), so the pattern was order-specific too."),
+]}
+ITEMS = [_OVERRIDE.get(_i["id"], _i) for _i in ITEMS]
+
+
+# ---------------- Closing criteria written in BND-01 (2026-10-10) for in-scope tickets that had none
+CRITERIA = {
+    "AUD-14": "Torch and time-series wrappers, the web-demo path and report generation audited like the discovery path (file:line findings; one stub run where it runs offline)",
+    "BEN-07": "For every method we can run, F1 on released vs shuffled column order measured; whether CausalArena's own wrappers shuffle stated from their code or recorded as unknowable",
+    "BEN-08": "The SHD variant that reproduces the published 33.5 identified on the stored PC outputs, or every candidate variant shown not to",
+    "BEN-09": "For every declared intervention in the replay sampler's data, whether the target's distribution moves (KS, Holm 1%); the in-name-only count reported",
+    "BEN-10": "Each of the 8 Causal Chambers datasets mapped to its ground-truth graph and source; 'one layer deep' validation checked; an obs+int sample built under a stated rule",
+    "BEN-11": "Error budgets (ceiling -> skeleton -> direction) for GES, FCI, DirectLiNGAM, NOTEARS and CPU-runnable pretrained models on semantic, formula and a 100-file synthetic sample",
+    "BEN-12": "Reliability of each Q1 reference graph stated with its source (Sachs variants, Auto MPG mismatch, the others' provenance)",
+    "DOM-12": "Scoping note: what Causal-Copilot offers for hidden confounders, time series and 100+ variables, what Q1 covers, what moves to Q2",
+    "RQ-16": "Q4a-b verdicts (GES and FCI direction accuracy and the cost of direction errors) from BND-04",
+    "RQ-17": "Second model on the S1 arms: N2 and P1 replicated or not (S1, S2 in BND-12)",
+    "CAP-06": "Refinement v1 keeps the algorithm's undirected edges unless the data contradict them; survival rate reported against the pipeline's 15-31%",
+    "CAP-10": "Every model reply schema-validated with one retry, then abstain; zero crashes over the BND-11 runs",
+    "TGT-09": "R1 supported on the test split: v1 adjacency F1 >= algorithm output - 0.02 in >= 90% of files",
+    "TGT-13": "Zero crashes from malformed model output over the BND-11 runs",
+    "BLD-06": "v1/v2 take the pipeline's recorded inputs and return its output format with a source on every edge; R1-R6 reported",
+    "INF-06": "Public tree: secret scan clean, licences stated, no redistributed benchmark data, no classmates' names, run records within size limits",
+    "CAP-17": "Every Q1 row packaged in CausalArena's submission format (summary.csv, predictions, manifest.json) and passed through tools/validate_submission.py",
+    "INF-07": "One command regenerates every number in the final report on a clean copy, byte-for-byte or within stated tolerance",
+}
+for _i in ITEMS:
+    if not _i["criterion"] and _i["id"] in CRITERIA:
+        _i["criterion"] = CRITERIA[_i["id"]]
+
+
+# Done tickets whose evidence was a directory now pin a dated manifest (2026-10-10); each manifest is also checked file by file.
+for _i in ITEMS:
+    for _e in _i["evidence"]:
+        if _e.startswith("manifests/evidence/") and not any(c.get("t") == "manifest" and c.get("path") == _e for c in _i["checks"]):
+            _i["checks"].append({"t": "manifest", "path": _e})

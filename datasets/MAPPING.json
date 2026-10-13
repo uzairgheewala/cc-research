@@ -1,0 +1,231 @@
+{
+  "source": {
+    "file": "data/dataset/sachs/sachs.csv",
+    "sha256": "be7024019bdb806d993e9da91ee54928baec6d1869cf3812d97d52a47526860c",
+    "bytes": 45278,
+    "reference_graph": "data/dataset/sachs/base_graph.npy",
+    "reference_sha256": "6ad53c6542b35d35e4b824a048d874b4ae68de490c122bb40b0cd5accbe45ffb",
+    "columns": [
+      "Raf",
+      "Mek",
+      "Plcg",
+      "PIP2",
+      "PIP3",
+      "Erk",
+      "Akt",
+      "PKA",
+      "PKC",
+      "P38",
+      "Jnk"
+    ],
+    "rows": 853,
+    "reference_edges": [
+      "Raf->Mek",
+      "Mek->Erk",
+      "Plcg->PIP2",
+      "Plcg->PKC",
+      "PIP2->PKC",
+      "PIP3->Plcg",
+      "PIP3->PIP2",
+      "PIP3->Akt",
+      "Erk->Akt",
+      "PKA->Mek",
+      "PKA->Erk",
+      "PKA->Akt",
+      "PKA->P38",
+      "PKA->Jnk",
+      "PKC->Raf",
+      "PKC->Mek",
+      "PKC->PKA",
+      "PKC->P38",
+      "PKC->Jnk"
+    ]
+  },
+  "derangement_search": {
+    "method": "exhaustive depth-first branch and bound, lexicographic order, no random numbers",
+    "search_nodes_visited": 343484,
+    "rule": "lexicographically first derangement with the fewest shared adjacent pairs"
+  },
+  "arms": {
+    "sachs": {
+      "dataset_arg": "research:datasets/sachs/sachs.csv",
+      "sha256": "be7024019bdb806d993e9da91ee54928baec6d1869cf3812d97d52a47526860c",
+      "bytes": 45278,
+      "path_says_sachs": true,
+      "column_labels": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "data_in_each_column_is_really": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "reference_by_data": "_reference/reference_by_data.npy",
+      "reference_by_label": "_reference/reference_by_data.npy"
+    },
+    "d01": {
+      "dataset_arg": "research:datasets/d01/d01.csv",
+      "sha256": "be7024019bdb806d993e9da91ee54928baec6d1869cf3812d97d52a47526860c",
+      "bytes": 45278,
+      "path_says_sachs": false,
+      "column_labels": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "data_in_each_column_is_really": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "reference_by_data": "_reference/reference_by_data.npy",
+      "reference_by_label": "_reference/reference_by_data.npy"
+    },
+    "d02": {
+      "dataset_arg": "research:datasets/d02/d02.csv",
+      "sha256": "b024cbfafd7260a5ddc634e07991533dcb556b17fec1079a4e1596c136501942",
+      "bytes": 45275,
+      "path_says_sachs": false,
+      "column_labels": [
+        "V01",
+        "V02",
+        "V03",
+        "V04",
+        "V05",
+        "V06",
+        "V07",
+        "V08",
+        "V09",
+        "V10",
+        "V11"
+      ],
+      "data_in_each_column_is_really": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "reference_by_data": "_reference/reference_by_data.npy",
+      "reference_by_label": null
+    },
+    "d03": {
+      "dataset_arg": "research:datasets/d03/d03.csv",
+      "sha256": "0bdbf21c484aedf4ced78452764f4b017e20d9559902c6a014cffc40e9147b5a",
+      "bytes": 45278,
+      "path_says_sachs": false,
+      "column_labels": [
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "Raf",
+        "PKA",
+        "P38",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "Jnk",
+        "PKC"
+      ],
+      "data_in_each_column_is_really": [
+        "Raf",
+        "Mek",
+        "Plcg",
+        "PIP2",
+        "PIP3",
+        "Erk",
+        "Akt",
+        "PKA",
+        "PKC",
+        "P38",
+        "Jnk"
+      ],
+      "reference_by_data": "_reference/reference_by_data.npy",
+      "reference_by_label": "_reference/d03_reference_by_label.npy"
+    }
+  },
+  "d03": {
+    "label_on_each_column": {
+      "column 1 (data of Raf)": "Mek",
+      "column 2 (data of Mek)": "Plcg",
+      "column 3 (data of Plcg)": "PIP2",
+      "column 4 (data of PIP2)": "Raf",
+      "column 5 (data of PIP3)": "PKA",
+      "column 6 (data of Erk)": "P38",
+      "column 7 (data of Akt)": "PIP3",
+      "column 8 (data of PKA)": "Erk",
+      "column 9 (data of PKC)": "Akt",
+      "column 10 (data of P38)": "Jnk",
+      "column 11 (data of Jnk)": "PKC"
+    },
+    "adjacent_pairs_shared_by_the_two_references": 1,
+    "by_label_reference_edges_in_column_terms": [
+      "col1->col8",
+      "col2->col3",
+      "col2->col11",
+      "col3->col11",
+      "col4->col1",
+      "col5->col1",
+      "col5->col6",
+      "col5->col8",
+      "col5->col9",
+      "col5->col10",
+      "col7->col2",
+      "col7->col3",
+      "col7->col9",
+      "col8->col9",
+      "col11->col1",
+      "col11->col4",
+      "col11->col5",
+      "col11->col6",
+      "col11->col10"
+    ]
+  },
+  "gates": {
+    "D1_bodies_byte_identical": true,
+    "D2_sachs_copy_byte_identical": true,
+    "D3_d03_is_derangement": true,
+    "D4_shared_adjacent_pairs_matches_search": true,
+    "D5_parsed_values_identical": true
+  }
+}

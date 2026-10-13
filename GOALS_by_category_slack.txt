@@ -1,0 +1,327 @@
+*Causal discovery capstone: goals by category* (as of 9 Oct 2026)
+
+Status tags: [done] [partial] [open] [waiting: Uzair] [standing] [stretch]
+Numbers are directed-edge F1 (the scoreboard's measure) unless a line says otherwise. "Published" = CausalArena's tables (all 100 scenarios per family); we can only score the public 50.
+
+*Framing.* We started by replicating and auditing Causal-Copilot. The work is now organised around one question: for each causal direction a system reports, where did it come from? The candidates are the numbers, interventions, declared knowledge, or leaks such as variable names and column order.
+
+*Categories*
+1. Replication of existing work
+2. Domain exploration
+3. Audit of existing capability (Causal-Copilot as it is)
+4. Audit of benchmarks and data
+5. Where we have to reach (targets)
+6. Required capabilities (what it takes, have vs need)
+7. Research questions and predictions
+8. What we build
+9. Evaluation protocol
+10. Infrastructure and reproducibility
+11. Course deliverables and dates
+12. Team, mentor and communication
+13. External outputs
+14. Stretch goals
+15. Open decisions and risks
+
+==================== cut here: post 1 ====================
+
+*1. Replication of existing work*
+• [done] Run Causal-Copilot (commit a31aa7c) unmodified, end to end, with GPT-4o in Docker, every model call and intermediate graph recorded. 84 live runs so far.
+• [done] Verify the code is untouched before and after every run: all 1,332 tracked files byte-identical.
+• [partial] Reproduce the paper's headline claims (arXiv 2504.13263).
+    ◦ Algorithm selection reproduces: same choice in every repeat.
+    ◦ Table 2 cannot be reproduced from the repo: the benchmark script scores the algorithm's output before refinement, and its data folder is not in the repo.
+    ◦ Remaining: rebuild an equivalent benchmark, or report it as not reproducible.
+• [partial] Check the paper against the code: 9 divergences logged, for example:
+    ◦ bootstrap decisions "not overridden": the LLM overrides them;
+    ◦ only "moderate-confidence" edges go to the LLM: every pair goes;
+    ◦ "iterative revision on errors": there is no recovery loop.
+• [done] Reproduce CausalArena's published PC baseline on the public named scenarios: 0.335 against the published 0.333 (our scorer is calibrated).
+• [open] Find out why SHD does not reproduce (ours 37.5, published 33.5).
+• [open] Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, and the pretrained models that run on CPU (AVICI, CDFM).
+• [done] Reproduce the sortability analysis of Reisach et al. on CausalArena: R2-sortability 0.57 (semantic) / 0.60 (formula); R2-SortnRegress baseline 0.31 / 0.29.
+• [open] Reproduce the Causal Chambers authors' baseline (GES precision about 0.55-0.60, recall 0.56-0.62 on a 20-variable light-tunnel subgraph) and CDFM's reported chamber score.
+• [open] Reproduce the moved-names control of CARE (Dong et al. 2025) on one classic graph, to confirm our protocol matches theirs.
+• [open] Reproduce Kitson & Constantinou's Sachs numbers (data 0.61, model 0.40, fused 0.73), or explain the difference.
+• [open] Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables), if the CausalMan data can be obtained.
+• [open] Re-read every literature claim marked second-hand before it goes into the report (CARE appendix, CausalArena appendices, Brouillard et al. tables, Li & Russo details).
+
+==================== cut here: post 2 ====================
+
+*2. Domain exploration (the field)*
+• [done] Theory baseline for "perfect causal analysis":
+    ◦ observational data identify a set of graphs, not one;
+    ◦ finite samples make every test uncertain;
+    ◦ some assumptions are untestable;
+    ◦ so the target is an analyst that is sound, complete, calibrated, attributable and decision-complete.
+• [done] Literature map in 9 clusters: LLM-assisted discovery; causal agents and their evaluation; evidence fusion and uncertainty; fallible experts and calibration; formalisation and provenance; fusion with warrants; active discovery and environments; benchmark leakage and ceilings; query-level evaluation.
+• [done] Benchmark landscape and what "100%" means on each: CausalArena, Causal Chambers, CausalBench (GSK), CausalRivers, Sachs, CD-CSG, CausalMan.
+• [done] Nearest prior work for each claim we might make:
+    ◦ CARE: moved-names control;
+    ◦ Vashishtha et al.: ask experts for order, not edges;
+    ◦ Kitson & Constantinou: column-order sensitivity of algorithms, and LLM + data fusion;
+    ◦ Li & Russo: data can overrule the LLM;
+    ◦ ACI: scored ancestral claims;
+    ◦ ACDB and CausaLab: agents choosing interventions;
+    ◦ CausalDS: causal questions over data, with abstention;
+    ◦ Zheng et al.: agents should not supply edges.
+• [done] Commercial landscape, first pass. Buyers pay for decisions (experimentation platforms, marketing measurement, real-world evidence in pharma, IT root cause). "Causal AI" as a market is small; the adjacent decision markets are large.
+• [done] Weighing against the WorldReset forecasting project.
+• [open] Deep reads: CausalDS (paper and code), CARE, CausalArena appendices B-C, ACI's scoring formula, Li & Russo's implementation.
+• [open] Calibration of bootstrap confidence: the evidence is mixed; choose a method.
+• [open] Answering "what if we set X?" at 20-40 variables: IDA, generalised adjustment on CPDAG/PAG, bounds. What is practical.
+• [open] Active experiment design baselines (He & Geng; Hauser & Bühlmann; Squires et al.; CBED): which to implement.
+• [open] Pretrained ("foundation") discovery models: which ignore column order by design, and which have CPU checkpoints.
+• [stretch] Hidden common causes, time series, 100+ variables.
+
+==================== cut here: post 3 ====================
+
+*3. Audit of existing capability (Causal-Copilot as it is)*
+• [done] Architecture map: the 8-step CLI path, the state object, every point where the LLM is called, what is stored.
+• [done] LLM dependency map: 51 call sites, 88 logical LLM points, 29 decision points (12 with no check), 3 points that write the graph directly.
+• [done] Edge lineage tool: every final edge traced to the step that set it; gates pass on all completed runs.
+• [done] Refinement audit without the LLM. The bootstrap step deletes "direction unknown" edges. It lowers agreement with the reference in 50 of 51 algorithm/data combinations offline, and in all 12 arms of bundle 1 live.
+• [done] Name controls on 5 datasets (Sachs plus 4). Same numbers, three sets of names:
+    ◦ real names: the LLM writes 93% of the final edges;
+    ◦ neutral names: 0%;
+    ◦ names moved to the wrong columns: 90%, and the graph follows the names.
+• [done] Reliability:
+    ◦ 12 of 84 runs crashed;
+    ◦ the cycle-repair step failed all 9 times it was reached;
+    ◦ one identical request received 3 different answers at temperature 0.
+• [done] Stability: the algorithm choice is stable (FCI in every completed bundle-1 run); edge decisions vary between runs; bootstrap resamples are fixed by an accidental seed in a dependency, while numpy is unseeded.
+• [done] Survivor-bias check (do crashed runs change conclusions?): no.
+• [done] Leak scan of the neutral-name arms: no real name reached a prompt before the final graph.
+• [open] Causal-Copilot on CausalArena's named scenarios: 10 scenarios x real/neutral/moved names, columns shuffled (item A2).
+• [open] Behaviour at 20-40 variables: cost, runtime, crash rate. The all-pairs LLM review becomes 253+ questions per run.
+• [open] The effect-estimation module (causal_inference/), not yet examined.
+• [open] A second model besides GPT-4o, to see whether results hold.
+• [open] Not yet run: torch-based and time-series wrappers, the web-demo path, report quality.
+• [open] Upstream branches newer than a31aa7c.
+
+==================== cut here: post 4 ====================
+
+*4. Audit of benchmarks and data (what the scoreboards measure)*
+• [done] CausalArena public release inspected: 50 semantic, 50 formula and 500 synthetic configurations; observational and observational+interventional files; graph convention.
+• [done] Column-order leak. In every released file checked, every true edge runs from an earlier column to a later one:
+    ◦ 2,068/2,068 semantic, 1,714/1,714 formula, 50,421/50,421 synthetic edges;
+    ◦ a naive regression that reads the order scores 0.680, above every published method;
+    ◦ the same method on shuffled columns scores 0.269.
+• [done] Identifiable ceilings, observational: 0.957 (semantic), 0.971 (formula). With the released interventions: at least 0.974 / 0.993.
+• [done] Error budget for PC (semantic, public half):
+    ◦ 1.000 → 0.957 lost to identifiability → 0.611 lost to skeleton errors → 0.335 lost to wrong directions;
+    ◦ when PC commits to a direction it is right 54% of the time;
+    ◦ skeleton recall falls from 0.74 (1 cause) to 0.34 (6+ causes).
+• [done] Value of order knowledge (oracle): told only "which variables are inputs", PC rises from 0.335 to 0.470; told every variable's depth, a linear regression scores 0.714.
+• [done] Dataset check: the repo's Auto MPG does not match CausalArena's (5 vars/5 edges/392 rows vs 4/3/398).
+• [open] Do CausalArena's own wrappers shuffle columns, and are the top methods affected? Several are order-invariant by design.
+• [open] The SHD definition mismatch.
+• [open] Replay sampler: which declared interventions are interventions in name only.
+• [open] Causal Chambers:
+    ◦ map the 8 downloaded datasets to the ground-truth graphs;
+    ◦ check the "one layer deep" claim;
+    ◦ build an observational + interventional sample comparable to CausalArena's.
+• [open] Error budgets for GES, FCI and the pretrained models, on formula and synthetic files too.
+• [open] How reliable the real-data reference graphs are (Sachs is contested; CD-CSG graphs are small and textbook-like).
+
+==================== cut here: post 5 ====================
+
+*5. Where we have to reach (targets)*
+
+Score targets by benchmark and regime:
+• Semantic scenarios, numbers only: published best 0.634 (FoundCause), then GIES 0.552, PC 0.333 (ours 0.335). Ceiling 0.957.
+• Semantic, numbers + interventions: published best 0.568 (GIES). Ceiling at least 0.974.
+• Formula scenarios, numbers only: published best 0.524 (FoundCause). Ceiling 0.971.
+• Formula, numbers + interventions: at least 0.534 (TabCausal; check the other rows). Ceiling at least 0.993.
+• Real data (13 sets incl. Sachs, Causal Chambers, PetShop): 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets).
+• Causal Chambers alone: 0.727 reported in CDFM's own paper (second-hand; check which subset).
+• Numbers + declared knowledge (names read by a model, given as tiers): no published comparator. Our target: at least 0.634 semantic and 0.524 formula, columns shuffled.
+
+What 0.634 from numbers alone requires (derived from the PC budget):
+• Directed F1 ≈ skeleton F1 × direction accuracy. PC is about 0.61 × 0.55.
+• To reach 0.634, for example: skeleton 0.80 with directions 0.79, or skeleton 0.70 with directions 0.91.
+• Even with directions as good as identifiability allows (about 0.96), the skeleton must reach about 0.66. PC's is 0.61.
+
+Targets that are not scores:
+• Never below the system's own data-only output.
+• Zero change when columns are shuffled.
+• Bounded harm when names are wrong.
+• Calibration better than raw bootstrap frequencies on held-out scenarios.
+• Zero crashes from malformed model output.
+• Within the scoreboard's 1-hour budget per graph.
+• Predictions of held-out interventions better than regression on all variables.
+• Experiment choice better than random on recorded Causal Chambers experiments.
+
+==================== cut here: post 6 ====================
+
+*6. Required capabilities (have vs need)*
+Format: capability. Why. Causal-Copilot today / ours today. Status.
+• Skeleton recall at variables with many causes. It is the main skeleton loss. CC: independence search (PC/FCI) / ours: joint test per candidate edge, designed. [open]
+• Direction from the numbers. Currently 54% under PC. CC: algorithm output, then overwritten by the LLM / ours: none yet. [open]
+• Using intervention data. Worth +0.02 to +0.04 for published methods, more in principle. CC: none (CD-NOD via a domain index only) / ours: designed. [open]
+• Declared knowledge as tiers, never as edges. The biggest lever measured (0.335 → 0.470 from "which are inputs" alone). CC: names turned into edges, undeclared / ours: designed, plus an elicitation test. [waiting: Uzair]
+• Invariance to column order. A leak control. CC: untested / ours: an invariant in the design. [open]
+• Keeping "direction unknown" edges. CC deletes them / ours: designed. [open]
+• Calibrated confidence per claim. CC: 20-resample frequency of directed edges only; the literature says bootstrap frequencies are often miscalibrated. [open]
+• Abstention (claiming less when unsure). CC: none. [open]
+• Provenance per edge. CC: none natively, we reconstruct it from outside / ours: claim ledger with an independent checker, designed. [open]
+• Robustness to malformed model output. CC: 12 of 84 runs crash / ours: validate, retry once, proceed without. [open]
+• Determinism. CC: numpy unseeded, LLM answers vary / ours: same inputs give the same ledger hash. [open]
+• Runtime at 20-40 variables. PC takes 0.3 s on a median file, 105 s on the worst; CC reruns its algorithm 20 times and asks the LLM about every pair. [open, to measure]
+• Nonlinear and mixed-type dependence. PC's recall ranges from 0.42 (stock-and-flow mechanisms) to 0.65 (linear). [open]
+• Hidden common causes (PAG marks). CC's bootstrap step destroys FCI's marks. [open]
+• Answering "what if we set X?" with identification status and bounds. CC: effect module not yet examined. [open]
+• Choosing the next experiment. None. [open]
+• Scoreboard packaging (CPDAG→DAG rule, summary.csv, validator). We have the scorer and the rule. [partial]
+• Cost per run. About 50k prompt tokens per run at 5-9 variables. [open, to measure at 25]
+
+==================== cut here: post 7 ====================
+
+*7. Research questions and predictions*
+Settled:
+• Pass 4b (Sachs): P1, P2, P3 supported.
+• Bundle 1: N2 supported; N1, N4, P3 inconclusive.
+
+Theses (program v2):
+• T1. Where a method gets its order information explains most of its directed-edge accuracy.
+• T2. Deployed agents take order from names and layout, not the numbers.
+• T3. A system that keeps order as a typed, sourced partial order is:
+    ◦ never below its data-only self;
+    ◦ boundedly harmed by wrong knowledge;
+    ◦ aiming for the best published score in each declared regime (a target, not a promise).
+• T4. Calibrated, machine-checkable claims with abstention are possible.
+• T5. Answers to "what if" questions can come with identification status, checked on held-out interventions.
+• T6. Experiment choice beats random on recorded real experiments.
+
+Next predictions, O1-O5 (model supplies tiers from names):
+• O1. With real names, ≥70% of true edges ordered correctly and ≤10% contradicted.
+• O2. Neutral names give no information.
+• O3. With moved names, the tiers follow the labels.
+• O4. Regression on the model's tiers reaches 0.634 (semantic).
+• O5. Same for formula, against 0.524.
+
+Open questions:
+• The semantic scenarios were written with LLM help. Does that inflate name-based scores?
+• Does PC's error pattern hold for other algorithms?
+• Do results hold for a second model?
+• Why does SHD not reproduce?
+• Do the scoreboard's wrappers shuffle columns?
+
+==================== cut here: post 8 ====================
+
+*8. What we build*
+• [done] Recording harness around the unmodified pipeline, with lineage, stability, partial-stage, scorer, error-budget, sortability and order-value tools.
+• [open] B1: data-only claim ledger. Order kept as a partial order with named sources; one joint test per candidate edge; claims with evidence; independent checker; invariants:
+    ◦ column-shuffle equivariance;
+    ◦ deterministic hash;
+    ◦ no claim without evidence;
+    ◦ knowledge never creates a connection;
+    ◦ no crash on bad model output.
+• [open] B2: interventions as order evidence.
+• [open] B3: declared knowledge as tiers. The LLM supplies tiers only: schema-validated, several phrasings, never edges.
+• [open] B4: confidence, calibration, selective output.
+• [open] A drop-in replacement for Causal-Copilot's refinement stage (absorbs the earlier "fix").
+• [open] C1: answers to "what if we set X?" with identification status and bounds.
+• [open] C2: choosing the next experiment from a pool of recorded ones.
+• [open] Scoreboard-format export.
+
+==================== cut here: post 9 ====================
+
+*9. Evaluation protocol (how we measure)*
+• [standing] Every score states its regime: numbers only / + interventions / + declared knowledge / all three.
+• [standing] Controls on every score:
+    ◦ columns always shuffled;
+    ◦ names real / neutral / moved to other columns;
+    ◦ knowledge supplier none / oracle / each model;
+    ◦ interventions withheld / released / chosen.
+• [standing] Metrics:
+    ◦ scoreboard F1;
+    ◦ skeleton precision and recall;
+    ◦ direction accuracy;
+    ◦ precision at stated coverage, and calibration error;
+    ◦ error on held-out interventions;
+    ◦ cost, runtime, crash rate.
+• [standing] Predictions and thresholds are fixed in code before every live run, and plan files are hashed.
+• [open] Split the public scenarios into development and held-out sets by scenario number, before any tuning.
+• [standing] Any pipeline is scored stage by stage (algorithm output → each refinement step → final).
+• [standing] Every live step has a must-show list and pass/fail gates.
+
+==================== cut here: post 10 ====================
+
+*10. Infrastructure and reproducibility*
+• [done] Harness v3 and Docker image; cc.ps1 (build, preflight, dryrun, golden, plan, fetch, queue, stop, shell); offline stub LLM; plan runner with interleaving and time limits; fetcher with per-source download limits.
+• [done] Analysis tools, each with its own gates.
+• [done] External data on disk: CausalArena snapshot (1.57 GB) and 8 Causal Chambers datasets (115 MB).
+• [open] A compute-job command on Uzair's machine (the analysis sandbox caps each step at 180 s).
+• [open] Unit tests for our own code; result caching by content hash.
+• [open] Public-repository preparation:
+    ◦ keys and .env excluded;
+    ◦ licences respected (CausalArena CC-BY-4.0);
+    ◦ nothing redistributed that may not be;
+    ◦ run records are 20-36 MB each.
+• [open] One command that reproduces every number in the report.
+
+==================== cut here: post 11 ====================
+
+*11. Course deliverables and dates*
+• TA check-in 1: 19-23 Oct (TA: Nate).
+• Quarter 1 checkpoint: Mon 2 Nov.
+• TA check-in 2: 20-25 Nov.
+• Quarter 1 final: Fri 4 Dec (replication-style project, 50%).
+• Quarter 2 proposal: written proposal, weekly schedule and 2-3 minute pitch, approved by the mentor (15%).
+• Quarter 2: groups of 2-4 chosen by the mentor. Deliverables: public repository, website, PDF report, poster. Showcase in the second week of March 2027.
+• Participation: 15% (10% assigned by the mentor).
+• Our decision gates, aligned to these: G1 16 Oct, G2 2 Nov, G3 4 Dec, G4 March.
+
+==================== cut here: post 12 ====================
+
+*12. Team, mentor and communication*
+• [done] Causal Discovery section for the shared mentor document: v3 ready. Its "Proposed project" part is to be rewritten once the plan is decided.
+• [done] Plain-language explainer for meetings.
+• [open] Recruit at least one teammate (seven of eight students chose forecasting). Open roles:
+    ◦ benchmark adapters and controlled scoring;
+    ◦ the claim ledger and stage-by-stage evaluation;
+    ◦ interventions and experiment choice.
+• [open] Two questions for the mentor:
+    ◦ may the causal project be 2-3 people in Quarter 2?
+    ◦ is "replicate, measure, then strengthen Causal-Copilot" in scope?
+• [standing] Do not count on answers from Prof. Huang's group; nothing waits on them.
+• [open] A weekly status post in this channel.
+
+==================== cut here: post 13 ====================
+
+*13. External outputs*
+• [waiting: Uzair] A note to CausalArena's maintainers about the column order. A dated note establishes that we found it.
+• [open] A scoreboard submission package (summary.csv, predictions, manifest, passes their validator), with regime and controls stated.
+• [waiting: Uzair, optional] A bug report to Causal-Copilot upstream: the cycle step reads a key the model never returns, and the startup step crashes on an empty answer.
+• [open] A paper: evaluations track or workshop. Shape: a measurement (where order comes from) plus a system (the ledger).
+• [open] Course website, poster and report (see 11).
+
+==================== cut here: post 14 ====================
+
+*14. Stretch goals (the long ball)*
+• [stretch] E1. Field-wide audit: the same controls applied to every agent and LLM-assisted method with public code (e.g. CauScientist, MosaCD, ArgCausalDisco), plus AVICI and CDFM checkpoints. One table of where each system's order comes from.
+• [stretch] E2. A public agent track: a standing page that scores submissions in declared regimes with all controls.
+• [stretch] E3. Real experiments on physical hardware through the Causal Chambers remote lab. It is paid, access is on request, and the Mk2 chambers have up to 99 variables. We found no agent that has done this.
+• [stretch] E4. Learned fusion: a pretrained network that takes numbers plus tier statements of stated reliability and returns claims, trained on simulated systems where the statements are sometimes wrong. Needs GPU time.
+• [stretch] E5. Harder settings: hidden common causes, time series, 100+ variables.
+• [stretch] Product angle: an auditable causal analyst that says what it does not know and which experiment would settle it. Aimed at experimentation, marketing measurement, real-world evidence, and IT root cause.
+
+==================== cut here: post 15 ====================
+
+*15. Open decisions and risks*
+
+Decisions:
+• [waiting: Uzair] Adopt, redirect or enlarge program v2, and which of E1-E5 are in scope.
+• [waiting: Uzair] Approve the tier-elicitation test: about 900 short model calls through Uzair's key, prompt shown first.
+• [waiting: Uzair] The note to CausalArena's maintainers.
+• [done] Slack connected; this tracker lives in the private channel #cd-tracker.
+
+Risks, each with a guard:
+• The semantic graphs were partly LLM-written, so names may "work" for the wrong reason. Guard: report formula and Causal Chambers results alongside.
+• The data-only system may not reach GIES (0.552). Guard: claim each target only where it holds.
+• Too much scope for one person. Guard: decision gates; tracks shrink in a fixed order.
+• Prior work may close the gap first. Guard: measurements are dated; positioning kept current.
+• The benchmark files may change. Guard: the dated result stands, and shuffling stays a required control.
+• The model snapshot may change mid-study. Guard: snapshot recorded per call; one snapshot per comparison.
+• Thresholds could be tuned after seeing results. Guard: thresholds in code and plans hashed before runs; held-out split.
+• Sandbox limits (180 s per step). Guard: a compute command on Uzair's machine.

@@ -1,0 +1,18 @@
+{
+ "producer": "analysis/space_coords.py",
+ "inputs": ["runs/*s2* (30 live BND-08 runs, stages rebuilt as in partial_stages.py)", "analysis/results/methods/error_budget_*.json"],
+ "metric_defs": {
+  "S": "skeleton F1 over unordered adjacencies",
+  "c": "commit rate: share of found true adjacencies given a direction",
+  "q": "commit accuracy: share of committed directions on found true adjacencies that are right",
+  "a": "effective direction accuracy under forced choice (undecided at random): c*q + (1-c)/2",
+  "F1_forced": "a*S: directed F1 under the scoreboard's forced-choice rule (exact per scenario)",
+  "F1_strict": "directed F1 counting only committed directions (cc_graph.score), as in partial_stages.json"
+ },
+ "gates": {"C1": "a*S within 0.02 of the reported forced-choice F1 on semantic and formula budgets", "C2": "30 S2 runs scored", "C3": "strict F1 and S at S3 equal partial_stages.json within 0.002"},
+ "regime": "D (methods), D+K (Causal-Copilot)",
+ "score_bearing": false,
+ "split": "public semantic/formula (methods); S2 test (Causal-Copilot)",
+ "tickets": ["TGT-08", "AUD-11", "BND-08"],
+ "note": "Written 2026-10-12 for the Atlas site's projections. No model calls."
+}

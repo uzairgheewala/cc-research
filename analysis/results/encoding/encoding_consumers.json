@@ -1,0 +1,366 @@
+{
+ "per_code": [
+  {
+   "code": 1,
+   "name": "directed",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "certain_edges": [
+     [
+      "B",
+      "A"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have certain directed edge between them: B causes A,",
+   "bootstrap_layer_with_frequency_1": {
+    "certain_edges": [
+     [
+      0,
+      1
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": true,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 1,
+   "name": "directed",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "certain_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have certain directed edge between them: A causes B,",
+   "bootstrap_layer_with_frequency_1": {
+    "certain_edges": [
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": true,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 2,
+   "name": "undirected",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "uncertain_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have undirected relationship between them: A has undirected relationship with B,",
+   "bootstrap_layer_with_frequency_1": {
+    "uncertain_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 2,
+   "name": "undirected",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "uncertain_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have undirected relationship between them: A has undirected relationship with B,",
+   "bootstrap_layer_with_frequency_1": {
+    "uncertain_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 3,
+   "name": "bidirected",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "bi_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have hidden confounders between them: A has hidden confounder with B,",
+   "bootstrap_layer_with_frequency_1": {
+    "bi_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 3,
+   "name": "bidirected",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "bi_edges": [
+     [
+      "B",
+      "A"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have hidden confounders between them: B has hidden confounder with A,",
+   "bootstrap_layer_with_frequency_1": {
+    "bi_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 4,
+   "name": "o->",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "half_certain_edges": [
+     [
+      "B",
+      "A"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have non-descendant directed relationship between them: B is not a descendant of A,",
+   "bootstrap_layer_with_frequency_1": {
+    "half_certain_edges": [
+     [
+      0,
+      1
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 4,
+   "name": "o->",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "half_certain_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have non-descendant directed relationship between them: A is not a descendant of B,",
+   "bootstrap_layer_with_frequency_1": {
+    "half_certain_edges": [
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 5,
+   "name": "o-",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "half_uncertain_edges": [
+     [
+      "B",
+      "A"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have non-descendant undirected relationship between them: B is not a descendant of A,",
+   "bootstrap_layer_with_frequency_1": {
+    "half_uncertain_edges": [
+     [
+      0,
+      1
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 5,
+   "name": "o-",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "half_uncertain_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have non-descendant undirected relationship between them: A is not a descendant of B,",
+   "bootstrap_layer_with_frequency_1": {
+    "half_uncertain_edges": [
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 6,
+   "name": "o-o",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "none_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have no D-seperation between them: A has no D-seperation set with B,",
+   "bootstrap_layer_with_frequency_1": {
+    "none_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 6,
+   "name": "o-o",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "none_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "These variable pairs have no D-seperation between them: A has no D-seperation set with B,",
+   "bootstrap_layer_with_frequency_1": {
+    "none_edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  },
+  {
+   "code": 7,
+   "name": "associated",
+   "cell": "upper [A,B]",
+   "convert_to_edges": {
+    "associated_edges": [
+     [
+      "B",
+      "A"
+     ]
+    ]
+   },
+   "sentence_for_llm": "",
+   "bootstrap_layer_with_frequency_1": {},
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": true
+  },
+  {
+   "code": 7,
+   "name": "associated",
+   "cell": "lower [B,A]",
+   "convert_to_edges": {
+    "associated_edges": [
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   "sentence_for_llm": "",
+   "bootstrap_layer_with_frequency_1": {},
+   "survives_bootstrap_step_when_found_in_all_resamples": false,
+   "kci_step_examines_it": false
+  }
+ ],
+ "cycle_step": [
+  {
+   "graph": "three undirected edges, all stored in the upper triangle",
+   "llm_cycle_helper_called": 0,
+   "edges_before": 3,
+   "edges_after": 3,
+   "prompt": null
+  },
+  {
+   "graph": "three undirected edges, stored A-B upper, B-C upper, A-C lower",
+   "llm_cycle_helper_called": 1,
+   "edges_before": 3,
+   "edges_after": 2,
+   "prompt": "B -> C -> A -> B"
+  }
+ ]
+}

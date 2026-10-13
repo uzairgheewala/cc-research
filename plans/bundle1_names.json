@@ -1,0 +1,92 @@
+{
+  "plan_id": "bundle1_names",
+  "note": "Bundle 1. Unmodified pipeline, repo default query, on four named real datasets that also sit in CausalArena's real-data slice (Abalone, Auto MPG, Concrete, Deutscher Wetterdienst). Each dataset in three arms on byte-identical numbers: real names, neutral names, names moved to other columns. Opaque file paths. 12 arms x 4 repeats = 48 runs, interleaved. Predictions N1, N2, N4, P3 and their thresholds are fixed in analysis/stability.py.",
+  "interleave": true,
+  "run_timeout_s": 2700,
+  "runs": [
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k11/k11.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k12/k12.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k13/k13.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k21/k21.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k22/k22.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k23/k23.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k31/k31.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k32/k32.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k33/k33.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k41/k41.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k42/k42.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k43/k43.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 4
+    }
+  ]
+}

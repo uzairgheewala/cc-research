@@ -1,0 +1,72 @@
+{
+ "list": "F0C8ADF3DNG",
+ "updates": {
+  "REP-09": {
+   "record_id": "Rec0C82TM18DT",
+   "cells": {
+    "Status": "✅ Done",
+    "Evidence level": "V3",
+    "Evidence": "analysis/rep09_ges.py\nanalysis/results/chambers/rep09_ges.json\nanalysis/reports/bnd07_chambers.md\nmanifests/evidence/chambers_extracted_2026-10-12.sha256",
+    "Checks": "PASS verdict = \"supported\" (eq \"supported\"); PASS ours/cpdag_identical_to_authors = true (true ); PASS 0 listed files changed or missing"
+   }
+  },
+  "REP-14": {
+   "record_id": "Rec0C8A583T6V",
+   "cells": {
+    "Evidence level": "V2",
+    "Evidence": "✅ REP-01 V3 Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded\n✅ REP-02 V3 Code untouched before and after every run (1,332 files byte-identical)\n👀 REP-03 V3 Reproduce the paper's headline claims (arXiv 2504.13263)\n✅ REP-04 V3 Check the paper's text against the code (divergences D1-D9)\n👀 REP-11 V3 Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)\n🔵 REP-12 V2 Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)\n✅ REP-13 V3 Re-read every second-hand literature claim before it enters the report",
+    "Checks": "4 of 7 done; 2 in progress; 0 to-do; 0 blocked; 1 open; lowest evidence level V2"
+   }
+  },
+  "DOM-14": {
+   "record_id": "Rec0C8820ULDQ",
+   "cells": {
+    "Status": "✅ Done",
+    "Evidence level": "V3",
+    "Evidence": "✅ DOM-01 V3 Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means\n✅ DOM-08 V3 Choose a calibration method for bootstrap confidence\n✅ DOM-09 V3 What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)\n✅ DOM-10 V3 Active experiment-design baselines: which to implement\n✅ DOM-11 V3 Pretrained discovery models: order-invariance by design, CPU checkpoints\n✅ DOM-12 V3 Hidden common causes, time series, 100+ variables",
+    "Checks": "6 of 6 done; 0 in progress; 0 to-do; 0 blocked; 0 open; lowest evidence level V3"
+   }
+  },
+  "AUD-17": {
+   "record_id": "Rec0C820B960K",
+   "cells": {
+    "Evidence": "✅ AUD-10 V3 Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]\n✅ AUD-11 V3 Behaviour at 20-40 variables: cost, runtime, crash rate\n✅ AUD-12 V3 Effect-estimation module (causal_inference/)\n⏳ AUD-13 V0 Second model besides GPT-4o\n👀 AUD-14 V3 Torch-based and time-series wrappers, web-demo path, report quality\n✅ AUD-15 V3 Upstream branches newer than a31aa7c\n✅ BEN-01 V3 CausalArena public release inspected (families, files, graph convention)\n✅ BEN-02 V3 Column-order leak: every true edge runs earlier column -> later column in every released file\n✅ BEN-03 V3 Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions\n✅ BEN-04 V3 Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%\n✅ BEN-05 V3 Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)\n✅ BEN-06 V3 Repo datasets vs CausalArena index: Auto MPG does not match\n👀 BEN-07 V3 Do CausalArena's wrappers shuffle columns; are top methods affected?\n✅ BEN-08 V3 SHD definition mismatch (see REP-06)\n✅ BEN-09 V3 Replay sampler: which declared interventions are interventions in name only\n✅ BEN-10 V3 Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample\n👀 BEN-11 V3 Error budgets for GES, FCI, pretrained models; formula and synthetic families\n✅ BEN-12 V3 Reliability of real-data reference graphs",
+    "Checks": "14 of 18 done; 3 in progress; 1 to-do; 0 blocked; 0 open; lowest evidence level V0"
+   }
+  },
+  "TGT-17": {
+   "record_id": "Rec0C8821PFFC",
+   "cells": {
+    "Evidence": "⏳ TGT-01 V2 Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957\n⏳ TGT-02 V2 Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974\n⏳ TGT-03 V2 Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971\n⏳ TGT-04 V2 Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993\n⏳ TGT-05 V2 Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)\n⏳ TGT-06 V0 Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)\n🔴 TGT-07 V0 Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled\n🔵 TGT-08 V2 Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)\n👀 TGT-09 V3 Never below the system's own data-only output\n⏳ TGT-10 V0 Zero change when columns are shuffled\n⏳ TGT-11 V0 Bounded harm when names are wrong\n⏳ TGT-12 V0 Calibration better than raw bootstrap frequencies on held-out scenarios\n👀 TGT-13 V3 Zero crashes from malformed model output\n⏳ TGT-14 V0 Within the scoreboard's 1-hour budget per graph\n⏳ TGT-15 V0 Held-out interventional predictions better than regression on all variables\n⏳ TGT-16 V0 Experiment choice better than random on recorded Causal Chambers experiments",
+    "Checks": "0 of 16 done; 2 in progress; 12 to-do; 1 blocked; 1 open; lowest evidence level V0"
+   }
+  },
+  "CAP-10": {
+   "record_id": "Rec0C92J9G3RN",
+   "cells": {
+    "Status": "👀 In progress",
+    "Evidence level": "V3",
+    "Evidence": "harness/names_runner.py\nanalysis/refinement_v2.py\ntests/test_refinement_v2.py\nanalysis/reports/bnd11_prep.md",
+    "Checks": "PASS ok = true (true )"
+   }
+  },
+  "CAP-17": {
+   "record_id": "Rec0C820FP8SX",
+   "cells": {
+    "Status": "✅ Done",
+    "Evidence": "analysis/package_submission.py\nanalysis/results/submission/validator_output.txt\nanalysis/results/submission/packages.json",
+    "Checks": "PASS found: exit code 0; PASS found: notears__shuffled"
+   }
+  },
+  "BLD-06": {
+   "record_id": "Rec0C8829KY4S",
+   "cells": {
+    "Status": "👀 In progress",
+    "Evidence level": "V3",
+    "Evidence": "analysis/refinement_v1.py\nanalysis/refinement_v2.py\nanalysis/results/refinement_v2/RULE.json\nanalysis/results/refinement_v2/dev.json\nanalysis/reports/bnd11_prep.md",
+    "Checks": "PASS summary/all_edges_sourced = true (true ); PASS summary/R1/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+   }
+  }
+ },
+ "rows_no_longer_in_files": []
+}

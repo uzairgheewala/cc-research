@@ -1,0 +1,532 @@
+{
+  "upstream": "https://github.com/Lancelot39/Causal-Copilot",
+  "base": "a31aa7cab277d7e19478bc326dbec154525969cc",
+  "points": {
+    "C1": {
+      "file": "postprocess/judge_functions.py",
+      "line": 562,
+      "crash": "return\\s+response\\[['\\\"]nodes['\\\"]\\]",
+      "function": "LLM_remove_cycles",
+      "pickaxe": "return response['nodes']",
+      "guard": "response_format\\s*=\\s*VarList|response\\.get\\(['\\\"]nodes|['\\\"]nodes['\\\"]\\s+in\\s+response|except\\s+KeyError",
+      "local_line_text": "return response['nodes']",
+      "local_line_matches_crash": true,
+      "local_sha256": "78a4bf6746ca0426b3737243dfe462f113f9193cccd981c345b224666e4d678c",
+      "commits_touching_crash_text_on_main": [
+        "defa4df220f0df7e9c370ab162b29e7ee5d3bfd0 2025-06-26T21:25:46-07:00 Unifying all the LLM call into a general LLMClient wrapper"
+      ]
+    },
+    "C2": {
+      "file": "global_setting/Initialize_state.py",
+      "line": 178,
+      "crash": "info_extracted\\[['\\\"]linearity['\\\"]\\]",
+      "function": "global_state_initialization",
+      "pickaxe": "info_extracted[\"linearity\"]",
+      "guard": "info_extracted\\.get\\(['\\\"]linearity|['\\\"]linearity['\\\"]\\s+in\\s+info_extracted|except\\s+KeyError",
+      "local_line_text": "global_state.statistics.linearity = info_extracted[\"linearity\"]",
+      "local_line_matches_crash": true,
+      "local_sha256": "a6c1b389eb8b3865bc7640573cf07de1212133a6e2472e9e43f3bb116aa1a5b8",
+      "commits_touching_crash_text_on_main": [
+        "65257df04c20d32bcac8e666ee76014918cc8058 2024-10-26T23:10:34-07:00 Time Estimation Update",
+        "155b19eaa27db198bffee0eca2a22ec3098e346f 2024-10-26T20:54:45-07:00 adjust the main.py",
+        "c4bdb69502b36ce830971b3f3d23ac08e3af6afe 2024-10-19T16:37:52-07:00 Update Initialize_state.py module."
+      ]
+    }
+  },
+  "branches": [
+    {
+      "branch": "origin/v1",
+      "commit": "7cf98c9d9959846b7d44599dddcdfba81d5ce3bc",
+      "date": "2024-11-08T18:52:57-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/evaluation",
+      "commit": "1f09deb8dadd139994ba13cc1264de3b3ad3bfe3",
+      "date": "2024-12-05T17:09:49-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/preprocessing-dev",
+      "commit": "034a93220181493f11350ceb6041bccff7ebf2a4",
+      "date": "2024-12-17T19:46:10-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/cpu",
+      "commit": "45f0d102d03a0df6055c73d2d78be0e0a9f00ee2",
+      "date": "2025-01-13T16:18:40-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/algo",
+      "commit": "3993be3a52c15c4dedd7ae15c021c3bdae1c214c",
+      "date": "2025-01-23T02:29:35-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/UI-dev",
+      "commit": "7fa4201d243572206011688f1792c40914ed8e1a",
+      "date": "2025-01-27T21:12:07-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          71
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/v1-fastapi-server",
+      "commit": "b4e4a4e0a79ebccb4b1665d1f63e4d076b0db98c",
+      "date": "2025-02-05T23:39:55+08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/pc_para",
+      "commit": "379718df9310cdb74d9e000fb27ce7efc3378cba",
+      "date": "2025-02-13T16:38:39-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/time_series_pcmci_varlingam",
+      "commit": "35e9275d9d64a68c781188e8e900f9010789da28",
+      "date": "2025-02-27T00:13:57-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          64
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/fix-case-sensitivity",
+      "commit": "db99086980e3239275c0ada639d7cf21af543adf",
+      "date": "2025-03-05T20:15:41-08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          72
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/deploy-aws",
+      "commit": "52b93dc097a06bba1cbe93d63fed8deb143f76e6",
+      "date": "2025-03-24T12:03:22+08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          72
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/deploy-gradio",
+      "commit": "8f2773ea216c36069f596e379c50aa5180384818",
+      "date": "2025-03-24T13:08:14+08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          72
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/time_series",
+      "commit": "fc48193f5d6ebe5fa740d1c53cef1aeb44dccfd3",
+      "date": "2025-03-28T01:01:57-04:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          72
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/postprocessing-dev",
+      "commit": "4d7b7676da830dea107f8fcf46948aa9cf33f975",
+      "date": "2025-03-30T22:22:27-07:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          72
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/temp",
+      "commit": "19ddc75b9bf6809b55c6af51cc043581f11b9e38",
+      "date": "2025-04-04T20:16:26-07:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          65
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/feature-user-login-link",
+      "commit": "72943cf521c1b1f7483b89671fb0b0d99ab75009",
+      "date": "2025-04-18T01:21:53+08:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": false,
+        "crash_line_numbers": [],
+        "guard_present": true
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          75
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/maintenance",
+      "commit": "4e11899361f691bba55b99211a71ded254f13224",
+      "date": "2025-07-29T15:53:41-07:00",
+      "is_base": false,
+      "base_is_ancestor": false,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": true,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          12
+        ],
+        "guard_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": false,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          67
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/main",
+      "commit": "a31aa7cab277d7e19478bc326dbec154525969cc",
+      "date": "2026-05-15T07:43:14-07:00",
+      "is_base": true,
+      "base_is_ancestor": true,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": true,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          12
+        ],
+        "guard_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": true,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          69
+        ],
+        "guard_present": false
+      }
+    },
+    {
+      "branch": "origin/frontend-improvement",
+      "commit": "e61cb81f8bb65732a1d682681ced3feca499b192",
+      "date": "2026-06-01T01:30:25-07:00",
+      "is_base": false,
+      "base_is_ancestor": true,
+      "C1": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": true,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          12
+        ],
+        "guard_present": false
+      },
+      "C2": {
+        "exists": true,
+        "function_present": true,
+        "function_identical_to_base": true,
+        "crash_line_present": true,
+        "crash_line_numbers": [
+          69
+        ],
+        "guard_present": false
+      }
+    }
+  ],
+  "summary": {
+    "branches": 19,
+    "main_is_base": true,
+    "newer_than_base": [
+      "origin/frontend-improvement"
+    ],
+    "branches_without_crash_line": {
+      "C1": [
+        "origin/cpu",
+        "origin/algo",
+        "origin/UI-dev",
+        "origin/pc_para",
+        "origin/time_series_pcmci_varlingam",
+        "origin/fix-case-sensitivity",
+        "origin/deploy-aws",
+        "origin/deploy-gradio",
+        "origin/time_series",
+        "origin/postprocessing-dev",
+        "origin/feature-user-login-link"
+      ],
+      "C2": []
+    },
+    "branches_without_the_function": {
+      "C1": [
+        "origin/v1",
+        "origin/evaluation",
+        "origin/preprocessing-dev",
+        "origin/v1-fastapi-server",
+        "origin/temp"
+      ],
+      "C2": []
+    }
+  }
+}

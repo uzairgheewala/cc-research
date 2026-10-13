@@ -1,0 +1,206 @@
+{
+ "prereg": "plans/bnd06_prereg.json",
+ "Q4c_text": "|F1 released - F1 shuffled| <= 0.02 for every data-driven method (supported) / > 0.05 for any (refuted)",
+ "methods": {
+  "pc": {
+   "files": [
+    250,
+    250
+   ],
+   "failed_files": [
+    0,
+    0
+   ],
+   "random": {
+    "f1_released": 0.3346,
+    "f1_shuffled": 0.4279,
+    "difference": -0.0933,
+    "scenarios": 50
+   },
+   "lower": {
+    "f1_released": 0.3962,
+    "f1_shuffled": 0.4255,
+    "difference": -0.0293,
+    "scenarios": 50
+   },
+   "vs_published_authors_rule": {
+    "published": {
+     "f1": [
+      0.333,
+      0.15
+     ],
+     "shd": [
+      33.522,
+      9.355
+     ]
+    },
+    "tolerance_3se": {
+     "f1": 0.0452,
+     "shd": 2.8206
+    },
+    "f1": 0.3962,
+    "f1_within": false,
+    "shd": 35.428,
+    "shd_within": true
+   }
+  },
+  "gesbic": {
+   "files": [
+    250,
+    250
+   ],
+   "failed_files": [
+    25,
+    24
+   ],
+   "random": {
+    "f1_released": 0.4751,
+    "f1_shuffled": 0.4774,
+    "difference": -0.0022,
+    "scenarios": 50
+   },
+   "lower": {
+    "f1_released": 0.4951,
+    "f1_shuffled": 0.4765,
+    "difference": 0.0187,
+    "scenarios": 50
+   },
+   "vs_published_authors_rule": {
+    "published": {
+     "f1": [
+      0.552,
+      0.126
+     ],
+     "shd": [
+      33.404,
+      15.167
+     ]
+    },
+    "tolerance_3se": {
+     "f1": 0.038,
+     "shd": 4.573
+    },
+    "f1": 0.4951,
+    "f1_within": false,
+    "shd": 36.224,
+    "shd_within": true
+   }
+  },
+  "fci": {
+   "files": [
+    250,
+    250
+   ],
+   "failed_files": [
+    25,
+    24
+   ],
+   "random": {
+    "f1_released": 0.3218,
+    "f1_shuffled": 0.3266,
+    "difference": -0.0049,
+    "scenarios": 50
+   },
+   "lower": {
+    "f1_released": 0.5205,
+    "f1_shuffled": 0.321,
+    "difference": 0.1996,
+    "scenarios": 50
+   }
+  },
+  "lingam": {
+   "files": [
+    250,
+    250
+   ],
+   "failed_files": [
+    0,
+    0
+   ],
+   "random": {
+    "f1_released": 0.196,
+    "f1_shuffled": 0.1938,
+    "difference": 0.0022,
+    "scenarios": 50
+   },
+   "lower": {
+    "f1_released": 0.196,
+    "f1_shuffled": 0.1938,
+    "difference": 0.0022,
+    "scenarios": 50
+   },
+   "vs_published_authors_rule": {
+    "published": {
+     "f1": [
+      0.203,
+      0.079
+     ],
+     "shd": [
+      38.93,
+      9.316
+     ]
+    },
+    "tolerance_3se": {
+     "f1": 0.0238,
+     "shd": 2.8089
+    },
+    "f1": 0.196,
+    "f1_within": true,
+    "shd": 40.356,
+    "shd_within": true
+   }
+  },
+  "notears": {
+   "files": [
+    250,
+    250
+   ],
+   "failed_files": [
+    0,
+    0
+   ],
+   "random": {
+    "f1_released": 0.1459,
+    "f1_shuffled": 0.1461,
+    "difference": -0.0002,
+    "scenarios": 50
+   },
+   "lower": {
+    "f1_released": 0.1459,
+    "f1_shuffled": 0.1461,
+    "difference": -0.0002,
+    "scenarios": 50
+   },
+   "vs_published_authors_rule": {
+    "published": {
+     "f1": [
+      0.203,
+      0.07
+     ],
+     "shd": [
+      38.082,
+      8.459
+     ]
+    },
+    "tolerance_3se": {
+     "f1": 0.0211,
+     "shd": 2.5505
+    },
+    "f1": 0.1459,
+    "f1_within": false,
+    "shd": 39.348,
+    "shd_within": true
+   }
+  }
+ },
+ "Q4c": {
+  "abs_difference_random_rule": {
+   "pc": 0.0933,
+   "gesbic": 0.0022,
+   "fci": 0.0049,
+   "lingam": 0.0022,
+   "notears": 0.0002
+  },
+  "verdict": "REFUTED"
+ }
+}

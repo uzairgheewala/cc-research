@@ -1,0 +1,2358 @@
+{
+ "run_id": "20261007T004611Z_b1_k31_r02_88659d",
+ "dataset": "/research/datasets/suite_b1/k31/k31.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.05,
+  "indep_test": "rcit",
+  "depth": 6
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [
+  "background_knowledge"
+ ],
+ "variables": [
+  "Cement",
+  "Blast furnace slag",
+  "Fly ash",
+  "Water",
+  "Superplasticizer",
+  "Coarse aggregate",
+  "Fine aggregate",
+  "Age",
+  "Compressive strength"
+ ],
+ "n_pairs": 36,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 16,
+   "S1 after bootstrap edits": 6,
+   "S2 after LLM review": 10,
+   "S3 after KCI pruning": 10,
+   "S4 final (after cycle step)": 10
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 10,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 7,
+  "llm_calls": 9,
+  "llm_distinct_pairs_answered": 36,
+  "llm_self_pairs_answered": 9,
+  "llm_letters": {
+   "C": 26,
+   "A": 8,
+   "D": 2
+  },
+  "llm_added": 8,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 3,
+  "llm_removed": 4,
+  "llm_reoriented": 0,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 10,
+  "final_edges_set_by": {
+   "llm": 8,
+   "algorithm (unchanged)": 2
+  },
+  "final_edges_identical_to_algorithm_output": 2,
+  "final_edges_with_no_adjacency_in_algorithm_output": 4
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "Cement",
+    "Blast furnace slag"
+   ],
+   "was": "Blast furnace slag->Cement",
+   "most_frequent_bootstrap_status": "Blast furnace slagidirected",
+   "frequency": 0.85
+  },
+  {
+   "pair": [
+    "Cement",
+    "Compressive strength"
+   ],
+   "was": "Cement <-> Compressive strength",
+   "most_frequent_bootstrap_status": "Compressive strengthidirected",
+   "frequency": 1.0
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Fly ash"
+   ],
+   "was": "Blast furnace slag <-> Fly ash",
+   "most_frequent_bootstrap_status": "Fly ashidirected",
+   "frequency": 1.0
+  },
+  {
+   "pair": [
+    "Water",
+    "Coarse aggregate"
+   ],
+   "was": "Water <-> Coarse aggregate",
+   "most_frequent_bootstrap_status": "Coarse aggregateidirected",
+   "frequency": 0.85
+  },
+  {
+   "pair": [
+    "Water",
+    "Compressive strength"
+   ],
+   "was": "Water <-> Compressive strength",
+   "most_frequent_bootstrap_status": "Compressive strengthidirected",
+   "frequency": 0.55
+  },
+  {
+   "pair": [
+    "Coarse aggregate",
+    "Fine aggregate"
+   ],
+   "was": "Fine aggregate->Coarse aggregate",
+   "most_frequent_bootstrap_status": "Fine aggregateidirected",
+   "frequency": 0.5
+  },
+  {
+   "pair": [
+    "Age",
+    "Compressive strength"
+   ],
+   "was": "Age o-> Compressive strength",
+   "most_frequent_bootstrap_status": "Age o-> Compressive strength",
+   "frequency": 0.8
+  }
+ ],
+ "llm_added": [
+  {
+   "pair": [
+    "Cement",
+    "Compressive strength"
+   ],
+   "from": "Cement   Compressive strength (no edge)",
+   "to": "Cement->Compressive strength",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Compressive strength"
+   ],
+   "from": "Blast furnace slag   Compressive strength (no edge)",
+   "to": "Blast furnace slag->Compressive strength",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Compressive strength"
+   ],
+   "from": "Fly ash   Compressive strength (no edge)",
+   "to": "Fly ash->Compressive strength",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "pair": [
+    "Water",
+    "Compressive strength"
+   ],
+   "from": "Water   Compressive strength (no edge)",
+   "to": "Water->Compressive strength",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.25
+  },
+  {
+   "pair": [
+    "Superplasticizer",
+    "Compressive strength"
+   ],
+   "from": "Superplasticizer   Compressive strength (no edge)",
+   "to": "Superplasticizer->Compressive strength",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "pair": [
+    "Coarse aggregate",
+    "Compressive strength"
+   ],
+   "from": "Coarse aggregate   Compressive strength (no edge)",
+   "to": "Coarse aggregate->Compressive strength",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.9
+  },
+  {
+   "pair": [
+    "Fine aggregate",
+    "Compressive strength"
+   ],
+   "from": "Fine aggregate   Compressive strength (no edge)",
+   "to": "Fine aggregate->Compressive strength",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Age",
+    "Compressive strength"
+   ],
+   "from": "Age   Compressive strength (no edge)",
+   "to": "Age->Compressive strength",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "llm_removed": [
+  {
+   "pair": [
+    "Cement",
+    "Fine aggregate"
+   ],
+   "from": "Cement->Fine aggregate",
+   "to": "Cement   Fine aggregate (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.2
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Coarse aggregate"
+   ],
+   "from": "Coarse aggregate->Blast furnace slag",
+   "to": "Blast furnace slag   Coarse aggregate (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Water",
+    "Superplasticizer"
+   ],
+   "from": "Water->Superplasticizer",
+   "to": "Water   Superplasticizer (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Water",
+    "Fine aggregate"
+   ],
+   "from": "Water->Fine aggregate",
+   "to": "Water   Fine aggregate (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "llm_reoriented": [],
+ "final_edges": [
+  {
+   "edge": "Cement->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Blast furnace slag <-> Fine aggregate",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Blast furnace slag->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Fly ash <-> Superplasticizer",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Fly ash->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "edge": "Water->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.25
+  },
+  {
+   "edge": "Superplasticizer->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "edge": "Coarse aggregate->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.9
+  },
+  {
+   "edge": "Fine aggregate->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Age->Compressive strength",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "truth_kind": "reference graph concrete_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 4,
+   "adj_fp": 12,
+   "adj_fn": 4,
+   "adj_precision": 0.25,
+   "adj_recall": 0.5,
+   "adj_f1": 0.3333333333333333,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 4,
+   "dir_predicted": 7,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 20,
+   "shd_vs_true_cpdag": 20
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 0,
+   "adj_fp": 6,
+   "adj_fn": 8,
+   "adj_precision": 0.0,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 4,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 14,
+   "shd_vs_true_cpdag": 14
+  },
+  "S2 after LLM review": {
+   "adj_tp": 8,
+   "adj_fp": 2,
+   "adj_fn": 0,
+   "adj_precision": 0.8,
+   "adj_recall": 1.0,
+   "adj_f1": 0.888888888888889,
+   "true_edges_correctly_directed": 8,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 8,
+   "dir_tp": 8,
+   "dir_precision": 1.0,
+   "dir_recall": 1.0,
+   "dir_f1": 1.0,
+   "shd_vs_true_dag": 2,
+   "shd_vs_true_cpdag": 2
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 8,
+   "adj_fp": 2,
+   "adj_fn": 0,
+   "adj_precision": 0.8,
+   "adj_recall": 1.0,
+   "adj_f1": 0.888888888888889,
+   "true_edges_correctly_directed": 8,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 8,
+   "dir_tp": 8,
+   "dir_precision": 1.0,
+   "dir_recall": 1.0,
+   "dir_f1": 1.0,
+   "shd_vs_true_dag": 2,
+   "shd_vs_true_cpdag": 2
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 8,
+   "adj_fp": 2,
+   "adj_fn": 0,
+   "adj_precision": 0.8,
+   "adj_recall": 1.0,
+   "adj_f1": 0.888888888888889,
+   "true_edges_correctly_directed": 8,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 8,
+   "dir_tp": 8,
+   "dir_precision": 1.0,
+   "dir_recall": 1.0,
+   "dir_f1": 1.0,
+   "shd_vs_true_dag": 2,
+   "shd_vs_true_cpdag": 2
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "Cement",
+    "Blast furnace slag"
+   ],
+   "types": [
+    "Blast furnace slag->Cement",
+    "Cement   Blast furnace slag (no edge)",
+    "Cement   Blast furnace slag (no edge)",
+    "Cement   Blast furnace slag (no edge)",
+    "Cement   Blast furnace slag (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Blast furnace slag->Cement",
+     "to": "Cement   Blast furnace slag (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.85,
+    "a o-> b": 0.0,
+    "b o-> a": 0.1,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Blast furnace slag)",
+     "letter": "C",
+     "explanation": "Cement and blast furnace slag are both used as components in concrete mixes, but they do not directly cause changes in each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Fly ash"
+   ],
+   "types": [
+    "Cement->Fly ash",
+    "Cement   Fly ash (no edge)",
+    "Cement   Fly ash (no edge)",
+    "Cement   Fly ash (no edge)",
+    "Cement   Fly ash (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Cement->Fly ash",
+     "to": "Cement   Fly ash (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.2,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.05,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Fly ash)",
+     "letter": "C",
+     "explanation": "Cement and fly ash are both used as components in concrete mixes, but they do not directly cause changes in each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Water"
+   ],
+   "types": [
+    "Cement   Water (no edge)",
+    "Cement   Water (no edge)",
+    "Cement   Water (no edge)",
+    "Cement   Water (no edge)",
+    "Cement   Water (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Water)",
+     "letter": "C",
+     "explanation": "Cement and water are both components of concrete, but they do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Superplasticizer"
+   ],
+   "types": [
+    "Cement   Superplasticizer (no edge)",
+    "Cement   Superplasticizer (no edge)",
+    "Cement   Superplasticizer (no edge)",
+    "Cement   Superplasticizer (no edge)",
+    "Cement   Superplasticizer (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.1,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.45
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Superplasticizer)",
+     "letter": "C",
+     "explanation": "Cement and superplasticizer are both components of concrete, but they do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Coarse aggregate"
+   ],
+   "types": [
+    "Cement   Coarse aggregate (no edge)",
+    "Cement   Coarse aggregate (no edge)",
+    "Cement   Coarse aggregate (no edge)",
+    "Cement   Coarse aggregate (no edge)",
+    "Cement   Coarse aggregate (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.3,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.5
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Coarse aggregate)",
+     "letter": "C",
+     "explanation": "Cement and coarse aggregate are both components of concrete, but they do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Cement->Fine aggregate",
+    "Cement->Fine aggregate",
+    "Cement   Fine aggregate (no edge)",
+    "Cement   Fine aggregate (no edge)",
+    "Cement   Fine aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Cement->Fine aggregate",
+     "to": "Cement   Fine aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.2,
+    "b->a": 0.2,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.2
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Fine aggregate)",
+     "letter": "C",
+     "explanation": "Cement and fine aggregate are both components of concrete, but they do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Age"
+   ],
+   "types": [
+    "Cement   Age (no edge)",
+    "Cement   Age (no edge)",
+    "Cement   Age (no edge)",
+    "Cement   Age (no edge)",
+    "Cement   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Age)",
+     "letter": "C",
+     "explanation": "Cement itself does not directly influence the age of concrete, which is a measure of time since mixing;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Cement",
+    "Compressive strength"
+   ],
+   "types": [
+    "Cement <-> Compressive strength",
+    "Cement   Compressive strength (no edge)",
+    "Cement->Compressive strength",
+    "Cement->Compressive strength",
+    "Cement->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Cement <-> Compressive strength",
+     "to": "Cement   Compressive strength (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Cement   Compressive strength (no edge)",
+     "to": "Cement->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 1.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Cement, Compressive strength)",
+     "letter": "A",
+     "explanation": "Cement is a primary binding material in concrete, and its quantity and quality directly affect the compressive strength of the concrete;"
+    }
+   ],
+   "truth": "Cement -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Fly ash"
+   ],
+   "types": [
+    "Blast furnace slag <-> Fly ash",
+    "Blast furnace slag   Fly ash (no edge)",
+    "Blast furnace slag   Fly ash (no edge)",
+    "Blast furnace slag   Fly ash (no edge)",
+    "Blast furnace slag   Fly ash (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Blast furnace slag <-> Fly ash",
+     "to": "Blast furnace slag   Fly ash (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 1.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Fly ash)",
+     "letter": "C",
+     "explanation": "Both are supplementary cementitious materials used in concrete, but they do not directly cause changes in each other; their effects are additive in the mix;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Water"
+   ],
+   "types": [
+    "Blast furnace slag   Water (no edge)",
+    "Blast furnace slag   Water (no edge)",
+    "Blast furnace slag   Water (no edge)",
+    "Blast furnace slag   Water (no edge)",
+    "Blast furnace slag   Water (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Water)",
+     "letter": "C",
+     "explanation": "Blast furnace slag and water are components of concrete mix but do not directly influence each other; their interaction is mediated through the overall mix design;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Superplasticizer"
+   ],
+   "types": [
+    "Blast furnace slag   Superplasticizer (no edge)",
+    "Blast furnace slag   Superplasticizer (no edge)",
+    "Blast furnace slag   Superplasticizer (no edge)",
+    "Blast furnace slag   Superplasticizer (no edge)",
+    "Blast furnace slag   Superplasticizer (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Superplasticizer)",
+     "letter": "C",
+     "explanation": "While both affect concrete properties, there is no direct causal relationship; superplasticizers improve workability, while slag contributes to strength;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Coarse aggregate"
+   ],
+   "types": [
+    "Coarse aggregate->Blast furnace slag",
+    "Coarse aggregate->Blast furnace slag",
+    "Blast furnace slag   Coarse aggregate (no edge)",
+    "Blast furnace slag   Coarse aggregate (no edge)",
+    "Blast furnace slag   Coarse aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Coarse aggregate->Blast furnace slag",
+     "to": "Blast furnace slag   Coarse aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.25,
+    "undirected": 0.0,
+    "bidirected": 0.6,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Coarse aggregate)",
+     "letter": "C",
+     "explanation": "There is no direct causal relationship between blast furnace slag and coarse aggregate, as they serve different roles in the concrete mix;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Blast furnace slag <-> Fine aggregate",
+    "Blast furnace slag <-> Fine aggregate",
+    "Blast furnace slag <-> Fine aggregate",
+    "Blast furnace slag <-> Fine aggregate",
+    "Blast furnace slag <-> Fine aggregate"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.35,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Fine aggregate)",
+     "letter": "D",
+     "explanation": "There is no established evidence directly linking blast furnace slag and fine aggregate, and any relationship may be influenced by other factors such as mix design or environmental conditions;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Age"
+   ],
+   "types": [
+    "Blast furnace slag   Age (no edge)",
+    "Blast furnace slag   Age (no edge)",
+    "Blast furnace slag   Age (no edge)",
+    "Blast furnace slag   Age (no edge)",
+    "Blast furnace slag   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Age)",
+     "letter": "C",
+     "explanation": "Age affects the strength development of concrete, but it does not directly cause changes in the amount of blast furnace slag used."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Blast furnace slag",
+    "Compressive strength"
+   ],
+   "types": [
+    "Blast furnace slag   Compressive strength (no edge)",
+    "Blast furnace slag   Compressive strength (no edge)",
+    "Blast furnace slag->Compressive strength",
+    "Blast furnace slag->Compressive strength",
+    "Blast furnace slag->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Blast furnace slag   Compressive strength (no edge)",
+     "to": "Blast furnace slag->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Blast furnace slag, Compressive strength)",
+     "letter": "A",
+     "explanation": "Blast furnace slag can enhance compressive strength by contributing to the pozzolanic reaction, which improves the concrete's durability and strength;"
+    }
+   ],
+   "truth": "Blast furnace slag -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Water"
+   ],
+   "types": [
+    "Fly ash   Water (no edge)",
+    "Fly ash   Water (no edge)",
+    "Fly ash   Water (no edge)",
+    "Fly ash   Water (no edge)",
+    "Fly ash   Water (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Water)",
+     "letter": "C",
+     "explanation": "Fly ash and water are independent components in a concrete mix, with no direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Superplasticizer"
+   ],
+   "types": [
+    "Fly ash <-> Superplasticizer",
+    "Fly ash <-> Superplasticizer",
+    "Fly ash <-> Superplasticizer",
+    "Fly ash <-> Superplasticizer",
+    "Fly ash <-> Superplasticizer"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.4,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.0,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Superplasticizer)",
+     "letter": "D",
+     "explanation": "While both are used in concrete mixes, there is no direct causal relationship established between Fly ash and Superplasticizer;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Coarse aggregate"
+   ],
+   "types": [
+    "Fly ash   Coarse aggregate (no edge)",
+    "Fly ash   Coarse aggregate (no edge)",
+    "Fly ash   Coarse aggregate (no edge)",
+    "Fly ash   Coarse aggregate (no edge)",
+    "Fly ash   Coarse aggregate (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Coarse aggregate)",
+     "letter": "C",
+     "explanation": "There is no established causal relationship between Fly ash and Coarse aggregate as they are independent components in concrete mix design;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Fly ash   Fine aggregate (no edge)",
+    "Fly ash   Fine aggregate (no edge)",
+    "Fly ash   Fine aggregate (no edge)",
+    "Fly ash   Fine aggregate (no edge)",
+    "Fly ash   Fine aggregate (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Fine aggregate)",
+     "letter": "C",
+     "explanation": "There is no direct causal relationship between Fly ash and Fine aggregate, as they serve different roles in the concrete mix;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Age"
+   ],
+   "types": [
+    "Fly ash   Age (no edge)",
+    "Fly ash   Age (no edge)",
+    "Fly ash   Age (no edge)",
+    "Fly ash   Age (no edge)",
+    "Fly ash   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Age)",
+     "letter": "C",
+     "explanation": "Fly ash does not directly cause changes in the age of concrete, although it can influence the rate of strength gain over time;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fly ash",
+    "Compressive strength"
+   ],
+   "types": [
+    "Fly ash <-> Compressive strength",
+    "Fly ash   Compressive strength (no edge)",
+    "Fly ash->Compressive strength",
+    "Fly ash->Compressive strength",
+    "Fly ash->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Fly ash <-> Compressive strength",
+     "to": "Fly ash   Compressive strength (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Fly ash   Compressive strength (no edge)",
+     "to": "Fly ash->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.8
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fly ash, Compressive strength)",
+     "letter": "A",
+     "explanation": "Fly ash can enhance the compressive strength of concrete by contributing to the pozzolanic reaction, which improves the microstructure of the concrete;"
+    }
+   ],
+   "truth": "Fly ash -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Water",
+    "Superplasticizer"
+   ],
+   "types": [
+    "Water->Superplasticizer",
+    "Water->Superplasticizer",
+    "Water   Superplasticizer (no edge)",
+    "Water   Superplasticizer (no edge)",
+    "Water   Superplasticizer (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Water->Superplasticizer",
+     "to": "Water   Superplasticizer (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.4,
+    "b->a": 0.2,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Water, Superplasticizer)",
+     "letter": "C",
+     "explanation": "Water and superplasticizer are both components of concrete mix design, but they do not directly cause changes in each other; they are used together to achieve desired workability and strength;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Water",
+    "Coarse aggregate"
+   ],
+   "types": [
+    "Water <-> Coarse aggregate",
+    "Water   Coarse aggregate (no edge)",
+    "Water   Coarse aggregate (no edge)",
+    "Water   Coarse aggregate (no edge)",
+    "Water   Coarse aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Water <-> Coarse aggregate",
+     "to": "Water   Coarse aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.85,
+    "a o-> b": 0.05,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Water, Coarse aggregate)",
+     "letter": "C",
+     "explanation": "Water and coarse aggregate are both components of concrete mix design, but they do not directly cause changes in each other; they are used together to achieve desired workability and strength;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Water",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Water->Fine aggregate",
+    "Water->Fine aggregate",
+    "Water   Fine aggregate (no edge)",
+    "Water   Fine aggregate (no edge)",
+    "Water   Fine aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Water->Fine aggregate",
+     "to": "Water   Fine aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.3,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.6,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Water, Fine aggregate)",
+     "letter": "C",
+     "explanation": "Water and fine aggregate are both components of concrete mix design, but they do not directly cause changes in each other; they are used together to achieve desired workability and strength;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Water",
+    "Age"
+   ],
+   "types": [
+    "Water   Age (no edge)",
+    "Water   Age (no edge)",
+    "Water   Age (no edge)",
+    "Water   Age (no edge)",
+    "Water   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Water, Age)",
+     "letter": "C",
+     "explanation": "Water and age are independent variables; water is a component of the mix, while age refers to the curing time of concrete, which affects strength development;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Water",
+    "Compressive strength"
+   ],
+   "types": [
+    "Water <-> Compressive strength",
+    "Water   Compressive strength (no edge)",
+    "Water->Compressive strength",
+    "Water->Compressive strength",
+    "Water->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Water <-> Compressive strength",
+     "to": "Water   Compressive strength (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Water   Compressive strength (no edge)",
+     "to": "Water->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.55,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.25
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Water, Compressive strength)",
+     "letter": "A",
+     "explanation": "Water affects compressive strength through the water-cement ratio, which is critical for determining the workability and strength of the concrete mix."
+    }
+   ],
+   "truth": "Water -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Superplasticizer",
+    "Coarse aggregate"
+   ],
+   "types": [
+    "Superplasticizer <-> Coarse aggregate",
+    "Superplasticizer   Coarse aggregate (no edge)",
+    "Superplasticizer   Coarse aggregate (no edge)",
+    "Superplasticizer   Coarse aggregate (no edge)",
+    "Superplasticizer   Coarse aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Superplasticizer <-> Coarse aggregate",
+     "to": "Superplasticizer   Coarse aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.45,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.45
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Superplasticizer, Coarse aggregate)",
+     "letter": "C",
+     "explanation": "Superplasticizers improve the workability of the concrete mix, but they do not directly cause changes in the coarse aggregate component;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Superplasticizer",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Superplasticizer   Fine aggregate (no edge)",
+    "Superplasticizer   Fine aggregate (no edge)",
+    "Superplasticizer   Fine aggregate (no edge)",
+    "Superplasticizer   Fine aggregate (no edge)",
+    "Superplasticizer   Fine aggregate (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.05,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Superplasticizer, Fine aggregate)",
+     "letter": "C",
+     "explanation": "Superplasticizers are chemical admixtures that enhance the workability of concrete, but they do not have a direct causal relationship with the fine aggregate component;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Superplasticizer",
+    "Age"
+   ],
+   "types": [
+    "Superplasticizer   Age (no edge)",
+    "Superplasticizer   Age (no edge)",
+    "Superplasticizer   Age (no edge)",
+    "Superplasticizer   Age (no edge)",
+    "Superplasticizer   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Superplasticizer, Age)",
+     "letter": "C",
+     "explanation": "Superplasticizers do not directly influence the age of concrete, which is a temporal factor affecting strength development;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Superplasticizer",
+    "Compressive strength"
+   ],
+   "types": [
+    "Superplasticizer   Compressive strength (no edge)",
+    "Superplasticizer   Compressive strength (no edge)",
+    "Superplasticizer->Compressive strength",
+    "Superplasticizer->Compressive strength",
+    "Superplasticizer->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Superplasticizer   Compressive strength (no edge)",
+     "to": "Superplasticizer->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.15,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.8
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Superplasticizer, Compressive strength)",
+     "letter": "A",
+     "explanation": "Superplasticizers can directly affect compressive strength by reducing the water-cement ratio while maintaining workability, leading to higher strength;"
+    }
+   ],
+   "truth": "Superplasticizer -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Coarse aggregate",
+    "Fine aggregate"
+   ],
+   "types": [
+    "Fine aggregate->Coarse aggregate",
+    "Coarse aggregate   Fine aggregate (no edge)",
+    "Coarse aggregate   Fine aggregate (no edge)",
+    "Coarse aggregate   Fine aggregate (no edge)",
+    "Coarse aggregate   Fine aggregate (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Fine aggregate->Coarse aggregate",
+     "to": "Coarse aggregate   Fine aggregate (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.2,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.0,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Coarse aggregate, Fine aggregate)",
+     "letter": "C",
+     "explanation": "Coarse and fine aggregates are independent components of a concrete mix, and changes in one do not directly cause changes in the other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Coarse aggregate",
+    "Age"
+   ],
+   "types": [
+    "Coarse aggregate   Age (no edge)",
+    "Coarse aggregate   Age (no edge)",
+    "Coarse aggregate   Age (no edge)",
+    "Coarse aggregate   Age (no edge)",
+    "Coarse aggregate   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Coarse aggregate, Age)",
+     "letter": "C",
+     "explanation": "There is no direct causal relationship between coarse aggregate and the age of concrete, as age is a temporal factor affecting strength development, not influenced by aggregate size or quantity;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Coarse aggregate",
+    "Compressive strength"
+   ],
+   "types": [
+    "Coarse aggregate   Compressive strength (no edge)",
+    "Coarse aggregate   Compressive strength (no edge)",
+    "Coarse aggregate->Compressive strength",
+    "Coarse aggregate->Compressive strength",
+    "Coarse aggregate->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Coarse aggregate   Compressive strength (no edge)",
+     "to": "Coarse aggregate->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Coarse aggregate, Compressive strength)",
+     "letter": "A",
+     "explanation": "Coarse aggregate contributes to the overall structure and load-bearing capacity of concrete, directly affecting its compressive strength."
+    }
+   ],
+   "truth": "Coarse aggregate -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Fine aggregate",
+    "Age"
+   ],
+   "types": [
+    "Fine aggregate   Age (no edge)",
+    "Fine aggregate   Age (no edge)",
+    "Fine aggregate   Age (no edge)",
+    "Fine aggregate   Age (no edge)",
+    "Fine aggregate   Age (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fine aggregate, Age)",
+     "letter": "C",
+     "explanation": "The age of concrete affects its compressive strength development over time, but it does not directly influence the properties of fine aggregate;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Fine aggregate",
+    "Compressive strength"
+   ],
+   "types": [
+    "Fine aggregate   Compressive strength (no edge)",
+    "Fine aggregate   Compressive strength (no edge)",
+    "Fine aggregate->Compressive strength",
+    "Fine aggregate->Compressive strength",
+    "Fine aggregate->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Fine aggregate   Compressive strength (no edge)",
+     "to": "Fine aggregate->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Fine aggregate, Compressive strength)",
+     "letter": "A",
+     "explanation": "Fine aggregate is a key component in concrete mix design, and its properties such as size and distribution can directly influence the compressive strength of the concrete;"
+    }
+   ],
+   "truth": "Fine aggregate -> Compressive strength"
+  },
+  {
+   "pair": [
+    "Age",
+    "Compressive strength"
+   ],
+   "types": [
+    "Age o-> Compressive strength",
+    "Age   Compressive strength (no edge)",
+    "Age->Compressive strength",
+    "Age->Compressive strength",
+    "Age->Compressive strength"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Age o-> Compressive strength",
+     "to": "Age   Compressive strength (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Age   Compressive strength (no edge)",
+     "to": "Age->Compressive strength"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.8,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Compressive strength)",
+     "letter": "A",
+     "explanation": "Age affects compressive strength as concrete gains strength over time due to the ongoing hydration process."
+    }
+   ],
+   "truth": "Age -> Compressive strength"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    3,
+    0,
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0,
+    3,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0
+   ]
+  ]
+ }
+}

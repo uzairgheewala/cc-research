@@ -1,0 +1,16 @@
+START 2026-10-12T03:38:26Z python3 analysis/causalarena_methods.py --method notears --family formula --out analysis/results/methods/notears_formula_obs_shuf.json --file-timeout-s 300 --shuffle-seed 20261010
+JOB-COMPLETE analysis/results/methods/notears_formula_obs_shuf.json sha256=206ef6e3237c5300b56f46d3da55c518c6657e2cd8027407b35d77dd506fdf11
+END 2026-10-12T04:04:29Z rc=0 wall_s=1563 analysis/results/methods/notears_formula_obs_shuf.json
+START 2026-10-12T04:04:29Z python3 analysis/causalarena_methods.py --method fci --family synthetic --out analysis/results/methods/fci_synthetic100_shuf.json --file-timeout-s 300 --shuffle-seed 20261010 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/fci_synthetic100_shuf.json sha256=850e13ad7e518ab294ccc06d61367dc8f11ca8920c8ad615ac2f89709b1f596d
+END 2026-10-12T04:52:27Z rc=0 wall_s=2878 analysis/results/methods/fci_synthetic100_shuf.json
+START 2026-10-12T04:52:27Z python3 analysis/causalarena_methods.py --method lingam --family synthetic --out analysis/results/methods/lingam_synthetic100_shuf.json --file-timeout-s 300 --shuffle-seed 20261010 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/lingam_synthetic100_shuf.json sha256=b2e648b3cd37f011fa88b2a3b8eece6da7366921c882141479c88ebb421437c4
+END 2026-10-12T05:18:27Z rc=0 wall_s=1560 analysis/results/methods/lingam_synthetic100_shuf.json
+START 2026-10-12T05:18:27Z python3 analysis/causalarena_methods.py --method notears --family synthetic --out analysis/results/methods/notears_synthetic100_shuf.json --file-timeout-s 300 --shuffle-seed 20261010 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/notears_synthetic100_shuf.json sha256=ff965587ca36ae429c2bc80d9df09fa6f9ca82c38861326c41d42daa73bc6a6b
+END 2026-10-12T05:52:34Z rc=0 wall_s=2047 analysis/results/methods/notears_synthetic100_shuf.json
+START 2026-10-12T05:52:34Z python3 analysis/causalarena_methods.py --method gesbic --family synthetic --out analysis/results/methods/gesbic_synthetic100_shuf.json --file-timeout-s 300 --shuffle-seed 20261010 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/gesbic_synthetic100_shuf.json sha256=116c4aac3eb691791156da69734a22fb1f4641b23bde36388f3ee3717aeb1365
+END 2026-10-12T09:06:09Z rc=0 wall_s=11615 analysis/results/methods/gesbic_synthetic100_shuf.json
+WORKER-DONE 2026-10-12T09:06:09Z

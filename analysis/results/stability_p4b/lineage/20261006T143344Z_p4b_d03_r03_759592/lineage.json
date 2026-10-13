@@ -1,0 +1,3174 @@
+{
+ "run_id": "20261006T143344Z_p4b_d03_r03_759592",
+ "dataset": "/research/datasets/d03/d03.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.05,
+  "indep_test": "rcit",
+  "depth": 4
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [
+  "background_knowledge"
+ ],
+ "variables": [
+  "Mek",
+  "Plcg",
+  "PIP2",
+  "Raf",
+  "PKA",
+  "P38",
+  "PIP3",
+  "Erk",
+  "Akt",
+  "Jnk",
+  "PKC"
+ ],
+ "n_pairs": 55,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 11,
+   "S1 after bootstrap edits": 3,
+   "S2 after LLM review": 9,
+   "S3 after KCI pruning": 9,
+   "S4 final (after cycle step)": 9
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 8,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 5,
+  "llm_calls": 11,
+  "llm_distinct_pairs_answered": 55,
+  "llm_self_pairs_answered": 11,
+  "llm_letters": {
+   "C": 29,
+   "A": 7,
+   "D": 18,
+   "B": 1
+  },
+  "llm_added": 8,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 6,
+  "llm_removed": 2,
+  "llm_reoriented": 0,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 9,
+  "final_edges_set_by": {
+   "llm": 8,
+   "algorithm (unchanged)": 1
+  },
+  "final_edges_identical_to_algorithm_output": 1,
+  "final_edges_with_no_adjacency_in_algorithm_output": 7
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "Mek",
+    "Plcg"
+   ],
+   "was": "Plcg o-> Mek",
+   "most_frequent_bootstrap_status": "o-o",
+   "frequency": 0.7
+  },
+  {
+   "pair": [
+    "P38",
+    "PIP3"
+   ],
+   "was": "P38 ~~~ PIP3",
+   "most_frequent_bootstrap_status": "o-o",
+   "frequency": 0.5
+  },
+  {
+   "pair": [
+    "Akt",
+    "Jnk"
+   ],
+   "was": "Akt o-o Jnk",
+   "most_frequent_bootstrap_status": "o-o",
+   "frequency": 0.9
+  },
+  {
+   "pair": [
+    "Akt",
+    "PKC"
+   ],
+   "was": "Akt o-o PKC",
+   "most_frequent_bootstrap_status": "o-o",
+   "frequency": 0.7
+  },
+  {
+   "pair": [
+    "Jnk",
+    "PKC"
+   ],
+   "was": "Jnk o-o PKC",
+   "most_frequent_bootstrap_status": "o-o",
+   "frequency": 0.75
+  }
+ ],
+ "llm_added": [
+  {
+   "pair": [
+    "Mek",
+    "Raf"
+   ],
+   "from": "Mek   Raf (no edge)",
+   "to": "Raf->Mek",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "pair": [
+    "Mek",
+    "Erk"
+   ],
+   "from": "Mek   Erk (no edge)",
+   "to": "Mek->Erk",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.9
+  },
+  {
+   "pair": [
+    "Plcg",
+    "PIP2"
+   ],
+   "from": "Plcg   PIP2 (no edge)",
+   "to": "Plcg->PIP2",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "PIP2",
+    "PIP3"
+   ],
+   "from": "PIP2   PIP3 (no edge)",
+   "to": "PIP2->PIP3",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.75
+  },
+  {
+   "pair": [
+    "PIP2",
+    "PKC"
+   ],
+   "from": "PIP2   PKC (no edge)",
+   "to": "PIP2->PKC",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.95
+  },
+  {
+   "pair": [
+    "Raf",
+    "Erk"
+   ],
+   "from": "Raf   Erk (no edge)",
+   "to": "Raf->Erk",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "P38",
+    "Jnk"
+   ],
+   "from": "P38   Jnk (no edge)",
+   "to": "P38->Jnk",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "PIP3",
+    "Akt"
+   ],
+   "from": "PIP3   Akt (no edge)",
+   "to": "PIP3->Akt",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  }
+ ],
+ "llm_removed": [
+  {
+   "pair": [
+    "Raf",
+    "PKA"
+   ],
+   "from": "PKA o-> Raf",
+   "to": "Raf   PKA (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.05
+  },
+  {
+   "pair": [
+    "PIP3",
+    "Erk"
+   ],
+   "from": "PIP3 o-o Erk",
+   "to": "PIP3   Erk (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "llm_reoriented": [],
+ "final_edges": [
+  {
+   "edge": "Raf->Mek",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "edge": "Mek->Erk",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.9
+  },
+  {
+   "edge": "Plcg->PIP2",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "PIP2 o-> Raf",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.15
+  },
+  {
+   "edge": "PIP2->PIP3",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.75
+  },
+  {
+   "edge": "PIP2->PKC",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.95
+  },
+  {
+   "edge": "Raf->Erk",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "P38->Jnk",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "PIP3->Akt",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  }
+ ],
+ "truth_kind": "reference graph reference_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 9,
+   "adj_fp": 2,
+   "adj_fn": 10,
+   "adj_precision": 0.8181818181818182,
+   "adj_recall": 0.47368421052631576,
+   "adj_f1": 0.6,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 9,
+   "shd_vs_true_dag": 21,
+   "shd_vs_true_cpdag": 21
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 3,
+   "adj_fp": 0,
+   "adj_fn": 16,
+   "adj_precision": 1.0,
+   "adj_recall": 0.15789473684210525,
+   "adj_f1": 0.2727272727272727,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 3,
+   "shd_vs_true_dag": 19,
+   "shd_vs_true_cpdag": 19
+  },
+  "S2 after LLM review": {
+   "adj_tp": 1,
+   "adj_fp": 8,
+   "adj_fn": 18,
+   "adj_precision": 0.1111111111111111,
+   "adj_recall": 0.05263157894736842,
+   "adj_f1": 0.07142857142857142,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 1,
+   "shd_vs_true_dag": 27,
+   "shd_vs_true_cpdag": 27
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 1,
+   "adj_fp": 8,
+   "adj_fn": 18,
+   "adj_precision": 0.1111111111111111,
+   "adj_recall": 0.05263157894736842,
+   "adj_f1": 0.07142857142857142,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 1,
+   "shd_vs_true_dag": 27,
+   "shd_vs_true_cpdag": 27
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 1,
+   "adj_fp": 8,
+   "adj_fn": 18,
+   "adj_precision": 0.1111111111111111,
+   "adj_recall": 0.05263157894736842,
+   "adj_f1": 0.07142857142857142,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 1,
+   "shd_vs_true_dag": 27,
+   "shd_vs_true_cpdag": 27
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "Mek",
+    "Plcg"
+   ],
+   "types": [
+    "Plcg o-> Mek",
+    "Mek   Plcg (no edge)",
+    "Mek   Plcg (no edge)",
+    "Mek   Plcg (no edge)",
+    "Mek   Plcg (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Plcg o-> Mek",
+     "to": "Mek   Plcg (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.1,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.7,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, Plcg)",
+     "letter": "C",
+     "explanation": "Mek and Plcg are involved in different signaling pathways, with no direct interaction between them;"
+    }
+   ],
+   "truth": "Mek -> Plcg"
+  },
+  {
+   "pair": [
+    "Mek",
+    "PIP2"
+   ],
+   "types": [
+    "Mek   PIP2 (no edge)",
+    "Mek   PIP2 (no edge)",
+    "Mek   PIP2 (no edge)",
+    "Mek   PIP2 (no edge)",
+    "Mek   PIP2 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, PIP2)",
+     "letter": "C",
+     "explanation": "Mek is part of the MAPK/ERK pathway and does not directly interact with PIP2, which is involved in the inositol phosphate signaling pathway;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "Raf"
+   ],
+   "types": [
+    "Mek <-> Raf",
+    "Mek   Raf (no edge)",
+    "Raf->Mek",
+    "Raf->Mek",
+    "Raf->Mek"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Mek <-> Raf",
+     "to": "Mek   Raf (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Mek   Raf (no edge)",
+     "to": "Raf->Mek"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.05,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.8
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, Raf)",
+     "letter": "B",
+     "explanation": "Raf activates Mek in the MAPK/ERK pathway, initiating the signaling cascade;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "PKA"
+   ],
+   "types": [
+    "Mek   PKA (no edge)",
+    "Mek   PKA (no edge)",
+    "Mek   PKA (no edge)",
+    "Mek   PKA (no edge)",
+    "Mek   PKA (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, PKA)",
+     "letter": "C",
+     "explanation": "Mek and PKA are involved in different signaling pathways, with no direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "P38"
+   ],
+   "types": [
+    "Mek   P38 (no edge)",
+    "Mek   P38 (no edge)",
+    "Mek   P38 (no edge)",
+    "Mek   P38 (no edge)",
+    "Mek   P38 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, P38)",
+     "letter": "C",
+     "explanation": "Mek and P38 are part of different MAPK pathways, with Mek in the MAPK/ERK pathway and P38 in the stress-activated pathway, and they do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "PIP3"
+   ],
+   "types": [
+    "Mek   PIP3 (no edge)",
+    "Mek   PIP3 (no edge)",
+    "Mek   PIP3 (no edge)",
+    "Mek   PIP3 (no edge)",
+    "Mek   PIP3 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, PIP3)",
+     "letter": "C",
+     "explanation": "Mek is part of the MAPK/ERK pathway, while PIP3 is involved in the PI3K/Akt pathway, and they do not have a direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "Erk"
+   ],
+   "types": [
+    "Mek   Erk (no edge)",
+    "Mek   Erk (no edge)",
+    "Mek->Erk",
+    "Mek->Erk",
+    "Mek->Erk"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Mek   Erk (no edge)",
+     "to": "Mek->Erk"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, Erk)",
+     "letter": "A",
+     "explanation": "Mek directly activates Erk in the MAPK/ERK signaling pathway, facilitating the transmission of signals from the cell surface to the nucleus;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "Akt"
+   ],
+   "types": [
+    "Mek   Akt (no edge)",
+    "Mek   Akt (no edge)",
+    "Mek   Akt (no edge)",
+    "Mek   Akt (no edge)",
+    "Mek   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, Akt)",
+     "letter": "C",
+     "explanation": "Mek is part of the MAPK/ERK pathway, while Akt is part of the PI3K/Akt pathway, and they do not have a direct causal relationship;"
+    }
+   ],
+   "truth": "Akt -> Mek"
+  },
+  {
+   "pair": [
+    "Mek",
+    "Jnk"
+   ],
+   "types": [
+    "Mek   Jnk (no edge)",
+    "Mek   Jnk (no edge)",
+    "Mek   Jnk (no edge)",
+    "Mek   Jnk (no edge)",
+    "Mek   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, Jnk)",
+     "letter": "C",
+     "explanation": "Mek and Jnk are part of different MAPK pathways, with no direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Mek",
+    "PKC"
+   ],
+   "types": [
+    "Mek   PKC (no edge)",
+    "Mek   PKC (no edge)",
+    "Mek   PKC (no edge)",
+    "Mek   PKC (no edge)",
+    "Mek   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Mek, PKC)",
+     "letter": "C",
+     "explanation": "Mek and PKC are part of different signaling pathways, and there is no direct interaction between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "PIP2"
+   ],
+   "types": [
+    "Plcg   PIP2 (no edge)",
+    "Plcg   PIP2 (no edge)",
+    "Plcg->PIP2",
+    "Plcg->PIP2",
+    "Plcg->PIP2"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Plcg   PIP2 (no edge)",
+     "to": "Plcg->PIP2"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, PIP2)",
+     "letter": "A",
+     "explanation": "Plcg acts on PIP2 to produce IP3 and DAG, indicating a direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "Raf"
+   ],
+   "types": [
+    "Plcg   Raf (no edge)",
+    "Plcg   Raf (no edge)",
+    "Plcg   Raf (no edge)",
+    "Plcg   Raf (no edge)",
+    "Plcg   Raf (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.05,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, Raf)",
+     "letter": "C",
+     "explanation": "There is no established direct causal relationship between Plcg and Raf in signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "PKA"
+   ],
+   "types": [
+    "Plcg   PKA (no edge)",
+    "Plcg   PKA (no edge)",
+    "Plcg   PKA (no edge)",
+    "Plcg   PKA (no edge)",
+    "Plcg   PKA (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, PKA)",
+     "letter": "C",
+     "explanation": "Plcg and PKA are involved in different signaling pathways without direct interaction;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "P38"
+   ],
+   "types": [
+    "Plcg   P38 (no edge)",
+    "Plcg   P38 (no edge)",
+    "Plcg   P38 (no edge)",
+    "Plcg   P38 (no edge)",
+    "Plcg   P38 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, P38)",
+     "letter": "C",
+     "explanation": "Plcg and P38 are involved in different signaling pathways without direct interaction;"
+    }
+   ],
+   "truth": "Plcg -> P38"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "PIP3"
+   ],
+   "types": [
+    "Plcg   PIP3 (no edge)",
+    "Plcg   PIP3 (no edge)",
+    "Plcg   PIP3 (no edge)",
+    "Plcg   PIP3 (no edge)",
+    "Plcg   PIP3 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, PIP3)",
+     "letter": "C",
+     "explanation": "Plcg primarily acts on PIP2 to produce IP3 and DAG, not directly on PIP3;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "Erk"
+   ],
+   "types": [
+    "Plcg   Erk (no edge)",
+    "Plcg   Erk (no edge)",
+    "Plcg   Erk (no edge)",
+    "Plcg   Erk (no edge)",
+    "Plcg   Erk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, Erk)",
+     "letter": "C",
+     "explanation": "Plcg does not directly influence Erk, as they are part of different signaling pathways;"
+    }
+   ],
+   "truth": "Erk -> Plcg"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "Akt"
+   ],
+   "types": [
+    "Plcg   Akt (no edge)",
+    "Plcg   Akt (no edge)",
+    "Plcg   Akt (no edge)",
+    "Plcg   Akt (no edge)",
+    "Plcg   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, Akt)",
+     "letter": "C",
+     "explanation": "Plcg does not directly activate Akt, as Akt is primarily activated by PIP3 in the PI3K pathway;"
+    }
+   ],
+   "truth": "Akt -> Plcg"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "Jnk"
+   ],
+   "types": [
+    "Plcg   Jnk (no edge)",
+    "Plcg   Jnk (no edge)",
+    "Plcg   Jnk (no edge)",
+    "Plcg   Jnk (no edge)",
+    "Plcg   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, Jnk)",
+     "letter": "C",
+     "explanation": "Plcg does not directly influence Jnk, as they are part of different signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Plcg",
+    "PKC"
+   ],
+   "types": [
+    "Plcg   PKC (no edge)",
+    "Plcg   PKC (no edge)",
+    "Plcg   PKC (no edge)",
+    "Plcg   PKC (no edge)",
+    "Plcg   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Plcg, PKC)",
+     "letter": "C",
+     "explanation": "While Plcg produces DAG, which can activate PKC, Plcg itself does not directly cause changes in PKC activity;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "Raf"
+   ],
+   "types": [
+    "PIP2 o-> Raf",
+    "PIP2 o-> Raf",
+    "PIP2 o-> Raf",
+    "PIP2 o-> Raf",
+    "PIP2 o-> Raf"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.2,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.25,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.15,
+    "no edge": 0.15
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, Raf)",
+     "letter": "D",
+     "explanation": "There is no direct causal relationship between PIP2 and Raf as they are part of different signaling pathways;"
+    }
+   ],
+   "truth": "PIP2 -> Raf"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "PKA"
+   ],
+   "types": [
+    "PIP2 o-o PKA",
+    "PIP2   PKA (no edge)",
+    "PIP2   PKA (no edge)",
+    "PIP2   PKA (no edge)",
+    "PIP2   PKA (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "PIP2 o-o PKA",
+     "to": "PIP2   PKA (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.25,
+    "a o-> b": 0.1,
+    "b o-> a": 0.1,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.45,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, PKA)",
+     "letter": "D",
+     "explanation": "There is no direct causal relationship between PIP2 and PKA as they are involved in different signaling pathways;"
+    }
+   ],
+   "truth": "PKA -> PIP2"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "P38"
+   ],
+   "types": [
+    "PIP2   P38 (no edge)",
+    "PIP2   P38 (no edge)",
+    "PIP2   P38 (no edge)",
+    "PIP2   P38 (no edge)",
+    "PIP2   P38 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, P38)",
+     "letter": "D",
+     "explanation": "There is no established direct causal relationship between PIP2 and P38 in the context of known signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "PIP3"
+   ],
+   "types": [
+    "PIP2   PIP3 (no edge)",
+    "PIP2   PIP3 (no edge)",
+    "PIP2->PIP3",
+    "PIP2->PIP3",
+    "PIP2->PIP3"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "PIP2   PIP3 (no edge)",
+     "to": "PIP2->PIP3"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.75
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, PIP3)",
+     "letter": "A",
+     "explanation": "PIP2 is a precursor to PIP3, indicating a direct causal relationship where PIP2 is converted to PIP3;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "Erk"
+   ],
+   "types": [
+    "PIP2   Erk (no edge)",
+    "PIP2   Erk (no edge)",
+    "PIP2   Erk (no edge)",
+    "PIP2   Erk (no edge)",
+    "PIP2   Erk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, Erk)",
+     "letter": "D",
+     "explanation": "There is no direct causal relationship between PIP2 and Erk as they are part of different signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "Akt"
+   ],
+   "types": [
+    "PIP2   Akt (no edge)",
+    "PIP2   Akt (no edge)",
+    "PIP2   Akt (no edge)",
+    "PIP2   Akt (no edge)",
+    "PIP2   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, Akt)",
+     "letter": "D",
+     "explanation": "While PIP3 is known to activate Akt, the direct causal relationship between PIP2 and Akt is not well-established;"
+    }
+   ],
+   "truth": "PIP2 -> Akt"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "Jnk"
+   ],
+   "types": [
+    "PIP2   Jnk (no edge)",
+    "PIP2   Jnk (no edge)",
+    "PIP2   Jnk (no edge)",
+    "PIP2   Jnk (no edge)",
+    "PIP2   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, Jnk)",
+     "letter": "D",
+     "explanation": "There is no established direct causal relationship between PIP2 and Jnk in the context of known signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP2",
+    "PKC"
+   ],
+   "types": [
+    "PIP2   PKC (no edge)",
+    "PIP2   PKC (no edge)",
+    "PIP2->PKC",
+    "PIP2->PKC",
+    "PIP2->PKC"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "PIP2   PKC (no edge)",
+     "to": "PIP2->PKC"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP2, PKC)",
+     "letter": "A",
+     "explanation": "PIP2 can be converted to DAG, which activates PKC, indicating a direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Raf",
+    "PKA"
+   ],
+   "types": [
+    "PKA o-> Raf",
+    "PKA o-> Raf",
+    "Raf   PKA (no edge)",
+    "Raf   PKA (no edge)",
+    "Raf   PKA (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "PKA o-> Raf",
+     "to": "Raf   PKA (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.1,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.25,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, PKA)",
+     "letter": "C",
+     "explanation": "Raf and PKA are involved in different signaling pathways, with Raf primarily in the MAPK/ERK pathway and PKA in cAMP signaling, suggesting no direct causal relationship;"
+    }
+   ],
+   "truth": "PKA -> Raf"
+  },
+  {
+   "pair": [
+    "Raf",
+    "P38"
+   ],
+   "types": [
+    "Raf   P38 (no edge)",
+    "Raf   P38 (no edge)",
+    "Raf   P38 (no edge)",
+    "Raf   P38 (no edge)",
+    "Raf   P38 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.75
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, P38)",
+     "letter": "C",
+     "explanation": "Raf is part of the MAPK/ERK pathway, while P38 is involved in stress response pathways, indicating no direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Raf",
+    "PIP3"
+   ],
+   "types": [
+    "Raf   PIP3 (no edge)",
+    "Raf   PIP3 (no edge)",
+    "Raf   PIP3 (no edge)",
+    "Raf   PIP3 (no edge)",
+    "Raf   PIP3 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, PIP3)",
+     "letter": "C",
+     "explanation": "Raf is part of the MAPK/ERK pathway, while PIP3 is involved in the PI3K/Akt pathway, suggesting no direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Raf",
+    "Erk"
+   ],
+   "types": [
+    "Raf   Erk (no edge)",
+    "Raf   Erk (no edge)",
+    "Raf->Erk",
+    "Raf->Erk",
+    "Raf->Erk"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Raf   Erk (no edge)",
+     "to": "Raf->Erk"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, Erk)",
+     "letter": "A",
+     "explanation": "Raf activates Mek, which in turn activates Erk in the MAPK/ERK pathway, indicating a direct causal relationship from Raf to Erk;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Raf",
+    "Akt"
+   ],
+   "types": [
+    "Raf   Akt (no edge)",
+    "Raf   Akt (no edge)",
+    "Raf   Akt (no edge)",
+    "Raf   Akt (no edge)",
+    "Raf   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, Akt)",
+     "letter": "C",
+     "explanation": "Raf is part of the MAPK/ERK pathway, while Akt is part of the PI3K/Akt pathway, suggesting no direct causal relationship;"
+    }
+   ],
+   "truth": "Raf -> Akt"
+  },
+  {
+   "pair": [
+    "Raf",
+    "Jnk"
+   ],
+   "types": [
+    "Raf   Jnk (no edge)",
+    "Raf   Jnk (no edge)",
+    "Raf   Jnk (no edge)",
+    "Raf   Jnk (no edge)",
+    "Raf   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, Jnk)",
+     "letter": "C",
+     "explanation": "Raf is primarily associated with the MAPK/ERK pathway, while Jnk is involved in stress response pathways, indicating no direct causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Raf",
+    "PKC"
+   ],
+   "types": [
+    "Raf   PKC (no edge)",
+    "Raf   PKC (no edge)",
+    "Raf   PKC (no edge)",
+    "Raf   PKC (no edge)",
+    "Raf   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Raf, PKC)",
+     "letter": "C",
+     "explanation": "Raf and PKC are involved in different signaling pathways, and there is no established direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PKA",
+    "P38"
+   ],
+   "types": [
+    "PKA   P38 (no edge)",
+    "PKA   P38 (no edge)",
+    "PKA   P38 (no edge)",
+    "PKA   P38 (no edge)",
+    "PKA   P38 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, P38)",
+     "letter": "D",
+     "explanation": "While both PKA and P38 are involved in cellular signaling, there is no direct causal relationship established between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PKA",
+    "PIP3"
+   ],
+   "types": [
+    "PKA   PIP3 (no edge)",
+    "PKA   PIP3 (no edge)",
+    "PKA   PIP3 (no edge)",
+    "PKA   PIP3 (no edge)",
+    "PKA   PIP3 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, PIP3)",
+     "letter": "D",
+     "explanation": "There is no direct evidence suggesting a causal relationship between PKA and PIP3, as they are involved in different signaling pathways;"
+    }
+   ],
+   "truth": "PKA -> PIP3"
+  },
+  {
+   "pair": [
+    "PKA",
+    "Erk"
+   ],
+   "types": [
+    "PKA   Erk (no edge)",
+    "PKA   Erk (no edge)",
+    "PKA   Erk (no edge)",
+    "PKA   Erk (no edge)",
+    "PKA   Erk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, Erk)",
+     "letter": "D",
+     "explanation": "Although PKA can influence MAPK pathways, the direct causal relationship between PKA and Erk is not clearly established;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PKA",
+    "Akt"
+   ],
+   "types": [
+    "PKA   Akt (no edge)",
+    "PKA   Akt (no edge)",
+    "PKA   Akt (no edge)",
+    "PKA   Akt (no edge)",
+    "PKA   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, Akt)",
+     "letter": "D",
+     "explanation": "PKA and Akt are part of different signaling pathways, and there is no direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PKA",
+    "Jnk"
+   ],
+   "types": [
+    "PKA   Jnk (no edge)",
+    "PKA   Jnk (no edge)",
+    "PKA   Jnk (no edge)",
+    "PKA   Jnk (no edge)",
+    "PKA   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, Jnk)",
+     "letter": "D",
+     "explanation": "The relationship between PKA and Jnk is not well-established, and there is no clear evidence of a direct causal link between them in the context of signaling pathways;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PKA",
+    "PKC"
+   ],
+   "types": [
+    "PKA   PKC (no edge)",
+    "PKA   PKC (no edge)",
+    "PKA   PKC (no edge)",
+    "PKA   PKC (no edge)",
+    "PKA   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PKA, PKC)",
+     "letter": "D",
+     "explanation": "While both PKA and PKC are kinases involved in signaling, there is no direct causal relationship between them established in the domain knowledge."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "P38",
+    "PIP3"
+   ],
+   "types": [
+    "P38 ~~~ PIP3",
+    "P38   PIP3 (no edge)",
+    "P38   PIP3 (no edge)",
+    "P38   PIP3 (no edge)",
+    "P38   PIP3 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "P38 ~~~ PIP3",
+     "to": "P38   PIP3 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.1,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.5,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(P38, PIP3)",
+     "letter": "C",
+     "explanation": "P38 is part of the MAPK pathway, while PIP3 is involved in the PI3K/Akt pathway, and they do not have a direct causal relationship;"
+    }
+   ],
+   "truth": "P38 -> PIP3"
+  },
+  {
+   "pair": [
+    "P38",
+    "Erk"
+   ],
+   "types": [
+    "P38 o-o Erk",
+    "P38   Erk (no edge)",
+    "P38   Erk (no edge)",
+    "P38   Erk (no edge)",
+    "P38   Erk (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "P38 o-o Erk",
+     "to": "P38   Erk (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.15,
+    "a o-> b": 0.3,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.25,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(P38, Erk)",
+     "letter": "C",
+     "explanation": "P38 and Erk are part of different MAPK pathways, with P38 involved in stress responses and Erk in growth signaling, and they do not directly influence each other;"
+    }
+   ],
+   "truth": "Erk -> P38"
+  },
+  {
+   "pair": [
+    "P38",
+    "Akt"
+   ],
+   "types": [
+    "P38   Akt (no edge)",
+    "P38   Akt (no edge)",
+    "P38   Akt (no edge)",
+    "P38   Akt (no edge)",
+    "P38   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(P38, Akt)",
+     "letter": "C",
+     "explanation": "P38 and Akt are part of different signaling pathways, with P38 in the MAPK pathway and Akt in the PI3K pathway, and they do not directly influence each other."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "P38",
+    "Jnk"
+   ],
+   "types": [
+    "P38   Jnk (no edge)",
+    "P38   Jnk (no edge)",
+    "P38->Jnk",
+    "P38->Jnk",
+    "P38->Jnk"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "P38   Jnk (no edge)",
+     "to": "P38->Jnk"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(P38, Jnk)",
+     "letter": "A",
+     "explanation": "P38 and Jnk are both stress-activated protein kinases, and P38 can activate Jnk in response to stress signals;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "P38",
+    "PKC"
+   ],
+   "types": [
+    "P38   PKC (no edge)",
+    "P38   PKC (no edge)",
+    "P38   PKC (no edge)",
+    "P38   PKC (no edge)",
+    "P38   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(P38, PKC)",
+     "letter": "D",
+     "explanation": "While both P38 and PKC are involved in cellular signaling, there is no well-established direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP3",
+    "Erk"
+   ],
+   "types": [
+    "PIP3 o-o Erk",
+    "PIP3 o-o Erk",
+    "PIP3   Erk (no edge)",
+    "PIP3   Erk (no edge)",
+    "PIP3   Erk (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "PIP3 o-o Erk",
+     "to": "PIP3   Erk (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.15,
+    "a o-> b": 0.25,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.3,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP3, Erk)",
+     "letter": "C",
+     "explanation": "PIP3 and Erk are part of different signaling pathways, PI3K/Akt and MAPK/ERK respectively, and do not have a direct causal relationship;"
+    }
+   ],
+   "truth": "Erk -> PIP3"
+  },
+  {
+   "pair": [
+    "PIP3",
+    "Akt"
+   ],
+   "types": [
+    "PIP3   Akt (no edge)",
+    "PIP3   Akt (no edge)",
+    "PIP3->Akt",
+    "PIP3->Akt",
+    "PIP3->Akt"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "PIP3   Akt (no edge)",
+     "to": "PIP3->Akt"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP3, Akt)",
+     "letter": "A",
+     "explanation": "PIP3 is a key signaling molecule in the PI3K/Akt pathway, where it directly activates Akt by facilitating its phosphorylation and activation;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP3",
+    "Jnk"
+   ],
+   "types": [
+    "PIP3   Jnk (no edge)",
+    "PIP3   Jnk (no edge)",
+    "PIP3   Jnk (no edge)",
+    "PIP3   Jnk (no edge)",
+    "PIP3   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP3, Jnk)",
+     "letter": "C",
+     "explanation": "PIP3 and Jnk are part of different signaling pathways, and there is no direct causal relationship between them in typical cellular signaling contexts;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "PIP3",
+    "PKC"
+   ],
+   "types": [
+    "PIP3   PKC (no edge)",
+    "PIP3   PKC (no edge)",
+    "PIP3   PKC (no edge)",
+    "PIP3   PKC (no edge)",
+    "PIP3   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(PIP3, PKC)",
+     "letter": "C",
+     "explanation": "PIP3 and PKC are involved in different signaling pathways, and there is no direct causal relationship between them in the context of typical cellular signaling;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Erk",
+    "Akt"
+   ],
+   "types": [
+    "Erk   Akt (no edge)",
+    "Erk   Akt (no edge)",
+    "Erk   Akt (no edge)",
+    "Erk   Akt (no edge)",
+    "Erk   Akt (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Erk, Akt)",
+     "letter": "D",
+     "explanation": "Although both Erk and Akt are part of different signaling pathways, there is no direct causal relationship between them in the provided domain knowledge;"
+    }
+   ],
+   "truth": "Akt -> Erk"
+  },
+  {
+   "pair": [
+    "Erk",
+    "Jnk"
+   ],
+   "types": [
+    "Erk   Jnk (no edge)",
+    "Erk   Jnk (no edge)",
+    "Erk   Jnk (no edge)",
+    "Erk   Jnk (no edge)",
+    "Erk   Jnk (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Erk, Jnk)",
+     "letter": "D",
+     "explanation": "While both Erk and Jnk are involved in stress response pathways, there is no direct causal relationship established between them;"
+    }
+   ],
+   "truth": "Erk -> Jnk"
+  },
+  {
+   "pair": [
+    "Erk",
+    "PKC"
+   ],
+   "types": [
+    "Erk   PKC (no edge)",
+    "Erk   PKC (no edge)",
+    "Erk   PKC (no edge)",
+    "Erk   PKC (no edge)",
+    "Erk   PKC (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.95
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Erk, PKC)",
+     "letter": "D",
+     "explanation": "There is no established direct causal relationship between Erk and PKC in the provided domain knowledge;"
+    }
+   ],
+   "truth": "Erk -> PKC"
+  },
+  {
+   "pair": [
+    "Akt",
+    "Jnk"
+   ],
+   "types": [
+    "Akt o-o Jnk",
+    "Akt   Jnk (no edge)",
+    "Akt   Jnk (no edge)",
+    "Akt   Jnk (no edge)",
+    "Akt   Jnk (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Akt o-o Jnk",
+     "to": "Akt   Jnk (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.9,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Akt, Jnk)",
+     "letter": "C",
+     "explanation": "Akt and Jnk are part of different signaling pathways, with Akt primarily involved in the PI3K/Akt pathway and Jnk in stress response pathways, suggesting no direct causal relationship;"
+    }
+   ],
+   "truth": "Akt -> Jnk"
+  },
+  {
+   "pair": [
+    "Akt",
+    "PKC"
+   ],
+   "types": [
+    "Akt o-o PKC",
+    "Akt   PKC (no edge)",
+    "Akt   PKC (no edge)",
+    "Akt   PKC (no edge)",
+    "Akt   PKC (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Akt o-o PKC",
+     "to": "Akt   PKC (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.25,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.7,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Akt, PKC)",
+     "letter": "D",
+     "explanation": "While both Akt and PKC are involved in various signaling pathways, the direct causal relationship between them is not well-established without further context or evidence."
+    }
+   ],
+   "truth": "Akt -> PKC"
+  },
+  {
+   "pair": [
+    "Jnk",
+    "PKC"
+   ],
+   "types": [
+    "Jnk o-o PKC",
+    "Jnk   PKC (no edge)",
+    "Jnk   PKC (no edge)",
+    "Jnk   PKC (no edge)",
+    "Jnk   PKC (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Jnk o-o PKC",
+     "to": "Jnk   PKC (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.2,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.75,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Jnk, PKC)",
+     "letter": "D",
+     "explanation": "There is no established direct causal relationship between Jnk and PKC in the context of signaling pathways, as they are involved in different pathways with potential indirect interactions;"
+    }
+   ],
+   "truth": "no edge"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    4,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    6,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    6
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

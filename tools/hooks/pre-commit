@@ -1,0 +1,7 @@
+#!/bin/sh
+# Installed with: git config core.hooksPath tools/hooks
+# Blocks a commit that stages a credential or a file over 50 MB.
+python tools/secret_scan.py --staged || {
+  echo "pre-commit: secret scan failed; unstage the file (git restore --staged <file>) and fix it." >&2
+  exit 1
+}

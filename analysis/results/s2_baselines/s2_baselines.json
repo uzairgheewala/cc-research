@@ -1,0 +1,465 @@
+{
+ "mapping_sha256": "30d1617c9ac868d40a26a7b7d06aa7906fd0288f51ac6edb2d859e3ba82eb092",
+ "rows": [
+  {
+   "family": "s2_01",
+   "scenario_id": "solder_reflow_profile_joint_voids",
+   "arm_csv": "q012",
+   "method": "pc",
+   "d": 23,
+   "true_edges": 39,
+   "seconds": 11.1,
+   "adj_f1": 0.7042253521126761,
+   "dir_f1": {
+    "drop": 0.3939393939393939,
+    "random": 0.47887323943661975,
+    "lower": 0.39436619718309857
+   },
+   "shd": {
+    "drop": 33,
+    "random": 29,
+    "lower": 32
+   },
+   "directed": 27,
+   "undecided": 5,
+   "failed": null
+  },
+  {
+   "family": "s2_01",
+   "scenario_id": "solder_reflow_profile_joint_voids",
+   "arm_csv": "q012",
+   "method": "gesbic",
+   "d": 23,
+   "true_edges": 39,
+   "seconds": 21.5,
+   "adj_f1": 0.6326530612244898,
+   "dir_f1": {
+    "drop": 0.4329896907216495,
+    "random": 0.4489795918367347,
+    "lower": 0.42857142857142855
+   },
+   "shd": {
+    "drop": 46,
+    "random": 45,
+    "lower": 46
+   },
+   "directed": 58,
+   "undecided": 1,
+   "failed": null
+  },
+  {
+   "family": "s2_02",
+   "scenario_id": "pedestrian_countdown_compliance",
+   "arm_csv": "q022",
+   "method": "pc",
+   "d": 21,
+   "true_edges": 38,
+   "seconds": 0.4,
+   "adj_f1": 0.6349206349206348,
+   "dir_f1": {
+    "drop": 0.44067796610169496,
+    "random": 0.47619047619047616,
+    "lower": 0.47619047619047616
+   },
+   "shd": {
+    "drop": 30,
+    "random": 28,
+    "lower": 28
+   },
+   "directed": 21,
+   "undecided": 4,
+   "failed": null
+  },
+  {
+   "family": "s2_02",
+   "scenario_id": "pedestrian_countdown_compliance",
+   "arm_csv": "q022",
+   "method": "gesbic",
+   "d": 21,
+   "true_edges": 38,
+   "seconds": 6.0,
+   "adj_f1": 0.6666666666666667,
+   "dir_f1": {
+    "drop": 0.53125,
+    "random": 0.5454545454545454,
+    "lower": 0.5454545454545454
+   },
+   "shd": {
+    "drop": 27,
+    "random": 26,
+    "lower": 26
+   },
+   "directed": 26,
+   "undecided": 2,
+   "failed": null
+  },
+  {
+   "family": "s2_03",
+   "scenario_id": "disaster_alert_channel_evacuation",
+   "arm_csv": "q032",
+   "method": "pc",
+   "d": 25,
+   "true_edges": 58,
+   "seconds": 0.6,
+   "adj_f1": 0.5227272727272728,
+   "dir_f1": {
+    "drop": 0.2439024390243903,
+    "random": 0.34090909090909094,
+    "lower": 0.29545454545454547
+   },
+   "shd": {
+    "drop": 55,
+    "random": 50,
+    "lower": 52
+   },
+   "directed": 24,
+   "undecided": 6,
+   "failed": null
+  },
+  {
+   "family": "s2_03",
+   "scenario_id": "disaster_alert_channel_evacuation",
+   "arm_csv": "q032",
+   "method": "gesbic",
+   "d": 25,
+   "true_edges": 58,
+   "seconds": 20.6,
+   "adj_f1": 0.6071428571428571,
+   "dir_f1": {
+    "drop": 0.4403669724770642,
+    "random": 0.44642857142857145,
+    "lower": 0.4285714285714286
+   },
+   "shd": {
+    "drop": 52,
+    "random": 53,
+    "lower": 54
+   },
+   "directed": 51,
+   "undecided": 3,
+   "failed": null
+  },
+  {
+   "family": "s2_04",
+   "scenario_id": "exam_room_temperature_performance",
+   "arm_csv": "q042",
+   "method": "pc",
+   "d": 25,
+   "true_edges": 40,
+   "seconds": 0.7,
+   "adj_f1": 0.696969696969697,
+   "dir_f1": {
+    "drop": 0.5846153846153846,
+    "random": 0.5757575757575758,
+    "lower": 0.6060606060606061
+   },
+   "shd": {
+    "drop": 24,
+    "random": 24,
+    "lower": 23
+   },
+   "directed": 25,
+   "undecided": 1,
+   "failed": null
+  },
+  {
+   "family": "s2_04",
+   "scenario_id": "exam_room_temperature_performance",
+   "arm_csv": "q042",
+   "method": "gesbic",
+   "d": 25,
+   "true_edges": 40,
+   "seconds": 13.4,
+   "adj_f1": 0.7948717948717949,
+   "dir_f1": {
+    "drop": 0.7272727272727273,
+    "random": 0.717948717948718,
+    "lower": 0.7435897435897436
+   },
+   "shd": {
+    "drop": 19,
+    "random": 19,
+    "lower": 18
+   },
+   "directed": 37,
+   "undecided": 1,
+   "failed": null
+  },
+  {
+   "family": "s2_05",
+   "scenario_id": "small_business_cash_buffer_inventory_ordering",
+   "arm_csv": "q052",
+   "method": "pc",
+   "d": 20,
+   "true_edges": 38,
+   "seconds": 0.5,
+   "adj_f1": 0.625,
+   "dir_f1": {
+    "drop": 0.3728813559322034,
+    "random": 0.37499999999999994,
+    "lower": 0.40625000000000006
+   },
+   "shd": {
+    "drop": 32,
+    "random": 32,
+    "lower": 31
+   },
+   "directed": 21,
+   "undecided": 5,
+   "failed": null
+  },
+  {
+   "family": "s2_05",
+   "scenario_id": "small_business_cash_buffer_inventory_ordering",
+   "arm_csv": "q052",
+   "method": "gesbic",
+   "d": 20,
+   "true_edges": 38,
+   "seconds": 6.3,
+   "adj_f1": 0.676056338028169,
+   "dir_f1": {
+    "drop": 0.6268656716417911,
+    "random": 0.619718309859155,
+    "lower": 0.619718309859155
+   },
+   "shd": {
+    "drop": 24,
+    "random": 25,
+    "lower": 25
+   },
+   "directed": 29,
+   "undecided": 4,
+   "failed": null
+  },
+  {
+   "family": "s2_06",
+   "scenario_id": "dns_cache_ttl_failover_latency",
+   "arm_csv": "q062",
+   "method": "pc",
+   "d": 25,
+   "true_edges": 47,
+   "seconds": 0.7,
+   "adj_f1": 0.575,
+   "dir_f1": {
+    "drop": 0.3013698630136986,
+    "random": 0.325,
+    "lower": 0.35
+   },
+   "shd": {
+    "drop": 44,
+    "random": 44,
+    "lower": 43
+   },
+   "directed": 26,
+   "undecided": 7,
+   "failed": null
+  },
+  {
+   "family": "s2_06",
+   "scenario_id": "dns_cache_ttl_failover_latency",
+   "arm_csv": "q062",
+   "method": "gesbic",
+   "d": 25,
+   "true_edges": 47,
+   "seconds": 20.4,
+   "adj_f1": 0.46808510638297873,
+   "dir_f1": {
+    "drop": 0.26373626373626374,
+    "random": 0.2978723404255319,
+    "lower": 0.2978723404255319
+   },
+   "shd": {
+    "drop": 60,
+    "random": 58,
+    "lower": 58
+   },
+   "directed": 44,
+   "undecided": 3,
+   "failed": null
+  },
+  {
+   "family": "s2_07",
+   "scenario_id": "heatwave_cooling_center_use_illness",
+   "arm_csv": "q072",
+   "method": "pc",
+   "d": 22,
+   "true_edges": 35,
+   "seconds": 4.5,
+   "adj_f1": 0.6557377049180327,
+   "dir_f1": {
+    "drop": 0.42857142857142855,
+    "random": 0.5245901639344263,
+    "lower": 0.4918032786885245
+   },
+   "shd": {
+    "drop": 29,
+    "random": 25,
+    "lower": 26
+   },
+   "directed": 21,
+   "undecided": 5,
+   "failed": null
+  },
+  {
+   "family": "s2_07",
+   "scenario_id": "heatwave_cooling_center_use_illness",
+   "arm_csv": "q072",
+   "method": "gesbic",
+   "d": 22,
+   "true_edges": 35,
+   "seconds": 3.3,
+   "adj_f1": 0.0,
+   "dir_f1": {
+    "drop": 0.0,
+    "random": 0.0,
+    "lower": 0.0
+   },
+   "shd": {
+    "drop": 35,
+    "random": 35,
+    "lower": 35
+   },
+   "directed": 0,
+   "undecided": 0,
+   "failed": "LinAlgError: Singular matrix"
+  },
+  {
+   "family": "s2_08",
+   "scenario_id": "desalination_membrane_fouling_energy",
+   "arm_csv": "q082",
+   "method": "pc",
+   "d": 22,
+   "true_edges": 40,
+   "seconds": 0.7,
+   "adj_f1": 0.6060606060606061,
+   "dir_f1": {
+    "drop": 0.3214285714285714,
+    "random": 0.3636363636363637,
+    "lower": 0.4242424242424242
+   },
+   "shd": {
+    "drop": 36,
+    "random": 34,
+    "lower": 32
+   },
+   "directed": 16,
+   "undecided": 10,
+   "failed": null
+  },
+  {
+   "family": "s2_08",
+   "scenario_id": "desalination_membrane_fouling_energy",
+   "arm_csv": "q082",
+   "method": "gesbic",
+   "d": 22,
+   "true_edges": 40,
+   "seconds": 16.3,
+   "adj_f1": 0.7391304347826088,
+   "dir_f1": {
+    "drop": 0.5681818181818181,
+    "random": 0.5869565217391304,
+    "lower": 0.5652173913043479
+   },
+   "shd": {
+    "drop": 32,
+    "random": 31,
+    "lower": 32
+   },
+   "directed": 48,
+   "undecided": 4,
+   "failed": null
+  },
+  {
+   "family": "s2_09",
+   "scenario_id": "hospital_room_noise_sleep_recovery",
+   "arm_csv": "q092",
+   "method": "pc",
+   "d": 22,
+   "true_edges": 35,
+   "seconds": 0.6,
+   "adj_f1": 0.8307692307692307,
+   "dir_f1": {
+    "drop": 0.7692307692307692,
+    "random": 0.7692307692307692,
+    "lower": 0.7692307692307692
+   },
+   "shd": {
+    "drop": 13,
+    "random": 13,
+    "lower": 13
+   },
+   "directed": 30,
+   "undecided": 0,
+   "failed": null
+  },
+  {
+   "family": "s2_09",
+   "scenario_id": "hospital_room_noise_sleep_recovery",
+   "arm_csv": "q092",
+   "method": "gesbic",
+   "d": 22,
+   "true_edges": 35,
+   "seconds": 11.4,
+   "adj_f1": 0.7272727272727272,
+   "dir_f1": {
+    "drop": 0.6842105263157895,
+    "random": 0.6753246753246753,
+    "lower": 0.7012987012987013
+   },
+   "shd": {
+    "drop": 23,
+    "random": 23,
+    "lower": 22
+   },
+   "directed": 41,
+   "undecided": 1,
+   "failed": null
+  },
+  {
+   "family": "s2_10",
+   "scenario_id": "transit_access_bid_rent",
+   "arm_csv": "q102",
+   "method": "pc",
+   "d": 25,
+   "true_edges": 45,
+   "seconds": 1.1,
+   "adj_f1": 0.3950617283950617,
+   "dir_f1": {
+    "drop": 0.17948717948717946,
+    "random": 0.17283950617283952,
+    "lower": 0.22222222222222224
+   },
+   "shd": {
+    "drop": 57,
+    "random": 58,
+    "lower": 56
+   },
+   "directed": 33,
+   "undecided": 3,
+   "failed": null
+  },
+  {
+   "family": "s2_10",
+   "scenario_id": "transit_access_bid_rent",
+   "arm_csv": "q102",
+   "method": "gesbic",
+   "d": 25,
+   "true_edges": 45,
+   "seconds": 20.1,
+   "adj_f1": 0.6153846153846154,
+   "dir_f1": {
+    "drop": 0.5609756097560976,
+    "random": 0.5714285714285713,
+    "lower": 0.5494505494505495
+   },
+   "shd": {
+    "drop": 35,
+    "random": 37,
+    "lower": 38
+   },
+   "directed": 37,
+   "undecided": 9,
+   "failed": null
+  }
+ ]
+}

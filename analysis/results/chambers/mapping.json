@@ -1,0 +1,2963 @@
+{
+ "ticket": "BEN-10",
+ "bundle": "BND-07",
+ "package": "causalchamber 0.2.8 (external/causalchamber_pkg)",
+ "graph_function": "causalchamber.ground_truth.main.graph(chamber, configuration)",
+ "datasets": [
+  {
+   "dataset": "lt_interventions_standard_v1",
+   "chamber": "lt",
+   "configuration": "standard",
+   "configuration_source": "lt_interventions_standard_v1__README.md, 'Dataset Description' table: | Light tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('lt', 'standard')",
+   "graph_variables": 38,
+   "graph_edges": 57,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "blue",
+    "diode_ir_1",
+    "diode_ir_2",
+    "diode_ir_3",
+    "diode_vis_1",
+    "diode_vis_2",
+    "diode_vis_3",
+    "green",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "osr_angle_1",
+    "osr_angle_2",
+    "osr_c",
+    "pol_1",
+    "pol_2",
+    "red",
+    "t_ir_1",
+    "t_ir_2",
+    "t_ir_3",
+    "t_vis_1",
+    "t_vis_2",
+    "t_vis_3",
+    "v_angle_1",
+    "v_angle_2",
+    "v_c"
+   ],
+   "graph_children": [
+    "angle_1",
+    "angle_2",
+    "current",
+    "ir_1",
+    "ir_2",
+    "ir_3",
+    "vis_1",
+    "vis_2",
+    "vis_3"
+   ],
+   "dataset_columns": 46,
+   "columns_in_graph": [
+    "red",
+    "green",
+    "blue",
+    "osr_c",
+    "v_c",
+    "current",
+    "pol_1",
+    "pol_2",
+    "osr_angle_1",
+    "osr_angle_2",
+    "v_angle_1",
+    "v_angle_2",
+    "angle_1",
+    "angle_2",
+    "ir_1",
+    "vis_1",
+    "ir_2",
+    "vis_2",
+    "ir_3",
+    "vis_3",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "diode_ir_1",
+    "diode_vis_1",
+    "diode_ir_2",
+    "diode_vis_2",
+    "diode_ir_3",
+    "diode_vis_3",
+    "t_ir_1",
+    "t_vis_1",
+    "t_ir_2",
+    "t_vis_2",
+    "t_ir_3",
+    "t_vis_3"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention",
+    "camera",
+    "v_board",
+    "v_reg"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "lt_interventions_standard_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_interventions_standard_v1.zip",
+    "sha256_expected": "8781960b5fff5d752f57566393d4b0f8706cac9b2cd2a3d3226442f17c7bab60",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_interventions_standard_v1.zip",
+     "md5": "476664d024f88e8b7640998bb5e9ee33"
+    }
+   },
+   "experiments_source": "lt_interventions_standard_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "uniform_reference",
+     "kind": "observational (reference)",
+     "targets": [],
+     "rows_stated": 10000,
+     "note": "all actuators sampled independently and uniformly; sensor parameters fixed",
+     "rows_observed": 10000,
+     "rows_authors_notebook": 10000
+    },
+    {
+     "experiment": "uniform_red_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "red"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_green_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "green"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_blue_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "blue"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_red_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "red"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_green_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "green"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_blue_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "blue"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_pol_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "pol_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_pol_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_pol_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "pol_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_pol_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_11_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_11"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_12_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_12"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_21_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_21"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_22_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_22"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_31_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_31"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_l_32_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "l_32"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_diode_vis_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_vis_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_vis_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_vis_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_vis_3_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_vis_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_3_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_diode_ir_3_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "diode_ir_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_1_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_2_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_3_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_1_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_2_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_3_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_3_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_3_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_t_ir_3_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_ir_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_t_vis_3_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "t_vis_3"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_osr_1_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_2_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_c_weak",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_c"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (weak); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_osr_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_c_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_c"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_osr_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_angle_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files"
+    },
+    {
+     "experiment": "uniform_osr_c_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "osr_c"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong); README sentence for this row lists several symbols (e.g. 'We set O_1, O_2, O_C = 2'); the experiment name names one target, taken as the target here; unverified against the files",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_v_angle_1_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_angle_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_v_angle_2_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_angle_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_v_c_mid",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_c"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (mid)",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "uniform_v_angle_1_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_angle_1"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_v_angle_2_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_angle_2"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    },
+    {
+     "experiment": "uniform_v_c_strong",
+     "kind": "interventional (single target)",
+     "targets": [
+      "v_c"
+     ],
+     "rows_stated": 1000,
+     "note": "single-target shift of the target's distribution relative to uniform_reference (strong)",
+     "rows_observed": 1000,
+     "rows_authors_notebook": 1000
+    }
+   ],
+   "n_experiments_listed": 59,
+   "n_observational_experiments": 1,
+   "n_interventional_experiments": 58,
+   "experiments_in_zip_not_listed": [
+    "uniform_osr_angle_1_mid",
+    "uniform_osr_angle_1_strong",
+    "uniform_osr_angle_1_weak",
+    "uniform_osr_angle_2_mid",
+    "uniform_osr_angle_2_strong",
+    "uniform_osr_angle_2_weak"
+   ],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": 68000
+  },
+  {
+   "dataset": "lt_validate_v1",
+   "chamber": "lt",
+   "configuration": "standard",
+   "configuration_source": "lt_validate_v1__README.md, 'Dataset Description' table: | Light tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('lt', 'standard')",
+   "graph_variables": 38,
+   "graph_edges": 57,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "blue",
+    "diode_ir_1",
+    "diode_ir_2",
+    "diode_ir_3",
+    "diode_vis_1",
+    "diode_vis_2",
+    "diode_vis_3",
+    "green",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "osr_angle_1",
+    "osr_angle_2",
+    "osr_c",
+    "pol_1",
+    "pol_2",
+    "red",
+    "t_ir_1",
+    "t_ir_2",
+    "t_ir_3",
+    "t_vis_1",
+    "t_vis_2",
+    "t_vis_3",
+    "v_angle_1",
+    "v_angle_2",
+    "v_c"
+   ],
+   "graph_children": [
+    "angle_1",
+    "angle_2",
+    "current",
+    "ir_1",
+    "ir_2",
+    "ir_3",
+    "vis_1",
+    "vis_2",
+    "vis_3"
+   ],
+   "dataset_columns": 46,
+   "columns_in_graph": [
+    "red",
+    "green",
+    "blue",
+    "osr_c",
+    "v_c",
+    "current",
+    "pol_1",
+    "pol_2",
+    "osr_angle_1",
+    "osr_angle_2",
+    "v_angle_1",
+    "v_angle_2",
+    "angle_1",
+    "angle_2",
+    "ir_1",
+    "vis_1",
+    "ir_2",
+    "vis_2",
+    "ir_3",
+    "vis_3",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "diode_ir_1",
+    "diode_vis_1",
+    "diode_ir_2",
+    "diode_vis_2",
+    "diode_ir_3",
+    "diode_vis_3",
+    "t_ir_1",
+    "t_vis_1",
+    "t_ir_2",
+    "t_vis_2",
+    "t_ir_3",
+    "t_vis_3"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention",
+    "camera",
+    "v_board",
+    "v_reg"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "lt_validate_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_validate_v1.zip",
+    "sha256_expected": "a1eb99a53a4c6a29283ee40f8b6bd1409be339944790a342910207425038b19f",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_validate_v1.zip",
+     "md5": "0ef64de36bf8fdfff3df539cadf460ab"
+    }
+   },
+   "experiments_source": "lt_validate_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "validate_red",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "red"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_green",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "green"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_blue",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "blue"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_osr_c",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_c"
+     ],
+     "rows_stated": 1000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_v_c",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_c"
+     ],
+     "rows_stated": 50,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_pol_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "pol_1"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 90.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_pol_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "pol_2"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 90.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_osr_angle_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_angle_1"
+     ],
+     "rows_stated": 1000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_osr_angle_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_angle_2"
+     ],
+     "rows_stated": 1000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_v_angle_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_angle_1"
+     ],
+     "rows_stated": 50,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_v_angle_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_angle_2"
+     ],
+     "rows_stated": 50,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_11",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_11"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_12",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_12"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_21",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_21"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_22",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_22"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_31",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_31"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_l_32",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "l_32"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_ir_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_ir_1"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 2.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_ir_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_ir_2"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 2.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_ir_3",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_ir_3"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 2.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_vis_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_vis_1"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 1.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_vis_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_vis_2"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 1.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_diode_vis_3",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "diode_vis_3"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 1.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_ir_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_ir_1"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_ir_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_ir_2"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_ir_3",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_ir_3"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_vis_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_vis_1"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_vis_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_vis_2"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_t_vis_3",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "t_vis_3"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 3.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (lt_validate_v1_lt_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    }
+   ],
+   "n_experiments_listed": 29,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 29,
+   "experiments_in_zip_not_listed": [],
+   "experiment_names_vs_authors_notebook": {
+    "authors_notebook_experiments": 29,
+    "same_names_as_config_table": true,
+    "source": "paper__causal_validation.ipynb output of dataset.available_experiments()"
+   },
+   "rows_stated_total": 4300
+  },
+  {
+   "dataset": "lt_malus_v1",
+   "chamber": "lt",
+   "configuration": "standard",
+   "configuration_source": "lt_malus_v1__README.md, 'Dataset Description' table: | Light tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('lt', 'standard')",
+   "graph_variables": 38,
+   "graph_edges": 57,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "blue",
+    "diode_ir_1",
+    "diode_ir_2",
+    "diode_ir_3",
+    "diode_vis_1",
+    "diode_vis_2",
+    "diode_vis_3",
+    "green",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "osr_angle_1",
+    "osr_angle_2",
+    "osr_c",
+    "pol_1",
+    "pol_2",
+    "red",
+    "t_ir_1",
+    "t_ir_2",
+    "t_ir_3",
+    "t_vis_1",
+    "t_vis_2",
+    "t_vis_3",
+    "v_angle_1",
+    "v_angle_2",
+    "v_c"
+   ],
+   "graph_children": [
+    "angle_1",
+    "angle_2",
+    "current",
+    "ir_1",
+    "ir_2",
+    "ir_3",
+    "vis_1",
+    "vis_2",
+    "vis_3"
+   ],
+   "dataset_columns": 46,
+   "columns_in_graph": [
+    "red",
+    "green",
+    "blue",
+    "osr_c",
+    "v_c",
+    "current",
+    "pol_1",
+    "pol_2",
+    "osr_angle_1",
+    "osr_angle_2",
+    "v_angle_1",
+    "v_angle_2",
+    "angle_1",
+    "angle_2",
+    "ir_1",
+    "vis_1",
+    "ir_2",
+    "vis_2",
+    "ir_3",
+    "vis_3",
+    "l_11",
+    "l_12",
+    "l_21",
+    "l_22",
+    "l_31",
+    "l_32",
+    "diode_ir_1",
+    "diode_vis_1",
+    "diode_ir_2",
+    "diode_vis_2",
+    "diode_ir_3",
+    "diode_vis_3",
+    "t_ir_1",
+    "t_vis_1",
+    "t_ir_2",
+    "t_vis_2",
+    "t_ir_3",
+    "t_vis_3"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention",
+    "camera",
+    "v_board",
+    "v_reg"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "lt_malus_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_malus_v1.zip",
+    "sha256_expected": "584490fc05191c21debd75c70c94ee80358f66482694f98c21f405d695f1b3e9",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/lt_malus_v1.zip",
+     "md5": "cc49b95d85410e0b5ea3bcd1479428e3"
+    }
+   },
+   "experiments_source": "lt_malus_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "white_64",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "white_128",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "white_255",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "red_64",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "red_128",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "red_255",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "green_64",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "green_128",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "green_255",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "blue_64",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "blue_128",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "blue_255",
+     "kind": "interventional (two targets randomized, others fixed)",
+     "targets": [
+      "pol_1",
+      "pol_2"
+     ],
+     "rows_stated": 1000,
+     "note": "pol_1, pol_2 ~ Unif{-90,...,90}; light-source colour fixed as named",
+     "rows_observed": 1000
+    }
+   ],
+   "n_experiments_listed": 12,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 12,
+   "experiments_in_zip_not_listed": [],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": 12000
+  },
+  {
+   "dataset": "wt_validate_v1",
+   "chamber": "wt",
+   "configuration": "standard",
+   "configuration_source": "wt_validate_v1__README.md, 'Dataset Description' table: | Wind tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('wt', 'standard')",
+   "graph_variables": 32,
+   "graph_edges": 42,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "hatch",
+    "load_in",
+    "load_out",
+    "osr_1",
+    "osr_2",
+    "osr_ambient",
+    "osr_downwind",
+    "osr_in",
+    "osr_intake",
+    "osr_mic",
+    "osr_out",
+    "osr_upwind",
+    "pot_1",
+    "pot_2",
+    "res_in",
+    "res_out",
+    "v_1",
+    "v_2",
+    "v_in",
+    "v_mic",
+    "v_out"
+   ],
+   "graph_children": [
+    "current_in",
+    "current_out",
+    "mic",
+    "pressure_ambient",
+    "pressure_downwind",
+    "pressure_intake",
+    "pressure_upwind",
+    "rpm_in",
+    "rpm_out",
+    "signal_1",
+    "signal_2"
+   ],
+   "dataset_columns": 37,
+   "columns_in_graph": [
+    "hatch",
+    "pot_1",
+    "pot_2",
+    "osr_1",
+    "osr_2",
+    "osr_mic",
+    "osr_in",
+    "osr_out",
+    "osr_upwind",
+    "osr_downwind",
+    "osr_ambient",
+    "osr_intake",
+    "v_1",
+    "v_2",
+    "v_mic",
+    "v_in",
+    "v_out",
+    "load_in",
+    "load_out",
+    "current_in",
+    "current_out",
+    "res_in",
+    "res_out",
+    "rpm_in",
+    "rpm_out",
+    "pressure_upwind",
+    "pressure_downwind",
+    "pressure_ambient",
+    "pressure_intake",
+    "mic",
+    "signal_1",
+    "signal_2"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "wt_validate_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_validate_v1.zip",
+    "sha256_expected": "7dcb885b1bf69ae0a15a3652fec9707234d5b06a57a37d924a3c9839bb745c72",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_validate_v1.zip",
+     "md5": "bde214eb50abc801307bf7d4aadcafc9"
+    }
+   },
+   "experiments_source": "wt_validate_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "validate_hatch_mic",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "hatch"
+     ],
+     "rows_stated": 4000,
+     "xA": 0.0,
+     "xB": 45.0,
+     "T_ms": 0,
+     "effect_named": "mic",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 4000
+    },
+    {
+     "experiment": "validate_hatch_rpms",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "hatch"
+     ],
+     "rows_stated": 200,
+     "xA": 0.0,
+     "xB": 45.0,
+     "T_ms": 10000,
+     "effect_named": "rpms",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_hatch_pressures",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "hatch"
+     ],
+     "rows_stated": 50,
+     "xA": 0.0,
+     "xB": 45.0,
+     "T_ms": 0,
+     "effect_named": "pressures",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_pot_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "pot_1"
+     ],
+     "rows_stated": 200,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_pot_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "pot_2"
+     ],
+     "rows_stated": 200,
+     "xA": 0.0,
+     "xB": 255.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_osr_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_1"
+     ],
+     "rows_stated": 500,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 500
+    },
+    {
+     "experiment": "validate_osr_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_2"
+     ],
+     "rows_stated": 500,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 500
+    },
+    {
+     "experiment": "validate_osr_mic",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_mic"
+     ],
+     "rows_stated": 500,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 500
+    },
+    {
+     "experiment": "validate_osr_in",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_in"
+     ],
+     "rows_stated": 1000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_osr_out",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_out"
+     ],
+     "rows_stated": 1000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_osr_upwind",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_upwind"
+     ],
+     "rows_stated": 200,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_osr_downwind",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_downwind"
+     ],
+     "rows_stated": 200,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_osr_ambient",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_ambient"
+     ],
+     "rows_stated": 8000,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 8000
+    },
+    {
+     "experiment": "validate_osr_intake",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "osr_intake"
+     ],
+     "rows_stated": 200,
+     "xA": 1.0,
+     "xB": 8.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_v_1",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_1"
+     ],
+     "rows_stated": 200,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_v_2",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_2"
+     ],
+     "rows_stated": 200,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_v_mic",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_mic"
+     ],
+     "rows_stated": 200,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_v_in",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_in"
+     ],
+     "rows_stated": 200,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_v_out",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "v_out"
+     ],
+     "rows_stated": 200,
+     "xA": 1.1,
+     "xB": 5.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_load_in",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_in"
+     ],
+     "rows_stated": 50,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 10000,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 50
+    },
+    {
+     "experiment": "validate_load_in_mic",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_in"
+     ],
+     "rows_stated": 200,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 10000,
+     "effect_named": "mic",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_load_out",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_out"
+     ],
+     "rows_stated": 50,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 10000,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 49
+    },
+    {
+     "experiment": "validate_load_out_mic",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_out"
+     ],
+     "rows_stated": 200,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 10000,
+     "effect_named": "mic",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 200
+    },
+    {
+     "experiment": "validate_res_in",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "res_in"
+     ],
+     "rows_stated": 1000,
+     "xA": 0.0,
+     "xB": 1.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_res_out",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "res_out"
+     ],
+     "rows_stated": 1000,
+     "xA": 0.0,
+     "xB": 1.0,
+     "T_ms": 0,
+     "effect_named": null,
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 1000
+    },
+    {
+     "experiment": "validate_load_in_current_out",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_in"
+     ],
+     "rows_stated": 100,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 5000,
+     "effect_named": "current_out",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 100
+    },
+    {
+     "experiment": "validate_load_out_current_in",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_out"
+     ],
+     "rows_stated": 100,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 5000,
+     "effect_named": "current_in",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 100
+    },
+    {
+     "experiment": "validate_load_out_pressure_intake",
+     "kind": "interventional (two-level randomized, single target)",
+     "targets": [
+      "load_out"
+     ],
+     "rows_stated": 3000,
+     "xA": 0.01,
+     "xB": 1.0,
+     "T_ms": 8000,
+     "effect_named": "pressure_intake",
+     "note": "flag=0 rows: target at xA, flag=1 rows: target at xB, chosen at random per measurement (generators/binary_interventions.py); all other manipulable variables fixed (wt_validate_v1_wt_standard_validation_configs.csv)",
+     "listed_in_readme": true,
+     "rows_observed": 3000
+    }
+   ],
+   "n_experiments_listed": 28,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 28,
+   "experiments_in_zip_not_listed": [],
+   "experiment_names_vs_authors_notebook": {
+    "authors_notebook_experiments": 28,
+    "same_names_as_config_table": true,
+    "source": "paper__causal_validation.ipynb output of dataset.available_experiments()"
+   },
+   "rows_stated_total": 23450
+  },
+  {
+   "dataset": "wt_intake_impulse_v1",
+   "chamber": "wt",
+   "configuration": "standard",
+   "configuration_source": "wt_intake_impulse_v1__README.md, 'Dataset Description' table: | Wind tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('wt', 'standard')",
+   "graph_variables": 32,
+   "graph_edges": 42,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "hatch",
+    "load_in",
+    "load_out",
+    "osr_1",
+    "osr_2",
+    "osr_ambient",
+    "osr_downwind",
+    "osr_in",
+    "osr_intake",
+    "osr_mic",
+    "osr_out",
+    "osr_upwind",
+    "pot_1",
+    "pot_2",
+    "res_in",
+    "res_out",
+    "v_1",
+    "v_2",
+    "v_in",
+    "v_mic",
+    "v_out"
+   ],
+   "graph_children": [
+    "current_in",
+    "current_out",
+    "mic",
+    "pressure_ambient",
+    "pressure_downwind",
+    "pressure_intake",
+    "pressure_upwind",
+    "rpm_in",
+    "rpm_out",
+    "signal_1",
+    "signal_2"
+   ],
+   "dataset_columns": 37,
+   "columns_in_graph": [
+    "hatch",
+    "pot_1",
+    "pot_2",
+    "osr_1",
+    "osr_2",
+    "osr_mic",
+    "osr_in",
+    "osr_out",
+    "osr_upwind",
+    "osr_downwind",
+    "osr_ambient",
+    "osr_intake",
+    "v_1",
+    "v_2",
+    "v_mic",
+    "v_in",
+    "v_out",
+    "load_in",
+    "load_out",
+    "current_in",
+    "current_out",
+    "res_in",
+    "res_out",
+    "rpm_in",
+    "rpm_out",
+    "pressure_upwind",
+    "pressure_downwind",
+    "pressure_ambient",
+    "pressure_intake",
+    "mic",
+    "signal_1",
+    "signal_2"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "wt_intake_impulse_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_intake_impulse_v1.zip",
+    "sha256_expected": "d4dec2de1fcf255c08a0da1290e73adbfbea09272a43dbcb58e96a448ef6b748",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_intake_impulse_v1.zip",
+     "md5": "8b7a0e587d3e9a804b380d96f14a1b12"
+    }
+   },
+   "experiments_source": "wt_intake_impulse_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "load_out_0.01_osr_downwind_4",
+     "kind": "interventional time series (impulse on load_in)",
+     "targets": [
+      "load_in",
+      "hatch"
+     ],
+     "rows_stated": null,
+     "note": "50 measurements per impulse; load_in 0.01 -> 1 -> 0.01; hatch random per impulse; README: 'We collect a total of 5000 impulses' (per experiment or in total is not stated unambiguously); load_out and osr_downwind fixed as named",
+     "rows_observed": 250000
+    },
+    {
+     "experiment": "load_out_0.5_osr_downwind_2",
+     "kind": "interventional time series (impulse on load_in)",
+     "targets": [
+      "load_in",
+      "hatch"
+     ],
+     "rows_stated": null,
+     "note": "50 measurements per impulse; load_in 0.01 -> 1 -> 0.01; hatch random per impulse; README: 'We collect a total of 5000 impulses' (per experiment or in total is not stated unambiguously); load_out and osr_downwind fixed as named",
+     "rows_observed": 250000
+    },
+    {
+     "experiment": "load_out_0.5_osr_downwind_4",
+     "kind": "interventional time series (impulse on load_in)",
+     "targets": [
+      "load_in",
+      "hatch"
+     ],
+     "rows_stated": null,
+     "note": "50 measurements per impulse; load_in 0.01 -> 1 -> 0.01; hatch random per impulse; README: 'We collect a total of 5000 impulses' (per experiment or in total is not stated unambiguously); load_out and osr_downwind fixed as named",
+     "rows_observed": 250000
+    },
+    {
+     "experiment": "load_out_0.5_osr_downwind_8",
+     "kind": "interventional time series (impulse on load_in)",
+     "targets": [
+      "load_in",
+      "hatch"
+     ],
+     "rows_stated": null,
+     "note": "50 measurements per impulse; load_in 0.01 -> 1 -> 0.01; hatch random per impulse; README: 'We collect a total of 5000 impulses' (per experiment or in total is not stated unambiguously); load_out and osr_downwind fixed as named",
+     "rows_observed": 250000
+    },
+    {
+     "experiment": "load_out_1_osr_downwind_4",
+     "kind": "interventional time series (impulse on load_in)",
+     "targets": [
+      "load_in",
+      "hatch"
+     ],
+     "rows_stated": null,
+     "note": "50 measurements per impulse; load_in 0.01 -> 1 -> 0.01; hatch random per impulse; README: 'We collect a total of 5000 impulses' (per experiment or in total is not stated unambiguously); load_out and osr_downwind fixed as named",
+     "rows_observed": 250000
+    }
+   ],
+   "n_experiments_listed": 5,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 5,
+   "experiments_in_zip_not_listed": [],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": null
+  },
+  {
+   "dataset": "wt_bernoulli_v1",
+   "chamber": "wt",
+   "configuration": "standard",
+   "configuration_source": "wt_bernoulli_v1__README.md, 'Dataset Description' table: | Wind tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('wt', 'standard')",
+   "graph_variables": 32,
+   "graph_edges": 42,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "hatch",
+    "load_in",
+    "load_out",
+    "osr_1",
+    "osr_2",
+    "osr_ambient",
+    "osr_downwind",
+    "osr_in",
+    "osr_intake",
+    "osr_mic",
+    "osr_out",
+    "osr_upwind",
+    "pot_1",
+    "pot_2",
+    "res_in",
+    "res_out",
+    "v_1",
+    "v_2",
+    "v_in",
+    "v_mic",
+    "v_out"
+   ],
+   "graph_children": [
+    "current_in",
+    "current_out",
+    "mic",
+    "pressure_ambient",
+    "pressure_downwind",
+    "pressure_intake",
+    "pressure_upwind",
+    "rpm_in",
+    "rpm_out",
+    "signal_1",
+    "signal_2"
+   ],
+   "dataset_columns": 37,
+   "columns_in_graph": [
+    "hatch",
+    "pot_1",
+    "pot_2",
+    "osr_1",
+    "osr_2",
+    "osr_mic",
+    "osr_in",
+    "osr_out",
+    "osr_upwind",
+    "osr_downwind",
+    "osr_ambient",
+    "osr_intake",
+    "v_1",
+    "v_2",
+    "v_mic",
+    "v_in",
+    "v_out",
+    "load_in",
+    "load_out",
+    "current_in",
+    "current_out",
+    "res_in",
+    "res_out",
+    "rpm_in",
+    "rpm_out",
+    "pressure_upwind",
+    "pressure_downwind",
+    "pressure_ambient",
+    "pressure_intake",
+    "mic",
+    "signal_1",
+    "signal_2"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "wt_bernoulli_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_bernoulli_v1.zip",
+    "sha256_expected": "e5d58a67f6307b9099177425e91c449b9e62e7c712f8c6f34d1dc80ce4db01e3",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_bernoulli_v1.zip",
+     "md5": "00d6abbdf42ed953ca94dc107067ea56"
+    }
+   },
+   "experiments_source": "wt_bernoulli_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "fans_off",
+     "kind": "interventional (loads set or randomized)",
+     "targets": [
+      "load_in",
+      "load_out"
+     ],
+     "rows_stated": 5000,
+     "note": "both loads set to 0",
+     "rows_observed": 5000
+    },
+    {
+     "experiment": "random_loads_both",
+     "kind": "interventional (loads set or randomized)",
+     "targets": [
+      "load_in",
+      "load_out"
+     ],
+     "rows_stated": 200000,
+     "note": "L_in = L_out ~ Unif([0,1]), 2000 settings x 100 measurements",
+     "rows_observed": 200000
+    },
+    {
+     "experiment": "random_loads_intake",
+     "kind": "interventional (loads set or randomized)",
+     "targets": [
+      "load_in"
+     ],
+     "rows_stated": 200000,
+     "note": "as random_loads_both with L_out fixed at 0.1 ('Same as the previous')",
+     "rows_observed": 200000
+    }
+   ],
+   "n_experiments_listed": 3,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 3,
+   "experiments_in_zip_not_listed": [],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": 405000
+  },
+  {
+   "dataset": "wt_changepoints_v1",
+   "chamber": "wt",
+   "configuration": "standard",
+   "configuration_source": "wt_changepoints_v1__README.md, 'Dataset Description' table: | Wind tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('wt', 'standard')",
+   "graph_variables": 32,
+   "graph_edges": 42,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "hatch",
+    "load_in",
+    "load_out",
+    "osr_1",
+    "osr_2",
+    "osr_ambient",
+    "osr_downwind",
+    "osr_in",
+    "osr_intake",
+    "osr_mic",
+    "osr_out",
+    "osr_upwind",
+    "pot_1",
+    "pot_2",
+    "res_in",
+    "res_out",
+    "v_1",
+    "v_2",
+    "v_in",
+    "v_mic",
+    "v_out"
+   ],
+   "graph_children": [
+    "current_in",
+    "current_out",
+    "mic",
+    "pressure_ambient",
+    "pressure_downwind",
+    "pressure_intake",
+    "pressure_upwind",
+    "rpm_in",
+    "rpm_out",
+    "signal_1",
+    "signal_2"
+   ],
+   "dataset_columns": 37,
+   "columns_in_graph": [
+    "hatch",
+    "pot_1",
+    "pot_2",
+    "osr_1",
+    "osr_2",
+    "osr_mic",
+    "osr_in",
+    "osr_out",
+    "osr_upwind",
+    "osr_downwind",
+    "osr_ambient",
+    "osr_intake",
+    "v_1",
+    "v_2",
+    "v_mic",
+    "v_in",
+    "v_out",
+    "load_in",
+    "load_out",
+    "current_in",
+    "current_out",
+    "res_in",
+    "res_out",
+    "rpm_in",
+    "rpm_out",
+    "pressure_upwind",
+    "pressure_downwind",
+    "pressure_ambient",
+    "pressure_intake",
+    "mic",
+    "signal_1",
+    "signal_2"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "wt_changepoints_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_changepoints_v1.zip",
+    "sha256_expected": "a247ecd867aadb99f524f4cfcb22ded28e550b069ffd10f4df477c036e8a3979",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_changepoints_v1.zip",
+     "md5": "7e9f26d192674f2aaa6481f4415007eb"
+    }
+   },
+   "experiments_source": "wt_changepoints_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "load_in_seed_*",
+     "kind": "interventional time series (load_in changed at random intervals)",
+     "targets": [
+      "load_in"
+     ],
+     "rows_stated": null,
+     "note": "10 random seeds; row count not stated in the README"
+    }
+   ],
+   "n_experiments_listed": 1,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 1,
+   "experiments_in_zip_not_listed": [
+    "load_in_seed_0",
+    "load_in_seed_1",
+    "load_in_seed_2",
+    "load_in_seed_3",
+    "load_in_seed_4",
+    "load_in_seed_5",
+    "load_in_seed_6",
+    "load_in_seed_7",
+    "load_in_seed_8",
+    "load_in_seed_9"
+   ],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": null
+  },
+  {
+   "dataset": "wt_walks_v1",
+   "chamber": "wt",
+   "configuration": "standard",
+   "configuration_source": "wt_walks_v1__README.md, 'Dataset Description' table: | Wind tunnel | standard      |",
+   "graph": "causalchamber.ground_truth.main.graph('wt', 'standard')",
+   "graph_variables": 32,
+   "graph_edges": 42,
+   "graph_longest_path": 1,
+   "graph_parents": [
+    "hatch",
+    "load_in",
+    "load_out",
+    "osr_1",
+    "osr_2",
+    "osr_ambient",
+    "osr_downwind",
+    "osr_in",
+    "osr_intake",
+    "osr_mic",
+    "osr_out",
+    "osr_upwind",
+    "pot_1",
+    "pot_2",
+    "res_in",
+    "res_out",
+    "v_1",
+    "v_2",
+    "v_in",
+    "v_mic",
+    "v_out"
+   ],
+   "graph_children": [
+    "current_in",
+    "current_out",
+    "mic",
+    "pressure_ambient",
+    "pressure_downwind",
+    "pressure_intake",
+    "pressure_upwind",
+    "rpm_in",
+    "rpm_out",
+    "signal_1",
+    "signal_2"
+   ],
+   "dataset_columns": 37,
+   "columns_in_graph": [
+    "hatch",
+    "pot_1",
+    "pot_2",
+    "osr_1",
+    "osr_2",
+    "osr_mic",
+    "osr_in",
+    "osr_out",
+    "osr_upwind",
+    "osr_downwind",
+    "osr_ambient",
+    "osr_intake",
+    "v_1",
+    "v_2",
+    "v_mic",
+    "v_in",
+    "v_out",
+    "load_in",
+    "load_out",
+    "current_in",
+    "current_out",
+    "res_in",
+    "res_out",
+    "rpm_in",
+    "rpm_out",
+    "pressure_upwind",
+    "pressure_downwind",
+    "pressure_ambient",
+    "pressure_intake",
+    "mic",
+    "signal_1",
+    "signal_2"
+   ],
+   "columns_not_in_graph": [
+    "timestamp",
+    "config",
+    "counter",
+    "flag",
+    "intervention"
+   ],
+   "graph_variables_missing_from_columns": [],
+   "columns_source": "wt_walks_v1__variables.csv",
+   "zip": {
+    "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_walks_v1.zip",
+    "sha256_expected": "1ef92d39fff7645a9e6e8cd41311e708362606491590a1534c6a5135d207736e",
+    "status": "extracted",
+    "readme_md5": {
+     "url": "https://causalchamber.s3.eu-central-1.amazonaws.com/downloadables/wt_walks_v1.zip",
+     "md5": "19bb4e92cbe0b8dff49299b9b509ac36"
+    }
+   },
+   "experiments_source": "wt_walks_v1__README.md experiment table",
+   "experiments": [
+    {
+     "experiment": "actuators_random_walk_seed_*",
+     "kind": "time series, actuators on random walks (no reference regime)",
+     "targets": [
+      "load_in",
+      "load_out",
+      "hatch",
+      "pot_1",
+      "pot_2"
+     ],
+     "rows_stated": 10000,
+     "note": "10 seeds; sensor parameters fixed"
+    },
+    {
+     "experiment": "loads_hatch_mix_slow_run_*",
+     "kind": "time series, loads sinusoid / hatch square wave",
+     "targets": [
+      "load_in",
+      "load_out",
+      "hatch"
+     ],
+     "rows_stated": 10000,
+     "note": "'a total of 5 runs'"
+    },
+    {
+     "experiment": "loads_hatch_mix_fast_run_*",
+     "kind": "time series, loads sinusoid / hatch square wave",
+     "targets": [
+      "load_in",
+      "load_out",
+      "hatch"
+     ],
+     "rows_stated": 10000,
+     "note": "'a total of 5 runs'"
+    },
+    {
+     "experiment": "regime_jumps_single",
+     "kind": "time series, regime 0 reference + interventional regimes",
+     "targets": [
+      "hatch",
+      "osr_ambient",
+      "osr_downwind",
+      "osr_intake",
+      "osr_upwind",
+      "res_in",
+      "res_out",
+      "v_1",
+      "v_2",
+      "v_in",
+      "v_out"
+     ],
+     "rows_stated": 320000,
+     "n_regimes": 32,
+     "regimes_without_intervention": 6,
+     "regime_targets": [
+      [],
+      [
+       "v_2"
+      ],
+      [],
+      [
+       "res_out"
+      ],
+      [
+       "v_out"
+      ],
+      [
+       "hatch"
+      ],
+      [
+       "v_1"
+      ],
+      [
+       "osr_upwind"
+      ],
+      [],
+      [
+       "osr_upwind"
+      ],
+      [
+       "v_out"
+      ],
+      [
+       "v_1"
+      ],
+      [
+       "res_in"
+      ],
+      [
+       "osr_upwind"
+      ],
+      [
+       "res_out"
+      ],
+      [
+       "osr_downwind"
+      ],
+      [
+       "osr_ambient"
+      ],
+      [
+       "v_in"
+      ],
+      [
+       "hatch"
+      ],
+      [
+       "osr_upwind"
+      ],
+      [],
+      [
+       "res_in"
+      ],
+      [
+       "v_1"
+      ],
+      [
+       "osr_intake"
+      ],
+      [],
+      [
+       "v_1"
+      ],
+      [],
+      [
+       "osr_upwind"
+      ],
+      [
+       "osr_intake"
+      ],
+      [
+       "osr_ambient"
+      ],
+      [
+       "v_in"
+      ],
+      [
+       "res_in"
+      ]
+     ],
+     "note": "regimes identified by the flag column; load_in, load_out, pot_1, pot_2 on random walks throughout; targets from regimes_targets.py (targets_single)",
+     "rows_observed": 320000
+    },
+    {
+     "experiment": "regime_jumps_multi",
+     "kind": "time series, regime 0 reference + interventional regimes",
+     "targets": [
+      "hatch",
+      "osr_ambient",
+      "osr_downwind",
+      "osr_intake",
+      "osr_upwind",
+      "res_in",
+      "res_out",
+      "v_1",
+      "v_2",
+      "v_in",
+      "v_out"
+     ],
+     "rows_stated": 320000,
+     "n_regimes": 32,
+     "regimes_without_intervention": 7,
+     "regime_targets": [
+      [],
+      [
+       "res_out",
+       "osr_upwind",
+       "v_out",
+       "v_2",
+       "v_in"
+      ],
+      [
+       "v_out",
+       "v_2",
+       "res_out",
+       "osr_ambient"
+      ],
+      [
+       "osr_intake",
+       "v_2",
+       "v_1",
+       "osr_downwind"
+      ],
+      [],
+      [
+       "v_2",
+       "hatch"
+      ],
+      [],
+      [
+       "res_out",
+       "v_in",
+       "v_2",
+       "v_1"
+      ],
+      [],
+      [
+       "v_out",
+       "osr_upwind",
+       "v_2",
+       "res_in"
+      ],
+      [
+       "v_in",
+       "osr_ambient"
+      ],
+      [
+       "v_1"
+      ],
+      [],
+      [],
+      [
+       "v_in",
+       "v_1"
+      ],
+      [
+       "v_2",
+       "osr_ambient",
+       "hatch",
+       "osr_intake"
+      ],
+      [
+       "v_2",
+       "osr_upwind"
+      ],
+      [
+       "osr_downwind",
+       "osr_upwind",
+       "hatch",
+       "osr_ambient"
+      ],
+      [
+       "v_out",
+       "v_2"
+      ],
+      [
+       "osr_ambient",
+       "v_in",
+       "res_in",
+       "osr_intake"
+      ],
+      [
+       "v_out",
+       "v_1",
+       "res_out",
+       "hatch",
+       "v_in"
+      ],
+      [
+       "osr_downwind",
+       "osr_upwind"
+      ],
+      [
+       "osr_upwind",
+       "v_out",
+       "res_in",
+       "v_1"
+      ],
+      [
+       "osr_downwind",
+       "osr_intake"
+      ],
+      [
+       "osr_ambient",
+       "v_1",
+       "res_in",
+       "hatch",
+       "v_in"
+      ],
+      [
+       "osr_downwind",
+       "v_in",
+       "osr_upwind",
+       "v_out",
+       "osr_ambient"
+      ],
+      [
+       "v_1",
+       "osr_ambient"
+      ],
+      [
+       "v_2",
+       "v_in",
+       "osr_upwind",
+       "res_in",
+       "v_out"
+      ],
+      [
+       "hatch",
+       "osr_upwind",
+       "v_2"
+      ],
+      [
+       "osr_intake",
+       "osr_ambient"
+      ],
+      [
+       "res_in",
+       "osr_downwind",
+       "osr_ambient"
+      ],
+      []
+     ],
+     "note": "regimes identified by the flag column; load_in, load_out, pot_1, pot_2 on random walks throughout; targets from regimes_targets.py (targets_multi)",
+     "rows_observed": 320000
+    }
+   ],
+   "n_experiments_listed": 5,
+   "n_observational_experiments": 0,
+   "n_interventional_experiments": 5,
+   "experiments_in_zip_not_listed": [
+    "actuators_random_walk_1",
+    "actuators_random_walk_10",
+    "actuators_random_walk_11",
+    "actuators_random_walk_12",
+    "actuators_random_walk_13",
+    "actuators_random_walk_14",
+    "actuators_random_walk_15",
+    "actuators_random_walk_16",
+    "actuators_random_walk_2",
+    "actuators_random_walk_3",
+    "actuators_random_walk_4",
+    "actuators_random_walk_5",
+    "actuators_random_walk_6",
+    "actuators_random_walk_7",
+    "actuators_random_walk_8",
+    "actuators_random_walk_9",
+    "loads_hatch_mix_fast_run_1",
+    "loads_hatch_mix_fast_run_2",
+    "loads_hatch_mix_fast_run_3",
+    "loads_hatch_mix_fast_run_4",
+    "loads_hatch_mix_fast_run_5",
+    "loads_hatch_mix_slow_run_1",
+    "loads_hatch_mix_slow_run_2",
+    "loads_hatch_mix_slow_run_3",
+    "loads_hatch_mix_slow_run_4",
+    "loads_hatch_mix_slow_run_5"
+   ],
+   "experiment_names_vs_authors_notebook": null,
+   "rows_stated_total": null
+  }
+ ],
+ "note": "All 8 READMEs name the 'standard' configuration, so every dataset maps to the standard graph of its chamber. Rows marked rows_stated come from README/config text; rows_observed exist only for verified zips."
+}

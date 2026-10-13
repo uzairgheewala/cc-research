@@ -1,0 +1,183 @@
+# Explicit typed links. Grammar and relations: tracker/LINKS.md. Prefer `python tracker/trace.py link SRC REL DST --note ...`.
+# One line: SRC REL DST [DST ...] [| note]. Never delete a line to undo a link: use `trace.py unlink`, which leaves a comment.
+# Links implied by catalogue.py (evidence -> evidences, blocked_by naming an ID -> blocks) are derived, not written here.
+BLD-11 blocks TEAM-07
+BLD-11 relates BLD-10 | extends the evidence tracker with typed links, a prod layer and the agent contract
+# Quarter 1 deliverables (2026-10-09): what each deliverable is made of
+DLV-01 parent_of BEN-06 BEN-12
+DLV-02 parent_of REP-01 REP-02 AUD-09
+DLV-03 parent_of AUD-03 AUD-04 AUD-05 AUD-06 AUD-07 AUD-08 RQ-01 RQ-02 RQ-03
+DLV-04 parent_of BLD-06 CAP-06 CAP-10 TGT-09 TGT-13
+DLV-06 parent_of DLV-01 DLV-02 DLV-03 DLV-04
+DLV-05 implements CRS-02
+DLV-06 implements CRS-04
+REP-14 curates REP-01
+REP-14 curates REP-02
+REP-14 curates REP-03
+REP-14 curates REP-04
+REP-14 curates REP-11
+REP-14 curates REP-12
+REP-14 curates REP-13
+REP-15 curates REP-05
+REP-15 curates REP-06
+REP-15 curates REP-07
+REP-15 curates REP-08
+DOM-13 curates DOM-02
+DOM-13 curates DOM-03
+DOM-13 curates DOM-04
+DOM-13 curates DOM-05
+DOM-13 curates DOM-06
+DOM-13 curates DOM-07
+DOM-14 curates DOM-01
+DOM-14 curates DOM-08
+DOM-14 curates DOM-09
+DOM-14 curates DOM-10
+DOM-14 curates DOM-11
+DOM-14 curates DOM-12
+AUD-16 curates AUD-01
+AUD-16 curates AUD-02
+AUD-16 curates AUD-03
+AUD-16 curates AUD-04
+AUD-16 curates AUD-05
+AUD-16 curates AUD-06
+AUD-16 curates AUD-07
+AUD-16 curates AUD-08
+AUD-16 curates AUD-09
+AUD-17 curates AUD-10
+AUD-17 curates AUD-11
+AUD-17 curates AUD-12
+AUD-17 curates AUD-13
+AUD-17 curates AUD-14
+AUD-17 curates AUD-15
+AUD-17 curates BEN-01
+AUD-17 curates BEN-02
+AUD-17 curates BEN-03
+AUD-17 curates BEN-04
+AUD-17 curates BEN-05
+AUD-17 curates BEN-06
+AUD-17 curates BEN-07
+AUD-17 curates BEN-08
+AUD-17 curates BEN-09
+AUD-17 curates BEN-10
+AUD-17 curates BEN-11
+AUD-17 curates BEN-12
+TGT-17 curates TGT-01
+TGT-17 curates TGT-02
+TGT-17 curates TGT-03
+TGT-17 curates TGT-04
+TGT-17 curates TGT-05
+TGT-17 curates TGT-06
+TGT-17 curates TGT-07
+TGT-17 curates TGT-08
+TGT-17 curates TGT-09
+TGT-17 curates TGT-10
+TGT-17 curates TGT-11
+TGT-17 curates TGT-12
+TGT-17 curates TGT-13
+TGT-17 curates TGT-14
+TGT-17 curates TGT-15
+TGT-17 curates TGT-16
+AUD-16 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+AUD-17 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+BLD-12 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+DLV-01 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+DLV-06 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+DOM-13 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+DOM-14 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+REP-14 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+REP-15 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+TGT-17 published_at slack:C0C7Q2CA2G7/1791613039.267009 | digest
+AUD-10 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+AUD-11 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+AUD-12 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+AUD-14 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+AUD-15 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BEN-07 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BEN-08 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BEN-11 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BEN-12 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-01 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-02 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-03 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-04 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-05 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-08 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BND-09 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+CAP-06 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DLV-01 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-05 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-06 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-07 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-08 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-10 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-11 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+DOM-12 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+EVL-01 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+EVL-02 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+EVL-03 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+EVL-05 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+EXT-01 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+INF-04 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+INF-05 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+REP-04 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+REP-06 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+REP-13 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+RQ-16 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+TEAM-02 published_at slack:C0C7Q2CA2G7/1791657571.728669 | digest
+BEN-07 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+BEN-09 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+BND-06 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+BND-07 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+REP-07 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+RQ-16 published_at slack:C0C7Q2CA2G7/1791669523.115449 | digest
+AUD-16 published_at slack:C0C8CQK1XME/1791613267.243749 | digest
+DLV-01 published_at slack:C0C8CQK1XME/1791613267.243749 | digest
+DLV-06 published_at slack:C0C8CQK1XME/1791613267.243749 | digest
+AUD-11 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-01 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-04 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-05 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-08 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-09 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+BND-10 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+CAP-06 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+INF-04 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+TEAM-07 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+TGT-09 published_at slack:C0C7Q2CA2G7/1791681776.523319 | digest
+AUD-17 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+CAP-06 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+DLV-01 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+DLV-02 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+DLV-05 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+EVL-01 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+EVL-02 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+EVL-03 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+EVL-05 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+REP-15 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+RQ-16 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+TGT-17 published_at slack:C0C8CQK1XME/1791682207.720079 | digest
+AUD-10 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+AUD-11 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+BND-08 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+BND-10 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+BND-11 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+DLV-02 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+TGT-09 published_at slack:C0C7Q2CA2G7/1791766798.168579 | digest
+AUD-14 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BEN-07 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BEN-10 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BEN-11 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BLD-06 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BND-03 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BND-06 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BND-07 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BND-11 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+BND-12 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+CAP-10 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+CAP-17 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+DOM-07 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+DOM-09 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+REP-07 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+REP-09 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+REP-11 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest
+TGT-13 published_at slack:C0C7Q2CA2G7/1791800035.198339 | digest

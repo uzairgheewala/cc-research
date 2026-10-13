@@ -1,0 +1,233 @@
+{
+  "inputs": {
+    "bnlearn_sachs_bif_gz_sha256": "ed1830fbde101ed50cce3c7a3c8cbf1d2f5225531cf35ff09fb3cec0af101bce",
+    "bnlearn_source": "pgmpy 0.1.26 wheel (PyPI), pgmpy/utils/example_models/sachs.bif.gz",
+    "causalarena_index_sha256": "a4f34954598d9d4877f177019d46c8a393c61f3ed788e7e42d783da47c46f116"
+  },
+  "families": {
+    "sachs": {
+      "suite": "S1",
+      "tier": "contested",
+      "reference_used": "Causal-Copilot repo data/dataset/sachs/base_graph.npy (19 edges)",
+      "repo_vs_bnlearn": {
+        "edges_a": 19,
+        "edges_b": 17,
+        "shared_adjacencies": 16,
+        "same_direction": 15,
+        "reversed": 1,
+        "only_in_a": [
+          "PIP2->PKC",
+          "PIP3->Akt",
+          "Plcg->PKC"
+        ],
+        "only_in_b": [
+          "PKA->Raf"
+        ],
+        "reversed_pairs_as_in_a": [
+          "PIP3->Plcg"
+        ],
+        "adjacency_jaccard": 0.8
+      },
+      "causalarena_version": {
+        "edges": 20,
+        "graph_source": "explicit_edges:ground.truth/sachs.2005.ground.truth.graph.txt",
+        "edge_list_available_here": false,
+        "rows": {
+          "cmu_sachs_full_obs_experimental": 14932,
+          "cmu_sachs_full_obs_experimental_reference_rows": 7466
+        }
+      },
+      "rows": {
+        "repo_sachs_csv": 853,
+        "repo_sachs_full_csv": 7466
+      },
+      "consequence": "Scores on the Sachs arms are agreement with the repo's 19-edge graph. At least three versions exist (19, 17 and 20 edges); the repo's and bnlearn's share 16 adjacencies and differ in 1 direction(s); CausalArena's 20-edge list is not available here. Scores are not accuracy and are not comparable to CausalArena's Sachs row."
+    },
+    "abalone": {
+      "suite": "S1",
+      "tier": "provenance",
+      "reference_used": "Causal-Copilot repo data/dataset/Abalone/base_graph.npy",
+      "repo_vars_edges_rows": [
+        8,
+        7,
+        4177
+      ],
+      "causalarena_vars_edges_rows": [
+        8,
+        7,
+        4177
+      ],
+      "matches_causalarena_index": true,
+      "causalarena_graph_source": "CD-CSG real-world data/abalone_gt.txt adjacency matrix",
+      "shape": {
+        "nodes_with_edges": 8,
+        "max_degree_node": "Age",
+        "max_degree": 7,
+        "share_of_edges_touching_hub": 1.0
+      },
+      "consequence": "Counts match CausalArena's indexed version; the tables are not republished there, so identity is not confirmed. The graph is an expert graph with no second version here to compare against."
+    },
+    "autompg": {
+      "suite": "S1",
+      "tier": "mismatched",
+      "reference_used": "Causal-Copilot repo data/dataset/Auto_mpg/base_graph.npy",
+      "repo_vars_edges_rows": [
+        5,
+        5,
+        392
+      ],
+      "causalarena_vars_edges_rows": [
+        4,
+        3,
+        398
+      ],
+      "matches_causalarena_index": false,
+      "causalarena_graph_source": "CD-CSG real-world data/autompg_gt.txt adjacency matrix",
+      "shape": {
+        "nodes_with_edges": 5,
+        "max_degree_node": "horsepower",
+        "max_degree": 3,
+        "share_of_edges_touching_hub": 0.6
+      },
+      "consequence": "Does not match CausalArena's version (variables, edges, rows differ); scores are agreement with the repo's graph only and must not be set beside CausalArena's Auto MPG row."
+    },
+    "concrete": {
+      "suite": "S1",
+      "tier": "provenance",
+      "reference_used": "Causal-Copilot repo data/dataset/CCS_Data/base_graph.npy",
+      "repo_vars_edges_rows": [
+        9,
+        8,
+        1030
+      ],
+      "causalarena_vars_edges_rows": [
+        9,
+        8,
+        1030
+      ],
+      "matches_causalarena_index": true,
+      "causalarena_graph_source": "CD-CSG real-world data/concrete_gt.txt adjacency matrix",
+      "shape": {
+        "nodes_with_edges": 9,
+        "max_degree_node": "Compressive strength",
+        "max_degree": 8,
+        "share_of_edges_touching_hub": 1.0
+      },
+      "consequence": "Counts match CausalArena's indexed version; the tables are not republished there, so identity is not confirmed. The graph is an expert graph with no second version here to compare against."
+    },
+    "dwd": {
+      "suite": "S1",
+      "tier": "provenance",
+      "reference_used": "Causal-Copilot repo data/dataset/DWD/base_graph.npy",
+      "repo_vars_edges_rows": [
+        5,
+        4,
+        349
+      ],
+      "causalarena_vars_edges_rows": [
+        5,
+        4,
+        349
+      ],
+      "matches_causalarena_index": true,
+      "causalarena_graph_source": "CD-CSG real-world data/dwd_gt.txt adjacency matrix",
+      "shape": {
+        "nodes_with_edges": 5,
+        "max_degree_node": "Altitude",
+        "max_degree": 3,
+        "share_of_edges_touching_hub": 0.75
+      },
+      "consequence": "Counts match CausalArena's indexed version; the tables are not republished there, so identity is not confirmed. The graph is an expert graph with no second version here to compare against."
+    },
+    "s2_01": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "solder_reflow_profile_joint_voids",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/manufacturing/033_solder_reflow_profile_joint_voids_solder_reflow_profile_and_joint_voids/graph.json",
+      "edges": 39,
+      "variables": 23,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_02": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "pedestrian_countdown_compliance",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/urban_transportation/055_pedestrian_countdown_compliance_pedestrian_countdown_and_crossing_compliance/graph.json",
+      "edges": 38,
+      "variables": 21,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_03": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "disaster_alert_channel_evacuation",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/government_services_and_policy_implementation/095_disaster_alert_channel_evacuation_disaster_alert_channel_and_evacuation_behavior/graph.json",
+      "edges": 58,
+      "variables": 25,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_04": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "exam_room_temperature_performance",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/education/025_exam_room_temperature_performance_exam_room_temperature_and_performance/graph.json",
+      "edges": 40,
+      "variables": 25,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_05": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "small_business_cash_buffer_inventory_ordering",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/finance_and_credit/013_small_business_cash_buffer_inventory_ordering_small_business_cash_buffer_and_inventory_ordering/graph.json",
+      "edges": 38,
+      "variables": 20,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_06": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "dns_cache_ttl_failover_latency",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/cybersecurity_and_it_operations/074_dns_cache_ttl_failover_latency_dns_cache_ttl_and_failover_latency/graph.json",
+      "edges": 47,
+      "variables": 25,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_07": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "heatwave_cooling_center_use_illness",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/public_health/042_heatwave_cooling_center_use_illness_heatwave_cooling_access_and_illness/graph.json",
+      "edges": 35,
+      "variables": 22,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_08": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "desalination_membrane_fouling_energy",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/water_and_sanitation/065_desalination_membrane_fouling_energy_desalination_membrane_fouling_and_energy_use/graph.json",
+      "edges": 40,
+      "variables": 22,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_09": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "hospital_room_noise_sleep_recovery",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/healthcare_delivery/005_hospital_room_noise_sleep_recovery_hospital_room_noise_and_sleep_recovery/graph.json",
+      "edges": 35,
+      "variables": 22,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    },
+    "s2_10": {
+      "suite": "S2",
+      "tier": "exact",
+      "scenario_id": "transit_access_bid_rent",
+      "reference_used": "release g, checked against external/causalarena/scm/semantic/artifacts/housing_and_real_estate/085_transit_access_bid_rent_transit_access_and_bid_rent_response/graph.json",
+      "edges": 45,
+      "variables": 25,
+      "consequence": "The reference is the graph the data were simulated from; scores are accuracy against the generating graph. The scenario and its names were written by CausalArena's generator, so a model may recognise the domain story but cannot have seen this graph unless it saw the release."
+    }
+  }
+}

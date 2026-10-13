@@ -1,0 +1,20 @@
+{
+ "controls": {
+  "columns_shuffled": false,
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "metric_defs": {
+  "shd": "seven candidate SHD definitions, named V0-V6 in the file"
+ },
+ "orientation_rule": "random per file where a variant needs a DAG (the code-verified rule is lower; see protocol_check.json)",
+ "producer": "analysis/shd_variants.py",
+ "regime": "D",
+ "score_bearing": true,
+ "shd_variant": "per key (V0-V6)",
+ "split": "all-public (measurement, no tuning)",
+ "tickets": [
+  "REP-06",
+  "BEN-08"
+ ]
+}

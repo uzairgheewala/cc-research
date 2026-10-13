@@ -1,0 +1,568 @@
+{
+ "tickets": [
+  "AUD-11",
+  "BND-08"
+ ],
+ "live_runs_used": 54,
+ "pooled": {
+  "tokens_per_char": 0.23733595015320602,
+  "mean_completion": 275.6549094375596,
+  "mean_api_s": 2.9040066730219256
+ },
+ "calibration": {
+  "global_setting/Initialize_state.py:global_state_initialization": {
+   "calls": 54,
+   "tokens_per_char": 0.24420463629096723,
+   "mean_completion": 65.77777777777777,
+   "mean_api_s": 1.2344444444444445
+  },
+  "preprocess/dataset.py:knowledge_info": {
+   "calls": 106,
+   "tokens_per_char": 0.209790508536123,
+   "mean_completion": 688.7735849056604,
+   "mean_api_s": 6.258056603773585
+  },
+  "causal_discovery/filter.py:forward": {
+   "calls": 53,
+   "tokens_per_char": 0.21783172687893687,
+   "mean_completion": 516.7735849056604,
+   "mean_api_s": 4.765433962264151
+  },
+  "causal_discovery/rerank.py:select_algorithm": {
+   "calls": 53,
+   "tokens_per_char": 0.28802297867236365,
+   "mean_completion": 535.377358490566,
+   "mean_api_s": 5.059132075471698
+  },
+  "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+   "calls": 53,
+   "tokens_per_char": 0.28349028087080436,
+   "mean_completion": 457.9433962264151,
+   "mean_api_s": 4.541584905660377
+  },
+  "report/report_generation.py:graph_effect_prompts": {
+   "calls": 98,
+   "tokens_per_char": 0.2049898065880401,
+   "mean_completion": 302.38775510204084,
+   "mean_api_s": 3.2644285714285712
+  },
+  "postprocess/judge_functions.py:call_llm_new": {
+   "calls": 354,
+   "tokens_per_char": 0.21072647893483756,
+   "mean_completion": 126.15254237288136,
+   "mean_api_s": 1.7764858757062147
+  },
+  "report/report_generation.py:get_title": {
+   "calls": 45,
+   "tokens_per_char": 0.2631578947368421,
+   "mean_completion": 2.088888888888889,
+   "mean_api_s": 0.6708444444444445
+  },
+  "report/report_generation.py:intro_prompt": {
+   "calls": 45,
+   "tokens_per_char": 0.2138040775733466,
+   "mean_completion": 179.6888888888889,
+   "mean_api_s": 2.154622222222222
+  },
+  "report/report_generation.py:confidence_analysis_prompts": {
+   "calls": 45,
+   "tokens_per_char": 0.20357434792301404,
+   "mean_completion": 195.93333333333334,
+   "mean_api_s": 1.7758
+  },
+  "report/report_generation.py:abstract_prompt": {
+   "calls": 45,
+   "tokens_per_char": 0.2305194805194805,
+   "mean_completion": 116.02222222222223,
+   "mean_api_s": 1.5991555555555557
+  },
+  "report/report_generation.py:conclusion_prompt": {
+   "calls": 45,
+   "tokens_per_char": 0.19658675040763332,
+   "mean_completion": 273.3777777777778,
+   "mean_api_s": 2.699688888888889
+  },
+  "user/discuss.py:__init__": {
+   "calls": 45,
+   "tokens_per_char": 0.2147889760208975,
+   "mean_completion": 524.9777777777778,
+   "mean_api_s": 4.393755555555556
+  },
+  "postprocess/judge_functions.py:LLM_remove_cycles": {
+   "calls": 8,
+   "tokens_per_char": 0.25448785638859556,
+   "mean_completion": 16.125,
+   "mean_api_s": 0.983625
+  }
+ },
+ "stub_runs": [
+  {
+   "run": "20261011T002558Z_s2stub_q051_r01_STUB_2259fd",
+   "dataset": "/research/datasets/suite_q1s2/q051/q051.csv",
+   "status": "COMPLETED",
+   "wall_s": 231.6,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19734
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 25064
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42513
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 189,
+     "chars": 79987
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 20,
+     "chars": 265496
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 4341
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 5204
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 6976
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 13490
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 35,
+     "prompt_tokens": 87603,
+     "completion_tokens": 7389,
+     "api_seconds": 84
+    },
+    "loop": {
+     "calls": 223,
+     "prompt_tokens": 107851,
+     "completion_tokens": 10421,
+     "api_seconds": 269
+    }
+   }
+  },
+  {
+   "run": "20261011T003259Z_s2stub_q052_r01_STUB_8c96f5",
+   "dataset": "/research/datasets/suite_q1s2/q052/q052.csv",
+   "status": "COMPLETED",
+   "wall_s": 223.1,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19354
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 24684
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42133
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 189,
+     "chars": 46179
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 20,
+     "chars": 187874
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 3581
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 3682
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 3752
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 11261
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 35,
+     "prompt_tokens": 69291,
+     "completion_tokens": 7389,
+     "api_seconds": 84
+    },
+    "loop": {
+     "calls": 223,
+     "prompt_tokens": 80981,
+     "completion_tokens": 10421,
+     "api_seconds": 269
+    }
+   }
+  },
+  {
+   "run": "20261011T003911Z_s2stub_q053_r01_STUB_711bf4",
+   "dataset": "/research/datasets/suite_q1s2/q053/q053.csv",
+   "status": "COMPLETED",
+   "wall_s": 210.6,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19734
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 25064
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42513
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 189,
+     "chars": 79407
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 20,
+     "chars": 265685
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 4341
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 5195
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 6914
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 13535
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 35,
+     "prompt_tokens": 87637,
+     "completion_tokens": 7389,
+     "api_seconds": 84
+    },
+    "loop": {
+     "calls": 223,
+     "prompt_tokens": 107738,
+     "completion_tokens": 10421,
+     "api_seconds": 269
+    }
+   }
+  },
+  {
+   "run": "20261011T004513Z_s2stub_q021_r01_STUB_4ddeac",
+   "dataset": "/research/datasets/suite_q1s2/q021/q021.csv",
+   "status": "COMPLETED",
+   "wall_s": 291.2,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19833
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 25162
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42611
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 395,
+     "chars": 183954
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 21,
+     "chars": 301597
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 4537
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 5095
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 6994
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 12430
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 36,
+     "prompt_tokens": 95093,
+     "completion_tokens": 7516,
+     "api_seconds": 86
+    },
+    "loop": {
+     "calls": 430,
+     "prompt_tokens": 141789,
+     "completion_tokens": 13869,
+     "api_seconds": 474
+    }
+   }
+  },
+  {
+   "run": "20261011T005240Z_s2stub_q022_r01_STUB_cb2b50",
+   "dataset": "/research/datasets/suite_q1s2/q022/q022.csv",
+   "status": "COMPLETED",
+   "wall_s": 226.6,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19359
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 24688
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42137
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 395,
+     "chars": 97378
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 21,
+     "chars": 200338
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 3589
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 3477
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 3586
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 10530
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 36,
+     "prompt_tokens": 71691,
+     "completion_tokens": 7516,
+     "api_seconds": 86
+    },
+    "loop": {
+     "calls": 430,
+     "prompt_tokens": 96409,
+     "completion_tokens": 13869,
+     "api_seconds": 474
+    }
+   }
+  },
+  {
+   "run": "20261011T005848Z_s2stub_q023_r01_STUB_d7036f",
+   "dataset": "/research/datasets/suite_q1s2/q023/q023.csv",
+   "status": "COMPLETED",
+   "wall_s": 198.3,
+   "per_caller": {
+    "causal_discovery/filter.py:forward": {
+     "calls": 1,
+     "chars": 19833
+    },
+    "causal_discovery/hyperparameter_selector.py:select_hyperparameters": {
+     "calls": 1,
+     "chars": 25162
+    },
+    "causal_discovery/rerank.py:select_algorithm": {
+     "calls": 1,
+     "chars": 42611
+    },
+    "global_setting/Initialize_state.py:global_state_initialization": {
+     "calls": 1,
+     "chars": 2502
+    },
+    "postprocess/judge_functions.py:LLM_remove_cycles": {
+     "calls": 395,
+     "chars": 183444
+    },
+    "postprocess/judge_functions.py:call_llm_new": {
+     "calls": 21,
+     "chars": 302014
+    },
+    "preprocess/dataset.py:knowledge_info": {
+     "calls": 2,
+     "chars": 4537
+    },
+    "report/report_generation.py:abstract_prompt": {
+     "calls": 1,
+     "chars": 308
+    },
+    "report/report_generation.py:conclusion_prompt": {
+     "calls": 1,
+     "chars": 3636
+    },
+    "report/report_generation.py:confidence_analysis_prompts": {
+     "calls": 1,
+     "chars": 5080
+    },
+    "report/report_generation.py:get_title": {
+     "calls": 1,
+     "chars": 343
+    },
+    "report/report_generation.py:graph_effect_prompts": {
+     "calls": 2,
+     "chars": 6976
+    },
+    "report/report_generation.py:intro_prompt": {
+     "calls": 1,
+     "chars": 535
+    },
+    "user/discuss.py:__init__": {
+     "calls": 1,
+     "chars": 12264
+    }
+   },
+   "estimate": {
+    "crash": {
+     "calls": 36,
+     "prompt_tokens": 95139,
+     "completion_tokens": 7516,
+     "api_seconds": 86
+    },
+    "loop": {
+     "calls": 430,
+     "prompt_tokens": 141705,
+     "completion_tokens": 13869,
+     "api_seconds": 474
+    }
+   }
+  }
+ ]
+}

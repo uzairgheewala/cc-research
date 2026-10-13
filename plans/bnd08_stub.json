@@ -1,0 +1,51 @@
+{
+  "plan_id": "bnd08_stub",
+  "note": "BND-08 part b. Zero-cost stub run (offline stub instead of the model) of 2 S2 scenarios (s2_05, d=20; s2_02, d=21) x real/neutral/swapped, to measure wall time and the number and size of model requests before the live plan is approved (failure mode F5). Gates: S-gates and R-gates as for bundle 1.",
+  "stub_llm": true,
+  "interleave": true,
+  "run_timeout_s": 7200,
+  "runs": [
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q051/q051.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    },
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q052/q052.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    },
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q053/q053.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    },
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q021/q021.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    },
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q022/q022.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    },
+    {
+      "label": "s2stub",
+      "dataset": "research:datasets/suite_q1s2/q023/q023.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 1
+    }
+  ]
+}

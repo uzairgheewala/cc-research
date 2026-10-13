@@ -1,0 +1,45 @@
+{
+ "ticket": "BND-06 gate C1 (re-established 2026-10-12 in the cloud copy)",
+ "what": "PC (vendored causal-learn 0.1.3.8, stable, Fisher-z, alpha 0.05) rerun from nothing on all 250 public semantic obs-only files, released order, with this session's environment",
+ "rows_file": "analysis/results/methods/pc_c1check_semantic_obs_rel.json",
+ "env": {
+  "modules": {
+   "castle": null,
+   "causallearn": "present",
+   "lingam": null,
+   "networkx": "3.6.1",
+   "numpy": "2.5.3",
+   "pandas": "3.0.5",
+   "scipy": "1.18.1",
+   "sklearn": "1.9.1"
+  },
+  "python": "3.13.16"
+ },
+ "failed_files": 0,
+ "family_mean_f1_random_rule": 0.3346,
+ "family_mean_shd_random_rule": 37.504,
+ "family_mean_f1_lower_rule": 0.3962,
+ "family_mean_shd_lower_rule": 35.428,
+ "earlier_bnd06_verdicts_pc_released": {
+  "f1_random": 0.3346,
+  "f1_lower": 0.3962,
+  "shd_lower": 35.428
+ },
+ "identical_to_earlier": true,
+ "published_pc_semantic_obs_only": {
+  "f1": [
+   0.333,
+   0.15
+  ],
+  "shd": [
+   33.522,
+   9.355
+  ]
+ },
+ "tolerance_f1_3se_fpc": 0.0452,
+ "gate_C1_published_PC_F1_reproduced": true,
+ "scorer_files_sha256_unchanged_this_session": {
+  "analysis/cc_graph.py": "5044b42fa5b4eea21470911d11de493d29a454bdd4e9e76f65551db8b0b2fd13",
+  "analysis/causalarena_io.py": "39f416b38e7916394963a2d643425e37eca539b454ab82e4502939f12fc5b087"
+ }
+}

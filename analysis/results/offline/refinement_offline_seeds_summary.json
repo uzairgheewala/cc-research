@@ -1,0 +1,218 @@
+{
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "n_combinations": 59,
+ "survival": {
+  "directed": {
+   "0": [
+    221,
+    215
+   ],
+   "1": [
+    221,
+    217
+   ],
+   "2": [
+    223,
+    216
+   ]
+  },
+  "undirected": {
+   "0": [
+    145,
+    16
+   ],
+   "1": [
+    145,
+    11
+   ],
+   "2": [
+    145,
+    16
+   ]
+  },
+  "o-o": {
+   "0": [
+    24,
+    3
+   ],
+   "1": [
+    24,
+    4
+   ],
+   "2": [
+    24,
+    4
+   ]
+  },
+  "bidirected": {
+   "0": [
+    8,
+    1
+   ],
+   "1": [
+    8,
+    1
+   ],
+   "2": [
+    8,
+    1
+   ]
+  },
+  "a o-> b": {
+   "0": [
+    6,
+    2
+   ],
+   "1": [
+    6,
+    2
+   ],
+   "2": [
+    6,
+    2
+   ]
+  },
+  "b o-> a": {
+   "0": [
+    2,
+    0
+   ],
+   "1": [
+    2,
+    0
+   ],
+   "2": [
+    2,
+    0
+   ]
+  }
+ },
+ "per_algorithm": {
+  "DirectLiNGAM": {
+   "datasets": 8,
+   "adj_f1_S0_by_seed": [
+    0.7556812468577174,
+    0.7556812468577174,
+    0.7556812468577174
+   ],
+   "adj_f1_S1_by_seed": [
+    0.763257004433475,
+    0.7582674537542692,
+    0.763257004433475
+   ],
+   "worse_all_seeds": 0,
+   "worse_some_seeds": 0,
+   "better_any_seed": 2,
+   "S0_identical_across_seeds": 8
+  },
+  "FCI": {
+   "datasets": 8,
+   "adj_f1_S0_by_seed": [
+    0.8542211328976035,
+    0.8542211328976035,
+    0.8542211328976035
+   ],
+   "adj_f1_S1_by_seed": [
+    0.3045454545454545,
+    0.30350378787878785,
+    0.302584670231729
+   ],
+   "worse_all_seeds": 8,
+   "worse_some_seeds": 0,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 8
+  },
+  "FGES": {
+   "datasets": 8,
+   "adj_f1_S0_by_seed": [
+    0.8175595238095238,
+    0.8175595238095238,
+    0.8175595238095238
+   ],
+   "adj_f1_S1_by_seed": [
+    0.3961538461538462,
+    0.3961538461538462,
+    0.3961538461538462
+   ],
+   "worse_all_seeds": 8,
+   "worse_some_seeds": 0,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 8
+  },
+  "GES": {
+   "datasets": 9,
+   "adj_f1_S0_by_seed": [
+    0.8806584362139918,
+    0.8806584362139918,
+    0.8806584362139918
+   ],
+   "adj_f1_S1_by_seed": [
+    0.3461640211640212,
+    0.3553030303030303,
+    0.3461640211640212
+   ],
+   "worse_all_seeds": 9,
+   "worse_some_seeds": 0,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 9
+  },
+  "GRaSP": {
+   "datasets": 9,
+   "adj_f1_S0_by_seed": [
+    0.8806584362139918,
+    0.8806584362139918,
+    0.8683127572016461
+   ],
+   "adj_f1_S1_by_seed": [
+    0.3461640211640212,
+    0.3461640211640212,
+    0.3376984126984127
+   ],
+   "worse_all_seeds": 9,
+   "worse_some_seeds": 0,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 8
+  },
+  "PC": {
+   "datasets": 9,
+   "adj_f1_S0_by_seed": [
+    0.8638828370854514,
+    0.8638828370854514,
+    0.8638828370854514
+   ],
+   "adj_f1_S1_by_seed": [
+    0.4439492306499979,
+    0.35508442175108845,
+    0.5298281964948631
+   ],
+   "worse_all_seeds": 8,
+   "worse_some_seeds": 1,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 9
+  },
+  "XGES": {
+   "datasets": 8,
+   "adj_f1_S0_by_seed": [
+    0.8657407407407407,
+    0.8657407407407407,
+    0.8657407407407407
+   ],
+   "adj_f1_S1_by_seed": [
+    0.41638257575757576,
+    0.4292030885780886,
+    0.4394345238095238
+   ],
+   "worse_all_seeds": 8,
+   "worse_some_seeds": 0,
+   "better_any_seed": 0,
+   "S0_identical_across_seeds": 8
+  }
+ },
+ "combinations_where_S1_adjacency_count_depends_on_seed": 14,
+ "all_pairs_queued_every_cell": true,
+ "gate_S1": true
+}

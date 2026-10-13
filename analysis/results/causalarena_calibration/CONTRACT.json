@@ -1,0 +1,67 @@
+{
+ "controls": {
+  "supplier": "causalarena"
+ },
+ "metric_defs": {
+  "directed_f1": "F1 over directed edges; undecided pairs oriented by the stated rule",
+  "r2_sortability": "Reisach et al. 2023 R2-sortability",
+  "share": "share of true edges running earlier column -> later column",
+  "shd": "structural Hamming distance (variant named in shd_variant)"
+ },
+ "orientation_rule": "random per file (CausalArena Appendix B.2) unless the file states otherwise",
+ "per_file": {
+  "column_order_check.json": {
+   "score_bearing": false
+  },
+  "dataset_match_check.json": {
+   "score_bearing": false
+  },
+  "order_baseline.json": {
+   "controls": {
+    "columns_shuffled": "per-arm (as_released / columns_shuffled)",
+    "knowledge_source": "column order of the released file (the layout leak); absent in the shuffled arm",
+    "names": "not applicable"
+   },
+   "regime": "D+K"
+  },
+  "pc_calibration.json": {
+   "controls": {
+    "columns_shuffled": false,
+    "names": "not applicable"
+   },
+   "regime": "D"
+  },
+  "pc_rows.jsonl": {
+   "controls": {
+    "columns_shuffled": false,
+    "names": "not applicable"
+   },
+   "regime": "D"
+  },
+  "pc_rows_v2.jsonl": {
+   "controls": {
+    "columns_shuffled": false,
+    "names": "not applicable"
+   },
+   "regime": "D"
+  },
+  "sortability.json": {
+   "controls": {
+    "columns_shuffled": false,
+    "names": "not applicable"
+   },
+   "regime": "D"
+  }
+ },
+ "producer": "analysis/causalarena_*.py, column_order_check.py, dataset_match_check.py",
+ "score_bearing": true,
+ "shd_variant": "one per unordered pair whose predicted arrows differ (ours; see REP-06)",
+ "split": "all-public (measurement, no tuning)",
+ "tickets": [
+  "REP-05",
+  "REP-06",
+  "REP-08",
+  "BEN-02",
+  "BEN-06"
+ ]
+}

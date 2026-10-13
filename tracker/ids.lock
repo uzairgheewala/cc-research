@@ -1,0 +1,193 @@
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-01", "kind": "dev", "title": "Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-02", "kind": "dev", "title": "Code untouched before and after every run (1,332 files byte-identical)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-03", "kind": "dev", "title": "Reproduce the paper's headline claims (arXiv 2504.13263)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-04", "kind": "dev", "title": "Check the paper's text against the code (divergences D1-D9)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-05", "kind": "dev", "title": "Reproduce CausalArena's published PC baseline (scorer calibration, F1)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-06", "kind": "dev", "title": "Explain why SHD does not reproduce (ours 37.5, published 33.5)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-07", "kind": "dev", "title": "Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, AVICI, CDFM (CPU)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-08", "kind": "dev", "title": "Reproduce the R2-sortability analysis (Reisach et al. 2023) on CausalArena"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-09", "kind": "dev", "title": "Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-10", "kind": "dev", "title": "Reproduce CARE's moved-names control on one classic graph"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-11", "kind": "dev", "title": "Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-12", "kind": "dev", "title": "Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "REP-13", "kind": "dev", "title": "Re-read every second-hand literature claim before it enters the report"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-01", "kind": "dev", "title": "Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-02", "kind": "dev", "title": "Literature map in 9 clusters"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-03", "kind": "dev", "title": "Benchmark landscape and what '100%' means on each"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-04", "kind": "dev", "title": "Nearest prior work for each claim we might make"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-05", "kind": "dev", "title": "Commercial landscape, first pass"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-06", "kind": "dev", "title": "Weighing against the WorldReset forecasting project"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-07", "kind": "dev", "title": "Deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-08", "kind": "dev", "title": "Choose a calibration method for bootstrap confidence"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-09", "kind": "dev", "title": "What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-10", "kind": "dev", "title": "Active experiment-design baselines: which to implement"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-11", "kind": "dev", "title": "Pretrained discovery models: order-invariance by design, CPU checkpoints"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DOM-12", "kind": "dev", "title": "Hidden common causes, time series, 100+ variables"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-01", "kind": "dev", "title": "Architecture map: 8-step CLI path, state object, LLM call points, storage"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-02", "kind": "dev", "title": "LLM dependency map: 51 call sites, 88 logical points, 29 decisions, 3 graph-writing points"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-03", "kind": "dev", "title": "Edge lineage tool: every final edge traced to the step that set it"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-04", "kind": "dev", "title": "Refinement audit without the LLM: bootstrap step deletes non-directed edges"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-05", "kind": "dev", "title": "Name controls on 5 datasets: real 93% / neutral 0% / moved 90% of final edges written by the LLM"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-06", "kind": "dev", "title": "Reliability: 12 of 84 runs crashed; cycle step failed 9 of 9; one request got 3 answers"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-07", "kind": "dev", "title": "Stability: algorithm choice stable; edge decisions vary; bootstrap seeded by accident; numpy unseeded"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-08", "kind": "dev", "title": "Survivor-bias check: crashed runs do not change conclusions"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-09", "kind": "dev", "title": "Leak scan of neutral-name arms: no real name in any prompt before the final graph"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-10", "kind": "dev", "title": "Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-11", "kind": "dev", "title": "Behaviour at 20-40 variables: cost, runtime, crash rate"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-12", "kind": "dev", "title": "Effect-estimation module (causal_inference/)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-13", "kind": "dev", "title": "Second model besides GPT-4o"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-14", "kind": "dev", "title": "Torch-based and time-series wrappers, web-demo path, report quality"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "AUD-15", "kind": "dev", "title": "Upstream branches newer than a31aa7c"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-01", "kind": "dev", "title": "CausalArena public release inspected (families, files, graph convention)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-02", "kind": "dev", "title": "Column-order leak: every true edge runs earlier column -> later column in every released file"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-03", "kind": "dev", "title": "Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-04", "kind": "dev", "title": "Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-05", "kind": "dev", "title": "Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-06", "kind": "dev", "title": "Repo datasets vs CausalArena index: Auto MPG does not match"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-07", "kind": "dev", "title": "Do CausalArena's wrappers shuffle columns; are top methods affected?"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-08", "kind": "dev", "title": "SHD definition mismatch (see REP-06)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-09", "kind": "dev", "title": "Replay sampler: which declared interventions are interventions in name only"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-10", "kind": "dev", "title": "Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-11", "kind": "dev", "title": "Error budgets for GES, FCI, pretrained models; formula and synthetic families"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BEN-12", "kind": "dev", "title": "Reliability of real-data reference graphs"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-01", "kind": "dev", "title": "Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-02", "kind": "dev", "title": "Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-03", "kind": "dev", "title": "Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-04", "kind": "dev", "title": "Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-05", "kind": "dev", "title": "Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-06", "kind": "dev", "title": "Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-07", "kind": "dev", "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-08", "kind": "dev", "title": "Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-09", "kind": "dev", "title": "Never below the system's own data-only output"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-10", "kind": "dev", "title": "Zero change when columns are shuffled"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-11", "kind": "dev", "title": "Bounded harm when names are wrong"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-12", "kind": "dev", "title": "Calibration better than raw bootstrap frequencies on held-out scenarios"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-13", "kind": "dev", "title": "Zero crashes from malformed model output"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-14", "kind": "dev", "title": "Within the scoreboard's 1-hour budget per graph"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-15", "kind": "dev", "title": "Held-out interventional predictions better than regression on all variables"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TGT-16", "kind": "dev", "title": "Experiment choice better than random on recorded Causal Chambers experiments"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-01", "kind": "dev", "title": "Skeleton recall at variables with many causes (joint test per candidate edge)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-02", "kind": "dev", "title": "Direction from the numbers (PC: 54%)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-03", "kind": "dev", "title": "Use intervention data"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-04", "kind": "dev", "title": "Declared knowledge as tiers, never edges"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-05", "kind": "dev", "title": "Invariance to column order"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-06", "kind": "dev", "title": "Keep 'direction unknown' edges"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-07", "kind": "dev", "title": "Calibrated confidence per claim"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-08", "kind": "dev", "title": "Abstention / selective claims"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-09", "kind": "dev", "title": "Provenance per edge with an independent checker"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-10", "kind": "dev", "title": "Robustness to malformed model output"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-11", "kind": "dev", "title": "Determinism (same inputs, same ledger hash)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-12", "kind": "dev", "title": "Runtime at 20-40 variables"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-13", "kind": "dev", "title": "Nonlinear and mixed-type dependence"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-14", "kind": "dev", "title": "Hidden common causes (PAG marks)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-15", "kind": "dev", "title": "'What if we set X?' with identification status and bounds"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-16", "kind": "dev", "title": "Choose the next experiment"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-17", "kind": "dev", "title": "Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CAP-18", "kind": "dev", "title": "Cost per run measured at 25 variables"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-01", "kind": "dev", "title": "P1-P3 (pass 4b, Sachs): supported"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-02", "kind": "dev", "title": "N2 (bundle 1): supported"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-03", "kind": "dev", "title": "N1, N4, P3 (bundle 1): tested, inconclusive"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-04", "kind": "dev", "title": "T1 Order source explains most directed-edge accuracy"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-05", "kind": "dev", "title": "T2 Deployed agents take order from names and layout"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-06", "kind": "dev", "title": "T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-07", "kind": "dev", "title": "T4 Calibrated, machine-checkable claims with abstention"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-08", "kind": "dev", "title": "T5 What-if answers with identification status"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-09", "kind": "dev", "title": "T6 Experiment choice beats random on recorded experiments"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-10", "kind": "dev", "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-11", "kind": "dev", "title": "O2 Neutral names give no order information"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-12", "kind": "dev", "title": "O3 Moved names: tiers follow the labels"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-13", "kind": "dev", "title": "O4 Regression on model tiers reaches 0.634 (semantic)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-14", "kind": "dev", "title": "O5 Same for formula vs 0.524"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-15", "kind": "dev", "title": "Do LLM-written semantic graphs inflate name-based scores?"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-16", "kind": "dev", "title": "Does PC's error pattern hold for other algorithms?"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RQ-17", "kind": "dev", "title": "Do results hold for a second model?"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-01", "kind": "dev", "title": "Recording harness and analysis tools"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-02", "kind": "dev", "title": "B1 data-only claim ledger with invariants I1-I4, I7"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-03", "kind": "dev", "title": "B2 interventions as order evidence"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-04", "kind": "dev", "title": "B3 declared knowledge as tiers"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-05", "kind": "dev", "title": "B4 confidence, calibration, selective output"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-06", "kind": "dev", "title": "Drop-in replacement for Causal-Copilot's refinement stage"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-07", "kind": "dev", "title": "C1 what-if answers with identification status and bounds"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-08", "kind": "dev", "title": "C2 next-experiment choice from recorded pool"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-09", "kind": "dev", "title": "Scoreboard-format export"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "BLD-10", "kind": "dev", "title": "Evidence tracker for this list (catalogue, verify, Slack List mirror)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-01", "kind": "dev", "title": "Every score states its regime (D / D+I / D+K / D+I+K)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-02", "kind": "dev", "title": "Controls on every score (columns shuffled; names real/neutral/moved; supplier; interventions)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-03", "kind": "dev", "title": "Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional error, cost"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-04", "kind": "dev", "title": "Predictions and thresholds fixed in code before every live run"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-05", "kind": "dev", "title": "Development / held-out split by scenario number before any tuning"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-06", "kind": "dev", "title": "Stage-by-stage scoring of any pipeline"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EVL-07", "kind": "dev", "title": "Must-show list and gates for every live step"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-01", "kind": "dev", "title": "Harness v3, Docker image, cc.ps1 commands, stub LLM, plan runner, fetcher"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-02", "kind": "dev", "title": "Analysis tools with gates"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-03", "kind": "dev", "title": "External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-04", "kind": "dev", "title": "Compute-job command on Uzair's machine (sandbox caps steps at 180 s)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-05", "kind": "dev", "title": "Unit tests for our code; caching by content hash"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-06", "kind": "dev", "title": "Public repository preparation (no keys, licences, no redistribution, run-record size)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "INF-07", "kind": "dev", "title": "One command reproduces every number in the report"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-01", "kind": "dev", "title": "TA check-in 1 (TA: Nate)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-02", "kind": "dev", "title": "Quarter 1 checkpoint"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-03", "kind": "dev", "title": "TA check-in 2"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-04", "kind": "dev", "title": "Quarter 1 final (50%)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-05", "kind": "dev", "title": "Quarter 2 proposal: written proposal, weekly schedule, 2-3 min pitch (15%)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-06", "kind": "dev", "title": "Quarter 2 deliverables: public repo, website, PDF report, poster; showcase 2nd week of March 2027"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "CRS-07", "kind": "dev", "title": "Decision gate G1"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-01", "kind": "dev", "title": "Causal Discovery section for the shared mentor document"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-02", "kind": "dev", "title": "Plain-language explainer for meetings, saved as a file"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-03", "kind": "dev", "title": "Recruit at least one teammate"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-04", "kind": "dev", "title": "Ask the mentor: group of 2-3 in Q2? Scope of 'replicate, measure, strengthen'?"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-05", "kind": "dev", "title": "Do not count on answers from Prof. Huang's group"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-06", "kind": "dev", "title": "Weekly status post"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "TEAM-07", "kind": "dev", "title": "Tailored public goals post in #causal-discovery"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EXT-01", "kind": "dev", "title": "Note to CausalArena's maintainers about column order"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EXT-02", "kind": "dev", "title": "Scoreboard submission package with regime and controls stated"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EXT-03", "kind": "dev", "title": "Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EXT-04", "kind": "dev", "title": "Paper: evaluations track or workshop"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "EXT-05", "kind": "dev", "title": "Course website, poster, report"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-01", "kind": "dev", "title": "E1 Field-wide audit of agents and LLM-assisted methods"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-02", "kind": "dev", "title": "E2 Public agent track"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-03", "kind": "dev", "title": "E3 Real experiments via the Causal Chambers remote lab"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-04", "kind": "dev", "title": "E4 Learned fusion (pretrained network with unreliable tier statements)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-05", "kind": "dev", "title": "E5 Hidden confounders, time series, 100+ variables"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "STR-06", "kind": "dev", "title": "Product angle: auditable causal analyst"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DEC-01", "kind": "dev", "title": "Adopt, redirect or enlarge program v2; which of E1-E5 in scope"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DEC-02", "kind": "dev", "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DEC-03", "kind": "dev", "title": "Whether to tell CausalArena's maintainers about the column order"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "DEC-04", "kind": "dev", "title": "Connect Slack; tracker in private #cd-tracker"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-01", "kind": "dev", "title": "LLM-written semantic graphs make names 'work' for the wrong reason (guard: formula + Causal Chambers alongside)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-02", "kind": "dev", "title": "Data-only system may not reach GIES 0.552 (guard: claim targets only where they hold)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-03", "kind": "dev", "title": "Scope too large for one person (guard: decision gates; tracks shrink in fixed order)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-04", "kind": "dev", "title": "Prior work closes the gap first (guard: dated measurements; positioning kept current)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-05", "kind": "dev", "title": "Benchmark files change (guard: dated result; shuffling stays a required control)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-06", "kind": "dev", "title": "Model snapshot changes mid-study (guard: snapshot per call; one per comparison)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-07", "kind": "dev", "title": "Thresholds tuned after seeing results (guard: thresholds in code, hashed plans, held-out split)"}
+{"t": "2026-10-09T22:10:58Z", "event": "issued", "id": "RSK-08", "kind": "dev", "title": "Sandbox limits 180 s per step (guard: compute command on Uzair's machine)"}
+{"t": "2026-10-09T22:16:02Z", "event": "issued", "id": "BLD-11", "kind": "dev", "title": "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-01", "kind": "dev", "title": "Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-02", "kind": "dev", "title": "Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-03", "kind": "dev", "title": "Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-04", "kind": "dev", "title": "Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-05", "kind": "dev", "title": "Q1 checkpoint (Mon 2 Nov)"}
+{"t": "2026-10-10T05:48:03Z", "event": "issued", "id": "DLV-06", "kind": "dev", "title": "Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "AUD-16", "kind": "prod", "title": "Architecture mapping"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "AUD-17", "kind": "prod", "title": "Causal-Copilot on CausalArena's named scenarios"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "DOM-13", "kind": "prod", "title": "Literature mapping"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "DOM-14", "kind": "prod", "title": "Theoretical baselines"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "REP-14", "kind": "prod", "title": "Replicate Causal-Copilot paper claims and results"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "REP-15", "kind": "prod", "title": "Replicate CausalArena baselines"}
+{"t": "2026-10-10T05:48:22Z", "event": "issued", "id": "TGT-17", "kind": "prod", "title": "Targets from evidence"}
+{"t": "2026-10-10T05:55:40Z", "event": "issued", "id": "BLD-12", "kind": "dev", "title": "Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-01", "kind": "dev", "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-02", "kind": "dev", "title": "Primary sources: literature re-reads, deep reads, method choices"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-03", "kind": "dev", "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-04", "kind": "dev", "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-05", "kind": "dev", "title": "Freeze the Quarter 1 dataset suite"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-06", "kind": "dev", "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-07", "kind": "dev", "title": "Causal Chambers and intervention audit (no LLM)"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-08", "kind": "dev", "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-09", "kind": "dev", "title": "Refinement v1 (no LLM): develop and freeze on the dev split"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-10", "kind": "dev", "title": "Refinement v1: held-out test"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-11", "kind": "dev", "title": "LIVE: Refinement v2, names only where the data are silent"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-12", "kind": "dev", "title": "LIVE: second model and external replications"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-13", "kind": "dev", "title": "Quarter 1 checkpoint package (2 Nov)"}
+{"t": "2026-10-10T15:34:28Z", "event": "issued", "id": "BND-14", "kind": "dev", "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)"}

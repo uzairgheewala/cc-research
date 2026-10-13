@@ -1,0 +1,8 @@
+{
+  "plan_id": "pass2_golden",
+  "note": "Pass 2 golden runs: one synthetic dataset with ground truth and symbolic names, one real dataset with semantic names and a reference graph. Repo default query.",
+  "runs": [
+    {"label": "golden", "dataset": "data/dataset/Linear_Gaussian", "data_mode": "simulated", "query": null, "repeats": 1},
+    {"label": "golden", "dataset": "data/dataset/sachs/sachs.csv", "data_mode": "real", "query": null, "repeats": 1}
+  ]
+}

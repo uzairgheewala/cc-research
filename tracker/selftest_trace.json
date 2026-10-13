@@ -1,0 +1,187 @@
+{
+ "ok": true,
+ "passed": 45,
+ "total": 45,
+ "cases": [
+  {
+   "case": "baseline check runs and reports its own errors",
+   "ok": true
+  },
+  {
+   "case": "link CLI refuses an unknown ticket",
+   "ok": true
+  },
+  {
+   "case": "link CLI refuses a mistyped relation",
+   "ok": true
+  },
+  {
+   "case": "relates needs a note",
+   "ok": true
+  },
+  {
+   "case": "T1 dangling link in links.txt",
+   "ok": true
+  },
+  {
+   "case": "T2 unknown relation",
+   "ok": true
+  },
+  {
+   "case": "T3 cycle in blocks",
+   "ok": true
+  },
+  {
+   "case": "W3 done ticket blocked by an unfinished one",
+   "ok": true
+  },
+  {
+   "case": "T8 two parents",
+   "ok": true
+  },
+  {
+   "case": "W4 done parent, unfinished child",
+   "ok": true
+  },
+  {
+   "case": "prod-apply is idempotent",
+   "ok": true
+  },
+  {
+   "case": "next-id skips IDs held by prod groups",
+   "ok": true
+  },
+  {
+   "case": "group status derived from a done and an in-progress ticket",
+   "ok": true
+  },
+  {
+   "case": "prod-set refuses ✅ when dev is not done",
+   "ok": true
+  },
+  {
+   "case": "T6 forced prod overclaim is an error",
+   "ok": true
+  },
+  {
+   "case": "group IDs are never reused",
+   "ok": true
+  },
+  {
+   "case": "pass-through rows must be dev tickets",
+   "ok": true
+  },
+  {
+   "case": "groups refuse non-dev sources",
+   "ok": true
+  },
+  {
+   "case": "T4 removing the selftest group without retiring it",
+   "ok": true
+  },
+  {
+   "case": "prod-publish records every row",
+   "ok": true
+  },
+  {
+   "case": "published list is consistent",
+   "ok": true
+  },
+  {
+   "case": "prod-rows: one row per prod row, groups list their tickets",
+   "ok": true
+  },
+  {
+   "case": "T6 group shown ✅ after a dev ticket reopened",
+   "ok": true
+  },
+  {
+   "case": "W1 group suspect after its dev ticket changed",
+   "ok": true
+  },
+  {
+   "case": "review clears W1",
+   "ok": true
+  },
+  {
+   "case": "T7/T4 dev ticket reusing a group ID",
+   "ok": true
+  },
+  {
+   "case": "relay refuses a summary point without an ID",
+   "ok": true
+  },
+  {
+   "case": "relay refuses dev-only IDs in prod",
+   "ok": true
+  },
+  {
+   "case": "relay record links tickets to the message",
+   "ok": true
+  },
+  {
+   "case": "milestone names the newly done ticket and its roll-up",
+   "ok": true
+  },
+  {
+   "case": "R2 correction owed when an announced milestone reopens",
+   "ok": true
+  },
+  {
+   "case": "R1 relayed artifact changed after posting",
+   "ok": true
+  },
+  {
+   "case": "relay refuses files outside cc-research",
+   "ok": true
+  },
+  {
+   "case": "T4 issued ID that vanished",
+   "ok": true
+  },
+  {
+   "case": "retire clears T4",
+   "ok": true
+  },
+  {
+   "case": "W5 unknown ID mentioned in a doc",
+   "ok": true
+  },
+  {
+   "case": "T10 catalogue changed without verify",
+   "ok": true
+  },
+  {
+   "case": "T11 bundle done while tickets it closes are not",
+   "ok": true
+  },
+  {
+   "case": "a bundle may start before its dependencies finish (no W3)",
+   "ok": true
+  },
+  {
+   "case": "a bundle may not finish before its dependencies (W3)",
+   "ok": true
+  },
+  {
+   "case": "manifest evidence ignores files added later",
+   "ok": true
+  },
+  {
+   "case": "manifest evidence catches a changed listed file",
+   "ok": true
+  },
+  {
+   "case": "mirror reports status drift, unknown and missing rows",
+   "ok": true
+  },
+  {
+   "case": "mirror records Slack record IDs",
+   "ok": true
+  },
+  {
+   "case": "unlink removes the edge and leaves a comment",
+   "ok": true
+  }
+ ]
+}

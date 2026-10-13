@@ -1,0 +1,837 @@
+{
+ "tickets": [
+  "BND-08",
+  "AUD-10",
+  "AUD-11",
+  "DLV-02"
+ ],
+ "result_index": "plans/results/20261012T002122Z_bnd08_live.result.json",
+ "runs": [
+  {
+   "run_id": "20261011T184856Z_s2_q011_r01_b3a03d",
+   "arm": "q011",
+   "family": "s2_01",
+   "role": "real",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 116209,
+   "completion_tokens": 14172,
+   "wall_s": 616.8,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T190043Z_s2_q012_r01_e1f614",
+   "arm": "q012",
+   "family": "s2_01",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 78367,
+   "completion_tokens": 11576,
+   "wall_s": 686.6,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T191315Z_s2_q013_r01_9f3d11",
+   "arm": "q013",
+   "family": "s2_01",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 126581,
+   "completion_tokens": 15876,
+   "wall_s": 652.2,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T192513Z_s2_q021_r01_dfa292",
+   "arm": "q021",
+   "family": "s2_02",
+   "role": "real",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 123299,
+   "completion_tokens": 15923,
+   "wall_s": 442.7,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T193340Z_s2_q022_r01_13bcd2",
+   "arm": "q022",
+   "family": "s2_02",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "PC",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 76821,
+   "completion_tokens": 11892,
+   "wall_s": 387.3,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T194112Z_s2_q023_r01_4a0c60",
+   "arm": "q023",
+   "family": "s2_02",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 129051,
+   "completion_tokens": 16945,
+   "wall_s": 426.0,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T194923Z_s2_q031_r01_a1dacd",
+   "arm": "q031",
+   "family": "s2_03",
+   "role": "real",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 135142,
+   "completion_tokens": 18129,
+   "wall_s": 800.1,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T200345Z_s2_q032_r01_f9d169",
+   "arm": "q032",
+   "family": "s2_03",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 84402,
+   "completion_tokens": 12685,
+   "wall_s": 705.0,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T201633Z_s2_q033_r01_e378d3",
+   "arm": "q033",
+   "family": "s2_03",
+   "role": "swapped",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 127946,
+   "completion_tokens": 15673,
+   "wall_s": 1130.3,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T203658Z_s2_q041_r01_2c4a4c",
+   "arm": "q041",
+   "family": "s2_04",
+   "role": "real",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 136950,
+   "completion_tokens": 16233,
+   "wall_s": 503.6,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T204625Z_s2_q042_r01_acf999",
+   "arm": "q042",
+   "family": "s2_04",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 81711,
+   "completion_tokens": 15650,
+   "wall_s": 481.9,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T205526Z_s2_q043_r01_ee50cf",
+   "arm": "q043",
+   "family": "s2_04",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 142442,
+   "completion_tokens": 18108,
+   "wall_s": 509.9,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T210452Z_s2_q051_r01_564d72",
+   "arm": "q051",
+   "family": "s2_05",
+   "role": "real",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 103097,
+   "completion_tokens": 11767,
+   "wall_s": 302.1,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T211057Z_s2_q052_r01_10c215",
+   "arm": "q052",
+   "family": "s2_05",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 69550,
+   "completion_tokens": 9618,
+   "wall_s": 313.4,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T211722Z_s2_q053_r01_d2d0a6",
+   "arm": "q053",
+   "family": "s2_05",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 110847,
+   "completion_tokens": 13511,
+   "wall_s": 369.2,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T212440Z_s2_q061_r01_07d9ad",
+   "arm": "q061",
+   "family": "s2_06",
+   "role": "real",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 127788,
+   "completion_tokens": 16677,
+   "wall_s": 736.0,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T213825Z_s2_q062_r01_e40c58",
+   "arm": "q062",
+   "family": "s2_06",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 80665,
+   "completion_tokens": 15304,
+   "wall_s": 781.6,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T215256Z_s2_q063_r01_32f8c8",
+   "arm": "q063",
+   "family": "s2_06",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 128075,
+   "completion_tokens": 17670,
+   "wall_s": 731.6,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T220644Z_s2_q071_r01_582c9e",
+   "arm": "q071",
+   "family": "s2_07",
+   "role": "real",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 110817,
+   "completion_tokens": 12959,
+   "wall_s": 575.5,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T221746Z_s2_q072_r01_f38486",
+   "arm": "q072",
+   "family": "s2_07",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 75785,
+   "completion_tokens": 10877,
+   "wall_s": 633.2,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T223000Z_s2_q073_r01_1de2c9",
+   "arm": "q073",
+   "family": "s2_07",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 123978,
+   "completion_tokens": 15441,
+   "wall_s": 607.3,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T224148Z_s2_q081_r01_7d01ca",
+   "arm": "q081",
+   "family": "s2_08",
+   "role": "real",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 133290,
+   "completion_tokens": 15713,
+   "wall_s": 728.5,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T225512Z_s2_q082_r01_52b5f1",
+   "arm": "q082",
+   "family": "s2_08",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 78288,
+   "completion_tokens": 10609,
+   "wall_s": 634.8,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T230654Z_s2_q083_r01_9c883f",
+   "arm": "q083",
+   "family": "s2_08",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 129108,
+   "completion_tokens": 15280,
+   "wall_s": 628.1,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T231824Z_s2_q091_r01_91c2d2",
+   "arm": "q091",
+   "family": "s2_09",
+   "role": "real",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 118063,
+   "completion_tokens": 15411,
+   "wall_s": 522.0,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T232807Z_s2_q092_r01_899c37",
+   "arm": "q092",
+   "family": "s2_09",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 76327,
+   "completion_tokens": 10437,
+   "wall_s": 470.8,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T233701Z_s2_q093_r01_b34927",
+   "arm": "q093",
+   "family": "s2_09",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 128712,
+   "completion_tokens": 15484,
+   "wall_s": 491.1,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T234632Z_s2_q101_r01_b577f3",
+   "arm": "q101",
+   "family": "s2_10",
+   "role": "real",
+   "exit_code": 1,
+   "status": "FAILED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "S3 (crashed in the cycle step)",
+   "failed_at": "FAILED at postprocess/judge_functions.py:562:LLM_remove_cycles (KeyError: 'nodes')",
+   "prompt_tokens": 127462,
+   "completion_tokens": 15581,
+   "wall_s": 578.0,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261011T235711Z_s2_q102_r01_3f4438",
+   "arm": "q102",
+   "family": "s2_10",
+   "role": "neutral",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 82562,
+   "completion_tokens": 15709,
+   "wall_s": 639.8,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  },
+  {
+   "run_id": "20261012T000852Z_s2_q103_r01_919678",
+   "arm": "q103",
+   "family": "s2_10",
+   "role": "swapped",
+   "exit_code": 0,
+   "status": "COMPLETED",
+   "code_identity": "OK",
+   "models": [
+    "gpt-4o-2024-08-06"
+   ],
+   "algorithm": "FCI",
+   "stage_reached": "final",
+   "failed_at": null,
+   "prompt_tokens": 153025,
+   "completion_tokens": 18447,
+   "wall_s": 686.5,
+   "repo_after_run": {
+    "baseline_files_intact": true,
+    "new_unexpected_files": []
+   }
+  }
+ ],
+ "exit_codes": {
+  "0": 24,
+  "1": 6
+ },
+ "reruns": [],
+ "all_code_identity_ok": true,
+ "all_repo_intact": true,
+ "snapshots": [
+  "gpt-4o-2024-08-06"
+ ],
+ "M1": {
+  "text": "M1: the bootstrap step lowers adjacency F1 below the algorithm's own output (PC, no LLM)",
+  "split": "dev",
+  "files": 23,
+  "errors": 2,
+  "hits": 19,
+  "share": 0.8260869565217391,
+  "verdict": "SUPPORTED"
+ },
+ "M2": {
+  "per_family_real_minus_neutral": {
+   "s2_01": 0.113,
+   "s2_02": -0.232,
+   "s2_03": 0.02,
+   "s2_04": 0.171,
+   "s2_05": 0.3,
+   "s2_06": 0.036,
+   "s2_07": -0.032,
+   "s2_08": 0.272,
+   "s2_09": 0.204,
+   "s2_10": 0.082
+  },
+  "hits": 5,
+  "families": 10,
+  "verdict": "REFUTED"
+ },
+ "M2_sensitivity": {
+  "excluded_families": [
+   "s2_02"
+  ],
+  "families_possible": 9,
+  "families": 9,
+  "hits": 5,
+  "thresholds": [
+   0.1,
+   8,
+   4
+  ],
+  "verdict": "INCONCLUSIVE",
+  "role": "sensitivity; the M2 verdict above is the pre-registered one"
+ },
+ "M3": {
+  "labels_only": 81,
+  "data_only": 20,
+  "neither": 74,
+  "n": 101,
+  "share": 0.801980198019802,
+  "binomial_q95_data_only": 59,
+  "verdict": "SUPPORTED"
+ },
+ "M4": {
+  "per_family": {
+   "s2_01": {
+    "neutral_S3_dir": 0.178,
+    "pc_dir_drop": 0.3939393939393939,
+    "below": true
+   },
+   "s2_02": {
+    "neutral_S3_dir": 0.473,
+    "pc_dir_drop": 0.44067796610169496,
+    "below": false
+   },
+   "s2_03": {
+    "neutral_S3_dir": 0.034,
+    "pc_dir_drop": 0.2439024390243903,
+    "below": true
+   },
+   "s2_04": {
+    "neutral_S3_dir": 0.182,
+    "pc_dir_drop": 0.5846153846153846,
+    "below": true
+   },
+   "s2_05": {
+    "neutral_S3_dir": 0.051,
+    "pc_dir_drop": 0.3728813559322034,
+    "below": true
+   },
+   "s2_06": {
+    "neutral_S3_dir": 0.12,
+    "pc_dir_drop": 0.3013698630136986,
+    "below": true
+   },
+   "s2_07": {
+    "neutral_S3_dir": 0.293,
+    "pc_dir_drop": 0.42857142857142855,
+    "below": true
+   },
+   "s2_08": {
+    "neutral_S3_dir": 0.087,
+    "pc_dir_drop": 0.3214285714285714,
+    "below": true
+   },
+   "s2_09": {
+    "neutral_S3_dir": 0.318,
+    "pc_dir_drop": 0.7692307692307692,
+    "below": true
+   },
+   "s2_10": {
+    "neutral_S3_dir": 0.196,
+    "pc_dir_drop": 0.17948717948717946,
+    "below": false
+   }
+  },
+  "hits": 8,
+  "families": 10,
+  "verdict": "SUPPORTED"
+ },
+ "M5": {
+  "verdict": "NOT RUN",
+  "why": "optional part d (names-only calls) was not part of the approved live plan"
+ },
+ "L1_neutral_leak_scan": true,
+ "Q_gates": {
+  "Q1_rebuilt_S2_S3_equal_recorded": true,
+  "Q2_cycle_crashes_have_cycle_in_S3": true,
+  "Q3_all_runs_accounted": true
+ },
+ "cost": {
+  "prompt_tokens": 3316360,
+  "completion_tokens": 439357,
+  "per_run": [
+   110545,
+   14645
+  ],
+  "stub_estimate_30_runs": {
+   "crash": {
+    "prompt_tokens": 2532270.0,
+    "completion_tokens": 223575.0
+   },
+   "loop": {
+    "prompt_tokens": 3382365.0,
+    "completion_tokens": 364350.0
+   }
+  },
+  "usd_at_2.50_10_per_M": 12.68
+ },
+ "time": {
+  "wall_s_min": 302.1,
+  "wall_s_median": 612.05,
+  "wall_s_max": 1130.3
+ },
+ "crashes": {
+  "runs_cyclic_by_pipeline_test": 6,
+  "of_which_cyclic_among_committed_directions": 4,
+  "of_which_completed": 0,
+  "by_role": {
+   "real": 5,
+   "neutral": 0,
+   "swapped": 1
+  },
+  "cycle_step_llm_calls": 6,
+  "answer_keys": {
+   "edge_to_remove": 5,
+   "nodes_to_remove": 1
+  }
+ }
+}

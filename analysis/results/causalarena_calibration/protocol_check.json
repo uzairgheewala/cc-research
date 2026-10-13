@@ -1,0 +1,144 @@
+{
+  "source": "https://github.com/LAMDA-Tabular/TabCausal",
+  "commit": "6ca71944c8d2f9ff55f2c4c25e3210949c8049c1",
+  "facts": {
+    "P1_shd_formula": {
+      "file": "baselines/paper_algorithms/metrics.py",
+      "sha256": "0677f4693fdfb445579fdcf531d0f4bdb7043f64bd8d2e54062e3c50007d41c8",
+      "hits": [
+        {
+          "pattern": "shd\\s*=\\s*np\\.sum\\(diff\\)\\s*-\\s*0\\.5\\s*\\*\\s*np\\.sum\\(diff\\s*\\*\\s*diff\\.T\\)",
+          "line": 206,
+          "text": "shd = np.sum(diff) - 0.5 * np.sum(diff * diff.T)"
+        }
+      ],
+      "found": true
+    },
+    "P2_liberal_orientation": {
+      "file": "baselines/paper_algorithms/run_pc.py",
+      "sha256": "68c77d27297cc5793bb7cecc2877565155d4cc728e43339bdf35374f8f50b21e",
+      "hits": [
+        {
+          "pattern": "strategy\\s*==\\s*\"liberal\"",
+          "line": 63,
+          "text": "elif strategy == \"liberal\":"
+        },
+        {
+          "pattern": "#\\s*Orient by index",
+          "line": 64,
+          "text": "# Orient by index"
+        },
+        {
+          "pattern": "if i < j:",
+          "line": 65,
+          "text": "if i < j:"
+        },
+        {
+          "pattern": "if i < j:",
+          "line": 71,
+          "text": "if i < j:"
+        }
+      ],
+      "found": true
+    },
+    "P3_readme_convention": {
+      "file": "baselines/README.md",
+      "sha256": "2e9b828c5279db7feb02a6354a2d543ca3d98eb94b38fb9a26839a69b7e8095e",
+      "hits": [
+        {
+          "pattern": "uncertain edges were not randomized",
+          "line": 118,
+          "text": "fixed-threshold evaluation, uncertain edges were not randomized: the default"
+        },
+        {
+          "pattern": "`liberal` strategy orients them from the smaller node index",
+          "line": 119,
+          "text": "`liberal` strategy orients them from the smaller node index to the larger node"
+        }
+      ],
+      "found": true
+    },
+    "P4_pc_configuration": {
+      "file": "baselines/paper_algorithms/run_pc.py",
+      "sha256": "68c77d27297cc5793bb7cecc2877565155d4cc728e43339bdf35374f8f50b21e",
+      "hits": [
+        {
+          "pattern": "stable=True",
+          "line": 110,
+          "text": "stable=True,"
+        },
+        {
+          "pattern": "\"--alpha\", type=float, default=0\\.05",
+          "line": 146,
+          "text": "parser.add_argument(\"--alpha\", type=float, default=0.05)"
+        },
+        {
+          "pattern": "\"--indep_test\", type=str, default=\"fisherz\"",
+          "line": 147,
+          "text": "parser.add_argument(\"--indep_test\", type=str, default=\"fisherz\","
+        }
+      ],
+      "found": true
+    },
+    "P5_no_column_shuffle": {
+      "file": "baselines/paper_algorithms/run_pc.py",
+      "sha256": "68c77d27297cc5793bb7cecc2877565155d4cc728e43339bdf35374f8f50b21e",
+      "hits": [],
+      "found": true
+    }
+  },
+  "published": {
+    "f1": 0.333,
+    "f1_scm_std": 0.15,
+    "shd": 33.522,
+    "shd_scm_std": 9.355,
+    "scenarios": 100
+  },
+  "tolerance": {
+    "f1": 0.045,
+    "shd": 2.81,
+    "how": "3 standard errors of a 50-scenario mean drawn without replacement from the 100 published scenarios"
+  },
+  "ours_public_50_by_rule": {
+    "random": {
+      "f1": 0.335,
+      "shd": 37.5,
+      "f1_gap": 0.002,
+      "shd_gap": 3.978,
+      "f1_within": true,
+      "shd_within": false
+    },
+    "drop": {
+      "f1": 0.291,
+      "shd": 38.9,
+      "f1_gap": -0.042,
+      "shd_gap": 5.378,
+      "f1_within": true,
+      "shd_within": false
+    },
+    "both": {
+      "f1": 0.368,
+      "shd": 39.67,
+      "f1_gap": 0.035,
+      "shd_gap": 6.148,
+      "f1_within": true,
+      "shd_within": false
+    },
+    "lower": {
+      "f1": 0.396,
+      "shd": 35.43,
+      "f1_gap": 0.063,
+      "shd_gap": 1.908,
+      "f1_within": false,
+      "shd_within": true
+    }
+  },
+  "release_order_topological_share": 1.0,
+  "verdict": {
+    "code_rule": "liberal = lower index -> higher index (our rule 'lower')",
+    "shd_reproduced_under_code_rule": true,
+    "f1_reproduced_under_code_rule": false,
+    "any_rule_reproduces_both": false,
+    "reading": "Under the rule the authors' code states, our SHD is within tolerance of the published value but F1 is not; under random orientation F1 is within tolerance but SHD is not. No rule reproduces both on the 50 public scenarios, and the published means also cover 50 unreleased scenarios, so the gap cannot be settled from public data. Because the released column order is topological in every public file, the code's rule gives every undecided pair its true direction when the pair is truly adjacent."
+  }
+}

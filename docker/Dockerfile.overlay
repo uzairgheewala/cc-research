@@ -1,0 +1,20 @@
+# Thin runtime layer over the image built from the repo's own Dockerfile.cpu (which is used unmodified).
+# It changes no repo code. It only completes the environment for non-interactive runs.
+ARG BASE=causal-copilot-cpu:a31aa7c
+FROM ${BASE}
+
+# (1) Dockerfile.cpu puts TinyTeX on PATH through ~/.bashrc, which only interactive shells read.
+#     report/report_generation.py:9 imports latexmk at import time, so without this entry main.py
+#     cannot even be imported in a non-interactive container. Same entry, same position (appended).
+ENV PATH="${PATH}:/root/.TinyTeX/bin/x86_64-linux"
+
+# (2) psutil is imported by the vendored causal-learn KCI test
+#     (externals/causal-learn/causallearn/utils/KCI/KCI.py:83), which the refinement step always calls,
+#     but requirements_cpu.txt does not list it. Installed only if the base image lacks it.
+RUN python -c "import psutil" 2>/dev/null || pip install --no-cache-dir psutil==7.2.2
+
+# (3) latexmk: keep the one already present; otherwise install it the way web_demo/demo.py:37 does.
+#     Never fails the build: the preflight reports the outcome.
+RUN command -v latexmk >/dev/null 2>&1 \
+ || /root/.TinyTeX/bin/x86_64-linux/tlmgr install latexmk \
+ || echo "WARNING: latexmk could not be installed; preflight will report it"

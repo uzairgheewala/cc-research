@@ -1,0 +1,1396 @@
+{
+ "ticket": "BEN-10",
+ "bundle": "BND-07",
+ "definition": "One layer deep: the standard graphs have longest path 1, so each intervened input's children are all its descendants; validation = randomize one input between two values with all other inputs fixed, KS-test every response between the two arms; edges = input -> output only.",
+ "test": "scipy.stats.ks_2samp, flag=0 arm vs flag=1 arm of the same validate_* experiment; Holm at 1%",
+ "structure": {
+  "lt_standard": {
+   "variables": 38,
+   "edges": 57,
+   "longest_path": 1,
+   "sources_of_edges": 29,
+   "children_equal_descendants_for_every_source": true,
+   "outputs_with_children": []
+  },
+  "wt_standard": {
+   "variables": 32,
+   "edges": 42,
+   "longest_path": 1,
+   "sources_of_edges": 21,
+   "children_equal_descendants_for_every_source": true,
+   "outputs_with_children": []
+  }
+ },
+ "part_a_our_check": {
+  "lt_validate_v1": {
+   "status": "run",
+   "tests": 1073,
+   "holm_family": "all tests of this dataset",
+   "alpha": 0.01,
+   "edges": 57,
+   "children_shift": 57,
+   "children_no_shift": [],
+   "edges_without_experiment": [],
+   "non_descendant_tests": 1016,
+   "non_descendants_shift": 0,
+   "non_descendants_shift_list": [],
+   "edge_rows": [
+    {
+     "from": "red",
+     "to": "ir_1",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "ir_1",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_1",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "ir_2",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "ir_2",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_2",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "ir_3",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "ir_3",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_3",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "vis_1",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "vis_1",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_1",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "vis_2",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "vis_2",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_2",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "vis_3",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "vis_3",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_3",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "red",
+     "to": "current",
+     "experiment": "validate_red",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "green",
+     "to": "current",
+     "experiment": "validate_green",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "blue",
+     "to": "current",
+     "experiment": "validate_blue",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_1",
+     "to": "ir_3",
+     "experiment": "validate_pol_1",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_2",
+     "to": "ir_3",
+     "experiment": "validate_pol_2",
+     "p": 6.577661395979075e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_1",
+     "to": "vis_3",
+     "experiment": "validate_pol_1",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_2",
+     "to": "vis_3",
+     "experiment": "validate_pol_2",
+     "p": 6.577661395979075e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_1",
+     "to": "angle_1",
+     "experiment": "validate_pol_1",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "pol_2",
+     "to": "angle_2",
+     "experiment": "validate_pol_2",
+     "p": 6.577661395979075e-14,
+     "shift": true
+    },
+    {
+     "from": "v_angle_1",
+     "to": "angle_1",
+     "experiment": "validate_v_angle_1",
+     "p": 1.645431549309312e-14,
+     "shift": true
+    },
+    {
+     "from": "osr_angle_1",
+     "to": "angle_1",
+     "experiment": "validate_osr_angle_1",
+     "p": 8.268061498199954e-101,
+     "shift": true
+    },
+    {
+     "from": "v_angle_2",
+     "to": "angle_2",
+     "experiment": "validate_v_angle_2",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "osr_angle_2",
+     "to": "angle_2",
+     "experiment": "validate_osr_angle_2",
+     "p": 3.4215648348113037e-67,
+     "shift": true
+    },
+    {
+     "from": "v_c",
+     "to": "current",
+     "experiment": "validate_v_c",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "osr_c",
+     "to": "current",
+     "experiment": "validate_osr_c",
+     "p": 5.992366950452095e-24,
+     "shift": true
+    },
+    {
+     "from": "l_11",
+     "to": "ir_1",
+     "experiment": "validate_l_11",
+     "p": 1.645431549309312e-14,
+     "shift": true
+    },
+    {
+     "from": "l_12",
+     "to": "ir_1",
+     "experiment": "validate_l_12",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "l_11",
+     "to": "vis_1",
+     "experiment": "validate_l_11",
+     "p": 1.645431549309312e-14,
+     "shift": true
+    },
+    {
+     "from": "l_12",
+     "to": "vis_1",
+     "experiment": "validate_l_12",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "t_ir_1",
+     "to": "ir_1",
+     "experiment": "validate_t_ir_1",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_ir_1",
+     "to": "ir_1",
+     "experiment": "validate_diode_ir_1",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "t_vis_1",
+     "to": "vis_1",
+     "experiment": "validate_t_vis_1",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_vis_1",
+     "to": "vis_1",
+     "experiment": "validate_diode_vis_1",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "l_21",
+     "to": "ir_2",
+     "experiment": "validate_l_21",
+     "p": 4.243652513534888e-14,
+     "shift": true
+    },
+    {
+     "from": "l_22",
+     "to": "ir_2",
+     "experiment": "validate_l_22",
+     "p": 6.577661395979075e-14,
+     "shift": true
+    },
+    {
+     "from": "l_21",
+     "to": "vis_2",
+     "experiment": "validate_l_21",
+     "p": 4.243652513534888e-14,
+     "shift": true
+    },
+    {
+     "from": "l_22",
+     "to": "vis_2",
+     "experiment": "validate_l_22",
+     "p": 1.3155322791958153e-12,
+     "shift": true
+    },
+    {
+     "from": "t_ir_2",
+     "to": "ir_2",
+     "experiment": "validate_t_ir_2",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_ir_2",
+     "to": "ir_2",
+     "experiment": "validate_diode_ir_2",
+     "p": 1.645431549309312e-14,
+     "shift": true
+    },
+    {
+     "from": "t_vis_2",
+     "to": "vis_2",
+     "experiment": "validate_t_vis_2",
+     "p": 1.645431549309312e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_vis_2",
+     "to": "vis_2",
+     "experiment": "validate_diode_vis_2",
+     "p": 8.885612762989274e-13,
+     "shift": true
+    },
+    {
+     "from": "l_31",
+     "to": "ir_3",
+     "experiment": "validate_l_31",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "l_32",
+     "to": "ir_3",
+     "experiment": "validate_l_32",
+     "p": 4.243652513534888e-14,
+     "shift": true
+    },
+    {
+     "from": "l_31",
+     "to": "vis_3",
+     "experiment": "validate_l_31",
+     "p": 6.805647968947603e-12,
+     "shift": true
+    },
+    {
+     "from": "l_32",
+     "to": "vis_3",
+     "experiment": "validate_l_32",
+     "p": 4.243652513534888e-14,
+     "shift": true
+    },
+    {
+     "from": "t_ir_3",
+     "to": "ir_3",
+     "experiment": "validate_t_ir_3",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_ir_3",
+     "to": "ir_3",
+     "experiment": "validate_diode_ir_3",
+     "p": 4.243652513534888e-14,
+     "shift": true
+    },
+    {
+     "from": "t_vis_3",
+     "to": "vis_3",
+     "experiment": "validate_t_vis_3",
+     "p": 1.8511104929729752e-14,
+     "shift": true
+    },
+    {
+     "from": "diode_vis_3",
+     "to": "vis_3",
+     "experiment": "validate_diode_vis_3",
+     "p": 2.25352581753232e-14,
+     "shift": true
+    }
+   ]
+  },
+  "wt_validate_v1": {
+   "status": "run",
+   "tests": 868,
+   "holm_family": "all tests of this dataset",
+   "alpha": 0.01,
+   "edges": 42,
+   "children_shift": 40,
+   "children_no_shift": [
+    {
+     "from": "load_out",
+     "to": "pressure_intake",
+     "experiment": "validate_load_out_pressure_intake",
+     "p": 0.08202519930320067,
+     "shift": false
+    },
+    {
+     "from": "osr_downwind",
+     "to": "pressure_downwind",
+     "experiment": "validate_osr_downwind",
+     "p": 1.67127725660931e-05,
+     "shift": false
+    }
+   ],
+   "edges_without_experiment": [],
+   "non_descendant_tests": 774,
+   "non_descendants_shift": 0,
+   "non_descendants_shift_list": [],
+   "edge_rows": [
+    {
+     "from": "load_in",
+     "to": "rpm_in",
+     "experiment": "validate_load_in",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "res_in",
+     "to": "rpm_in",
+     "experiment": "validate_res_in",
+     "p": 1.3916535936907331e-152,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "rpm_out",
+     "experiment": "validate_load_in",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "current_in",
+     "experiment": "validate_load_in",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "current_out",
+     "experiment": "validate_load_in_current_out",
+     "p": 1.7661786306333925e-22,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "rpm_in",
+     "experiment": "validate_load_out",
+     "p": 3.427982394394399e-14,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "rpm_out",
+     "experiment": "validate_load_out",
+     "p": 3.427982394394399e-14,
+     "shift": true
+    },
+    {
+     "from": "res_out",
+     "to": "rpm_out",
+     "experiment": "validate_res_out",
+     "p": 8.30536096381912e-122,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "current_out",
+     "experiment": "validate_load_out",
+     "p": 3.427982394394399e-14,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "current_in",
+     "experiment": "validate_load_out_current_in",
+     "p": 1.1243452096372822e-08,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "rpm_in",
+     "experiment": "validate_hatch_rpms",
+     "p": 1.5195801706030712e-17,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "rpm_out",
+     "experiment": "validate_hatch_rpms",
+     "p": 3.9721868948301505e-58,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_intake",
+     "experiment": "validate_load_in",
+     "p": 2.514140300058604e-07,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_intake",
+     "experiment": "validate_hatch_pressures",
+     "p": 8.831465245917449e-11,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_intake",
+     "experiment": "validate_load_out_pressure_intake",
+     "p": 0.08202519930320067,
+     "shift": false
+    },
+    {
+     "from": "osr_intake",
+     "to": "pressure_intake",
+     "experiment": "validate_osr_intake",
+     "p": 1.0849017015061662e-23,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_upwind",
+     "experiment": "validate_load_in",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_upwind",
+     "experiment": "validate_hatch_pressures",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_upwind",
+     "experiment": "validate_load_out",
+     "p": 3.427982394394399e-14,
+     "shift": true
+    },
+    {
+     "from": "osr_upwind",
+     "to": "pressure_upwind",
+     "experiment": "validate_osr_upwind",
+     "p": 8.001543644272532e-07,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_downwind",
+     "experiment": "validate_load_in",
+     "p": 1.582145720489723e-14,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_downwind",
+     "experiment": "validate_hatch_pressures",
+     "p": 2.97055675947442e-14,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_downwind",
+     "experiment": "validate_load_out",
+     "p": 3.427982394394399e-14,
+     "shift": true
+    },
+    {
+     "from": "osr_downwind",
+     "to": "pressure_downwind",
+     "experiment": "validate_osr_downwind",
+     "p": 1.67127725660931e-05,
+     "shift": false
+    },
+    {
+     "from": "osr_ambient",
+     "to": "pressure_ambient",
+     "experiment": "validate_osr_ambient",
+     "p": 1.525276229401835e-284,
+     "shift": true
+    },
+    {
+     "from": "osr_in",
+     "to": "current_in",
+     "experiment": "validate_osr_in",
+     "p": 9.2092144587049e-22,
+     "shift": true
+    },
+    {
+     "from": "v_in",
+     "to": "current_in",
+     "experiment": "validate_v_in",
+     "p": 2.8328647217327884e-59,
+     "shift": true
+    },
+    {
+     "from": "osr_out",
+     "to": "current_out",
+     "experiment": "validate_osr_out",
+     "p": 2.499254494926867e-22,
+     "shift": true
+    },
+    {
+     "from": "v_out",
+     "to": "current_out",
+     "experiment": "validate_v_out",
+     "p": 4.950436540411603e-59,
+     "shift": true
+    },
+    {
+     "from": "pot_1",
+     "to": "signal_1",
+     "experiment": "validate_pot_1",
+     "p": 2.230848300131498e-59,
+     "shift": true
+    },
+    {
+     "from": "osr_1",
+     "to": "signal_1",
+     "experiment": "validate_osr_1",
+     "p": 6.871850434273921e-36,
+     "shift": true
+    },
+    {
+     "from": "v_1",
+     "to": "signal_1",
+     "experiment": "validate_v_1",
+     "p": 2.8328647217327884e-59,
+     "shift": true
+    },
+    {
+     "from": "pot_1",
+     "to": "signal_2",
+     "experiment": "validate_pot_1",
+     "p": 1.1486637897377087e-55,
+     "shift": true
+    },
+    {
+     "from": "pot_2",
+     "to": "signal_2",
+     "experiment": "validate_pot_2",
+     "p": 2.2087606931995054e-59,
+     "shift": true
+    },
+    {
+     "from": "osr_2",
+     "to": "signal_2",
+     "experiment": "validate_osr_2",
+     "p": 9.456854942243451e-35,
+     "shift": true
+    },
+    {
+     "from": "v_2",
+     "to": "signal_2",
+     "experiment": "validate_v_2",
+     "p": 5.984044169728316e-59,
+     "shift": true
+    },
+    {
+     "from": "pot_1",
+     "to": "mic",
+     "experiment": "validate_pot_1",
+     "p": 4.45853484359975e-09,
+     "shift": true
+    },
+    {
+     "from": "load_in",
+     "to": "mic",
+     "experiment": "validate_load_in_mic",
+     "p": 1.8293404988419099e-09,
+     "shift": true
+    },
+    {
+     "from": "load_out",
+     "to": "mic",
+     "experiment": "validate_load_out_mic",
+     "p": 2.7460196396412356e-07,
+     "shift": true
+    },
+    {
+     "from": "hatch",
+     "to": "mic",
+     "experiment": "validate_hatch_mic",
+     "p": 5.73092878469309e-16,
+     "shift": true
+    },
+    {
+     "from": "osr_mic",
+     "to": "mic",
+     "experiment": "validate_osr_mic",
+     "p": 1.0236000763989335e-32,
+     "shift": true
+    },
+    {
+     "from": "v_mic",
+     "to": "mic",
+     "experiment": "validate_v_mic",
+     "p": 4.178350107503371e-59,
+     "shift": true
+    }
+   ]
+  }
+ },
+ "part_b_authors_printed_pvalues": {
+  "lt_standard": {
+   "source": "external/causal_chambers_docs/paper__causal_validation.ipynb (printed LaTeX table rows)",
+   "edges_printed": 57,
+   "edges_in_graph": 57,
+   "printed_equal_graph_edges": true,
+   "children_shift": 57,
+   "children_no_shift": [],
+   "max_p": 6.799999999999999e-12,
+   "rows": [
+    {
+     "from": "red",
+     "to": "ir_1",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "ir_1",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_1",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "ir_2",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "ir_2",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_2",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "ir_3",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "ir_3",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "ir_3",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "vis_1",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "vis_1",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_1",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "vis_2",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "vis_2",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_2",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "vis_3",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "vis_3",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "vis_3",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "red",
+     "to": "current",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "green",
+     "to": "current",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "blue",
+     "to": "current",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_1",
+     "to": "ir_3",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_2",
+     "to": "ir_3",
+     "p": 6.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_1",
+     "to": "vis_3",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_2",
+     "to": "vis_3",
+     "p": 6.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_1",
+     "to": "angle_1",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pol_2",
+     "to": "angle_2",
+     "p": 6.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_angle_1",
+     "to": "angle_1",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_angle_1",
+     "to": "angle_1",
+     "p": 8.3e-101,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_angle_2",
+     "to": "angle_2",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_angle_2",
+     "to": "angle_2",
+     "p": 3.3999999999999994e-67,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_c",
+     "to": "current",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_c",
+     "to": "current",
+     "p": 5.999999999999999e-24,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_11",
+     "to": "ir_1",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_12",
+     "to": "ir_1",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_11",
+     "to": "vis_1",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_12",
+     "to": "vis_1",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_ir_1",
+     "to": "ir_1",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_ir_1",
+     "to": "ir_1",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_vis_1",
+     "to": "vis_1",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_vis_1",
+     "to": "vis_1",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_21",
+     "to": "ir_2",
+     "p": 4.2000000000000004e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_22",
+     "to": "ir_2",
+     "p": 6.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_21",
+     "to": "vis_2",
+     "p": 4.2000000000000004e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_22",
+     "to": "vis_2",
+     "p": 1.3000000000000001e-12,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_ir_2",
+     "to": "ir_2",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_ir_2",
+     "to": "ir_2",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_vis_2",
+     "to": "vis_2",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_vis_2",
+     "to": "vis_2",
+     "p": 8.9e-13,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_31",
+     "to": "ir_3",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_32",
+     "to": "ir_3",
+     "p": 4.2000000000000004e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_31",
+     "to": "vis_3",
+     "p": 6.799999999999999e-12,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "l_32",
+     "to": "vis_3",
+     "p": 4.2000000000000004e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_ir_3",
+     "to": "ir_3",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_ir_3",
+     "to": "ir_3",
+     "p": 4.2000000000000004e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "t_vis_3",
+     "to": "vis_3",
+     "p": 1.8999999999999998e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "diode_vis_3",
+     "to": "vis_3",
+     "p": 2.2999999999999997e-14,
+     "shift_holm_1pct": true
+    }
+   ],
+   "non_descendants_shift": "not available: non-edge p-values appear only in a heatmap image in the notebook"
+  },
+  "wt_standard": {
+   "source": "external/causal_chambers_docs/paper__causal_validation.ipynb (printed LaTeX table rows)",
+   "edges_printed": 42,
+   "edges_in_graph": 42,
+   "printed_equal_graph_edges": true,
+   "children_shift": 41,
+   "children_no_shift": [
+    [
+     "load_out",
+     "pressure_intake",
+     0.082
+    ]
+   ],
+   "max_p": 0.082,
+   "rows": [
+    {
+     "from": "load_in",
+     "to": "rpm_in",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "res_in",
+     "to": "rpm_in",
+     "p": 1.4e-152,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "rpm_out",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "current_in",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "current_out",
+     "p": 1.8000000000000001e-22,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "rpm_in",
+     "p": 3.4e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "rpm_out",
+     "p": 3.4e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "res_out",
+     "to": "rpm_out",
+     "p": 8.300000000000001e-122,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "current_out",
+     "p": 3.4e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "current_in",
+     "p": 1.1000000000000001e-08,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "rpm_in",
+     "p": 1.5e-17,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "rpm_out",
+     "p": 4e-58,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_intake",
+     "p": 2.5e-07,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_intake",
+     "p": 8.8e-11,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_intake",
+     "p": 0.082,
+     "shift_holm_1pct": false
+    },
+    {
+     "from": "osr_intake",
+     "to": "pressure_intake",
+     "p": 1.1000000000000001e-23,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_upwind",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_upwind",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_upwind",
+     "p": 3.4e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_upwind",
+     "to": "pressure_upwind",
+     "p": 8e-07,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "pressure_downwind",
+     "p": 1.6e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "pressure_downwind",
+     "p": 3e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "pressure_downwind",
+     "p": 3.4e-14,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_downwind",
+     "to": "pressure_downwind",
+     "p": 1.7e-05,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_ambient",
+     "to": "pressure_ambient",
+     "p": 1.5e-284,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_in",
+     "to": "current_in",
+     "p": 9.2e-22,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_in",
+     "to": "current_in",
+     "p": 2.8e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_out",
+     "to": "current_out",
+     "p": 2.5000000000000002e-22,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_out",
+     "to": "current_out",
+     "p": 5e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pot_1",
+     "to": "signal_1",
+     "p": 2.2000000000000003e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_1",
+     "to": "signal_1",
+     "p": 6.9e-36,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_1",
+     "to": "signal_1",
+     "p": 2.8e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pot_1",
+     "to": "signal_2",
+     "p": 1.1000000000000002e-55,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pot_2",
+     "to": "signal_2",
+     "p": 2.2000000000000003e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_2",
+     "to": "signal_2",
+     "p": 9.5e-35,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_2",
+     "to": "signal_2",
+     "p": 6e-59,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "pot_1",
+     "to": "mic",
+     "p": 4.500000000000001e-09,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_in",
+     "to": "mic",
+     "p": 1.8000000000000002e-09,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "load_out",
+     "to": "mic",
+     "p": 2.7e-07,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "hatch",
+     "to": "mic",
+     "p": 5.7e-16,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "osr_mic",
+     "to": "mic",
+     "p": 1e-32,
+     "shift_holm_1pct": true
+    },
+    {
+     "from": "v_mic",
+     "to": "mic",
+     "p": 4.2e-59,
+     "shift_holm_1pct": true
+    }
+   ],
+   "non_descendants_shift": "not available: non-edge p-values appear only in a heatmap image in the notebook"
+  }
+ },
+ "limitations": [
+  "Each validate_* experiment fixes all other inputs at one setting (validation config tables), so an edge is checked at one operating point; an effect that vanishes there would be missed, and a missing edge that only appears elsewhere is not tested.",
+  "Only inputs can be randomized; output -> output effects (e.g. sensor-sensor) are not tested by design; the graphs contain none.",
+  "The KS test on flag arms compares two random halves taken over the same time span; slow drift affects both arms alike, but a shift of a non-descendant can still come from an effect the graph omits.",
+  "Part B covers edges only (children); the authors did not print non-edge p-values as numbers."
+ ]
+}

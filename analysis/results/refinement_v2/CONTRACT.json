@@ -1,0 +1,12 @@
+{
+ "producer": "analysis/refinement_v2.py",
+ "score_bearing": true,
+ "regime": "per-row",
+ "regime_field": "data part: D (bootstrap tables only); names part (names_s2.json): D+K, K = variable names read by the model",
+ "split": "per-row",
+ "split_field": "row 'group': live:* and replay:*:dev are dev; replay:formula:test is test; names_s2.json uses the S2 test arms; exploratory_s2_live.json is labelled exploratory (those tables were read in BND-10)",
+ "controls": {"columns_shuffled": "per-row (formula replays: per-file permutation; S2: shuffled by the suite; dev live tables: as recorded)", "names": "per-row", "supplier": "per-row"},
+ "orientation_rule": "dir_f1_random: undecided pairs oriented at random with seed crc32(key); dir_f1_committed: committed arrows only (refinement_v1.scores, imported unchanged)",
+ "metric_defs": {"adj_f1": "F1 over unordered adjacencies (cc_graph.score)", "dir_f1_committed": "directed-edge F1, committed arrows only", "dir_f1_random": "directed-edge F1, undecided pairs oriented at random (per-file seed)"},
+ "tickets": ["BND-11", "BLD-06", "CAP-10", "TGT-09", "TGT-13", "DLV-04"]
+}

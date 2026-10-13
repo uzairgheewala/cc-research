@@ -1,0 +1,756 @@
+{
+ "run_id": "20261007T032410Z_b1_k42_r04_ecdafb",
+ "dataset": "/research/datasets/suite_b1/k42/k42.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.1,
+  "indep_test": "rcit",
+  "depth": 6
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [],
+ "variables": [
+  "V01",
+  "V02",
+  "V03",
+  "V04",
+  "V05"
+ ],
+ "n_pairs": 10,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 6,
+   "S1 after bootstrap edits": 1,
+   "S2 after LLM review": 1,
+   "S3 after KCI pruning": 1,
+   "S4 final (after cycle step)": 1
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 5,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 1,
+  "llm_calls": 5,
+  "llm_distinct_pairs_answered": 10,
+  "llm_self_pairs_answered": 5,
+  "llm_letters": {
+   "D": 10
+  },
+  "llm_added": 0,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 0,
+  "llm_removed": 0,
+  "llm_reoriented": 0,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 1,
+  "final_edges_set_by": {
+   "algorithm (unchanged)": 1
+  },
+  "final_edges_identical_to_algorithm_output": 1,
+  "final_edges_with_no_adjacency_in_algorithm_output": 0
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "V01",
+    "V02"
+   ],
+   "was": "V01 <-> V02",
+   "most_frequent_bootstrap_status": "V02idirected",
+   "frequency": 0.5
+  }
+ ],
+ "llm_added": [],
+ "llm_removed": [],
+ "llm_reoriented": [],
+ "final_edges": [
+  {
+   "edge": "V04->V03",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "truth_kind": "reference graph dwd_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 4,
+   "adj_fp": 2,
+   "adj_fn": 0,
+   "adj_precision": 0.6666666666666666,
+   "adj_recall": 1.0,
+   "adj_f1": 0.8,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 4,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 6,
+   "shd_vs_true_cpdag": 6
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 0,
+   "adj_fp": 1,
+   "adj_fn": 4,
+   "adj_precision": 0.0,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 5,
+   "shd_vs_true_cpdag": 5
+  },
+  "S2 after LLM review": {
+   "adj_tp": 0,
+   "adj_fp": 1,
+   "adj_fn": 4,
+   "adj_precision": 0.0,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 5,
+   "shd_vs_true_cpdag": 5
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 0,
+   "adj_fp": 1,
+   "adj_fn": 4,
+   "adj_precision": 0.0,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 5,
+   "shd_vs_true_cpdag": 5
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 0,
+   "adj_fp": 1,
+   "adj_fn": 4,
+   "adj_precision": 0.0,
+   "adj_recall": 0.0,
+   "adj_f1": 0.0,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 0,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 1,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 5,
+   "shd_vs_true_cpdag": 5
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "V01",
+    "V02"
+   ],
+   "types": [
+    "V01 <-> V02",
+    "V01   V02 (no edge)",
+    "V01   V02 (no edge)",
+    "V01   V02 (no edge)",
+    "V01   V02 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "V01 <-> V02",
+     "to": "V01   V02 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.1,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V01, V02)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about these variables, it is not possible to determine a causal relationship;"
+    }
+   ],
+   "truth": "V01 -> V02"
+  },
+  {
+   "pair": [
+    "V01",
+    "V03"
+   ],
+   "types": [
+    "V01 <-> V03",
+    "V01   V03 (no edge)",
+    "V01   V03 (no edge)",
+    "V01   V03 (no edge)",
+    "V01   V03 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "V01 <-> V03",
+     "to": "V01   V03 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.3,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.35,
+    "a o-> b": 0.2,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.05
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V01, V03)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about these variables, it is not possible to determine a causal relationship;"
+    }
+   ],
+   "truth": "V01 -> V03"
+  },
+  {
+   "pair": [
+    "V01",
+    "V04"
+   ],
+   "types": [
+    "V01   V04 (no edge)",
+    "V01   V04 (no edge)",
+    "V01   V04 (no edge)",
+    "V01   V04 (no edge)",
+    "V01   V04 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.85
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V01, V04)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about these variables, it is not possible to determine a causal relationship;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "V01",
+    "V05"
+   ],
+   "types": [
+    "V05 o-> V01",
+    "V01   V05 (no edge)",
+    "V01   V05 (no edge)",
+    "V01   V05 (no edge)",
+    "V01   V05 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "V05 o-> V01",
+     "to": "V01   V05 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.1,
+    "b o-> a": 0.35,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.1
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V01, V05)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about these variables, it is not possible to determine a causal relationship;"
+    }
+   ],
+   "truth": "V01 -> V05"
+  },
+  {
+   "pair": [
+    "V02",
+    "V03"
+   ],
+   "types": [
+    "V02   V03 (no edge)",
+    "V02   V03 (no edge)",
+    "V02   V03 (no edge)",
+    "V02   V03 (no edge)",
+    "V02   V03 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.15,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.1,
+    "no edge": 0.7
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V02, V03)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context, it is not possible to determine a causal relationship between V02 and V03;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "V02",
+    "V04"
+   ],
+   "types": [
+    "V02 <-> V04",
+    "V02   V04 (no edge)",
+    "V02   V04 (no edge)",
+    "V02   V04 (no edge)",
+    "V02   V04 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "V02 <-> V04",
+     "to": "V02   V04 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.25,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V02, V04)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context, it is not possible to determine a causal relationship between V02 and V04;"
+    }
+   ],
+   "truth": "V04 -> V02"
+  },
+  {
+   "pair": [
+    "V02",
+    "V05"
+   ],
+   "types": [
+    "V02   V05 (no edge)",
+    "V02   V05 (no edge)",
+    "V02   V05 (no edge)",
+    "V02   V05 (no edge)",
+    "V02   V05 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.1,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V02, V05)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context, it is not possible to determine a causal relationship between V02 and V05;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "V03",
+    "V04"
+   ],
+   "types": [
+    "V04->V03",
+    "V04->V03",
+    "V04->V03",
+    "V04->V03",
+    "V04->V03"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.25,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.05,
+    "b o-> a": 0.2,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V03, V04)",
+     "letter": "D",
+     "explanation": "The statistical analysis suggests a causal relationship, but without domain-specific information, the direction and existence of causation cannot be confirmed;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "V03",
+    "V05"
+   ],
+   "types": [
+    "V03   V05 (no edge)",
+    "V03   V05 (no edge)",
+    "V03   V05 (no edge)",
+    "V03   V05 (no edge)",
+    "V03   V05 (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.1,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.6
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V03, V05)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about these variables, it is not possible to determine a causal relationship between V03 and V05;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "V04",
+    "V05"
+   ],
+   "types": [
+    "V05 o-> V04",
+    "V04   V05 (no edge)",
+    "V04   V05 (no edge)",
+    "V04   V05 (no edge)",
+    "V04   V05 (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "V05 o-> V04",
+     "to": "V04   V05 (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.1,
+    "b o-> a": 0.3,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.15
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(V04, V05)",
+     "letter": "D",
+     "explanation": "Without specific domain knowledge or context about what V04 and V05 represent, it is not possible to determine a causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    3,
+    3,
+    0,
+    4
+   ],
+   [
+    0,
+    0,
+    0,
+    3,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    4
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

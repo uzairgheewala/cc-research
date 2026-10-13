@@ -1,0 +1,1025 @@
+{
+ "family": "semantic",
+ "rows_file": "analysis/results/methods/pc_c1check_semantic_obs_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 250,
+ "files_upstream_raises": 25,
+ "scenarios_with_any_raise": 5,
+ "error_messages": [
+  "ValueError:  Data correlation matrix is singular. Cannot run fisherz tes"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.3346,
+  "lower": 0.3962
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.3021,
+  "lower": 0.3556
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 37.792,
+  "lower": 35.984
+ },
+ "per_file": {
+  "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.56
+  },
+  "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.54
+  },
+  "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.55
+  },
+  "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.71
+  },
+  "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.5
+  },
+  "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.29
+  },
+  "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.29
+  },
+  "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_education_school_start_time_sleep_attendance__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_education_textbook_cost_course_load__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_education_textbook_cost_course_load__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_education_textbook_cost_course_load__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "semantic_education_textbook_cost_course_load__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_education_textbook_cost_course_load__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.41
+  },
+  "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.61
+  },
+  "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.42
+  },
+  "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.48
+  },
+  "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.55
+  },
+  "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.34
+  },
+  "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.39
+  },
+  "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.49
+  },
+  "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.4
+  },
+  "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.34
+  },
+  "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.42
+  },
+  "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.54
+  },
+  "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.46
+  },
+  "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.49
+  },
+  "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.45
+  },
+  "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.39
+  },
+  "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.36
+  },
+  "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.31
+  },
+  "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.41
+  },
+  "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.43
+  },
+  "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.41
+  },
+  "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.05
+  },
+  "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.44
+  },
+  "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.32
+  },
+  "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.49
+  },
+  "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.4
+  },
+  "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.29
+  },
+  "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.36
+  },
+  "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.46
+  },
+  "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.45
+  },
+  "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.34
+  },
+  "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.4
+  },
+  "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.38
+  },
+  "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.47
+  },
+  "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.57
+  },
+  "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.46
+  },
+  "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.5
+  },
+  "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.44
+  },
+  "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.42
+  },
+  "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.29
+  },
+  "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.42
+  },
+  "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.38
+  }
+ }
+}

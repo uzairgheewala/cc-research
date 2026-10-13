@@ -1,0 +1,4 @@
+# What CI needs to run the checks, the unit tests and the site build. Analysis scripts that call
+# causal-learn or Causal-Copilot run in the Docker image (docker/), not in CI.
+numpy==1.26.4
+networkx==3.2.1

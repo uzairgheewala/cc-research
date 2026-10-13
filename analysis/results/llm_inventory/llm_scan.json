@@ -1,0 +1,2635 @@
+{
+ "api_sites": [
+  {
+   "kind": "api",
+   "file": "data/simulator/simulation.py",
+   "line": 20,
+   "function": "SimulationManager.generate_simulation_config",
+   "function_span": [
+    15,
+    25
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in data simulation for scientific research. Provide your response in JSON format.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "web_demo/help_functions.py",
+   "line": 50,
+   "function": "LLM_parse_query",
+   "function_span": [
+    44,
+    65
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": "format",
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "web_demo/help_functions.py",
+   "line": 59,
+   "function": "LLM_parse_query",
+   "function_span": [
+    44,
+    65
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "user/discuss.py",
+   "line": 10,
+   "function": "Discussion.__init__",
+   "function_span": [
+    5,
+    15
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for extracting text from Latex.",
+   "prompt_expr": "report"
+  },
+  {
+   "kind": "api",
+   "file": "user/discuss.py",
+   "line": 21,
+   "function": "Discussion.interaction",
+   "function_span": [
+    17,
+    38
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for user interaction.",
+   "prompt_expr": "user_query"
+  },
+  {
+   "kind": "api",
+   "file": "llm/test_ollama.py",
+   "line": 25,
+   "function": "test_ollama_client",
+   "function_span": [
+    12,
+    41
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in causal inference and statistics.",
+   "prompt_expr": "\"What is causal inference?\""
+  },
+  {
+   "kind": "api",
+   "file": "llm/test_ollama.py",
+   "line": 33,
+   "function": "test_ollama_client",
+   "function_span": [
+    12,
+    41
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": "\"Create a JSON object with exactly three key concepts in causal inference. Each concept should have a 'name' and 'description' field.\""
+  },
+  {
+   "kind": "api_raw_sdk",
+   "file": "llm/llm_client.py",
+   "line": 157,
+   "function": "LLMClient.chat_completion",
+   "function_span": [
+    111,
+    205
+   ],
+   "call": "self.client.chat.completions.create",
+   "json_response": false,
+   "response_format": "{\"type\": \"json_object\"} if json_response else None",
+   "temperature": "temperature",
+   "model_override": "model if model else self.model",
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "llm/llm_client.py",
+   "line": 175,
+   "function": "LLMClient.chat_completion",
+   "function_span": [
+    111,
+    205
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": null,
+   "response_format": null,
+   "temperature": "temperature",
+   "model_override": "model or self.model",
+   "uses_messages_list": false,
+   "system_prompt": "system_content",
+   "prompt_expr": "user_prompt"
+  },
+  {
+   "kind": "api",
+   "file": "preprocess/stat_info_functions.py",
+   "line": 140,
+   "function": "llm_select_dropped_features",
+   "function_span": [
+    130,
+    159
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for statistical info functions.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "preprocess/dataset.py",
+   "line": 121,
+   "function": "knowledge_info",
+   "function_span": [
+    83,
+    148
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "preprocess/dataset.py",
+   "line": 138,
+   "function": "knowledge_info",
+   "function_span": [
+    83,
+    148
+   ],
+   "call": "client2.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a domain expert specializing in causal inference across multiple fields. Analyze dataset variables to extract comprehensive domain knowledge that would help with causal discovery.",
+   "prompt_expr": "prompt2"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/help_functions.py",
+   "line": 177,
+   "function": "LLM_parse_query",
+   "function_span": [
+    175,
+    182
+   ],
+   "call": "client.chat_completion",
+   "json_response": null,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "prompt",
+   "prompt_expr": "message"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/IV/hte_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    35,
+    49
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for IV hte_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/IV/hte_params.py",
+   "line": 42,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    41,
+    47
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for IV hte_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/MetaLearners/hte_filter.py",
+   "line": 37,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    34,
+    48
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for MetaLearners hte_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/MetaLearners/dml_params.py",
+   "line": 41,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    40,
+    46
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for MetaLearners dml_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/MetaLearners/dml_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    35,
+    48
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for MetaLearners dml_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/MetaLearners/hte_params.py",
+   "line": 39,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    38,
+    44
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for MetaLearners hte_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/Uplift/uplift_filter.py",
+   "line": 79,
+   "function": "UpliftFilter.forward",
+   "function_span": [
+    62,
+    89
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for Uplift uplift_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/Uplift/uplift_params.py",
+   "line": 26,
+   "function": "UpliftParamSelector.model_suggestion",
+   "function_span": [
+    25,
+    31
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for Uplift uplift_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DML/hte_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    35,
+    48
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for DML hte_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DML/dml_params.py",
+   "line": 42,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    41,
+    47
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for DML dml_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DML/dml_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    35,
+    47
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for DML dml_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DML/hte_params.py",
+   "line": 39,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    38,
+    44
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for DML hte_params.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DRL/hte_filter.py",
+   "line": 39,
+   "function": "HTE_Filter.forward",
+   "function_span": [
+    36,
+    49
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for DRL hte_filter.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_inference/DRL/hte_params.py",
+   "line": 38,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "function_span": [
+    37,
+    48
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "report/help_functions.py",
+   "line": 170,
+   "function": "LLM_parse_query",
+   "function_span": [
+    168,
+    184
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": "format",
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "report/help_functions.py",
+   "line": 178,
+   "function": "LLM_parse_query",
+   "function_span": [
+    168,
+    184
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": null
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 132,
+   "function": "Report_generation.get_title",
+   "function_span": [
+    131,
+    140
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "None",
+   "prompt_expr": "f\"You are a helpful assistant, please give me the name of the given dataset (store path: {self.data_file})\\nFor example, if the dataset is Sachs.csv, then retur"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 152,
+   "function": "Report_generation.intro_prompt",
+   "function_span": [
+    142,
+    159
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 176,
+   "function": "Report_generation.background_prompt",
+   "function_span": [
+    161,
+    290
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 578,
+   "function": "Report_generation.graph_effect_prompts",
+   "function_span": [
+    549,
+    585
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 778,
+   "function": "Report_generation.confidence_analysis_prompts",
+   "function_span": [
+    743,
+    789
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 847,
+   "function": "Report_generation.comparision_prompt",
+   "function_span": [
+    806,
+    855
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 858,
+   "function": "Report_generation.abstract_prompt",
+   "function_span": [
+    857,
+    867
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "\"\"\"\n            Write an abstract for a causal discovery report. Summarize the dataset, methodology, and key findings in 3-5 sentences. Only include the abstrac"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 870,
+   "function": "Report_generation.keyword_prompt",
+   "function_span": [
+    869,
+    878
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "f\"\"\"\n            Give me some keywords according to the given information, and these keywords are for an academic report. You should separate each keyword with "
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 881,
+   "function": "Report_generation.conclusion_prompt",
+   "function_span": [
+    880,
+    890
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "f\"\"\"\n            Help me to write a 1-2 paragraphs conclusion according to the given information. You should cover: 1. what data is analyzed (find it in title a"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 908,
+   "function": "Report_generation.latex_convert",
+   "function_span": [
+    892,
+    914
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are an expert in the causal discovery field and helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "report/report_generation.py",
+   "line": 1046,
+   "function": "Report_generation.latex_bug_checking",
+   "function_span": [
+    1036,
+    1063
+   ],
+   "call": "self.client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": true,
+   "system_prompt": "default 'You are a helpful assistant.'",
+   "prompt_expr": "f\"\"\"\n                You are a helpful debugging assistant, help me to fix bugs in the latex report I will give you. \n                1. Please fix the LaTeX er"
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/hyperparameter_selector.py",
+   "line": 104,
+   "function": "HyperparameterSelector.select_hyperparameters",
+   "function_span": [
+    89,
+    125
+   ],
+   "call": "self.llm_client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "hp_prompt",
+   "prompt_expr": "\"Please select the best hyperparameters for the algorithm.\""
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/rerank.py",
+   "line": 103,
+   "function": "Reranker.select_algorithm",
+   "function_span": [
+    89,
+    119
+   ],
+   "call": "self.llm_client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "Please choose the best algorithm considering all relevant factors.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/filter.py",
+   "line": 33,
+   "function": "Filter.forward",
+   "function_span": [
+    17,
+    49
+   ],
+   "call": "self.llm_client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "prompt",
+   "prompt_expr": "f\"Please choose the algorithms that provide most reliable and accurate results, up to top {TOP_K}, for the data user provided. \""
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/tests/user_simulation.py",
+   "line": 51,
+   "function": "simulate_user_query",
+   "function_span": [
+    13,
+    115
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for simulating user queries.",
+   "prompt_expr": "meta_prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/tests/selection_test.py",
+   "line": 118,
+   "function": "select_algorithm",
+   "function_span": [
+    68,
+    137
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for selection testing.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "causal_discovery/runtime_estimators/runtime_estimator.py",
+   "line": 380,
+   "function": "RuntimeEstimator._query_llm",
+   "function_span": [
+    371,
+    385
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for runtime estimation.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "global_setting/Initialize_state.py",
+   "line": 158,
+   "function": "global_state_initialization",
+   "function_span": [
+    110,
+    198
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant. You are a causal discovery expert. You are given a user query and you need to extract the information from the query and return a json object.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "postprocess/judge_functions.py",
+   "line": 270,
+   "function": "get_json",
+   "function_span": [
+    268,
+    275
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant.",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "postprocess/judge_functions.py",
+   "line": 288,
+   "function": "call_llm_new",
+   "function_span": [
+    277,
+    308
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "system_prompt",
+   "prompt_expr": "prompt"
+  },
+  {
+   "kind": "api",
+   "file": "postprocess/judge_functions.py",
+   "line": 556,
+   "function": "LLM_remove_cycles",
+   "function_span": [
+    551,
+    562
+   ],
+   "call": "client.chat_completion",
+   "json_response": true,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant, the following relationships form a cycle, please choose an egde to remove this cycle, and save nodes of this edge in a list.",
+   "prompt_expr": "message"
+  },
+  {
+   "kind": "api",
+   "file": "postprocess/judge.py",
+   "line": 211,
+   "function": "Judge.graph_refutation",
+   "function_span": [
+    180,
+    218
+   ],
+   "call": "client.chat_completion",
+   "json_response": false,
+   "response_format": null,
+   "temperature": "default 0.0",
+   "model_override": null,
+   "uses_messages_list": false,
+   "system_prompt": "You are a helpful assistant for graph refutation.",
+   "prompt_expr": "prompt"
+  }
+ ],
+ "wrapper_sites": [
+  {
+   "kind": "wrapper",
+   "file": "main.py",
+   "line": 161,
+   "function": "main",
+   "calls": "global_state_initialization",
+   "defined_in": [
+    "global_setting/Initialize_state.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "main.py",
+   "line": 195,
+   "function": "main",
+   "calls": "knowledge_info",
+   "defined_in": [
+    "preprocess/dataset.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "main.py",
+   "line": 287,
+   "function": "main",
+   "calls": "graph_effect_prompts",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "main.py",
+   "line": 338,
+   "function": "main",
+   "calls": "graph_effect_prompts",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "data/simulator/simulation.py",
+   "line": 20,
+   "function": "SimulationManager.generate_simulation_config",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "data/simulator/simulation.py",
+   "line": 47,
+   "function": "SimulationManager.generate_dataset",
+   "calls": "generate_simulation_config",
+   "defined_in": [
+    "data/simulator/simulation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 200,
+   "function": "process_message",
+   "calls": "global_state_initialization",
+   "defined_in": [
+    "global_setting/Initialize_state.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 406,
+   "function": "process_message",
+   "calls": "knowledge_info",
+   "defined_in": [
+    "preprocess/dataset.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 496,
+   "function": "process_message",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 682,
+   "function": "process_message",
+   "calls": "graph_effect_prompts",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 703,
+   "function": "process_message",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo_inf.py",
+   "line": 745,
+   "function": "process_message",
+   "calls": "graph_refutation",
+   "defined_in": [
+    "postprocess/judge.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 50,
+   "function": "LLM_parse_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 59,
+   "function": "LLM_parse_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 75,
+   "function": "parse_drop_high_miss_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 110,
+   "function": "meaningful_feature_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 151,
+   "function": "heterogeneity_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 193,
+   "function": "parse_preliminary_feedback",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 230,
+   "function": "parse_reupload_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 281,
+   "function": "parse_var_selection_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 323,
+   "function": "LLM_var_selection",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 354,
+   "function": "parse_ts_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 372,
+   "function": "parse_ts_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 384,
+   "function": "parse_sparsity_query",
+   "calls": "llm_select_dropped_features",
+   "defined_in": [
+    "preprocess/stat_info_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 386,
+   "function": "parse_sparsity_query",
+   "calls": "llm_select_dropped_features",
+   "defined_in": [
+    "preprocess/stat_info_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 404,
+   "function": "parse_sparsity_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 432,
+   "function": "first_stage_sparsity_check",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 499,
+   "function": "parse_algo_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 547,
+   "function": "parse_algo_selection",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 599,
+   "function": "parse_method_selection_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 641,
+   "function": "prepare_hyperparameter_text",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 709,
+   "function": "parse_hyperparameter_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 780,
+   "function": "parse_user_postprocess.parse_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 818,
+   "function": "parse_report_algo_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 852,
+   "function": "parse_inference_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 879,
+   "function": "parse_inf_discuss_query",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 898,
+   "function": "parse_treatment",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/help_functions.py",
+   "line": 904,
+   "function": "parse_shift_value",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 209,
+   "function": "process_message",
+   "calls": "global_state_initialization",
+   "defined_in": [
+    "global_setting/Initialize_state.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 392,
+   "function": "process_message",
+   "calls": "knowledge_info",
+   "defined_in": [
+    "preprocess/dataset.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 407,
+   "function": "process_message",
+   "calls": "knowledge_info",
+   "defined_in": [
+    "preprocess/dataset.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 511,
+   "function": "process_message",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 684,
+   "function": "process_message",
+   "calls": "graph_effect_prompts",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 713,
+   "function": "process_message",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "web_demo/demo.py",
+   "line": 757,
+   "function": "process_message",
+   "calls": "graph_refutation",
+   "defined_in": [
+    "postprocess/judge.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "user/discuss.py",
+   "line": 10,
+   "function": "Discussion.__init__",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "user/discuss.py",
+   "line": 21,
+   "function": "Discussion.interaction",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "llm/test_ollama.py",
+   "line": 25,
+   "function": "test_ollama_client",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "llm/test_ollama.py",
+   "line": 33,
+   "function": "test_ollama_client",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "llm/test_ollama.py",
+   "line": 44,
+   "function": "<module>",
+   "calls": "test_ollama_client",
+   "defined_in": [
+    "llm/test_ollama.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "llm/llm_client.py",
+   "line": 175,
+   "function": "LLMClient.chat_completion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "preprocess/stat_info_functions.py",
+   "line": 140,
+   "function": "llm_select_dropped_features",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "preprocess/dataset.py",
+   "line": 121,
+   "function": "knowledge_info",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "preprocess/dataset.py",
+   "line": 138,
+   "function": "knowledge_info",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/main.py",
+   "line": 31,
+   "function": "main",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 22,
+   "function": "generate_analysis_econml",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 37,
+   "function": "generate_analysis_econml",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 69,
+   "function": "generate_analysis_matching",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 84,
+   "function": "generate_analysis_matching",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 101,
+   "function": "generate_analysis_linear_regression",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 151,
+   "function": "generate_analysis_feature_importance",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 169,
+   "function": "generate_analysis_anormaly",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 186,
+   "function": "generate_analysis_anormaly_dist",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/analysis.py",
+   "line": 208,
+   "function": "generate_conterfactual_estimation",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/help_functions.py",
+   "line": 177,
+   "function": "LLM_parse_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/help_functions.py",
+   "line": 196,
+   "function": "LLM_select_confounders",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/help_functions.py",
+   "line": 213,
+   "function": "LLM_select_hte_var",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/IV/hte_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/IV/hte_params.py",
+   "line": 42,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/IV/hte_params.py",
+   "line": 187,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/IV/hte_params.py",
+   "line": 194,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/IV/hte_params.py",
+   "line": 201,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/hte_filter.py",
+   "line": 37,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/dml_params.py",
+   "line": 41,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/dml_params.py",
+   "line": 80,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/dml_params.py",
+   "line": 86,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/dml_params.py",
+   "line": 92,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/dml_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/hte_params.py",
+   "line": 39,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/hte_params.py",
+   "line": 80,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/hte_params.py",
+   "line": 86,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/MetaLearners/hte_params.py",
+   "line": 92,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/Uplift/uplift_filter.py",
+   "line": 79,
+   "function": "UpliftFilter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/Uplift/uplift_params.py",
+   "line": 26,
+   "function": "UpliftParamSelector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/Uplift/uplift_params.py",
+   "line": 48,
+   "function": "UpliftParamSelector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/hte_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/dml_params.py",
+   "line": 42,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/dml_params.py",
+   "line": 81,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/dml_params.py",
+   "line": 87,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/dml_params.py",
+   "line": 93,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/dml_filter.py",
+   "line": 38,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/hte_params.py",
+   "line": 39,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/hte_params.py",
+   "line": 80,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/hte_params.py",
+   "line": 86,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DML/hte_params.py",
+   "line": 92,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DRL/hte_filter.py",
+   "line": 39,
+   "function": "HTE_Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DRL/hte_params.py",
+   "line": 38,
+   "function": "HTE_Param_Selector.model_suggestion",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DRL/hte_params.py",
+   "line": 183,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DRL/hte_params.py",
+   "line": 190,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_inference/DRL/hte_params.py",
+   "line": 197,
+   "function": "HTE_Param_Selector.forward",
+   "calls": "model_suggestion",
+   "defined_in": [
+    "causal_inference/DML/dml_params.py",
+    "causal_inference/DML/hte_params.py",
+    "causal_inference/DRL/hte_params.py",
+    "causal_inference/IV/hte_params.py",
+    "causal_inference/MetaLearners/dml_params.py",
+    "causal_inference/MetaLearners/hte_params.py",
+    "causal_inference/Uplift/uplift_params.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/help_functions.py",
+   "line": 61,
+   "function": "fix_latex_itemize_LLM",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/help_functions.py",
+   "line": 170,
+   "function": "LLM_parse_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/help_functions.py",
+   "line": 178,
+   "function": "LLM_parse_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 132,
+   "function": "Report_generation.get_title",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 152,
+   "function": "Report_generation.intro_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 176,
+   "function": "Report_generation.background_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 235,
+   "function": "Report_generation.background_prompt",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 578,
+   "function": "Report_generation.graph_effect_prompts",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 778,
+   "function": "Report_generation.confidence_analysis_prompts",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 847,
+   "function": "Report_generation.comparision_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 858,
+   "function": "Report_generation.abstract_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 870,
+   "function": "Report_generation.keyword_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 881,
+   "function": "Report_generation.conclusion_prompt",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 908,
+   "function": "Report_generation.latex_convert",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 945,
+   "function": "Report_generation.generation",
+   "calls": "get_title",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 946,
+   "function": "Report_generation.generation",
+   "calls": "intro_prompt",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 949,
+   "function": "Report_generation.generation",
+   "calls": "background_prompt",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 971,
+   "function": "Report_generation.generation",
+   "calls": "confidence_analysis_prompts",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 974,
+   "function": "Report_generation.generation",
+   "calls": "comparision_prompt",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 989,
+   "function": "Report_generation.generation",
+   "calls": "abstract_prompt",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 990,
+   "function": "Report_generation.generation",
+   "calls": "conclusion_prompt",
+   "defined_in": [
+    "report/report_generation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/report_generation.py",
+   "line": 1046,
+   "function": "Report_generation.latex_bug_checking",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 46,
+   "function": "Inference_Report_generation.generate_proposal",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 151,
+   "function": "Inference_Report_generation.generate_feature_importance",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 181,
+   "function": "Inference_Report_generation.generate_attribution",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 208,
+   "function": "Inference_Report_generation.generate_counterfactual_estimation",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 247,
+   "function": "Inference_Report_generation.generate_discussion",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "report/inference_report_generation.py",
+   "line": 273,
+   "function": "Inference_Report_generation.generate_next_step",
+   "calls": "LLM_parse_query",
+   "defined_in": [
+    "causal_inference/help_functions.py",
+    "report/help_functions.py",
+    "web_demo/help_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/hyperparameter_selector.py",
+   "line": 24,
+   "function": "HyperparameterSelector.forward",
+   "calls": "select_hyperparameters",
+   "defined_in": [
+    "causal_discovery/hyperparameter_selector.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/hyperparameter_selector.py",
+   "line": 104,
+   "function": "HyperparameterSelector.select_hyperparameters",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/rerank.py",
+   "line": 20,
+   "function": "Reranker.forward",
+   "calls": "select_algorithm",
+   "defined_in": [
+    "causal_discovery/rerank.py",
+    "causal_discovery/tests/selection_test.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/rerank.py",
+   "line": 103,
+   "function": "Reranker.select_algorithm",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/filter.py",
+   "line": 33,
+   "function": "Filter.forward",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/evaluation/benchmarking_integrated.py",
+   "line": 293,
+   "function": "BenchmarkRunner._run_single_experiment",
+   "calls": "global_state_initialization",
+   "defined_in": [
+    "global_setting/Initialize_state.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/evaluation/benchmarking_integrated.py",
+   "line": 305,
+   "function": "BenchmarkRunner._run_single_experiment",
+   "calls": "knowledge_info",
+   "defined_in": [
+    "preprocess/dataset.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/tests/user_simulation.py",
+   "line": 51,
+   "function": "simulate_user_query",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/tests/user_simulation.py",
+   "line": 136,
+   "function": "<module>",
+   "calls": "simulate_user_query",
+   "defined_in": [
+    "causal_discovery/tests/user_simulation.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/tests/selection_test.py",
+   "line": 118,
+   "function": "select_algorithm",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/tests/selection_test.py",
+   "line": 146,
+   "function": "process_selection_chunk",
+   "calls": "select_algorithm",
+   "defined_in": [
+    "causal_discovery/rerank.py",
+    "causal_discovery/tests/selection_test.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/runtime_estimators/runtime_estimator.py",
+   "line": 359,
+   "function": "RuntimeEstimator._handle_new_algorithm",
+   "calls": "_query_llm",
+   "defined_in": [
+    "causal_discovery/runtime_estimators/runtime_estimator.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "causal_discovery/runtime_estimators/runtime_estimator.py",
+   "line": 380,
+   "function": "RuntimeEstimator._query_llm",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "global_setting/Initialize_state.py",
+   "line": 158,
+   "function": "global_state_initialization",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 270,
+   "function": "get_json",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 288,
+   "function": "call_llm_new",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 307,
+   "function": "call_llm_new",
+   "calls": "call_llm_new",
+   "defined_in": [
+    "postprocess/judge_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 422,
+   "function": "llm_evaluation_new.check_node_relationship",
+   "calls": "call_llm_new",
+   "defined_in": [
+    "postprocess/judge_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 427,
+   "function": "llm_evaluation_new.check_node_relationship",
+   "calls": "call_llm_new",
+   "defined_in": [
+    "postprocess/judge_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 556,
+   "function": "LLM_remove_cycles",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge_functions.py",
+   "line": 588,
+   "function": "check_cycle",
+   "calls": "LLM_remove_cycles",
+   "defined_in": [
+    "postprocess/judge_functions.py"
+   ]
+  },
+  {
+   "kind": "wrapper",
+   "file": "postprocess/judge.py",
+   "line": 211,
+   "function": "Judge.graph_refutation",
+   "calls": "chat_completion",
+   "defined_in": [
+    "llm/llm_client.py"
+   ]
+  }
+ ],
+ "unparseable": [],
+ "text_hits": 51,
+ "text_hits_not_matched_by_ast": []
+}

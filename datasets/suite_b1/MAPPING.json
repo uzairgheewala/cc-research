@@ -1,0 +1,538 @@
+{
+  "format": 2,
+  "suite": "suite_b1",
+  "arms": {
+    "k11": {
+      "family": "abalone",
+      "role": "real",
+      "dataset_arg": "research:datasets/suite_b1/k11/k11.csv",
+      "sha256": "b0377947ff6ea41d83d0999a0c15f68104bc4a161763cf797e7726b52d346913",
+      "bytes": 196138,
+      "path_says_name": false,
+      "column_labels": [
+        "Age",
+        "Length",
+        "Shell weight",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight"
+      ],
+      "data_in_each_column_is_really": [
+        "Age",
+        "Length",
+        "Shell weight",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight"
+      ],
+      "reference_by_data": "_reference/abalone_by_data.npy",
+      "reference_by_label": "_reference/abalone_by_data.npy"
+    },
+    "k12": {
+      "family": "abalone",
+      "role": "neutral",
+      "dataset_arg": "research:datasets/suite_b1/k12/k12.csv",
+      "sha256": "688a7ba8eac9fd8a9c3bb3e0c06c66d32de90e44561b44c63374b4f4320971e7",
+      "bytes": 196087,
+      "path_says_name": false,
+      "column_labels": [
+        "V01",
+        "V02",
+        "V03",
+        "V04",
+        "V05",
+        "V06",
+        "V07",
+        "V08"
+      ],
+      "data_in_each_column_is_really": [
+        "Age",
+        "Length",
+        "Shell weight",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight"
+      ],
+      "reference_by_data": "_reference/abalone_by_data.npy",
+      "reference_by_label": null
+    },
+    "k13": {
+      "family": "abalone",
+      "role": "swapped",
+      "dataset_arg": "research:datasets/suite_b1/k13/k13.csv",
+      "sha256": "157e8a3829c5d9f1efbadbf47bd00e5617f01f1694f8cb185ce044f9744d25cd",
+      "bytes": 196138,
+      "path_says_name": false,
+      "column_labels": [
+        "Length",
+        "Age",
+        "Diameter",
+        "Shell weight",
+        "Whole weight",
+        "Height",
+        "Viscera weight",
+        "Shucked weight"
+      ],
+      "data_in_each_column_is_really": [
+        "Age",
+        "Length",
+        "Shell weight",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight"
+      ],
+      "reference_by_data": "_reference/abalone_by_data.npy",
+      "reference_by_label": "_reference/abalone_swapped_by_label.npy"
+    },
+    "k21": {
+      "family": "autompg",
+      "role": "real",
+      "dataset_arg": "research:datasets/suite_b1/k21/k21.csv",
+      "sha256": "6a597553368b38ee4034827d99832262bd3f10798de6a596eaf440d1721e3a96",
+      "bytes": 8382,
+      "path_says_name": false,
+      "column_labels": [
+        "mpg",
+        "displacement",
+        "horsepower",
+        "weight",
+        "acceleration"
+      ],
+      "data_in_each_column_is_really": [
+        "mpg",
+        "displacement",
+        "horsepower",
+        "weight",
+        "acceleration"
+      ],
+      "reference_by_data": "_reference/autompg_by_data.npy",
+      "reference_by_label": "_reference/autompg_by_data.npy"
+    },
+    "k22": {
+      "family": "autompg",
+      "role": "neutral",
+      "dataset_arg": "research:datasets/suite_b1/k22/k22.csv",
+      "sha256": "a9e6b06a19dd11f2f44b4eadbca9a2639ce94ff706c22897357df7a8229f784b",
+      "bytes": 8354,
+      "path_says_name": false,
+      "column_labels": [
+        "V01",
+        "V02",
+        "V03",
+        "V04",
+        "V05"
+      ],
+      "data_in_each_column_is_really": [
+        "mpg",
+        "displacement",
+        "horsepower",
+        "weight",
+        "acceleration"
+      ],
+      "reference_by_data": "_reference/autompg_by_data.npy",
+      "reference_by_label": null
+    },
+    "k23": {
+      "family": "autompg",
+      "role": "swapped",
+      "dataset_arg": "research:datasets/suite_b1/k23/k23.csv",
+      "sha256": "22cc67bc6354825685484440d332fd612c14a713ead2000ae9252aef7b9d768c",
+      "bytes": 8382,
+      "path_says_name": false,
+      "column_labels": [
+        "displacement",
+        "weight",
+        "acceleration",
+        "horsepower",
+        "mpg"
+      ],
+      "data_in_each_column_is_really": [
+        "mpg",
+        "displacement",
+        "horsepower",
+        "weight",
+        "acceleration"
+      ],
+      "reference_by_data": "_reference/autompg_by_data.npy",
+      "reference_by_label": "_reference/autompg_swapped_by_label.npy"
+    },
+    "k31": {
+      "family": "concrete",
+      "role": "real",
+      "dataset_arg": "research:datasets/suite_b1/k31/k31.csv",
+      "sha256": "54d0960a4c29d43cf75ac9797109afea610d83ddd0938bd76faf20ab18cae411",
+      "bytes": 41461,
+      "path_says_name": false,
+      "column_labels": [
+        "Cement",
+        "Blast furnace slag",
+        "Fly ash",
+        "Water",
+        "Superplasticizer",
+        "Coarse aggregate",
+        "Fine aggregate",
+        "Age",
+        "Compressive strength"
+      ],
+      "data_in_each_column_is_really": [
+        "Cement",
+        "Blast furnace slag",
+        "Fly ash",
+        "Water",
+        "Superplasticizer",
+        "Coarse aggregate",
+        "Fine aggregate",
+        "Age",
+        "Compressive strength"
+      ],
+      "reference_by_data": "_reference/concrete_by_data.npy",
+      "reference_by_label": "_reference/concrete_by_data.npy"
+    },
+    "k32": {
+      "family": "concrete",
+      "role": "neutral",
+      "dataset_arg": "research:datasets/suite_b1/k32/k32.csv",
+      "sha256": "9aa12632c1e47e98ec07ffb60b69b652c168f9c99f8e32491500d23cab695dcf",
+      "bytes": 41383,
+      "path_says_name": false,
+      "column_labels": [
+        "V01",
+        "V02",
+        "V03",
+        "V04",
+        "V05",
+        "V06",
+        "V07",
+        "V08",
+        "V09"
+      ],
+      "data_in_each_column_is_really": [
+        "Cement",
+        "Blast furnace slag",
+        "Fly ash",
+        "Water",
+        "Superplasticizer",
+        "Coarse aggregate",
+        "Fine aggregate",
+        "Age",
+        "Compressive strength"
+      ],
+      "reference_by_data": "_reference/concrete_by_data.npy",
+      "reference_by_label": null
+    },
+    "k33": {
+      "family": "concrete",
+      "role": "swapped",
+      "dataset_arg": "research:datasets/suite_b1/k33/k33.csv",
+      "sha256": "1a69d8302afb1788ad60338b5a97cd431c1e113918b59cee1fd4258d95b89342",
+      "bytes": 41461,
+      "path_says_name": false,
+      "column_labels": [
+        "Blast furnace slag",
+        "Cement",
+        "Water",
+        "Fly ash",
+        "Coarse aggregate",
+        "Superplasticizer",
+        "Age",
+        "Compressive strength",
+        "Fine aggregate"
+      ],
+      "data_in_each_column_is_really": [
+        "Cement",
+        "Blast furnace slag",
+        "Fly ash",
+        "Water",
+        "Superplasticizer",
+        "Coarse aggregate",
+        "Fine aggregate",
+        "Age",
+        "Compressive strength"
+      ],
+      "reference_by_data": "_reference/concrete_by_data.npy",
+      "reference_by_label": "_reference/concrete_swapped_by_label.npy"
+    },
+    "k41": {
+      "family": "dwd",
+      "role": "real",
+      "dataset_arg": "research:datasets/suite_b1/k41/k41.csv",
+      "sha256": "e8052c8e44f790e4914b0dab827002f7537ec003df57c1e93316a126e5272ae4",
+      "bytes": 9297,
+      "path_says_name": false,
+      "column_labels": [
+        "Altitude",
+        "Temperature",
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours"
+      ],
+      "data_in_each_column_is_really": [
+        "Altitude",
+        "Temperature",
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours"
+      ],
+      "reference_by_data": "_reference/dwd_by_data.npy",
+      "reference_by_label": "_reference/dwd_by_data.npy"
+    },
+    "k42": {
+      "family": "dwd",
+      "role": "neutral",
+      "dataset_arg": "research:datasets/suite_b1/k42/k42.csv",
+      "sha256": "38fed51bf96d5aea9c5d683475b91f119b7fb66c11b490483a66011796b3f4ed",
+      "bytes": 9257,
+      "path_says_name": false,
+      "column_labels": [
+        "V01",
+        "V02",
+        "V03",
+        "V04",
+        "V05"
+      ],
+      "data_in_each_column_is_really": [
+        "Altitude",
+        "Temperature",
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours"
+      ],
+      "reference_by_data": "_reference/dwd_by_data.npy",
+      "reference_by_label": null
+    },
+    "k43": {
+      "family": "dwd",
+      "role": "swapped",
+      "dataset_arg": "research:datasets/suite_b1/k43/k43.csv",
+      "sha256": "b20580be5e2075b7b9658ff0cc6b579bc77532367a6a6a0b7f82d486e93a1c94",
+      "bytes": 9297,
+      "path_says_name": false,
+      "column_labels": [
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours",
+        "Altitude",
+        "Temperature"
+      ],
+      "data_in_each_column_is_really": [
+        "Altitude",
+        "Temperature",
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours"
+      ],
+      "reference_by_data": "_reference/dwd_by_data.npy",
+      "reference_by_label": "_reference/dwd_swapped_by_label.npy"
+    }
+  },
+  "families": {
+    "abalone": {
+      "source_csv": "data/dataset/Abalone/Abalone.csv",
+      "source_sha256": "b0377947ff6ea41d83d0999a0c15f68104bc4a161763cf797e7726b52d346913",
+      "reference": "data/dataset/Abalone/base_graph.npy",
+      "reference_sha256": "c4b93d3bfc1b8a5610532f9f608e4f130f2fe436b3ff605f003a459072c1fc84",
+      "rows": 4177,
+      "columns": [
+        "Age",
+        "Length",
+        "Shell weight",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight"
+      ],
+      "arms": {
+        "real": "k11",
+        "neutral": "k12",
+        "swapped": "k13"
+      },
+      "reference_edges": [
+        "Age->Length",
+        "Age->Shell weight",
+        "Age->Diameter",
+        "Age->Height",
+        "Age->Whole weight",
+        "Age->Shucked weight",
+        "Age->Viscera weight"
+      ],
+      "swapped_labels_by_column": [
+        "Length",
+        "Age",
+        "Diameter",
+        "Shell weight",
+        "Whole weight",
+        "Height",
+        "Viscera weight",
+        "Shucked weight"
+      ],
+      "adjacent_pairs_shared_by_the_two_references": 1,
+      "search_nodes_visited": 13371,
+      "gates": {
+        "D6_reference_matches_data": true,
+        "D2_real_header_is_source_header": true,
+        "D1_bodies_byte_identical": true,
+        "D3_swapped_is_derangement": true,
+        "D4_shared_pairs_match_search": true,
+        "D5_parsed_values_identical": true,
+        "D7_opaque_names": true
+      }
+    },
+    "autompg": {
+      "source_csv": "data/dataset/Auto_mpg/Auto_mpg.csv",
+      "source_sha256": "6a597553368b38ee4034827d99832262bd3f10798de6a596eaf440d1721e3a96",
+      "reference": "data/dataset/Auto_mpg/base_graph.npy",
+      "reference_sha256": "8946a38aa9f2a88afc705bff7eb1d35f326aaf163fcfa36ed66e60b9e1326897",
+      "rows": 392,
+      "columns": [
+        "mpg",
+        "displacement",
+        "horsepower",
+        "weight",
+        "acceleration"
+      ],
+      "arms": {
+        "real": "k21",
+        "neutral": "k22",
+        "swapped": "k23"
+      },
+      "reference_edges": [
+        "displacement->horsepower",
+        "horsepower->mpg",
+        "horsepower->acceleration",
+        "weight->mpg",
+        "weight->displacement"
+      ],
+      "swapped_labels_by_column": [
+        "displacement",
+        "weight",
+        "acceleration",
+        "horsepower",
+        "mpg"
+      ],
+      "adjacent_pairs_shared_by_the_two_references": 1,
+      "search_nodes_visited": 73,
+      "gates": {
+        "D6_reference_matches_data": true,
+        "D2_real_header_is_source_header": true,
+        "D1_bodies_byte_identical": true,
+        "D3_swapped_is_derangement": true,
+        "D4_shared_pairs_match_search": true,
+        "D5_parsed_values_identical": true,
+        "D7_opaque_names": true
+      }
+    },
+    "concrete": {
+      "source_csv": "data/dataset/CCS_Data/CCS_Data.csv",
+      "source_sha256": "54d0960a4c29d43cf75ac9797109afea610d83ddd0938bd76faf20ab18cae411",
+      "reference": "data/dataset/CCS_Data/base_graph.npy",
+      "reference_sha256": "2b1034fb19a6d6118d1e142780d2dfca506c5c84de0a7d401df63a23baacaebc",
+      "rows": 1030,
+      "columns": [
+        "Cement",
+        "Blast furnace slag",
+        "Fly ash",
+        "Water",
+        "Superplasticizer",
+        "Coarse aggregate",
+        "Fine aggregate",
+        "Age",
+        "Compressive strength"
+      ],
+      "arms": {
+        "real": "k31",
+        "neutral": "k32",
+        "swapped": "k33"
+      },
+      "reference_edges": [
+        "Cement->Compressive strength",
+        "Blast furnace slag->Compressive strength",
+        "Fly ash->Compressive strength",
+        "Water->Compressive strength",
+        "Superplasticizer->Compressive strength",
+        "Coarse aggregate->Compressive strength",
+        "Fine aggregate->Compressive strength",
+        "Age->Compressive strength"
+      ],
+      "swapped_labels_by_column": [
+        "Blast furnace slag",
+        "Cement",
+        "Water",
+        "Fly ash",
+        "Coarse aggregate",
+        "Superplasticizer",
+        "Age",
+        "Compressive strength",
+        "Fine aggregate"
+      ],
+      "adjacent_pairs_shared_by_the_two_references": 1,
+      "search_nodes_visited": 405845,
+      "gates": {
+        "D6_reference_matches_data": true,
+        "D2_real_header_is_source_header": true,
+        "D1_bodies_byte_identical": true,
+        "D3_swapped_is_derangement": true,
+        "D4_shared_pairs_match_search": true,
+        "D5_parsed_values_identical": true,
+        "D7_opaque_names": true
+      }
+    },
+    "dwd": {
+      "source_csv": "data/dataset/DWD/DWD.csv",
+      "source_sha256": "e8052c8e44f790e4914b0dab827002f7537ec003df57c1e93316a126e5272ae4",
+      "reference": "data/dataset/DWD/base_graph.npy",
+      "reference_sha256": "c50700c26c2375fbc7818d9f87bcfe6ec510bbbf4f69ccdf313f64a6e5ef2a65",
+      "rows": 349,
+      "columns": [
+        "Altitude",
+        "Temperature",
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours"
+      ],
+      "arms": {
+        "real": "k41",
+        "neutral": "k42",
+        "swapped": "k43"
+      },
+      "reference_edges": [
+        "Altitude->Temperature",
+        "Altitude->Precipitation",
+        "Altitude->Sunshine hours",
+        "Longitude->Temperature"
+      ],
+      "swapped_labels_by_column": [
+        "Precipitation",
+        "Longitude",
+        "Sunshine hours",
+        "Altitude",
+        "Temperature"
+      ],
+      "adjacent_pairs_shared_by_the_two_references": 0,
+      "search_nodes_visited": 41,
+      "gates": {
+        "D6_reference_matches_data": true,
+        "D2_real_header_is_source_header": true,
+        "D1_bodies_byte_identical": true,
+        "D3_swapped_is_derangement": true,
+        "D4_shared_pairs_match_search": true,
+        "D5_parsed_values_identical": true,
+        "D7_opaque_names": true
+      }
+    }
+  },
+  "gates": {
+    "abalone": true,
+    "autompg": true,
+    "concrete": true,
+    "dwd": true
+  }
+}

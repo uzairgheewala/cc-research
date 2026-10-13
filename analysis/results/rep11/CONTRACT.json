@@ -1,0 +1,26 @@
+{
+ "tickets": ["REP-11", "BND-12"],
+ "producer": "analysis/rep11_sachs_data.py (rep11_sachs_data.json); run with PYTHONDONTWRITEBYTECODE=1, pgmpy 1.1.2 on PYTHONPATH, optional --causaliq-path for the authors'-code cross-check",
+ "score_bearing": true,
+ "regime": "D",
+ "split": "not applicable",
+ "controls": {
+  "columns_shuffled": false,
+  "names": "not applicable",
+  "supplier": "ours",
+  "note": "15 synthetic observational datasets x 10,000 rows sampled by us (pgmpy simulate, seeds 11000..11014) from the bnlearn Sachs BIF bundled with pgmpy 1.1.2 (sha256 ed1830fbde10...). Variable names are never read by any method (data only)."
+ },
+ "orientation_rule": "Individual graphs are scored as learnt (CPDAG/PDAG/DAG): an undirected edge never matches a directed true arc (counts as one FP and one FN), as in bnlearn compare() and the authors' causaliq_analysis metrics.pdag_compare. Ensemble DAGs come from ToDAGGREEDY (arXiv 2608.27472 Algorithm 2, tau 0.3): direction by p_fwd + p_und/2 vs p_bwd + p_und/2, exact ties to the alphabetically first node as parent, arcs closing a cycle skipped.",
+ "shd_variant": "DAG/PDAG-vs-reference-DAG SHD as in causaliq_analysis pdag_compare: extra + missing + reversed + arc/edge type mismatches (each counted once); not CPDAG-vs-CPDAG",
+ "metric_defs": {
+  "directed_f1": "F1 with bnlearn semantics (key 'f1' in the JSON): TP = arcs matched with the same orientation + undirected edges matched as undirected; reversed arc or arc/edge type mismatch = 1 FP + 1 FN; extra = FP; missing = FN",
+  "directed_precision": "TP / (TP + FP), same counting (key 'precision')",
+  "directed_recall": "TP / (TP + FN), same counting (key 'recall')",
+  "adjacency_f1": "F1 over unordered adjacencies, edge type ignored (key 'skeleton_f1'); reported alongside, not used for the verdict",
+  "shd": "see shd_variant",
+  "mean_indiv_f1": "mean directed_f1 over the 45 individual learnt graphs (3 algorithms x 15 datasets), compared with Table 9 'Mean Indiv.' (0.293)",
+  "mean_indiv_f1_after_todaggreedy": "same mean after turning each single graph into a DAG with ToDAGGREEDY (alternative reading, not used for the verdict)",
+  "ensemble_f1": "directed_f1 of the ToDAGGREEDY DAG from the merged BNSL PDG, compared with Table 9 'Ensemble' / Table 5 'BNSL' (0.606); readings B (primary), A, C are defined in the producer docstring",
+  "seconds": "wall time"
+ }
+}

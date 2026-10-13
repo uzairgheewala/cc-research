@@ -1,0 +1,5467 @@
+{
+ "verified_utc": "2026-10-13T02:09:52Z",
+ "items": [
+  {
+   "id": "DLV-01",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "docs/q1/datasets.md holds one card per dataset (source, reference graph and how far it can be trusted, variables, rows, why chosen, sha256 of every arm) and the suite is declared frozen",
+   "evidence": [
+    "docs/q1/datasets.md",
+    "manifests/evidence/suite_q1_2026-10-10.sha256",
+    "datasets/suite_q1s2/MAPPING.json",
+    "analysis/make_suite_ca.py",
+    "analysis/make_dataset_cards.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: \\*\\*Status: frozen\\.\\*\\* Manifest `manifests/evidence/suite_q1_2026-10-10\\.sha256`"
+    },
+    {
+     "ok": true,
+     "detail": "count 30 (want 30)"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_01 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_02 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_03 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_04 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_05 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_06 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_07 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_08 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_09 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/s2_10 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "python analysis/make_suite_ca.py --check && python analysis/reference_reliability.py && python analysis/make_dataset_cards.py --date 2026-10-10",
+   "reopen_if": [
+    "any file listed in manifests/evidence/suite_q1_2026-10-10.sha256 changes (F9)"
+   ],
+   "due": "2026-11-02",
+   "blocked_by": null,
+   "note": "S1: Sachs (4 arms) and abalone, Auto MPG, concrete, DWD (3 arms each). S2: 10 CausalArena semantic test scenarios, columns shuffled, real/neutral/swapped, gates D1-D11 pass. One swapped labelling (s2_03) is the best found within the search budget (2 shared pairs), not proved minimal; recorded in its card.",
+   "problems": []
+  },
+  {
+   "id": "DLV-02",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Every dataset in the frozen suite has completed live runs in each name arm (real, neutral, moved), every run recorded and the code tree verified before and after",
+   "evidence": [
+    "runs/*/meta.json",
+    "plans/results/"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "tree identity bad in 0 runs"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Recorded: 84 live runs on S1 (Sachs + 4 bundle-1 families) and 30 on S2 (11-12 Oct). Gap: 6 S2 arms (q011, q033, q041, q051, q071, q101) have no completed run; their only run crashed at the cycle step and is scored at S3. Closing needs Uzair's choice: rerun those 6 (about $2.5; likely to crash again) or restate the criterion as 'reached S3'.",
+   "problems": []
+  },
+  {
+   "id": "DLV-03",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "A report section giving, per dataset and name arm, the score at each stage (S0-S4), which step set each final edge, crashes and stability, with every number tied to a tracker check",
+   "evidence": [
+    "analysis/reports/bundle1_results.md",
+    "analysis/reports/pass4b_results.md",
+    "analysis/reports/bnd08_s2_results.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Measurements exist for S1 (AUD-03 to AUD-09, RQ-01 to RQ-03) and S2 (AUD-10, stage table per arm); the Q1 write-up is not done.",
+   "problems": []
+  },
+  {
+   "id": "DLV-04",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "A refinement variant evaluated on the frozen suite under the same controls: adjacency F1 never below the algorithm's output, no crashes from malformed model output, every LLM-set edge labelled with its source",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DLV-05",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 checkpoint (Mon 2 Nov)",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Checkpoint submitted, covering the frozen suite (DLV-01), the runs (DLV-02) and the exploration so far (DLV-03)",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-02",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DLV-06",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Report covering DLV-01 to DLV-04, every number reproducible from cc-research with the command named next to it",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-12-04",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-01",
+   "category": "1 Replication",
+   "title": "Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "At least one completed live run per pass; every run has meta.json, llm_calls.jsonl, artifacts and state snapshots",
+   "evidence": [
+    "manifests/evidence/plans_results_2026-10-09.sha256",
+    "manifests/evidence/runs_live_2026-10-09.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "runs 84 (want 84); completed 72 (want 72)"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "cc.ps1 plan <plan file> (spends API credit)",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-02",
+   "category": "1 Replication",
+   "title": "Code untouched before and after every run (1,332 files byte-identical)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every live run's meta.json records tree_identity_after.ok and no unexpected files in the repo",
+   "evidence": [
+    "manifests/baseline_a31aa7c.sha256",
+    "manifests/evidence/runs_live_2026-10-09.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "tree identity bad in 0 runs"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "cd Causal-Copilot && sha256sum -c ../cc-research/manifests/baseline_a31aa7c.sha256",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-03",
+   "category": "1 Replication",
+   "title": "Reproduce the paper's headline claims (arXiv 2504.13263)",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Each headline claim marked reproduced / not reproducible (with the reason) / not attempted",
+   "evidence": [
+    "analysis/reports/bnd03/rep03_headline_claims.md",
+    "analysis/reports/pass4b_results.md",
+    "project:claude/causal-copilot-research-ledger.md (I1, F17, F18, F19)",
+    "repo:causal_discovery/evaluation/benchmarking_integrated.py",
+    "repo:causal_discovery/tests/benchmarking_config.py"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-research-ledger.md (I1, F17, F18, F19)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: heavy_benchmarking_v6"
+    },
+    {
+     "ok": true,
+     "detail": "found: \\| 22 \\|"
+    },
+    {
+     "ok": true,
+     "detail": "files/rep03_headline_claims.md/unresolved_citations = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "22 claims tabled (BND-03): none reproducible from the repo (data absent; the scorer scores pre-refinement output and orients non-directed edges from the truth, evaluator.py:154-215). Live-only claims stay 'not attempted' until BND-08/12.",
+   "problems": []
+  },
+  {
+   "id": "REP-04",
+   "category": "1 Replication",
+   "title": "Check the paper's text against the code (divergences D1-D9)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every methods-section claim about refinement and error handling checked against code and runs",
+   "evidence": [
+    "analysis/reports/bnd03/rep04_paper_vs_code.md",
+    "analysis/results/bnd03_citations.json",
+    "project:claude/causal-copilot-research-ledger.md (PAPER-vs-CODE)",
+    "analysis/reports/pass3_llm_dependency_map.md"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-research-ledger.md (PAPER-vs-CODE)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: return response\\['nodes'\\]"
+    },
+    {
+     "ok": true,
+     "detail": "found: D23"
+    },
+    {
+     "ok": true,
+     "detail": "files/rep04_paper_vs_code.md/unresolved_citations = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "files/rep04_paper_vs_code.md/uncited_findings = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "python analysis/check_citations.py analysis/reports/bnd03/*.md docs/q1/scope_note.md",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Full pass over the methods sections (BND-03): 45 claims, divergences D10-D23 added to D1-D9; every code citation resolves in the a31aa7c tree (gate A1).",
+   "problems": []
+  },
+  {
+   "id": "REP-05",
+   "category": "1 Replication",
+   "title": "Reproduce CausalArena's published PC baseline (scorer calibration, F1)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Published configuration on the 250 public semantic files; mean F1 within 3 standard errors of 0.333",
+   "evidence": [
+    "analysis/results/causalarena_calibration/pc_calibration.json",
+    "analysis/causalarena_pc_calibration.py",
+    "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gate_C1_official_configuration_reproduces_published_F1 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "complete = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/causalarena_pc_calibration.py --root external/causalarena --out analysis/results/causalarena_calibration (resumable, about 10 min)",
+   "reopen_if": [
+    "CausalArena release files change",
+    "their evaluation code shows a different orientation rule"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-06",
+   "category": "1 Replication",
+   "title": "Explain why SHD does not reproduce (ours 37.5, published 33.5)",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "A definition or data difference identified that accounts for the gap, or a documented reason it cannot be settled",
+   "evidence": [
+    "analysis/results/causalarena_calibration/pc_calibration.json",
+    "analysis/results/causalarena_calibration/protocol_check.json",
+    "analysis/causalarena_protocol_check.py",
+    "analysis/literature/bnd02/dom07_deep_reads.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gate_C2_official_configuration_reproduces_published_SHD = false (false )"
+    },
+    {
+     "ok": true,
+     "detail": "verdict/shd_reproduced_under_code_rule = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "verdict/f1_reproduced_under_code_rule = false (false )"
+    },
+    {
+     "ok": true,
+     "detail": "verdict/any_rule_reproduces_both = false (false )"
+    },
+    {
+     "ok": true,
+     "detail": "facts/P2_liberal_orientation/found = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/causalarena_protocol_check.py --clone $HOME/scratch/tabcausal",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Not settleable from public data. The authors' baseline code orients undecided CPDAG edges lower index -> higher ('liberal', TabCausal run_pc.py) and counts a reversal once; under that rule our SHD is 35.43 (within 2.81 of 33.52) but F1 0.396 (published 0.333, tolerance 0.045); under random orientation F1 matches and SHD does not. The published means also cover 50 unreleased scenarios. The paper's appendix B (which states the rule) could not be read.",
+   "problems": []
+  },
+  {
+   "id": "REP-07",
+   "category": "1 Replication",
+   "title": "Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, AVICI, CDFM (CPU)",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Each row within tolerance of the published mean, or the gap explained",
+   "evidence": [
+    "analysis/results/methods/bnd06_verdicts.json",
+    "analysis/results/methods/bnd06_families.json",
+    "analysis/reports/bnd06_interim.md",
+    "analysis/reports/bnd06_families.md",
+    "analysis/reports/bnd04_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "methods/lingam/vs_published_authors_rule/f1_within = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gate_C1_published_PC_F1_reproduced = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run.",
+   "problems": []
+  },
+  {
+   "id": "REP-08",
+   "category": "1 Replication",
+   "title": "Reproduce the R2-sortability analysis (Reisach et al. 2023) on CausalArena",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "R2-sortability and R2-SortnRegress computed on all public semantic and formula files",
+   "evidence": [
+    "analysis/results/causalarena_calibration/sortability.json",
+    "analysis/causalarena_sortability.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "semantic/scenarios = 50 (eq 50)"
+    },
+    {
+     "ok": true,
+     "detail": "formula/scenarios = 50 (eq 50)"
+    },
+    {
+     "ok": true,
+     "detail": "semantic/r2_sortability_mean = 0.571 (approx 0.571)"
+    }
+   ],
+   "reproduce": "python analysis/causalarena_sortability.py --root external/causalarena --out analysis/results/causalarena_calibration",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-09",
+   "category": "1 Replication",
+   "title": "Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Within the reported ranges on the same subgraph, or the difference explained",
+   "evidence": [
+    "analysis/rep09_ges.py",
+    "analysis/results/chambers/rep09_ges.json",
+    "analysis/reports/bnd07_chambers.md",
+    "manifests/evidence/chambers_extracted_2026-10-12.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdict = \"supported\" (eq \"supported\")"
+    },
+    {
+     "ok": true,
+     "detail": "ours/cpdag_identical_to_authors = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "GES (BIC, forward/backward/turning) on lt uniform_reference, 10,000 rows, the authors' 20 variables: CPDAG identical to the authors'; 12 DAGs, precision 0.55-0.60, recall 0.564-0.615 (reported 0.55-0.60 / 0.56-0.62). CDFM's 0.727 recorded as not reproducible here: checkpoint only on huggingface.co (blocked by the egress allowlist) and its chamber protocol not pinned.",
+   "problems": []
+  },
+  {
+   "id": "REP-10",
+   "category": "1 Replication",
+   "title": "Reproduce CARE's moved-names control on one classic graph",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Our protocol gives the same direction of effect as CARE's on the same graph and model family",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "REP-11",
+   "category": "1 Replication",
+   "title": "Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Within their reported values, or the difference explained",
+   "evidence": [
+    "analysis/rep11_sachs_data.py",
+    "analysis/results/rep11/rep11_sachs_data.json",
+    "analysis/reports/rep11_sachs_data.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "verdicts/ensemble_f1_primary_B/verdict = \"reproduced\" (eq \"reproduced\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Data part (no LLM) reproduced within 0.05 with Python stand-ins for bnlearn/Tetrad: ensemble F1 0.647 vs 0.606, single-run mean 0.259 vs 0.293; merge, DAG conversion and F1 cross-checked against the authors' PyPI code (identical). Conditional: Sachs has no data-identifiable direction, so the ensemble's arrows come from Tabu-Stable's orientation. Open: LLM 0.40 and fused 0.73 (BND-12, live).",
+   "problems": []
+  },
+  {
+   "id": "REP-12",
+   "category": "1 Replication",
+   "title": "Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "CausalMan data obtained and the run scored, or recorded as unobtainable",
+   "evidence": [
+    "analysis/literature/bnd02/rep12_causalman.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Obtainable (BND-02): Zenodo record 13871097, CC BY 4.0, 11.2 GB; published score F1 0.078 (std 0.012), FCI on the 53-node set. Not downloaded; a live run is a Q2 candidate.",
+   "problems": []
+  },
+  {
+   "id": "REP-13",
+   "category": "1 Replication",
+   "title": "Re-read every second-hand literature claim before it enters the report",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every claim marked A in the reports either re-read in the primary source (marked V) or removed",
+   "evidence": [
+    "analysis/literature/bnd02/rep13_claims.md",
+    "analysis/literature/bnd02/rep13_claims.json",
+    "analysis/reports/pass6_literature_map.md",
+    "analysis/reports/pass7_framing_test_and_candidates.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": " = [{\"id\": \"L01\", \"location\": \"pass6_literature_map.md s1 row 2 (len_eq 72)"
+    },
+    {
+     "ok": true,
+     "detail": "found: As of 2026-10-10 no A claims remain"
+    },
+    {
+     "ok": true,
+     "detail": "found: ## Verification update \\(2026-10-10, REP-13\\)"
+    },
+    {
+     "ok": true,
+     "detail": "found: Verification update \\(2026-10-10, REP-13\\)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "72 claims: 55 confirmed, 17 corrected (corrections written into pass 6 and pass 7, superseding the text), 0 removed; Friedman et al. UAI 1999 confirmed separately. Read through a summarising fetch tool: quotes to be checked against the PDF before a mentor or course document.",
+   "problems": []
+  },
+  {
+   "id": "DOM-01",
+   "category": "2 Domain exploration",
+   "title": "Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Written down with the measurement axes",
+   "evidence": [
+    "project:claude/causal-copilot-ceiling-and-positioning.md",
+    "analysis/reports/pass5_identifiability_vs_encoding.md"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-ceiling-and-positioning.md"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "exists"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DOM-02",
+   "category": "2 Domain exploration",
+   "title": "Literature map in 9 clusters",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "One saved report per cluster plus a synthesis",
+   "evidence": [
+    "analysis/reports/pass6_literature_map.md",
+    "manifests/evidence/DOM-02_analysis_literature_agent_reports_2026-10-10.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "count 9 (want 9)"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Agent reports are second-hand (A) until re-read; see REP-13.",
+   "problems": []
+  },
+  {
+   "id": "DOM-03",
+   "category": "2 Domain exploration",
+   "title": "Benchmark landscape and what '100%' means on each",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Each benchmark: truth source, size, best result, agents evaluated, name control",
+   "evidence": [
+    "docs/project_snapshots/2026-10-09/benchmark-targets.md",
+    "project:claude/benchmark-targets.md"
+   ],
+   "pointers": [
+    "project:claude/benchmark-targets.md"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Better targets"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DOM-04",
+   "category": "2 Domain exploration",
+   "title": "Nearest prior work for each claim we might make",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "A positioning table naming what each nearest work does and does not do",
+   "evidence": [
+    "analysis/reports/program_v2.md",
+    "analysis/literature/agent_reports/cluster6_evidence_fusion_and_warrants.md",
+    "analysis/literature/agent_reports/cluster8_benchmark_leakage_and_ceilings.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Position against the nearest work"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DOM-05",
+   "category": "2 Domain exploration",
+   "title": "Commercial landscape, first pass",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Who pays, for what decision",
+   "evidence": [
+    "docs/project_snapshots/2026-10-10/causal-copilot-ceiling-and-positioning.md",
+    "project:claude/causal-copilot-ceiling-and-positioning.md (section 4)"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-ceiling-and-positioning.md (section 4)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: ## 4\\. Value"
+    },
+    {
+     "ok": true,
+     "detail": "found: Buyers pay for decisions, not graphs"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DOM-06",
+   "category": "2 Domain exploration",
+   "title": "Weighing against the WorldReset forecasting project",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Written comparison on course constraints, feasibility and value",
+   "evidence": [
+    "docs/project_snapshots/2026-10-10/causal-vs-worldreset-weighing.md",
+    "project:claude/causal-vs-worldreset-weighing.md"
+   ],
+   "pointers": [
+    "project:claude/causal-vs-worldreset-weighing.md"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: ## Course constraints"
+    },
+    {
+     "ok": true,
+     "detail": "found: ## Weighing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DOM-07",
+   "category": "2 Domain exploration",
+   "title": "Deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Notes per work with quotes checked against the primary text",
+   "evidence": [
+    "analysis/literature/bnd02/dom07_deep_reads.md",
+    "analysis/results/causalarena_calibration/protocol_check.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "CausalDS, CARE, ACI, Li & Russo done. CausalArena appendices B-C could not be read (HTML stops in section 6.2, PDF text empty); the scoring protocol was taken from the authors' baseline code instead (protocol_check.json). Closes when appendix B is read.",
+   "problems": []
+  },
+  {
+   "id": "DOM-08",
+   "category": "2 Domain exploration",
+   "title": "Choose a calibration method for bootstrap confidence",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Method chosen with the evidence for it",
+   "evidence": [
+    "analysis/literature/bnd02/dom08_calibration_choice.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: ## Recommendation"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Platt scaling fitted with whole scenarios held out (5 folds); raw frequency as the baseline; isotonic as a diagnostic; conformal deferred; Brier score primary.",
+   "problems": []
+  },
+  {
+   "id": "DOM-09",
+   "category": "2 Domain exploration",
+   "title": "What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Short survey with run times on one 25-variable scenario",
+   "evidence": [
+    "analysis/literature/dom09_what_if.md",
+    "analysis/dom09_ida_timing.py",
+    "analysis/results/dom09/ida_timing.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "variables = 25 (eq 25)"
+    },
+    {
+     "ok": true,
+     "detail": "ordered_pairs = 600 (eq 600)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Local IDA on PC's CPDAG at 25 variables: 600 pairs in 0.06 s; 52% identified within the class; true parents among the candidates for only 7 of 25 X. Computation is not the obstacle; skeleton recall is.",
+   "problems": []
+  },
+  {
+   "id": "DOM-10",
+   "category": "2 Domain exploration",
+   "title": "Active experiment-design baselines: which to implement",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Two baselines chosen with code located",
+   "evidence": [
+    "analysis/literature/bnd02/dom10_active_design_baselines.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: github\\.com/yannadani/cbed"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "CBED (MIT, Python/JAX) and pcalg::opt.target (GPL, R). R is not installable in either sandbox (CRAN blocked); recorded for Q2.",
+   "problems": []
+  },
+  {
+   "id": "DOM-11",
+   "category": "2 Domain exploration",
+   "title": "Pretrained discovery models: order-invariance by design, CPU checkpoints",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Table per model, checked against code, not abstracts",
+   "evidence": [
+    "analysis/literature/bnd02/dom11_pretrained_models.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: AVICI"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Only AVICI, FoundCause and Arrow state variable-order equivariance; Arrow has no released weights; TabCausal, SEA and CauScale code carry no licence.",
+   "problems": []
+  },
+  {
+   "id": "DOM-12",
+   "category": "2 Domain exploration",
+   "title": "Hidden common causes, time series, 100+ variables",
+   "kind": "stretch",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Scoping note: what Causal-Copilot offers for hidden confounders, time series and 100+ variables, what Q1 covers, what moves to Q2",
+   "evidence": [
+    "docs/q1/scope_note.md",
+    "analysis/reports/bnd03/dom12_scope_code_facts.md",
+    "analysis/results/bnd03_citations.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "files/scope_note.md/uncited_findings = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "files/dom12_scope_code_facts.md/unresolved_citations = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Proposal: Q1 measures what happens to PAG marks; time series and 100+ variables move to Q2. G1 (16 Oct) confirms or changes it.",
+   "problems": []
+  },
+  {
+   "id": "AUD-01",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Architecture map: 8-step CLI path, state object, LLM call points, storage",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Facts F1-F30 in the ledger, each with file:line",
+   "evidence": [
+    "docs/project_snapshots/2026-10-09/causal-copilot-research-ledger.md",
+    "project:claude/causal-copilot-research-ledger.md (FACTS)"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-research-ledger.md (FACTS)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: F1\\. Entry points"
+    },
+    {
+     "ok": true,
+     "detail": "found: F30\\."
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "Only in the ledger; no standalone report in cc-research.",
+   "problems": []
+  },
+  {
+   "id": "AUD-02",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "LLM dependency map: 51 call sites, 88 logical points, 29 decisions, 3 graph-writing points",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Static scan reconciled with recorded calls; gates G1-G4 pass",
+   "evidence": [
+    "analysis/results/llm_inventory/llm_inventory.md",
+    "analysis/results/llm_inventory/llm_inventory.csv",
+    "analysis/reports/pass3_llm_dependency_map.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: G1_ast_matches_text: \\*\\*PASS"
+    },
+    {
+     "ok": true,
+     "detail": "found: G2_all_points_classified: \\*\\*PASS"
+    },
+    {
+     "ok": true,
+     "detail": "found: G3_every_recorded_caller_is_a_known_site: \\*\\*PASS"
+    },
+    {
+     "ok": true,
+     "detail": "found: G4_recorded_flags_match_static: \\*\\*PASS"
+    },
+    {
+     "ok": true,
+     "detail": "found: Call sites that issue a request \\(AST\\): 51"
+    }
+   ],
+   "reproduce": "python analysis/llm_inventory_scan.py && python analysis/llm_inventory_build.py",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-03",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Edge lineage tool: every final edge traced to the step that set it",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Lineage gates A-F pass on every completed run analysed",
+   "evidence": [
+    "analysis/lineage.py",
+    "manifests/evidence/AUD-03_analysis_results_lineage_2026-10-10.sha256",
+    "manifests/evidence/AUD-03_analysis_results_stability_b1_lineage_2026-10-10.sha256",
+    "analysis/results/stability_b1/stability.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gates/T5_scores_recomputed_equal_lineage = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/T5_scores_recomputed_equal_lineage = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-04",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Refinement audit without the LLM: bootstrap step deletes non-directed edges",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Offline cells over seeds 0-2 complete (gate S1); live: S1 below S0 in every bundle-1 arm",
+   "evidence": [
+    "analysis/results/offline/refinement_offline_seeds_summary.json",
+    "analysis/results/offline/refinement_offline_seeds.md",
+    "analysis/reports/pass4a_edge_lineage.md",
+    "analysis/results/stability_b1/stability.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gate_S1 = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/refinement_offline.py ... (see analysis/README.md)",
+   "reopen_if": [
+    "the Causal-Copilot tree stops matching manifests/baseline_a31aa7c.sha256"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-05",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Name controls on 5 datasets: real 93% / neutral 0% / moved 90% of final edges written by the LLM",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Pre-registered predictions evaluated by stability.py with gates T1-T6 passing",
+   "evidence": [
+    "analysis/results/stability_p4b/stability.json",
+    "analysis/results/stability_b1/stability.json",
+    "analysis/reports/pass4b_results.md",
+    "analysis/reports/bundle1_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/P1/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/N2/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "gates/T2_min_runs_per_arm = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/stability.py --runs-dir runs --label b1 --mapping datasets/suite_b1/MAPPING.json --repo <repo> --out analysis/results/stability_b1",
+   "reopen_if": [
+    "new runs with label b1 or p4b are added"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-06",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Reliability: 12 of 84 runs crashed; cycle step failed 9 of 9; one request got 3 answers",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every failure diagnosed to file:line from run records",
+   "evidence": [
+    "analysis/results/stability_b1/partial_stages.json",
+    "manifests/evidence/runs_live_2026-10-09.sha256",
+    "analysis/reports/bundle1_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "failed 12 (want 12)"
+    },
+    {
+     "ok": true,
+     "detail": "cycle_step/of_which_completed = 0 (eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "gates/Q2_cycle_crashes_have_cycle_in_S3 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-07",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Stability: algorithm choice stable; edge decisions vary; bootstrap seeded by accident; numpy unseeded",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Per-arm stability tables produced for every arm",
+   "evidence": [
+    "analysis/results/stability_p4b/stability.json",
+    "analysis/results/stability_b1/stability.json",
+    "project:claude/causal-copilot-research-ledger.md (F8a, F29)"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-research-ledger.md (F8a, F29)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/P5/verdict = \"exploratory\" (eq \"exploratory\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-08",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Survivor-bias check: crashed runs do not change conclusions",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "S3 scores over all runs vs completed only, gates Q1-Q3 pass",
+   "evidence": [
+    "analysis/results/stability_b1/partial_stages.json",
+    "analysis/partial_stages.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gates/Q1_rebuilt_S2_S3_equal_recorded = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/Q3_all_runs_accounted = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-09",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Leak scan of neutral-name arms: no real name in any prompt before the final graph",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Gate L1: zero leaks; template text present in every arm is not a leak",
+   "evidence": [
+    "analysis/results/stability_b1/neutral_leak_scan.json",
+    "analysis/neutral_leak_scan.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gate_L1_no_leak_before_final_graph = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "requests_scanned = 332 (ge 300)"
+    }
+   ],
+   "reproduce": "python analysis/neutral_leak_scan.py --runs-dir runs --label b1 --mapping datasets/suite_b1/MAPPING.json --out analysis/results/stability_b1",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-10",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "30 runs analysed with T-gates and S3 endpoint",
+   "evidence": [
+    "plans/bnd08_live.json",
+    "analysis/s2_analysis.py",
+    "manifests/evidence/bnd08_prereg_2026-10-11.sha256",
+    "analysis/results/stability_s2/s2_verdicts.json",
+    "analysis/results/stability_s2/partial_stages.json",
+    "analysis/results/stability_s2/bnd08_summary.json",
+    "analysis/reports/bnd08_s2_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "M2/verdict = \"REFUTED\" (eq \"REFUTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "M3/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "M4/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "Q_gates/Q3_all_runs_accounted = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "L1_neutral_leak_scan = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "all_code_identity_ok = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "30 live runs 11-12 Oct (gpt-4o-2024-08-06), all reached S3. M2 REFUTED (real-name lift >= 0.10 in 5 of 10 families; mean +0.09), M3 SUPPORTED (swapped: 81 of 101 LLM-set edges follow labels), M4 SUPPORTED (neutral S3 below plain PC in 8 of 10), M1 SUPPORTED (dev replay 19 of 23). Without s2_02: M2 5 of 9, INCONCLUSIVE.",
+   "problems": []
+  },
+  {
+   "id": "AUD-11",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Behaviour at 20-40 variables: cost, runtime, crash rate",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Measured on a stub run, then on A2's live runs",
+   "evidence": [
+    "plans/bnd08_stub.json",
+    "analysis/stub_cost.py",
+    "analysis/results/stub_cost/bnd08_estimate.json",
+    "analysis/reports/bnd08_stub_measurement.md",
+    "analysis/results/stability_s2/bnd08_summary.json",
+    "analysis/reports/bnd08_s2_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "stub_runs = [{\"run\": \"20261011T002558Z_s2stub_q051_r01_STUB_2259fd\", \"da (len_eq 6)"
+    },
+    {
+     "ok": true,
+     "detail": "cost/prompt_tokens = 3316360 (eq 3316360)"
+    },
+    {
+     "ok": true,
+     "detail": "crashes/runs_cyclic_by_pipeline_test = 6 (eq 6)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Live at 20-25 variables: 110k prompt + 14.6k completion tokens per run (about $12.7 for 30 at $2.50/$10 per M; the stub estimate was low because live runs chose FCI, the stub PC); 302-1130 s per run; 6 of 30 crashed at the cycle step (real 5, swapped 1, neutral 0).",
+   "problems": []
+  },
+  {
+   "id": "AUD-12",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Effect-estimation module (causal_inference/)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Read and audited like the discovery path",
+   "evidence": [
+    "analysis/reports/bnd03/aud12_effect_estimation.md",
+    "analysis/reports/bnd03/evidence/mt_confounders_output.txt",
+    "analysis/results/bnd03_citations.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "files/aud12_effect_estimation.md/unresolved_citations = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "files/aud12_effect_estimation.md/uncited_findings = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "found: def sensitivity_analysis"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Reachable only from the web demo; causal_inference/main.py is broken (:32, :39); <-> and o-> treated as parents when choosing confounders (inference.py:242-246, micro-test); 'metalearners' has no wrapper; 'counterfactual' runs an interventional shift.",
+   "problems": []
+  },
+  {
+   "id": "AUD-13",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Second model besides GPT-4o",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Bundle-1 arms repeated with one other model",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "AUD-14",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Torch-based and time-series wrappers, web-demo path, report quality",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Torch and time-series wrappers, the web-demo path and report generation audited like the discovery path (file:line findings; one stub run where it runs offline)",
+   "evidence": [
+    "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md",
+    "analysis/results/bnd03_citations.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "files/aud14_wrappers_webdemo_report.md/unresolved_citations = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "files/aud14_wrappers_webdemo_report.md/uncited_findings = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Static audit done (BND-03): CORL crashes program.py (corl.py:93 vs program.py:53); Granger needs integer column names; the CLI time-series path plots a None revised_graph (main.py:307, code trace); the report's fixed text claims voting and 'top three' algorithms the code does not do. Still open: one offline stub run of a time-series wrapper.",
+   "problems": []
+  },
+  {
+   "id": "AUD-15",
+   "category": "3 Audit: Causal-Copilot",
+   "title": "Upstream branches newer than a31aa7c",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Diff of refinement and crash points against main",
+   "evidence": [
+    "analysis/reports/bnd03/aud15_upstream.md",
+    "analysis/results/upstream/upstream_check.json",
+    "analysis/upstream_check.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "summary/main_is_base = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "summary/branches = 19 (eq 19)"
+    },
+    {
+     "ok": true,
+     "detail": "summary/branches_without_crash_line/C2 = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "python analysis/upstream_check.py --clone $HOME/scratch/cc_up",
+   "reopen_if": [
+    "upstream main moves past a31aa7c (re-run the check)"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "Upstream main is still a31aa7c. C1 (cycle step) is a regression from defa4df (2025-06-26), which dropped the structured-output schema; no branch fixes C1 or C2.",
+   "problems": []
+  },
+  {
+   "id": "BEN-01",
+   "category": "4 Audit: benchmarks and data",
+   "title": "CausalArena public release inspected (families, files, graph convention)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Layout documented; graph convention checked against graph.json for all 50 semantic scenarios",
+   "evidence": [
+    "analysis/reports/bundle1_results.md (section 7)",
+    "external/FETCH_REPORT.json",
+    "external/causalarena/MANIFEST.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "errors = [] (len_eq 0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-02",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Column-order leak: every true edge runs earlier column -> later column in every released file",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Checked over every released obs file of all three families; order-reading baseline vs shuffled",
+   "evidence": [
+    "analysis/results/causalarena_calibration/column_order_check.json",
+    "analysis/results/causalarena_calibration/order_baseline.json",
+    "analysis/column_order_check.py",
+    "analysis/causalarena_order_baseline.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "semantic/share = 1.0 (eq 1.0)"
+    },
+    {
+     "ok": true,
+     "detail": "formula/share = 1.0 (eq 1.0)"
+    },
+    {
+     "ok": true,
+     "detail": "synthetic/share = 1.0 (eq 1.0)"
+    },
+    {
+     "ok": true,
+     "detail": "synthetic/true_edges = 50421 (eq 50421)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/as_released/f1 = 0.68 (approx 0.68)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/columns_shuffled/f1 = 0.269 (approx 0.269)"
+    }
+   ],
+   "reproduce": "python analysis/column_order_check.py --root external/causalarena --out analysis/results/causalarena_calibration",
+   "reopen_if": [
+    "CausalArena release files change"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-03",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Computed per scenario; equivalence-class routine matches the validated one (gate B1)",
+   "evidence": [
+    "analysis/results/error_budget/error_budget.json",
+    "analysis/error_budget.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gates/B1_cpdag_equals_cc_graph = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/ceiling_obs_mean = 0.957 (approx 0.957)"
+    },
+    {
+     "ok": true,
+     "detail": "families/formula/ceiling_obs_mean = 0.971 (approx 0.971)"
+    }
+   ],
+   "reproduce": "python analysis/error_budget.py --root external/causalarena --pc analysis/results/causalarena_calibration/pc_rows_v2.jsonl --out analysis/results/error_budget",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-04",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "From stored PC runs in the published configuration",
+   "evidence": [
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "pc_semantic_n1000/pc_skeleton_with_perfect_orientation_f1 = 0.611 (approx 0.611)"
+    },
+    {
+     "ok": true,
+     "detail": "pc_semantic_n1000/accuracy_of_committed_directions = 0.544 (approx 0.544)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-05",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Table over 5 granularities of tier knowledge",
+   "evidence": [
+    "analysis/results/error_budget/order_value.json",
+    "analysis/order_value.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "1/PC skeleton re-oriented, F1 = 0.47 (approx 0.47)"
+    },
+    {
+     "ok": true,
+     "detail": "5/regression on earlier tiers, F1 = 0.714 (approx 0.714)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-06",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Repo datasets vs CausalArena index: Auto MPG does not match",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Variables, edges, rows compared for all four families",
+   "evidence": [
+    "analysis/results/causalarena_calibration/dataset_match_check.json",
+    "analysis/dataset_match_check.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "autompg/match = false (false )"
+    },
+    {
+     "ok": true,
+     "detail": "abalone/match = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "concrete/match = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "dwd/match = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BEN-07",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Do CausalArena's wrappers shuffle columns; are top methods affected?",
+   "kind": "question",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "For every method we can run, F1 on released vs shuffled column order measured; whether CausalArena's own wrappers shuffle stated from their code or recorded as unknowable",
+   "evidence": [
+    "analysis/results/causalarena_calibration/protocol_check.json",
+    "analysis/results/methods/bnd06_verdicts.json",
+    "analysis/results/methods/bnd06_families.json",
+    "analysis/results/methods/pc_skeleton_order_vendored.json",
+    "analysis/results/methods/pc_skeleton_order_upstream.json",
+    "analysis/reports/bnd06_interim.md",
+    "analysis/reports/bnd06_families.md",
+    "plans/bnd06_prereg.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "facts/P2_liberal_orientation/found = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "Q4c/verdict = \"REFUTED\" (eq \"REFUTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "files_with_different_skeleton = 21 (eq 21)"
+    },
+    {
+     "ok": true,
+     "detail": "files_with_different_skeleton = 0 (eq 0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. Open: AVICI (pretrained; checkpoint download blocked).",
+   "problems": []
+  },
+  {
+   "id": "BEN-08",
+   "category": "4 Audit: benchmarks and data",
+   "title": "SHD definition mismatch (see REP-06)",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "The SHD variant that reproduces the published 33.5 identified on the stored PC outputs, or every candidate variant shown not to",
+   "evidence": [
+    "analysis/results/causalarena_calibration/protocol_check.json",
+    "analysis/results/causalarena_calibration/pc_calibration.json",
+    "analysis/shd_variants.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "facts/P1_shd_formula/found = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "ours_public_50_by_rule/lower/shd_within = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "The authors' SHD counts a reversal once (metrics.py: sum(diff) - 0.5*sum(diff*diff.T)), which is our pair-level SHD; with their orientation rule it gives 35.43 on the public 50 (within tolerance of 33.52). F1 then does not match (REP-06).",
+   "problems": []
+  },
+  {
+   "id": "BEN-09",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Replay sampler: which declared interventions are interventions in name only",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "For every declared intervention in the replay sampler's data, whether the target's distribution moves (KS, Holm 1%); the in-name-only count reported",
+   "evidence": [
+    "analysis/intervention_audit.py",
+    "analysis/results/intervention_audit/intervention_audit.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/semantic/declared_target_instances = 945 (eq 945)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/in_name_only = 252 (eq 252)"
+    },
+    {
+     "ok": true,
+     "detail": "families/formula/declared_target_instances = 1520 (eq 1520)"
+    },
+    {
+     "ok": true,
+     "detail": "families/formula/in_name_only = 1354 (eq 1354)"
+    }
+   ],
+   "reproduce": "python analysis/intervention_audit.py --out analysis/results/intervention_audit/intervention_audit.json",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "On the released obs+int files (produced by the same generator spec the replay sampler executes): no detectable shift in the target or any child for 252 of 945 declared interventions (semantic) and 1,354 of 1,520 (formula), KS with Holm at 1%. About 28 intervened rows per target, so shifts below roughly KS D 0.4 go undetected: 'no detectable effect', not proof of none. Most targets are roots (655 / 1,200), resampled per the release's semantics.",
+   "problems": []
+  },
+  {
+   "id": "BEN-10",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Each of the 8 Causal Chambers datasets mapped to its ground-truth graph and source; 'one layer deep' validation checked; an obs+int sample built under a stated rule",
+   "evidence": [
+    "external/FETCH_REPORT.json",
+    "analysis/results/chambers/mapping.json",
+    "analysis/results/chambers/one_layer_deep.json",
+    "analysis/results/chambers/sample/obs_int_sample.npz",
+    "analysis/results/chambers/sample/README.md",
+    "analysis/chambers_map.py",
+    "analysis/chambers_validate.py",
+    "analysis/chambers_sample.py",
+    "analysis/reports/bnd07_chambers.md",
+    "manifests/evidence/chambers_extracted_2026-10-12.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "extracted = [{\"dataset\": \"lt_interventions_standard_v1\", \"csv_files\": 59 (len_eq 8)"
+    },
+    {
+     "ok": true,
+     "detail": "part_a_our_check/lt_validate_v1/children_shift = 57 (eq 57)"
+    },
+    {
+     "ok": true,
+     "detail": "part_a_our_check/lt_validate_v1/non_descendants_shift = 0 (eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "part_a_our_check/wt_validate_v1/non_descendants_shift = 0 (eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "built = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "All 8 datasets use the 'standard' configuration: lt 38 variables / 57 edges, wt 32 / 42, every edge input -> output (longest path 1). On the validation data: lt 57/57 children shift, wt 40/42 (load_out -> pressure_intake p 0.082; osr_downwind -> pressure_downwind fails only after Holm over 868 tests); 0 non-descendant shifts in either. Sample: 6,200 rows, 53 regimes.",
+   "problems": []
+  },
+  {
+   "id": "BEN-11",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Error budgets for GES, FCI, pretrained models; formula and synthetic families",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Error budgets (ceiling -> skeleton -> direction) for GES, FCI, DirectLiNGAM, NOTEARS and CPU-runnable pretrained models on semantic, formula and a 100-file synthetic sample",
+   "evidence": [
+    "analysis/results/methods/error_budget_gesbic.json",
+    "analysis/results/methods/error_budget_fci.json",
+    "analysis/results/methods/error_budget_lingam_semantic.json",
+    "analysis/results/methods/error_budget_notears_semantic.json",
+    "analysis/results/methods/error_budget_pc_semantic.json",
+    "analysis/results/methods/error_budget_gesbic_formula.json",
+    "analysis/results/methods/error_budget_fci_formula.json",
+    "analysis/results/methods/error_budget_lingam_formula.json",
+    "analysis/results/methods/error_budget_notears_formula.json",
+    "analysis/results/methods/error_budget_gesbic_synthetic100.json",
+    "analysis/results/methods/error_budget_fci_synthetic100.json",
+    "analysis/results/methods/error_budget_lingam_synthetic100.json",
+    "analysis/results/methods/error_budget_notears_synthetic100.json",
+    "analysis/reports/bnd06_families.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "files = 250 (eq 250)"
+    },
+    {
+     "ok": true,
+     "detail": "files = 250 (eq 250)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Done for PC, GES, FCI, DirectLiNGAM, NOTEARS x semantic, formula, synthetic100 (15 budgets; failed files scored empty and counted). Open: pretrained models (AVICI checkpoint blocked by the egress allowlist; Uzair can download two files by hand).",
+   "problems": []
+  },
+  {
+   "id": "BEN-12",
+   "category": "4 Audit: benchmarks and data",
+   "title": "Reliability of real-data reference graphs",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Reliability of each Q1 reference graph stated with its source (Sachs variants, Auto MPG mismatch, the others' provenance)",
+   "evidence": [
+    "analysis/reference_reliability.py",
+    "analysis/results/reference_reliability/reliability.json",
+    "external/bnlearn_sachs/sachs.bif.gz"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/sachs/tier = \"contested\" (eq \"contested\")"
+    },
+    {
+     "ok": true,
+     "detail": "families/sachs/repo_vs_bnlearn/shared_adjacencies = 16 (eq 16)"
+    },
+    {
+     "ok": true,
+     "detail": "families/autompg/tier = \"mismatched\" (eq \"mismatched\")"
+    },
+    {
+     "ok": true,
+     "detail": "families/s2_01/tier = \"exact\" (eq \"exact\")"
+    }
+   ],
+   "reproduce": "python analysis/reference_reliability.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Sachs: repo 19 edges vs bnlearn 17 (16 shared adjacencies, 1 reversed: PIP3-Plcg) vs CausalArena 20 (edge list not available here). Auto MPG mismatched. Abalone, concrete, DWD: provenance only. S2: exact (simulator graph).",
+   "problems": []
+  },
+  {
+   "id": "TGT-01",
+   "category": "5 Targets",
+   "title": "Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-02",
+   "category": "5 Targets",
+   "title": "Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-03",
+   "category": "5 Targets",
+   "title": "Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-04",
+   "category": "5 Targets",
+   "title": "Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "external/causalarena/results/tables/main/main_leaderboard_f1_wide_with_std.csv",
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-05",
+   "category": "5 Targets",
+   "title": "Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "external/causalarena/results/tables/real/real_method_summary.csv"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-06",
+   "category": "5 Targets",
+   "title": "Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-07",
+   "category": "5 Targets",
+   "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled",
+   "kind": "target",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02 (approval of the elicitation calls)",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-08",
+   "category": "5 Targets",
+   "title": "Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)",
+   "kind": "target",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/results/error_budget/error_budget.json"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-09",
+   "category": "5 Targets",
+   "title": "Never below the system's own data-only output",
+   "kind": "target",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "BND-10: frozen refinement v1 keeps adjacency F1 >= the algorithm's own output - 0.02 in >= 90% of held-out files (R1), on the test replay and the live S2 tables",
+   "evidence": [
+    "analysis/results/refinement_v1/test_replay.json",
+    "analysis/results/refinement_v1/test_live_s2.json",
+    "analysis/results/refinement_v1/access_log.jsonl",
+    "analysis/reports/bnd09_bnd10_refinement.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "pooled_test/R1/verdict = \"INCONCLUSIVE\" (eq \"INCONCLUSIVE\")"
+    },
+    {
+     "ok": true,
+     "detail": "mode = \"test\" (eq \"test\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Not met by v1: pooled held-out R1 40 of 55 (0.73; replay 23/25, live S2 17/30). v1 drops true edges with low resample frequency under FCI+RCIT. Carried to v2 in BND-11 (DAG changed 12 Oct).",
+   "problems": []
+  },
+  {
+   "id": "TGT-10",
+   "category": "5 Targets",
+   "title": "Zero change when columns are shuffled",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-11",
+   "category": "5 Targets",
+   "title": "Bounded harm when names are wrong",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-12",
+   "category": "5 Targets",
+   "title": "Calibration better than raw bootstrap frequencies on held-out scenarios",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-13",
+   "category": "5 Targets",
+   "title": "Zero crashes from malformed model output",
+   "kind": "target",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Zero crashes from malformed model output over the BND-11 runs",
+   "evidence": [
+    "harness/names_runner.py",
+    "tests/test_refinement_v2.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: never raised"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "BND-11 names runner: invalid reply -> one retry -> abstention; API errors recorded the same way. Offline stub with injected malformed replies: 25 invalid replies, no exception. Closes on the live names run (crash count 0).",
+   "problems": []
+  },
+  {
+   "id": "TGT-14",
+   "category": "5 Targets",
+   "title": "Within the scoreboard's 1-hour budget per graph",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-15",
+   "category": "5 Targets",
+   "title": "Held-out interventional predictions better than regression on all variables",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TGT-16",
+   "category": "5 Targets",
+   "title": "Experiment choice better than random on recorded Causal Chambers experiments",
+   "kind": "target",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-01",
+   "category": "6 Required capabilities",
+   "title": "Skeleton recall at variables with many causes (joint test per candidate edge)",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-02",
+   "category": "6 Required capabilities",
+   "title": "Direction from the numbers (PC: 54%)",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-03",
+   "category": "6 Required capabilities",
+   "title": "Use intervention data",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-04",
+   "category": "6 Required capabilities",
+   "title": "Declared knowledge as tiers, never edges",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-05",
+   "category": "6 Required capabilities",
+   "title": "Invariance to column order",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-06",
+   "category": "6 Required capabilities",
+   "title": "Keep 'direction unknown' edges",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Refinement v1 keeps the algorithm's undirected edges unless the data contradict them; survival rate reported against the pipeline's 15-31%",
+   "evidence": [
+    "analysis/refinement_v1.py",
+    "analysis/results/refinement_v1/dev.json",
+    "analysis/results/refinement_v1/RULE.json",
+    "analysis/reports/bnd09_bnd10_refinement.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "summary/all_edges_sourced = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "summary/nondirected_survival/survive_v1 = 663 (ge 600)"
+    },
+    {
+     "ok": true,
+     "detail": "KEEP = 0.5 (eq 0.5)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Frozen 2026-10-11 (RULE.json sha256 da3cb260...). Dev (92 files: 69 live tables + 23 CausalArena dev replays): v1 keeps 663 of 697 non-directed algorithm edges (95%), the pipeline's bootstrap step 206 (30%). Test replay (25 files): 109 of 117 vs 61.",
+   "problems": []
+  },
+  {
+   "id": "CAP-07",
+   "category": "6 Required capabilities",
+   "title": "Calibrated confidence per claim",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-08",
+   "category": "6 Required capabilities",
+   "title": "Abstention / selective claims",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-09",
+   "category": "6 Required capabilities",
+   "title": "Provenance per edge with an independent checker",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-10",
+   "category": "6 Required capabilities",
+   "title": "Robustness to malformed model output",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Every model reply schema-validated with one retry, then abstain; zero crashes over the BND-11 runs",
+   "evidence": [
+    "harness/names_runner.py",
+    "analysis/refinement_v2.py",
+    "tests/test_refinement_v2.py",
+    "analysis/reports/bnd11_prep.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Schema-validated replies, one retry, then abstain; built and unit-tested (parse rule shared with refinement_v2). Closes on BND-11's live names run.",
+   "problems": []
+  },
+  {
+   "id": "CAP-11",
+   "category": "6 Required capabilities",
+   "title": "Determinism (same inputs, same ledger hash)",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-12",
+   "category": "6 Required capabilities",
+   "title": "Runtime at 20-40 variables",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-13",
+   "category": "6 Required capabilities",
+   "title": "Nonlinear and mixed-type dependence",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-14",
+   "category": "6 Required capabilities",
+   "title": "Hidden common causes (PAG marks)",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-15",
+   "category": "6 Required capabilities",
+   "title": "'What if we set X?' with identification status and bounds",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-16",
+   "category": "6 Required capabilities",
+   "title": "Choose the next experiment",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CAP-17",
+   "category": "6 Required capabilities",
+   "title": "Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every Q1 row packaged in CausalArena's submission format (summary.csv, predictions, manifest.json) and passed through tools/validate_submission.py",
+   "evidence": [
+    "analysis/package_submission.py",
+    "analysis/results/submission/validator_output.txt",
+    "analysis/results/submission/packages.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: exit code 0"
+    },
+    {
+     "ok": true,
+     "detail": "found: notears__shuffled"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "10 packages (PC, GES, FCI, DirectLiNGAM, NOTEARS x released / shuffled columns), 600 rows each (semantic 250, formula 250, synthetic100); the official validator exits 0 on all 10. Nothing submitted.",
+   "problems": []
+  },
+  {
+   "id": "CAP-18",
+   "category": "6 Required capabilities",
+   "title": "Cost per run measured at 25 variables",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-01",
+   "category": "7 Research questions",
+   "title": "P1-P3 (pass 4b, Sachs): supported",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Verdicts computed by pre-registered thresholds in stability.py",
+   "evidence": [
+    "analysis/results/stability_p4b/stability.json",
+    "analysis/reports/pass4b_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/P1/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/P2/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/P3/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-02",
+   "category": "7 Research questions",
+   "title": "N2 (bundle 1): supported",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/results/stability_b1/stability.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/N2/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-03",
+   "category": "7 Research questions",
+   "title": "N1, N4, P3 (bundle 1): tested, inconclusive",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/results/stability_b1/stability.json",
+    "analysis/reports/bundle1_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "predictions/N1/verdict = \"INCONCLUSIVE\" (eq \"INCONCLUSIVE\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/N4/verdict = \"INCONCLUSIVE\" (eq \"INCONCLUSIVE\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/P3/verdict = \"INCONCLUSIVE\" (eq \"INCONCLUSIVE\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Closed as tested; the questions themselves remain open.",
+   "problems": []
+  },
+  {
+   "id": "RQ-04",
+   "category": "7 Research questions",
+   "title": "T1 Order source explains most directed-edge accuracy",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-05",
+   "category": "7 Research questions",
+   "title": "T2 Deployed agents take order from names and layout",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-06",
+   "category": "7 Research questions",
+   "title": "T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target)",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-07",
+   "category": "7 Research questions",
+   "title": "T4 Calibrated, machine-checkable claims with abstention",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-08",
+   "category": "7 Research questions",
+   "title": "T5 What-if answers with identification status",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-09",
+   "category": "7 Research questions",
+   "title": "T6 Experiment choice beats random on recorded experiments",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-10",
+   "category": "7 Research questions",
+   "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
+   "kind": "question",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-11",
+   "category": "7 Research questions",
+   "title": "O2 Neutral names give no order information",
+   "kind": "question",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-12",
+   "category": "7 Research questions",
+   "title": "O3 Moved names: tiers follow the labels",
+   "kind": "question",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-13",
+   "category": "7 Research questions",
+   "title": "O4 Regression on model tiers reaches 0.634 (semantic)",
+   "kind": "question",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-14",
+   "category": "7 Research questions",
+   "title": "O5 Same for formula vs 0.524",
+   "kind": "question",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/program_v2.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-15",
+   "category": "7 Research questions",
+   "title": "Do LLM-written semantic graphs inflate name-based scores?",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RQ-16",
+   "category": "7 Research questions",
+   "title": "Does PC's error pattern hold for other algorithms?",
+   "kind": "question",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Q4a-b verdicts (GES and FCI direction accuracy and the cost of direction errors) from BND-04",
+   "evidence": [
+    "analysis/results/methods/bnd04_verdicts.json",
+    "analysis/results/methods/error_budget_gesbic.json",
+    "analysis/results/methods/error_budget_fci.json",
+    "analysis/reports/bnd04_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "Q4a/verdict = \"REFUTED\" (eq \"REFUTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "Q4b/verdict = \"INCONCLUSIVE\" (eq \"INCONCLUSIVE\")"
+    },
+    {
+     "ok": true,
+     "detail": "gates/C1 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "gates/files_250_each = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/method_error_budget.py --rows analysis/results/methods/gesbic_semantic_obs.json --published GIES --out analysis/results/methods/error_budget_gesbic.json; same for fci; python analysis/bnd04_summary.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "No. Committed-direction accuracy GES 0.807, FCI 0.798 (PC 0.544): Q4a refuted. Cost of direction errors GES 0.117, FCI 0.228 (PC 0.276): Q4b inconclusive. FCI's cost is undecided pairs (73% of found true adjacencies), not wrong arrows. PC's 0.544 is for the released (topological) order; shuffled it is 0.722 (BND-06), so the pattern was order-specific too.",
+   "problems": []
+  },
+  {
+   "id": "RQ-17",
+   "category": "7 Research questions",
+   "title": "Do results hold for a second model?",
+   "kind": "question",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Second model on the S1 arms: N2 and P1 replicated or not (S1, S2 in BND-12)",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-01",
+   "category": "8 Build",
+   "title": "Recording harness and analysis tools",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every tool listed in analysis/README.md with its gates",
+   "evidence": [
+    "manifests/evidence/BLD-01_tools_2026-10-12.sha256",
+    "analysis/README.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Tool manifest re-taken 2026-10-12 after neutral_leak_scan.py learned label variants and scenario words from MAPPING (rerun on bundle 1: identical result, 0 leaks); the 10-09 manifest stays as history.",
+   "problems": []
+  },
+  {
+   "id": "BLD-02",
+   "category": "8 Build",
+   "title": "B1 data-only claim ledger with invariants I1-I4, I7",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-03",
+   "category": "8 Build",
+   "title": "B2 interventions as order evidence",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-04",
+   "category": "8 Build",
+   "title": "B3 declared knowledge as tiers",
+   "kind": "task",
+   "status": "blocked",
+   "effective_status": "blocked",
+   "emoji": "🔴",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "DEC-02",
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-05",
+   "category": "8 Build",
+   "title": "B4 confidence, calibration, selective output",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-06",
+   "category": "8 Build",
+   "title": "Drop-in replacement for Causal-Copilot's refinement stage",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "v1/v2 take the pipeline's recorded inputs and return its output format with a source on every edge; R1-R6 reported",
+   "evidence": [
+    "analysis/refinement_v1.py",
+    "analysis/refinement_v2.py",
+    "analysis/results/refinement_v2/RULE.json",
+    "analysis/results/refinement_v2/dev.json",
+    "analysis/reports/bnd11_prep.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "summary/all_edges_sourced = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "summary/R1/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "v1 frozen and tested (BND-10). v2 frozen 2026-10-12 (sha256 443354d8...): data part never deletes algorithm adjacencies; dev R1-R3 supported (92 files). Held-out: formula test replay (compute job) and the live names run (R4-R6).",
+   "problems": []
+  },
+  {
+   "id": "BLD-07",
+   "category": "8 Build",
+   "title": "C1 what-if answers with identification status and bounds",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-08",
+   "category": "8 Build",
+   "title": "C2 next-experiment choice from recorded pool",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-09",
+   "category": "8 Build",
+   "title": "Scoreboard-format export",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-10",
+   "category": "8 Build",
+   "title": "Evidence tracker for this list (catalogue, verify, Slack List mirror)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "tracker/verify.py",
+    "tracker/README.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-11",
+   "category": "8 Build",
+   "title": "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Typed link registry with prod namespace, immutable IDs, derived prod status, suspect-link reviews and Slack mirror check; every failure mode in LINKS.md section 6 caught by the self-test; AGENTS.md read by CLAUDE.md",
+   "evidence": [
+    "tracker/trace.py",
+    "tracker/LINKS.md",
+    "tracker/selftest_trace.py",
+    "tracker/selftest_trace.json",
+    "AGENTS.md",
+    "CLAUDE.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "total = 45 (ge 26)"
+    },
+    {
+     "ok": true,
+     "detail": "found: @AGENTS\\.md"
+    },
+    {
+     "ok": true,
+     "detail": "found: Never send a message in #causal-discovery"
+    }
+   ],
+   "reproduce": "python tracker/selftest_trace.py",
+   "reopen_if": [
+    "trace.py or LINKS.md changes without a passing self-test"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BLD-12",
+   "category": "8 Build",
+   "title": "Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Uzair's curation applied as prod rows with derived statuses and overclaim gates; relay.py prepares, records and checks messages per channel; every new failure mode caught by the self-test",
+   "evidence": [
+    "tracker/relay.py",
+    "tracker/RELAY.md",
+    "tracker/prod_spec.json",
+    "tracker/selftest_trace.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "total = 45 (ge 40)"
+    },
+    {
+     "ok": true,
+     "detail": "found: A prod message is sent only by Uzair"
+    },
+    {
+     "ok": true,
+     "detail": "found: Replicate Causal-Copilot paper claims and results"
+    }
+   ],
+   "reproduce": "python tracker/selftest_trace.py",
+   "reopen_if": [
+    "prod_spec.json changes without prod-apply; relay.py changes without a passing self-test"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-01",
+   "category": "9 Evaluation protocol",
+   "title": "Every score states its regime (D / D+I / D+K / D+I+K)",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every results directory carries a CONTRACT.json stating its regime (per file where mixed) and every new score row states it; analysis/check_scores.py rejects any that do not",
+   "evidence": [
+    "analysis/reports/program_v2.md",
+    "analysis/score_record.py",
+    "analysis/check_scores.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "nonconforming = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "found: REGIMES = \\{\"D\", \"D\\+I\", \"D\\+K\", \"D\\+I\\+K\"\\}"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-02",
+   "category": "9 Evaluation protocol",
+   "title": "Controls on every score (columns shuffled; names real/neutral/moved; supplier; interventions)",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Every score states its controls (column order, name arm, supplier, knowledge source when K is present); the checker rejects any that do not. A score without a shuffled-column counterpart says so in its controls; the Q1 suite S2 and BND-06 add the shuffled arms.",
+   "evidence": [
+    "analysis/reports/program_v2.md",
+    "analysis/score_record.py",
+    "analysis/check_scores.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "nonconforming = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "found: regime includes K but controls.knowledge_source is missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-03",
+   "category": "9 Evaluation protocol",
+   "title": "Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional error, cost",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "The metric set is defined once (score_record.STANDARD_METRICS); every reported metric is defined in its directory's contract, with the SHD variant and the orientation rule named",
+   "evidence": [
+    "analysis/cc_graph.py",
+    "analysis/error_budget.py",
+    "analysis/score_record.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "nonconforming = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "found: an SHD metric is reported but shd_variant is not named"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-04",
+   "category": "9 Evaluation protocol",
+   "title": "Predictions and thresholds fixed in code before every live run",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/stability.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: P1_HI, P1_LO, P1_N"
+    },
+    {
+     "ok": true,
+     "detail": "found: N4_HI, N4_LO, N4_N"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-05",
+   "category": "9 Evaluation protocol",
+   "title": "Development / held-out split by scenario number before any tuning",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "plans/splits.json frozen before any tuning: 25 / 25 scenarios per family, disjoint, regenerable byte-for-byte; earlier data declared dev",
+   "evidence": [
+    "plans/splits.json",
+    "analysis/make_splits.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/semantic/dev = [\"apartment_heat_exposure_shading_ac\", \"backup_frequency_ran (len_eq 25)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/test = [\"api_rate_limit_abuse_spillover\", \"building_fee_schedule_pr (len_eq 25)"
+    },
+    {
+     "ok": true,
+     "detail": "families/formula/dev = [\"arrhenius_temperature_dependent_reaction_rate\", \"cantileve (len_eq 25)"
+    },
+    {
+     "ok": true,
+     "detail": "families/semantic/s2_test_scenarios = [\"solder_reflow_profile_joint_voids\", \"pedestrian_countdown_ (len_eq 10)"
+    },
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    }
+   ],
+   "reproduce": "python analysis/make_splits.py --root external/causalarena --out plans/splits.json (unit test checks byte identity)",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-06",
+   "category": "9 Evaluation protocol",
+   "title": "Stage-by-stage scoring of any pipeline",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/lineage.py",
+    "analysis/partial_stages.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "exists"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EVL-07",
+   "category": "9 Evaluation protocol",
+   "title": "Must-show list and gates for every live step",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/reports/bundle1_design.md",
+    "analysis/reports/pass4b_design.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Must-show list"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-01",
+   "category": "10 Infrastructure",
+   "title": "Harness v3, Docker image, cc.ps1 commands, stub LLM, plan runner, fetcher",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "cc.ps1",
+    "harness/fetch_external.py",
+    "manifests/evidence/INF-01_docker_2026-10-10.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: \"fetch\""
+    },
+    {
+     "ok": true,
+     "detail": "found: begin_source"
+    },
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-02",
+   "category": "10 Infrastructure",
+   "title": "Analysis tools with gates",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "analysis/README.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Tools and their gates"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-03",
+   "category": "10 Infrastructure",
+   "title": "External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "external/FETCH_REPORT.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "errors = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "extracted = [{\"dataset\": \"lt_interventions_standard_v1\", \"csv_files\": 59 (len_eq 8)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-04",
+   "category": "10 Infrastructure",
+   "title": "Compute-job command on Uzair's machine (sandbox caps steps at 180 s)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "cc.ps1 compute runs a jobkit script in the container with no network, the repo read-only and an empty .env; J1 (chunked == one-shot output hash, in the shell and in the container) and J2 (no key, no network, empty .env) pass",
+   "evidence": [
+    "harness/compute_job.py",
+    "analysis/jobkit.py",
+    "analysis/smoke_job.py",
+    "cc.ps1",
+    "jobs/gates.json",
+    "jobs/smoke_container/log.jsonl"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "J1_shell = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "J1_container = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "J2 = true (true )"
+    }
+   ],
+   "reproduce": "powershell -ExecutionPolicy Bypass -File .\\cc.ps1 compute smoke_container.json ; python analysis/job_gates.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Container run 2026-10-11 (Uzair): 4 chunks, each stopped by its 4 s budget and resumed; output sha256 84e50886... identical to the one-shot and shell runs; J2 printed in every chunk: no secret-like variables, no network, /app/.env size 0.",
+   "problems": []
+  },
+  {
+   "id": "INF-05",
+   "category": "10 Infrastructure",
+   "title": "Unit tests for our code; caching by content hash",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Unit tests for the scorer, graph conversions, CPDAG/Meek, job resumption, the score contract and the splits pass; jobkit keys cached results by input sha256",
+   "evidence": [
+    "tests/test_core.py",
+    "tests/run_tests.py",
+    "analysis/jobkit.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "ran = 23 (ge 18)"
+    },
+    {
+     "ok": true,
+     "detail": "found: def input_key"
+    }
+   ],
+   "reproduce": "python tests/run_tests.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-06",
+   "category": "10 Infrastructure",
+   "title": "Public repository preparation (no keys, licences, no redistribution, run-record size)",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Public tree: secret scan clean, licences stated, no redistributed benchmark data, no classmates' names, run records within size limits",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "INF-07",
+   "category": "10 Infrastructure",
+   "title": "One command reproduces every number in the report",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "One command regenerates every number in the final report on a clean copy, byte-for-byte or within stated tolerance",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-01",
+   "category": "11 Course",
+   "title": "TA check-in 1 (TA: Nate)",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-19",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-02",
+   "category": "11 Course",
+   "title": "Quarter 1 checkpoint",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-02",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-03",
+   "category": "11 Course",
+   "title": "TA check-in 2",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-20",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-04",
+   "category": "11 Course",
+   "title": "Quarter 1 final (50%)",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-12-04",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-05",
+   "category": "11 Course",
+   "title": "Quarter 2 proposal: written proposal, weekly schedule, 2-3 min pitch (15%)",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-06",
+   "category": "11 Course",
+   "title": "Quarter 2 deliverables: public repo, website, PDF report, poster; showcase 2nd week of March 2027",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "CRS-07",
+   "category": "11 Course",
+   "title": "Decision gate G1",
+   "kind": "deadline",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-16",
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TEAM-01",
+   "category": "12 Team and communication",
+   "title": "Causal Discovery section for the shared mentor document",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V1",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "project:claude/shared-doc-causal-section-draft.md"
+   ],
+   "pointers": [
+    "project:claude/shared-doc-causal-section-draft.md"
+   ],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "v3 ready; 'Proposed project' part waits on DEC-01.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-02",
+   "category": "12 Team and communication",
+   "title": "Plain-language explainer for meetings, saved as a file",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "docs/meeting_explainer.md exists and matches current numbers",
+   "evidence": [
+    "docs/meeting_explainer.md",
+    "analysis/reports/bundle1_results.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: directed-edge F1\\) \\*\\*0\\.68\\*\\*"
+    },
+    {
+     "ok": true,
+     "detail": "found: directed-edge F1 0\\.09 -> 0\\.68"
+    },
+    {
+     "ok": true,
+     "detail": "found: \\*\\*0\\.02\\*\\*; with swapped names to \\*\\*0\\.07\\*\\*"
+    },
+    {
+     "ok": true,
+     "detail": "found: 0\\.08 -> 0\\.02; swapped \\(13\\) 0\\.50 -> 0\\.26, 0\\.04 -> 0\\.07"
+    },
+    {
+     "ok": true,
+     "detail": "found: real 141 of 152 \\(93%\\).*swapped 112 of 125 \\(90%\\)"
+    },
+    {
+     "ok": true,
+     "detail": "found: Total crashes: 12 of 84"
+    },
+    {
+     "ok": true,
+     "detail": "found: 100 of 336 \\(29\\.8%\\)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [
+    "a newer run set supersedes bundle 1's numbers (the explainer must be regenerated)"
+   ],
+   "due": null,
+   "blocked_by": null,
+   "note": "Written 2026-10-10 for TA check-in 1 (19-23 Oct); each number is tied to its source line by a check.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-03",
+   "category": "12 Team and communication",
+   "title": "Recruit at least one teammate",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TEAM-04",
+   "category": "12 Team and communication",
+   "title": "Ask the mentor: group of 2-3 in Q2? Scope of 'replicate, measure, strengthen'?",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TEAM-05",
+   "category": "12 Team and communication",
+   "title": "Do not count on answers from Prof. Huang's group",
+   "kind": "rule",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "docs/project_snapshots/2026-10-09/causal-copilot-research-ledger.md",
+    "project:claude/causal-copilot-research-ledger.md (DECISIONS)"
+   ],
+   "pointers": [
+    "project:claude/causal-copilot-research-ledger.md (DECISIONS)"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: do not count on any answer from Prof\\. Huang"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TEAM-06",
+   "category": "12 Team and communication",
+   "title": "Weekly status post",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "TEAM-07",
+   "category": "12 Team and communication",
+   "title": "Tailored public goals post in #causal-discovery",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Goals index, status legend and the first prod digest posted in #causal-discovery",
+   "evidence": [
+    "slack:C0C8CQK1XME/1791580546.004809",
+    "slack:C0C8CQK1XME/1791613267.243749",
+    "tracker/relay_out/20261010T061713Z_digest_prod.md"
+   ],
+   "pointers": [
+    "slack:C0C8CQK1XME/1791580546.004809",
+    "slack:C0C8CQK1XME/1791613267.243749"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: first digest, no earlier baseline"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Index and status legend posted by Uzair on 9 Oct; first prod digest sent by Uzair (ts 1791613267.243749, recorded 11 Oct).",
+   "problems": []
+  },
+  {
+   "id": "EXT-01",
+   "category": "13 External outputs",
+   "title": "Note to CausalArena's maintainers about column order",
+   "kind": "decision",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [
+    "analysis/results/causalarena_calibration/protocol_check.json",
+    "analysis/reports/bnd04_results.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": "Uzair's decision (DEC-03)",
+   "note": "Strengthened by BND-04: the authors' own baseline code orients undecided edges by column index on a topologically ordered release (PC F1 0.335 -> 0.396, FCI 0.322 -> 0.521 under that rule).",
+   "problems": []
+  },
+  {
+   "id": "EXT-02",
+   "category": "13 External outputs",
+   "title": "Scoreboard submission package with regime and controls stated",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EXT-03",
+   "category": "13 External outputs",
+   "title": "Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer)",
+   "kind": "decision",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Evidence grows: 15 of 15 live entries into the cycle step crashed at judge_functions.py:562 (9 bundle 1, 6 S2).",
+   "problems": []
+  },
+  {
+   "id": "EXT-04",
+   "category": "13 External outputs",
+   "title": "Paper: evaluations track or workshop",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "EXT-05",
+   "category": "13 External outputs",
+   "title": "Course website, poster, report",
+   "kind": "task",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-01",
+   "category": "14 Stretch",
+   "title": "E1 Field-wide audit of agents and LLM-assisted methods",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-02",
+   "category": "14 Stretch",
+   "title": "E2 Public agent track",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-03",
+   "category": "14 Stretch",
+   "title": "E3 Real experiments via the Causal Chambers remote lab",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-04",
+   "category": "14 Stretch",
+   "title": "E4 Learned fusion (pretrained network with unreliable tier statements)",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-05",
+   "category": "14 Stretch",
+   "title": "E5 Hidden confounders, time series, 100+ variables",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "STR-06",
+   "category": "14 Stretch",
+   "title": "Product angle: auditable causal analyst",
+   "kind": "stretch",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DEC-01",
+   "category": "15 Decisions",
+   "title": "Adopt, redirect or enlarge program v2; which of E1-E5 in scope",
+   "kind": "decision",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DEC-02",
+   "category": "15 Decisions",
+   "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)",
+   "kind": "decision",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DEC-03",
+   "category": "15 Decisions",
+   "title": "Whether to tell CausalArena's maintainers about the column order",
+   "kind": "decision",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "DEC-04",
+   "category": "15 Decisions",
+   "title": "Connect Slack; tracker in private #cd-tracker",
+   "kind": "decision",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "",
+   "evidence": [
+    "docs/project_snapshots/2026-10-09/causal-copilot-research-ledger.md",
+    "slack:C0C7Q2CA2G7"
+   ],
+   "pointers": [
+    "slack:C0C7Q2CA2G7"
+   ],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: #cd-tracker \\(C0C7Q2CA2G7"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-01",
+   "category": "15 Risks",
+   "title": "LLM-written semantic graphs make names 'work' for the wrong reason (guard: formula + Causal Chambers alongside)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-02",
+   "category": "15 Risks",
+   "title": "Data-only system may not reach GIES 0.552 (guard: claim targets only where they hold)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-03",
+   "category": "15 Risks",
+   "title": "Scope too large for one person (guard: decision gates; tracks shrink in fixed order)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-04",
+   "category": "15 Risks",
+   "title": "Prior work closes the gap first (guard: dated measurements; positioning kept current)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-05",
+   "category": "15 Risks",
+   "title": "Benchmark files change (guard: dated result; shuffling stays a required control)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-06",
+   "category": "15 Risks",
+   "title": "Model snapshot changes mid-study (guard: snapshot per call; one per comparison)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-07",
+   "category": "15 Risks",
+   "title": "Thresholds tuned after seeing results (guard: thresholds in code, hashed plans, held-out split)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "RSK-08",
+   "category": "15 Risks",
+   "title": "Sandbox limits 180 s per step (guard: compute command on Uzair's machine)",
+   "kind": "risk",
+   "status": "open",
+   "effective_status": "open",
+   "emoji": "🔵",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "",
+   "problems": []
+  },
+  {
+   "id": "BND-01",
+   "category": "16 Bundles",
+   "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene",
+   "kind": "bundle",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: `cc.ps1 compute smoke` log: 2 chunks, interrupt + resume, identical output sha256, J2 environment check printed; pytest summary: all pass; plans/splits.json sha256 and counts (semantic dev/test, formula dev/test); check_scores.py over every existing result file: conforming / non-conforming list (non-conforming ones are upgraded, not hidden); trace.py check: 0 errors; every in-scope ticket has a criterion",
+   "evidence": [
+    "jobs/gates.json",
+    "jobs/smoke_container/log.jsonl",
+    "jobs/smoke/log.jsonl",
+    "tests/last_run.json",
+    "plans/splits.json",
+    "analysis/check_scores.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "J1_shell = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "J1_container = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "J2 = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-13",
+   "blocked_by": null,
+   "note": "Closed 2026-10-11 after Uzair's container smoke run: J1 (shell and container) and J2 pass; 18 unit tests pass; every result directory has a CONTRACT.json (check_scores: none non-conforming). Runner: claude + one Uzair command. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-02",
+   "category": "16 Bundles",
+   "title": "Primary sources: literature re-reads, deep reads, method choices",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Must show: count of A-marked claims before/after; list of removed claims; one note file per deep read; DOM-08 decision with comparison table; DOM-11 table with code links; REP-12 verdict",
+   "evidence": [
+    "analysis/literature/bnd02/rep13_claims.md",
+    "analysis/literature/bnd02/dom07_deep_reads.md",
+    "analysis/literature/bnd02/dom08_calibration_choice.md",
+    "analysis/literature/bnd02/dom10_active_design_baselines.md",
+    "analysis/literature/bnd02/dom11_pretrained_models.md",
+    "analysis/literature/bnd02/rep12_causalman.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-22",
+   "blocked_by": null,
+   "note": "REP-13, DOM-08, DOM-10, DOM-11, DOM-12 done; DOM-07 waits on CausalArena appendix B (unreadable so far). Runner: claude (web, no API spend). API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-03",
+   "category": "16 Bundles",
+   "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: REP-03 claims table with status counts; REP-04 divergence list (D1..Dn); AUD-12/14 audit notes; AUD-15: upstream commit hashes and whether either crash is fixed upstream",
+   "evidence": [
+    "analysis/reports/bnd03/rep04_paper_vs_code.md",
+    "analysis/reports/bnd03/rep03_headline_claims.md",
+    "analysis/reports/bnd03/aud12_effect_estimation.md",
+    "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md",
+    "analysis/reports/bnd03/aud15_upstream.md",
+    "analysis/results/bnd03_citations.json",
+    "analysis/results/bnd03_tree_check.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "ok = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-20",
+   "blocked_by": null,
+   "note": "Static audit done (gates A1, A2 pass); open: REP-03 live-only claims, AUD-14 one offline stub run of a time-series wrapper. Runner: claude (read-only copies; no API spend). API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-04",
+   "category": "16 Bundles",
+   "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)",
+   "kind": "bundle",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: SHD definition table and the matching one (or none); GES and FCI rows vs published with SE; error budget per method; Q4a-b verdicts with counts; compute job logs",
+   "evidence": [
+    "analysis/results/methods/bnd04_verdicts.json",
+    "analysis/reports/bnd04_results.md",
+    "analysis/results/methods/gesbic_semantic_obs.json",
+    "analysis/results/methods/fci_semantic_obs.json",
+    "analysis/results/causalarena_calibration/protocol_check.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "gates/C1 = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-15",
+   "blocked_by": null,
+   "note": "Built 2026-10-10: RQ-16, REP-06, BEN-08 done; marked done 2026-10-11 once BND-01 closed (W3). BEN-11 continues in BND-06. Runner: claude via compute jobs. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-05",
+   "category": "16 Bundles",
+   "title": "Freeze the Quarter 1 dataset suite",
+   "kind": "bundle",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: suite MAPPING sha256 and per-arm hashes; D1-D10 pass; one card per dataset; explainer file",
+   "evidence": [
+    "datasets/suite_q1s2/MAPPING.json",
+    "manifests/evidence/suite_q1_2026-10-10.sha256",
+    "docs/q1/datasets.md",
+    "docs/meeting_explainer.md",
+    "analysis/results/reference_reliability/reliability.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    },
+    {
+     "ok": true,
+     "detail": "exists"
+    },
+    {
+     "ok": true,
+     "detail": "found: ### s2_10: "
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-16",
+   "blocked_by": null,
+   "note": "Built 2026-10-10; gates D1-D11 pass and the rebuild is byte-identical (--check). Marked done 2026-10-11 once BND-01 closed (rule W3). Runner: claude (no LLM). API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-06",
+   "category": "16 Bundles",
+   "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Must show: SHD definition table and the matching one (or none); per-method rows vs published with SE; error-budget table per method x family; Q4a-c verdicts with counts; order-sensitivity table; validator output on the package; compute job logs (chunks, wall time)",
+   "evidence": [
+    "analysis/results/methods/bnd06_verdicts.json",
+    "analysis/results/methods/bnd06_families.json",
+    "analysis/results/methods/bnd06_c1_recheck.json",
+    "analysis/reports/bnd06_interim.md",
+    "analysis/reports/bnd06_families.md",
+    "plans/bnd06_prereg.json",
+    "analysis/notears_linear.py",
+    "analysis/results/submission/validator_output.txt"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-24",
+   "blocked_by": null,
+   "note": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11. Runner: claude via compute jobs. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-07",
+   "category": "16 Bundles",
+   "title": "Causal Chambers and intervention audit (no LLM)",
+   "kind": "bundle",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V2",
+   "required_level": "V2",
+   "criterion": "Must show: mapping table (dataset -> graph source, variables, edges); intervention-shift table with the in-name-only count; GES reproduction row vs reported",
+   "evidence": [
+    "analysis/intervention_audit.py",
+    "analysis/results/intervention_audit/intervention_audit.json",
+    "external/causalchamber_pkg/causalchamber-0.2.8-py3-none-any.whl",
+    "analysis/results/chambers/mapping.json",
+    "analysis/results/chambers/one_layer_deep.json",
+    "analysis/results/chambers/rep09_ges.json",
+    "analysis/reports/bnd07_chambers.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-27",
+   "blocked_by": null,
+   "note": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here). Runner: claude via compute jobs. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-08",
+   "category": "16 Bundles",
+   "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: 30 exit codes; reruns listed; per run: code identity, model snapshot, stage reached; per scenario table: S0, S1, S3 directed and adjacency F1 per arm, plain PC on the same file; M1-M5 verdicts with counts; cost and time vs the stub estimate (AUD-11); neutral-arm leak scan (L1) passes",
+   "evidence": [
+    "analysis/results/stability_s2/bnd08_summary.json",
+    "analysis/reports/bnd08_s2_results.md",
+    "plans/results/20261012T002122Z_bnd08_live.result.json",
+    "plans/bnd08_stub.json",
+    "plans/bnd08_live.json",
+    "analysis/s2_analysis.py",
+    "analysis/bootstrap_replay_ca.py",
+    "manifests/evidence/bnd08_prereg_2026-10-11.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-24",
+   "blocked_by": null,
+   "note": "Live run 11-12 Oct: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1 SUPPORTED, M2 REFUTED (5/10), M3 SUPPORTED, M4 SUPPORTED, M5 not run; L1 and Q1-Q3 pass; about $12.7. Open: DLV-02's gap (6 arms without a completed run), Uzair's call. Runner: Uzair (live, his key) after a free stub run. API spend: 30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls.",
+   "problems": []
+  },
+  {
+   "id": "BND-09",
+   "category": "16 Bundles",
+   "title": "Refinement v1 (no LLM): develop and freeze on the dev split",
+   "kind": "bundle",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: dev tables R1-R3; frozen rule sha256 and timestamp; undirected-edge survival rate vs the pipeline's 15-31%",
+   "evidence": [
+    "analysis/refinement_v1.py",
+    "analysis/results/refinement_v1/dev.json",
+    "analysis/results/refinement_v1/dev_exploratory.json",
+    "analysis/results/refinement_v1/RULE.json",
+    "analysis/reports/bnd09_bnd10_refinement.md",
+    "jobs/bootstrap_replay_ca_dev/out/replay_dev.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "summary/R3/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "sha256 = \"da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f9528 (eq \"da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f95287a962\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-25",
+   "blocked_by": null,
+   "note": "Done 2026-10-11. Dev, 92 files (69 live tables, 23 CausalArena dev replays): R1 0.79 INCONCLUSIVE, R2 0.96 SUPPORTED, R3 +0.023 SUPPORTED; non-directed edges kept 95% vs the pipeline's 30%. Frozen: RULE.json sha256 da3cb260..., 01:11:03Z. Runner: claude (replay). API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-10",
+   "category": "16 Bundles",
+   "title": "Refinement v1: held-out test",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: R1-R3 test verdicts with counts; access log; comparison table: algorithm / pipeline S1 / v1",
+   "evidence": [
+    "analysis/results/refinement_v1/test_live_s2.json",
+    "analysis/refinement_v1_test_live.py",
+    "analysis/results/refinement_v1/test_replay.json",
+    "analysis/results/refinement_v1/access_log.jsonl",
+    "analysis/reports/bnd09_bnd10_refinement.md",
+    "jobs/bootstrap_replay_ca_test/out/replay_test.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "pooled_test/files = 55 (eq 55)"
+    },
+    {
+     "ok": true,
+     "detail": "summary/files = 25 (eq 25)"
+    },
+    {
+     "ok": true,
+     "detail": "rule_sha256 = \"da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f9528 (eq \"da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f95287a962\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-10-28",
+   "blocked_by": null,
+   "note": "Measured 2026-10-12 (must-show complete; marked done once BND-08 closes, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. Live S2 alone: R1 REFUTED 17/30, R2 SUPPORTED 30/30. TGT-09 not met; carried to BND-11 (v2). Runner: claude (replay). API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-11",
+   "category": "16 Bundles",
+   "title": "LIVE: Refinement v2, names only where the data are silent",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Must show: R4-R6 verdicts; table with 'data only' and 'data + names' columns; crash count 0; malformed replies seen and how each was handled",
+   "evidence": [
+    "analysis/refinement_v2.py",
+    "analysis/results/refinement_v2/RULE.json",
+    "analysis/results/refinement_v2/dev.json",
+    "plans/bnd11_names_requests.jsonl",
+    "harness/names_runner.py",
+    "analysis/reports/bnd11_prep.md",
+    "manifests/evidence/bnd11_prereg_2026-10-12.sha256"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "0 listed files changed or missing"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-12",
+   "blocked_by": null,
+   "note": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live. Runner: Uzair (live). API spend: about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each.",
+   "problems": []
+  },
+  {
+   "id": "BND-12",
+   "category": "16 Bundles",
+   "title": "LIVE: second model and external replications",
+   "kind": "bundle",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "Must show: per part: runs, verdicts, cost; N2/P1 replication table by model",
+   "evidence": [
+    "analysis/results/rep11/rep11_sachs_data.json",
+    "analysis/reports/rep11_sachs_data.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-19",
+   "blocked_by": null,
+   "note": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair. Runner: Uzair (live). API spend: second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k).",
+   "problems": []
+  },
+  {
+   "id": "BND-13",
+   "category": "16 Bundles",
+   "title": "Quarter 1 checkpoint package (2 Nov)",
+   "kind": "bundle",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Must show: the checkpoint document; number-to-ticket table; trace.py check 0 errors",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-01",
+   "blocked_by": null,
+   "note": "Runner: claude; Uzair submits. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "BND-14",
+   "category": "16 Bundles",
+   "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)",
+   "kind": "bundle",
+   "status": "todo",
+   "effective_status": "todo",
+   "emoji": "⏳",
+   "level": "V0",
+   "required_level": "",
+   "criterion": "Must show: regeneration log; secret-scan output; the report; trace.py: every Q1 ticket done or explicitly moved to Q2 with a reason",
+   "evidence": [],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-12-03",
+   "blocked_by": null,
+   "note": "Runner: claude; Uzair submits. API spend: none.",
+   "problems": []
+  }
+ ]
+}

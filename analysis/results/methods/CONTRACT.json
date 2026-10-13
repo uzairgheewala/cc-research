@@ -1,0 +1,43 @@
+{
+ "controls": {
+  "columns_shuffled": "per-row",
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "metric_defs": {
+  "directed_f1": "F1 over directed edges after the stated rule turns undecided pairs into predictions",
+  "directed_precision": "precision over directed edges, same rule",
+  "directed_recall": "recall over directed edges, same rule",
+  "shd": "pair-level SHD (one per unordered pair whose arrows differ; a reversal counts once)",
+  "seconds": "wall time of the method call on one file",
+  "skel_f1": "F1 over unordered adjacencies, an undecided pair counting as an adjacency",
+  "f1_random": "family mean directed F1 under the random rule (replicate-averaged per scenario, then averaged over scenarios)",
+  "f1_lower": "family mean directed F1 under the authors' rule 'lower'",
+  "difference": "family mean F1 released order minus shuffled order (Q4c statistic under the random rule)",
+  "symmetric_difference": "pc_skeleton_order_*.json: adjacencies present in exactly one of the released-order and shuffled-order skeletons",
+  "accuracy_of_committed_directions": "right / (right + reversed) over committed arrows on true adjacencies",
+  "cost_of_direction_errors_f1": "skel_f1 - directed_f1 (random rule)"
+ },
+ "note": "Files where the method raised (singular data: 5 scenarios x 5 replicates for gesbic and fci) are scored as empty graphs, as the authors' runners do; error_budget_*_excl_failed.json drop those scenarios (post hoc, labelled). BND-06 families (2026-10-12, computed in the cloud copy; environment recorded in each row file's header): formula and synthetic100 rows, released and shuffled.",
+ "orientation_rule": "rows store committed arrows and undecided pairs; scores given under random (per-file seed), drop, both and lower (the authors' 'liberal' rule, TabCausal baselines/paper_algorithms (commit recorded in causalarena_calibration/protocol_check.json)); lower reads the released column order, which is topological",
+ "producer": "analysis/causalarena_methods.py (row files <method>_<family tag>_{rel,shuf}.json), analysis/method_error_budget.py (error_budget_*.json), analysis/bnd06_summary.py (bnd06_verdicts.json), analysis/bnd06_summary_families.py (bnd06_families.json), analysis/pc_skeleton_order_check.py (pc_skeleton_order_*.json); bnd06_c1_recheck.json written inline from pc_c1check_semantic_obs_rel.json (see analysis/reports/bnd06_families.md)",
+ "regime": "D",
+ "score_bearing": true,
+ "shd_variant": "pair-level, reversal = 1 (the authors' metrics.py formula); computed after each orientation rule",
+ "split": "per-row",
+ "tickets": [
+  "BEN-07",
+  "BEN-11",
+  "BND-06",
+  "CAP-17",
+  "REP-06",
+  "REP-07",
+  "RQ-16"
+ ],
+ "families": "semantic (250 public obs-only files), formula (250 public obs-only files), synthetic100 (the 100 public synthetic obs-only files listed in plans/synth_sample_100.txt, one replicate each)",
+ "failed_files": "a file on which the method raises (or exceeds --file-timeout-s) is scored as an empty graph and flagged with 'failed' in its row; counts are reported in every summary",
+ "not_score_bearing": [
+  "logs/",
+  "*.parts.jsonl (resumable job state; same rows as the merged file)"
+ ]
+}

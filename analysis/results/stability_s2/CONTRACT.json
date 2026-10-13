@@ -1,0 +1,33 @@
+{
+ "controls": {
+  "columns_shuffled": true,
+  "knowledge_source": "variable names read by GPT-4o inside the pipeline; arms real / neutral / swapped per datasets/suite_q1s2/MAPPING.json",
+  "names": "per-row",
+  "supplier": "CausalArena semantic test scenarios (datasets/suite_q1s2)"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies (any edge type)",
+  "adj_precision": "precision over unordered adjacencies",
+  "adj_recall": "recall over unordered adjacencies",
+  "dir_f1": "F1 over directed edges, rule in orientation_rule",
+  "dir_precision": "directed precision",
+  "dir_recall": "directed recall",
+  "shd_cpdag": "SHD against the true graph's CPDAG: one per unordered pair whose edge type differs"
+ },
+ "orientation_rule": "only committed directions count; an undirected pair is no prediction; a two-way conflict predicts both (analysis/cc_graph.py score())",
+ "producer": "analysis/stability.py, partial_stages.py, s2_analysis.py",
+ "regime": "D+K",
+ "score_bearing": true,
+ "shd_variant": "CPDAG-level, one per differing pair",
+ "split": "test",
+ "tickets": [
+  "AUD-10",
+  "AUD-11",
+  "BND-08",
+  "DLV-02",
+  "DLV-03",
+  "RQ-05",
+  "RQ-15"
+ ],
+ "note": "BND-08 live runs (label s2, 30 runs, one per arm, gpt-4o-2024-08-06). S3 (graph handed to the cycle step) is the primary endpoint; stability.py's T1 fails by design because the only run of 6 arms crashed in the cycle step; those runs are scored at S3 by partial_stages.py (gates Q1-Q3 pass)."
+}

@@ -1,0 +1,16 @@
+{
+ "bundle": "BND-06",
+ "written_utc": "2026-10-10T19:00:00Z",
+ "written_before": "any shuffled-order run of any method",
+ "tickets": ["BEN-07", "REP-07", "BEN-11"],
+ "methods": ["pc", "gesbic", "fci", "lingam", "notears"],
+ "family": "semantic",
+ "files": "all 250 public observational-only files",
+ "shuffle": "analysis/causalarena_methods.py --shuffle-seed 20261010: per-file permutation default_rng(20261010 + crc32(file name)); the graph is mapped back before scoring",
+ "Q4c": {
+  "text": "|F1 released - F1 shuffled| <= 0.02 for every data-driven method (supported) / > 0.05 for any (refuted)",
+  "metric": "family mean directed F1 (replicate-averaged per scenario, then averaged over scenarios) under the random rule (undecided pairs oriented at random, per-file seed): order-free for every method; lingam and notears output DAGs, so the rule does not apply to them",
+  "secondary_reported_not_judged": "the same difference under the authors' rule 'lower' (earlier column in the order the method saw -> later), which reads the released order"
+ },
+ "REP-07": "each method's released-order row vs the published semantic obs-only row under the authors' rule, tolerance 3 SE of a 50-of-100 scenario mean (finite-population corrected); a failed file is scored as an empty graph and the count is reported"
+}

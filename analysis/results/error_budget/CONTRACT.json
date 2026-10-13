@@ -1,0 +1,33 @@
+{
+ "controls": {
+  "columns_shuffled": false,
+  "names": "not applicable",
+  "supplier": "causalarena"
+ },
+ "metric_defs": {
+  "ceiling": "directed F1 of the true graph's equivalence class under the orientation rule",
+  "directed_f1": "F1 over directed edges; undecided pairs oriented by the stated rule",
+  "direction_accuracy": "share of committed directions on true adjacencies that are right",
+  "skeleton_f1": "F1 over unordered adjacencies of the skeleton"
+ },
+ "orientation_rule": "random per file (CausalArena Appendix B.2)",
+ "per_file": {
+  "error_budget.json": {
+   "regime": "D"
+  },
+  "order_value.json": {
+   "controls": {
+    "knowledge_source": "oracle tiers taken from the true graph (upper bound, not a method)"
+   },
+   "regime": "D+K"
+  }
+ },
+ "producer": "analysis/error_budget.py, order_value.py",
+ "score_bearing": true,
+ "split": "all-public (measurement, no tuning)",
+ "tickets": [
+  "BEN-03",
+  "BEN-04",
+  "BEN-05"
+ ]
+}

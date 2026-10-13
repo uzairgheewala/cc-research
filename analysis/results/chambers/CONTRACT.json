@@ -1,0 +1,34 @@
+{
+ "tickets": ["BEN-10", "REP-09", "BND-07"],
+ "producer": "analysis/chambers_fetch.py (fetch_status.json; docs into external/causal_chambers_docs/), analysis/chambers_map.py (mapping.json, mapping_table.csv), analysis/chambers_validate.py (one_layer_deep.json), analysis/chambers_sample.py (sample/), analysis/rep09_ges.py (rep09_ges.json); shared I/O in analysis/chambers_io.py",
+ "score_bearing": true,
+ "regime": "D",
+ "split": "not applicable",
+ "controls": {
+  "columns_shuffled": false,
+  "names": "not applicable",
+  "supplier": "causal_chambers"
+ },
+ "orientation_rule": "rep09_ges.json follows the Causal Chambers authors (causal_discovery_iid.ipynb cell 27): every DAG in the estimated CPDAG is enumerated (sempler.utils.all_dags) and scored; the reported quantity is the per-DAG list and its range, no single orientation is chosen",
+ "metric_defs": {
+  "precision_per_dag": "for each DAG in the estimated CPDAG: |estimated directed edges that are true directed edges| / |estimated directed edges| (authors' cell 10)",
+  "recall_per_dag": "for each DAG in the estimated CPDAG: |estimated directed edges that are true directed edges| / |true directed edges| (authors' cell 10)",
+  "precision_range": "[min, max] of precision_per_dag",
+  "recall_range": "[min, max] of recall_per_dag",
+  "n_dags": "number of DAGs in the estimated CPDAG's equivalence class",
+  "bic_score": "score returned by ges.fit_bic (ges 1.1.0)",
+  "seconds": "wall time of the ges.fit_bic call"
+ },
+ "per_file": {
+  "rep09_ges.json": {
+   "regime": "D",
+   "controls": {"columns_shuffled": false, "names": "not applicable", "supplier": "causal_chambers"},
+   "note": "truth = causalchamber 0.2.8 graph('lt','standard') induced on the authors' 20 variables; data = uniform_reference of lt_interventions_standard_v1 (observational reference, 10000 rows). The 'ours' block exists only when the verified zip is present; this version holds the reported numbers and the data-free metric/truth check."
+  },
+  "fetch_status.json": {"score_bearing": false},
+  "mapping.json": {"score_bearing": false},
+  "mapping_table.csv": {"score_bearing": false},
+  "one_layer_deep.json": {"score_bearing": false, "note": "hypothesis tests (KS, Holm at 1%) on validation experiments, not discovery scores"},
+  "sample/": {"score_bearing": false, "note": "input data for discovery runs (regime D+I when used with targets); no scores"}
+ }
+}

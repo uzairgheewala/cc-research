@@ -1,0 +1,72 @@
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/utils/cit.py", line 172, in __call__
+    inv = np.linalg.inv(sub_corr_matrix)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/numpy/linalg/linalg.py", line 561, in inv
+    ainv = _umath_linalg.inv(a, signature=signature, extobj=extobj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/numpy/linalg/linalg.py", line 112, in _raise_linalgerror_singular
+    raise LinAlgError("Singular matrix")
+numpy.linalg.LinAlgError: Singular matrix
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/externals/loky/process_executor.py", line 463, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/externals/loky/process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 598, in __call__
+    return [func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 598, in <listcomp>
+    return [func(*args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/utils/FAS.py", line 81, in _process_node_pair
+    p = cg.ci_test(x, y, S)
+        ^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/graph/GraphClass.py", line 58, in ci_test
+    return self.test(i, j, S)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/utils/cit.py", line 174, in __call__
+    raise ValueError('Data correlation matrix is singular. Cannot run fisherz test. Please check your data.')
+ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/claude/work/ccr/cc-research/analysis/causalarena_methods.py", line 154, in <module>
+    main()
+  File "/home/claude/work/ccr/cc-research/analysis/causalarena_methods.py", line 119, in main
+    A = run(a.method, X)
+        ^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/cc-research/analysis/causalarena_methods.py", line 77, in run
+    G, _ = fci(X, independence_test_method="fisherz", alpha=0.05, show_progress=False, verbose=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/search/ConstraintBased/FCI.py", line 1077, in fci
+    graph, sep_sets, test_results = fas(dataset, nodes, independence_test_method=independence_test_method, alpha=alpha,
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/work/ccr/Causal-Copilot/externals/causal-learn/causallearn/utils/FAS.py", line 214, in fas
+    results = joblib.Parallel(n_jobs=n_jobs)(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 2007, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 1650, in _get_outputs
+    yield from self._retrieve()
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 1754, in _retrieve
+    self._raise_error_fast()
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 1789, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 745, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/venv311/lib/python3.11/site-packages/joblib/parallel.py", line 763, in _return_or_raise
+    raise self._result
+ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.
+JOB-COMPLETE /home/claude/work/out/m2/fci_semantic_obs.s0.json sha256=487d7e36ea406936f00f5c4549749a5a1959c6232b5e15943365b2a51436adcc

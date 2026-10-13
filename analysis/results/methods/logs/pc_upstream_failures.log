@@ -1,0 +1,73 @@
+START 2026-10-12T03:39:13Z formula
+{
+ "family": "formula",
+ "rows_file": "analysis/results/methods/pc_formula_obs_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 250,
+ "files_upstream_raises": 72,
+ "scenarios_with_any_raise": 16,
+ "error_messages": [
+  "ValueError:  Data correlation matrix is singular. Cannot run fisherz tes"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.3041,
+  "lower": 0.3984
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.2184,
+  "lower": 0.2821
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 33.8,
+  "lower": 31.94
+ }
+}
+START 2026-10-12T03:39:57Z semantic
+{
+ "family": "semantic",
+ "rows_file": "analysis/results/methods/pc_c1check_semantic_obs_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 250,
+ "files_upstream_raises": 25,
+ "scenarios_with_any_raise": 5,
+ "error_messages": [
+  "ValueError:  Data correlation matrix is singular. Cannot run fisherz tes"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.3346,
+  "lower": 0.3962
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.3021,
+  "lower": 0.3556
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 37.792,
+  "lower": 35.984
+ }
+}
+START 2026-10-12T03:40:55Z synthetic
+{
+ "family": "synthetic",
+ "rows_file": "analysis/results/methods/pc_synthetic100_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 100,
+ "files_upstream_raises": 4,
+ "scenarios_with_any_raise": 4,
+ "error_messages": [
+  "TimeoutError:  over 300 s"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.2651,
+  "lower": 0.3395
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.2617,
+  "lower": 0.3361
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 122.4,
+  "lower": 119.63
+ }
+}
+END 2026-10-12T04:11:57Z

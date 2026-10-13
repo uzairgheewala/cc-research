@@ -1,0 +1,26 @@
+{
+ "controls": {
+  "columns_shuffled": false,
+  "knowledge_source": "variable names read by GPT-4o inside the pipeline",
+  "names": "real",
+  "supplier": "repo"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies (any edge type)",
+  "adj_precision": "precision over unordered adjacencies",
+  "adj_recall": "recall over unordered adjacencies",
+  "dir_f1": "F1 over directed edges, rule in orientation_rule",
+  "dir_precision": "directed precision",
+  "dir_recall": "directed recall",
+  "shd_cpdag": "SHD against the true graph's CPDAG: one per unordered pair whose edge type differs"
+ },
+ "orientation_rule": "only committed directions count; an undirected pair is no prediction; a two-way conflict predicts both (analysis/cc_graph.py score())",
+ "producer": "analysis/lineage.py",
+ "regime": "D+K",
+ "score_bearing": true,
+ "shd_variant": "CPDAG-level, one per differing pair",
+ "split": "dev",
+ "tickets": [
+  "AUD-03"
+ ]
+}

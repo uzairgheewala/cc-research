@@ -1,0 +1,117 @@
+{
+ "method_name": "ccr-NOTEARS-colshuffled",
+ "method_family": "Continuous optimization",
+ "version": "cc-research BND-06 (2026-10-12)",
+ "implementation_url": "analysis/causalarena_methods.py --method notears (cc-research repository, UCSD DSC 180 capstone; not public)",
+ "checkpoint_url": "N/A",
+ "license": "re-implementation of Apache-2.0 reference code",
+ "contact": "to be filled in before any submission",
+ "parameter_count": "N/A",
+ "training_disclosure": "N/A: classical method, no training or pretraining; no CausalArena SCMs, samples, metadata or generators used for tuning (all settings are the published defaults fixed before the runs)",
+ "supported_regimes": [
+  "obs"
+ ],
+ "supported_families": [
+  "formula",
+  "semantic",
+  "synthetic"
+ ],
+ "result_files": {
+  "summary_csv": "summary.csv",
+  "predictions_dir": "predictions"
+ },
+ "evaluation": {
+  "dataset_release": "CausalArena public release sample files (external/causalarena/scm/*/data/*_obs_only)",
+  "protocol_version": "v1",
+  "date": "2026-10-12",
+  "hardware": "cloud VM, 2 CPU cores, 7 GB RAM, no GPU",
+  "timeout_sec": 300,
+  "notes": "rows from causalarena_methods.py --method notears --family <family> [--file-list plans/synth_sample_100.txt] --file-timeout-s <t> --shuffle-seed 20261010; per-family timeouts in row_sources"
+ },
+ "config": "linear NOTEARS re-implemented in analysis/notears_linear.py after xunzheng/notears linear.py (Apache-2.0): lambda1 0.1, l2 loss, max_iter 100, h_tol 1e-8, edges |W| >= 0.5",
+ "regime": "D: observational data only (obs-only files; no interventions, no variable names, no knowledge)",
+ "controls": {
+  "columns": "shuffled",
+  "columns_shuffled": true,
+  "shuffle": "per-file permutation default_rng(20261010 + crc32(file name)); the graph is mapped back to the released node order before scoring and before writing predictions",
+  "names": "not applicable",
+  "supplier": "causalarena",
+  "released_order_note": "the released column order is topological in the public files (column_order_check.json); a method that reads column order can benefit from it"
+ },
+ "orientation_rule": "undecided pairs (CPDAG undirected, PAG o->, o-o, <->, LiNGAM/NOTEARS 2-cycles) oriented at random with seed crc32(file name) (CausalArena Appendix B.2/B.4); adjacency in predictions/*.npz is that oriented graph",
+ "shd_variant": "one per unordered pair whose predicted arrows differ from the true arrow(s) (REP-06)",
+ "nshd_definition": "shd / (d (d - 1) / 2), ours; not taken from CausalArena",
+ "failed_rows": {
+  "timeout": 0,
+  "failed": 0,
+  "note": "metrics left blank as the summary schema allows; our family means score them as empty graphs"
+ },
+ "row_sources": {
+  "semantic": {
+   "file": "analysis/results/methods/notears_semantic_obs_shuf.json",
+   "rows": 250,
+   "file_timeout_s": 300,
+   "shuffle_seed": 20261010,
+   "env": {
+    "modules": {
+     "castle": "1.0.4",
+     "causallearn": "present",
+     "lingam": "1.9.1",
+     "networkx": "3.2.1",
+     "numpy": "1.26.4",
+     "pandas": "1.5.3",
+     "scipy": "1.13.1",
+     "sklearn": "1.5.2"
+    },
+    "python": "3.11.17"
+   }
+  },
+  "formula": {
+   "file": "analysis/results/methods/notears_formula_obs_shuf.json",
+   "rows": 250,
+   "file_timeout_s": 300,
+   "shuffle_seed": 20261010,
+   "env": {
+    "modules": {
+     "castle": null,
+     "causallearn": "present",
+     "lingam": null,
+     "networkx": "3.6.1",
+     "numpy": "2.5.3",
+     "pandas": "3.0.5",
+     "scipy": "1.18.1",
+     "sklearn": "1.9.1"
+    },
+    "python": "3.13.16"
+   }
+  },
+  "synthetic": {
+   "file": "analysis/results/methods/notears_synthetic100_shuf.json",
+   "rows": 100,
+   "file_timeout_s": 300,
+   "shuffle_seed": 20261010,
+   "env": {
+    "modules": {
+     "castle": null,
+     "causallearn": "present",
+     "lingam": null,
+     "networkx": "3.6.1",
+     "numpy": "2.5.3",
+     "pandas": "3.0.5",
+     "scipy": "1.18.1",
+     "sklearn": "1.9.1"
+    },
+    "python": "3.13.16"
+   }
+  }
+ },
+ "families_missing": [],
+ "tickets": [
+  "CAP-17",
+  "BND-06",
+  "REP-07",
+  "BEN-07",
+  "BEN-11"
+ ],
+ "submitted": false
+}

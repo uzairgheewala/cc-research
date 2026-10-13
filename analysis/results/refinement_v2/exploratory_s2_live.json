@@ -1,0 +1,38 @@
+{
+ "label": "exploratory: v2d on the S2 live tables, which were already read in BND-10 and informed the v2 design; not a test",
+ "summary": {
+  "files": 30,
+  "R1": {
+   "hits": 30,
+   "share": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "R2": {
+   "hits": 30,
+   "share": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "R3": {
+   "mean_difference": 0.01096825693092192,
+   "verdict": "SUPPORTED"
+  },
+  "means": {
+   "S0": {
+    "adj_f1": 0.5789,
+    "dir_f1_random": 0.3653,
+    "dir_f1_committed": 0.1973
+   },
+   "S1": {
+    "adj_f1": 0.2997,
+    "dir_f1_random": 0.217,
+    "dir_f1_committed": 0.1786
+   },
+   "v2d": {
+    "adj_f1": 0.5844,
+    "dir_f1_random": 0.3763,
+    "dir_f1_committed": 0.1929
+   }
+  },
+  "all_edges_sourced": true
+ }
+}

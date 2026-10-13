@@ -1,0 +1,772 @@
+{
+ "plan": "Quarter 1 execution DAG",
+ "version": 1,
+ "drafted": "2026-10-10",
+ "status": "approved by Uzair 2026-10-10 (\"this is solid\")",
+ "replaces": "analysis/reports/bundle2_onward_design.md bundles 2-5 (absorbed into BND-04/06, BND-08, BND-09..11, BND-14)",
+ "bundles": [
+  {
+   "id": "BND-01",
+   "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene",
+   "depends_on": [],
+   "runner": "claude + one Uzair command",
+   "window": [
+    "2026-10-10",
+    "2026-10-13"
+   ],
+   "closes": [
+    "INF-04",
+    "INF-05",
+    "EVL-01",
+    "EVL-02",
+    "EVL-03",
+    "EVL-05",
+    "DOM-05",
+    "DOM-06"
+   ],
+   "advances": [],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [
+    "cc.ps1 compute smoke (no API key mounted; no cost)"
+   ],
+   "parts": [
+    "INF-04 `cc.ps1 compute <job.json>`: runs one whitelisted cc-research script in the existing image with Causal-Copilot read-only and NO .env mounted; resumable by chunk; writes jobs/<id>/log.jsonl and a done marker",
+    "INF-05 unit tests (pytest) for the scorer, graph conversions, CPDAG/Meek, MAPPING loaders; results cached by input sha256",
+    "EVL-05 plans/splits.json: CausalArena public semantic and formula scenarios split dev/test by sha256(scenario id) parity, frozen and pinned before any tuning; bundle-1 and pass-4b data are dev",
+    "EVL-01/02/03 analysis/score_record.py: every score row carries regime (D, D+I, D+K, D+I+K), controls (columns shuffled y/n, name arm, supplier), split, and the metric set; tools/check_scores.py fails any result file without them",
+    "Ticket hygiene: closing criterion and planned checks written for every in-scope ticket that lacks one (AUD-14, BEN-07..12, DOM-12, EVL-*)",
+    "DOM-05/06: project docs snapshotted into docs/project_snapshots with grep checks (raises them from V1 to V3)"
+   ],
+   "predictions": [],
+   "gates": [
+    "U1 unit tests pass",
+    "J1 compute job resumes after an interrupted chunk with identical output hash",
+    "J2 compute container has no .env and no API key in its environment (checked by the job itself)",
+    "S1 splits file hash pinned; dev/test sizes reported; no scenario in both"
+   ],
+   "must_show": [
+    "`cc.ps1 compute smoke` log: 2 chunks, interrupt + resume, identical output sha256, J2 environment check printed",
+    "pytest summary: all pass",
+    "plans/splits.json sha256 and counts (semantic dev/test, formula dev/test)",
+    "check_scores.py over every existing result file: conforming / non-conforming list (non-conforming ones are upgraded, not hidden)",
+    "trace.py check: 0 errors; every in-scope ticket has a criterion"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-02",
+   "title": "Primary sources: literature re-reads, deep reads, method choices",
+   "depends_on": [],
+   "runner": "claude (web, no API spend)",
+   "window": [
+    "2026-10-11",
+    "2026-10-22"
+   ],
+   "closes": [
+    "REP-13",
+    "DOM-07",
+    "DOM-08",
+    "DOM-10",
+    "DOM-11",
+    "DOM-12"
+   ],
+   "advances": [
+    "REP-12",
+    "DOM-09",
+    "REP-10",
+    "REP-11"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "REP-13: every claim marked A (second-hand) in the reports re-read in its primary source; marked V with URL, retrieval date, section and a short quote, or removed",
+    "DOM-07 deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation; notes with checked quotes; extracts the exact protocols BND-12 needs (CARE control, Kitson & Constantinou fusion)",
+    "DOM-08: calibration method for bootstrap confidence chosen (candidates: raw frequency, isotonic, Platt, split-conformal by scenario) with the evidence; used by BND-09",
+    "DOM-10: two active experiment-design baselines chosen with code located",
+    "DOM-11: pretrained discovery models (AVICI, CSIvA-type, SEA, CDFM, others) table checked against code: order invariance by design, CPU checkpoint available, licence; decides which pretrained models BND-06 can run",
+    "DOM-12: scoping note on hidden confounders, time series, 100+ variables: what Causal-Copilot offers, what is in Q1 (nothing beyond PAG marks reporting), what moves to Q2",
+    "REP-12: whether CausalMan data can be obtained (closes REP-12 as unobtainable, or feeds BND-12)",
+    "DOM-09 (survey half): methods for 'what if we set X?' at 20-40 variables, chosen for timing in BND-06"
+   ],
+   "predictions": [],
+   "gates": [
+    "L2 no claim marked A remains in analysis/reports (grep count 0)",
+    "L3 every note has URL, retrieval date and section; quotes under 15 words"
+   ],
+   "must_show": [
+    "count of A-marked claims before/after; list of removed claims",
+    "one note file per deep read",
+    "DOM-08 decision with comparison table",
+    "DOM-11 table with code links",
+    "REP-12 verdict"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-03",
+   "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift",
+   "depends_on": [],
+   "runner": "claude (read-only copies; no API spend)",
+   "window": [
+    "2026-10-11",
+    "2026-10-20"
+   ],
+   "closes": [
+    "REP-04",
+    "AUD-12",
+    "AUD-14",
+    "AUD-15"
+   ],
+   "advances": [
+    "REP-03"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "REP-03: table of every headline claim in arXiv 2504.13263 marked reproduced / not reproducible (reason) / not attempted, each pointing at a run or a file:line",
+    "REP-04: full pass over the methods section against the code and the recorded runs (extends D1-D9)",
+    "AUD-12: effect-estimation module (causal_inference/) audited like the discovery path: LLM call points, what the LLM decides, failure handling; stub run if it can run offline",
+    "AUD-14: torch and time-series wrappers, web-demo path, report generation quality, by reading and one stub run",
+    "AUD-15: upstream branches newer than a31aa7c cloned into the cloud workspace (never Uzair's repo); diff of refinement and crash points (judge_functions.py:562 cycle step, Initialize_state.py:178)"
+   ],
+   "predictions": [],
+   "gates": [
+    "A1 every finding cites file:line at a31aa7c (or the upstream commit for AUD-15)",
+    "A2 Causal-Copilot tree still matches the baseline manifest"
+   ],
+   "must_show": [
+    "REP-03 claims table with status counts",
+    "REP-04 divergence list (D1..Dn)",
+    "AUD-12/14 audit notes",
+    "AUD-15: upstream commit hashes and whether either crash is fixed upstream"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-04",
+   "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)",
+   "depends_on": [
+    "BND-01"
+   ],
+   "runner": "claude via compute jobs",
+   "window": [
+    "2026-10-13",
+    "2026-10-15"
+   ],
+   "closes": [
+    "RQ-16",
+    "REP-06",
+    "BEN-08"
+   ],
+   "advances": [
+    "BEN-11"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [
+    "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
+   ],
+   "parts": [
+    "REP-06/BEN-08: SHD recomputed on the stored PC outputs under the candidate definitions (reversal = 1 or 2; CPDAG vs DAG; undirected handling); which one gives the published 33.5",
+    "GES and FCI on the 250 public semantic files in the published configuration; error budget (ceiling -> skeleton -> direction) for each, as for PC"
+   ],
+   "predictions": [
+    "Q4a (RQ-16) GES and FCI: accuracy of committed directions <= 0.65 for both (supported) / >= 0.75 for either (refuted)",
+    "Q4b direction errors cost each method >= 0.15 F1 (skeleton-with-perfect-orientation minus actual) (supported) / <= 0.05 for any (refuted)"
+   ],
+   "gates": [
+    "C1 scorer still reproduces the published PC row before any new row is reported",
+    "split respected: every row labelled dev/test; nothing tuned"
+   ],
+   "must_show": [
+    "SHD definition table and the matching one (or none)",
+    "GES and FCI rows vs published with SE",
+    "error budget per method",
+    "Q4a-b verdicts with counts",
+    "compute job logs"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-05",
+   "title": "Freeze the Quarter 1 dataset suite",
+   "depends_on": [
+    "BND-01"
+   ],
+   "runner": "claude (no LLM)",
+   "window": [
+    "2026-10-13",
+    "2026-10-16"
+   ],
+   "closes": [
+    "DLV-01",
+    "BEN-12",
+    "TEAM-02"
+   ],
+   "advances": [],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "S1 core (already run): Sachs d01-d03; abalone, Auto MPG, concrete, DWD x real/neutral/swapped",
+    "S2 extension: 10 CausalArena semantic scenarios drawn from the TEST split, columns shuffled, real/neutral/swapped labels, built by make_suite_ca.py (MAPPING format 2)",
+    "DLV-01 cards in docs/q1/datasets.md: source, reference graph and how far it can be trusted, variables, rows, why chosen, sha256 of every arm",
+    "BEN-12: reliability of each reference graph (Sachs consensus variants; Auto MPG mismatch with CausalArena; provenance of the others)",
+    "TEAM-02: plain-language explainer for TA check-in 1, every number pointing at a ticket"
+   ],
+   "predictions": [],
+   "gates": [
+    "D1-D10 suite gates (D8 references equal released g and graph.json; D9 column permutation recorded, earlier->later share < 100%; D10 swap overlap reported); D11 added at build (2026-10-10): every S2 scenario in the test split, none in dev, one per domain",
+    "suite manifest pinned; any later change reopens DLV-01"
+   ],
+   "must_show": [
+    "suite MAPPING sha256 and per-arm hashes",
+    "D1-D10 pass",
+    "one card per dataset",
+    "explainer file"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-06",
+   "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)",
+   "depends_on": [
+    "BND-04",
+    "BND-02"
+   ],
+   "runner": "claude via compute jobs",
+   "window": [
+    "2026-10-16",
+    "2026-10-24"
+   ],
+   "closes": [
+    "REP-07",
+    "BEN-07",
+    "BEN-11",
+    "DOM-09"
+   ],
+   "advances": [
+    "CAP-17"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [
+    "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
+   ],
+   "parts": [
+    "REP-07: GES, FCI, DirectLiNGAM, NOTEARS (and pretrained models DOM-11 says run on CPU) on the 250 public semantic files in the published configuration; rows in the scoreboard's units",
+    "BEN-11 + RQ-16: error budgets (identifiable ceiling -> skeleton -> direction) for those methods on semantic, formula and a 100-file synthetic sample; G1 needs GES and FCI by 16 Oct",
+    "BEN-07: each runnable method on released vs shuffled column order (does any read the order?)",
+    "DOM-09 (timing half): chosen 'what if' methods timed on one 25-variable scenario",
+    "CAP-17: every row packaged with summary.csv and passed through tools/validate_submission.py",
+    "pretrained models only where BND-02 (DOM-11) found a CPU checkpoint"
+   ],
+   "predictions": [
+    "Q4c (BEN-07) |F1 released - F1 shuffled| <= 0.02 for every data-driven method (supported) / > 0.05 for any (refuted)",
+    "REP-07 tolerance: each row within 3 standard errors of the published mean, or the gap explained"
+   ],
+   "gates": [
+    "C1 scorer still reproduces the published PC row before any new row is reported",
+    "split respected: every row labelled dev/test; nothing tuned"
+   ],
+   "must_show": [
+    "SHD definition table and the matching one (or none)",
+    "per-method rows vs published with SE",
+    "error-budget table per method x family",
+    "Q4a-c verdicts with counts",
+    "order-sensitivity table",
+    "validator output on the package",
+    "compute job logs (chunks, wall time)"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-07",
+   "title": "Causal Chambers and intervention audit (no LLM)",
+   "depends_on": [
+    "BND-01"
+   ],
+   "runner": "claude via compute jobs",
+   "window": [
+    "2026-10-17",
+    "2026-10-27"
+   ],
+   "closes": [
+    "BEN-10",
+    "BEN-09",
+    "REP-09"
+   ],
+   "advances": [],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "BEN-10: each of the 8 downloaded datasets mapped to its ground-truth graph; 'one layer deep' validation checked; an obs+int sample built under a stated sampling rule",
+    "BEN-09: CausalArena's replay sampler: for each declared intervention, is the target's distribution actually shifted (KS, Holm at 1%)? count of interventions in name only",
+    "REP-09: the Causal Chambers authors' GES baseline reproduced on the same subgraph; CDFM's 0.727 recorded as not reproducible on CPU unless DOM-11 says otherwise"
+   ],
+   "predictions": [
+    "REP-09: within the reported range on the same subgraph (supported) / outside with no explanation (refuted)"
+   ],
+   "gates": [],
+   "must_show": [
+    "mapping table (dataset -> graph source, variables, edges)",
+    "intervention-shift table with the in-name-only count",
+    "GES reproduction row vs reported"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-08",
+   "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
+   "depends_on": [
+    "BND-05",
+    "BND-01"
+   ],
+   "runner": "Uzair (live, his key) after a free stub run",
+   "window": [
+    "2026-10-16",
+    "2026-10-24"
+   ],
+   "closes": [
+    "AUD-10",
+    "AUD-11",
+    "DLV-02"
+   ],
+   "advances": [
+    "RQ-05",
+    "RQ-15"
+   ],
+   "llm_cost": "30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls",
+   "approval_needed": "yes: the 30 runs; separately: part d",
+   "uzair_actions": [
+    "cc.ps1 plan plans/bundle7_stub.json (stub LLM, free)",
+    "approve the cost the stub measured",
+    "cc.ps1 plan plans/bundle7_live.json"
+   ],
+   "parts": [
+    "a. bootstrap-step replay (no LLM, compute job): S0 and S1 for PC on replicate 0 of all 50 public scenarios with the repo's own functions (M1; also the refinement test set)",
+    "b. stub run 2 scenarios x 3 arms: S-gates, token and time measurement for AUD-11",
+    "c. 30 live runs: 10 S2 scenarios x real/neutral/swapped, unmodified pipeline, fully recorded",
+    "d. optional names-only baseline: the model's edge list from names alone, 50 scenarios x 3 presentations (M5, RQ-15)"
+   ],
+   "predictions": [
+    "M1 bootstrap step lowers adjacency F1 below the algorithm's output in >= 80% of files (refuted <= 50%)",
+    "M2 real names beat neutral by >= 0.10 S3 directed-edge F1 in >= 8 of 10 scenarios (refuted <= 5)",
+    "M3 swapped arms: label-only share of LLM-set edges >= 80%, n >= 30, data-only count within the permutation null (refuted <= 50%)",
+    "M4 neutral-arm S3 below plain PC on the same file in >= 8 of 10 (refuted <= 5)",
+    "M5 (part d) names alone, real names shuffled: mean F1 >= 0.333 (refuted <= 0.252)"
+   ],
+   "gates": [
+    "R-gates on the plan file",
+    "S-gates on the stub",
+    "T1-T7 at analysis; Q1-Q3 for the S3 endpoint",
+    "repo byte-identical afterwards"
+   ],
+   "must_show": [
+    "30 exit codes; reruns listed",
+    "per run: code identity, model snapshot, stage reached",
+    "per scenario table: S0, S1, S3 directed and adjacency F1 per arm, plain PC on the same file",
+    "M1-M5 verdicts with counts",
+    "cost and time vs the stub estimate (AUD-11)",
+    "neutral-arm leak scan (L1) passes"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-09",
+   "title": "Refinement v1 (no LLM): develop and freeze on the dev split",
+   "depends_on": [
+    "BND-01",
+    "BND-05"
+   ],
+   "runner": "claude (replay)",
+   "window": [
+    "2026-10-17",
+    "2026-10-25"
+   ],
+   "closes": [
+    "CAP-06"
+   ],
+   "advances": [
+    "DLV-04",
+    "BLD-06",
+    "TGT-09"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "refine_v1.py outside the repo: takes the pipeline's recorded algorithm output and bootstrap tables, returns a graph with a source on every edge",
+    "rules fixed in advance: adjacency kept if connected in >= 50% of resamples; absent adjacency added only at >= 90%; direction committed only when it is the commonest type; calibration per DOM-08",
+    "dev evaluation on every recorded bootstrap table (bundle 1, pass 4b, offline cells) and the dev-split CausalArena files",
+    "freeze: rule file sha256 pinned; from here the test split may be touched once"
+   ],
+   "predictions": [
+    "R1 adjacency F1 >= algorithm output - 0.02 in >= 90% of files (refuted < 70%)",
+    "R2 adjacency F1 above the pipeline's S1 in >= 90% (refuted < 70%)",
+    "R3 mean directed F1 difference vs algorithm >= -0.01 (refuted <= -0.05)"
+   ],
+   "gates": [
+    "frozen rule hash recorded before any test file is read (access log)",
+    "CAP-06: undirected edges of the algorithm survive unless contradicted"
+   ],
+   "must_show": [
+    "dev tables R1-R3",
+    "frozen rule sha256 and timestamp",
+    "undirected-edge survival rate vs the pipeline's 15-31%"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-10",
+   "title": "Refinement v1: held-out test",
+   "depends_on": [
+    "BND-09",
+    "BND-08"
+   ],
+   "runner": "claude (replay)",
+   "window": [
+    "2026-10-25",
+    "2026-10-28"
+   ],
+   "closes": [],
+   "advances": [
+    "DLV-04",
+    "TGT-09"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [],
+   "parts": [
+    "v1 frozen rule run once on the test split: the 25 test-scenario files (part 8a replay) and the 10 live S2 scenarios' bootstrap tables"
+   ],
+   "predictions": [
+    "R1-R3 as in BND-09, verdicts on test only"
+   ],
+   "gates": [
+    "test files read exactly once after the freeze (access log shows no earlier read)"
+   ],
+   "must_show": [
+    "R1-R3 test verdicts with counts",
+    "access log",
+    "comparison table: algorithm / pipeline S1 / v1"
+   ],
+   "outputs": [],
+   "risks": [],
+   "change_2026_10_12": "TGT-09 moved from closes to advances: the frozen v1 was measured on the held-out set and does not meet it (R1 40/55). BND-11 (v2) now closes TGT-09."
+  },
+  {
+   "id": "BND-11",
+   "title": "LIVE: Refinement v2, names only where the data are silent",
+   "depends_on": [
+    "BND-09",
+    "BND-05"
+   ],
+   "runner": "Uzair (live)",
+   "window": [
+    "2026-11-03",
+    "2026-11-12"
+   ],
+   "closes": [
+    "CAP-10",
+    "TGT-13",
+    "BLD-06",
+    "DLV-04",
+    "TGT-09"
+   ],
+   "advances": [],
+   "llm_cost": "about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each",
+   "approval_needed": "yes",
+   "uzair_actions": [
+    "approve; run plans/bundle10_live.json"
+   ],
+   "parts": [
+    "v2 = v1 plus model answers used only if all three paraphrases agree, no cycle is created and no recorded separating set is contradicted; every such edge stored with source 'names'",
+    "reply schema validated; one retry; then abstain (no crash path)"
+   ],
+   "predictions": [
+    "R4 neutral names: v2 == v1 (0 name-sourced edges) in >= 9 of 10 (refuted > 2 with any)",
+    "R5 swapped names: directed F1 by data within 0.05 of v1 in >= 8 of 10 (refuted <= 5)",
+    "R6 real names: v2 directed F1 > v1 in >= 8 of 10 (refuted <= 5)"
+   ],
+   "gates": [
+    "zero crashes; every edge carries a source",
+    "repo byte-identical"
+   ],
+   "must_show": [
+    "R4-R6 verdicts",
+    "table with 'data only' and 'data + names' columns",
+    "crash count 0",
+    "malformed replies seen and how each was handled"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-12",
+   "title": "LIVE: second model and external replications",
+   "depends_on": [
+    "BND-02",
+    "BND-05"
+   ],
+   "runner": "Uzair (live)",
+   "window": [
+    "2026-11-03",
+    "2026-11-19"
+   ],
+   "closes": [
+    "AUD-13",
+    "RQ-17",
+    "REP-10",
+    "REP-11",
+    "REP-12"
+   ],
+   "advances": [],
+   "llm_cost": "second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k)",
+   "approval_needed": "yes, per part; model choice for AUD-13",
+   "uzair_actions": [
+    "choose the second model",
+    "approve and run each part's plan file"
+   ],
+   "parts": [
+    "AUD-13/RQ-17: bundle-1 arms repeated with a second model",
+    "REP-10: CARE's moved-names control on one classic graph with our protocol",
+    "REP-11: Kitson & Constantinou's Sachs numbers (data 0.61 needs no LLM; model 0.40 and fused 0.73 do)",
+    "REP-12: CausalSteward's score on CausalMan, if BND-02 found the data"
+   ],
+   "predictions": [
+    "S1 second model, neutral names: 0 LLM-set edges in every family (N2 replicates)",
+    "S2 second model, moved names on Sachs: label-only share >= 80% (P1 replicates)",
+    "REP-10/11: same direction of effect / within reported values, or the difference explained"
+   ],
+   "gates": [],
+   "must_show": [
+    "per part: runs, verdicts, cost",
+    "N2/P1 replication table by model"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-13",
+   "title": "Quarter 1 checkpoint package (2 Nov)",
+   "depends_on": [
+    "BND-03",
+    "BND-04",
+    "BND-05",
+    "BND-06",
+    "BND-08"
+   ],
+   "runner": "claude; Uzair submits",
+   "window": [
+    "2026-10-28",
+    "2026-11-01"
+   ],
+   "closes": [
+    "DLV-03",
+    "DLV-05"
+   ],
+   "advances": [
+    "TEAM-01",
+    "REP-03",
+    "DLV-06"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [
+    "submit the checkpoint"
+   ],
+   "parts": [
+    "DLV-03 report section: per dataset and arm, score at each stage, which step set each edge, crashes and stability; every number tied to a tracker check",
+    "DLV-05 checkpoint document from DLV-01..03 and whatever of BND-09/10 exists, each item labelled done / partial with its ticket",
+    "if BND-08 slipped: the checkpoint reports S1 only and says so"
+   ],
+   "predictions": [],
+   "gates": [
+    "every number in the document resolves to a ticket at V3 or above (mention scan + check)"
+   ],
+   "must_show": [
+    "the checkpoint document",
+    "number-to-ticket table",
+    "trace.py check 0 errors"
+   ],
+   "outputs": [],
+   "risks": []
+  },
+  {
+   "id": "BND-14",
+   "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)",
+   "depends_on": [
+    "BND-13",
+    "BND-10",
+    "BND-11",
+    "BND-07",
+    "BND-02"
+   ],
+   "runner": "claude; Uzair submits",
+   "window": [
+    "2026-11-16",
+    "2026-12-03"
+   ],
+   "closes": [
+    "DLV-06",
+    "INF-07",
+    "INF-06",
+    "CAP-17",
+    "REP-03"
+   ],
+   "advances": [
+    "BND-12"
+   ],
+   "llm_cost": "none",
+   "approval_needed": null,
+   "uzair_actions": [
+    "run the one reproduction command on a clean checkout",
+    "submit"
+   ],
+   "parts": [
+    "DLV-06 report covering DLV-01..04, every number with the command that reproduces it",
+    "INF-07 make-style command that regenerates every number from cc-research",
+    "INF-06 public repository preparation (no keys, licences, no redistributed data, run-record size)",
+    "CAP-17 final package through the validator",
+    "REP-03 closed from BND-03 plus final runs"
+   ],
+   "predictions": [],
+   "gates": [
+    "INF-07 regeneration on a clean copy reproduces every number byte-for-byte or within stated tolerance",
+    "secret scan of the public tree finds nothing"
+   ],
+   "must_show": [
+    "regeneration log",
+    "secret-scan output",
+    "the report",
+    "trace.py: every Q1 ticket done or explicitly moved to Q2 with a reason"
+   ],
+   "outputs": [],
+   "risks": []
+  }
+ ],
+ "milestones": [
+  {
+   "id": "CRS-07",
+   "title": "Decision gate G1",
+   "date": "2026-10-16",
+   "requires": [
+    "BND-04"
+   ],
+   "decides": "knowledge route (DEC-02) and BND-12 scope; GES/FCI budgets from BND-04 are the input"
+  },
+  {
+   "id": "CRS-01",
+   "title": "TA check-in 1",
+   "date": "2026-10-19",
+   "requires": [
+    "BND-05"
+   ],
+   "decides": "nothing; shows the frozen suite and explainer"
+  },
+  {
+   "id": "CRS-02",
+   "title": "Quarter 1 checkpoint",
+   "date": "2026-11-02",
+   "requires": [
+    "BND-13"
+   ],
+   "decides": "G2: refinement v1 vs fallback"
+  },
+  {
+   "id": "CRS-03",
+   "title": "TA check-in 2",
+   "date": "2026-11-20",
+   "requires": [
+    "BND-10"
+   ],
+   "decides": "nothing"
+  },
+  {
+   "id": "CRS-04",
+   "title": "Quarter 1 final",
+   "date": "2026-12-04",
+   "requires": [
+    "BND-14"
+   ],
+   "decides": "G3"
+  }
+ ],
+ "scope": {
+  "in_flight": [
+   "REP-03",
+   "REP-04",
+   "EVL-01",
+   "EVL-02",
+   "EVL-03",
+   "CAP-17",
+   "TEAM-01",
+   "TEAM-02",
+   "TEAM-07",
+   "DLV-01",
+   "DLV-02",
+   "DLV-03"
+  ],
+  "q1_deliverables": [
+   "DLV-01",
+   "DLV-02",
+   "DLV-03",
+   "DLV-04",
+   "DLV-05",
+   "DLV-06"
+  ],
+  "replication": [
+   "REP-03",
+   "REP-04",
+   "REP-06",
+   "REP-07",
+   "REP-09",
+   "REP-10",
+   "REP-11",
+   "REP-12",
+   "REP-13"
+  ],
+  "domain": [
+   "DOM-05",
+   "DOM-06",
+   "DOM-07",
+   "DOM-08",
+   "DOM-09",
+   "DOM-10",
+   "DOM-11",
+   "DOM-12"
+  ],
+  "capability_audit": [
+   "AUD-10",
+   "AUD-11",
+   "AUD-12",
+   "AUD-13",
+   "AUD-14",
+   "AUD-15",
+   "BEN-07",
+   "BEN-08",
+   "BEN-09",
+   "BEN-10",
+   "BEN-11",
+   "BEN-12"
+  ],
+  "outside_bundles": {
+   "TEAM-01": "waits on DEC-01 (the 'Proposed project' part); advanced in BND-13",
+   "TEAM-07": "closes when Uzair sends the prod digest draft already in #causal-discovery"
+  }
+ }
+}

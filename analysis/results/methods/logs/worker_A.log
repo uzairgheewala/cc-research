@@ -1,0 +1,16 @@
+START 2026-10-12T01:17:11Z python3 analysis/causalarena_methods.py --method pc --family semantic --out analysis/results/methods/pc_c1check_semantic_obs_rel.json --file-timeout-s 300
+JOB-COMPLETE analysis/results/methods/pc_c1check_semantic_obs_rel.json sha256=d585f82a302dea45c741b86d0cfdab71288d83b77ac841314e7924224535a84b
+END 2026-10-12T01:35:31Z rc=0 wall_s=1100 analysis/results/methods/pc_c1check_semantic_obs_rel.json
+START 2026-10-12T01:35:31Z python3 analysis/causalarena_methods.py --method pc --family formula --out analysis/results/methods/pc_formula_obs_rel.json --file-timeout-s 300
+JOB-COMPLETE analysis/results/methods/pc_formula_obs_rel.json sha256=c0a4dde8c3b63df7ef798338b1acc5e2ecfe00bf60f35adc78a246f544518169
+END 2026-10-12T02:05:23Z rc=0 wall_s=1792 analysis/results/methods/pc_formula_obs_rel.json
+START 2026-10-12T02:05:23Z python3 analysis/causalarena_methods.py --method pc --family formula --out analysis/results/methods/pc_formula_obs_shuf.json --file-timeout-s 300 --shuffle-seed 20261010
+JOB-COMPLETE analysis/results/methods/pc_formula_obs_shuf.json sha256=28412849912808c4b532468e818a3ae3e0177f9330c9020a82ff2fa32b897548
+END 2026-10-12T02:41:02Z rc=0 wall_s=2139 analysis/results/methods/pc_formula_obs_shuf.json
+START 2026-10-12T02:41:02Z python3 analysis/causalarena_methods.py --method pc --family synthetic --out analysis/results/methods/pc_synthetic100_rel.json --file-timeout-s 300 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/pc_synthetic100_rel.json sha256=e950f54d0ddca46da8cf4ee1da2e17096c4deb1d4116e916c8dfb414ac3013dd
+END 2026-10-12T03:08:53Z rc=0 wall_s=1671 analysis/results/methods/pc_synthetic100_rel.json
+START 2026-10-12T03:08:53Z python3 analysis/causalarena_methods.py --method pc --family synthetic --out analysis/results/methods/pc_synthetic100_shuf.json --file-timeout-s 300 --shuffle-seed 20261010 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/pc_synthetic100_shuf.json sha256=ad40e1a16a212671263e91f3566821baae066298e72e43b1c9b2efb155cdc9cb
+END 2026-10-12T03:35:42Z rc=0 wall_s=1609 analysis/results/methods/pc_synthetic100_shuf.json
+WORKER-DONE 2026-10-12T03:35:42Z

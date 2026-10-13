@@ -1,0 +1,881 @@
+{
+ "mode": "test",
+ "rule_sha256": "da3cb260c1e25bb90e4cc2ad7e766db0f63ca4048fa60c456ed0a8f95287a962",
+ "KEEP": 0.5,
+ "ADD": 0.9,
+ "summary": {
+  "files": 25,
+  "R1": {
+   "hits": 23,
+   "share": 0.92,
+   "verdict": "SUPPORTED"
+  },
+  "R2": {
+   "hits": 17,
+   "share": 0.68,
+   "verdict": "REFUTED"
+  },
+  "R3": {
+   "mean_difference": 0.01620091845305187,
+   "verdict": "SUPPORTED"
+  },
+  "all_edges_sourced": true,
+  "nondirected_survival": {
+   "nondirected_in_S0": 117,
+   "survive_S1": 61,
+   "survive_v1": 109
+  }
+ },
+ "by_group": {
+  "replay:test": {
+   "files": 25,
+   "R1": {
+    "hits": 23,
+    "share": 0.92,
+    "verdict": "SUPPORTED"
+   },
+   "R2": {
+    "hits": 17,
+    "share": 0.68,
+    "verdict": "REFUTED"
+   },
+   "R3": {
+    "mean_difference": 0.01620091845305187,
+    "verdict": "SUPPORTED"
+   },
+   "all_edges_sourced": true,
+   "nondirected_survival": {
+    "nondirected_in_S0": 117,
+    "survive_S1": 61,
+    "survive_v1": 109
+   }
+  }
+ },
+ "rows": [
+  {
+   "key": "semantic_cybersecurity_and_it_operations_api_rate_limit_abuse_spillover__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6271186440677965,
+     "dir_f1_committed": 0.5811965811965812,
+     "dir_f1_random": 0.576271186440678
+    },
+    "S1": {
+     "adj_f1": 0.6428571428571428,
+     "dir_f1_committed": 0.5892857142857143,
+     "dir_f1_random": 0.5892857142857143
+    },
+    "v1": {
+     "adj_f1": 0.6486486486486487,
+     "dir_f1_committed": 0.5765765765765766,
+     "dir_f1_random": 0.5765765765765766
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 1,
+    "survive_S1": 0,
+    "survive_v1": 0
+   },
+   "sources": {
+    "algorithm": 43,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_cybersecurity_and_it_operations_dns_cache_ttl_failover_latency__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5263157894736842,
+     "dir_f1_committed": 0.3428571428571428,
+     "dir_f1_random": 0.39473684210526316
+    },
+    "S1": {
+     "adj_f1": 0.4722222222222222,
+     "dir_f1_committed": 0.3428571428571428,
+     "dir_f1_random": 0.36111111111111105
+    },
+    "v1": {
+     "adj_f1": 0.5066666666666666,
+     "dir_f1_committed": 0.3428571428571428,
+     "dir_f1_random": 0.3733333333333333
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 2,
+    "survive_v1": 6
+   },
+   "sources": {
+    "algorithm": 27,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_education_classroom_co2_attention_reading__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5789473684210527,
+     "dir_f1_committed": 0.36363636363636365,
+     "dir_f1_random": 0.4473684210526315
+    },
+    "S1": {
+     "adj_f1": 0.5205479452054794,
+     "dir_f1_committed": 0.36363636363636365,
+     "dir_f1_random": 0.4657534246575342
+    },
+    "v1": {
+     "adj_f1": 0.5753424657534246,
+     "dir_f1_committed": 0.4507042253521127,
+     "dir_f1_random": 0.4657534246575342
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 10,
+    "survive_S1": 7,
+    "survive_v1": 10
+   },
+   "sources": {
+    "algorithm": 19,
+    "algorithm; type from bootstrap": 8,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_education_exam_room_temperature_performance__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.7164179104477612,
+     "dir_f1_committed": 0.6461538461538462,
+     "dir_f1_random": 0.6865671641791045
+    },
+    "S1": {
+     "adj_f1": 0.7164179104477612,
+     "dir_f1_committed": 0.6461538461538462,
+     "dir_f1_random": 0.6865671641791045
+    },
+    "v1": {
+     "adj_f1": 0.696969696969697,
+     "dir_f1_committed": 0.6461538461538462,
+     "dir_f1_random": 0.6666666666666667
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 2,
+    "survive_S1": 2,
+    "survive_v1": 2
+   },
+   "sources": {
+    "algorithm": 25,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_education_homework_platform_latency_completion__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 20,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6875000000000001,
+     "dir_f1_committed": 0.3508771929824561,
+     "dir_f1_random": 0.375
+    },
+    "S1": {
+     "adj_f1": 0.6333333333333333,
+     "dir_f1_committed": 0.35714285714285715,
+     "dir_f1_random": 0.3666666666666667
+    },
+    "v1": {
+     "adj_f1": 0.6774193548387097,
+     "dir_f1_committed": 0.35714285714285715,
+     "dir_f1_random": 0.3870967741935484
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 7,
+    "survive_S1": 4,
+    "survive_v1": 7
+   },
+   "sources": {
+    "algorithm": 25,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_finance_and_credit_credit_card_rewards_spending_substitution__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.588235294117647,
+     "dir_f1_committed": 0.5185185185185185,
+     "dir_f1_random": 0.5176470588235293
+    },
+    "S1": {
+     "adj_f1": 0.588235294117647,
+     "dir_f1_committed": 0.5185185185185185,
+     "dir_f1_random": 0.5176470588235293
+    },
+    "v1": {
+     "adj_f1": 0.5714285714285715,
+     "dir_f1_committed": 0.5185185185185185,
+     "dir_f1_random": 0.5238095238095237
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 4,
+    "survive_S1": 4,
+    "survive_v1": 4
+   },
+   "sources": {
+    "algorithm": 31,
+    "algorithm; type from bootstrap": 4,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_finance_and_credit_small_business_cash_buffer_inventory_ordering__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 20,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6176470588235295,
+     "dir_f1_committed": 0.5,
+     "dir_f1_random": 0.5294117647058824
+    },
+    "S1": {
+     "adj_f1": 0.5757575757575758,
+     "dir_f1_committed": 0.5,
+     "dir_f1_random": 0.5151515151515151
+    },
+    "v1": {
+     "adj_f1": 0.6885245901639344,
+     "dir_f1_committed": 0.5172413793103448,
+     "dir_f1_random": 0.5573770491803278
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 4,
+    "survive_S1": 2,
+    "survive_v1": 3
+   },
+   "sources": {
+    "algorithm": 22,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_government_services_and_policy_implementation_building_fee_schedule_project_size__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.4893617021276596,
+     "dir_f1_committed": 0.3956043956043956,
+     "dir_f1_random": 0.4042553191489362
+    },
+    "S1": {
+     "adj_f1": 0.4835164835164836,
+     "dir_f1_committed": 0.4044943820224719,
+     "dir_f1_random": 0.3956043956043956
+    },
+    "v1": {
+     "adj_f1": 0.4772727272727273,
+     "dir_f1_committed": 0.41860465116279066,
+     "dir_f1_random": 0.4318181818181818
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 3,
+    "survive_S1": 2,
+    "survive_v1": 2
+   },
+   "sources": {
+    "algorithm": 27,
+    "algorithm; type from bootstrap": 11,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_government_services_and_policy_implementation_disaster_alert_channel_evacuation__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5617977528089887,
+     "dir_f1_committed": 0.3908045977011494,
+     "dir_f1_random": 0.4044943820224719
+    },
+    "S1": {
+     "adj_f1": 0.5454545454545454,
+     "dir_f1_committed": 0.37209302325581395,
+     "dir_f1_random": 0.3863636363636363
+    },
+    "v1": {
+     "adj_f1": 0.5287356321839081,
+     "dir_f1_committed": 0.41379310344827586,
+     "dir_f1_random": 0.41379310344827586
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 2,
+    "survive_S1": 2,
+    "survive_v1": 2
+   },
+   "sources": {
+    "algorithm": 26,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_government_services_and_policy_implementation_road_salt_procurement_pavement_condition__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5301204819277109,
+     "dir_f1_committed": 0.3055555555555556,
+     "dir_f1_random": 0.43373493975903615
+    },
+    "S1": {
+     "adj_f1": 0.4473684210526315,
+     "dir_f1_committed": 0.3055555555555556,
+     "dir_f1_random": 0.3684210526315789
+    },
+    "v1": {
+     "adj_f1": 0.5569620253164557,
+     "dir_f1_committed": 0.39436619718309857,
+     "dir_f1_random": 0.5063291139240507
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 11,
+    "survive_S1": 4,
+    "survive_v1": 10
+   },
+   "sources": {
+    "algorithm": 28,
+    "algorithm; type from bootstrap": 4,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_healthcare_delivery_dialysis_ultrafiltration_cramp_risk__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6493506493506493,
+     "dir_f1_committed": 0.547945205479452,
+     "dir_f1_random": 0.5454545454545453
+    },
+    "S1": {
+     "adj_f1": 0.6301369863013698,
+     "dir_f1_committed": 0.5555555555555557,
+     "dir_f1_random": 0.5753424657534246
+    },
+    "v1": {
+     "adj_f1": 0.6301369863013698,
+     "dir_f1_committed": 0.5555555555555557,
+     "dir_f1_random": 0.5753424657534246
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 4,
+    "survive_S1": 1,
+    "survive_v1": 3
+   },
+   "sources": {
+    "algorithm": 23,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_healthcare_delivery_hospital_room_noise_sleep_recovery__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.8125,
+     "dir_f1_committed": 0.6557377049180327,
+     "dir_f1_random": 0.6875
+    },
+    "S1": {
+     "adj_f1": 0.7741935483870968,
+     "dir_f1_committed": 0.6557377049180327,
+     "dir_f1_random": 0.6774193548387097
+    },
+    "v1": {
+     "adj_f1": 0.8064516129032259,
+     "dir_f1_committed": 0.6666666666666666,
+     "dir_f1_random": 0.6774193548387097
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 3,
+    "survive_S1": 1,
+    "survive_v1": 3
+   },
+   "sources": {
+    "algorithm": 26,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_housing_and_real_estate_insulation_retrofit_energy_rebound__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6557377049180327,
+     "dir_f1_committed": 0.46428571428571436,
+     "dir_f1_random": 0.4918032786885245
+    },
+    "S1": {
+     "adj_f1": 0.5862068965517241,
+     "dir_f1_committed": 0.46428571428571436,
+     "dir_f1_random": 0.48275862068965514
+    },
+    "v1": {
+     "adj_f1": 0.6333333333333334,
+     "dir_f1_committed": 0.4444444444444444,
+     "dir_f1_random": 0.5
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 5,
+    "survive_S1": 2,
+    "survive_v1": 5
+   },
+   "sources": {
+    "algorithm": 15,
+    "algorithm; type from bootstrap": 5,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_housing_and_real_estate_mold_growth_humidity_ventilation_asthma__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 18,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.56,
+     "dir_f1_committed": 0.3404255319148936,
+     "dir_f1_random": 0.44000000000000006
+    },
+    "S1": {
+     "adj_f1": 0.5714285714285714,
+     "dir_f1_committed": 0.34782608695652173,
+     "dir_f1_random": 0.4489795918367347
+    },
+    "v1": {
+     "adj_f1": 0.5714285714285714,
+     "dir_f1_committed": 0.35555555555555557,
+     "dir_f1_random": 0.4489795918367347
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 3,
+    "survive_S1": 3,
+    "survive_v1": 3
+   },
+   "sources": {
+    "algorithm": 14,
+    "algorithm; type from bootstrap": 4,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_housing_and_real_estate_transit_access_bid_rent__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.40963855421686746,
+     "dir_f1_committed": 0.34567901234567905,
+     "dir_f1_random": 0.36144578313253006
+    },
+    "S1": {
+     "adj_f1": 0.3950617283950617,
+     "dir_f1_committed": 0.35000000000000003,
+     "dir_f1_random": 0.34567901234567905
+    },
+    "v1": {
+     "adj_f1": 0.4358974358974359,
+     "dir_f1_committed": 0.38961038961038963,
+     "dir_f1_random": 0.3846153846153846
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 2,
+    "survive_S1": 1,
+    "survive_v1": 2
+   },
+   "sources": {
+    "algorithm": 26,
+    "algorithm; type from bootstrap": 7,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_manufacturing_cnc_thermal_drift_dimension_error__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.7999999999999999,
+     "dir_f1_committed": 0.7659574468085106,
+     "dir_f1_random": 0.72
+    },
+    "S1": {
+     "adj_f1": 0.8163265306122449,
+     "dir_f1_committed": 0.7659574468085106,
+     "dir_f1_random": 0.7346938775510203
+    },
+    "v1": {
+     "adj_f1": 0.7999999999999999,
+     "dir_f1_committed": 0.7755102040816326,
+     "dir_f1_random": 0.76
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 3,
+    "survive_S1": 2,
+    "survive_v1": 3
+   },
+   "sources": {
+    "algorithm": 20,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_manufacturing_solder_reflow_profile_joint_voids__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6470588235294118,
+     "dir_f1_committed": 0.3582089552238806,
+     "dir_f1_random": 0.35294117647058826
+    },
+    "S1": {
+     "adj_f1": 0.6461538461538461,
+     "dir_f1_committed": 0.37500000000000006,
+     "dir_f1_random": 0.3692307692307692
+    },
+    "v1": {
+     "adj_f1": 0.6562499999999999,
+     "dir_f1_committed": 0.4,
+     "dir_f1_random": 0.40625000000000006
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 1,
+    "survive_S1": 1,
+    "survive_v1": 1
+   },
+   "sources": {
+    "algorithm": 19,
+    "algorithm; type from bootstrap": 6,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_public_health_heatwave_cooling_center_use_illness__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6451612903225806,
+     "dir_f1_committed": 0.42857142857142855,
+     "dir_f1_random": 0.45161290322580644
+    },
+    "S1": {
+     "adj_f1": 0.5862068965517241,
+     "dir_f1_committed": 0.42857142857142855,
+     "dir_f1_random": 0.4482758620689655
+    },
+    "v1": {
+     "adj_f1": 0.6557377049180327,
+     "dir_f1_committed": 0.43333333333333335,
+     "dir_f1_random": 0.45901639344262296
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 2,
+    "survive_v1": 6
+   },
+   "sources": {
+    "algorithm": 18,
+    "algorithm; type from bootstrap": 8,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_public_health_lead_soil_dust_child_blood__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6779661016949152,
+     "dir_f1_committed": 0.4150943396226415,
+     "dir_f1_random": 0.5084745762711864
+    },
+    "S1": {
+     "adj_f1": 0.6181818181818182,
+     "dir_f1_committed": 0.4150943396226415,
+     "dir_f1_random": 0.4727272727272727
+    },
+    "v1": {
+     "adj_f1": 0.6666666666666666,
+     "dir_f1_committed": 0.25531914893617025,
+     "dir_f1_random": 0.4074074074074074
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 2,
+    "survive_v1": 6
+   },
+   "sources": {
+    "algorithm": 17,
+    "algorithm; type from bootstrap": 5,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_public_health_mosquito_habitat_rainfall_trap_counts__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 20,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6666666666666666,
+     "dir_f1_committed": 0.4583333333333333,
+     "dir_f1_random": 0.4444444444444444
+    },
+    "S1": {
+     "adj_f1": 0.5714285714285714,
+     "dir_f1_committed": 0.4583333333333333,
+     "dir_f1_random": 0.4489795918367347
+    },
+    "v1": {
+     "adj_f1": 0.6792452830188678,
+     "dir_f1_committed": 0.4583333333333333,
+     "dir_f1_random": 0.5283018867924528
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 1,
+    "survive_v1": 5
+   },
+   "sources": {
+    "algorithm": 21,
+    "algorithm; type from bootstrap": 0,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_urban_transportation_ev_charging_availability_route_choice__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.43902439024390244,
+     "dir_f1_committed": 0.13157894736842105,
+     "dir_f1_random": 0.21951219512195122
+    },
+    "S1": {
+     "adj_f1": 0.37974683544303794,
+     "dir_f1_committed": 0.13333333333333333,
+     "dir_f1_random": 0.20253164556962028
+    },
+    "v1": {
+     "adj_f1": 0.430379746835443,
+     "dir_f1_committed": 0.21333333333333332,
+     "dir_f1_random": 0.30379746835443033
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 4,
+    "survive_v1": 5
+   },
+   "sources": {
+    "algorithm": 20,
+    "algorithm; type from bootstrap": 7,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_urban_transportation_pedestrian_countdown_compliance__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 21,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.625,
+     "dir_f1_committed": 0.4666666666666667,
+     "dir_f1_random": 0.5
+    },
+    "S1": {
+     "adj_f1": 0.6031746031746031,
+     "dir_f1_committed": 0.4666666666666667,
+     "dir_f1_random": 0.47619047619047616
+    },
+    "v1": {
+     "adj_f1": 0.6666666666666666,
+     "dir_f1_committed": 0.5263157894736843,
+     "dir_f1_random": 0.5333333333333333
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 4,
+    "survive_S1": 3,
+    "survive_v1": 4
+   },
+   "sources": {
+    "algorithm": 20,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_water_and_sanitation_chlorine_decay_water_age_temperature__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 18,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6666666666666667,
+     "dir_f1_committed": 0.4897959183673469,
+     "dir_f1_random": 0.5098039215686274
+    },
+    "S1": {
+     "adj_f1": 0.68,
+     "dir_f1_committed": 0.5,
+     "dir_f1_random": 0.52
+    },
+    "v1": {
+     "adj_f1": 0.68,
+     "dir_f1_committed": 0.4897959183673469,
+     "dir_f1_random": 0.48000000000000004
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 2,
+    "survive_S1": 2,
+    "survive_v1": 2
+   },
+   "sources": {
+    "algorithm": 16,
+    "algorithm; type from bootstrap": 5,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_water_and_sanitation_desalination_membrane_fouling_energy__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.625,
+     "dir_f1_committed": 0.37037037037037035,
+     "dir_f1_random": 0.40624999999999994
+    },
+    "S1": {
+     "adj_f1": 0.5084745762711864,
+     "dir_f1_committed": 0.37037037037037035,
+     "dir_f1_random": 0.3389830508474576
+    },
+    "v1": {
+     "adj_f1": 0.625,
+     "dir_f1_committed": 0.37037037037037035,
+     "dir_f1_random": 0.40624999999999994
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 10,
+    "survive_S1": 5,
+    "survive_v1": 10
+   },
+   "sources": {
+    "algorithm": 24,
+    "algorithm; type from bootstrap": 0,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "semantic_water_and_sanitation_reservoir_algae_light_nutrient_mixing__semantic_obs_only__rep000.npz",
+   "group": "replay:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6666666666666667,
+     "dir_f1_committed": 0.5000000000000001,
+     "dir_f1_random": 0.5384615384615384
+    },
+    "S1": {
+     "adj_f1": 0.6301369863013699,
+     "dir_f1_committed": 0.5070422535211268,
+     "dir_f1_random": 0.547945205479452
+    },
+    "v1": {
+     "adj_f1": 0.6842105263157896,
+     "dir_f1_committed": 0.5277777777777777,
+     "dir_f1_random": 0.5789473684210527
+    }
+   },
+   "nondirected_survival": {
+    "nondirected_in_S0": 6,
+    "survive_S1": 2,
+    "survive_v1": 5
+   },
+   "sources": {
+    "algorithm": 30,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  }
+ ]
+}

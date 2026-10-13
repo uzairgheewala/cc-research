@@ -1,0 +1,230 @@
+{
+ "always_dev": [
+  "datasets/suite_b1 (bundle 1)",
+  "datasets/d01..d03 and sachs (pass 4b)",
+  "analysis/results/offline (offline cells)"
+ ],
+ "families": {
+  "formula": {
+   "dev": [
+    "arrhenius_temperature_dependent_reaction_rate",
+    "cantilever_beam_tip_deflection",
+    "circular_orbit_speed_and_satellite_altitude",
+    "diffraction_grating_angle",
+    "doppler_shift_for_sound",
+    "fick_diffusion_across_a_membrane",
+    "first_order_concentration_decay",
+    "hardy_weinberg_genotype_frequencies",
+    "henderson_hasselbalch_buffer_ph",
+    "hydroelectric_power",
+    "hypsometric_layer_thickness",
+    "logistic_population_growth",
+    "manning_open_channel_flow",
+    "mass_spring_oscillator",
+    "pump_affinity_laws",
+    "radiative_panel_heat_balance",
+    "rational_method_storm_runoff",
+    "rc_charging_transient",
+    "resistive_heating_in_a_circuit",
+    "sealed_gas_chamber_pressure_under_heating",
+    "small_angle_pendulum_period",
+    "stellar_luminosity_and_observed_flux",
+    "thermal_expansion",
+    "thin_lens_imaging",
+    "wind_turbine_power"
+   ],
+   "dev_by_domain": {
+    "biology_physiology_and_ecology": [
+     "hardy_weinberg_genotype_frequencies",
+     "logistic_population_growth",
+     "fick_diffusion_across_a_membrane"
+    ],
+    "celestial_mechanics_and_astronomy": [
+     "circular_orbit_speed_and_satellite_altitude",
+     "stellar_luminosity_and_observed_flux"
+    ],
+    "chemistry_kinetics_and_solutions": [
+     "first_order_concentration_decay",
+     "arrhenius_temperature_dependent_reaction_rate",
+     "henderson_hasselbalch_buffer_ph"
+    ],
+    "classical_mechanics_and_fluid_mechanics": [
+     "mass_spring_oscillator",
+     "small_angle_pendulum_period"
+    ],
+    "earth_science_hydrology_and_atmosphere": [
+     "rational_method_storm_runoff",
+     "manning_open_channel_flow",
+     "hypsometric_layer_thickness"
+    ],
+    "electromagnetism_and_circuits": [
+     "rc_charging_transient",
+     "resistive_heating_in_a_circuit"
+    ],
+    "energy_systems_and_environmental_engineering": [
+     "pump_affinity_laws",
+     "hydroelectric_power",
+     "wind_turbine_power"
+    ],
+    "materials_and_structural_engineering": [
+     "cantilever_beam_tip_deflection",
+     "thermal_expansion"
+    ],
+    "optics_waves_and_acoustics": [
+     "doppler_shift_for_sound",
+     "diffraction_grating_angle",
+     "thin_lens_imaging"
+    ],
+    "thermodynamics_and_heat_transfer": [
+     "radiative_panel_heat_balance",
+     "sealed_gas_chamber_pressure_under_heating"
+    ]
+   },
+   "s2_test_scenarios": [],
+   "test": [
+    "barometric_pressure_profile",
+    "beer_lambert_absorbance",
+    "binary_star_total_mass_from_orbit",
+    "blood_oxygen_content",
+    "building_heat_loss_load",
+    "coulomb_force_between_charges",
+    "counterflow_heat_exchanger_effectiveness",
+    "darcy_groundwater_flow",
+    "elastic_stress_strain_response",
+    "escape_velocity_from_a_planetary_body",
+    "euler_column_buckling",
+    "fracture_toughness_criterion",
+    "insulated_wall_conduction_loss",
+    "lc_resonant_circuit",
+    "lumped_convective_cooling",
+    "monod_microbial_growth",
+    "nernst_electrochemical_cell_potential",
+    "planetary_orbital_period_from_semi_major_axis",
+    "projectile_range_on_level_ground",
+    "quadratic_drag_terminal_velocity",
+    "refraction_by_snell_s_law",
+    "rl_current_rise",
+    "rolling_object_down_an_incline",
+    "single_slit_diffraction_minima",
+    "solar_photovoltaic_temperature_derating"
+   ]
+  },
+  "semantic": {
+   "dev": [
+    "apartment_heat_exposure_shading_ac",
+    "backup_frequency_ransomware_loss",
+    "bike_share_rebalancing_spatial_demand",
+    "conveyor_vibration_package_damage",
+    "curb_pricing_delivery_dwell",
+    "green_roof_runoff_retention",
+    "injection_molding_cooling_warp",
+    "insurance_deductible_claim_reporting",
+    "library_fine_elimination_returns",
+    "medication_titration_cgm_meal_timing",
+    "mortgage_prepayment_interest_rate_shock",
+    "operating_room_temperature_wound_healing",
+    "patch_propagation_dependency_exploit",
+    "payday_calendar_overdraft_incidence",
+    "phishing_subject_social_graph_click",
+    "pipe_pressure_transient_leak_flow",
+    "rent_increase_household_crowding",
+    "school_start_time_sleep_attendance",
+    "sleep_apnea_device_pressure_adherence",
+    "tax_filing_reminder_form_complexity",
+    "textbook_cost_course_load",
+    "tool_wear_surface_roughness",
+    "traffic_signal_offset_corridor_delay",
+    "wastewater_pathogen_rainfall_dilution",
+    "wildfire_smoke_shelter_behavior"
+   ],
+   "dev_by_domain": {
+    "cybersecurity_and_it_operations": [
+     "patch_propagation_dependency_exploit",
+     "backup_frequency_ransomware_loss",
+     "phishing_subject_social_graph_click"
+    ],
+    "education": [
+     "school_start_time_sleep_attendance",
+     "textbook_cost_course_load"
+    ],
+    "finance_and_credit": [
+     "mortgage_prepayment_interest_rate_shock",
+     "payday_calendar_overdraft_incidence",
+     "insurance_deductible_claim_reporting"
+    ],
+    "government_services_and_policy_implementation": [
+     "library_fine_elimination_returns",
+     "tax_filing_reminder_form_complexity"
+    ],
+    "healthcare_delivery": [
+     "medication_titration_cgm_meal_timing",
+     "sleep_apnea_device_pressure_adherence",
+     "operating_room_temperature_wound_healing"
+    ],
+    "housing_and_real_estate": [
+     "apartment_heat_exposure_shading_ac",
+     "rent_increase_household_crowding"
+    ],
+    "manufacturing": [
+     "tool_wear_surface_roughness",
+     "injection_molding_cooling_warp",
+     "conveyor_vibration_package_damage"
+    ],
+    "public_health": [
+     "wastewater_pathogen_rainfall_dilution",
+     "wildfire_smoke_shelter_behavior"
+    ],
+    "urban_transportation": [
+     "bike_share_rebalancing_spatial_demand",
+     "traffic_signal_offset_corridor_delay",
+     "curb_pricing_delivery_dwell"
+    ],
+    "water_and_sanitation": [
+     "green_roof_runoff_retention",
+     "pipe_pressure_transient_leak_flow"
+    ]
+   },
+   "s2_test_scenarios": [
+    "solder_reflow_profile_joint_voids",
+    "pedestrian_countdown_compliance",
+    "disaster_alert_channel_evacuation",
+    "exam_room_temperature_performance",
+    "small_business_cash_buffer_inventory_ordering",
+    "dns_cache_ttl_failover_latency",
+    "heatwave_cooling_center_use_illness",
+    "desalination_membrane_fouling_energy",
+    "hospital_room_noise_sleep_recovery",
+    "transit_access_bid_rent"
+   ],
+   "test": [
+    "api_rate_limit_abuse_spillover",
+    "building_fee_schedule_project_size",
+    "chlorine_decay_water_age_temperature",
+    "classroom_co2_attention_reading",
+    "cnc_thermal_drift_dimension_error",
+    "credit_card_rewards_spending_substitution",
+    "desalination_membrane_fouling_energy",
+    "dialysis_ultrafiltration_cramp_risk",
+    "disaster_alert_channel_evacuation",
+    "dns_cache_ttl_failover_latency",
+    "ev_charging_availability_route_choice",
+    "exam_room_temperature_performance",
+    "heatwave_cooling_center_use_illness",
+    "homework_platform_latency_completion",
+    "hospital_room_noise_sleep_recovery",
+    "insulation_retrofit_energy_rebound",
+    "lead_soil_dust_child_blood",
+    "mold_growth_humidity_ventilation_asthma",
+    "mosquito_habitat_rainfall_trap_counts",
+    "pedestrian_countdown_compliance",
+    "reservoir_algae_light_nutrient_mixing",
+    "road_salt_procurement_pavement_condition",
+    "small_business_cash_buffer_inventory_ordering",
+    "solder_reflow_profile_joint_voids",
+    "transit_access_bid_rent"
+   ]
+  }
+ },
+ "rule": "Rule (fixed before any tuning): within each family, scenarios are ordered by sha256(\"cc-research-split-v1:<family>:<domain>:<slug>\")\nand, within every domain, the first ceil(k/2) in that order go to dev and the rest to test, alternating the rounding by domain\nindex so each family splits 25 / 25. Everything recorded before the split (bundle 1, pass 4b, offline cells) is dev.\nThe 10 S2 scenarios for the Quarter 1 suite are the first 10 test scenarios in the same hash order, at most one per domain.",
+ "salt": "cc-research-split-v1"
+}

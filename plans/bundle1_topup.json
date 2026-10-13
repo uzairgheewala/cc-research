@@ -1,0 +1,22 @@
+{
+  "plan_id": "bundle1_topup",
+  "note": "Bundle 1 top-up, by the rule written in bundle1_design.md before the runs: an arm left with fewer than 3 completed runs gets a small top-up. Two arms qualify: k11 (abalone, real names; 2 of 4 completed) and k43 (dwd, swapped names; 2 of 4 completed). Stopping rule fixed here: exactly 3 more repeats of each, once; every completed run is included in the analysis under label b1; there is no second top-up whatever the outcome. Same datasets (byte-identical), same default query, same model.",
+  "interleave": true,
+  "run_timeout_s": 2700,
+  "runs": [
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k11/k11.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 3
+    },
+    {
+      "label": "b1",
+      "dataset": "research:datasets/suite_b1/k43/k43.csv",
+      "data_mode": "real",
+      "query": null,
+      "repeats": 3
+    }
+  ]
+}

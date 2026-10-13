@@ -1,0 +1,34 @@
+START 2026-10-12T01:17:11Z python3 analysis/causalarena_methods.py --method gesbic --family formula --out analysis/results/methods/gesbic_formula_obs_rel.json --file-timeout-s 600
+JOB-COMPLETE analysis/results/methods/gesbic_formula_obs_rel.json sha256=ed58373cedaff3997b69048ca5d437fb5aa941e83a8df4fa0105d815bd325952
+END 2026-10-12T02:03:26Z rc=0 wall_s=2775 analysis/results/methods/gesbic_formula_obs_rel.json
+START 2026-10-12T02:03:26Z python3 analysis/causalarena_methods.py --method fci --family formula --out analysis/results/methods/fci_formula_obs_rel.json --file-timeout-s 300
+JOB-COMPLETE analysis/results/methods/fci_formula_obs_rel.json sha256=1ac366419bb7042a3bb3834f4557637d445fdd69ccc064671b3cbafe4cdf0217
+END 2026-10-12T02:04:25Z rc=0 wall_s=59 analysis/results/methods/fci_formula_obs_rel.json
+START 2026-10-12T02:04:25Z python3 analysis/causalarena_methods.py --method fci --family formula --out analysis/results/methods/fci_formula_obs_shuf.json --file-timeout-s 300 --shuffle-seed 20261010
+JOB-COMPLETE analysis/results/methods/fci_formula_obs_shuf.json sha256=0100f1d48ca3516b675a387c88de32dac920b462c7f11c14970c7ff4d86b2b04
+END 2026-10-12T02:11:55Z rc=0 wall_s=450 analysis/results/methods/fci_formula_obs_shuf.json
+START 2026-10-12T02:11:55Z python3 analysis/causalarena_methods.py --method lingam --family formula --out analysis/results/methods/lingam_formula_obs_rel.json --file-timeout-s 300
+JOB-COMPLETE analysis/results/methods/lingam_formula_obs_rel.json sha256=05651c63abeecb50717e6a572476d96b0a2014ef3e7fb97a496d93812422fc9d
+END 2026-10-12T02:19:45Z rc=0 wall_s=470 analysis/results/methods/lingam_formula_obs_rel.json
+START 2026-10-12T02:19:45Z python3 analysis/causalarena_methods.py --method notears --family formula --out analysis/results/methods/notears_formula_obs_rel.json --file-timeout-s 300
+JOB-COMPLETE analysis/results/methods/notears_formula_obs_rel.json sha256=d87ae73b2aab5580154d06e34290bf763314e39843c622d9eef13cec39172735
+END 2026-10-12T02:53:31Z rc=0 wall_s=2026 analysis/results/methods/notears_formula_obs_rel.json
+START 2026-10-12T02:53:31Z python3 analysis/causalarena_methods.py --method gesbic --family formula --out analysis/results/methods/gesbic_formula_obs_shuf.json --file-timeout-s 600 --shuffle-seed 20261010
+JOB-COMPLETE analysis/results/methods/gesbic_formula_obs_shuf.json sha256=ff712a75fc64d17bb25cf7e4450b9bc6344151c204e433095909434276267ec3
+END 2026-10-12T03:34:43Z rc=0 wall_s=2472 analysis/results/methods/gesbic_formula_obs_shuf.json
+START 2026-10-12T03:34:43Z python3 analysis/causalarena_methods.py --method lingam --family formula --out analysis/results/methods/lingam_formula_obs_shuf.json --file-timeout-s 300 --shuffle-seed 20261010
+JOB-COMPLETE analysis/results/methods/lingam_formula_obs_shuf.json sha256=411136b7868222902664c498439ee05b1277e5e8027aaed70b156001663037d4
+END 2026-10-12T03:38:33Z rc=0 wall_s=230 analysis/results/methods/lingam_formula_obs_shuf.json
+START 2026-10-12T03:38:33Z python3 analysis/causalarena_methods.py --method fci --family synthetic --out analysis/results/methods/fci_synthetic100_rel.json --file-timeout-s 300 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/fci_synthetic100_rel.json sha256=8a100d4dd6e52fa84f4cb40801eaa23ec635d7ad4534619fc0562382028d9fce
+END 2026-10-12T04:28:04Z rc=0 wall_s=2971 analysis/results/methods/fci_synthetic100_rel.json
+START 2026-10-12T04:28:04Z python3 analysis/causalarena_methods.py --method lingam --family synthetic --out analysis/results/methods/lingam_synthetic100_rel.json --file-timeout-s 300 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/lingam_synthetic100_rel.json sha256=557d89673d51117e8894bdfa9cde0bb522741b70d0d9ec8bd8acac3618729444
+END 2026-10-12T04:54:56Z rc=0 wall_s=1612 analysis/results/methods/lingam_synthetic100_rel.json
+START 2026-10-12T04:54:56Z python3 analysis/causalarena_methods.py --method notears --family synthetic --out analysis/results/methods/notears_synthetic100_rel.json --file-timeout-s 300 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/notears_synthetic100_rel.json sha256=ede398736490d60aee84f977aaca9a1375f4715c68b25b587fb30b5f8e85f703
+END 2026-10-12T05:30:39Z rc=0 wall_s=2143 analysis/results/methods/notears_synthetic100_rel.json
+START 2026-10-12T05:30:39Z python3 analysis/causalarena_methods.py --method gesbic --family synthetic --out analysis/results/methods/gesbic_synthetic100_rel.json --file-timeout-s 300 --file-list plans/synth_sample_100.txt
+JOB-COMPLETE analysis/results/methods/gesbic_synthetic100_rel.json sha256=1e24530e3a55cff6103635c82d9ddaebeb395eb1d16dd78c6130db4573769dab
+END 2026-10-12T08:43:21Z rc=0 wall_s=11562 analysis/results/methods/gesbic_synthetic100_rel.json
+WORKER-DONE 2026-10-12T08:43:21Z

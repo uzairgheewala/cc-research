@@ -1,0 +1,425 @@
+{
+ "family": "synthetic",
+ "rows_file": "analysis/results/methods/pc_synthetic100_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 100,
+ "files_upstream_raises": 4,
+ "scenarios_with_any_raise": 4,
+ "error_messages": [
+  "TimeoutError:  over 300 s"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.2651,
+  "lower": 0.3395
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.2617,
+  "lower": 0.3361
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 122.4,
+  "lower": 119.63
+ },
+ "per_file": {
+  "bipartite_layered_d010_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "bipartite_layered_d030_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 11.42
+  },
+  "bipartite_layered_d030_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "bipartite_layered_d030_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "bipartite_layered_d050_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.47
+  },
+  "bipartite_layered_d050_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 209.76
+  },
+  "bipartite_layered_d100_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 8.32
+  },
+  "bipartite_layered_d100_scm04__obs_only__rep000.npz": {
+   "upstream_error": "TimeoutError: over 300 s",
+   "seconds": 300.15
+  },
+  "bipartite_layered_d100_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 12.6
+  },
+  "bipartite_layered_d100_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 10.37
+  },
+  "block_sparse_layered_d010_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.02
+  },
+  "block_sparse_layered_d010_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "block_sparse_layered_d020_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "block_sparse_layered_d030_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "block_sparse_layered_d050_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.13
+  },
+  "block_sparse_layered_d050_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.97
+  },
+  "block_sparse_layered_d100_scm01__obs_only__rep000.npz": {
+   "upstream_error": "TimeoutError: over 300 s",
+   "seconds": 300.1
+  },
+  "block_sparse_layered_d100_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 13.55
+  },
+  "chain_d010_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "chain_d020_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "chain_d020_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "chain_d020_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "chain_d030_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "chain_d030_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.71
+  },
+  "chain_d030_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.46
+  },
+  "chain_d050_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.08
+  },
+  "chain_d100_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 19.73
+  },
+  "chain_d100_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 15.55
+  },
+  "chain_d100_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 22.29
+  },
+  "collider_rich_d010_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.02
+  },
+  "collider_rich_d010_scm04__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.03
+  },
+  "collider_rich_d010_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "collider_rich_d020_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "collider_rich_d030_scm04__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.63
+  },
+  "collider_rich_d030_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 2.43
+  },
+  "collider_rich_d050_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.98
+  },
+  "collider_rich_d050_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 2.74
+  },
+  "collider_rich_d050_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.22
+  },
+  "collider_rich_d100_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 10.59
+  },
+  "dense_local_modules_d020_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "dense_local_modules_d030_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "dense_local_modules_d030_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.68
+  },
+  "dense_local_modules_d030_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "dense_local_modules_d050_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.66
+  },
+  "dense_local_modules_d050_scm04__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.96
+  },
+  "dense_local_modules_d050_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.51
+  },
+  "dense_local_modules_d100_scm02__obs_only__rep000.npz": {
+   "upstream_error": "TimeoutError: over 300 s",
+   "seconds": 300.14
+  },
+  "dense_local_modules_d100_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 15.39
+  },
+  "er_d010_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.02
+  },
+  "er_d010_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "er_d010_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "er_d020_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "er_d020_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.83
+  },
+  "er_d030_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.34
+  },
+  "er_d030_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.74
+  },
+  "er_d030_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.58
+  },
+  "er_d030_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.5
+  },
+  "er_d050_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 13.09
+  },
+  "er_d050_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 3.46
+  },
+  "er_d100_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 16.19
+  },
+  "er_d100_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 14.45
+  },
+  "er_d100_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 44.87
+  },
+  "layered_d010_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "layered_d010_scm04__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "layered_d020_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.34
+  },
+  "layered_d020_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "layered_d020_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.09
+  },
+  "layered_d050_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 3.8
+  },
+  "layered_d050_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 2.16
+  },
+  "layered_d100_scm06__obs_only__rep000.npz": {
+   "upstream_error": "TimeoutError: over 300 s",
+   "seconds": 300.1
+  },
+  "scale_free_d010_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "scale_free_d010_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "scale_free_d020_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "scale_free_d020_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "scale_free_d020_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "scale_free_d030_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.07
+  },
+  "scale_free_d030_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.6
+  },
+  "scale_free_d030_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.68
+  },
+  "scale_free_d030_scm09__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "scale_free_d050_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 1.95
+  },
+  "scale_free_d050_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 7.67
+  },
+  "scale_free_d100_scm04__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 40.3
+  },
+  "small_world_d010_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.01
+  },
+  "small_world_d010_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "small_world_d020_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "small_world_d050_scm03__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 4.94
+  },
+  "small_world_d050_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 4.03
+  },
+  "small_world_d100_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 30.05
+  },
+  "small_world_d100_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 34.76
+  },
+  "tree_d010_scm02__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.03
+  },
+  "tree_d010_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.05
+  },
+  "tree_d010_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "tree_d020_scm01__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.82
+  },
+  "tree_d020_scm07__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.48
+  },
+  "tree_d020_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "tree_d050_scm00__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 2.9
+  },
+  "tree_d050_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 4.93
+  },
+  "tree_d050_scm06__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 29.38
+  },
+  "tree_d050_scm08__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 3.07
+  },
+  "tree_d100_scm05__obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 11.06
+  }
+ }
+}

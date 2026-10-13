@@ -1,0 +1,73 @@
+{
+ "published_pc_semantic_obs_only": {
+  "f1": 0.333,
+  "f1_scm_std": 0.15,
+  "shd": 33.522,
+  "shd_scm_std": 9.355,
+  "scenarios": 100
+ },
+ "files": 250,
+ "rows": 250,
+ "configs": [
+  {
+   "alpha": 0.05,
+   "undecided_pairs_rule": "random",
+   "scenarios": 50,
+   "rows": 250,
+   "f1_mean": 0.335,
+   "f1_scm_std": 0.093,
+   "shd_mean": 37.5,
+   "shd_scm_std": 10.66,
+   "official_configuration": true,
+   "f1_within_tolerance": true,
+   "shd_within_tolerance": false
+  },
+  {
+   "alpha": 0.05,
+   "undecided_pairs_rule": "drop",
+   "scenarios": 50,
+   "rows": 250,
+   "f1_mean": 0.291,
+   "f1_scm_std": 0.098,
+   "shd_mean": 38.9,
+   "shd_scm_std": 10.33,
+   "official_configuration": false,
+   "f1_within_tolerance": true,
+   "shd_within_tolerance": false
+  },
+  {
+   "alpha": 0.05,
+   "undecided_pairs_rule": "both",
+   "scenarios": 50,
+   "rows": 250,
+   "f1_mean": 0.368,
+   "f1_scm_std": 0.092,
+   "shd_mean": 39.67,
+   "shd_scm_std": 10.59,
+   "official_configuration": false,
+   "f1_within_tolerance": true,
+   "shd_within_tolerance": false
+  },
+  {
+   "alpha": 0.05,
+   "undecided_pairs_rule": "lower",
+   "scenarios": 50,
+   "rows": 250,
+   "f1_mean": 0.396,
+   "f1_scm_std": 0.102,
+   "shd_mean": 35.43,
+   "shd_scm_std": 10.86,
+   "official_configuration": false,
+   "f1_within_tolerance": false,
+   "shd_within_tolerance": true
+  }
+ ],
+ "tolerance": {
+  "f1": 0.045,
+  "shd": 2.81,
+  "how": "3 standard errors of a 50-scenario mean drawn without replacement from the 100 published scenarios"
+ },
+ "complete": true,
+ "gate_C1_official_configuration_reproduces_published_F1": true,
+ "gate_C2_official_configuration_reproduces_published_SHD": false
+}

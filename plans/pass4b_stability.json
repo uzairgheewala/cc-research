@@ -1,0 +1,13 @@
+{
+  "plan_id": "pass4b_stability",
+  "note": "Pass 4b. Repeats of the unmodified pipeline with the repo default query, to measure run-to-run stability and to separate what the LLM review takes from names from what it takes from data. Four arms use the same sachs numbers (byte-identical bodies): sachs = real names + 'sachs' in the path; d01 = real names, neutral path; d02 = neutral names V01..V11; d03 = real names moved onto other proteins' columns. Two bundled synthetic datasets with ground truth are repeated as the no-domain-knowledge control. Interleaved so that time is not confounded with arm. 28 runs.",
+  "interleave": true,
+  "runs": [
+    {"label": "p4b", "dataset": "research:datasets/sachs/sachs.csv", "data_mode": "real", "query": null, "repeats": 5},
+    {"label": "p4b", "dataset": "research:datasets/d01/d01.csv", "data_mode": "real", "query": null, "repeats": 5},
+    {"label": "p4b", "dataset": "research:datasets/d02/d02.csv", "data_mode": "real", "query": null, "repeats": 5},
+    {"label": "p4b", "dataset": "research:datasets/d03/d03.csv", "data_mode": "real", "query": null, "repeats": 5},
+    {"label": "p4b", "dataset": "data/dataset/Linear_Gaussian", "data_mode": "simulated", "query": null, "repeats": 5},
+    {"label": "p4b", "dataset": "data/dataset/20241024_145159_Linear-Non-gaussian_id_0_nodes10_samples1000", "data_mode": "simulated", "query": null, "repeats": 3}
+  ]
+}

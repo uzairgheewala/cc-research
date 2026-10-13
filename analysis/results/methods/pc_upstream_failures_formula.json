@@ -1,0 +1,1025 @@
+{
+ "family": "formula",
+ "rows_file": "analysis/results/methods/pc_formula_obs_rel.json",
+ "upstream_causallearn": "/tmp/claude-0/-home-claude/303fac33-a1f0-5ae9-88c2-1f3005f493e9/scratchpad/cl_upstream/causallearn/__init__.py",
+ "files": 250,
+ "files_upstream_raises": 72,
+ "scenarios_with_any_raise": 16,
+ "error_messages": [
+  "ValueError:  Data correlation matrix is singular. Cannot run fisherz tes"
+ ],
+ "vendored_rows_family_mean_f1": {
+  "random": 0.3041,
+  "lower": 0.3984
+ },
+ "vendored_rows_with_upstream_failures_as_empty_f1": {
+  "random": 0.2184,
+  "lower": 0.2821
+ },
+ "vendored_rows_with_upstream_failures_as_empty_shd": {
+  "random": 33.8,
+  "lower": 31.94
+ },
+ "per_file": {
+  "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.29
+  },
+  "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_biology_physiology_and_ecology_blood_oxygen_content__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_biology_physiology_and_ecology_fick_diffusion_across_a_membrane__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_biology_physiology_and_ecology_hardy_weinberg_genotype_frequencies__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.06
+  },
+  "formula_biology_physiology_and_ecology_logistic_population_growth__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.08
+  },
+  "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.44
+  },
+  "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.37
+  },
+  "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.05
+  },
+  "formula_celestial_mechanics_and_astronomy_circular_orbit_speed_and_satellite_altitude__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.32
+  },
+  "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.05
+  },
+  "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "formula_celestial_mechanics_and_astronomy_stellar_luminosity_and_observed_flux__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_chemistry_kinetics_and_solutions_arrhenius_temperature_dependent_reaction_rate__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_chemistry_kinetics_and_solutions_first_order_concentration_decay__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_chemistry_kinetics_and_solutions_henderson_hasselbalch_buffer_ph__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.04
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_mass_spring_oscillator__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.31
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.05
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.05
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_classical_mechanics_and_fluid_mechanics_small_angle_pendulum_period__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_earth_science_hydrology_and_atmosphere_darcy_groundwater_flow__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.0
+  },
+  "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.1
+  },
+  "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "formula_earth_science_hydrology_and_atmosphere_hypsometric_layer_thickness__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.34
+  },
+  "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.38
+  },
+  "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.59
+  },
+  "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.37
+  },
+  "formula_earth_science_hydrology_and_atmosphere_manning_open_channel_flow__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.47
+  },
+  "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.42
+  },
+  "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.36
+  },
+  "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_earth_science_hydrology_and_atmosphere_rational_method_storm_runoff__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.08
+  },
+  "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.05
+  },
+  "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rc_charging_transient__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "formula_electromagnetism_and_circuits_resistive_heating_in_a_circuit__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.22
+  },
+  "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.32
+  },
+  "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.39
+  },
+  "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.39
+  },
+  "formula_energy_systems_and_environmental_engineering_hydroelectric_power__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.39
+  },
+  "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.27
+  },
+  "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_energy_systems_and_environmental_engineering_pump_affinity_laws__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.28
+  },
+  "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_energy_systems_and_environmental_engineering_wind_turbine_power__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.2
+  },
+  "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  },
+  "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_materials_and_structural_engineering_cantilever_beam_tip_deflection__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.37
+  },
+  "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.49
+  },
+  "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.32
+  },
+  "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.36
+  },
+  "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.01
+  },
+  "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.4
+  },
+  "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.31
+  },
+  "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.31
+  },
+  "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.36
+  },
+  "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_materials_and_structural_engineering_thermal_expansion__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.18
+  },
+  "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.33
+  },
+  "formula_optics_waves_and_acoustics_diffraction_grating_angle__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.13
+  },
+  "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.07
+  },
+  "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.06
+  },
+  "formula_optics_waves_and_acoustics_doppler_shift_for_sound__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.11
+  },
+  "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.17
+  },
+  "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.12
+  },
+  "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.1
+  },
+  "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.21
+  },
+  "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep000.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep001.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep002.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.02
+  },
+  "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep003.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.03
+  },
+  "formula_optics_waves_and_acoustics_thin_lens_imaging__formula_obs_only__rep004.npz": {
+   "upstream_error": "ValueError: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.",
+   "seconds": 0.04
+  },
+  "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.44
+  },
+  "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.6
+  },
+  "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.32
+  },
+  "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.57
+  },
+  "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.43
+  },
+  "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.35
+  },
+  "formula_thermodynamics_and_heat_transfer_insulated_wall_conduction_loss__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.26
+  },
+  "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.16
+  },
+  "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.18
+  },
+  "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.14
+  },
+  "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.24
+  },
+  "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.3
+  },
+  "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.49
+  },
+  "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.31
+  },
+  "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.37
+  },
+  "formula_thermodynamics_and_heat_transfer_radiative_panel_heat_balance__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.25
+  },
+  "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep000.npz": {
+   "upstream_error": null,
+   "seconds": 0.23
+  },
+  "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep001.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep002.npz": {
+   "upstream_error": null,
+   "seconds": 0.19
+  },
+  "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep003.npz": {
+   "upstream_error": null,
+   "seconds": 0.09
+  },
+  "formula_thermodynamics_and_heat_transfer_sealed_gas_chamber_pressure_under_heating__formula_obs_only__rep004.npz": {
+   "upstream_error": null,
+   "seconds": 0.15
+  }
+ }
+}

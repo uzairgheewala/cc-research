@@ -1,0 +1,2811 @@
+{
+ "bundles": [
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "INF-04",
+    "INF-05",
+    "EVL-01",
+    "EVL-02",
+    "EVL-03",
+    "EVL-05",
+    "DOM-05",
+    "DOM-06"
+   ],
+   "id": "BND-01",
+   "llm_cost": "none",
+   "note": "Closed 2026-10-11 after Uzair's container smoke run: J1 (shell and container) and J2 pass; 18 unit tests pass; every result directory has a CONTRACT.json (check_scores: none non-conforming).",
+   "status": "done",
+   "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene",
+   "uzair_actions": [
+    "cc.ps1 compute smoke (no API key mounted; no cost)"
+   ],
+   "window": [
+    "2026-10-10",
+    "2026-10-13"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "REP-13",
+    "DOM-07",
+    "DOM-08",
+    "DOM-10",
+    "DOM-11",
+    "DOM-12"
+   ],
+   "id": "BND-02",
+   "llm_cost": "none",
+   "note": "REP-13, DOM-08, DOM-10, DOM-11, DOM-12 done; DOM-07 waits on CausalArena appendix B (unreadable so far).",
+   "status": "in_progress",
+   "title": "Primary sources: literature re-reads, deep reads, method choices",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-11",
+    "2026-10-22"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [],
+   "closes": [
+    "REP-04",
+    "AUD-12",
+    "AUD-14",
+    "AUD-15"
+   ],
+   "id": "BND-03",
+   "llm_cost": "none",
+   "note": "Static audit done (gates A1, A2 pass); open: REP-03 live-only claims, AUD-14 one offline stub run of a time-series wrapper.",
+   "status": "in_progress",
+   "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-11",
+    "2026-10-20"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-01"
+   ],
+   "closes": [
+    "RQ-16",
+    "REP-06",
+    "BEN-08"
+   ],
+   "id": "BND-04",
+   "llm_cost": "none",
+   "note": "Built 2026-10-10: RQ-16, REP-06, BEN-08 done; marked done 2026-10-11 once BND-01 closed (W3). BEN-11 continues in BND-06.",
+   "status": "done",
+   "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)",
+   "uzair_actions": [
+    "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
+   ],
+   "window": [
+    "2026-10-13",
+    "2026-10-15"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-01"
+   ],
+   "closes": [
+    "DLV-01",
+    "BEN-12",
+    "TEAM-02"
+   ],
+   "id": "BND-05",
+   "llm_cost": "none",
+   "note": "Built 2026-10-10; gates D1-D11 pass and the rebuild is byte-identical (--check). Marked done 2026-10-11 once BND-01 closed (rule W3).",
+   "status": "done",
+   "title": "Freeze the Quarter 1 dataset suite",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-13",
+    "2026-10-16"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-04",
+    "BND-02"
+   ],
+   "closes": [
+    "REP-07",
+    "BEN-07",
+    "BEN-11",
+    "DOM-09"
+   ],
+   "id": "BND-06",
+   "llm_cost": "none",
+   "note": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11.",
+   "status": "in_progress",
+   "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)",
+   "uzair_actions": [
+    "start the compute jobs if they exceed the sandbox budget (one command per job file; no cost)"
+   ],
+   "window": [
+    "2026-10-16",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-01"
+   ],
+   "closes": [
+    "BEN-10",
+    "BEN-09",
+    "REP-09"
+   ],
+   "id": "BND-07",
+   "llm_cost": "none",
+   "note": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here).",
+   "status": "done",
+   "title": "Causal Chambers and intervention audit (no LLM)",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-17",
+    "2026-10-27"
+   ]
+  },
+  {
+   "approval_needed": "yes: the 30 runs; separately: part d",
+   "blocked_by": [
+    "BND-05",
+    "BND-01"
+   ],
+   "closes": [
+    "AUD-10",
+    "AUD-11",
+    "DLV-02"
+   ],
+   "id": "BND-08",
+   "llm_cost": "30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls",
+   "note": "Live run 11-12 Oct: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1 SUPPORTED, M2 REFUTED (5/10), M3 SUPPORTED, M4 SUPPORTED, M5 not run; L1 and Q1-Q3 pass; about $12.7. Open: DLV-02's gap (6 arms without a completed run), Uzair's call.",
+   "status": "in_progress",
+   "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
+   "uzair_actions": [
+    "cc.ps1 plan plans/bundle7_stub.json (stub LLM, free)",
+    "approve the cost the stub measured",
+    "cc.ps1 plan plans/bundle7_live.json"
+   ],
+   "window": [
+    "2026-10-16",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-01",
+    "BND-05"
+   ],
+   "closes": [
+    "CAP-06"
+   ],
+   "id": "BND-09",
+   "llm_cost": "none",
+   "note": "Done 2026-10-11. Dev, 92 files (69 live tables, 23 CausalArena dev replays): R1 0.79 INCONCLUSIVE, R2 0.96 SUPPORTED, R3 +0.023 SUPPORTED; non-directed edges kept 95% vs the pipeline's 30%. Frozen: RULE.json sha256 da3cb260..., 01:11:03Z.",
+   "status": "done",
+   "title": "Refinement v1 (no LLM): develop and freeze on the dev split",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-17",
+    "2026-10-25"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-09",
+    "BND-08"
+   ],
+   "closes": [],
+   "id": "BND-10",
+   "llm_cost": "none",
+   "note": "Measured 2026-10-12 (must-show complete; marked done once BND-08 closes, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. Live S2 alone: R1 REFUTED 17/30, R2 SUPPORTED 30/30. TGT-09 not met; carried to BND-11 (v2).",
+   "status": "in_progress",
+   "title": "Refinement v1: held-out test",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-25",
+    "2026-10-28"
+   ]
+  },
+  {
+   "approval_needed": "yes",
+   "blocked_by": [
+    "BND-09",
+    "BND-05"
+   ],
+   "closes": [
+    "CAP-10",
+    "TGT-13",
+    "BLD-06",
+    "DLV-04",
+    "TGT-09"
+   ],
+   "id": "BND-11",
+   "llm_cost": "about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each",
+   "note": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live.",
+   "status": "in_progress",
+   "title": "LIVE: Refinement v2, names only where the data are silent",
+   "uzair_actions": [
+    "approve; run plans/bundle10_live.json"
+   ],
+   "window": [
+    "2026-11-03",
+    "2026-11-12"
+   ]
+  },
+  {
+   "approval_needed": "yes, per part; model choice for AUD-13",
+   "blocked_by": [
+    "BND-02",
+    "BND-05"
+   ],
+   "closes": [
+    "AUD-13",
+    "RQ-17",
+    "REP-10",
+    "REP-11",
+    "REP-12"
+   ],
+   "id": "BND-12",
+   "llm_cost": "second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k)",
+   "note": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair.",
+   "status": "in_progress",
+   "title": "LIVE: second model and external replications",
+   "uzair_actions": [
+    "choose the second model",
+    "approve and run each part's plan file"
+   ],
+   "window": [
+    "2026-11-03",
+    "2026-11-19"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-03",
+    "BND-04",
+    "BND-05",
+    "BND-06",
+    "BND-08"
+   ],
+   "closes": [
+    "DLV-03",
+    "DLV-05"
+   ],
+   "id": "BND-13",
+   "llm_cost": "none",
+   "note": "",
+   "status": "todo",
+   "title": "Quarter 1 checkpoint package (2 Nov)",
+   "uzair_actions": [
+    "submit the checkpoint"
+   ],
+   "window": [
+    "2026-10-28",
+    "2026-11-01"
+   ]
+  },
+  {
+   "approval_needed": null,
+   "blocked_by": [
+    "BND-13",
+    "BND-10",
+    "BND-11",
+    "BND-07",
+    "BND-02"
+   ],
+   "closes": [
+    "DLV-06",
+    "INF-07",
+    "INF-06",
+    "CAP-17",
+    "REP-03"
+   ],
+   "id": "BND-14",
+   "llm_cost": "none",
+   "note": "",
+   "status": "todo",
+   "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)",
+   "uzair_actions": [
+    "run the one reproduction command on a clean checkout",
+    "submit"
+   ],
+   "window": [
+    "2026-11-16",
+    "2026-12-03"
+   ]
+  }
+ ],
+ "generated_utc": "2026-10-13T02:10:40Z",
+ "hash": "b1411defa2d04d0d8d4da0801bf42d01e029c3489bdaded6cdaa20663782e79a",
+ "items": [
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-03",
+   "kind": "task",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-04",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-05",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Q1 checkpoint (Mon 2 Nov)"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "id": "DLV-06",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Code untouched before and after every run (1,332 files byte-identical)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-03",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Reproduce the paper's headline claims (arXiv 2504.13263)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-04",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Check the paper's text against the code (divergences D1-D9)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-05",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Reproduce CausalArena's published PC baseline (scorer calibration, F1)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-06",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Explain why SHD does not reproduce (ours 37.5, published 33.5)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-07",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, AVICI, CDFM (CPU)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-08",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Reproduce the R2-sortability analysis (Reisach et al. 2023) on CausalArena"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-09",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-10",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Reproduce CARE's moved-names control on one classic graph"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-11",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-12",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)"
+  },
+  {
+   "category": "1 Replication",
+   "id": "REP-13",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Re-read every second-hand literature claim before it enters the report"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Literature map in 9 clusters"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-03",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Benchmark landscape and what '100%' means on each"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-04",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Nearest prior work for each claim we might make"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-05",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Commercial landscape, first pass"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-06",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Weighing against the WorldReset forecasting project"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-07",
+   "kind": "task",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-08",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "done",
+   "title": "Choose a calibration method for bootstrap confidence"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-09",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P3",
+   "status": "done",
+   "title": "What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-10",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P3",
+   "status": "done",
+   "title": "Active experiment-design baselines: which to implement"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-11",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Pretrained discovery models: order-invariance by design, CPU checkpoints"
+  },
+  {
+   "category": "2 Domain exploration",
+   "id": "DOM-12",
+   "kind": "stretch",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Hidden common causes, time series, 100+ variables"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Architecture map: 8-step CLI path, state object, LLM call points, storage"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "LLM dependency map: 51 call sites, 88 logical points, 29 decisions, 3 graph-writing points"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-03",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Edge lineage tool: every final edge traced to the step that set it"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-04",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Refinement audit without the LLM: bootstrap step deletes non-directed edges"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-05",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Name controls on 5 datasets: real 93% / neutral 0% / moved 90% of final edges written by the LLM"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-06",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Reliability: 12 of 84 runs crashed; cycle step failed 9 of 9; one request got 3 answers"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-07",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Stability: algorithm choice stable; edge decisions vary; bootstrap seeded by accident; numpy unseeded"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-08",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Survivor-bias check: crashed runs do not change conclusions"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-09",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Leak scan of neutral-name arms: no real name in any prompt before the final graph"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-10",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-11",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Behaviour at 20-40 variables: cost, runtime, crash rate"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-12",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Effect-estimation module (causal_inference/)"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-13",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Second model besides GPT-4o"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-14",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Torch-based and time-series wrappers, web-demo path, report quality"
+  },
+  {
+   "category": "3 Audit: Causal-Copilot",
+   "id": "AUD-15",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Upstream branches newer than a31aa7c"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "CausalArena public release inspected (families, files, graph convention)"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Column-order leak: every true edge runs earlier column -> later column in every released file"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-03",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-04",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-05",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-06",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Repo datasets vs CausalArena index: Auto MPG does not match"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-07",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Do CausalArena's wrappers shuffle columns; are top methods affected?"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-08",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "SHD definition mismatch (see REP-06)"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-09",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Replay sampler: which declared interventions are interventions in name only"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-10",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-11",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "in_progress",
+   "title": "Error budgets for GES, FCI, pretrained models; formula and synthetic families"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-12",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Reliability of real-data reference graphs"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-01",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-02",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-03",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-04",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-05",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-06",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-07",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-08",
+   "kind": "target",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-09",
+   "kind": "target",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "in_progress",
+   "title": "Never below the system's own data-only output"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-10",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Zero change when columns are shuffled"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-11",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Bounded harm when names are wrong"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-12",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Calibration better than raw bootstrap frequencies on held-out scenarios"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-13",
+   "kind": "target",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "in_progress",
+   "title": "Zero crashes from malformed model output"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-14",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Within the scoreboard's 1-hour budget per graph"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-15",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "Held-out interventional predictions better than regression on all variables"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-16",
+   "kind": "target",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "Experiment choice better than random on recorded Causal Chambers experiments"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-01",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Skeleton recall at variables with many causes (joint test per candidate edge)"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-02",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Direction from the numbers (PC: 54%)"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-03",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Use intervention data"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-04",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "Declared knowledge as tiers, never edges"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-05",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Invariance to column order"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-06",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "done",
+   "title": "Keep 'direction unknown' edges"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-07",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Calibrated confidence per claim"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-08",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Abstention / selective claims"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-09",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Provenance per edge with an independent checker"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-10",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "in_progress",
+   "title": "Robustness to malformed model output"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-11",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Determinism (same inputs, same ledger hash)"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-12",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Runtime at 20-40 variables"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-13",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Nonlinear and mixed-type dependence"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-14",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Hidden common causes (PAG marks)"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-15",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "'What if we set X?' with identification status and bounds"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-16",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "Choose the next experiment"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-17",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)"
+  },
+  {
+   "category": "6 Required capabilities",
+   "id": "CAP-18",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Cost per run measured at 25 variables"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-01",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "P1-P3 (pass 4b, Sachs): supported"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-02",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "N2 (bundle 1): supported"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-03",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "N1, N4, P3 (bundle 1): tested, inconclusive"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-04",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "open",
+   "title": "T1 Order source explains most directed-edge accuracy"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-05",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "open",
+   "title": "T2 Deployed agents take order from names and layout"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-06",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "open",
+   "title": "T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target)"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-07",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "open",
+   "title": "T4 Calibrated, machine-checkable claims with abstention"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-08",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P3",
+   "status": "open",
+   "title": "T5 What-if answers with identification status"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-09",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P3",
+   "status": "open",
+   "title": "T6 Experiment choice beats random on recorded experiments"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-10",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-11",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "O2 Neutral names give no order information"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-12",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "O3 Moved names: tiers follow the labels"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-13",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "O4 Regression on model tiers reaches 0.634 (semantic)"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-14",
+   "kind": "question",
+   "level": "V2",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "O5 Same for formula vs 0.524"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-15",
+   "kind": "question",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Do LLM-written semantic graphs inflate name-based scores?"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-16",
+   "kind": "question",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Does PC's error pattern hold for other algorithms?"
+  },
+  {
+   "category": "7 Research questions",
+   "id": "RQ-17",
+   "kind": "question",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Do results hold for a second model?"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Recording harness and analysis tools"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-02",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "B1 data-only claim ledger with invariants I1-I4, I7"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-03",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "B2 interventions as order evidence"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-04",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "blocked",
+   "title": "B3 declared knowledge as tiers"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-05",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "B4 confidence, calibration, selective output"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-06",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "P2",
+   "status": "in_progress",
+   "title": "Drop-in replacement for Causal-Copilot's refinement stage"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-07",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "C1 what-if answers with identification status and bounds"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-08",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "todo",
+   "title": "C2 next-experiment choice from recorded pool"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-09",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "todo",
+   "title": "Scoreboard-format export"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-10",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Evidence tracker for this list (catalogue, verify, Slack List mirror)"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-11",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-12",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-01",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Every score states its regime (D / D+I / D+K / D+I+K)"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-02",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Controls on every score (columns shuffled; names real/neutral/moved; supplier; interventions)"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-03",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional error, cost"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-04",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Predictions and thresholds fixed in code before every live run"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-05",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Development / held-out split by scenario number before any tuning"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-06",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Stage-by-stage scoring of any pipeline"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "id": "EVL-07",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "P1",
+   "status": "done",
+   "title": "Must-show list and gates for every live step"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-01",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Harness v3, Docker image, cc.ps1 commands, stub LLM, plan runner, fetcher"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Analysis tools with gates"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-03",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets)"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-04",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Compute-job command on Uzair's machine (sandbox caps steps at 180 s)"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-05",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Unit tests for our code; caching by content hash"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-06",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Public repository preparation (no keys, licences, no redistribution, run-record size)"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-07",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "One command reproduces every number in the report"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-01",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "TA check-in 1 (TA: Nate)"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-02",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 1 checkpoint"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-03",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "TA check-in 2"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-04",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 1 final (50%)"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-05",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 2 proposal: written proposal, weekly schedule, 2-3 min pitch (15%)"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-06",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 2 deliverables: public repo, website, PDF report, poster; showcase 2nd week of March 2027"
+  },
+  {
+   "category": "11 Course",
+   "id": "CRS-07",
+   "kind": "deadline",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Decision gate G1"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-01",
+   "kind": "task",
+   "level": "V1",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Causal Discovery section for the shared mentor document"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-02",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Plain-language explainer for meetings, saved as a file"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-03",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Recruit at least one teammate"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-04",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Ask the mentor: group of 2-3 in Q2? Scope of 'replicate, measure, strengthen'?"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-05",
+   "kind": "rule",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Do not count on answers from Prof. Huang's group"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-06",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Weekly status post"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-07",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Tailored public goals post in #causal-discovery"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-01",
+   "kind": "decision",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Note to CausalArena's maintainers about column order"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-02",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Scoreboard submission package with regime and controls stated"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-03",
+   "kind": "decision",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "open",
+   "title": "Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer)"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-04",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Paper: evaluations track or workshop"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-05",
+   "kind": "task",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Course website, poster, report"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-01",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "P1",
+   "status": "open",
+   "title": "E1 Field-wide audit of agents and LLM-assisted methods"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-02",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "E2 Public agent track"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-03",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "P3",
+   "status": "open",
+   "title": "E3 Real experiments via the Causal Chambers remote lab"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-04",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "P2",
+   "status": "open",
+   "title": "E4 Learned fusion (pretrained network with unreliable tier statements)"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-05",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "E5 Hidden confounders, time series, 100+ variables"
+  },
+  {
+   "category": "14 Stretch",
+   "id": "STR-06",
+   "kind": "stretch",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Product angle: auditable causal analyst"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-01",
+   "kind": "decision",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Adopt, redirect or enlarge program v2; which of E1-E5 in scope"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-02",
+   "kind": "decision",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Approve the tier-elicitation test (~900 short calls through Uzair's key)"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-03",
+   "kind": "decision",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Whether to tell CausalArena's maintainers about the column order"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-04",
+   "kind": "decision",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Connect Slack; tracker in private #cd-tracker"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-01",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "LLM-written semantic graphs make names 'work' for the wrong reason (guard: formula + Causal Chambers alongside)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-02",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Data-only system may not reach GIES 0.552 (guard: claim targets only where they hold)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-03",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Scope too large for one person (guard: decision gates; tracks shrink in fixed order)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-04",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Prior work closes the gap first (guard: dated measurements; positioning kept current)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-05",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Benchmark files change (guard: dated result; shuffling stays a required control)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-06",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Model snapshot changes mid-study (guard: snapshot per call; one per comparison)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-07",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Thresholds tuned after seeing results (guard: thresholds in code, hashed plans, held-out split)"
+  },
+  {
+   "category": "15 Risks",
+   "id": "RSK-08",
+   "kind": "risk",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Sandbox limits 180 s per step (guard: compute command on Uzair's machine)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-01",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-02",
+   "kind": "bundle",
+   "level": "V2",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Primary sources: literature re-reads, deep reads, method choices"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-03",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Paper and code audit: headline claims, methods text, untouched modules, upstream drift"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-04",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "G1 input: GES and FCI error budgets, SHD definition (no LLM)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-05",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Freeze the Quarter 1 dataset suite"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-06",
+   "kind": "bundle",
+   "level": "V2",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Remaining baselines, order sensitivity, scoreboard package (no LLM)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-07",
+   "kind": "bundle",
+   "level": "V2",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Causal Chambers and intervention audit (no LLM)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-08",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-09",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Refinement v1 (no LLM): develop and freeze on the dev split"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-10",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Refinement v1: held-out test"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-11",
+   "kind": "bundle",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "LIVE: Refinement v2, names only where the data are silent"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-12",
+   "kind": "bundle",
+   "level": "V2",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "LIVE: second model and external replications"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-13",
+   "kind": "bundle",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 1 checkpoint package (2 Nov)"
+  },
+  {
+   "category": "16 Bundles",
+   "id": "BND-14",
+   "kind": "bundle",
+   "level": "V0",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)"
+  }
+ ],
+ "lists": {
+  "dev": {
+   "pending_removals": 0,
+   "pending_updates": 16,
+   "rows": 186,
+   "rows_sha256": "dd89652ed78f3744a1914d48e6199e40f337a68fb1d1006377104cbaaa388014",
+   "slack_list": "F0C869P25NE"
+  },
+  "prod": {
+   "pending_removals": 0,
+   "pending_updates": 8,
+   "rows": 67,
+   "rows_sha256": "da4be2063122064fd4211c7983c5efe8f838ba7bf40f2688adf40112244c4027",
+   "slack_list": "F0C8ADF3DNG"
+  }
+ },
+ "metrics": {
+  "cc.M1.files": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 23
+  },
+  "cc.M1.hits": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 19
+  },
+  "cc.M1.verdict": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": "SUPPORTED"
+  },
+  "cc.M2.hits": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 5
+  },
+  "cc.M2.n": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 10
+  },
+  "cc.M2.verdict": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": "REFUTED"
+  },
+  "cc.M3.hits": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 81
+  },
+  "cc.M3.n": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 101
+  },
+  "cc.M3.verdict": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": "SUPPORTED"
+  },
+  "cc.M4.hits": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 8
+  },
+  "cc.M4.n": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": 10
+  },
+  "cc.M4.verdict": {
+   "src": "analysis/results/stability_s2/bnd08_summary.json",
+   "value": "SUPPORTED"
+  },
+  "cc.cost.usd": {
+   "src": "analysis/reports/bnd08_s2_results.md",
+   "value": 12.7
+  },
+  "cc.crashed": {
+   "src": "analysis/results/stability_s2/partial_stages.json",
+   "value": 6
+  },
+  "cc.crashed.real": {
+   "src": "analysis/results/stability_s2/partial_stages.json",
+   "value": 5
+  },
+  "cc.fci.runs": {
+   "src": "analysis/reports/bnd08_s2_results.md",
+   "value": 29.0
+  },
+  "cc.neutral.S0.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3564
+  },
+  "cc.neutral.S0.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2107
+  },
+  "cc.neutral.S0.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5846
+  },
+  "cc.neutral.S0.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6061
+  },
+  "cc.neutral.S0.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.326
+  },
+  "cc.neutral.S0.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8391
+  },
+  "cc.neutral.S1.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2322
+  },
+  "cc.neutral.S1.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1931
+  },
+  "cc.neutral.S1.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3151
+  },
+  "cc.neutral.S1.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7683
+  },
+  "cc.neutral.S1.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6828
+  },
+  "cc.neutral.S1.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8742
+  },
+  "cc.neutral.S2.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2322
+  },
+  "cc.neutral.S2.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1931
+  },
+  "cc.neutral.S2.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3151
+  },
+  "cc.neutral.S2.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7683
+  },
+  "cc.neutral.S2.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6828
+  },
+  "cc.neutral.S2.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8742
+  },
+  "cc.neutral.S3.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2322
+  },
+  "cc.neutral.S3.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1931
+  },
+  "cc.neutral.S3.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3151
+  },
+  "cc.neutral.S3.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7683
+  },
+  "cc.neutral.S3.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6828
+  },
+  "cc.neutral.S3.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8742
+  },
+  "cc.real.S0.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3404
+  },
+  "cc.real.S0.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1754
+  },
+  "cc.real.S0.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5677
+  },
+  "cc.real.S0.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5946
+  },
+  "cc.real.S0.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2506
+  },
+  "cc.real.S0.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.86
+  },
+  "cc.real.S1.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.213
+  },
+  "cc.real.S1.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1606
+  },
+  "cc.real.S1.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2909
+  },
+  "cc.real.S1.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7469
+  },
+  "cc.real.S1.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5628
+  },
+  "cc.real.S1.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.9267
+  },
+  "cc.real.S2.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3073
+  },
+  "cc.real.S2.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2884
+  },
+  "cc.real.S2.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.4456
+  },
+  "cc.real.S2.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6595
+  },
+  "cc.real.S2.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8802
+  },
+  "cc.real.S2.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6801
+  },
+  "cc.real.S3.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3059
+  },
+  "cc.real.S3.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2866
+  },
+  "cc.real.S3.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.4469
+  },
+  "cc.real.S3.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6552
+  },
+  "cc.real.S3.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8785
+  },
+  "cc.real.S3.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6772
+  },
+  "cc.runs": {
+   "src": "analysis/results/stability_s2/partial_stages.json",
+   "value": 30
+  },
+  "cc.runs.S1_below_S0": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 30
+  },
+  "cc.runs.final_below_S0": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 26
+  },
+  "cc.runs.neutral.S2_same": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 10
+  },
+  "cc.runs.per_role": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 10
+  },
+  "cc.runs.real.S2_up": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 10
+  },
+  "cc.swapped.S0.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3541
+  },
+  "cc.swapped.S0.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2057
+  },
+  "cc.swapped.S0.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5845
+  },
+  "cc.swapped.S0.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6028
+  },
+  "cc.swapped.S0.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.307
+  },
+  "cc.swapped.S0.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8175
+  },
+  "cc.swapped.S1.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2201
+  },
+  "cc.swapped.S1.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.182
+  },
+  "cc.swapped.S1.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2931
+  },
+  "cc.swapped.S1.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7582
+  },
+  "cc.swapped.S1.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6712
+  },
+  "cc.swapped.S1.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8673
+  },
+  "cc.swapped.S2.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1359
+  },
+  "cc.swapped.S2.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1144
+  },
+  "cc.swapped.S2.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2151
+  },
+  "cc.swapped.S2.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6311
+  },
+  "cc.swapped.S2.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7857
+  },
+  "cc.swapped.S2.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6855
+  },
+  "cc.swapped.S3.F1_forced": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1422
+  },
+  "cc.swapped.S3.F1_strict": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1198
+  },
+  "cc.swapped.S3.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2231
+  },
+  "cc.swapped.S3.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6382
+  },
+  "cc.swapped.S3.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7821
+  },
+  "cc.swapped.S3.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6955
+  },
+  "chambers.regimes": {
+   "src": "analysis/results/chambers/sample/sample_status.json",
+   "value": 53
+  },
+  "ida.identified": {
+   "src": "analysis/results/dom09/ida_timing.json",
+   "value": 0.52
+  },
+  "ida.pairs": {
+   "src": "analysis/results/dom09/ida_timing.json",
+   "value": 600
+  },
+  "ida.parents.ok": {
+   "src": "analysis/results/dom09/ida_timing.json",
+   "value": 7
+  },
+  "ida.seconds": {
+   "src": "analysis/results/dom09/ida_timing.json",
+   "value": 0.058
+  },
+  "ida.vars": {
+   "src": "analysis/results/dom09/ida_timing.json",
+   "value": 25
+  },
+  "int.none": {
+   "src": "analysis/results/intervention_audit/intervention_audit.json",
+   "value": 252
+  },
+  "int.total": {
+   "src": "analysis/results/intervention_audit/intervention_audit.json",
+   "value": 945
+  },
+  "kappa.for.D": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.945
+  },
+  "kappa.for.DI": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.986
+  },
+  "kappa.sem.D": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.918
+  },
+  "kappa.sem.DI": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.949
+  },
+  "leak.released": {
+   "src": "analysis/results/causalarena_calibration/order_baseline.json",
+   "value": 0.68
+  },
+  "leak.shuffled": {
+   "src": "analysis/results/causalarena_calibration/order_baseline.json",
+   "value": 0.269
+  },
+  "lim.for.D": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.971
+  },
+  "lim.for.DI": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.993
+  },
+  "lim.sem.D": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.957
+  },
+  "lim.sem.D.min": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.844
+  },
+  "lim.sem.DI": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.974
+  },
+  "m.FCI.F1_forced_reported": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3575
+  },
+  "m.FCI.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.611
+  },
+  "m.FCI.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5793
+  },
+  "m.FCI.aS": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.354
+  },
+  "m.FCI.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.2662
+  },
+  "m.FCI.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7979
+  },
+  "m.FCI.scenarios": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 45
+  },
+  "m.GES.F1_forced_reported": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5279
+  },
+  "m.GES.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6578
+  },
+  "m.GES.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.7874
+  },
+  "m.GES.aS": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.518
+  },
+  "m.GES.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.935
+  },
+  "m.GES.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8074
+  },
+  "m.GES.scenarios": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 45
+  },
+  "m.LiNGAM.F1_forced_reported": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.196
+  },
+  "m.LiNGAM.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3765
+  },
+  "m.LiNGAM.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5161
+  },
+  "m.LiNGAM.aS": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1943
+  },
+  "m.LiNGAM.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 1.0
+  },
+  "m.LiNGAM.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5161
+  },
+  "m.LiNGAM.scenarios": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 50
+  },
+  "m.NOTEARS.F1_forced_reported": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1459
+  },
+  "m.NOTEARS.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3431
+  },
+  "m.NOTEARS.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.4241
+  },
+  "m.NOTEARS.aS": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.1455
+  },
+  "m.NOTEARS.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 1.0
+  },
+  "m.NOTEARS.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.4241
+  },
+  "m.NOTEARS.scenarios": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 50
+  },
+  "m.PC.F1_forced_reported": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3346
+  },
+  "m.PC.S": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.6114
+  },
+  "m.PC.a": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.5353
+  },
+  "m.PC.aS": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.3273
+  },
+  "m.PC.c": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.8009
+  },
+  "m.PC.q": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 0.544
+  },
+  "m.PC.scenarios": {
+   "src": "analysis/results/space/space_coords.json",
+   "value": 50
+  },
+  "oracle.depth.reg": {
+   "src": "analysis/results/error_budget/order_value.json",
+   "value": 0.714
+  },
+  "oracle.inputs.pc": {
+   "src": "analysis/results/error_budget/order_value.json",
+   "value": 0.47
+  },
+  "pc.F1": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.335
+  },
+  "pc.P": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.746
+  },
+  "pc.R": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.522
+  },
+  "pc.S": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.611
+  },
+  "pc.order.changed": {
+   "src": "analysis/results/methods/pc_skeleton_order_vendored.json",
+   "value": 21
+  },
+  "pc.order.changed.upstream": {
+   "src": "analysis/results/methods/pc_skeleton_order_upstream.json",
+   "value": 0
+  },
+  "pc.order.files": {
+   "src": "analysis/results/methods/pc_skeleton_order_vendored.json",
+   "value": 24
+  },
+  "pc.q": {
+   "src": "analysis/results/error_budget/error_budget.json",
+   "value": 0.544
+  },
+  "pub.for.D.best": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.524
+  },
+  "pub.sem.D.GIES": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.552
+  },
+  "pub.sem.D.LiNGAM": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.203
+  },
+  "pub.sem.D.NOTEARS": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.203
+  },
+  "pub.sem.D.PC": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.333
+  },
+  "pub.sem.D.RandomRegress": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.252
+  },
+  "pub.sem.D.best": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.634
+  },
+  "pub.sem.D.best.method": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": "FoundCause"
+  },
+  "pub.sem.DI.TabCausal": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.447
+  },
+  "pub.sem.DI.best": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": 0.568
+  },
+  "pub.sem.DI.best.method": {
+   "src": "analysis/results/published/leaderboard.json",
+   "value": "GIES"
+  },
+  "rep11.ours": {
+   "src": "analysis/reports/rep11_sachs_data.md",
+   "value": 0.647
+  },
+  "rep11.paper": {
+   "src": "analysis/reports/rep11_sachs_data.md",
+   "value": 0.606
+  },
+  "v1.R1.hits": {
+   "src": "analysis/results/refinement_v1/test_live_s2.json",
+   "value": 40
+  },
+  "v1.R2.hits": {
+   "src": "analysis/results/refinement_v1/test_live_s2.json",
+   "value": 47
+  },
+  "v1.dropped.all": {
+   "src": "analysis/results/refinement_v1/diagnosis_test_live_s2.json",
+   "value": 120
+  },
+  "v1.dropped.true": {
+   "src": "analysis/results/refinement_v1/diagnosis_test_live_s2.json",
+   "value": 50
+  },
+  "v1.files": {
+   "src": "analysis/results/refinement_v1/test_live_s2.json",
+   "value": 55
+  },
+  "v2.R1.hits": {
+   "src": "analysis/results/refinement_v2/exploratory_s2_live.json",
+   "value": 30
+  },
+  "v2.files": {
+   "src": "analysis/results/refinement_v2/exploratory_s2_live.json",
+   "value": 30
+  }
+ },
+ "milestones": [
+  {
+   "date": "2026-10-16",
+   "decides": "knowledge route (DEC-02) and BND-12 scope; GES/FCI budgets from BND-04 are the input",
+   "id": "CRS-07",
+   "requires": [
+    "BND-04"
+   ],
+   "title": "Decision gate G1"
+  },
+  {
+   "date": "2026-10-19",
+   "decides": "nothing; shows the frozen suite and explainer",
+   "id": "CRS-01",
+   "requires": [
+    "BND-05"
+   ],
+   "title": "TA check-in 1"
+  },
+  {
+   "date": "2026-11-02",
+   "decides": "G2: refinement v1 vs fallback",
+   "id": "CRS-02",
+   "requires": [
+    "BND-13"
+   ],
+   "title": "Quarter 1 checkpoint"
+  },
+  {
+   "date": "2026-11-20",
+   "decides": "nothing",
+   "id": "CRS-03",
+   "requires": [
+    "BND-10"
+   ],
+   "title": "TA check-in 2"
+  },
+  {
+   "date": "2026-12-04",
+   "decides": "G3",
+   "id": "CRS-04",
+   "requires": [
+    "BND-14"
+   ],
+   "title": "Quarter 1 final"
+  }
+ ],
+ "schema": 1,
+ "sources": {
+  "analysis/reports/bnd08_s2_results.md": "a5520deccc95aed3b96a28287cd1895fcf3d9af36453dc3a61f871e7a3cdcdd4",
+  "analysis/reports/rep11_sachs_data.md": "6a50a5f1d789015450284e5177928eef78880890f14b7d74403b6eb3db3006ea",
+  "analysis/results/causalarena_calibration/order_baseline.json": "54892d4fddb5e57fc5ce11f434951a46d59ad4d8de01541d863f9b4b36cf284f",
+  "analysis/results/chambers/sample/sample_status.json": "e10cf86a725b6d3c69a659f069b3329ef71a99d8c24e53c9d45f54212f4df632",
+  "analysis/results/dom09/ida_timing.json": "8f4db9546a5ffe21dfa6e4721221b1e65ef3d760b7a2cbffc62b4f8b59131826",
+  "analysis/results/error_budget/error_budget.json": "db36efbda4109c03dbdf689ad4774b3362f0dcf8ef08c94c5509cb2043057e87",
+  "analysis/results/error_budget/order_value.json": "725b98027a933d112a97399b08ebc87e297b346a5d45ea945a6035b0777ed193",
+  "analysis/results/intervention_audit/intervention_audit.json": "081386a7fea1487c375b3a27c408bc7c360106eaae3ac6624b1a9570efa84430",
+  "analysis/results/methods/pc_skeleton_order_upstream.json": "68e72903d97fc67523dee9abf9633ee672b9fc7e23c0905bb4e4fd47ca000936",
+  "analysis/results/methods/pc_skeleton_order_vendored.json": "e9cf0c1f19679b5faf291e332da13a7764122709c5dacf1ffcb8e6628042f433",
+  "analysis/results/published/leaderboard.json": "90a81259a7d495ca3d8803be5eb799d824ee4989f23ca9ce4f1ac7f1088830e4",
+  "analysis/results/refinement_v1/diagnosis_test_live_s2.json": "52fcfe04d07ce97e1991fee1143b99e1323317561e5eb03745b671e7cb7f9ea6",
+  "analysis/results/refinement_v1/test_live_s2.json": "02b0b20b6c1ca96afa085cc908528335a80d64b53591d1567440795d9fc3def5",
+  "analysis/results/refinement_v2/exploratory_s2_live.json": "debb94c4d3a3e415a1517d721b08b9d7486c5dca8c45d7d8c98afec2320cbae4",
+  "analysis/results/space/space_coords.json": "b1267a4cdd88c450b8cb82fb9a4de3e1e7d3b1705d9902ef09960c90c0e065f2",
+  "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
+  "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
+ },
+ "status_verified_utc": "2026-10-13T02:09:52Z"
+}

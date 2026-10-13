@@ -1,0 +1,24 @@
+# ---- secrets: never in this folder; listed so an accident cannot be committed
+.env
+.env.*
+*.pem
+*.key
+*.p12
+secrets.*
+*.secret
+*.zip
+
+# ---- large or third-party data: kept out of git, listed with sha256 in manifests/excluded/
+/external/
+/runs/
+/jobs/transfer/
+/queue/
+
+# ---- generated, caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.countlines.cache.db
+directory_structure.txt
+/site/_build/
+/manifests/excluded/.state.json

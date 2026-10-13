@@ -1,0 +1,23 @@
+{
+ "controls": {
+  "columns_shuffled": true,
+  "names": "neutral",
+  "supplier": "causalarena"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies",
+  "dir_f1": "directed-edge F1 under drop / random / lower (CSV order)",
+  "shd": "pair-level SHD under each rule"
+ },
+ "note": "Data-only methods on S2 test files: no tuning; read once for the M4 comparison.",
+ "orientation_rule": "per key: drop (committed only; M4's metric), random (seed crc32(family)), lower (CSV order, shuffled)",
+ "producer": "analysis/s2_baselines.py",
+ "regime": "D",
+ "score_bearing": true,
+ "shd_variant": "pair-level, reversal = 1",
+ "split": "test",
+ "tickets": [
+  "DLV-02",
+  "RQ-05"
+ ]
+}

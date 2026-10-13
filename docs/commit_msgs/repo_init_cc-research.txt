@@ -1,0 +1,19 @@
+Start the cc-research repository: evidence, tracker, CI and the Causal Atlas site
+
+Tickets: INF-06, INF-07, BLD-10, BLD-11
+
+Everything that the tracker cites and that is small enough for git goes in: analysis code, results
+and reports, tickets and their pins, plans, harness, datasets, manifests, docs, tests.
+Downloaded benchmarks (external/), recorded runs (runs/) and transfer scratch stay out; each of
+their files is listed with sha256 in manifests/excluded/.
+
+- .gitattributes `* -text`: no line-ending conversion, so every pinned hash survives checkout.
+- tools/secret_scan.py and the pre-commit hook: no key, token or file over 50 MB can be committed.
+- tools/ci_check.py: pinned evidence in git must still match its pin; evidence outside git must
+  be listed in the excluded manifest.
+- tracker/snapshot.py: one JSON (site/snapshot.json) with every ticket, bundle, list state and
+  every number the site prints, each with its source file and that file's sha256.
+- site/: the Causal Atlas, five zoom levels in one page, built only from the snapshot.
+- .github/workflows: ci on every push; pages publishes the site from main.
+- docs/REPO.md (what is in git and why), docs/FORK.md (how Causal-Copilot will be forked),
+  upstream.lock (the upstream commit every run used).

@@ -1,0 +1,389 @@
+{
+ "pooled_survival_by_type": {
+  "undirected": {
+   "n": 204,
+   "survive": 32
+  },
+  "directed": {
+   "n": 361,
+   "survive": 347
+  },
+  "mixed(2,1)": {
+   "n": 6,
+   "survive": 0
+  },
+  "o-o": {
+   "n": 24,
+   "survive": 3
+  },
+  "a o-> b": {
+   "n": 6,
+   "survive": 2
+  },
+  "b o-> a": {
+   "n": 2,
+   "survive": 0
+  },
+  "bidirected": {
+   "n": 8,
+   "survive": 1
+  }
+ },
+ "per_algorithm": {
+  "BAMB": {
+   "n": 4,
+   "adj_f1": [
+    0.19642857142857145,
+    0.05625,
+    0.05625
+   ],
+   "adj_recall": [
+    0.17543859649122806,
+    0.04093567251461988
+   ],
+   "shd_cpdag": [
+    9.0,
+    8.75,
+    8.75
+   ],
+   "worse": 2,
+   "better": 0
+  },
+  "DirectLiNGAM": {
+   "n": 8,
+   "adj_f1": [
+    0.7556812468577174,
+    0.763257004433475,
+    0.7798263969619469
+   ],
+   "adj_recall": [
+    0.8508771929824561,
+    0.8508771929824561
+   ],
+   "shd_cpdag": [
+    9.875,
+    9.625,
+    9.125
+   ],
+   "worse": 0,
+   "better": 1
+  },
+  "FCI": {
+   "n": 8,
+   "adj_f1": [
+    0.8542211328976035,
+    0.3045454545454545,
+    0.3045454545454545
+   ],
+   "adj_recall": [
+    0.8442982456140351,
+    0.2170138888888889
+   ],
+   "shd_cpdag": [
+    8.0,
+    7.5,
+    7.5
+   ],
+   "worse": 8,
+   "better": 0
+  },
+  "FGES": {
+   "n": 8,
+   "adj_f1": [
+    0.8175595238095238,
+    0.3961538461538462,
+    0.3961538461538462
+   ],
+   "adj_recall": [
+    0.7776864035087718,
+    0.3420138888888889
+   ],
+   "shd_cpdag": [
+    4.875,
+    6.25,
+    6.25
+   ],
+   "worse": 8,
+   "better": 0
+  },
+  "GES": {
+   "n": 9,
+   "adj_f1": [
+    0.8806584362139918,
+    0.3461640211640211,
+    0.3461640211640211
+   ],
+   "adj_recall": [
+    0.861598440545809,
+    0.2601526965562053
+   ],
+   "shd_cpdag": [
+    3.4444444444444446,
+    6.555555555555555,
+    6.555555555555555
+   ],
+   "worse": 9,
+   "better": 0
+  },
+  "GRaSP": {
+   "n": 9,
+   "adj_f1": [
+    0.8806584362139918,
+    0.3461640211640211,
+    0.3461640211640211
+   ],
+   "adj_recall": [
+    0.861598440545809,
+    0.2601526965562053
+   ],
+   "shd_cpdag": [
+    3.4444444444444446,
+    6.555555555555555,
+    6.555555555555555
+   ],
+   "worse": 9,
+   "better": 0
+  },
+  "HITONMB": {
+   "n": 3,
+   "adj_f1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "adj_recall": [
+    0.0,
+    0.0
+   ],
+   "shd_cpdag": [
+    9.666666666666666,
+    9.666666666666666,
+    9.666666666666666
+   ],
+   "worse": 0,
+   "better": 0
+  },
+  "IAMBnPC": {
+   "n": 4,
+   "adj_f1": [
+    0.19642857142857145,
+    0.04761904761904762,
+    0.04761904761904762
+   ],
+   "adj_recall": [
+    0.17543859649122806,
+    0.02631578947368421
+   ],
+   "shd_cpdag": [
+    9.25,
+    7.75,
+    7.75
+   ],
+   "worse": 2,
+   "better": 0
+  },
+  "ICALiNGAM": {
+   "n": 9,
+   "adj_f1": [
+    0.8625998547567175,
+    0.8625998547567175,
+    0.8625998547567175
+   ],
+   "adj_recall": [
+    0.8674463937621832,
+    0.8674463937621832
+   ],
+   "shd_cpdag": [
+    7.222222222222222,
+    7.222222222222222,
+    7.222222222222222
+   ],
+   "worse": 0,
+   "better": 0
+  },
+  "InterIAMB": {
+   "n": 4,
+   "adj_f1": [
+    0.45935960591133007,
+    0.30625,
+    0.30833333333333335
+   ],
+   "adj_recall": [
+    0.43859649122807015,
+    0.2909356725146199
+   ],
+   "shd_cpdag": [
+    8.75,
+    8.5,
+    8.25
+   ],
+   "worse": 2,
+   "better": 0
+  },
+  "MBOR": {
+   "n": 4,
+   "adj_f1": [
+    0.19642857142857145,
+    0.05625,
+    0.05625
+   ],
+   "adj_recall": [
+    0.17543859649122806,
+    0.04093567251461988
+   ],
+   "shd_cpdag": [
+    9.0,
+    8.75,
+    8.75
+   ],
+   "worse": 2,
+   "better": 0
+  },
+  "NOTEARSLinear": {
+   "n": 9,
+   "adj_f1": [
+    0.828769487593017,
+    0.828769487593017,
+    0.8146280734516028
+   ],
+   "adj_recall": [
+    0.8062865497076024,
+    0.8062865497076024
+   ],
+   "shd_cpdag": [
+    6.555555555555555,
+    6.555555555555555,
+    6.555555555555555
+   ],
+   "worse": 0,
+   "better": 0
+  },
+  "PC": {
+   "n": 9,
+   "adj_f1": [
+    0.8638828370854514,
+    0.4439492306499979,
+    0.4439492306499979
+   ],
+   "adj_recall": [
+    0.861598440545809,
+    0.35518193632228723
+   ],
+   "shd_cpdag": [
+    4.222222222222222,
+    6.222222222222222,
+    6.222222222222222
+   ],
+   "worse": 9,
+   "better": 0
+  },
+  "XGES": {
+   "n": 8,
+   "adj_f1": [
+    0.8657407407407407,
+    0.41638257575757576,
+    0.41638257575757576
+   ],
+   "adj_recall": [
+    0.8442982456140351,
+    0.34612573099415206
+   ],
+   "shd_cpdag": [
+    3.875,
+    5.875,
+    5.875
+   ],
+   "worse": 8,
+   "better": 0
+  }
+ },
+ "n_cells": 113,
+ "n_ok": 96,
+ "failed": [
+  [
+   "LiNG_10nodes",
+   "CORL",
+   "TypeError: '_Mock' object cannot be interpreted as an integer"
+  ],
+  [
+   "LiNG_10nodes",
+   "GOLEM",
+   "TypeError: unsupported format string passed to _Mock.__format__"
+  ],
+  [
+   "LiNG_10nodes",
+   "Hybrid",
+   "TypeError: 'DataLoader' object is not iterable"
+  ],
+  [
+   "LiNG_10nodes",
+   "NOTEARSNonlinear",
+   "TypeError: object of type '_Mock' has no len()"
+  ],
+  [
+   "Linear_Gaussian",
+   "CORL",
+   "TypeError: '_Mock' object cannot be interpreted as an integer"
+  ],
+  [
+   "Linear_Gaussian",
+   "GOLEM",
+   "TypeError: unsupported format string passed to _Mock.__format__"
+  ],
+  [
+   "Linear_Gaussian",
+   "HITONMB",
+   "IndexError: index -17 is out of bounds for axis 2 with size 16"
+  ],
+  [
+   "Linear_Gaussian",
+   "Hybrid",
+   "TypeError: 'DataLoader' object is not iterable"
+  ],
+  [
+   "Linear_Gaussian",
+   "NOTEARSNonlinear",
+   "TypeError: object of type '_Mock' has no len()"
+  ],
+  [
+   "Linear_Nongaussian",
+   "CORL",
+   "TypeError: '_Mock' object cannot be interpreted as an integer"
+  ],
+  [
+   "Linear_Nongaussian",
+   "GOLEM",
+   "TypeError: unsupported format string passed to _Mock.__format__"
+  ],
+  [
+   "Linear_Nongaussian",
+   "Hybrid",
+   "TypeError: 'DataLoader' object is not iterable"
+  ],
+  [
+   "Linear_Nongaussian",
+   "NOTEARSNonlinear",
+   "TypeError: object of type '_Mock' has no len()"
+  ],
+  [
+   "sachs(reference)",
+   "CORL",
+   "TypeError: '_Mock' object cannot be interpreted as an integer"
+  ],
+  [
+   "sachs(reference)",
+   "GOLEM",
+   "TypeError: unsupported format string passed to _Mock.__format__"
+  ],
+  [
+   "sachs(reference)",
+   "Hybrid",
+   "TypeError: 'DataLoader' object is not iterable"
+  ],
+  [
+   "sachs(reference)",
+   "NOTEARSNonlinear",
+   "TypeError: object of type '_Mock' has no len()"
+  ]
+ ]
+}

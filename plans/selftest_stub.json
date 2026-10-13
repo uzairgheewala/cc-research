@@ -1,0 +1,10 @@
+{
+  "plan_id": "selftest_stub",
+  "note": "Offline self-test of the plan runner and the stability analysis. Stub LLM, no API calls, costs nothing.",
+  "stub_llm": true,
+  "interleave": true,
+  "runs": [
+    {"label": "selftest", "dataset": "research:datasets/d02/d02.csv", "data_mode": "real", "query": null, "repeats": 2},
+    {"label": "selftest", "dataset": "research:datasets/d03/d03.csv", "data_mode": "real", "query": null, "repeats": 2}
+  ]
+}

@@ -1,0 +1,116 @@
+{
+ "thresholds": {
+  "M2": [
+   0.1,
+   8,
+   5
+  ],
+  "M3": [
+   0.8,
+   0.5,
+   30
+  ],
+  "M4": [
+   8,
+   5
+  ]
+ },
+ "M2": {
+  "per_family_real_minus_neutral": {
+   "s2_01": 0.113,
+   "s2_02": -0.232,
+   "s2_03": 0.02,
+   "s2_04": 0.171,
+   "s2_05": 0.3,
+   "s2_06": 0.036,
+   "s2_07": -0.032,
+   "s2_08": 0.272,
+   "s2_09": 0.204,
+   "s2_10": 0.082
+  },
+  "hits": 5,
+  "families": 10,
+  "verdict": "REFUTED"
+ },
+ "M3": {
+  "labels_only": 81,
+  "data_only": 20,
+  "neither": 74,
+  "n": 101,
+  "share": 0.801980198019802,
+  "binomial_q95_data_only": 59,
+  "verdict": "SUPPORTED"
+ },
+ "M4": {
+  "per_family": {
+   "s2_01": {
+    "neutral_S3_dir": 0.178,
+    "pc_dir_drop": 0.3939393939393939,
+    "below": true
+   },
+   "s2_02": {
+    "neutral_S3_dir": 0.473,
+    "pc_dir_drop": 0.44067796610169496,
+    "below": false
+   },
+   "s2_03": {
+    "neutral_S3_dir": 0.034,
+    "pc_dir_drop": 0.2439024390243903,
+    "below": true
+   },
+   "s2_04": {
+    "neutral_S3_dir": 0.182,
+    "pc_dir_drop": 0.5846153846153846,
+    "below": true
+   },
+   "s2_05": {
+    "neutral_S3_dir": 0.051,
+    "pc_dir_drop": 0.3728813559322034,
+    "below": true
+   },
+   "s2_06": {
+    "neutral_S3_dir": 0.12,
+    "pc_dir_drop": 0.3013698630136986,
+    "below": true
+   },
+   "s2_07": {
+    "neutral_S3_dir": 0.293,
+    "pc_dir_drop": 0.42857142857142855,
+    "below": true
+   },
+   "s2_08": {
+    "neutral_S3_dir": 0.087,
+    "pc_dir_drop": 0.3214285714285714,
+    "below": true
+   },
+   "s2_09": {
+    "neutral_S3_dir": 0.318,
+    "pc_dir_drop": 0.7692307692307692,
+    "below": true
+   },
+   "s2_10": {
+    "neutral_S3_dir": 0.196,
+    "pc_dir_drop": 0.17948717948717946,
+    "below": false
+   }
+  },
+  "hits": 8,
+  "families": 10,
+  "verdict": "SUPPORTED"
+ },
+ "M2_sensitivity_unnumbered_names": {
+  "excluded_families": [
+   "s2_02"
+  ],
+  "families_possible": 9,
+  "families": 9,
+  "hits": 5,
+  "thresholds": [
+   0.1,
+   8,
+   4
+  ],
+  "verdict": "INCONCLUSIVE",
+  "role": "sensitivity; the M2 verdict above is the pre-registered one"
+ }
+}

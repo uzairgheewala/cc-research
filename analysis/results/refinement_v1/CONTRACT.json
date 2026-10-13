@@ -1,0 +1,26 @@
+{
+ "controls": {
+  "columns_shuffled": "per-row",
+  "names": "per-row",
+  "supplier": "per-row"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies (cc_graph.score)",
+  "dir_f1_committed": "directed-edge F1, committed arrows only",
+  "dir_f1_random": "directed-edge F1, undecided pairs oriented at random (per-file seed)"
+ },
+ "note": "dev.json is the development set: live runs of pass 4b and bundle 1 plus the 23 usable dev-split CausalArena replay files (jobs/bootstrap_replay_ca_dev). dev_exploratory.json is labelled exploratory. RULE.json froze the rule (2026-10-11T01:11:03Z); test_replay.json is the one test read of the 25 test-split replay files (access_log.jsonl). Replay files keep the released column order, which is topological, and PC is order-sensitive (BND-06 Q4c): absolute F1 on replay rows is the released-order figure; R1-R3 compare v1, S0 and S1 within a file, all built from the same S0. test_live_s2.json: the frozen rule on the 30 live S2 runs' bootstrap tables (BND-10 part 2), via analysis/refinement_v1_test_live.py, which imports the frozen file unchanged; its pooled_test block is the BND-10 verdict. diagnosis_test_live_s2.json is exploratory (after the test read).",
+ "orientation_rule": "dir_f1_random: random per file; dir_f1_committed: committed only",
+ "producer": "analysis/refinement_v1.py",
+ "regime": "D",
+ "score_bearing": true,
+ "split": "per-row",
+ "tickets": [
+  "CAP-06",
+  "TGT-09",
+  "BLD-06",
+  "BND-09",
+  "BND-10"
+ ],
+ "split_field": "row 'group': live:pass4b, live:suite_b1 and replay:dev are dev; replay:test and live:s2:* are test"
+}

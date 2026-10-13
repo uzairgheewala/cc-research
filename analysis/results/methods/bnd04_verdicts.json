@@ -1,0 +1,93 @@
+{
+ "Q4a": {
+  "text": "Q4a (RQ-16) GES and FCI: accuracy of committed directions <= 0.65 for both (supported) / >= 0.75 for either (refuted)",
+  "accuracy_of_committed_directions": {
+   "gesbic": 0.8074,
+   "fci": 0.7978
+  },
+  "verdict": "REFUTED"
+ },
+ "Q4b": {
+  "text": "Q4b direction errors cost each method >= 0.15 F1 (skeleton-with-perfect-orientation minus actual) (supported) / <= 0.05 for any (refuted)",
+  "cost_of_direction_errors_f1": {
+   "gesbic": 0.1169,
+   "fci": 0.2281
+  },
+  "verdict": "INCONCLUSIVE"
+ },
+ "pc_reference": {
+  "accuracy_of_committed_directions": 0.544,
+  "cost_of_direction_errors_f1": 0.276
+ },
+ "ges_vs_published_GIES": {
+  "all_50": {
+   "random": {
+    "f1": 0.4751,
+    "f1_gap": -0.0769,
+    "f1_within": false,
+    "shd": 37.02,
+    "shd_gap": 3.616,
+    "shd_within": true
+   },
+   "lower": {
+    "f1": 0.4951,
+    "f1_gap": -0.0569,
+    "f1_within": false,
+    "shd": 36.224,
+    "shd_gap": 2.82,
+    "shd_within": true
+   }
+  },
+  "excluding_failed_scenarios_post_hoc": {
+   "random": {
+    "f1": 0.5279,
+    "f1_gap": -0.0241,
+    "f1_within": true,
+    "shd": 36.8222,
+    "shd_gap": 3.4182,
+    "shd_within": true
+   },
+   "lower": {
+    "f1": 0.5502,
+    "f1_gap": -0.0018,
+    "f1_within": true,
+    "shd": 35.9378,
+    "shd_gap": 2.5338,
+    "shd_within": true
+   }
+  },
+  "failed_files": 25,
+  "scenarios_with_failures": [
+   "heatwave_cooling_center_use_illness",
+   "injection_molding_cooling_warp",
+   "sleep_apnea_device_pressure_adherence",
+   "traffic_signal_offset_corridor_delay",
+   "wildfire_smoke_shelter_behavior"
+  ],
+  "tolerance_3se_all_50": {
+   "f1": 0.038,
+   "shd": 4.573
+  },
+  "tolerance_3se_45": {
+   "f1": 0.042,
+   "shd": 5.0557
+  }
+ },
+ "order_leak_under_authors_rule": {
+  "gesbic": {
+   "f1_random": 0.4751,
+   "f1_lower": 0.4951,
+   "share_of_found_true_adjacencies_left_undecided": 0.065
+  },
+  "fci": {
+   "f1_random": 0.3218,
+   "f1_lower": 0.5205,
+   "share_of_found_true_adjacencies_left_undecided": 0.7338
+  }
+ },
+ "gates": {
+  "C1": true,
+  "split_labelled": true,
+  "files_250_each": true
+ }
+}

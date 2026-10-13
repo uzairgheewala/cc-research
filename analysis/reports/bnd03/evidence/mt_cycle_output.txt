@@ -1,0 +1,11 @@
+case1 convert_adj_mat output (G[i,j]=1 means i->j):
+ [[0 0 0]
+ [1 0 0]
+ [0 1 0]]
+case1 DiGraph edges: [(1, 0), (2, 1)]
+case2 check_cycle returned:
+ [[0. 1. 0.]
+ [1. 0. 0.]
+ [0. 0. 0.]]
+case2 is DAG after check_cycle: False
+LLM calls attempted: 0

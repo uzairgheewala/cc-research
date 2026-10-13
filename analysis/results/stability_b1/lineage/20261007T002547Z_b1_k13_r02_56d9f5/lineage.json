@@ -1,0 +1,2177 @@
+{
+ "run_id": "20261007T002547Z_b1_k13_r02_56d9f5",
+ "dataset": "/research/datasets/suite_b1/k13/k13.csv",
+ "stub_llm": false,
+ "algorithm": "FCI",
+ "hyperparameters_used": {
+  "alpha": 0.05,
+  "indep_test": "rcit",
+  "depth": 6
+ },
+ "hyperparameters_proposed_by_llm_but_not_used": [
+  "background_knowledge"
+ ],
+ "variables": [
+  "Length",
+  "Age",
+  "Diameter",
+  "Shell weight",
+  "Whole weight",
+  "Height",
+  "Viscera weight",
+  "Shucked weight"
+ ],
+ "n_pairs": 28,
+ "gates": {
+  "A_S0_equals_state_converted_graph": true,
+  "B_rebuilt_S2_equals_graph_into_KCI": true,
+  "C_rebuilt_S3_equals_graph_into_cycle_step": true,
+  "D_cycle_output_equals_state_revised_graph": true,
+  "E_every_change_covered_by_step_evidence": true,
+  "F_all_llm_answers_name_dataset_variables": true
+ },
+ "all_gates_pass": true,
+ "bootstrap_iterations": 20,
+ "counts": {
+  "edges_by_stage": {
+   "S0 algorithm output": 16,
+   "S1 after bootstrap edits": 6,
+   "S2 after LLM review": 21,
+   "S3 after KCI pruning": 21,
+   "S4 final (after cycle step)": 21
+  },
+  "bootstrap_added": 0,
+  "bootstrap_deleted": 10,
+  "existing_edges_deleted_by_bootstrap_whose_commonest_resampled_status_was_a_nondirected_edge": 7,
+  "llm_calls": 8,
+  "llm_distinct_pairs_answered": 28,
+  "llm_self_pairs_answered": 8,
+  "llm_letters": {
+   "B": 10,
+   "C": 6,
+   "A": 11,
+   "D": 1
+  },
+  "llm_added": 16,
+  "llm_added_where_bootstrap_no_edge_frequency_ge_0.9": 5,
+  "llm_removed": 1,
+  "llm_reoriented": 3,
+  "kci_removed": 0,
+  "cycle_step_changes": 0,
+  "final_edges": 21,
+  "final_edges_set_by": {
+   "llm": 19,
+   "algorithm (unchanged)": 2
+  },
+  "final_edges_identical_to_algorithm_output": 2,
+  "final_edges_with_no_adjacency_in_algorithm_output": 8
+ },
+ "stable_nondirected_edges_deleted_by_bootstrap": [
+  {
+   "pair": [
+    "Length",
+    "Height"
+   ],
+   "was": "Length <-> Height",
+   "most_frequent_bootstrap_status": "Heightidirected",
+   "frequency": 0.5
+  },
+  {
+   "pair": [
+    "Age",
+    "Viscera weight"
+   ],
+   "was": "Age <-> Viscera weight",
+   "most_frequent_bootstrap_status": "Viscera weightidirected",
+   "frequency": 0.75
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Whole weight"
+   ],
+   "was": "Shell weight o-> Whole weight",
+   "most_frequent_bootstrap_status": "Shell weight o-> Whole weight",
+   "frequency": 0.6
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Height"
+   ],
+   "was": "Height o-> Whole weight",
+   "most_frequent_bootstrap_status": "Heightidirected",
+   "frequency": 0.55
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Shucked weight"
+   ],
+   "was": "Whole weight <-> Shucked weight",
+   "most_frequent_bootstrap_status": "Shucked weightidirected",
+   "frequency": 0.6
+  },
+  {
+   "pair": [
+    "Viscera weight",
+    "Shucked weight"
+   ],
+   "was": "Viscera weight <-> Shucked weight",
+   "most_frequent_bootstrap_status": "Shucked weightidirected",
+   "frequency": 0.7
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Shucked weight"
+   ],
+   "was": "Shell weight o-> Shucked weight",
+   "most_frequent_bootstrap_status": "Shell weight o-> Shucked weight",
+   "frequency": 0.7
+  }
+ ],
+ "llm_added": [
+  {
+   "pair": [
+    "Length",
+    "Age"
+   ],
+   "from": "Length   Age (no edge)",
+   "to": "Age->Length",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Length",
+    "Diameter"
+   ],
+   "from": "Length   Diameter (no edge)",
+   "to": "Length->Diameter",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Length",
+    "Shell weight"
+   ],
+   "from": "Length   Shell weight (no edge)",
+   "to": "Shell weight->Length",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "pair": [
+    "Length",
+    "Whole weight"
+   ],
+   "from": "Length   Whole weight (no edge)",
+   "to": "Whole weight->Length",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.4
+  },
+  {
+   "pair": [
+    "Length",
+    "Height"
+   ],
+   "from": "Length   Height (no edge)",
+   "to": "Length->Height",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Length",
+    "Viscera weight"
+   ],
+   "from": "Length   Viscera weight (no edge)",
+   "to": "Viscera weight->Length",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "pair": [
+    "Age",
+    "Shell weight"
+   ],
+   "from": "Age   Shell weight (no edge)",
+   "to": "Age->Shell weight",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Age",
+    "Height"
+   ],
+   "from": "Age   Height (no edge)",
+   "to": "Age->Height",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "pair": [
+    "Age",
+    "Viscera weight"
+   ],
+   "from": "Age   Viscera weight (no edge)",
+   "to": "Age->Viscera weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.2
+  },
+  {
+   "pair": [
+    "Age",
+    "Shucked weight"
+   ],
+   "from": "Age   Shucked weight (no edge)",
+   "to": "Age->Shucked weight",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Shell weight"
+   ],
+   "from": "Diameter   Shell weight (no edge)",
+   "to": "Shell weight->Diameter",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Viscera weight"
+   ],
+   "from": "Diameter   Viscera weight (no edge)",
+   "to": "Viscera weight->Diameter",
+   "adjacent_in_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Whole weight"
+   ],
+   "from": "Shell weight   Whole weight (no edge)",
+   "to": "Whole weight->Shell weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.2
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Viscera weight"
+   ],
+   "from": "Whole weight   Viscera weight (no edge)",
+   "to": "Whole weight->Viscera weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Shucked weight"
+   ],
+   "from": "Whole weight   Shucked weight (no edge)",
+   "to": "Whole weight->Shucked weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Viscera weight",
+    "Shucked weight"
+   ],
+   "from": "Viscera weight   Shucked weight (no edge)",
+   "to": "Viscera weight->Shucked weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.15
+  }
+ ],
+ "llm_removed": [
+  {
+   "pair": [
+    "Height",
+    "Viscera weight"
+   ],
+   "from": "Height->Viscera weight",
+   "to": "Height   Viscera weight (no edge)",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.35
+  }
+ ],
+ "llm_reoriented": [
+  {
+   "pair": [
+    "Age",
+    "Diameter"
+   ],
+   "from": "Age <-> Diameter",
+   "to": "Age->Diameter",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "pair": [
+    "Age",
+    "Whole weight"
+   ],
+   "from": "Age <-> Whole weight",
+   "to": "Age->Whole weight",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.15
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Shucked weight"
+   ],
+   "from": "Diameter <-> Shucked weight",
+   "to": "Shucked weight->Diameter",
+   "adjacent_in_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  }
+ ],
+ "final_edges": [
+  {
+   "edge": "Age->Length",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Length->Diameter",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Shell weight->Length",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.8
+  },
+  {
+   "edge": "Whole weight->Length",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.4
+  },
+  {
+   "edge": "Length->Height",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Viscera weight->Length",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "edge": "Shucked weight->Length",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Age->Diameter",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Age->Shell weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Age->Whole weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.15
+  },
+  {
+   "edge": "Age->Height",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "edge": "Age->Viscera weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.2
+  },
+  {
+   "edge": "Age->Shucked weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.85
+  },
+  {
+   "edge": "Shell weight->Diameter",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Whole weight->Diameter",
+   "set_by": "algorithm (unchanged)",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": true,
+   "bootstrap_no_edge_frequency": 0.1
+  },
+  {
+   "edge": "Viscera weight->Diameter",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": false,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 1.0
+  },
+  {
+   "edge": "Shucked weight->Diameter",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Whole weight->Shell weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.2
+  },
+  {
+   "edge": "Whole weight->Viscera weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Whole weight->Shucked weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.0
+  },
+  {
+   "edge": "Viscera weight->Shucked weight",
+   "set_by": "llm",
+   "adjacent_in_algorithm_output": true,
+   "same_as_algorithm_output": false,
+   "bootstrap_no_edge_frequency": 0.15
+  }
+ ],
+ "truth_kind": "reference graph abalone_by_data.npy (not loaded by the pipeline)",
+ "scores_by_stage": {
+  "S0 algorithm output": {
+   "adj_tp": 3,
+   "adj_fp": 13,
+   "adj_fn": 4,
+   "adj_precision": 0.1875,
+   "adj_recall": 0.42857142857142855,
+   "adj_f1": 0.26086956521739124,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 1,
+   "true_edges_present_but_not_directed": 2,
+   "dir_predicted": 3,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 20,
+   "shd_vs_true_cpdag": 20
+  },
+  "S1 after bootstrap edits": {
+   "adj_tp": 1,
+   "adj_fp": 5,
+   "adj_fn": 6,
+   "adj_precision": 0.16666666666666666,
+   "adj_recall": 0.14285714285714285,
+   "adj_f1": 0.15384615384615383,
+   "true_edges_correctly_directed": 0,
+   "true_edges_reversed": 1,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 3,
+   "dir_tp": 0,
+   "dir_precision": 0.0,
+   "dir_recall": 0.0,
+   "dir_f1": 0.0,
+   "shd_vs_true_dag": 12,
+   "shd_vs_true_cpdag": 12
+  },
+  "S2 after LLM review": {
+   "adj_tp": 7,
+   "adj_fp": 14,
+   "adj_fn": 0,
+   "adj_precision": 0.3333333333333333,
+   "adj_recall": 1.0,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 5,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 21,
+   "dir_tp": 2,
+   "dir_precision": 0.09523809523809523,
+   "dir_recall": 0.2857142857142857,
+   "dir_f1": 0.14285714285714285,
+   "shd_vs_true_dag": 19,
+   "shd_vs_true_cpdag": 21
+  },
+  "S3 after KCI pruning": {
+   "adj_tp": 7,
+   "adj_fp": 14,
+   "adj_fn": 0,
+   "adj_precision": 0.3333333333333333,
+   "adj_recall": 1.0,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 5,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 21,
+   "dir_tp": 2,
+   "dir_precision": 0.09523809523809523,
+   "dir_recall": 0.2857142857142857,
+   "dir_f1": 0.14285714285714285,
+   "shd_vs_true_dag": 19,
+   "shd_vs_true_cpdag": 21
+  },
+  "S4 final (after cycle step)": {
+   "adj_tp": 7,
+   "adj_fp": 14,
+   "adj_fn": 0,
+   "adj_precision": 0.3333333333333333,
+   "adj_recall": 1.0,
+   "adj_f1": 0.5,
+   "true_edges_correctly_directed": 2,
+   "true_edges_reversed": 5,
+   "true_edges_present_but_not_directed": 0,
+   "dir_predicted": 21,
+   "dir_tp": 2,
+   "dir_precision": 0.09523809523809523,
+   "dir_recall": 0.2857142857142857,
+   "dir_f1": 0.14285714285714285,
+   "shd_vs_true_dag": 19,
+   "shd_vs_true_cpdag": 21
+  }
+ },
+ "pairs": [
+  {
+   "pair": [
+    "Length",
+    "Age"
+   ],
+   "types": [
+    "Length   Age (no edge)",
+    "Length   Age (no edge)",
+    "Age->Length",
+    "Age->Length",
+    "Age->Length"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Length   Age (no edge)",
+     "to": "Age->Length"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Age)",
+     "letter": "B",
+     "explanation": "Age influences Length as organisms grow over time, with older organisms typically having longer shells;"
+    }
+   ],
+   "truth": "Length -> Age"
+  },
+  {
+   "pair": [
+    "Length",
+    "Diameter"
+   ],
+   "types": [
+    "Length   Diameter (no edge)",
+    "Length   Diameter (no edge)",
+    "Length->Diameter",
+    "Length->Diameter",
+    "Length->Diameter"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Length   Diameter (no edge)",
+     "to": "Length->Diameter"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Diameter)",
+     "letter": "A",
+     "explanation": "Length and Diameter are both measurements of the shell's size, and as the organism grows, both dimensions increase, indicating a direct causal relationship from Length to Diameter;"
+    }
+   ],
+   "truth": "Length -> Diameter"
+  },
+  {
+   "pair": [
+    "Length",
+    "Shell weight"
+   ],
+   "types": [
+    "Length   Shell weight (no edge)",
+    "Length   Shell weight (no edge)",
+    "Shell weight->Length",
+    "Shell weight->Length",
+    "Shell weight->Length"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Length   Shell weight (no edge)",
+     "to": "Shell weight->Length"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.8
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Shell weight)",
+     "letter": "B",
+     "explanation": "As the Length of the shell increases, the Shell weight is likely to increase due to the larger size and mass of the shell;"
+    }
+   ],
+   "truth": "Length -> Shell weight"
+  },
+  {
+   "pair": [
+    "Length",
+    "Whole weight"
+   ],
+   "types": [
+    "Length <-> Whole weight",
+    "Length   Whole weight (no edge)",
+    "Whole weight->Length",
+    "Whole weight->Length",
+    "Whole weight->Length"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Length <-> Whole weight",
+     "to": "Length   Whole weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Length   Whole weight (no edge)",
+     "to": "Whole weight->Length"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.2,
+    "a o-> b": 0.4,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.4
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Whole weight)",
+     "letter": "B",
+     "explanation": "Whole weight includes the shell and body mass, and as Length increases, the overall size and weight of the organism increase;"
+    }
+   ],
+   "truth": "Length -> Whole weight"
+  },
+  {
+   "pair": [
+    "Length",
+    "Height"
+   ],
+   "types": [
+    "Length <-> Height",
+    "Length   Height (no edge)",
+    "Length->Height",
+    "Length->Height",
+    "Length->Height"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Length <-> Height",
+     "to": "Length   Height (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Length   Height (no edge)",
+     "to": "Length->Height"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.15,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Height)",
+     "letter": "A",
+     "explanation": "Length and Height are related dimensions of the shell, and as the organism grows, both dimensions increase, suggesting a direct causal relationship from Length to Height;"
+    }
+   ],
+   "truth": "Length -> Height"
+  },
+  {
+   "pair": [
+    "Length",
+    "Viscera weight"
+   ],
+   "types": [
+    "Length   Viscera weight (no edge)",
+    "Length   Viscera weight (no edge)",
+    "Viscera weight->Length",
+    "Viscera weight->Length",
+    "Viscera weight->Length"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Length   Viscera weight (no edge)",
+     "to": "Viscera weight->Length"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.85
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Viscera weight)",
+     "letter": "B",
+     "explanation": "As the organism grows in Length, it typically accumulates more internal mass, leading to an increase in Viscera weight."
+    }
+   ],
+   "truth": "Length -> Viscera weight"
+  },
+  {
+   "pair": [
+    "Length",
+    "Shucked weight"
+   ],
+   "types": [
+    "Shucked weight->Length",
+    "Shucked weight->Length",
+    "Shucked weight->Length",
+    "Shucked weight->Length",
+    "Shucked weight->Length"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.1,
+    "b->a": 0.25,
+    "undirected": 0.0,
+    "bidirected": 0.5,
+    "a o-> b": 0.15,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Length, Shucked weight)",
+     "letter": "B",
+     "explanation": "As the organism grows in Length, it generally accumulates more body mass, leading to an increase in Shucked weight;"
+    }
+   ],
+   "truth": "Length -> Shucked weight"
+  },
+  {
+   "pair": [
+    "Age",
+    "Diameter"
+   ],
+   "types": [
+    "Age <-> Diameter",
+    "Age <-> Diameter",
+    "Age->Diameter",
+    "Age->Diameter",
+    "Age->Diameter"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Age <-> Diameter",
+     "to": "Age->Diameter"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.2,
+    "undirected": 0.0,
+    "bidirected": 0.35,
+    "a o-> b": 0.1,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.05,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Diameter)",
+     "letter": "A",
+     "explanation": "The diameter of the shell increases as the organism grows older, reflecting its growth over time;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Age",
+    "Shell weight"
+   ],
+   "types": [
+    "Age   Shell weight (no edge)",
+    "Age   Shell weight (no edge)",
+    "Age->Shell weight",
+    "Age->Shell weight",
+    "Age->Shell weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Age   Shell weight (no edge)",
+     "to": "Age->Shell weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Shell weight)",
+     "letter": "A",
+     "explanation": "Over time, the shell of marine organisms thickens and becomes heavier as they age;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Age",
+    "Whole weight"
+   ],
+   "types": [
+    "Age <-> Whole weight",
+    "Age <-> Whole weight",
+    "Age->Whole weight",
+    "Age->Whole weight",
+    "Age->Whole weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Age <-> Whole weight",
+     "to": "Age->Whole weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.45,
+    "a o-> b": 0.2,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.15
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Whole weight)",
+     "letter": "A",
+     "explanation": "Whole weight increases with age as the organism accumulates more mass, including shell and body tissues;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Age",
+    "Height"
+   ],
+   "types": [
+    "Age <-> Height",
+    "Age   Height (no edge)",
+    "Age->Height",
+    "Age->Height",
+    "Age->Height"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Age <-> Height",
+     "to": "Age   Height (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Age   Height (no edge)",
+     "to": "Age->Height"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.0,
+    "b o-> a": 0.05,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.85
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Height)",
+     "letter": "A",
+     "explanation": "Height of the shell increases with age as the organism grows, contributing to its overall size;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Age",
+    "Viscera weight"
+   ],
+   "types": [
+    "Age <-> Viscera weight",
+    "Age   Viscera weight (no edge)",
+    "Age->Viscera weight",
+    "Age->Viscera weight",
+    "Age->Viscera weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Age <-> Viscera weight",
+     "to": "Age   Viscera weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Age   Viscera weight (no edge)",
+     "to": "Age->Viscera weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.75,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.2
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Viscera weight)",
+     "letter": "A",
+     "explanation": "As marine organisms age, their internal organs grow, leading to an increase in viscera weight;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Age",
+    "Shucked weight"
+   ],
+   "types": [
+    "Age   Shucked weight (no edge)",
+    "Age   Shucked weight (no edge)",
+    "Age->Shucked weight",
+    "Age->Shucked weight",
+    "Age->Shucked weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Age   Shucked weight (no edge)",
+     "to": "Age->Shucked weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.15,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.85
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Age, Shucked weight)",
+     "letter": "A",
+     "explanation": "Shucked weight, representing the meat, increases as the organism ages and grows larger."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Shell weight"
+   ],
+   "types": [
+    "Diameter   Shell weight (no edge)",
+    "Diameter   Shell weight (no edge)",
+    "Shell weight->Diameter",
+    "Shell weight->Diameter",
+    "Shell weight->Diameter"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Diameter   Shell weight (no edge)",
+     "to": "Shell weight->Diameter"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Diameter, Shell weight)",
+     "letter": "B",
+     "explanation": "Shell weight can influence the diameter as a heavier shell is often associated with a larger diameter;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Whole weight"
+   ],
+   "types": [
+    "Whole weight->Diameter",
+    "Whole weight->Diameter",
+    "Whole weight->Diameter",
+    "Whole weight->Diameter",
+    "Whole weight->Diameter"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.55,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.25,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.1
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Diameter, Whole weight)",
+     "letter": "B",
+     "explanation": "Whole weight, which includes the shell and internal organs, can influence the diameter as larger organisms tend to have larger diameters;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Height"
+   ],
+   "types": [
+    "Diameter   Height (no edge)",
+    "Diameter   Height (no edge)",
+    "Diameter   Height (no edge)",
+    "Diameter   Height (no edge)",
+    "Diameter   Height (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Diameter, Height)",
+     "letter": "D",
+     "explanation": "There is no established evidence directly linking Diameter and Height causally in marine organisms;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Viscera weight"
+   ],
+   "types": [
+    "Diameter   Viscera weight (no edge)",
+    "Diameter   Viscera weight (no edge)",
+    "Viscera weight->Diameter",
+    "Viscera weight->Diameter",
+    "Viscera weight->Diameter"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Diameter   Viscera weight (no edge)",
+     "to": "Viscera weight->Diameter"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 1.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Diameter, Viscera weight)",
+     "letter": "B",
+     "explanation": "Viscera weight can influence the diameter as larger internal organs can contribute to a larger overall size, including diameter."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Diameter",
+    "Shucked weight"
+   ],
+   "types": [
+    "Diameter <-> Shucked weight",
+    "Diameter <-> Shucked weight",
+    "Shucked weight->Diameter",
+    "Shucked weight->Diameter",
+    "Shucked weight->Diameter"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Diameter <-> Shucked weight",
+     "to": "Shucked weight->Diameter"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.45,
+    "a o-> b": 0.25,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Diameter, Shucked weight)",
+     "letter": "B",
+     "explanation": "Shucked weight, representing the meat, can influence the diameter as larger organisms with more meat tend to have larger diameters;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Whole weight"
+   ],
+   "types": [
+    "Shell weight o-> Whole weight",
+    "Shell weight   Whole weight (no edge)",
+    "Whole weight->Shell weight",
+    "Whole weight->Shell weight",
+    "Whole weight->Shell weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Shell weight o-> Whole weight",
+     "to": "Shell weight   Whole weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Shell weight   Whole weight (no edge)",
+     "to": "Whole weight->Shell weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.1,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.6,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.2
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Shell weight, Whole weight)",
+     "letter": "B",
+     "explanation": "Whole weight includes the shell weight as a component, so changes in whole weight directly affect shell weight;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Height"
+   ],
+   "types": [
+    "Shell weight   Height (no edge)",
+    "Shell weight   Height (no edge)",
+    "Shell weight   Height (no edge)",
+    "Shell weight   Height (no edge)",
+    "Shell weight   Height (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.0,
+    "a o-> b": 0.1,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Shell weight, Height)",
+     "letter": "C",
+     "explanation": "Shell weight and height are independent measurements, as the weight of the shell does not directly affect the height of the organism."
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Viscera weight"
+   ],
+   "types": [
+    "Shell weight   Viscera weight (no edge)",
+    "Shell weight   Viscera weight (no edge)",
+    "Shell weight   Viscera weight (no edge)",
+    "Shell weight   Viscera weight (no edge)",
+    "Shell weight   Viscera weight (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.1,
+    "a o-> b": 0.0,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.9
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Shell weight, Viscera weight)",
+     "letter": "C",
+     "explanation": "Shell weight and viscera weight are separate components of the whole weight and do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Shell weight",
+    "Shucked weight"
+   ],
+   "types": [
+    "Shell weight o-> Shucked weight",
+    "Shell weight   Shucked weight (no edge)",
+    "Shell weight   Shucked weight (no edge)",
+    "Shell weight   Shucked weight (no edge)",
+    "Shell weight   Shucked weight (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Shell weight o-> Shucked weight",
+     "to": "Shell weight   Shucked weight (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.15,
+    "undirected": 0.0,
+    "bidirected": 0.15,
+    "a o-> b": 0.7,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Shell weight, Shucked weight)",
+     "letter": "C",
+     "explanation": "Shell weight and shucked weight are separate components of the whole weight and do not directly influence each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Height"
+   ],
+   "types": [
+    "Height o-> Whole weight",
+    "Whole weight   Height (no edge)",
+    "Whole weight   Height (no edge)",
+    "Whole weight   Height (no edge)",
+    "Whole weight   Height (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Height o-> Whole weight",
+     "to": "Whole weight   Height (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.55,
+    "a o-> b": 0.0,
+    "b o-> a": 0.4,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Whole weight, Height)",
+     "letter": "C",
+     "explanation": "Whole weight and height are related to different aspects of the organism's size and do not directly cause changes in each other;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Viscera weight"
+   ],
+   "types": [
+    "Viscera weight o-> Whole weight",
+    "Whole weight   Viscera weight (no edge)",
+    "Whole weight->Viscera weight",
+    "Whole weight->Viscera weight",
+    "Whole weight->Viscera weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Viscera weight o-> Whole weight",
+     "to": "Whole weight   Viscera weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Whole weight   Viscera weight (no edge)",
+     "to": "Whole weight->Viscera weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.45,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.25,
+    "a o-> b": 0.0,
+    "b o-> a": 0.25,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Whole weight, Viscera weight)",
+     "letter": "A",
+     "explanation": "Whole weight includes the weight of the viscera, so changes in viscera weight directly affect the whole weight of the organism;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Whole weight",
+    "Shucked weight"
+   ],
+   "types": [
+    "Whole weight <-> Shucked weight",
+    "Whole weight   Shucked weight (no edge)",
+    "Whole weight->Shucked weight",
+    "Whole weight->Shucked weight",
+    "Whole weight->Shucked weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Whole weight <-> Shucked weight",
+     "to": "Whole weight   Shucked weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Whole weight   Shucked weight (no edge)",
+     "to": "Whole weight->Shucked weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.05,
+    "b->a": 0.05,
+    "undirected": 0.0,
+    "bidirected": 0.6,
+    "a o-> b": 0.15,
+    "b o-> a": 0.15,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.0
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Whole weight, Shucked weight)",
+     "letter": "A",
+     "explanation": "Whole weight includes the shucked weight, so changes in shucked weight directly affect the whole weight of the organism;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Height",
+    "Viscera weight"
+   ],
+   "types": [
+    "Height->Viscera weight",
+    "Height->Viscera weight",
+    "Height   Viscera weight (no edge)",
+    "Height   Viscera weight (no edge)",
+    "Height   Viscera weight (no edge)"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "llm",
+     "from": "Height->Viscera weight",
+     "to": "Height   Viscera weight (no edge)"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.15,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.4,
+    "a o-> b": 0.1,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.35
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Height, Viscera weight)",
+     "letter": "C",
+     "explanation": "Height and Viscera weight are both related to the organism's growth, but there is no direct causal link between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Height",
+    "Shucked weight"
+   ],
+   "types": [
+    "Height   Shucked weight (no edge)",
+    "Height   Shucked weight (no edge)",
+    "Height   Shucked weight (no edge)",
+    "Height   Shucked weight (no edge)",
+    "Height   Shucked weight (no edge)"
+   ],
+   "changed": false,
+   "changes": [],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.05,
+    "a o-> b": 0.15,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.8
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Height, Shucked weight)",
+     "letter": "C",
+     "explanation": "Height and Shucked weight are both influenced by the overall size and growth of the organism, but there is no direct causal relationship between them;"
+    }
+   ],
+   "truth": "no edge"
+  },
+  {
+   "pair": [
+    "Viscera weight",
+    "Shucked weight"
+   ],
+   "types": [
+    "Viscera weight <-> Shucked weight",
+    "Viscera weight   Shucked weight (no edge)",
+    "Viscera weight->Shucked weight",
+    "Viscera weight->Shucked weight",
+    "Viscera weight->Shucked weight"
+   ],
+   "changed": true,
+   "changes": [
+    {
+     "step": "bootstrap",
+     "from": "Viscera weight <-> Shucked weight",
+     "to": "Viscera weight   Shucked weight (no edge)"
+    },
+    {
+     "step": "llm",
+     "from": "Viscera weight   Shucked weight (no edge)",
+     "to": "Viscera weight->Shucked weight"
+    }
+   ],
+   "bootstrap_frequency": {
+    "a->b": 0.0,
+    "b->a": 0.0,
+    "undirected": 0.0,
+    "bidirected": 0.7,
+    "a o-> b": 0.15,
+    "b o-> a": 0.0,
+    "a o- b": 0.0,
+    "b o- a": 0.0,
+    "o-o": 0.0,
+    "no edge": 0.15
+   },
+   "kci_p_value_if_removed": null,
+   "llm_answers": [
+    {
+     "asked_as": "(Viscera weight, Shucked weight)",
+     "letter": "A",
+     "explanation": "Viscera weight, which includes the internal organs, is a component of the total shucked weight, thus changes in viscera weight directly affect the shucked weight;"
+    }
+   ],
+   "truth": "no edge"
+  }
+ ],
+ "unparsed_llm_pairs": [],
+ "matrices": {
+  "S0 algorithm output": [
+   [
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    0,
+    1
+   ],
+   [
+    0,
+    0,
+    3,
+    0,
+    3,
+    3,
+    3,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    4,
+    0,
+    4,
+    4,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S1 after bootstrap edits": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   [
+    0,
+    0,
+    3,
+    0,
+    3,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "S2 after LLM review": [
+   [
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ],
+  "S3 after KCI pruning": [
+   [
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ],
+  "S4 final (after cycle step)": [
+   [
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ]
+  ]
+ }
+}
