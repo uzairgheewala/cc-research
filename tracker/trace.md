@@ -1,27 +1,28 @@
-# Trace check (2026-10-13T19:53:50Z)
+# Trace check (2026-10-13T23:15:17Z)
 
-status.json verified 2026-10-13T19:50:06Z. Dev tickets 220; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-10-13T23:02:03Z. Dev tickets 222; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
 | relation | source | count |
 |---|---|---|
-| blocks | catalogue | 2 |
+| blocks | catalogue | 1 |
 | blocks | links.txt | 1 |
 | blocks | plan | 25 |
 | curates | links.txt | 66 |
-| evidences | catalogue | 507 |
+| evidences | catalogue | 541 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 400 |
-| mirrors | mirrors.json | 287 |
+| mentions | scan | 414 |
+| mirrors | mirrors.json | 289 |
 | parent_of | links.txt | 23 |
-| published_at | links.txt | 149 |
+| published_at | links.txt | 160 |
 | relates | links.txt | 1 |
 
-## Findings: 0 errors, 4 warnings
+## Findings: 0 errors, 5 warnings
 
 - **WARN W1** DLV-02 is suspect: ['DLV-02'] changed since it was last published or reviewed (2026-10-12T10:12)
+- **WARN W1** BLD-10 is suspect: ['BLD-10'] changed since it was last published or reviewed (2026-10-12T10:12)
 - **WARN W1** EVL-01 is suspect: ['EVL-01'] changed since it was last published or reviewed (2026-10-12T10:12)
 - **WARN W1** EVL-02 is suspect: ['EVL-02'] changed since it was last published or reviewed (2026-10-12T10:12)
 - **WARN W1** EVL-03 is suspect: ['EVL-03'] changed since it was last published or reviewed (2026-10-12T10:12)
@@ -88,7 +89,7 @@ status.json verified 2026-10-13T19:50:06Z. Dev tickets 220; prod rows 67 (7 grou
 | BLD-07 | passthrough | todo | todo | V0 | - | BLD-07 |
 | BLD-08 | passthrough | todo | todo | V0 | - | BLD-08 |
 | BLD-09 | passthrough | todo | todo | V0 | - | BLD-09 |
-| BLD-10 | passthrough | done | done | V3 | - | BLD-10 |
+| BLD-10 | passthrough | done | done | V3 | BLD-10 | BLD-10 |
 | BLD-11 | passthrough | done | done | V3 | - | BLD-11 |
 | EVL-01 | passthrough | done | done | V3 | EVL-01 | EVL-01 |
 | EVL-02 | passthrough | done | done | V3 | EVL-02 | EVL-02 |
@@ -98,6 +99,6 @@ status.json verified 2026-10-13T19:50:06Z. Dev tickets 220; prod rows 67 (7 grou
 | EVL-06 | passthrough | done | done | V3 | - | EVL-06 |
 | EVL-07 | passthrough | done | done | V3 | - | EVL-07 |
 
-## Dev tickets in no prod row (94)
+## Dev tickets in no prod row (96)
 
-AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BLD-12, BLD-13, BLD-14, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07
+AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BLD-12, BLD-13, BLD-14, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08

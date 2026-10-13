@@ -125,8 +125,11 @@ def run_check(c):
             if "expect_failed" in c:
                 ok &= failed == c["expect_failed"]; msgs.append("failed %d (want %d)" % (failed, c["expect_failed"]))
             if c.get("tree_ok"):
-                bad = [m.get("run_id") for m in live if not (m.get("tree_identity_after") or {}).get("ok") or m.get("new_unexpected_files_in_repo")]
-                ok &= not bad; msgs.append("tree identity bad in %d runs" % len(bad))
+                # a run still in progress has no finished_utc and no tree_identity_after yet: not judged until it ends
+                running = [m for m in live if "finished_utc" not in m]
+                bad = [m.get("run_id") for m in live if "finished_utc" in m and
+                       (not (m.get("tree_identity_after") or {}).get("ok") or m.get("new_unexpected_files_in_repo"))]
+                ok &= not bad; msgs.append("tree identity bad in %d runs%s" % (len(bad), "; %d still running" % len(running) if running else ""))
             return ok, "; ".join(msgs)
         return False, "unknown check type " + t
     except Exception as e:

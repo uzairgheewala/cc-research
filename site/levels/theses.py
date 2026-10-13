@@ -153,16 +153,16 @@ invariants = f"""<section style="display: flex; flex-direction: column; gap: 12p
 </section>"""
 
 GATES = [
-    ("G1", "16 Oct", "GES and FCI budgets (done in BND-04); knowledge elicitation A3 (needs DEC-02)", "Decides: keep or drop the knowledge route", "prog"),
-    ("G2", "2 Nov", "Program v2: kernel B1 passes I1-I4, I7 and beats PC held-out. The Q1 DAG instead asks: refinement v1 or fallback (BND-13)", "The two plans disagree here", "dec"),
-    ("G3", "4 Dec", "Scores in three regimes with all controls; scoreboard package (BND-14)", "Decides: what moves to Q2", "todo"),
-    ("G4", "March", "Calibration B4, effects C1, experiments C2, second model, Causal Chambers; paper draft", "Cut C2 first, then C1", "todo"),
+    ("G1", "", "GES and FCI budgets (done, BND-04); knowledge elicitation A3 (done, AB-07: names alone order 69% of true edges; tiers alone 0.448)", "Decides: keep or drop the knowledge route. Evidence is in; the call is open.", "prog"),
+    ("G2", "", "Program v2: kernel B1 passes I1-I4, I7 and beats PC held-out. The Q1 DAG instead asks: refinement v1 or fallback (BND-13)", "The two plans disagree here", "dec"),
+    ("G3", "", "Scores in three regimes with all controls; scoreboard package (BND-14)", "Decides: what moves to Q2", "todo"),
+    ("G4", "", "Calibration B4, effects C1, experiments C2, second model, Causal Chambers; paper draft", "Cut C2 first, then C1", "todo"),
 ]
 gate_cells = []
 for g, d, need, dec, st in GATES:
     bg, bd, fg, style = STATUS[st]
     gate_cells.append(f"""<div style="padding: 12px 14px; background: {bg}; border: 1.5px {style} {bd}; border-radius: 8px; font-size: 13px; line-height: 18px; display: flex; flex-direction: column; gap: 4px">
-<span><b style="font-family: {MONO}; color: {fg}">{g}</b> · {d}</span>
+<span><b style="font-family: {MONO}; color: {fg}">{g}</b>{(" · " + d) if d else ""}</span>
 <span>{need}</span>
 <span style="color: #4E5751">{dec}</span>
 </div>""")
@@ -175,13 +175,13 @@ gap_box = f"""<div style="flex: 1 1 380px; padding: 18px 20px; background: #FFFF
 {tag("The gap this level exposes", "#8E2A2A")}
 <p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">The route to the bound runs through the ledger, and the ledger has no Q1 bundle.</p>
 <p style="margin: 0; font-size: 14px; line-height: 20px">The 14 Q1 bundles close measurement (P1) and refinement v1/v2, a patch to Causal-Copilot. The builds a thesis needs sit outside every bundle: {", ".join(_unb)}. That is why the work feels like it is circling: P1 is {_share["P1"]:.0f}% done, P2 {_share["P2"]:.0f}%, P3 {_share["P3"]:.0f}%.</p>
-<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> add a bundle for kernel B1 before 2 Nov so G2 tests the ledger, or keep G2 as v1-vs-fallback and start B1 after the checkpoint.</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> add a bundle for kernel B1 so G2 tests the ledger, or keep G2 as v1-vs-fallback and start B1 after the checkpoint.</p>
 </div>"""
 
 dec_box = f"""<div style="flex: 1 1 300px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px">
-{tag("Open decisions that gate this level", "#8E2A2A")}
+{tag("Decisions that gate this level", "#8E2A2A")}
 <p style="margin: 0"><b style="font-family: {MONO}">DEC-01</b> Adopt program v2 (these six theses) as the plan. <span style="color: #4E5751">tracker: {STATUS_TEXT[item("DEC-01")["status"]]}</span></p>
-<p style="margin: 0"><b style="font-family: {MONO}">DEC-02</b> Approve knowledge elicitation A3: about 900 short calls asking only for tiers. Without it, G1 on 16 Oct decides on budgets alone and B3 stays blocked. <span style="color: #4E5751">tracker: {STATUS_TEXT[item("DEC-02")["status"]]}</span></p>
+<p style="margin: 0"><b style="font-family: {MONO}">DEC-02</b> Knowledge elicitation A3, about 900 short calls asking only for tiers: approved and run (AB-07). Used only to orient, the model's tiers lift GES from 0.528 to 0.546; wrong tiers cost 0.19. <span style="color: #4E5751">tracker: {STATUS_TEXT[item("DEC-02")["status"]]}</span></p>
 </div>"""
 
 gates = f"""<section style="display: flex; flex-direction: column; gap: 12px">
@@ -208,7 +208,7 @@ body = "\n".join([
     carve, spacemap(), cols, invariants, gates, ceiling,
     terms_panel(["thesis", "invariant", "ledger", "tier", "calib", "abstain", "ident", "ida", "gate", "regime"]),
     footer("measurement is mostly done and has already corrected one thesis (T1 holds for PC, not for GES or FCI) and supported another (T2). The system theses are where the distance is closed, and they are barely started.",
-           "decide DEC-01 and DEC-02 before G1 on 16 Oct, then bring kernel B1 into a bundle so the 2 Nov checkpoint tests the ledger rather than a patch.",
+           "decide DEC-01 (adopt these theses as the plan) with the A3 evidence in hand, then bring kernel B1 into a bundle so the G2 checkpoint tests the ledger rather than a patch.",
            "Bundles.dc.html", "See the bundles"),
 ])
 

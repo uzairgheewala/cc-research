@@ -1,0 +1,59 @@
+Audit pass 3: market research (AB-14) without interviews, site readability, Atlas v2 design
+
+Market research (AB-14, AUD-45), done 13 Oct. Interviews no longer gate it,
+by Uzair's decision.
+- analysis/reports/ab14_market.md contains:
+  - a market map of causal AI;
+  - three vertical briefs: IT incident RCA, marketing measurement, pharma
+    RWE;
+  - public demand evidence on H1-H3, labelled indirect;
+  - a ranking of where to start: RCA, then marketing, then pharma.
+- Every figure is labelled, and every estimate shows its inputs.
+- Five figures were spot-checked against primary pages: FDA CDER RWE counts,
+  Datadog's >=$100k customers, the Resolve round, CausalNex's end of life,
+  ICH M14 final.
+- Notes are in analysis/audits/ab14_notes/ (five files).
+- docs/decisions/2026-10-13_interviews_not_gating.md records the decision.
+- plans/make_audit_dag.py and plans/audit_dag.json are now version 2:
+  - AB-14 depends on AB-11 and AB-13;
+  - AB-16 no longer depends on AB-10;
+  - C1 wording changed;
+  - an amendments list was added.
+- docs/market/README.md is marked superseded.
+- jobs/patches/p06_ab14_market.py:
+  - AUD-45 is done;
+  - notes updated on AUD-41, DEC-05 and STR-06.
+
+Tracker:
+- tracker/verify.py no longer judges tree identity on runs that are still in
+  progress (no finished_utc yet). Before this, a live run in progress
+  reopened REP-02.
+- Pins refreshed: AUD-32, BLD-10.
+
+Site readability, current single page:
+- site/build.py:
+  - the header shows the update date and points to the Slack lists;
+  - no horizontal scroll at 390 px (grids collapse, wide boards scroll in
+    their own frame).
+- site/levels/bundles.py:
+  - dates removed from the board headers;
+  - the audit board follows DAG v2;
+  - card notes are no longer clipped (12 px, full text on hover);
+  - the footer is current.
+- site/levels/theses.py:
+  - gates are no longer dated;
+  - DEC-02 and A3 are shown as done;
+  - the footer is current.
+
+Atlas v2 design (awaiting approval):
+- analysis/reports/site_flow_design.md: four acts and thirteen pages, with
+  machine-checked principles (term order, one question per page, pages to
+  re-read, link and overflow checks), failure modes and bundles S1-S5.
+- jobs/patches/p07_atlas_v2_design.py adds TEAM-08 (the build, blocked on
+  DEC-06) and DEC-06 (approve the sequence).
+- jobs/patches/p08_aud45_title.py: AUD-45's title follows DAG v2.
+
+Slack: dev list synced (TEAM-08 and DEC-06 added; record ids in tracker/mirrors.json); prod list synced;
+dev digest posted; prod digest drafted in #causal-discovery (merges the unsent 19:53 UTC draft).
+Discarded relay files (moved to tracker/relay_out/discarded/, safe to delete): 20261013T215030Z_digest_dev.*,
+20261013T220122Z_digest_prod.*

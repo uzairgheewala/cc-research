@@ -1,0 +1,80 @@
+Audit pass 4: Bayesys reproduced (AB-02 done), Atlas v2 built on the existing Pages site, reliability before features
+
+AB-02, second scoreboard (AUD-34), done 13 Oct.
+- analysis/ab02_bayesys_repro.py (new): runs causal-learn PC and FCI (alpha
+  0.05 and 0.01) and GES on Bayesys's released column order, scores with
+  Bayesys's half-credit rule, and compares with results_noisyPaper.xlsx
+  (Experiment N, rcausal 1.1.1 Tetrad).
+  - Tolerance, fixed before the comparison: |dF1| <= 0.05 and
+    |d edges| <= max(1, 10% of true edges). The gate needs >= 2 PC/FCI cells
+    within tolerance under one alpha.
+  - Result: alpha 0.05 gives 16 of 31 cells (PC 10/15, FCI 6/16); alpha 0.01
+    gives 10/31. Gate passed.
+  - Writes analysis/results/ab02/bayesys_repro.json and
+    bayesys_repro_runs.jsonl.
+- analysis/ab02_bayesys.py: --methods, --arms, a per-network P4 rule, layout
+  dose-response, a contract writer (per_file includes bayesys_repro.json),
+  and corrected S/c/q definitions.
+- Re-score finding: under half credit, released vs shuffled order moves PC by
+  at most 0.030, maxP by 0, FCI by at most 0.008. Bayesys's table is not
+  inflated by its layout; CausalArena's forced-choice index tie-break is what
+  rewards the leak. causal-learn GES on PROPERTY is 0.073-0.087 lower on the
+  released order (an engine order effect, reported, not explained yet).
+- analysis/reports/ab02_second_scoreboard.md: status done; reproduction,
+  re-score table, "What changes" (the L1 claim is now scoped to forced-choice
+  scoring), EXT-01 recommendation.
+
+Decisions:
+- docs/decisions/2026-10-13_atlas_v2_approved.md (DEC-06): Uzair's approval.
+  Built on the existing GitHub Pages site, not a new one; Home leads with the
+  research and links the market page; the market page is public.
+  Records reliability before features for the wedge: invariants I1-I7, never
+  below data-only, bounded harm from wrong knowledge, held-out calibration
+  before anything is built on top.
+
+Atlas v2 (TEAM-08), built 13 Oct:
+- site/build.py rewritten: renders site/pgs/pg_*.py into 15 pages (Home, 11
+  pages in four acts, glossary, evidence index, about); header stepper by act,
+  mobile table of contents, prev/next links, a redirect on index.html for the
+  old #space/#bounds/#theses/#bundles/#stages anchors.
+  The build fails on:
+  - a term used before the page that teaches it;
+  - a number printed on a page before its question (FIRST_PAGE gating);
+  - a number missing from the registry;
+  - a broken link or glossary anchor;
+  - an unlabelled market $ figure;
+  - "Level N", ".dc.html" or "Zoom" leftovers;
+  - a page over 1,800 words.
+  --mark-reviewed SLUG...|all updates site/reviewed.json ("pages to re-read").
+  Pages are overwritten in place; only stale pages are removed.
+- New: site/pages.py (acts, pages, SEQUENCE, REDIRECTS, SCAN_EXEMPT),
+  site/terms.py (61 terms with introducing page and surface forms),
+  site/pagekit.py (T(), question/answer, evidence labels, delevel),
+  site/reviewed.json, and site/pgs/: pg_home, pg_primer, pg_scoring, pg_space,
+  pg_scoreboard, pg_decisions, pg_names, pg_rca, pg_theses, pg_market,
+  pg_status, pg_changes, pg_glossary, pg_evidence, pg_about.
+- site/registry.py: 74 new keys (ab01-ab14), each traced to a report literal
+  or a result-file field.
+- tracker/snapshot.py: "changes", the last posted dev digests, for the
+  "What changed" page.
+- analysis/reports/site_flow_design.md: "Built (2026-10-13)" section.
+- Checked: 15 pages, 0 errors, 0 warnings, 0 pages to re-read. No horizontal
+  overflow at 390 px on any page (checked by hand with Playwright; not yet in
+  CI).
+
+Tracker:
+- jobs/patches/p09_approvals_bayesys.py: DEC-06 done; AUD-34 done with
+  evidence and checks; AB-02 bundle done; notes on DEC-05 and EXT-01.
+- jobs/patches/p10_atlas_v2_built.py: TEAM-08 done, evidence covering every
+  site file.
+- Repinned: AUD-34, AUD-45, STR-06, TEAM-08, DEC-06, DLV-02, BND-01.
+- verify: 0 problems (222 items). Tests 112 ok. check_scores, plan_check,
+  ci_check: 0 errors. Targeted secret scan: 0 findings.
+- tracker/snapshot.json regenerated after the Slack writes (1839d541b2f5).
+
+Slack: dev list synced (AUD-34, AUD-45, DEC-05, EXT-01, TEAM-08, DEC-06);
+prod list had no changes. Dev digest posted in #cd-tracker (ts
+1791932863.091279). Prod digest drafted in #causal-discovery, citing CAP-05,
+BLD-10 and DLV-02 (not sent).
+Transfers: kit29-kit31 (jobs/transfer/ is ignored).
+No relay files discarded in this pass.

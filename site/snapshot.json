@@ -405,12 +405,12 @@
    ],
    "id": "AB-02",
    "llm_cost": "none",
-   "note": "Bayesys: 3 of 6 networks in topological column order (P3 supported); index tie-break worth up to +0.30 there. P4 mixed. Reproduction waits on the published xlsx.",
+   "note": "Bayesys reproduced (PC 10/15 cells). Layout in 3 of 6 networks, but Bayesys's half-credit score moves <= 0.03 when shuffled; CausalArena's forced choice is what rewards the leak.",
    "plan": "audit",
    "serves": [
     "L1"
    ],
-   "status": "blocked",
+   "status": "done",
    "title": "Second scoreboard: do the layout and conflict channels exist elsewhere?",
    "track": "research",
    "uzair_actions": [],
@@ -603,7 +603,7 @@
    ],
    "id": "AB-10",
    "llm_cost": "none",
-   "note": "Kit ready. Waits on Uzair: IRB question to course staff, then interviews.",
+   "note": "Kit ready; interviews whenever a chance arises; no longer gates AB-14 or AB-16.",
    "plan": "audit",
    "serves": [
     "C1"
@@ -693,7 +693,7 @@
   {
    "approval_needed": null,
    "blocked_by": [
-    "AB-10",
+    "AB-11",
     "AB-13"
    ],
    "closes": [
@@ -701,12 +701,13 @@
    ],
    "id": "AB-14",
    "llm_cost": "none",
-   "note": "Scaffold only; waits on AB-10.",
+   "note": "Market map + 3 briefs: start in IT incident RCA (audit AI SRE agents' claims); marketing second; pharma third.",
    "plan": "audit",
    "serves": [
+    "C1",
     "C3"
    ],
-   "status": "todo",
+   "status": "done",
    "title": "Market and go-to-market hypotheses",
    "track": "commercial",
    "uzair_actions": [],
@@ -750,8 +751,8 @@
     "AB-04",
     "AB-05",
     "AB-09",
-    "AB-10",
     "AB-11",
+    "AB-14",
     "AB-15"
    ],
    "closes": [
@@ -811,8 +812,221 @@
    ]
   }
  ],
- "generated_utc": "2026-10-13T19:53:50Z",
- "hash": "2e8bede5bb07d2e87941f978666f62c47966807e9eb8136631ff763321b48d0d",
+ "changes": [
+  {
+   "done": [
+    "AUD-34 AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
+    "DEC-06 Approve the Atlas v2 page sequence (and whether the market page is public)",
+    "TEAM-08 Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)"
+   ],
+   "points": [
+    "AUD-34 (AB-02) done: Bayesys reproduced (16 of 31 published PC-Stable/FCI cells within tolerance at alpha 0.05; PC 10 of 15). Bayesys's half-credit scoring moves at most 0.03 when columns are shuffled, so its table is not inflated by its layout; CausalArena's forced-choice tie-break is what rewards the leak. causal-learn GES shows an engine order effect on PROPERTY (-0.07 to -0.09).",
+    "DEC-06 / TEAM-08: Atlas v2 approved and built on the same GitHub Pages site: Home plus 11 pages in four acts (problem, findings, what we build, where we are) and a glossary, evidence index and about page. The build fails on terms used before they are taught, results shown before their question, missing numbers, broken links and unlabelled market figures.",
+    "DEC-05: reliability before features recorded for the wedge (ledger invariants, never below data-only, bounded harm, held-out calibration before any product).",
+    "EXT-01: the case for shuffled columns or tie-break-invariant scoring now rests on two benchmarks."
+   ],
+   "posted_utc": "2026-10-13T23:07:43Z",
+   "tickets": [
+    "AUD-34",
+    "DEC-05",
+    "DEC-06",
+    "EXT-01",
+    "TEAM-08"
+   ]
+  },
+  {
+   "done": [
+    "AUD-45 AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public…"
+   ],
+   "points": [
+    "AUD-45 (AB-14) done without interviews (decision recorded): market map plus three vertical briefs. 'Causal AI' sizings span $28.9M to $59.2B and cannot be used; the money is in AI SRE agents, MMM and RWE. Start in IT incident RCA as a vendor-neutral audit of AI SRE agents' root-cause claims; marketing second; pharma third. Every figure labelled; estimates show inputs.",
+    "STR-06 / AUD-41: public demand evidence (indirect, stands in for interviews): H2 best supported; H1 supported for provenance but nothing measures abstention; H3 only by analogy (LLM-evaluation funding). P13 still needs interviews.",
+    "DEC-05: audit DAG v2, so AB-14 and AB-16 no longer wait on AB-10; interviews run whenever a chance arises.",
+    "TEAM-08 / DEC-06: site readability pass done (no dates in headings, stale text fixed, phone layout fixed). Atlas v2 design, four acts and thirteen pages, waits on Uzair's approval."
+   ],
+   "posted_utc": "2026-10-13T22:00:59Z",
+   "tickets": [
+    "AUD-41",
+    "AUD-45",
+    "DEC-05",
+    "DEC-06",
+    "STR-06",
+    "TEAM-08"
+   ]
+  },
+  {
+   "done": [
+    "AUD-48 AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name…",
+    "RQ-10 O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
+    "RQ-11 O2 Neutral names give no order information",
+    "RQ-12 O3 Moved names: tiers follow the labels",
+    "RQ-13 O4 Regression on model tiers reaches 0.634 (semantic)",
+    "RQ-14 O5 Same for formula vs 0.524"
+   ],
+   "points": [
+    "AUD-48 (AB-07) done: A3 scored. Names alone order 69% of true edges correctly (12% contradicted); with moved names the order follows the labels and is worse than chance against the data; neutral names give nothing. Tiers alone reach 0.448, below GES on data (0.528). Used orient-only, GES goes to 0.546; wrong tiers cost 0.19 (bounded).",
+    "AUD-34 (AB-02): Bayesys measured. ASIA, SPORTS and PATHFINDER are released in topological order (P3 supported); an earlier-column tie-break gains +0.04 to +0.30 there and about 0 elsewhere. PC's conflict-rule gap shows on 2 of 3 ordered networks (P4 inconclusive). Waits on the published xlsx for the reproduction gate.",
+    "AUD-37 (AB-05): causaliq live ok (F1 0.231, $0.004). Causal-Copilot on gpt-4o-mini died at judge_functions.py:562, the upstream key bug behind 16 of 115 live runs; documented, not patched.",
+    "AUD-38 (AB-06): 120-run agent grid, Causal-Copilot second-model arm, batch runner and scorer ready and stub-tested; batch never pays twice for a crash and stops at the total cap.",
+    "RQ-10..14 answered; CAP-04, BLD-04, TGT-07 unblocked."
+   ],
+   "posted_utc": "2026-10-13T19:53:18Z",
+   "tickets": [
+    "AUD-34",
+    "AUD-37",
+    "AUD-38",
+    "AUD-48",
+    "BLD-04",
+    "CAP-04",
+    "RQ-10",
+    "RQ-11",
+    "RQ-12",
+    "RQ-13",
+    "RQ-14",
+    "TGT-07"
+   ]
+  },
+  {
+   "done": [
+    "AUD-32 Audit program DAG: research landscape, commercial landscape, wedge and paper",
+    "AUD-33 AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected…",
+    "AUD-35 AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call",
+    "AUD-36 AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold",
+    "AUD-39 AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)",
+    "AUD-40 AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence…",
+    "AUD-42 AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims",
+    "AUD-43 AB-12 Vertical probe: root-cause analysis",
+    "AUD-44 AB-13 Regulation and standards map: requirement -> ledger field",
+    "AUD-46 AB-15 Positioning closure: novelty matrix for L1-L5",
+    "DEC-02 Approve the tier-elicitation test (~900 short calls through Uzair's key)"
+   ],
+   "points": [
+    "AUD-33 (AB-01): controlled CausalArena scoreboard complete. PC with maxP removes the order effect in all three families (P2 supported) and scores 0.463 semantic vs the published PC 0.333; the authors' rule adds about +0.21 to FCI everywhere; GIES with targets is layout-free (0.539 vs published 0.568)",
+    "AUD-36 (AB-04): decision value on five benchmarks. On CausalArena learned graphs capture 0-55% of the CPDAG ceiling's value and PC/GES are worth less than doing nothing on synthetic; on Causal Chambers (physical truth) GES lifts precision +0.10 and comes within 0.08 of the ceiling, so L3 is CausalArena-scoped",
+    "AUD-35 (AB-03): dodiscover's PC fails the perfect-oracle test (597/720) and can return a cyclic graph; pgmpy and tigramite PCMCI+ are correct; bug-report drafts written",
+    "AUD-43 (AB-12): PetShop RCA, declared topology + abstention 0.93 AC@3 vs learned PC graph 0.21 (P15 supported)",
+    "AUD-39/40/42/44/46 done: rho-dial benchmark (2,500 files), theory pack (T5 restated), teardown of 33 tools, regulation map (50 requirements), novelty matrix (all claims partly open)",
+    "Waiting on Uzair: AUD-37 and AUD-48 live runs (about $3.6 + $3.1), AUD-34 Bayesys download, AUD-41 course-staff IRB question"
+   ],
+   "posted_utc": "2026-10-13T09:00:19Z",
+   "tickets": [
+    "AUD-32",
+    "AUD-33",
+    "AUD-34",
+    "AUD-35",
+    "AUD-36",
+    "AUD-37",
+    "AUD-39",
+    "AUD-40",
+    "AUD-41",
+    "AUD-42",
+    "AUD-43",
+    "AUD-44",
+    "AUD-46",
+    "AUD-48",
+    "DEC-02"
+   ]
+  },
+  {
+   "done": [
+    "AUD-27 Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy",
+    "AUD-28 Controlled re-score: released vs shuffled columns for every runnable baseline; PC…",
+    "AUD-29 Sortability of the CausalArena release (varsortability, R2-sortability)",
+    "AUD-30 Decision value (DV-1) and adjustment-identification distance for every baseline, with…",
+    "AUD-31 Cost of one Causal-Copilot run (the approved one-run cost check)",
+    "BLD-13 Claim-ledger record format, JSON Schema and verifier (V1-V8)"
+   ],
+   "points": [
+    "AUD-27: under a perfect independence oracle, Causal-Copilot's PC copy returns the true class on 460 of 720 runs (36% wrong); PyPI causal-learn 720/720; gCastle original/stable share the defect",
+    "AUD-28: PC orients worse in released column order (directed F1 0.356 vs 0.426 shuffled, semantic); cause is the collider conflict rule; maxP removes it (q gap 0.001)",
+    "AUD-30: committed-claim precision, semantic: empty graph 0.643, GES 0.753, true CPDAG 1.000; no method beats the empty graph on ancestor AID",
+    "AUD-31: one Causal-Copilot run costs median $0.457 (30 logged runs); nothing spent",
+    "BLD-13: claim-ledger format and verifier, 9 tests pass",
+    "AUD-32: audit program DAG (17 bundles AB-01..AB-17) proposed, awaiting Uzair's approval"
+   ],
+   "posted_utc": "2026-10-13T04:46:37Z",
+   "tickets": [
+    "AUD-27",
+    "AUD-28",
+    "AUD-29",
+    "AUD-30",
+    "AUD-31",
+    "AUD-32",
+    "BLD-13"
+   ]
+  },
+  {
+   "done": [
+    "AUD-18 Field audit: every causal-discovery system, its regimes, order source and evaluation…",
+    "AUD-19 Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark",
+    "AUD-20 Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W",
+    "AUD-21 Own-benchmark audit: requirements, pitfalls and candidate designs",
+    "AUD-22 Commercial audit: who buys causal analysis, for which decision, with which guarantee",
+    "AUD-23 Engine audit: libraries, capabilities, defects; build vs reuse for the ledger",
+    "AUD-24 Value-of-accuracy audit: how graph errors become decision errors",
+    "AUD-25 Packaging audit: delivery modes, output requirements, regulator needs, user complaints",
+    "AUD-26 Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse"
+   ],
+   "points": [
+    "INF-06: cc-research is repo-ready: .gitattributes keeps bytes exact, 6.7 GB of external data and runs listed by sha256 in manifests/excluded, CI (secret scan, snapshot, pins, tests, trace, site build) green on a clean clone",
+    "BLD-11: site/snapshot.json feeds the Causal Atlas site; every printed number comes from site/registry.py with its source file",
+    "AUD-26: eight desk audits (AUD-18..AUD-25, 385 sourced rows) and a synthesis; layout gain under the scoreboard's own orientation rule measured: PC +0.062, GES +0.022, FCI +0.221, zero when columns are shuffled"
+   ],
+   "posted_utc": "2026-10-13T02:42:11Z",
+   "tickets": [
+    "AUD-18",
+    "AUD-19",
+    "AUD-20",
+    "AUD-21",
+    "AUD-22",
+    "AUD-23",
+    "AUD-24",
+    "AUD-25",
+    "AUD-26",
+    "BLD-11",
+    "INF-06"
+   ]
+  },
+  {
+   "done": [
+    "BEN-10 Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build…",
+    "BND-07 Causal Chambers and intervention audit (no LLM)",
+    "CAP-17 Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)",
+    "DOM-09 What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on…",
+    "REP-09 Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score"
+   ],
+   "points": [
+    "BND-06: formula + synthetic100 for 5 methods (only PC order-dependent; mechanism: vendored causal-learn 0.1.3.8 skeleton, 21/24 files vs 0/22 upstream). C1 re-established. CAP-17 done (10 packages, validator exit 0). DOM-09 done. Open: AVICI (huggingface.co blocked) -> REP-07, BEN-07, BEN-11",
+    "BND-07 done: BEN-10 (8 datasets mapped; one-layer-deep check on the data: lt 57/57, wt 40/42 children shift, 0 non-descendant shifts; 6,200-row obs+int sample), REP-09 SUPPORTED (GES CPDAG identical to the authors')",
+    "BND-11 prepared: refinement v2 frozen (443354d8; data part never deletes; dev R1-R3 supported); 786 names questions; names_runner with retry/abstain; cc.ps1 names; formula replay jobs for v2's held-out",
+    "BND-12 free part: REP-11 data-only Sachs ensemble F1 0.647 vs 0.606 (reproduced, conditional: Sachs has no data-identifiable direction). BND-03: AUD-14 time-series wrapper job ready (jobs/aud14_ts_wrappers.json)",
+    "Blocked by egress (DOM-07, REP-07): AVICI + CDFM checkpoints (huggingface.co), CausalArena appendix B and CDFM tables (arXiv PDF unreadable here)"
+   ],
+   "posted_utc": "2026-10-12T10:13:55Z",
+   "tickets": [
+    "AUD-14",
+    "BEN-07",
+    "BEN-10",
+    "BEN-11",
+    "BLD-06",
+    "BND-03",
+    "BND-06",
+    "BND-07",
+    "BND-11",
+    "BND-12",
+    "CAP-10",
+    "CAP-17",
+    "DOM-07",
+    "DOM-09",
+    "REP-07",
+    "REP-09",
+    "REP-11",
+    "TGT-13"
+   ]
+  }
+ ],
+ "generated_utc": "2026-10-13T23:08:41Z",
+ "hash": "1839d541b2f5f87b2c4171e1f874630e62099601f87dc0ca0a78b12c995ef7fc",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -1378,7 +1592,7 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P1",
-   "status": "blocked",
+   "status": "done",
    "title": "AB-02 Second scoreboard: layout and conflict channels on other public benchmarks"
   },
   {
@@ -1475,10 +1689,10 @@
    "category": "3 Audit: Causal-Copilot",
    "id": "AUD-45",
    "kind": "task",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P1",
-   "status": "todo",
-   "title": "AB-14 Market and go-to-market hypotheses for two verticals"
+   "status": "done",
+   "title": "AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence"
   },
   {
    "category": "3 Audit: Causal-Copilot",
@@ -2555,7 +2769,7 @@
    "category": "14 Stretch",
    "id": "STR-06",
    "kind": "stretch",
-   "level": "V0",
+   "level": "V2",
    "pillar": "spine",
    "status": "open",
    "title": "Product angle: auditable causal analyst"
@@ -2793,25 +3007,339 @@
    "pillar": "spine",
    "status": "todo",
    "title": "Quarter 1 final: report, package, one-command reproduction (4 Dec)"
+  },
+  {
+   "category": "12 Team and communication",
+   "id": "TEAM-08",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)"
+  },
+  {
+   "category": "15 Decisions",
+   "id": "DEC-06",
+   "kind": "decision",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Approve the Atlas v2 page sequence (and whether the market page is public)"
   }
  ],
  "lists": {
   "dev": {
    "pending_removals": 0,
-   "pending_updates": 3,
-   "rows": 220,
-   "rows_sha256": "43f1f39fe80887d286b423324329a46bbc2fc751da272a2860064fa92d332cd1",
+   "pending_updates": 6,
+   "rows": 222,
+   "rows_sha256": "adb86d26f098f9507a3f03459e0acf4f39f1b29fac99e8f8ef0b713b88c5ab23",
    "slack_list": "F0C869P25NE"
   },
   "prod": {
    "pending_removals": 0,
    "pending_updates": 0,
    "rows": 67,
-   "rows_sha256": "1bc5079c72573b864e64d062580ecce9b5fe1afc4dd0f12eed91293ec04179ed",
+   "rows_sha256": "dd9be4a6c4e50ba7d8c676fa5b63feadc826cbe71d69bfd0fb3531d1d2cfeeb4",
    "slack_list": "F0C8ADF3DNG"
   }
  },
  "metrics": {
+  "ab01.fci.index.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": "+0.221"
+  },
+  "ab01.for.maxp.ctrl": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.359
+  },
+  "ab01.ges.ctrl.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.528
+  },
+  "ab01.ges.index.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": "+0.022"
+  },
+  "ab01.gies.ctrl.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.539
+  },
+  "ab01.maxp.conflict.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": "−0.001"
+  },
+  "ab01.maxp.index.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": "+0.067"
+  },
+  "ab01.pc.conflict.sem": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.07
+  },
+  "ab01.pub.for.pc": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.22
+  },
+  "ab01.pub.syn.pc": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.307
+  },
+  "ab01.sem.maxp.ctrl": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.463
+  },
+  "ab01.syn.maxp.ctrl": {
+   "src": "analysis/reports/ab01_controlled_scoreboard.md",
+   "value": 0.435
+  },
+  "ab02.ges.property": {
+   "src": "analysis/reports/ab02_second_scoreboard.md",
+   "value": 0.09
+  },
+  "ab02.index.hi": {
+   "src": "analysis/reports/ab02_second_scoreboard.md",
+   "value": "+0.30"
+  },
+  "ab02.index.lo": {
+   "src": "analysis/reports/ab02_second_scoreboard.md",
+   "value": "+0.04"
+  },
+  "ab02.order.max.pc": {
+   "src": "analysis/reports/ab02_second_scoreboard.md",
+   "value": 0.03
+  },
+  "ab02.repro.cells": {
+   "src": "analysis/results/ab02/bayesys_repro.json",
+   "value": 16
+  },
+  "ab02.repro.compared": {
+   "src": "analysis/results/ab02/bayesys_repro.json",
+   "value": 31
+  },
+  "ab02.repro.pc": {
+   "src": "analysis/results/ab02/bayesys_repro.json",
+   "value": 10
+  },
+  "ab02.repro.pc.n": {
+   "src": "analysis/results/ab02/bayesys_repro.json",
+   "value": 15
+  },
+  "ab03.dodiscover.exact": {
+   "src": "analysis/reports/ab03_engine_forensics.md",
+   "value": 597.0
+  },
+  "ab03.dodiscover.n": {
+   "src": "analysis/reports/ab03_engine_forensics.md",
+   "value": 717.0
+  },
+  "ab03.vendored.exact": {
+   "src": "analysis/reports/ab03_engine_forensics.md",
+   "value": 460.0
+  },
+  "ab03.vendored.inv": {
+   "src": "analysis/reports/ab03_engine_forensics.md",
+   "value": 56.0
+  },
+  "ab04.ch.empty": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.813
+  },
+  "ab04.ch.gap": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.084
+  },
+  "ab04.ch.ges.prec": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.916
+  },
+  "ab04.for.empty": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.704
+  },
+  "ab04.for.gies.prec": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.851
+  },
+  "ab04.rc.prec": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": "0.80-0.92"
+  },
+  "ab04.rc.share": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": "10-20%"
+  },
+  "ab04.sem.empty": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.643
+  },
+  "ab04.sem.gies.prec": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.753
+  },
+  "ab04.share.for": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": "55%"
+  },
+  "ab04.share.sem": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": "33%"
+  },
+  "ab04.share.syn": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": "2%"
+  },
+  "ab04.syn.empty": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.748
+  },
+  "ab04.syn.pc.prec": {
+   "src": "analysis/reports/ab04_decision_value.md",
+   "value": 0.646
+  },
+  "ab05.crash.runs": {
+   "src": "analysis/reports/ab05_probe_results.md",
+   "value": 16.0
+  },
+  "ab05.crash.total": {
+   "src": "analysis/reports/ab05_probe_results.md",
+   "value": 115.0
+  },
+  "ab07.ges.data.dv": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.7533
+  },
+  "ab07.ges.data.f1": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.5279
+  },
+  "ab07.ges.model.dv": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.7835
+  },
+  "ab07.ges.model.f1": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.5463
+  },
+  "ab07.ges.moved.dv": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.6429
+  },
+  "ab07.ges.moved.f1": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.3417
+  },
+  "ab07.ges.oracle.dv": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.8624
+  },
+  "ab07.ges.oracle.f1": {
+   "src": "analysis/results/a3/a3_orient_only.json",
+   "value": 0.6578
+  },
+  "ab07.o1.contra": {
+   "src": "analysis/results/a3/a3.json",
+   "value": 0.1206
+  },
+  "ab07.o1.correct": {
+   "src": "analysis/results/a3/a3.json",
+   "value": 0.6941
+  },
+  "ab07.o3.data": {
+   "src": "analysis/results/a3/a3.json",
+   "value": -0.0472
+  },
+  "ab07.o3.label.contra": {
+   "src": "analysis/results/a3/a3.json",
+   "value": 0.1122
+  },
+  "ab07.o3.label.correct": {
+   "src": "analysis/results/a3/a3.json",
+   "value": 0.7212
+  },
+  "ab07.o4": {
+   "src": "analysis/results/a3/a3.json",
+   "value": 0.4479
+  },
+  "ab09.t3.checks": {
+   "src": "analysis/reports/ab09_theory_pack.md",
+   "value": "51,392"
+  },
+  "ab09.t3.violations": {
+   "src": "analysis/reports/ab09_theory_pack.md",
+   "value": 0.0
+  },
+  "ab12.a.ac3": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": 0.799
+  },
+  "ab12.b.ac3": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": 0.208
+  },
+  "ab12.c.ac3": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": 0.901
+  },
+  "ab12.d.ac3": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": 0.932
+  },
+  "ab12.d.cov": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": 0.917
+  },
+  "ab12.fabricated": {
+   "src": "analysis/reports/ab12_rca_probe.md",
+   "value": "40-83%"
+  },
+  "ab14.eppo": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "~$220M"
+  },
+  "ab14.est.mkt": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$3-67.5M"
+  },
+  "ab14.est.pharma": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$2.8-11M"
+  },
+  "ab14.est.pharma.broad": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$20-100M"
+  },
+  "ab14.est.rca": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$1.8-9.0M"
+  },
+  "ab14.mmm": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "~$2.2B"
+  },
+  "ab14.resolve": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$125M"
+  },
+  "ab14.rwe": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$2.0-2.6B"
+  },
+  "ab14.size.hi": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$59.22B"
+  },
+  "ab14.size.lo": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$28.9M"
+  },
+  "ab14.sre": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$285.1M"
+  },
+  "ab14.statsig": {
+   "src": "analysis/reports/ab14_market.md",
+   "value": "$1.1B"
+  },
   "cc.M1.files": {
    "src": "analysis/results/stability_s2/bnd08_summary.json",
    "value": 23
@@ -3599,8 +4127,19 @@
  ],
  "schema": 1,
  "sources": {
+  "analysis/reports/ab01_controlled_scoreboard.md": "df8db7add74c26905a0260b2b8ab6b74bc574d092105d5adeca8008bb6392f12",
+  "analysis/reports/ab02_second_scoreboard.md": "bcfb9ead7284fe403becc0e036ad79a5ed074183bef4b868f00e97d19fb743af",
+  "analysis/reports/ab03_engine_forensics.md": "bd8a0c582eb9bdeb26a0d69c0f616c8067229f4d9fed524bb928e9ce5b57165d",
+  "analysis/reports/ab04_decision_value.md": "e795c32858abf067be964783227d8afbeee2f37e7e4ede664e145be513c4d6c7",
+  "analysis/reports/ab05_probe_results.md": "20b769b2f6ccdadbe525553fe59309ca08654f1c7d59756a2f780f6d84c06294",
+  "analysis/reports/ab09_theory_pack.md": "2c266eedc06a0bb0f8fc06ac92e8ff2cbf3cafad0d540d551a789132f1fa8641",
+  "analysis/reports/ab12_rca_probe.md": "07a0fb135d6cdd21d9e16e0f2e5819814817a537d00f340107bfadfebf497a04",
+  "analysis/reports/ab14_market.md": "42e3173089b5c5483ab765566ab3ccb8bd902909a7ea4986d0d7c48497ac95f4",
   "analysis/reports/bnd08_s2_results.md": "a5520deccc95aed3b96a28287cd1895fcf3d9af36453dc3a61f871e7a3cdcdd4",
   "analysis/reports/rep11_sachs_data.md": "6a50a5f1d789015450284e5177928eef78880890f14b7d74403b6eb3db3006ea",
+  "analysis/results/a3/a3.json": "5372878c4310d107eeeae214f6e8ac6fd984be14d9b515143cbcb9874b187d80",
+  "analysis/results/a3/a3_orient_only.json": "18bfc618b40a941d8259f42b32b739aaa72586150318230f92cf19ac2a435ca7",
+  "analysis/results/ab02/bayesys_repro.json": "503485748a3ac95a5add3ff2183b132fac27e26372e10415a7cbf4d2bc32c609",
   "analysis/results/causalarena_calibration/order_baseline.json": "54892d4fddb5e57fc5ce11f434951a46d59ad4d8de01541d863f9b4b36cf284f",
   "analysis/results/chambers/sample/sample_status.json": "e10cf86a725b6d3c69a659f069b3329ef71a99d8c24e53c9d45f54212f4df632",
   "analysis/results/dom09/ida_timing.json": "8f4db9546a5ffe21dfa6e4721221b1e65ef3d760b7a2cbffc62b4f8b59131826",
@@ -3617,5 +4156,5 @@
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
   "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
  },
- "status_verified_utc": "2026-10-13T19:50:06Z"
+ "status_verified_utc": "2026-10-13T23:02:03Z"
 }

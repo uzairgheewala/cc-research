@@ -93,12 +93,42 @@ def lists():
     return out
 
 
+def changes(limit=8):
+    """The newest posted dev digests (tracker/relay_log.jsonl): when, the summary points, and what finished. Drafts and
+    prod digests are left out; the prod channel's drafts are Uzair's to send."""
+    f = ROOT / "tracker" / "relay_log.jsonl"
+    if not f.exists():
+        return []
+    recs = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
+    recs = [r for r in recs if r.get("type") == "digest" and r.get("channel") == "dev" and not r.get("draft_only")]
+    out = []
+    for r in sorted(recs, key=lambda r: r.get("posted_utc") or "", reverse=True):
+        if len(out) >= limit:
+            break
+        sec, points, done = None, [], []
+        for line in (r.get("text") or "").splitlines():
+            line = line.strip()
+            if line.startswith("**"):
+                mm = re.match(r"\*\*([^*]+)\*\*", line)
+                sec = mm.group(1).strip().lower() if mm else None
+                continue
+            if line.startswith("•"):
+                item = line.lstrip("•").strip()
+                if sec == "summary":
+                    points.append(item)
+                elif sec == "done":
+                    done.append(item.replace("✅", "").strip())
+        if points:
+            out.append({"posted_utc": r.get("posted_utc"), "points": points, "done": done, "tickets": r.get("tickets", [])})
+    return out
+
+
 def build():
     verified, its = items()
     bs, ms = bundles()
     m, srcs, errors = metrics()
     body = {"schema": 1, "status_verified_utc": verified, "items": its, "bundles": bs, "milestones": ms,
-            "lists": lists(), "metrics": m, "sources": srcs}
+            "lists": lists(), "metrics": m, "sources": srcs, "changes": changes()}
     canon = json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()
     return body, hashlib.sha256(canon).hexdigest(), errors
 

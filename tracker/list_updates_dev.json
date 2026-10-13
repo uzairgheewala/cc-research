@@ -4,25 +4,57 @@
   "AUD-34": {
    "record_id": "Rec0C8SU9PGAW",
    "cells": {
-    "Evidence": "analysis/reports/ab02_second_scoreboard.md\nanalysis/ab02_alarm_order.py\nanalysis/results/ab02/alarm_order.json\nanalysis/audits/AB02_AB12_data_scouting.md\nanalysis/ab02_bayesys.py\nanalysis/results/ab02/bayesys.json\nanalysis/results/ab02/bayesys_runs.jsonl",
-    "Checks": "PASS P3/verdict = \"supported\" (eq \"supported\"); PASS found: reproduction gate",
-    "Blocked by": "Uzair: results_noisyPaper.xlsx into external/bayesys (reproduction gate)",
-    "Note": "Bayesys measured 13 Oct (6 networks, released vs 5 shuffled orders, PC/maxP/FCI/GES): ASIA, SPORTS, PATHFINDER are released in topological order (P3 supported); an index tie-break gains +0.04 to +0.30 there and about 0 on ALARM/PROPERTY. P4 inconclusive (conflict-rule gap on 2 of 3 ordered networks). No claim on the published numbers until two cells are reproduced. Sortability not computed (discrete data).",
+    "Status": "✅ Done",
+    "Evidence": "analysis/reports/ab02_second_scoreboard.md\nanalysis/ab02_alarm_order.py\nanalysis/results/ab02/alarm_order.json\nanalysis/audits/AB02_AB12_data_scouting.md\nanalysis/ab02_bayesys.py\nanalysis/results/ab02/bayesys.json\nanalysis/results/ab02/bayesys_runs.jsonl\nanalysis/ab02_bayesys_repro.py\nanalysis/results/ab02/bayesys_repro.json\nanalysis/results/ab02/bayesys_repro_runs.jsonl",
+    "Checks": "PASS P3/verdict = \"supported\" (eq \"supported\"); PASS gate_by_alpha/0.05/cells_reproduced = 16 (ge 2); PASS found: Gate: passed at alpha 0.05",
+    "Blocked by": "",
+    "Note": "Bayesys reproduced (16 of 31 PC-Stable/FCI cells at alpha 0.05; PC 10 of 15). P3 supported (3 of 6 networks in topological order); P4 inconclusive. Bayesys's half-credit F1 moves at most 0.03 when columns are shuffled, so the layout leak needs an index tie-break (CausalArena's forced choice) to pay. Engine channel: causal-learn GES on PROPERTY -0.07 to -0.09 on the released order. gCastle not reproduced, no claim.",
     "Verified": "2026-10-13"
    }
   },
-  "AUD-38": {
-   "record_id": "Rec0C8R4XCDCN",
+  "AUD-45": {
+   "record_id": "Rec0C8LSTV5MH",
    "cells": {
-    "Evidence": "plans/make_ab06_plans.py\nplans/ab06/BUDGET.json\nharness/agent_batch.py\nanalysis/ab06_score.py\nplans/ab06_cc_gpt4omini_s2.json\nanalysis/reports/ab06_prep.md\ntests/test_ab06_batch.py",
-    "Note": "Plans, batch runner and scorer ready and stub-tested end to end. The batch never pays twice for a crashed run (--retry-failed to override), counts every logged attempt, and stops at the total cap before a run (exit 3).",
+    "Item": "AUD-45  AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence",
     "Verified": "2026-10-13"
    }
   },
-  "INF-05": {
-   "record_id": "Rec0C7R4HJE23",
+  "DEC-05": {
+   "record_id": "Rec0C8R57FFGE",
    "cells": {
-    "Checks": "PASS ok = true (true ); PASS ran = 112 (ge 18); PASS found: def input_key",
+    "Note": "Bundle AB-16: decide once the evidence is in. Uzair, 13 Oct: auditing is the more valuable product, but reliability comes first (ledger invariants, never below data-only, bounded harm, held-out calibration) before any product surface. C1 from AB-14 (indirect) plus interviews if any.",
+    "Verified": "2026-10-13"
+   }
+  },
+  "EXT-01": {
+   "record_id": "Rec0C88DZ6MUZ",
+   "cells": {
+    "Note": "Backed by two benchmarks (AB-01, AB-02): shuffle released columns, or score with a tie-break-invariant rule.",
+    "Verified": "2026-10-13"
+   }
+  },
+  "TEAM-08": {
+   "record_id": "Rec0C93L1QK52",
+   "cells": {
+    "Status": "✅ Done",
+    "Evidence": "analysis/reports/site_flow_design.md\nsite/build.py\nsite/pages.py\nsite/terms.py\nsite/pagekit.py\nsite/registry.py\nsite/pgs/pg_home.py\nsite/pgs/pg_primer.py\nsite/pgs/pg_scoring.py\nsite/pgs/pg_space.py\nsite/pgs/pg_scoreboard.py\nsite/pgs/pg_decisions.py\nsite/pgs/pg_names.py\nsite/pgs/pg_rca.py\nsite/pgs/pg_theses.py\nsite/pgs/pg_market.py\nsite/pgs/pg_status.py\nsite/pgs/pg_changes.py\nsite/pgs/pg_glossary.py\nsite/pgs/pg_evidence.py\nsite/pgs/pg_about.py\ntracker/snapshot.py",
+    "Checks": "PASS found: SEQUENCE = ; PASS found: is taught later, on; PASS found: ## Built \\(2026-10-13\\)",
+    "Reproduce": "python tracker/snapshot.py && python site/build.py",
+    "Blocked by": "",
+    "Note": "Built 13 Oct on the existing Pages site: Home + 11 pages in four acts + glossary, evidence index, about. The build fails on missing numbers, term-order violations, early results, broken links and unlabelled market $ figures. Phone overflow (390 px, 15 pages) checked by hand with Playwright; not yet in CI.",
+    "Links": "",
+    "Verified": "2026-10-13"
+   }
+  },
+  "DEC-06": {
+   "record_id": "Rec0C9UB0ENL8",
+   "cells": {
+    "Status": "✅ Done",
+    "Evidence level": "V3",
+    "Evidence": "analysis/reports/site_flow_design.md\ndocs/decisions/2026-10-13_atlas_v2_approved.md",
+    "Checks": "PASS found: I also approve of the site structure",
+    "Note": "Approved 13 Oct: 4 acts / 13 pages on the existing GitHub Pages site; Home leads with the research and links the market/wedge; market page public.",
+    "Links": "",
     "Verified": "2026-10-13"
    }
   }

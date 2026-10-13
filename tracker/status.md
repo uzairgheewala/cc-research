@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-13T19:50:06Z)
+# Tracker status (verified 2026-10-13T23:02:03Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -84,7 +84,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-31 | ✅ | Cost of one Causal-Copilot run (the approved one-run cost check) | V3 |  |
 | AUD-32 | ✅ | Audit program DAG: research landscape, commercial landscape, wedge and paper | V3 |  |
 | AUD-33 | ✅ | AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard) | V3 |  |
-| AUD-34 | 🔴 | AB-02 Second scoreboard: layout and conflict channels on other public benchmarks | V3 |  |
+| AUD-34 | ✅ | AB-02 Second scoreboard: layout and conflict channels on other public benchmarks | V3 |  |
 | AUD-35 | ✅ | AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call | V3 |  |
 | AUD-36 | ✅ | AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold | V3 |  |
 | AUD-37 | 🔴 | AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap) | V3 |  |
@@ -95,7 +95,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-42 | ✅ | AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims | V3 |  |
 | AUD-43 | ✅ | AB-12 Vertical probe: root-cause analysis | V3 |  |
 | AUD-44 | ✅ | AB-13 Regulation and standards map: requirement -> ledger field | V3 |  |
-| AUD-45 | ⏳ | AB-14 Market and go-to-market hypotheses for two verticals | V2 |  |
+| AUD-45 | ✅ | AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence | V3 |  |
 | AUD-46 | ✅ | AB-15 Positioning closure: novelty matrix for L1-L5 | V3 |  |
 | AUD-47 | ⏳ | AB-17 Paper skeleton and pre-registration manifest | V0 |  |
 | AUD-48 | ✅ | AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms | V3 |  |
@@ -275,7 +275,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | STR-03 | 🔵 | E3 Real experiments via the Causal Chambers remote lab | V0 |  |
 | STR-04 | 🔵 | E4 Learned fusion (pretrained network with unreliable tier statements) | V0 |  |
 | STR-05 | 🔵 | E5 Hidden confounders, time series, 100+ variables | V0 |  |
-| STR-06 | 🔵 | Product angle: auditable causal analyst | V0 |  |
+| STR-06 | 🔵 | Product angle: auditable causal analyst | V2 |  |
 
 ## 15 Decisions
 
@@ -317,3 +317,15 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BND-12 | 👀 | LIVE: second model and external replications | V2 |  |
 | BND-13 | ⏳ | Quarter 1 checkpoint package (2 Nov) | V0 |  |
 | BND-14 | ⏳ | Quarter 1 final: report, package, one-command reproduction (4 Dec) | V0 |  |
+
+## 12 Team and communication
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| TEAM-08 | ✅ | Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages) | V3 |  |
+
+## 15 Decisions
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| DEC-06 | ✅ | Approve the Atlas v2 page sequence (and whether the market page is public) | V3 |  |

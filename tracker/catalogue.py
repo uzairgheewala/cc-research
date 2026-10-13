@@ -988,3 +988,101 @@ for _i in ITEMS:
         _i.update(_P05[_i["id"]])
 BUNDLE_NOTE.update({"AB-02": "Bayesys: 3 of 6 networks in topological column order (P3 supported); index tie-break worth up to +0.30 there. "
                              "P4 mixed. Reproduction waits on the published xlsx."})
+
+# ---- overrides p06 (2026-10-13): AB-14 market research done without waiting on interviews (Uzair's decision)
+_P06 = {
+    "AUD-45": dict(status="done", blocked_by=None,
+                   criterion="Must show: market map; three one-page vertical briefs; H1-H3 public evidence, labelled indirect. Gate: no number without its inputs",
+                   evidence=["analysis/reports/ab14_market.md", "analysis/audits/ab14_notes/market_map.md",
+                             "analysis/audits/ab14_notes/it_incident_rca.md", "analysis/audits/ab14_notes/marketing_measurement.md",
+                             "analysis/audits/ab14_notes/pharma_rwe.md", "analysis/audits/ab14_notes/demand_signals.md",
+                             "docs/decisions/2026-10-13_interviews_not_gating.md"],
+                   checks=[G("analysis/reports/ab14_market.md", r"Brief 1: IT incident RCA"), G("analysis/reports/ab14_market.md", r"Brief 2: marketing"),
+                           G("analysis/reports/ab14_market.md", r"Brief 3: pharma RWE"), G("analysis/reports/ab14_market.md", r"The public evidence on H1-H3 is indirect"),
+                           J("plans/audit_dag.json", ["version"], "eq", 2)],
+                   note="Done 13 Oct without interviews (Uzair's decision). Start in IT incident RCA as a vendor-neutral audit of AI SRE agents' "
+                        "root-cause claims; marketing a close second; pharma third. Obtainable (estimates): RCA $1.8-9M ARR in ~3 yrs; marketing "
+                        "$3-67.5M at maturity; pharma core $2.8-11M/yr. 'Causal AI' sizings span $28.9M-$59.2B. H2 best supported; H1 for "
+                        "provenance, not abstention; H3 by analogy only."),
+    "AUD-41": dict(note="Interview kit ready; interviews run whenever a chance arises. No longer gates AB-14 or AB-16 (decision 2026-10-13); "
+                        "P13 can only be decided by interviews."),
+    "DEC-05": dict(note="Bundle AB-16: decide once the evidence is in. C1 from AB-14's public evidence (indirect) plus interviews if any."),
+    "STR-06": dict(note="AB-14 (13 Oct): sell a vendor-neutral audit of other agents' causal claims, not a causal-AI platform; start in IT incident RCA.",
+                   evidence=["analysis/reports/ab14_market.md"]),
+}
+for _i in ITEMS:
+    if _i["id"] in _P06:
+        _i.update(_P06[_i["id"]])
+BUNDLE_STATUS.update({"AB-14": "done"})
+BUNDLE_NOTE.update({"AB-14": "Market map + 3 briefs: start in IT incident RCA (audit AI SRE agents' claims); marketing second; pharma third.",
+                    "AB-10": "Kit ready; interviews whenever a chance arises; no longer gates AB-14 or AB-16."})
+
+# ---- additions p07 (2026-10-13): Atlas v2, a guided sequence of pages (design awaiting approval)
+ITEMS.append(item("TEAM-08", "TEAM", "Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)", "blocked", kind="task",
+    criterion="Must show (per bundle S1-S5 in the design): pages build; 0 missing numbers; 0 broken links; 0 term-order violations; "
+              "no horizontal scroll at 390 px; 'pages to re-read' list works; recentering path Home -> changes -> status",
+    evidence=["analysis/reports/site_flow_design.md", "site/build.py", "site/levels/bundles.py", "site/levels/theses.py"],
+    checks=[G("analysis/reports/site_flow_design.md", r"Failure modes named in advance"), G("site/build.py", r"max-width: 640px")],
+    blocked_by="DEC-06",
+    note="Design written 13 Oct. Readability pass done the same day on the current site: dates out of headings, stale DEC-02/A3 text "
+         "fixed, audit board follows DAG v2, clipped notes fixed, no phone overflow. Build waits on DEC-06."))
+ITEMS.append(item("DEC-06", "DEC", "Approve the Atlas v2 page sequence (and whether the market page is public)", "open", kind="decision",
+    criterion="Uzair's decision recorded with what it approves",
+    evidence=["analysis/reports/site_flow_design.md"],
+    note="Three choices in the design: the 4-act / 13-page sequence; market page public or repo-only; Home leads with research."))
+# ---- overrides p08 (2026-10-13): AUD-45 title follows DAG v2
+for _i in ITEMS:
+    if _i["id"] == "AUD-45":
+        _i["title"] = "AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence"
+
+# ---- overrides p09 (2026-10-13): Atlas v2 approved; reliability first; Bayesys reproduced
+_P09 = {
+    "DEC-06": dict(status="done", evidence=["analysis/reports/site_flow_design.md", "docs/decisions/2026-10-13_atlas_v2_approved.md"],
+                   checks=[G("docs/decisions/2026-10-13_atlas_v2_approved.md", r"I also approve of the site structure")],
+                   note="Approved 13 Oct: 4 acts / 13 pages on the existing GitHub Pages site; Home leads with the research and links the "
+                        "market/wedge; market page public."),
+    "TEAM-08": dict(status="in_progress", blocked_by=None,
+                    note="Approved 13 Oct (DEC-06). Built on the existing Pages site in bundles S1-S5."),
+    "DEC-05": dict(note="Bundle AB-16: decide once the evidence is in. Uzair, 13 Oct: auditing is the more valuable product, but reliability "
+                        "comes first (ledger invariants, never below data-only, bounded harm, held-out calibration) before any product "
+                        "surface. C1 from AB-14 (indirect) plus interviews if any."),
+    "AUD-34": dict(status="done", blocked_by=None,
+                   evidence=["analysis/reports/ab02_second_scoreboard.md", "analysis/ab02_alarm_order.py", "analysis/results/ab02/alarm_order.json",
+                             "analysis/audits/AB02_AB12_data_scouting.md", "analysis/ab02_bayesys.py", "analysis/results/ab02/bayesys.json",
+                             "analysis/results/ab02/bayesys_runs.jsonl", "analysis/ab02_bayesys_repro.py",
+                             "analysis/results/ab02/bayesys_repro.json", "analysis/results/ab02/bayesys_repro_runs.jsonl"],
+                   checks=[J("analysis/results/ab02/bayesys.json", ["P3", "verdict"], "eq", "supported"),
+                           J("analysis/results/ab02/bayesys_repro.json", ["gate_by_alpha", "0.05", "cells_reproduced"], "ge", 2),
+                           G("analysis/reports/ab02_second_scoreboard.md", r"Gate: passed at alpha 0.05")],
+                   note="Bayesys reproduced (16 of 31 PC-Stable/FCI cells at alpha 0.05; PC 10 of 15). P3 supported (3 of 6 networks in "
+                        "topological order); P4 inconclusive. Bayesys's half-credit F1 moves at most 0.03 when columns are shuffled, so "
+                        "the layout leak needs an index tie-break (CausalArena's forced choice) to pay. Engine channel: causal-learn GES "
+                        "on PROPERTY -0.07 to -0.09 on the released order. gCastle not reproduced, no claim."),
+    "EXT-01": dict(note="Backed by two benchmarks (AB-01, AB-02): shuffle released columns, or score with a tie-break-invariant rule."),
+}
+for _i in ITEMS:
+    if _i["id"] in _P09:
+        _i.update(_P09[_i["id"]])
+BUNDLE_STATUS.update({"AB-02": "done"})
+BUNDLE_NOTE.update({"AB-02": "Bayesys reproduced (PC 10/15 cells). Layout in 3 of 6 networks, but Bayesys's half-credit score moves <= 0.03 "
+                             "when shuffled; CausalArena's forced choice is what rewards the leak."})
+
+# ---- overrides p10 (2026-10-13): Atlas v2 built
+_P10 = {
+    "TEAM-08": dict(status="done", blocked_by=None,
+                    evidence=["analysis/reports/site_flow_design.md", "site/build.py", "site/pages.py", "site/terms.py", "site/pagekit.py",
+                              "site/registry.py", "site/pgs/pg_home.py", "site/pgs/pg_primer.py", "site/pgs/pg_scoring.py",
+                              "site/pgs/pg_space.py", "site/pgs/pg_scoreboard.py", "site/pgs/pg_decisions.py", "site/pgs/pg_names.py",
+                              "site/pgs/pg_rca.py", "site/pgs/pg_theses.py", "site/pgs/pg_market.py", "site/pgs/pg_status.py",
+                              "site/pgs/pg_changes.py", "site/pgs/pg_glossary.py", "site/pgs/pg_evidence.py", "site/pgs/pg_about.py",
+                              "tracker/snapshot.py"],
+                    checks=[G("site/pages.py", r"SEQUENCE = "), G("site/build.py", r"is taught later, on"),
+                            G("analysis/reports/site_flow_design.md", r"## Built \(2026-10-13\)")],
+                    reproduce="python tracker/snapshot.py && python site/build.py",
+                    note="Built 13 Oct on the existing Pages site: Home + 11 pages in four acts + glossary, evidence index, about. The build "
+                         "fails on missing numbers, term-order violations, early results, broken links and unlabelled market $ figures. "
+                         "Phone overflow (390 px, 15 pages) checked by hand with Playwright; not yet in CI."),
+}
+for _i in ITEMS:
+    if _i["id"] in _P10:
+        _i.update(_P10[_i["id"]])

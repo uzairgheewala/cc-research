@@ -252,6 +252,13 @@ def write_contract(out_dir):
     """The ab02 folder holds two producers' files: declared per file (score_record.check_contract)."""
     c = {"tickets": ["AUD-34", "BEN-07"], "producer": "analysis/ab02_bayesys.py", "score_bearing": False, "per_file": {
         "alarm_order.json": {"producer": "analysis/ab02_alarm_order.py", "score_bearing": False},
+        "bayesys_repro.json": {
+            "producer": "analysis/ab02_bayesys_repro.py", "score_bearing": True, "regime": "D",
+            "split": "all-public (measurement, no tuning)",
+            "controls": {"columns_shuffled": "no (released order, to match the published runs)", "names": "not applicable",
+                         "supplier": "causal-learn 0.1.4.8 vs published rcausal 1.1.1"},
+            "metric_defs": {"f1": "Bayesys half-credit F1 (true adjacency with wrong or no orientation = 0.5 TP)",
+                            "edges": "edges in the learned graph", "d_f1": "ours minus published"}},
         "bayesys.json": {
             "producer": "analysis/ab02_bayesys.py", "score_bearing": True, "regime": "D",
             "split": "all-public (measurement, no tuning)",

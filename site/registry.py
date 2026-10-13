@@ -116,3 +116,98 @@ REG = {
     "chambers.regimes": J(CH, "regimes"),
     "rep11.ours": L(REP11, "0.647"), "rep11.paper": L(REP11, "0.606"),
 }
+
+# ---- Atlas v2 (2026-10-13): Act II and market pages. Report figures are literals checked against the cited text.
+AB01R = "analysis/reports/ab01_controlled_scoreboard.md"
+AB02R = "analysis/reports/ab02_second_scoreboard.md"
+AB03R = "analysis/reports/ab03_engine_forensics.md"
+AB04R = "analysis/reports/ab04_decision_value.md"
+AB05R = "analysis/reports/ab05_probe_results.md"
+AB09R = "analysis/reports/ab09_theory_pack.md"
+AB12R = "analysis/reports/ab12_rca_probe.md"
+AB14R = "analysis/reports/ab14_market.md"
+A3 = R + "a3/a3.json"
+A3O = R + "a3/a3_orient_only.json"
+REPRO = R + "ab02/bayesys_repro.json"
+_ges = lambda arm, k: J(A3O, "families", "semantic", "GES (BIC)", arm, k)  # noqa: E731
+REG.update({
+    # AB-01 controlled scoreboard
+    "ab01.sem.maxp.ctrl": L(AB01R, "0.463", "| **0.463** |"),
+    "ab01.for.maxp.ctrl": L(AB01R, "0.359", "| **0.359** |"),
+    "ab01.syn.maxp.ctrl": L(AB01R, "0.435", "| **0.435** |"),
+    "ab01.pub.for.pc": L(AB01R, "0.220", "0.359 on formula (published 0.220)"),
+    "ab01.pub.syn.pc": L(AB01R, "0.307", "0.435 on synthetic (published 0.307)"),
+    "ab01.ges.ctrl.sem": L(AB01R, "0.528", "| **0.528** |"),
+    "ab01.gies.ctrl.sem": L(AB01R, "0.539", "| **0.539** |"),
+    "ab01.fci.index.sem": L(AB01R, "+0.221", "| +0.221 / +0.207 / +0.225 |"),
+    "ab01.maxp.index.sem": L(AB01R, "+0.067", "| +0.067 / +0.101 / +0.087 |"),
+    "ab01.ges.index.sem": L(AB01R, "+0.022", "| +0.022 / +0.023 / +0.084 |"),
+    "ab01.pc.conflict.sem": L(AB01R, "0.070", "| +0.068 | −0.070 |"),
+    "ab01.maxp.conflict.sem": L(AB01R, "−0.001", "| −0.001 / +0.001 / +0.000 |"),
+    # AB-02 Bayesys
+    "ab02.repro.cells": J(REPRO, "gate_by_alpha", "0.05", "cells_reproduced"),
+    "ab02.repro.compared": J(REPRO, "gate_by_alpha", "0.05", "cells_compared"),
+    "ab02.repro.pc": F(REPRO, lambda d: sum(1 for c in d["cells"] if c["method"] == "pc" and c["alpha"] == 0.05 and c.get("reproduces"))),
+    "ab02.repro.pc.n": F(REPRO, lambda d: sum(1 for c in d["cells"] if c["method"] == "pc" and c["alpha"] == 0.05 and "reproduces" in c)),
+    "ab02.order.max.pc": L(AB02R, "0.03", "by at most 0.03"),
+    "ab02.index.lo": L(AB02R, "+0.04", "+0.04 to +0.30"),
+    "ab02.index.hi": L(AB02R, "+0.30", "+0.04 to +0.30"),
+    "ab02.ges.property": L(AB02R, "0.09", "0.07-0.09 lower"),
+    # AB-03 engines
+    "ab03.vendored.exact": L(AB03R, "460", "| 460 | 56 |"),
+    "ab03.vendored.inv": L(AB03R, "56", "| 460 | 56 |"),
+    "ab03.dodiscover.exact": L(AB03R, "597", "597 of 717 completed"),
+    "ab03.dodiscover.n": L(AB03R, "717", "597 of 717 completed"),
+    # AB-04 decision value
+    "ab04.sem.gies.prec": L(AB04R, "0.753", "| 1.000 | 0.753 | 0.643 | +0.110 |"),
+    "ab04.sem.empty": L(AB04R, "0.643", "| 1.000 | 0.753 | 0.643 | +0.110 |"),
+    "ab04.for.gies.prec": L(AB04R, "0.851", "| 1.000 | 0.851 | 0.704 |"),
+    "ab04.for.empty": L(AB04R, "0.704", "| 1.000 | 0.851 | 0.704 |"),
+    "ab04.syn.pc.prec": L(AB04R, "0.646", "0.630 / 0.646"),
+    "ab04.syn.empty": L(AB04R, "0.748", "0.756 / 0.748"),
+    "ab04.ch.ges.prec": L(AB04R, "0.916", "| 0.971 | 0.916 | 0.813 |"),
+    "ab04.ch.empty": L(AB04R, "0.813", "| 0.971 | 0.916 | 0.813 |"),
+    "ab04.ch.gap": L(AB04R, "0.084", "| 0.084 (GES) |"),
+    "ab04.share.sem": L(AB04R, "33%", "| 33% (GES 29%"),
+    "ab04.share.for": L(AB04R, "55%", "| 55% (GES 32%"),
+    "ab04.share.syn": L(AB04R, "2%", "| 2%. GES, PC"),
+    "ab04.rc.share": L(AB04R, "10-20%", "the most-agreed 10-20% of claims"),
+    "ab04.rc.prec": L(AB04R, "0.80-0.92", "are 0.80-0.92 precise"),
+    # AB-09 theory
+    "ab09.t3.checks": L(AB09R, "51,392", "yes, 51,392 checks, 0 violations"),
+    "ab09.t3.violations": L(AB09R, "0", "51,392 checks, 0 violations"),
+    # AB-05 / AB-07
+    "ab05.crash.runs": L(AB05R, "16", "Of 115 live runs, 16 (14%)"),
+    "ab05.crash.total": L(AB05R, "115", "Of 115 live runs, 16 (14%)"),
+    "ab07.o1.correct": J(A3, "verdicts", "O1", "value", "correct"),
+    "ab07.o1.contra": J(A3, "verdicts", "O1", "value", "contradicted"),
+    "ab07.o3.label.correct": J(A3, "verdicts", "O3", "by_label", "correct"),
+    "ab07.o3.label.contra": J(A3, "verdicts", "O3", "by_label", "contradicted"),
+    "ab07.o3.data": J(A3, "verdicts", "O3", "by_data", "value"),
+    "ab07.o4": J(A3, "verdicts", "O4", "value"),
+    "ab07.ges.data.f1": _ges("data only", "directed_f1"), "ab07.ges.data.dv": _ges("data only", "dv1_precision"),
+    "ab07.ges.model.f1": _ges("+ model tiers", "directed_f1"), "ab07.ges.model.dv": _ges("+ model tiers", "dv1_precision"),
+    "ab07.ges.oracle.f1": _ges("+ oracle depth", "directed_f1"), "ab07.ges.oracle.dv": _ges("+ oracle depth", "dv1_precision"),
+    "ab07.ges.moved.f1": _ges("+ moved tiers", "directed_f1"), "ab07.ges.moved.dv": _ges("+ moved tiers", "dv1_precision"),
+    # AB-12 RCA
+    "ab12.a.ac3": L(AB12R, "0.799", "| D | 0.653 | 0.799 |"),
+    "ab12.b.ac3": L(AB12R, "0.208", "| D | 0.208 | **0.208** |"),
+    "ab12.c.ac3": L(AB12R, "0.901", "| D+K | 0.689 | **0.901** |"),
+    "ab12.d.ac3": L(AB12R, "0.932", "| D+K | 0.735 | **0.932** |"),
+    "ab12.d.cov": L(AB12R, "0.917", "| 0.917 (44/48) |"),
+    "ab12.fabricated": L(AB12R, "40-83%", "On latency, 40-83% of windows"),
+    # AB-14 market (labels on the page)
+    "ab14.size.lo": L(AB14R, "$28.9M", "**$28.9M** (Global Market Insights)"),
+    "ab14.size.hi": L(AB14R, "$59.22B", "**$59.22B** (The Insight Partners)"),
+    "ab14.statsig": L(AB14R, "$1.1B", "Statsig **$1.1B** to OpenAI"),
+    "ab14.eppo": L(AB14R, "~$220M", "Eppo **~$220M** reported"),
+    "ab14.sre": L(AB14R, "$285.1M", "**$285.1M**"),
+    "ab14.resolve": L(AB14R, "$125M", "Resolve AI $125M Series A"),
+    "ab14.mmm": L(AB14R, "~$2.2B", "**~$2.2B** in 2026"),
+    "ab14.rwe": L(AB14R, "$2.0-2.6B", "**$2.0-2.6B** in 2024-2025"),
+    "ab14.est.rca": L(AB14R, "$1.8-9.0M", "| $1.8-9.0M ARR obtainable within three years |"),
+    "ab14.est.mkt": L(AB14R, "$3-67.5M", "| $3-67.5M obtainable at maturity |"),
+    "ab14.est.pharma": L(AB14R, "$2.8-11M", "| $2.8-11M a year for the regulatory core"),
+    "ab14.est.pharma.broad": L(AB14R, "$20-100M", "$20-100M a year across all registered RWE studies"),
+})
+

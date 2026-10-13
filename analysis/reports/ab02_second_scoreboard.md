@@ -2,13 +2,19 @@
 
 Ticket: AUD-34 (also BEN-07). Updated 2026-10-13 with Bayesys. No model calls.
 
-**Status.** P3 is decided. P4 is mixed. The reproduction gate (two published Bayesys cells matched) is still open, because the published per-method scores (`results_noisyPaper.xlsx`) are not yet in `external/bayesys/`. Until then there is no claim about the published Bayesys numbers. Everything below compares our own runs on the released files.
+**Status: done.**
+
+- **Reproduction gate: passed.** At the alpha the main runs used (0.05), 16 of 31 published PC-Stable and FCI cells reproduce within the pre-stated tolerance: 10 of 15 for PC and 6 of 16 for FCI. Three PC cells match exactly.
+- **P3 is supported.**
+- **P4 is inconclusive.**
+- **New finding: Bayesys's own scoring is almost blind to column order.** Under its half-credit F1, shuffling the columns moves PC, maxP and FCI by at most 0.03. The layout leak exists in the files, but the published table does not reward it, because Bayesys never breaks ties by column index.
+- **Engine exception:** causal-learn's GES on PROPERTY scores 0.07-0.09 lower on the released order than on shuffled orders.
 
 ## Where we are now
 
 | Candidate | Released files + truth | Published per-method numbers | Status |
 |---|---|---|---|
-| **Bayesys** (Constantinou et al. 2021; CC BY-SA 4.0) | yes. `bayesys_datasets.zip`, sha256 `48f8bb32483428956fef56c7a379d7cdf0784c0819c9064aa69e490699907b1e`, downloaded by Uzair on 13 Oct | `results_noisyPaper.xlsx`, not yet downloaded | layout and re-score measured; reproduction **open** |
+| **Bayesys** (Constantinou et al. 2021; CC BY-SA 4.0) | yes. `bayesys_datasets.zip`, sha256 `48f8bb32483428956fef56c7a379d7cdf0784c0819c9064aa69e490699907b1e`, downloaded by Uzair on 13 Oct | `results_noisyPaper.xlsx` (sha256 `8d49c693...6899`), downloaded by Uzair on 13 Oct | reproduced (gate passed); layout and re-score measured |
 | **gCastle PCIC 2021 alarm** (MIT) | yes | README (PC, GES) | order measured (not causal); reproduction **not achieved**, so no claim |
 | CIPCaD-Bench | partly | figure only | fallback, not needed |
 
@@ -83,9 +89,49 @@ The first version of the summariser averaged all cells (mean 0.032) and would ha
 **Why the two scoreboards differ.** The conflict-rule effect is much weaker here than on CausalArena (AB-01). Two reasons:
 
 - The Bayesys networks are small or shallow, so PC commits few arrows (2-9 on ASIA and SPORTS).
-- maxP does not reduce the spread across column orders here. The mean range over five orders is 0.22 vs 0.26 on ASIA and 0.14 vs 0.13 on SPORTS. This range also contains the expectation rule's coin flips.
+- maxP does not reduce the spread of the expectation-rule F1 across column orders (mean range 0.22 vs 0.26 on ASIA, 0.14 vs 0.13 on SPORTS). Most of that spread is the rule's coin flips, because each arm draws its own seed. The deterministic half-credit score below shows the true order effect, and it is close to zero.
 
 So the conflict-rule channel is a CausalArena-scale effect and should not be claimed as universal.
+
+## Reproduction against the published table (the gate)
+
+**Producer and outputs.** `analysis/ab02_bayesys_repro.py`, writing `analysis/results/ab02/bayesys_repro.json` and `bayesys_repro_runs.jsonl`.
+
+**What is compared.** The published side is `results_noisyPaper.xlsx`, Experiment N (no noise): PC-Stable, FCI and FGES from rcausal 1.1.1 (Tetrad). Our side is causal-learn 0.1.4.8 run on the released column order. Both use Bayesys's half-credit precision and recall: a true adjacency with the wrong or no orientation counts 0.5.
+
+**Criteria**, written before any comparison was computed:
+
+- A cell reproduces if |ΔF1| ≤ 0.05 and |Δedges| ≤ max(1, 10% of the true edges).
+- The gate needs two PC-Stable or FCI cells to reproduce under one alpha.
+- The workbook does not state an alpha, so two were declared up front: 0.05 (what the main runs used) and 0.01 (Tetrad's usual default). Having two alphas is a freedom, and it is stated here.
+
+| Alpha | Cells compared | Reproduced | Median abs. ΔF1 |
+|---|---|---|---|
+| **0.05** | 31 | **16** (PC 10 of 15; FCI 6 of 16) | 0.048 |
+| 0.01 | 31 | 10 | 0.082 |
+
+**Gate: passed at alpha 0.05**, the setting the main runs already used, so no setting was chosen to fit.
+
+- **PC.** Exact matches (same edge count, ΔF1 ≤ 0.001) on ASIA 0.1k, SPORTS 0.1k and SPORTS 10k. FORMED 0.1k is within 0.003.
+- **FCI.** FCI matches less often (6 of 16). Our scoring turns PAG marks into committed or undecided pairs, and Bayesys's conversion is not documented.
+- **GES against FGES** (reported, not part of the gate). Five cells match exactly: ASIA 1k and 10k; SPORTS 0.1k, 1k and 10k. ASIA 0.1k and ALARM 10k are also within tolerance.
+- **Gaps.** PATHFINDER PC has no published value (recorded FAIL). PATHFINDER 1k and 10k were not run here for compute reasons.
+
+### Re-score: what column order does to the published metric
+
+The released-versus-shuffled difference in half-credit F1 is computed from `bayesys.json`, with five shuffled orders per cell:
+
+| Method | Largest abs. change over 17 cells | Cells moving by more than 0.01 |
+|---|---|---|
+| PC (default rule) | 0.030 (PROPERTY 1k: released 0.566 vs shuffled 0.596; ASIA 10k: 0.500 vs 0.529) | 2 |
+| maxP | 0.000 | 0 |
+| FCI | 0.008 | 0 |
+| GES (BDeu; ≤ 40 variables, so 12 cells) | **0.087** (PROPERTY 0.1k, 1k and 10k: released lower by 0.082, 0.073, 0.087) | 3 |
+
+Two things follow from this table:
+
+- **Bayesys's half-credit scoring removes the layout channel.** An undirected or reversed edge both earn 0.5, so how a method breaks ties barely matters. The published Bayesys rows are therefore not inflated by the topological column order of ASIA, SPORTS and PATHFINDER. This contrasts with CausalArena: there, the scoreboard's forced-choice rule rewards an index tie-break by up to +0.30 (AB-01).
+- **The engine channel shows up instead.** causal-learn's GES is order-dependent on PROPERTY under this metric. That is an implementation property, the same class of defect as AB-03.
 
 ## gCastle alarm sets (unchanged)
 
@@ -95,17 +141,22 @@ Results are in `analysis/results/ab02/alarm_order.json`. The alarm ids are not i
 
 - **Reproduce before claiming anything about published numbers.**
   - gCastle: not reproduced, so no claim.
-  - Bayesys: open until `results_noisyPaper.xlsx` is in `external/bayesys/`. The gate is that our PC and FCI match two published cells within the paper's reported spread. Bayesys's published F1 gives half credit to a wrongly oriented or undirected true adjacency, and we report that measure next to ours (`F1_bayesys_half_credit`). Bayesys used Tetrad's PC-Stable and FCI, while we use causal-learn's. If the gate fails, the layout table above still stands, because it is a property of the released files, not of a score.
-- **Every downloaded file has a sha256 recorded** (the Bayesys zip above; the alarm sets in `alarm_order.json`).
+  - Bayesys: **passed** (16 of 31 cells at alpha 0.05; criteria stated above, before the comparison).
+- **Every downloaded file has a sha256 recorded:** the Bayesys zip, the results workbook, and the alarm sets in `alarm_order.json`.
 
 ## What changes
 
-- **L1, second scoreboard.**
-  - The layout channel is confirmed on Bayesys: three of six networks are released in topological order, and an index rule gains up to +0.30 there and nothing elsewhere.
-  - The conflict-rule channel is not confirmed outside CausalArena.
-  - The engine channel (AB-03) does not depend on any benchmark.
-- **Paper claim, scoped.** "Two public structure-learning benchmarks release columns in causal order for some or all graphs. A tie-break by column index, or an order-dependent method, is rewarded there." The claim about the published Bayesys numbers waits for the reproduction.
+- **L1, second scoreboard.** Settled, and narrower than hoped:
+  - **The layout exists on Bayesys.** Three of six networks are released in topological order.
+  - **Bayesys's metric does not reward the layout.** Under half credit, the published table moves by at most 0.03 when columns are shuffled.
+  - **The scoring rule determines the effect.** The layout channel needs an index tie-break, which CausalArena's forced-choice scoring supplies and Bayesys's half credit does not.
+  - **The engine channel (GES on PROPERTY, −0.07 to −0.09) shows on both benchmarks.**
+- **Paper claim, scoped.** "Whether a benchmark's column layout inflates its leaderboard depends on its scoring rule. CausalArena's forced-choice rule rewards an index tie-break by up to +0.30 F1. Bayesys's half-credit rule is robust to it (≤ 0.03), though three of its six networks are released in topological order. Order-dependent engines move scores under both."
+- **Recommendation to benchmark authors** (EXT-01): either shuffle the columns of released files or score with a rule that is invariant to tie-breaking.
 
 ## Where we're going
 
-When `results_noisyPaper.xlsx` is in place, `ab02_bayesys.py` gets a `--published` reader. It will compare our released-order PC-Stable and FCI cells with the published ones. If the gate passes, the table is re-scored with the index rule and with shuffling.
+AB-02 is closed. Two things remain:
+
+- **AB-16:** the L1 claim above goes into the wedge memo in its scoped form.
+- **EXT-01:** the recommendation to benchmark authors is now backed by two benchmarks.

@@ -35,8 +35,8 @@ for top, h, name, sub, col, bg in LANES:
     parts.append(f'<div style="position: absolute; left: 16px; top: {top + 12}px; width: 136px; display: flex; flex-direction: column; gap: 2px">{tag(name, col)}<span style="font-size: 13px; line-height: 17px; color: #4E5751">{sub}</span></div>')
 
 # column headers with milestones
-HEAD = [("Start", "no blockers"), ("After BND-01", "G1 · 16 Oct"), ("Next", "TA check-in · 19 Oct"),
-        ("Checkpoint", "G2 · 2 Nov"), ("Final", "G3 · 4 Dec")]
+HEAD = [("Start", "no blockers"), ("After BND-01", "gate G1"), ("Next", "TA check-in"),
+        ("Checkpoint", "gate G2"), ("Final", "gate G3")]
 for i, (a, b) in enumerate(HEAD):
     parts.append(f'<div style="position: absolute; left: {CX[i]}px; top: 12px; width: {CW}px; font-size: 13px; line-height: 17px"><b>{a}</b> · <span style="font-family: {MONO}; color: #8E2A2A">{b}</span></div>')
 
@@ -103,7 +103,7 @@ host = f"""<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid 
 
 legend = f"""<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 13px">
 {pill("done", "done")} {pill("in progress or measured", "prog")} {pill("to do", "todo")} {pill("needed by a thesis, no bundle yet", "gap")}
-<span style="color: #4E5751">Arrows are direct dependencies within a lane; other blockers are written on the card. Columns are order of work, not dates; the dates are the gates each column feeds.</span>
+<span style="color: #4E5751">Arrows are direct dependencies within a lane; other blockers are written on the card. Columns are the order of work; the red labels name the gate each column feeds.</span>
 </div>"""
 
 steps = [("done", "v2 frozen (analysis/results/refinement_v2/RULE.json); unit tests run in CI"),
@@ -131,7 +131,7 @@ QUEUE = [("Free", "cc.ps1 compute: bootstrap_replay_ca_formula_dev.json, _test.j
          ("Free", "cc.ps1 names bnd11_names_requests.jsonl stub", "checks the runner"),
          ("Live", "cc.ps1 names bnd11_names_requests.jsonl (under $1)", "BND-11")] if bundle("BND-11")["status"] != "done" else []
 QUEUE += [("Decide", "%s %s" % (d, ttl), "tracker: open") for d, ttl in _dec]
-QUEUE += [("Decide", "Bring kernel B1 into Q1 as a bundle, or start it after 2 Nov", "what G2 tests")] if "BLD-02" not in _bundled else []
+QUEUE += [("Decide", "Bring kernel B1 into Q1 as a bundle, or start it after the G2 checkpoint", "what G2 tests")] if "BLD-02" not in _bundled else []
 QUEUE += [("Waits", "%s: %s" % (b, bundle(b)["title"]), "the bundle note says it waits on you") for b in _waits if b != "BND-11" and not b.startswith("AB-")]
 QUEUE += [("Live", "cc.ps1 probe ab05_probe_[pywhyllm|matmcd|vashishtha].json (AB-05; stub first)", "three agent probes left"),
           ("Live", "cc.ps1 plan ab06_cc_gpt4omini_s2.json gpt-4o-mini (AB-06, about $1)", "Causal-Copilot on a second model, BND-08 grid"),
@@ -149,11 +149,12 @@ queue = f"""<section style="flex: 1 1 420px; padding: 18px 20px; background: #F6
 A_LANES = [("research", "Research", "scoreboards, engines, agents, theory", "#1D5C99", "#F7FAFD"),
            ("commercial", "Commercial", "buyers, vendors, rules", "#7A4BA8", "#FAF8FD"),
            ("wedge", "Wedge", "decide, then write", "#9A4A0E", "#FFFAF5")]
+# columns = dependency depth (plans/audit_dag.json v2: AB-14 after AB-11 + AB-13; AB-16 after AB-14; AB-17 sits under AB-16)
 A_POS = {"AB-01": (0, 0), "AB-03": (0, 1), "AB-05": (0, 2), "AB-09": (0, 3), "AB-02": (1, 0), "AB-04": (1, 1), "AB-07": (1, 2),
-         "AB-06": (2, 0), "AB-08": (2, 1), "AB-10": (0, 0), "AB-13": (0, 1), "AB-14": (1, 0), "AB-11": (2, 0), "AB-12": (2, 1),
-         "AB-15": (0, 0), "AB-16": (3, 0), "AB-17": (4, 0)}
-ACH = 118
-A_HEAD = ["No blockers", "After AB-01 / AB-10", "After AB-04 / AB-05", "Decision gate", "Paper"]
+         "AB-06": (2, 0), "AB-08": (2, 1), "AB-10": (0, 0), "AB-13": (0, 1), "AB-11": (2, 0), "AB-12": (2, 1), "AB-14": (3, 0),
+         "AB-15": (0, 0), "AB-16": (4, 0), "AB-17": (4, 1)}
+ACH = 150
+A_HEAD = ["No blockers", "One step in", "Two steps in", "Three steps in", "Decide, then write"]
 
 
 def acard(x, y, b):
@@ -165,7 +166,7 @@ def acard(x, y, b):
     return f"""<div style="position: absolute; left: {x}px; top: {y}px; width: {CW}px; height: {ACH}px; box-sizing: border-box; padding: 7px 10px; background: {bg}; border: 1.5px {style} {bd}; border-radius: 8px; display: flex; flex-direction: column; gap: 2px; overflow: hidden">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px"><span style="font-family: {MONO}; font-size: 12px; line-height: 16px; font-weight: 600; color: {fg}">{b["id"]}{live}</span><span style="font-size: 11px; line-height: 16px; font-weight: 600; color: {fg}">{txt}</span></div>
 <span style="font-size: 13px; line-height: 17px; font-weight: 600">{html_escape(short_title(b["title"]))}</span>
-<span style="font-size: 11px; line-height: 15px; color: #4E5751">{html_escape(b["note"])}</span>
+<span title="{html_escape(b["note"])}" style="font-size: 12px; line-height: 16px; color: #4E5751; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden">{html_escape(b["note"])}</span>
 </div>"""
 
 
@@ -200,7 +201,7 @@ audit_host = f"""<div style="overflow-x: auto; background: #FFFFFF; border: 1px 
 </div>"""
 audit_intro = '<div style="display: flex; flex-direction: column; gap: 6px">' + h2("Audit program: %d bundles, %d done, %d in progress, %d waiting on you" % (
     len(AB), sum(b["status"] == "done" for b in AB), sum(b["status"] == "in_progress" for b in AB), sum(b["status"] == "blocked" for b in AB))) + '<p style="margin: 0; max-width: 900px; font-size: 15px; line-height: 22px; color: #2C3631">%s</p></div>' % (
-    "Approved 12 Oct (plans/audit_dag.json). It runs beside the Q1 plan and ends in the wedge decision (AB-16). LIVE bundles spend API credit and are run by you; every other bundle is free compute or desk work. The card note is the bundle's current result.")
+    "The audit program (plans/audit_dag.json) runs beside the Q1 plan and ends in the wedge decision (AB-16). Interviews (AB-10) no longer gate the market work or that decision. LIVE bundles spend API credit and are run by Uzair; every other bundle is free compute or desk work. Each card's note is the bundle's current result.")
 
 body = "\n".join([
     title_block("%d Q1 bundles, and the pieces of the ledger with no bundle yet" % len(Q1B),
@@ -208,8 +209,8 @@ body = "\n".join([
     legend, host,
     f'<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">{detail}{queue}</div>',
     audit_intro, audit_host,
-    footer("%d of %d Q1 bundles are done and %d are in progress, almost all in measurement. Refinement v2 (BND-11) is ready and waits on free jobs and one run under $1." % (sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "in_progress" for b in Q1B)),
-           "run the free jobs, settle DLV-02 and DEC-01/02, then decide whether the ledger kernel becomes a Q1 bundle so the 2 Nov checkpoint moves us into the thesis cell.",
+    footer("%d of %d Q1 bundles and %d of %d audit bundles are done. The audits that remain wait on live runs (agent probes, the field audit), one download (Bayesys) and, when a chance arises, interviews." % (sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "done" for b in AB), len(AB)),
+           "finish the live audits, then the wedge decision (AB-16): which results carry the paper, and whether the ledger kernel becomes a bundle so the G2 checkpoint tests the thesis cell.",
            "Stages.dc.html", "Zoom into one run"),
 ])
 

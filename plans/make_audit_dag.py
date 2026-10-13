@@ -162,11 +162,14 @@ bundle("AB-13", "Regulation and standards map", "commercial", [], ("2026-10-14",
        ["none (desk map)"], ["primary texts only; summaries labelled second-hand"], ["requirement -> field matrix"],
        ["analysis/reports/ab13_regulation_map.md"], ["C3"], advances=["CAP-09", "EXT-02"], proposed_tickets=["AUD-44 regulation map"])
 
-bundle("AB-14", "Market and go-to-market hypotheses", "commercial", ["AB-10", "AB-13"], ("2026-10-27", "2026-11-12"), "Claude (desk)", NONE,
-       ["bottom-up estimates for two verticals (IT incident analysis, marketing measurement) from public pricing; buyer, budget line, "
-        "channel; every figure labelled estimate with its inputs"],
-       ["none"], ["no number without its inputs"], ["two one-page vertical briefs"],
-       ["analysis/reports/ab14_market.md"], ["C3"], advances=["STR-06"], proposed_tickets=["AUD-45 market hypotheses"])
+bundle("AB-14", "Market and go-to-market hypotheses", "commercial", ["AB-11", "AB-13"], ("2026-10-27", "2026-11-12"), "Claude (desk)", NONE,
+       ["market map of causal AI: segments, vendors, funding, M&A, market-size estimates and their conflicts, platform churn",
+        "bottom-up estimates for three verticals (IT incident RCA, marketing measurement, pharma RWE) from public pricing and filings; "
+        "buyer, budget line, channel; every figure labelled estimate with its inputs",
+        "public demand evidence on H1-H3, labelled indirect (stands in for AB-10 until interviews exist; cannot decide P13)"],
+       ["none"], ["no number without its inputs"], ["market map", "three one-page vertical briefs", "H1-H3 public evidence, labelled indirect"],
+       ["analysis/reports/ab14_market.md", "analysis/audits/ab14_notes/"], ["C1", "C3"], advances=["STR-06"],
+       proposed_tickets=["AUD-45 market hypotheses"])
 
 # ------------------------------------------------------------------ wedge and paper
 bundle("AB-15", "Positioning closure", "wedge", [], ("2026-10-12", "2026-10-22"), "Claude (desk)", NONE,
@@ -177,10 +180,11 @@ bundle("AB-15", "Positioning closure", "wedge", [], ("2026-10-12", "2026-10-22")
        ["analysis/reports/ab15_positioning.md"], ["L1", "L2", "L3", "L4", "L5"], advances=["DOM-07"],
        proposed_tickets=["AUD-46 positioning closure"])
 
-bundle("AB-16", "Wedge decision (gate)", "wedge", ["AB-01", "AB-02", "AB-03", "AB-04", "AB-05", "AB-09", "AB-10", "AB-11", "AB-15"],
+bundle("AB-16", "Wedge decision (gate)", "wedge", ["AB-01", "AB-02", "AB-03", "AB-04", "AB-05", "AB-09", "AB-11", "AB-14", "AB-15"],
        ("2026-11-03", "2026-11-14"), "Uzair decides; Claude prepares", NONE,
        ["score each landmark criterion L1-L5 and C1-C3 with the evidence in hand; choose the paper's spine and the venue; set the Q2 build",
-        "if AB-06 has not finished, decide on its interim results"],
+        "if AB-06 has not finished, decide on its interim results",
+        "C1 from AB-14's public demand evidence (indirect) plus AB-10 interviews if any exist; the memo states which"],
        ["none (decision)"], ["decision recorded as a DEC ticket with the evidence it rests on"], ["wedge memo"],
        ["analysis/reports/ab16_wedge_decision.md"], ["L1", "L2", "L3", "L4", "L5", "C1", "C2", "C3"], advances=["DEC-01"],
        proposed_tickets=["DEC-05 wedge and venue"], uzair_actions=["decide"], approval="yes")
@@ -204,7 +208,8 @@ CRITERIA = {
           ">= 2 benchmarks. Status: format and verifier only.",
     "L5": "Theory that explains the measurements: the F1 = S x a identity and error budget, bounded harm, order dependence of conflict "
           "rules, the decision-value ceiling. Status: identity checked numerically; rest to write.",
-    "C1": "Demand evidence: practitioners name decisions where provenance and abstention matter (interviews, teardown).",
+    "C1": "Demand evidence: practitioners name decisions where provenance and abstention matter (interviews if any, teardown, "
+          "public demand evidence labelled indirect).",
     "C2": "One vertical where order knowledge plus abstention measurably beats learned graphs (RCA probe).",
     "C3": "A regulatory or standards hook that rewards the ledger's guarantees (map, venue).",
 }
@@ -223,7 +228,9 @@ for _b in B:
     if _b["id"] == "AB-07":
         _b["approval_needed"] = "approved 2026-10-12 (DEC-02)"
 
-dag = {"plan": "Audit program DAG: research landscape, commercial landscape, wedge and paper", "version": 1, "drafted": "2026-10-12",
+dag = {"plan": "Audit program DAG: research landscape, commercial landscape, wedge and paper", "version": 2, "drafted": "2026-10-12",
+       "amendments": [{"date": "2026-10-13", "record": "docs/decisions/2026-10-13_interviews_not_gating.md", "note": "AB-14 finished on 13 Oct, ahead of its plan window",
+                       "change": "AB-14 and AB-16 no longer wait on AB-10 interviews; AB-14 widened to a market map and three verticals"}],
        "status": "approved by Uzair 2026-10-12 (docs/decisions/2026-10-12_audit_dag.md)", "relation_to_q1": "runs alongside plans/q1_dag.json; BND-12's second-model part "
        "moves into AB-06; AB-07 is DEC-02 (A3); AB-16 feeds DEC-01",
        "scope": {"audit_program": sorted(t for v in CLOSES.values() for t in v), "outside_bundles": []},

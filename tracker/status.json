@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-13T19:50:06Z",
+ "verified_utc": "2026-10-13T23:02:03Z",
  "items": [
   {
    "id": "DLV-01",
@@ -102,7 +102,7 @@
    "checks": [
     {
      "ok": true,
-     "detail": "tree identity bad in 0 runs"
+     "detail": "tree identity bad in 0 runs; 1 still running"
     }
    ],
    "reproduce": "",
@@ -258,7 +258,7 @@
    "checks": [
     {
      "ok": true,
-     "detail": "tree identity bad in 0 runs"
+     "detail": "tree identity bad in 0 runs; 1 still running"
     },
     {
      "ok": true,
@@ -2183,11 +2183,11 @@
    "category": "3 Audit: Causal-Copilot",
    "title": "AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
    "kind": "task",
-   "status": "blocked",
-   "effective_status": "blocked",
-   "emoji": "🔴",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
    "level": "V3",
-   "required_level": "",
+   "required_level": "V3",
    "criterion": "Must show: per-benchmark table: order correlation, sortability, layout gain per method. Gate: two published rows reproduced per benchmark before any re-score claim",
    "evidence": [
     "analysis/reports/ab02_second_scoreboard.md",
@@ -2196,7 +2196,10 @@
     "analysis/audits/AB02_AB12_data_scouting.md",
     "analysis/ab02_bayesys.py",
     "analysis/results/ab02/bayesys.json",
-    "analysis/results/ab02/bayesys_runs.jsonl"
+    "analysis/results/ab02/bayesys_runs.jsonl",
+    "analysis/ab02_bayesys_repro.py",
+    "analysis/results/ab02/bayesys_repro.json",
+    "analysis/results/ab02/bayesys_repro_runs.jsonl"
    ],
    "pointers": [],
    "checks": [
@@ -2206,14 +2209,18 @@
     },
     {
      "ok": true,
-     "detail": "found: reproduction gate"
+     "detail": "gate_by_alpha/0.05/cells_reproduced = 16 (ge 2)"
+    },
+    {
+     "ok": true,
+     "detail": "found: Gate: passed at alpha 0.05"
     }
    ],
    "reproduce": "",
    "reopen_if": [],
    "due": "2026-10-24",
-   "blocked_by": "Uzair: results_noisyPaper.xlsx into external/bayesys (reproduction gate)",
-   "note": "Bayesys measured 13 Oct (6 networks, released vs 5 shuffled orders, PC/maxP/FCI/GES): ASIA, SPORTS, PATHFINDER are released in topological order (P3 supported); an index tie-break gains +0.04 to +0.30 there and about 0 on ALARM/PROPERTY. P4 inconclusive (conflict-rule gap on 2 of 3 ordered networks). No claim on the published numbers until two cells are reproduced. Sortability not computed (discrete data).",
+   "blocked_by": null,
+   "note": "Bayesys reproduced (16 of 31 PC-Stable/FCI cells at alpha 0.05; PC 10 of 15). P3 supported (3 of 6 networks in topological order); P4 inconclusive. Bayesys's half-credit F1 moves at most 0.03 when columns are shuffled, so the layout leak needs an index tie-break (CausalArena's forced choice) to pay. Engine channel: causal-learn GES on PROPERTY -0.07 to -0.09 on the released order. gCastle not reproduced, no claim.",
    "problems": []
   },
   {
@@ -2478,7 +2485,7 @@
    "reopen_if": [],
    "due": "2026-11-07",
    "blocked_by": "Uzair: course-staff question, then recruiting and interviews",
-   "note": "Interview kit ready. First Uzair asks course staff whether an IRB determination is needed (path a: course-internal; path b: determination before the first interview).",
+   "note": "Interview kit ready; interviews run whenever a chance arises. No longer gates AB-14 or AB-16 (decision 2026-10-13); P13 can only be decided by interviews.",
    "problems": []
   },
   {
@@ -2587,24 +2594,51 @@
   {
    "id": "AUD-45",
    "category": "3 Audit: Causal-Copilot",
-   "title": "AB-14 Market and go-to-market hypotheses for two verticals",
+   "title": "AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence",
    "kind": "task",
-   "status": "todo",
-   "effective_status": "todo",
-   "emoji": "⏳",
-   "level": "V2",
-   "required_level": "",
-   "criterion": "Must show: two one-page vertical briefs. Gate: no number without its inputs",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show: market map; three one-page vertical briefs; H1-H3 public evidence, labelled indirect. Gate: no number without its inputs",
    "evidence": [
-    "docs/market/README.md"
+    "analysis/reports/ab14_market.md",
+    "analysis/audits/ab14_notes/market_map.md",
+    "analysis/audits/ab14_notes/it_incident_rca.md",
+    "analysis/audits/ab14_notes/marketing_measurement.md",
+    "analysis/audits/ab14_notes/pharma_rwe.md",
+    "analysis/audits/ab14_notes/demand_signals.md",
+    "docs/decisions/2026-10-13_interviews_not_gating.md"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: Brief 1: IT incident RCA"
+    },
+    {
+     "ok": true,
+     "detail": "found: Brief 2: marketing"
+    },
+    {
+     "ok": true,
+     "detail": "found: Brief 3: pharma RWE"
+    },
+    {
+     "ok": true,
+     "detail": "found: The public evidence on H1-H3 is indirect"
+    },
+    {
+     "ok": true,
+     "detail": "version = 2 (eq 2)"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": "2026-11-12",
-   "blocked_by": "AUD-41",
-   "note": "Scaffolding only; waits on AB-10 interviews and uses AB-11 pricing signals.",
+   "blocked_by": null,
+   "note": "Done 13 Oct without interviews (Uzair's decision). Start in IT incident RCA as a vendor-neutral audit of AI SRE agents' root-cause claims; marketing a close second; pharma third. Obtainable (estimates): RCA $1.8-9M ARR in ~3 yrs; marketing $3-67.5M at maturity; pharma core $2.8-11M/yr. 'Causal AI' sizings span $28.9M-$59.2B. H2 best supported; H1 for provenance, not abstention; H3 by analogy only.",
    "problems": []
   },
   {
@@ -2730,7 +2764,7 @@
    "reopen_if": [],
    "due": "2026-11-14",
    "blocked_by": null,
-   "note": "Bundle AB-16: decide once the evidence is in (no date pressure).",
+   "note": "Bundle AB-16: decide once the evidence is in. Uzair, 13 Oct: auditing is the more valuable product, but reliability comes first (ledger invariants, never below data-only, bounded harm, held-out calibration) before any product surface. C1 from AB-14 (indirect) plus interviews if any.",
    "problems": []
   },
   {
@@ -5732,7 +5766,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": "Uzair's decision (DEC-03)",
-   "note": "Strengthened by BND-04: the authors' own baseline code orients undecided edges by column index on a topologically ordered release (PC F1 0.335 -> 0.396, FCI 0.322 -> 0.521 under that rule).",
+   "note": "Backed by two benchmarks (AB-01, AB-02): shuffle released columns, or score with a tie-break-invariant rule.",
    "problems": []
   },
   {
@@ -5932,17 +5966,19 @@
    "status": "open",
    "effective_status": "open",
    "emoji": "🔵",
-   "level": "V0",
+   "level": "V2",
    "required_level": "",
    "criterion": "",
-   "evidence": [],
+   "evidence": [
+    "analysis/reports/ab14_market.md"
+   ],
    "pointers": [],
    "checks": [],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "",
+   "note": "AB-14 (13 Oct): sell a vendor-neutral audit of other agents' causal claims, not a causal-AI platform; start in IT incident RCA.",
    "problems": []
   },
   {
@@ -6667,6 +6703,92 @@
    "due": "2026-12-03",
    "blocked_by": null,
    "note": "Runner: claude; Uzair submits. API spend: none.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-08",
+   "category": "12 Team and communication",
+   "title": "Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Must show (per bundle S1-S5 in the design): pages build; 0 missing numbers; 0 broken links; 0 term-order violations; no horizontal scroll at 390 px; 'pages to re-read' list works; recentering path Home -> changes -> status",
+   "evidence": [
+    "analysis/reports/site_flow_design.md",
+    "site/build.py",
+    "site/pages.py",
+    "site/terms.py",
+    "site/pagekit.py",
+    "site/registry.py",
+    "site/pgs/pg_home.py",
+    "site/pgs/pg_primer.py",
+    "site/pgs/pg_scoring.py",
+    "site/pgs/pg_space.py",
+    "site/pgs/pg_scoreboard.py",
+    "site/pgs/pg_decisions.py",
+    "site/pgs/pg_names.py",
+    "site/pgs/pg_rca.py",
+    "site/pgs/pg_theses.py",
+    "site/pgs/pg_market.py",
+    "site/pgs/pg_status.py",
+    "site/pgs/pg_changes.py",
+    "site/pgs/pg_glossary.py",
+    "site/pgs/pg_evidence.py",
+    "site/pgs/pg_about.py",
+    "tracker/snapshot.py"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: SEQUENCE = "
+    },
+    {
+     "ok": true,
+     "detail": "found: is taught later, on"
+    },
+    {
+     "ok": true,
+     "detail": "found: ## Built \\(2026-10-13\\)"
+    }
+   ],
+   "reproduce": "python tracker/snapshot.py && python site/build.py",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Built 13 Oct on the existing Pages site: Home + 11 pages in four acts + glossary, evidence index, about. The build fails on missing numbers, term-order violations, early results, broken links and unlabelled market $ figures. Phone overflow (390 px, 15 pages) checked by hand with Playwright; not yet in CI.",
+   "problems": []
+  },
+  {
+   "id": "DEC-06",
+   "category": "15 Decisions",
+   "title": "Approve the Atlas v2 page sequence (and whether the market page is public)",
+   "kind": "decision",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "Uzair's decision recorded with what it approves",
+   "evidence": [
+    "analysis/reports/site_flow_design.md",
+    "docs/decisions/2026-10-13_atlas_v2_approved.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "found: I also approve of the site structure"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Approved 13 Oct: 4 acts / 13 pages on the existing GitHub Pages site; Home leads with the research and links the market/wedge; market page public.",
    "problems": []
   }
  ]

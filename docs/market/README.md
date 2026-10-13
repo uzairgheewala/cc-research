@@ -1,3 +1,5 @@
+> **Superseded 2026-10-13.** The briefs are built: `analysis/reports/ab14_market.md` (market map, three verticals, public demand evidence). They did not wait on AB-10 (docs/decisions/2026-10-13_interviews_not_gating.md).
+
 # AB-14 market hypotheses: how the two vertical briefs will be built
 
 Ticket: AUD-45 (bundle AB-14). Scaffolding written 2026-10-12. **No market size is stated here, and none will be stated

@@ -1,7 +1,15 @@
 {
  "plan": "Audit program DAG: research landscape, commercial landscape, wedge and paper",
- "version": 1,
+ "version": 2,
  "drafted": "2026-10-12",
+ "amendments": [
+  {
+   "date": "2026-10-13",
+   "record": "docs/decisions/2026-10-13_interviews_not_gating.md",
+   "note": "AB-14 finished on 13 Oct, ahead of its plan window",
+   "change": "AB-14 and AB-16 no longer wait on AB-10 interviews; AB-14 widened to a market map and three verticals"
+  }
+ ],
  "status": "approved by Uzair 2026-10-12 (docs/decisions/2026-10-12_audit_dag.md)",
  "relation_to_q1": "runs alongside plans/q1_dag.json; BND-12's second-model part moves into AB-06; AB-07 is DEC-02 (A3); AB-16 feeds DEC-01",
  "scope": {
@@ -33,7 +41,7 @@
   "L3": "Decision value: on >= 2 benchmarks with interventions, most methods are within 0.05 of 'nothing moves' while the identifiable ceiling is >= 0.15 above the best. Status: met on CausalArena semantic and formula (12 Oct).",
   "L4": "A constructive system: never below its data-only output on held-out data, bounded harm under swapped names, and decision-value precision at stated coverage >= 0.05 above the best reproduced method with calibration error <= 0.05, on >= 2 benchmarks. Status: format and verifier only.",
   "L5": "Theory that explains the measurements: the F1 = S x a identity and error budget, bounded harm, order dependence of conflict rules, the decision-value ceiling. Status: identity checked numerically; rest to write.",
-  "C1": "Demand evidence: practitioners name decisions where provenance and abstention matter (interviews, teardown).",
+  "C1": "Demand evidence: practitioners name decisions where provenance and abstention matter (interviews if any, teardown, public demand evidence labelled indirect).",
   "C2": "One vertical where order knowledge plus abstention measurably beats learned graphs (RCA probe).",
   "C3": "A regulatory or standards hook that rewards the ledger's guarantees (map, venue)."
  },
@@ -700,7 +708,7 @@
    "title": "Market and go-to-market hypotheses",
    "track": "commercial",
    "depends_on": [
-    "AB-10",
+    "AB-11",
     "AB-13"
    ],
    "runner": "Claude (desk)",
@@ -721,7 +729,9 @@
    "approval_needed": null,
    "uzair_actions": [],
    "parts": [
-    "bottom-up estimates for two verticals (IT incident analysis, marketing measurement) from public pricing; buyer, budget line, channel; every figure labelled estimate with its inputs"
+    "market map of causal AI: segments, vendors, funding, M&A, market-size estimates and their conflicts, platform churn",
+    "bottom-up estimates for three verticals (IT incident RCA, marketing measurement, pharma RWE) from public pricing and filings; buyer, budget line, channel; every figure labelled estimate with its inputs",
+    "public demand evidence on H1-H3, labelled indirect (stands in for AB-10 until interviews exist; cannot decide P13)"
    ],
    "predictions": [
     "none"
@@ -730,13 +740,17 @@
     "no number without its inputs"
    ],
    "must_show": [
-    "two one-page vertical briefs"
+    "market map",
+    "three one-page vertical briefs",
+    "H1-H3 public evidence, labelled indirect"
    ],
    "outputs": [
-    "analysis/reports/ab14_market.md"
+    "analysis/reports/ab14_market.md",
+    "analysis/audits/ab14_notes/"
    ],
    "risks": [],
    "serves": [
+    "C1",
     "C3"
    ]
   },
@@ -798,8 +812,8 @@
     "AB-04",
     "AB-05",
     "AB-09",
-    "AB-10",
     "AB-11",
+    "AB-14",
     "AB-15"
    ],
    "runner": "Uzair decides; Claude prepares",
@@ -823,7 +837,8 @@
    ],
    "parts": [
     "score each landmark criterion L1-L5 and C1-C3 with the evidence in hand; choose the paper's spine and the venue; set the Q2 build",
-    "if AB-06 has not finished, decide on its interim results"
+    "if AB-06 has not finished, decide on its interim results",
+    "C1 from AB-14's public demand evidence (indirect) plus AB-10 interviews if any exist; the memo states which"
    ],
    "predictions": [
     "none (decision)"
