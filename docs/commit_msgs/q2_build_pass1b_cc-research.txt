@@ -1,0 +1,12 @@
+Q2 pass 1b: CI pin fix (directory digests skip __pycache__), home page and bundles board updated to the built ledger
+
+CI failure on 7b6a62d ("ERROR BLD-02: kernel/ changed since it was pinned"): tracker/verify.py's digest() hashed every
+file under a pinned directory, including kernel/__pycache__/*.pyc, which exist on the workstation and are gitignored, so
+the pin taken on the workstation could never equal CI's checkout. Fixed as a class: digest() skips __pycache__ and .pyc for
+every directory pin. Repinned BLD-02 (kernel/) and BLD-10 (tracker/verify.py); self-test 45/45; ci_check 0 errors;
+verify 0 problems; trace check 0 errors, 0 warnings.
+
+Site (jobs/patches/s18_site_q2_narrative.py): the home page gains "What the build showed (Q2, first pass)" (four findings
+through the registry) and a current "Where this is heading"; the Level 4 bundles board's footer says the ledger exists.
+TEAM-08 repinned. Snapshot 1c8e000ab6d3; 15 pages, 0 errors, 0 warnings; index re-read and marked reviewed. The deployed
+site already carried snapshot 33429a222bfd (status and theses pages current); the narrative pages lagged until this pass.

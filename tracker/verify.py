@@ -55,7 +55,8 @@ def digest(ev):
     if any(ch in raw for ch in "*?["):
         files = sorted(glob.glob(str(target)))
     elif target.is_dir():
-        files = sorted(str(p) for p in target.rglob("*") if p.is_file())
+        # generated caches are not evidence and are not in git: a pin taken on a machine with __pycache__ must equal CI's
+        files = sorted(str(p) for p in target.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
         if len(files) > 2000:                      # large trees: hash names and sizes only
             h = hashlib.sha256()
             for f in files:

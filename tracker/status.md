@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-15T14:32:05Z)
+# Tracker status (verified 2026-10-15T17:25:04Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 

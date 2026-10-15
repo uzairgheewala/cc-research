@@ -35,6 +35,23 @@ findings = ul([
     f"scores {n('ab12.c.ac3')} top-3 accuracy against {n('ab12.b.ac3')} for a learned graph. {link('rca', 'Page 7')}",
 ])
 
+build = ul([
+    f"<b>The ledger never falls below its data, held out.</b> Against plain PC with maxP it gains {n('q2.erf.sem.f1', '{:+.3f}')} "
+    f"(semantic) and {n('q2.erf.for.f1', '{:+.3f}')} (formula) directed F1 and its committed claims are more often right "
+    f"({n('q2.erf.sem.dv', '{:+.3f}')} / {n('q2.erf.for.dv', '{:+.3f}')} DV-1 precision); it ties GES on F1 "
+    f"({n('q2.ges.sem.f1', '{:+.3f}')} / {n('q2.ges.for.f1', '{:+.3f}')}). {link('status', 'Page 10')}",
+    f"<b>Provenance holds on every held-out file.</b> Neutral names leave the ledger unchanged on {n('q2.b3.sem.neutral')}/{t('q2.b3.sem.files')} "
+    f"and {n('q2.b3.for.neutral')}/{t('q2.b3.for.files')} files; wrong names cost at most the proven bound on every file; every claim "
+    f"re-derives from its evidence. Real names add {n('q2.b3.sem.gain', '{:+.3f}')} / {n('q2.b3.for.gain', '{:+.3f}')}, below the bar of 0.03. "
+    f"{link('theses', 'Page 8')}",
+    f"<b>Calibrated confidence beats raw bootstrap shares.</b> Calibration error {n('q2.b4.sem.ece')} / {n('q2.b4.for.ece')} against "
+    f"{n('q2.b4.sem.raw')} / {n('q2.b4.for.raw')} raw; precision of the half-coverage view {n('q2.b4.sem.prec')} / {n('q2.b4.for.prec')}. "
+    f"The 0.80 and 0.05 bars are cleared on formula and missed on semantic.",
+    f"<b>Root cause analysis runs through the ledger.</b> Declared topology as knowledge reproduces the audit's number exactly: "
+    f"AC@3 {n('q2.b5.ac3')} at coverage {n('q2.b5.cov')}, against {n('q2.b5.learned')} for the learned graph alone; {n('q2.b5.answered')} "
+    f"issues keep the interval's lower end at {n('q2.b5.ac3.lo')}. {link('rca', 'Page 7')}",
+])
+
 latest = (SNAP.get("changes") or [{}])[0]
 latest_html = (box(f'<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #1D5C99">'
                    f'Latest digest · {esc((latest.get("posted_utc") or "")[:10])}</span>'
@@ -50,13 +67,15 @@ BODY = "\n".join([
     paths,
     H2("What the audits found"),
     findings,
+    H2("What the build showed (Q2, first pass)"),
+    build,
     H2("Where this is heading"),
     box(f'<p class="prose" style="margin: 0">The evidence points to a product: an independent audit of the causal claims other '
         f'people\'s AI agents make, starting with incident root cause analysis. The desk research on that market is on '
-        f'{link("market", "page 9")}. The build order is deliberate: the claim ledger is made reliable first (its invariants, '
-        f'never below its data, bounded harm from wrong knowledge, calibration measured on held-out data) and only then is '
-        f'anything built on top. {link("theses", "Page 8")} has the claims and the plan. The audit chapter closed on 14 Oct with '
-        f'that decision (DEC-05): keep every measurement result, and build the claim ledger in gated steps, the checker for '
-        f'other agents\' claims last.</p>', tone="blue"),
+        f'{link("market", "page 9")}. The claim ledger is now built and tested in gated steps: of the seven landmarks set in advance, the '
+        f'floors, provenance and the physical-truth row are met; precision at half coverage, calibration, accuracy above GES and '
+        f'root-cause accuracy at 0.90 are measured and not yet met ({t("q2.paper.met")} of 5 paper constraints, {t("q2.wedge.met")} of 5 '
+        f'for the product). {link("status", "Page 10")} has the table; {link("theses", "Page 8")} the claims. The next step is '
+        f'choosing which landmark a second version of the ledger chases, each under its own pre-registration.</p>', tone="blue"),
     latest_html,
 ])

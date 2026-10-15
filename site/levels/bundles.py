@@ -209,8 +209,10 @@ body = "\n".join([
     legend, host,
     f'<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">{detail}{queue}</div>',
     audit_intro, audit_host,
-    footer("%d of %d Q1 bundles and %d of %d audit bundles are done. The audits that remain wait on live runs (agent probes, the field audit), one download (Bayesys) and, when a chance arises, interviews." % (sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "done" for b in AB), len(AB)),
-           "finish the live audits, then the wedge decision (AB-16): which results carry the paper, and whether the ledger kernel becomes a bundle so the G2 checkpoint tests the thesis cell.",
+    footer("%d of %d Q1 bundles and %d of %d audit bundles are done; the audit chapter closed on 14 Oct (DEC-05). The Q2 build, six bundles B0-B5, "
+           "was built and read held out on 15 Oct: the ledger kernel now exists and holds its invariants (status page)." % (
+               sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "done" for b in AB), len(AB)),
+           "choose which of the landmarks still open (accuracy above GES, semantic calibration, root-cause accuracy at 0.90) a second kernel version chases.",
            "Stages.dc.html", "Zoom into one run"),
 ])
 
