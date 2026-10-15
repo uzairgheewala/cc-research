@@ -19,7 +19,7 @@ What it does
        summary.json  calls, tokens, estimated USD at gpt-4o list prices ($2.50 / $10 per 1M), wall time, failure point,
                      directed F1 (random rule, per-file seed crc32(file name)) against the true graph
        agent_stdout.log  everything the agent printed
-Exit codes: 0 ok, 3 cap reached (state recorded; rerun with a higher cap resumes by replaying recorded answers),
+Exit codes: 0 ok, 5 provider quota exhausted (resumable; v2.2), 3 cap reached (state recorded; rerun with a higher cap resumes by replaying recorded answers),
 4 agent failed (failure point recorded), 2 setup error (e.g. no key for a live run).
 
 Live mode reads the key like names_runner.py: a real OPENAI_API_KEY environment variable wins, else python-dotenv's
@@ -29,6 +29,7 @@ $PROBES_SRC/<repo dir> (default $PROBES_ROOT/src); both are put first on sys.pat
 """
 import argparse
 import contextlib
+import errno
 import hashlib
 import importlib.util
 import json
@@ -139,6 +140,18 @@ def sha_file(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
+def write_text_retry(path, text):
+    """Write a file, retrying a transient OSError EIO (seen on the Windows Docker bind mount, 14 Oct 00:19-00:25 UTC)."""
+    for attempt in range(6):
+        try:
+            Path(path).write_text(text, encoding="utf-8")
+            return
+        except OSError as e:
+            if e.errno != errno.EIO or attempt == 5:
+                raise
+            time.sleep(2 * (attempt + 1))
+
+
 def main(argv=None):
     a = parse_args(argv)
     t_start = time.time()
@@ -206,6 +219,9 @@ def main(argv=None):
         except PL.CapReached as e:
             status = "aborted_cap"
             fail = {"type": "CapReached", "message": e.reason, "state": e.state}
+        except PL.QuotaExhausted as e:
+            status = "aborted_quota"
+            fail = {"type": "QuotaExhausted", "message": e.reason, "state": e.state}
         except KeyboardInterrupt:
             status = "interrupted"
             fail = {"type": "KeyboardInterrupt"}
@@ -247,7 +263,7 @@ def main(argv=None):
         result["agent_notes"] = res.get("notes", {})
         scores = PIO.score_graph(directed, undecided, truth, d, seed)
         result["scores"] = scores
-    (out / "result.json").write_text(json.dumps(result, indent=1, default=str), encoding="utf-8")
+    write_text_retry(out / "result.json", json.dumps(result, indent=1, default=str))
 
     st = llm.state()
     summary = {
@@ -261,6 +277,7 @@ def main(argv=None):
         "completion_tokens": st["completion_tokens"],
         "est_usd_gpt4o_list": round(st["usd_at_gpt4o_list"], 6),
         "est_usd_at_served_prices": round(st["usd_at_served_prices"], 6),
+        "est_usd_new_at_served_prices": round(st["usd_new_at_served_prices"], 6),
         "price_basis": "gpt-4o list $2.50 / $10.00 per 1M input / output tokens; served-price column uses the per-model "
                        "table in probe_llm.PRICES (gpt-4o-mini $0.15 / $0.60)",
         "token_counter": st["token_counter"], "usage_sources": st["usage_sources"], "served_models": st["served_models"],
@@ -279,14 +296,14 @@ def main(argv=None):
                                                          HARNESS / "probe_io.py", HARNESS / "agents" / (a.agent + ".py")]},
         "python": sys.version.split()[0],
     }
-    (out / "summary.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
+    write_text_retry(out / "summary.json", json.dumps(summary, indent=1, default=str))
     print("[probe] %s: %d calls (%d new, %d replayed), tokens %d + %d, est. $%.4f at gpt-4o list, %.1fs%s"
           % (status, st["calls"], st["new_api_calls"], st["replayed_calls"], st["prompt_tokens"],
              st["completion_tokens"], st["usd_at_gpt4o_list"], summary["wall_seconds"],
              (", F1 %.3f" % scores["random"]["f1"]) if scores else ""), flush=True)
     if fail:
         print("[probe] failure point: %s" % json.dumps(fail, default=str)[:600], flush=True)
-    return {"ok": 0, "aborted_cap": 3, "failed": 4, "interrupted": 4}[status]
+    return {"ok": 0, "aborted_cap": 3, "failed": 4, "interrupted": 4, "aborted_quota": 5}[status]
 
 
 if __name__ == "__main__":

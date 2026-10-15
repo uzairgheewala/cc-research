@@ -9,7 +9,7 @@
   "model": "gpt-4o-mini",
   "agent_opts": {},
   "max_calls": 1800,
-  "max_usd": 0.41,
+  "max_usd": 0.46,
   "out": "/research/runs/ab05/matmcd/",
   "out_stub": "/research/runs/ab05/stub_plan/matmcd/"
  },
@@ -35,5 +35,13 @@
  "budget_check": {
   "sum_max_usd_all_four": 3.55,
   "limit": 4.0
- }
+ },
+ "cap_history": [
+  {
+   "date": "2026-10-14",
+   "max_usd_before": 0.41,
+   "max_usd_after": 0.46,
+   "why": "the 13 Oct live run stopped on this cap, not on an agent failure; analysis/results/ab05/live_calibration.json: full run $0.42 (69 yes/no calls left); rerunning into the same folder replays the paid answers free"
+  }
+ ]
 }

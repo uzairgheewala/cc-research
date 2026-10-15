@@ -1,0 +1,616 @@
+{
+ "plan": "Q2 build DAG: external requirements, deliverables and ladders",
+ "version": 2,
+ "drafted": "2026-10-14",
+ "amendments": [
+  {
+   "date": "2026-10-15",
+   "what": [
+    "outputs: paths where each bundle was built (engines/, score/, supplier/, kernel/, ledger/schema02.py, ledger/verify02.py, calibration/, audit/, analysis/results/q2_b<k>/, analysis/reports/q2_b<k>_*.md)",
+    "proposed tickets issued: TGT-18 (B4), TGT-19 (B3; route A measured in B1), TGT-20 and BLD-15 (B5); EXT-07 (causal-learn note) issued as an outside decision for Uzair",
+    "B3: knowledge from AB-07's recorded gpt-4o replies replayed through the supplier contract (plans/b3_prereg.json); no live run was needed. A live rerun stays optional: it would add finish_reason (truncation) and a second date"
+   ],
+   "why": "record what was built; no gate, threshold or split changed"
+  }
+ ],
+ "status": "approved by Uzair 2026-10-15 (docs/decisions/2026-10-15_q2_dag_approved.md); B0-B5 built and read held-out 2026-10-15",
+ "relation_to_prereg": "bundle identities and gates are those of plans/q2_build_prereg.json (hashed); this file adds deliverables, rungs and ticket closures and changes no gate",
+ "design": "docs/design/q2_requirements_and_ladders.md",
+ "external_requirements": {
+  "ER-F": {
+   "title": "Floors: data-only ledger never below plain PC maxP",
+   "threshold": "F1 and DV-1 paired mean diff >= -0.01 on held-out, both families; refuted at <= -0.05",
+   "known_at": "B1",
+   "serves": [
+    "BLD-02",
+    "CAP-05",
+    "CAP-06",
+    "CAP-11",
+    "TGT-09"
+   ]
+  },
+  "ER-1": {
+   "title": "Provenance and invariance: every direction sourced; column order changes nothing; names orient only open pairs; bounded harm",
+   "threshold": "I1 zero change; neutral == D; skeleton identical across arms; swapped loss within T3 bound in 100% of held-out files; V1-V8",
+   "known_at": "B3",
+   "serves": [
+    "BLD-04",
+    "BLD-14",
+    "CAP-04",
+    "CAP-05",
+    "CAP-09",
+    "TGT-10",
+    "TGT-11"
+   ]
+  },
+  "ER-2": {
+   "title": "Decision value: committed claims right four times in five at half coverage",
+   "threshold": "DV-1 precision > 0.80 at coverage >= 0.50, both families, held-out",
+   "known_at": "B4",
+   "serves": [
+    "BLD-05",
+    "CAP-08",
+    "TGT-18"
+   ]
+  },
+  "ER-3": {
+   "title": "Calibration",
+   "threshold": "ECE <= 0.05 within family; realised >= claimed - 0.03 at c/g = 1, 2, 4",
+   "known_at": "B4",
+   "serves": [
+    "BLD-05",
+    "CAP-07",
+    "TGT-12"
+   ]
+  },
+  "ER-4a": {
+   "title": "One accuracy landmark",
+   "threshold": "route A: data-only F1 above GES on one family under controls; route B: tiers lift F1 > 0.03 over B1",
+   "known_at": "B1 or B3",
+   "serves": [
+    "CAP-01",
+    "CAP-02",
+    "CAP-04",
+    "TGT-19"
+   ]
+  },
+  "ER-4b": {
+   "title": "RCA through the ledger",
+   "threshold": "AC@3 >= 0.90 at stated coverage on the PetShop held-out split",
+   "known_at": "B5",
+   "serves": [
+    "BLD-15",
+    "TGT-20",
+    "CAP-09"
+   ]
+  },
+  "ER-C": {
+   "title": "Physical truth (Causal Chambers)",
+   "threshold": "report only: DV-1 precision within 0.03 of GES (0.916); agreement with real interventions against the true DAG's 0.928",
+   "known_at": "B2",
+   "serves": [
+    "BLD-03",
+    "CAP-03",
+    "TGT-06"
+   ]
+  }
+ },
+ "scope": {
+  "build": [
+   "BLD-02",
+   "BLD-03",
+   "BLD-04",
+   "BLD-05",
+   "BLD-14",
+   "BLD-15",
+   "CAP-03",
+   "CAP-04",
+   "CAP-05",
+   "CAP-07",
+   "CAP-08",
+   "CAP-09",
+   "CAP-11",
+   "TGT-06",
+   "TGT-10",
+   "TGT-11",
+   "TGT-12",
+   "TGT-18",
+   "TGT-19",
+   "TGT-20"
+  ],
+  "outside_bundles": [
+   "EXT-07"
+  ]
+ },
+ "scope_note": "proposed tickets (top-level 'proposed_tickets') are issued on approval and then move into scope.build and the closing bundle's 'closes'",
+ "landmark_record": "docs/decisions/2026-10-14_q2_landmarks.md",
+ "milestones": [
+  {
+   "id": "QM-1",
+   "title": "Floors known",
+   "date": "2026-11-07",
+   "requires": [
+    "B1"
+   ]
+  },
+  {
+   "id": "QM-2",
+   "title": "Physical-truth row known",
+   "date": "2026-11-17",
+   "requires": [
+    "B2"
+   ]
+  },
+  {
+   "id": "QM-3",
+   "title": "Provenance known",
+   "date": "2026-11-24",
+   "requires": [
+    "B3"
+   ]
+  },
+  {
+   "id": "QM-4",
+   "title": "Paper constraints all known",
+   "date": "2026-12-01",
+   "requires": [
+    "B4"
+   ]
+  },
+  {
+   "id": "QM-5",
+   "title": "Wedge constraint known",
+   "date": "2026-12-15",
+   "requires": [
+    "B5"
+   ]
+  }
+ ],
+ "bundles": [
+  {
+   "id": "B0",
+   "title": "Engines, guards and the scorer",
+   "track": "build",
+   "depends_on": [],
+   "runner": "claude",
+   "window": [
+    "2026-10-15",
+    "2026-10-24"
+   ],
+   "closes": [
+    "CAP-05",
+    "CAP-11"
+   ],
+   "advances": [
+    "CAP-10",
+    "EVL-03"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "engine manifest and wrappers: PC maxP, GES, GIES; pinned, single-threaded, typed failure",
+    "oracle and permutation CI on the wrappers",
+    "supplier contract library with the 7-case fault suite",
+    "scorer v2 with paired bootstrap intervals",
+    "baseline table on the test splits"
+   ],
+   "deliverables": [
+    "D0.1",
+    "D0.2",
+    "D0.3",
+    "D0.4",
+    "D0.5",
+    "DX.1"
+   ],
+   "rungs": [
+    "ER-F R0",
+    "ER-1 R0",
+    "ER-2 R0",
+    "ER-3 R0"
+   ],
+   "predictions": [],
+   "gates": [
+    "B0.1",
+    "B0.2"
+   ],
+   "must_show": [
+    "720/720 oracle and 120/120 order-invariant on the wrappers",
+    "fault suite: 7 cases complete with counts",
+    "scorer reproduces AB-01 and AB-04 numbers to 0.001",
+    "baseline table (PC maxP, GES, GIES D+I, empty, ceiling) on the test splits"
+   ],
+   "outputs": [
+    "engines/",
+    "score/",
+    "supplier/",
+    "tests/test_q2_*.py",
+    "analysis/results/q2_b0/",
+    "analysis/reports/q2_b0_engines_guards.md"
+   ],
+   "risks": [],
+   "serves": [
+    "ER-F",
+    "ER-1",
+    "ER-2",
+    "ER-3",
+    "ER-4a",
+    "ER-C"
+   ]
+  },
+  {
+   "id": "B1",
+   "title": "Data-only ledger",
+   "track": "build",
+   "depends_on": [
+    "B0"
+   ],
+   "runner": "claude",
+   "window": [
+    "2026-10-22",
+    "2026-11-07"
+   ],
+   "closes": [
+    "BLD-02",
+    "BLD-14",
+    "CAP-09",
+    "TGT-10"
+   ],
+   "advances": [
+    "TGT-01",
+    "TGT-03"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "variable identity and canonical hash",
+    "K1 evidence records from PC and GES",
+    "K2-K4 resolution with licensed_by; two-engine combination rule pre-registered with its dev numbers",
+    "ledger v0.2 fields and verifier",
+    "K6 views under the permutation test",
+    "K7 re-derivation and mutation tests",
+    "held-out read, once"
+   ],
+   "deliverables": [
+    "D1.1",
+    "D1.2",
+    "D1.3",
+    "D1.4",
+    "D1.5",
+    "D1.6",
+    "D1.7"
+   ],
+   "rungs": [
+    "ER-F R1-R5",
+    "ER-2 R1",
+    "ER-4a route A"
+   ],
+   "predictions": [
+    "Q-B1a: the PC-only regime equals PC maxP on every dev file (refuted: any difference)",
+    "Q-B1b: the chosen combination rule clears GES on semantic by >= 0.01 on dev (refuted: below GES on both families)"
+   ],
+   "gates": [
+    "B1.1",
+    "B1.2",
+    "B1.3"
+   ],
+   "must_show": [
+    "I1-I4, I7 on 100% of dev files",
+    "PC-only regime reproduces PC maxP's CPDAG exactly",
+    "combination rule and its dev numbers, hashed before the held-out read",
+    "held-out F1 and DV-1 paired against PC maxP and GES"
+   ],
+   "outputs": [
+    "kernel/",
+    "ledger/schema02.py",
+    "ledger/verify02.py",
+    "plans/b1_prereg.json",
+    "plans/b1_prereg_amendment_1.json",
+    "plans/b1_freeze.json",
+    "analysis/results/q2_b1/",
+    "analysis/reports/q2_b1_data_only_ledger.md"
+   ],
+   "risks": [
+    "Q1 rule tuned on dev",
+    "Q2 silent engine fallback"
+   ],
+   "serves": [
+    "ER-F",
+    "ER-4a",
+    "ER-2",
+    "ER-1"
+   ]
+  },
+  {
+   "id": "B2",
+   "title": "Interventions and physical truth",
+   "track": "build",
+   "depends_on": [
+    "B1"
+   ],
+   "runner": "claude",
+   "window": [
+    "2026-11-03",
+    "2026-11-17"
+   ],
+   "closes": [
+    "BLD-03",
+    "CAP-03",
+    "TGT-06"
+   ],
+   "advances": [
+    "TGT-15",
+    "TGT-02",
+    "TGT-04"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "intervention_shift evidence and i-essential orientation; priority I6",
+    "constructed conflict suite",
+    "Chambers adapter with the Welch agreement check",
+    "B2 report"
+   ],
+   "deliverables": [
+    "D2.1",
+    "D2.2",
+    "D2.3",
+    "D2.4"
+   ],
+   "rungs": [
+    "ER-C R0-R3",
+    "ER-2 R4"
+   ],
+   "predictions": [],
+   "gates": [
+    "B2.1",
+    "B2.2"
+   ],
+   "must_show": [
+    "conflicts: intervention wins 100%, recorded",
+    "DV-1 on D+I test files and Chambers, paired against B1",
+    "Chambers: DV-1 and agreement for kernel, GES, PC maxP, true DAG, empty graph, with intervals"
+   ],
+   "outputs": [
+    "kernel/interventions.py",
+    "kernel/run_b2.py",
+    "plans/b2_prereg.json",
+    "plans/b2_freeze.json",
+    "analysis/results/q2_b2/",
+    "analysis/reports/q2_b2_interventions.md"
+   ],
+   "risks": [
+    "Q5 one Chambers file"
+   ],
+   "serves": [
+    "ER-C",
+    "ER-2"
+   ]
+  },
+  {
+   "id": "B3",
+   "title": "Knowledge as tiers",
+   "track": "build",
+   "depends_on": [
+    "B1"
+   ],
+   "runner": "claude",
+   "window": [
+    "2026-11-03",
+    "2026-11-24"
+   ],
+   "closes": [
+    "BLD-04",
+    "CAP-04",
+    "TGT-11",
+    "TGT-19"
+   ],
+   "advances": [
+    "TGT-07"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "tier supplier on the supplier contract: 3 phrasings, consensus, per-phrasing records",
+    "orient-only application with the per-file T3 bound",
+    "name-arm harness for the ledger",
+    "pre-registration of prompts and thresholds",
+    "live held-out run and report"
+   ],
+   "deliverables": [
+    "D3.1",
+    "D3.2",
+    "D3.3",
+    "D3.4",
+    "D3.5"
+   ],
+   "rungs": [
+    "ER-1 R1-R6",
+    "ER-4a route B"
+   ],
+   "predictions": [
+    "Q-B3a: real-arm gain over B1 is between 0.00 and 0.03 on both families (refuted: > 0.03, which would meet ER-4a route B; or < -0.01)"
+   ],
+   "gates": [
+    "B3.1",
+    "B3.2",
+    "B3.3"
+   ],
+   "must_show": [
+    "skeleton identical to D in every arm; neutral == D byte-identical",
+    "swapped loss within the T3 bound in 100% of files",
+    "real-arm F1 against B1 with intervals (the gain)",
+    "supplier failure counts"
+   ],
+   "outputs": [
+    "kernel/knowledge.py",
+    "kernel/run_b3.py",
+    "supplier/tiers.py",
+    "plans/b3_prereg.json",
+    "plans/b3_freeze.json",
+    "analysis/results/q2_b3/",
+    "analysis/reports/q2_b3_knowledge_tiers.md"
+   ],
+   "risks": [
+    "Z3 consensus hides disagreement",
+    "Z7 caps"
+   ],
+   "serves": [
+    "ER-1",
+    "ER-4a"
+   ]
+  },
+  {
+   "id": "B4",
+   "title": "Confidence and abstention",
+   "track": "build",
+   "depends_on": [
+    "B2",
+    "B3"
+   ],
+   "runner": "claude",
+   "window": [
+    "2026-11-10",
+    "2026-12-01"
+   ],
+   "closes": [
+    "BLD-05",
+    "CAP-07",
+    "CAP-08",
+    "TGT-12",
+    "TGT-18"
+   ],
+   "advances": [
+    "RQ-08",
+    "CAP-15"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "K5 resampled reruns: replicate agreement per claim",
+    "isotonic calibration map fitted on dev, cross-validated by scenario, frozen and hashed",
+    "selective view at c/g with the usefulness threshold per query",
+    "B4 report"
+   ],
+   "deliverables": [
+    "D4.1",
+    "D4.2",
+    "D4.3",
+    "D4.4"
+   ],
+   "rungs": [
+    "ER-2 R2-R5",
+    "ER-3 R1-R4"
+   ],
+   "predictions": [
+    "Q-B4a: the top-50%-coverage selective view is > 0.78 precise on dev (refuted: < 0.72)",
+    "Q-B4b: calibrated ECE on dev folds <= 0.05 (refuted: > 0.08)"
+   ],
+   "gates": [
+    "B4.1",
+    "B4.2"
+   ],
+   "must_show": [
+    "reliability diagram per family, raw and calibrated",
+    "risk-coverage curves",
+    "claimed vs realised precision at c/g = 1, 2, 4",
+    "DV-1 precision at coverage >= 0.50 with intervals"
+   ],
+   "outputs": [
+    "kernel/confidence.py",
+    "kernel/run_b4.py",
+    "calibration/",
+    "plans/b4_prereg.json",
+    "plans/b4_freeze.json",
+    "analysis/results/q2_b4/",
+    "analysis/reports/q2_b4_confidence.md"
+   ],
+   "risks": [
+    "Q7 cross-family quoting"
+   ],
+   "serves": [
+    "ER-2",
+    "ER-3"
+   ]
+  },
+  {
+   "id": "B5",
+   "title": "Adapter and RCA",
+   "track": "build",
+   "depends_on": [
+    "B4"
+   ],
+   "runner": "claude",
+   "window": [
+    "2026-11-24",
+    "2026-12-15"
+   ],
+   "closes": [
+    "BLD-15",
+    "TGT-20"
+   ],
+   "advances": [
+    "AUD-41",
+    "RQ-05"
+   ],
+   "proposed_tickets": [],
+   "llm_cost": "none",
+   "approval_needed": false,
+   "uzair_actions": [],
+   "parts": [
+    "adapters for five agents' outputs into typed claims; violation classes",
+    "PetShop adapter: declared topology as knowledge; RCA view with abstention; topology-gap experiment",
+    "B5 report"
+   ],
+   "deliverables": [
+    "D5.1",
+    "D5.2",
+    "D5.3"
+   ],
+   "rungs": [
+    "ER-4b R0-R3"
+   ],
+   "predictions": [],
+   "gates": [
+    "B5.1",
+    "B5.2"
+   ],
+   "must_show": [
+    "every flagged violation traced to a claim and a source on the AB-06 outputs",
+    "AC@3 at coverage on the PetShop held-out split against declared-only and learned-only rows",
+    "gap curve at 10% and 25% withheld (sensitivity)"
+   ],
+   "outputs": [
+    "audit/",
+    "plans/b5_prereg.json",
+    "plans/b5_freeze.json",
+    "analysis/results/q2_b5/",
+    "analysis/reports/q2_b5_audit_adapter_rca.md"
+   ],
+   "risks": [
+    "Z6 adapter provenance",
+    "Q6 artificial gaps"
+   ],
+   "serves": [
+    "ER-4b"
+   ]
+  }
+ ],
+ "proposed_tickets": [],
+ "issued_tickets": {
+  "TGT-18": "B4",
+  "TGT-19": "B3",
+  "TGT-20": "B5",
+  "BLD-15": "B5",
+  "EXT-07": "outside (decision for Uzair)"
+ }
+}

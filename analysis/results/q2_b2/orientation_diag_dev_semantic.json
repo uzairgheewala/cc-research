@@ -1,0 +1,967 @@
+{
+ "family": "semantic",
+ "split": "dev",
+ "rule": "C3",
+ "files": 125,
+ "failures": 0,
+ "totals": {
+  "oriented:ancestral": 61,
+  "oriented:anti_ancestral": 2,
+  "oriented:edge_reversed": 3,
+  "oriented:edge_right": 342,
+  "oriented:unrelated": 4,
+  "propagated:ancestral": 4,
+  "propagated:anti_ancestral": 6,
+  "propagated:edge_reversed": 7,
+  "propagated:edge_right": 16,
+  "propagated:unrelated": 11
+ },
+ "totals_on_jittered_files": {
+  "oriented:ancestral": 8,
+  "oriented:edge_right": 74,
+  "propagated:ancestral": 2,
+  "propagated:anti_ancestral": 2,
+  "propagated:edge_reversed": 1,
+  "propagated:edge_right": 5,
+  "propagated:unrelated": 3
+ },
+ "jittered_files": 18,
+ "rows": [
+  {
+   "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 6
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 7,
+    "propagated:unrelated": 1,
+    "propagated:anti_ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 6,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 6,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 5
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_patch_propagation_dependency_exploit__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "propagated:edge_right": 1,
+    "propagated:edge_reversed": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_cybersecurity_and_it_operations_phishing_subject_social_graph_click__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:ancestral": 2,
+    "oriented:edge_right": 6,
+    "oriented:unrelated": 1,
+    "propagated:ancestral": 1,
+    "propagated:edge_right": 1,
+    "propagated:anti_ancestral": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 5,
+    "oriented:ancestral": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1,
+    "oriented:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_school_start_time_sleep_attendance__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:ancestral": 2,
+    "oriented:edge_right": 5,
+    "propagated:edge_right": 1,
+    "propagated:anti_ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_textbook_cost_course_load__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_textbook_cost_course_load__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_textbook_cost_course_load__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_textbook_cost_course_load__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_education_textbook_cost_course_load__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:ancestral": 2,
+    "oriented:edge_right": 3,
+    "propagated:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1,
+    "propagated:ancestral": 1,
+    "propagated:edge_reversed": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_mortgage_prepayment_interest_rate_shock__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 2,
+    "oriented:edge_reversed": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_finance_and_credit_payday_calendar_overdraft_incidence__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_government_services_and_policy_implementation_tax_filing_reminder_form_complexity__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_int__rep000.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_int__rep001.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_int__rep002.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_int__rep003.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_int__rep004.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_operating_room_temperature_wound_healing__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 6,
+    "propagated:edge_right": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 6
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 6,
+    "propagated:edge_right": 1,
+    "propagated:unrelated": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 6
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_healthcare_delivery_sleep_apnea_device_pressure_adherence__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 6,
+    "propagated:ancestral": 1,
+    "propagated:edge_right": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1,
+    "propagated:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:anti_ancestral": 1,
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_reversed": 1,
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:anti_ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_int__rep003.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_housing_and_real_estate_rent_increase_household_crowding__semantic_obs_int__rep004.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "propagated:edge_right": 1,
+    "propagated:unrelated": 1,
+    "propagated:edge_reversed": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "propagated:edge_reversed": 1,
+    "propagated:unrelated": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "propagated:edge_reversed": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 5,
+    "oriented:ancestral": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:ancestral": 1,
+    "oriented:edge_right": 5,
+    "propagated:ancestral": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "oriented:ancestral": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 2
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 5,
+    "oriented:ancestral": 2
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:ancestral": 2,
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:ancestral": 1,
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_manufacturing_tool_wear_surface_roughness__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 1,
+    "propagated:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:edge_reversed": 1,
+    "oriented:ancestral": 1,
+    "propagated:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wastewater_pathogen_rainfall_dilution__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "propagated:unrelated": 1,
+    "propagated:anti_ancestral": 1,
+    "propagated:edge_right": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 4,
+    "propagated:edge_reversed": 1,
+    "propagated:unrelated": 1,
+    "propagated:anti_ancestral": 1,
+    "propagated:edge_right": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 5,
+    "oriented:ancestral": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_public_health_wildfire_smoke_shelter_behavior__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_int__rep000.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_int__rep001.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_int__rep002.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_int__rep003.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_int__rep004.npz",
+   "classes": {},
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_int__rep000.npz",
+   "classes": {},
+   "jittered": true
+  },
+  {
+   "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 1
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "propagated:edge_right": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_urban_transportation_traffic_signal_offset_corridor_delay__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": true
+  },
+  {
+   "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 4
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 2,
+    "oriented:ancestral": 3
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:edge_right": 3,
+    "oriented:unrelated": 1,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_int__rep000.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_int__rep001.npz",
+   "classes": {
+    "oriented:ancestral": 1,
+    "oriented:edge_right": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_int__rep002.npz",
+   "classes": {
+    "oriented:edge_right": 1,
+    "oriented:ancestral": 1
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_int__rep003.npz",
+   "classes": {
+    "oriented:ancestral": 2
+   },
+   "jittered": false
+  },
+  {
+   "file": "semantic_water_and_sanitation_pipe_pressure_transient_leak_flow__semantic_obs_int__rep004.npz",
+   "classes": {
+    "oriented:ancestral": 2
+   },
+   "jittered": false
+  }
+ ]
+}

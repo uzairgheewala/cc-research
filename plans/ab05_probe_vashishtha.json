@@ -11,7 +11,7 @@
    "subgraph_model": "gpt-4o-mini"
   },
   "max_calls": 3501,
-  "max_usd": 1.27,
+  "max_usd": 2.1,
   "out": "/research/runs/ab05/vashishtha/",
   "out_stub": "/research/runs/ab05/stub_plan/vashishtha/"
  },
@@ -37,5 +37,13 @@
  "budget_check": {
   "sum_max_usd_all_four": 3.55,
   "limit": 4.0
- }
+ },
+ "cap_history": [
+  {
+   "date": "2026-10-14",
+   "max_usd_before": 1.27,
+   "max_usd_after": 2.1,
+   "why": "the 13 Oct live run stopped on this cap, not on an agent failure; analysis/results/ab05/live_calibration.json: full run $1.90 (53 gpt-4o tie-breaker calls left); rerunning into the same folder replays the paid answers free"
+  }
+ ]
 }

@@ -1,0 +1,141 @@
+{
+ "tickets": [
+  "BLD-02",
+  "EVL-03"
+ ],
+ "rule": "directed F1 expectation rule (per-file seed); DV-1 pooled over the files each row finished",
+ "families": {
+  "semantic": {
+   "dev": {
+    "PC maxP (plain)": {
+     "files": 105,
+     "f1": 0.4574207680740668,
+     "dv1_precision": 0.7263222632226323,
+     "dv1_coverage": 0.9366359447004609
+    },
+    "GES (BIC)": {
+     "files": 105,
+     "f1": 0.534315520167476,
+     "dv1_precision": 0.7635682340142632,
+     "dv1_coverage": 0.9531105990783411
+    },
+    "GIES with targets (D+I)": {
+     "files": 125,
+     "f1": 0.5475558304459185,
+     "dv1_precision": 0.7648068669527897,
+     "dv1_coverage": 1.0
+    },
+    "empty graph": {
+     "files": 125,
+     "f1": 0.0,
+     "dv1_precision": 0.6523605150214592,
+     "dv1_coverage": 1.0
+    },
+    "true CPDAG (ceiling)": {
+     "files": 125,
+     "f1": 0.9609137972624551,
+     "dv1_precision": 1.0,
+     "dv1_coverage": 0.9289461134954697
+    }
+   },
+   "test": {
+    "PC maxP (plain)": {
+     "files": 121,
+     "f1": 0.46937592743599693,
+     "dv1_precision": 0.699808592088473,
+     "dv1_coverage": 0.9391790672126236
+    },
+    "GES (BIC)": {
+     "files": 121,
+     "f1": 0.522633240194819,
+     "dv1_precision": 0.7444456144045488,
+     "dv1_coverage": 0.948466992909218
+    },
+    "GIES with targets (D+I)": {
+     "files": 125,
+     "f1": 0.530047810940808,
+     "dv1_precision": 0.7405747686312714,
+     "dv1_coverage": 1.0
+    },
+    "empty graph": {
+     "files": 125,
+     "f1": 0.0,
+     "dv1_precision": 0.6337067705796395,
+     "dv1_coverage": 1.0
+    },
+    "true CPDAG (ceiling)": {
+     "files": 125,
+     "f1": 0.9560749530225994,
+     "dv1_precision": 1.0,
+     "dv1_coverage": 0.9215781782756941
+    }
+   }
+  },
+  "formula": {
+   "dev": {
+    "PC maxP (plain)": {
+     "files": 87,
+     "f1": 0.36529667493030105,
+     "dv1_precision": 0.7488134355604235,
+     "dv1_coverage": 0.9422084623323014
+    },
+    "GES (BIC)": {
+     "files": 89,
+     "f1": 0.467369498131038,
+     "dv1_precision": 0.8120434705148761,
+     "dv1_coverage": 0.9743945838034893
+    },
+    "GIES with targets (D+I)": {
+     "files": 125,
+     "f1": 0.4990893921731098,
+     "dv1_precision": 0.8472507552870091,
+     "dv1_coverage": 1.0
+    },
+    "empty graph": {
+     "files": 125,
+     "f1": 0.0,
+     "dv1_precision": 0.6939577039274925,
+     "dv1_coverage": 1.0
+    },
+    "true CPDAG (ceiling)": {
+     "files": 125,
+     "f1": 0.9745137214295506,
+     "dv1_precision": 1.0,
+     "dv1_coverage": 0.9580060422960726
+    }
+   },
+   "test": {
+    "PC maxP (plain)": {
+     "files": 90,
+     "f1": 0.3551007261241249,
+     "dv1_precision": 0.7720937726576976,
+     "dv1_coverage": 0.9504594180704441
+    },
+    "GES (BIC)": {
+     "files": 93,
+     "f1": 0.46928699821017406,
+     "dv1_precision": 0.7949405902644692,
+     "dv1_coverage": 0.9647241532317704
+    },
+    "GIES with targets (D+I)": {
+     "files": 125,
+     "f1": 0.5309835565647067,
+     "dv1_precision": 0.8553942499288357,
+     "dv1_coverage": 1.0
+    },
+    "empty graph": {
+     "files": 125,
+     "f1": 0.0,
+     "dv1_precision": 0.7124964417876459,
+     "dv1_coverage": 1.0
+    },
+    "true CPDAG (ceiling)": {
+     "files": 125,
+     "f1": 0.9712351479568225,
+     "dv1_precision": 1.0,
+     "dv1_coverage": 0.9607173356105893
+    }
+   }
+  }
+ }
+}

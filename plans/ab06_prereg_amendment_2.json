@@ -1,0 +1,24 @@
+{
+ "ticket": "AUD-38 (AB-06)",
+ "amends": "plans/ab06_prereg.json and plans/ab06_prereg_amendment_1.json (both manifests kept)",
+ "written_utc": "2026-10-14T19:40Z",
+ "kind": "operational only: no design, prediction or scorer change",
+ "state_when_written": "Tier A resumed 14 Oct: 19 of 80 runs ok; 61 ended 'failed' because the OpenAI account had no credits left (HTTP 429 insufficient_quota) in every one of them: 25 MATMCD, 24 causaliq, 7 Vashishtha, 5 PyWhy-LLM. Tier A spend $12.21.",
+ "changes": [
+  {
+   "what": "a provider refusal for billing (HTTP 429 insufficient_quota / 'no credits remaining') is an infrastructure stop, recorded as 'aborted_quota' (exit 5), resumable like a cap hit; runs recorded as 'failed' with that message before this change are recognised by their message and resume too",
+   "why": "the prereg's failure rule already allows retrying infrastructure failures; the harness could not tell a quota refusal from an agent failure, so 61 runs were recorded as agent failures"
+  },
+  {
+   "what": "the first quota stop ends the launching of new runs (batch exit 5)",
+   "why": "after the credits ran out the batch kept starting runs that failed within seconds (59 runs at $0.00)"
+  }
+ ],
+ "unchanged": [
+  "P9, P10, systems, entry rule",
+  "the scorer",
+  "tiers and caps (amendment 1)",
+  "models, scenarios, arms, controls"
+ ],
+ "files": "hashed in manifests/evidence/ab06_prereg_amendment2_2026-10-14.sha256"
+}

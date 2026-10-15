@@ -1,0 +1,71 @@
+Audit pass 6: Uzair's runs of 14 Oct ingested (logs lost to a restart; state read from the files); AB-06 amendment 1; BND-11 done
+
+Runs found on disk (14 Oct):
+- AB-05 probes resumed and finished:
+  - MATMCD: ok, 1,200 calls (69 new), +$0.009;
+  - Vashishtha: ok, 2,413 calls (53 new), +$0.651.
+  - Both final graphs equal plain PC on the probe scenario (F1 0.407).
+  - AB-05 total: $3.79.
+- The AB-06 Causal-Copilot rerun of q042 (20261014T064022Z_ab06cc_q042_r01_bca118) completed. An empty launcher folder
+  precedes it, as before the plan's first run.
+- Compute jobs bootstrap_replay_ca_formula_dev and _test done; names run 786 questions, $0.47.
+- AB-06 tier A: 14 attempts logged (12 ok; 2 Vashishtha cap hits); 4 more runs were cut short at about 08:29 UTC with
+  calls but no summary. Spent per call logs: $7.92.
+
+AB-05: analysis/reports/ab05_probe_results.md updated (all five systems end to end).
+
+AB-06, Causal-Copilot part:
+- Re-scored with q042 (analysis/results/ab06_cc/):
+  - M2 4/10 refuted;
+  - M3 0.71 inconclusive;
+  - M4 9/10 supported;
+  - real - neutral 0.064;
+  - real - swapped 0.094.
+- analysis/reports/ab06_cc_second_model.md updated; ab16_wedge_decision.md and approach_v1.md figures updated to match.
+
+AB-06 amendment 1 (plans/ab06_prereg_amendment_1.json; manifests/evidence/ab06_prereg_amendment1_2026-10-14.sha256; the
+first manifest is kept as the record of the first freeze):
+- Vashishtha ties 85% and 93% of pairs at 17 variables, because 98.7-99.6% of its triplet answers are untagged. Its
+  tier-A runs are cut to the first five scenarios: tier A is 80 runs, an estimated $48.23; tier B is 40 runs, $86.74.
+- plans/calibrate_ab06.py: the tie share is measured per scenario and arm where the triplets are complete, else
+  estimated at 0.85, with caps at 1.0. BUDGET.json and all plan caps were rewritten; TIERS.json is v2 (keeps v1).
+- harness/agent_batch.py:
+  - spend is read from every plan's call logs (non-replayed records), so killed runs count;
+  - "aborted_cap" and "interrupted" resume without --retry-failed.
+- harness/probe_llm.py: a call-log line cut short by a hard stop is skipped on resume.
+- Tests:
+  - tests/test_ab06_batch.py (17): killed-run spend; cap-hit resume vs agent failure; tier size 80;
+  - tests/test_probe_gate.py (5, probe venv): cut-short line resume.
+  - tests/test_agent_probe.py passes 10/10 in the probe venv.
+- analysis/reports/ab06_prep.md updated (amendment, tables, commands).
+
+BND-11, refinement v2 (done):
+- Data part on the held-out formula test replay (22 files, read once): R1 22/22, R2 22/22, R3 +0.010, all supported.
+  Output: analysis/results/refinement_v2/test_formula.json.
+- Names part on the 30 S2 tables (names_s2.json): R4 supported, R5 supported, R6 refuted (1/10).
+- gpt-4o fenced 1,036 of 1,571 replies, and the strict contract abstained on 251 questions.
+- analysis/bnd11_lenient_parse.py (new, exploratory, labelled): a fence-stripped re-read gives R6 5/10, still refuted.
+- analysis/reports/bnd11_results.md (new).
+
+Tracker:
+- jobs/patches/p13_runs_ingested.py:
+  - BND-11, BLD-06, CAP-10, TGT-13 and RQ-17 done;
+  - AUD-38's check now uses the amendment manifest, and tier A has 80 runs;
+  - notes on AUD-37 and TGT-09.
+- jobs/patches/p14_bnd11_closes.py: DLV-04 and TGT-09 done, met by v2 (not v1), as trace rule T11 requires.
+- Repinned: DLV-02, AUD-37, AUD-38, DEC-05, RQ-05, RQ-17, STR-01, BND-01, TEAM-08, EXT-06, INF-08, BND-11, BLD-06,
+  CAP-10, TGT-13, TGT-09, DLV-04.
+- Checks: verify 0 problems (224 items, 119 done); tests 128 ok; check_scores, plan_check, ci_check and trace check 0
+  errors; targeted secret scan 0 findings.
+
+Site:
+- site/registry.py: ab06.tierA.usd follows the amended table; new v2.* keys.
+- site/levels/theses.py: T3's evidence shows the v2 held-out and names results; the next action is B1.
+- Build: 15 pages, 0 errors, 0 warnings.
+
+Slack:
+- Dev list: 11 rows updated. Prod list: 6 rows updated.
+- Dev digest posted (ts 1791996095.378759).
+- The prod draft of earlier today stays unsent.
+
+Transfers: kit34-kit35. No relay files discarded.

@@ -78,8 +78,11 @@ def main():
     add(cwd, "REP-01 blocks REP-02"); add(cwd, "REP-02 blocks REP-01")
     rc, out = run(cwd, "check"); expect("T3 cycle in blocks", rc == 1 and "T3" in out, out)
     shutil.copy2(HERE / "links.txt", T / "links.txt")
-    add(cwd, "DEC-02 blocks REP-01"); rc, out = run(cwd, "check")
-    expect("W3 done ticket blocked by an unfinished one", clean(out) and "W3 REP-01 is done while blocked by unfinished ['DEC-02']" in out, out)
+    # the blocker must be unfinished in the live tracker: pick one at run time (DEC-02, the original fixture, closed on 12 Oct)
+    _open = sorted(r["id"] for r in json.loads((T / "status.json").read_text(encoding="utf-8"))["items"]
+                   if r["effective_status"] not in ("done",) and r["id"].split("-")[0] in ("DEC", "EXT", "TGT"))
+    add(cwd, "%s blocks REP-01" % _open[0]); rc, out = run(cwd, "check", "--max-warn", "999")  # every warning listed
+    expect("W3 done ticket blocked by an unfinished one", clean(out) and "W3 REP-01 is done while blocked by unfinished ['%s']" % _open[0] in out, out)
     shutil.copy2(HERE / "links.txt", T / "links.txt")
 
     add(cwd, "REP-01 parent_of REP-03"); add(cwd, "REP-02 parent_of REP-03")
@@ -195,6 +198,8 @@ def main():
             r["effective_status"] = "in_progress"
         if r["id"] == "BND-08":
             r["effective_status"] = "done"
+        if r["id"] == "DLV-02":     # the fixture sets the state it tests: one ticket BND-08 closes is unfinished (live DLV-02 closed 14 Oct)
+            r["effective_status"] = "in_progress"
     json.dump(st, open(T / "status.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     rc, out = run(cwd, "check", "--max-warn", "99")
     expect("T11 bundle done while tickets it closes are not", "T11 bundle BND-08 is done" in out, out)

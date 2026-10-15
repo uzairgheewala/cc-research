@@ -1,0 +1,36 @@
+{
+ "ticket": "AUD-38 (AB-06)",
+ "amends": "plans/ab06_prereg.json (manifest manifests/evidence/ab06_prereg_2026-10-14.sha256, kept as the record of the first freeze)",
+ "written_utc": "2026-10-14T17:00Z",
+ "state_when_written": "14 of the original tier A's 90 runs had been attempted (BATCH_live.jsonl): 12 ok (causaliq 5, PyWhy-LLM 4, MATMCD 3), 2 Vashishtha runs stopped on their caps; 4 more were cut short by a machine restart at about 08:29 UTC with no summary. No Vashishtha run had produced a score. The ok runs' F1 values were printed in the batch log; nothing in this amendment depends on them.",
+ "changes": [
+  {
+   "what": "Vashishtha et al. in tier A: the real and swapped arms of the first five scenarios (alphabetical), not all ten; its other ten runs move to tier B",
+   "why": "its live tie share is far above the AB-05 probe's 0.377: 85% and 93% of pairs on the 17-variable scenario (the repository's 300-token limit leaves 98.7-99.6% of triplet answers untagged), each tied pair a gpt-4o call at about $0.012, which put its 20 tier-A runs at about $60 against the $15.5 planned",
+   "effect": "tier A is 80 runs at an estimated $48.23 (v1: 90 runs, $51.98); Vashishtha still meets P9's entry rule (5 paired scenarios) and P10 uses its 5 real-arm runs"
+  },
+  {
+   "what": "calibration: Vashishtha's tie share is measured per scenario and arm where its triplets are complete, else estimated at 0.85 with caps at 1.0 (plans/calibrate_ab06.py)",
+   "why": "the share depends on the number of variables and on the scenario; a constant underpriced the smaller scenarios"
+  },
+  {
+   "what": "failures rule: a run that stopped on its cap or was interrupted resumes without --retry-failed (replaying every paid answer); only an agent failure needs the flag",
+   "why": "the prereg's wording ('a cap hit below the calibrated estimate may be retried') did not foresee caps set from a wrong estimate; a cap hit is not an agent failure and a resume costs only the new calls"
+  },
+  {
+   "what": "spending is read from the call logs (every non-replayed call record), not from the batch log and summaries",
+   "why": "the restart left 4 runs with calls but no summary: $0.77 of $7.92 spent was invisible to the total cap"
+  },
+  {
+   "what": "a call-log line cut short by a hard stop is skipped on resume (that call is asked again)",
+   "why": "a crash mid-write must not make a run unresumable"
+  }
+ ],
+ "unchanged": [
+  "P9 and P10, their thresholds, systems and entry rule",
+  "the scorer (analysis/ab06_score.py)",
+  "models, scenarios, arms, controls",
+  "consequences fixed in advance"
+ ],
+ "files": "hashed in manifests/evidence/ab06_prereg_amendment1_2026-10-14.sha256"
+}

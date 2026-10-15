@@ -1,0 +1,54 @@
+{
+ "ticket": "AUD-38 (AB-06)",
+ "written_utc": "2026-10-14",
+ "status": "fixed before any live AB-06 grid call (BATCH_live.jsonl does not exist yet)",
+ "predictions": {
+  "P9": {
+   "claim": "name reliance is common among LLM-using causal-discovery systems",
+   "metric": "paired mean over scenarios of directed F1(real names) - directed F1(swapped names), columns shuffled; agents: the runner's expectation rule (undecided pairs at random, per-file seed); Causal-Copilot: S3 directed F1 by data (BND-08 metric)",
+   "systems": [
+    "causaliq",
+    "pywhyllm",
+    "matmcd",
+    "vashishtha",
+    "causal_copilot_gpt4o"
+   ],
+   "entry_rule": "a system enters only with >= 5 paired (real, swapped) scenarios that ended ok",
+   "supported": ">= 3 entered systems lose >= 0.10",
+   "refuted": "no entered system loses >= 0.10",
+   "otherwise": "inconclusive",
+   "already_known": "causal_copilot_gpt4o was measured in BND-08 (12 Oct): 0.167 on 10 S2 test families; declared here, not hidden"
+  },
+  "P10": {
+   "claim": "LLM knowledge can make an agent worse than its own data-only output",
+   "metric": "DV-1 committed-claim precision with the released intervention targets, real-name arm, pooled over scenarios: final graph vs the agent's own data-only graph (MATMCD pc_only_initial, Vashishtha pc_only)",
+   "supported": "at least one of the two agents is below its data-only graph",
+   "refuted": "both at or above"
+  }
+ },
+ "secondary_reported_without_verdict": [
+  "real - neutral (no-information contrast) where the neutral arm exists",
+  "direction sources per agent (llm / data / llm_order shares)",
+  "Vashishtha et al.: share of triplet answers without an <Answer> tag (truncation at the repository's 300-token limit; 0.911 in the AB-05 probe)",
+  "RQ-17: Causal-Copilot on gpt-4o-mini, same metric as P9 (0.094 on 10 families, measured 14 Oct before this file)",
+  "cost, calls and wall time per run against plans/ab06/BUDGET.json"
+ ],
+ "design": {
+  "scenarios": "the first 10 semantic dev scenarios of plans/splits.json (rep000), observational only",
+  "arms": "real, neutral (V01.., numbered by a random shown position), swapped (every name moved to another variable)",
+  "columns": "always shuffled (seed 20261010), jitter 1e-6",
+  "models": "as the repositories document: causaliq gpt-4o, PyWhy-LLM gpt-4o, MATMCD gpt-4o-mini (its config.py), Vashishtha et al. gpt-4o-mini triplets + gpt-4o tie-breaker (its README); no agent code is changed",
+  "tiers": "plans/ab06/TIERS.json: A = 90 runs (causaliq and MATMCD all arms; Vashishtha real+swapped; PyWhy-LLM real+swapped on the first five scenarios alphabetically), B = the other 30. Verdicts are computed on whatever has run; the report says which tiers.",
+  "caps": "plans/ab06/BUDGET.json v2 (live-calibrated, plans/calibrate_ab06.py); tier A estimate $51.98, 76.5 h sequential",
+  "failures": "an agent failure counts as not ok and is not retried; an infrastructure failure (OSError EIO, network error, a cap hit below the calibrated estimate) may be retried with --retry-failed, which replays paid answers; every attempt stays in BATCH_live.jsonl",
+  "split": "dev only; the test split stays unread by the agents"
+ },
+ "consequences_fixed_in_advance": {
+  "P9 supported": "L2 (field-level name reliance) is a headline result of the paper",
+  "P9 supported only through names-only systems (causaliq, PyWhy-LLM, Causal-Copilot) while both hybrids lose < 0.10": "the paper states that data-anchored hybrids resist swapped names and that name reliance is a design property, not a field-wide one",
+  "P9 refuted": "L2 is dropped as a headline (kill criterion in plans/audit_dag.json)",
+  "P10 supported": "motivates the reliability invariant 'never below data-only' as a measured failure of existing systems",
+  "P10 refuted": "the invariant stays a design requirement; the paper does not claim existing hybrids violate it"
+ },
+ "files": "hashed in manifests/evidence/ab06_prereg_2026-10-14.sha256"
+}

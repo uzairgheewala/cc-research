@@ -1,0 +1,30 @@
+{
+ "controls": {
+  "columns_shuffled": true,
+  "knowledge_source": "variable names read by gpt-4o-mini-2024-07-18 inside the pipeline; arms real / neutral / swapped per datasets/suite_q1s2/MAPPING.json",
+  "names": "per-row",
+  "supplier": "CausalArena semantic test scenarios (datasets/suite_q1s2)"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies (any edge type)",
+  "adj_precision": "precision over unordered adjacencies",
+  "adj_recall": "recall over unordered adjacencies",
+  "dir_f1": "F1 over directed edges, rule in orientation_rule",
+  "dir_precision": "directed precision",
+  "dir_recall": "directed recall",
+  "shd_cpdag": "SHD against the true graph's CPDAG: one per unordered pair whose edge type differs"
+ },
+ "orientation_rule": "only committed directions count; an undirected pair is no prediction; a two-way conflict predicts both (analysis/cc_graph.py score())",
+ "producer": "analysis/stability.py, partial_stages.py, s2_analysis.py",
+ "regime": "D+K",
+ "score_bearing": true,
+ "shd_variant": "CPDAG-level, one per differing pair",
+ "split": "test",
+ "tickets": [
+  "AUD-38",
+  "RQ-17",
+  "BND-12",
+  "RQ-05"
+ ],
+ "note": "AB-06 Causal-Copilot second-model arm (label ab06cc, 31 folders, gpt-4o-mini). Scored exactly as BND-08 (stability.py --min-runs 1, partial_stages.py, s2_analysis.py); S3 is the primary endpoint. q042 (neutral s2_04) lost to OSError EIO, rerun planned; q041 scored from state snapshots; report analysis/reports/ab06_cc_second_model.md."
+}

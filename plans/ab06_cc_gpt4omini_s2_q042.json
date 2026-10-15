@@ -1,0 +1,15 @@
+{
+ "plan_id": "ab06_cc_gpt4omini_s2_q042",
+ "note": "AB-06 (AUD-38) Causal-Copilot second-model arm: replaces run 20261014T002211Z_ab06cc_q042_r01_4ad45c (s2_04 neutral), lost to an OSError EIO on the Docker bind mount at 00:24 UTC on 14 Oct (snapshot writes failed, then the pipeline failed in 06c_hyperparameters; analysis/reports/ab06_cc_second_model.md). Same dataset, label and model. Launch: cc.ps1 plan ab06_cc_gpt4omini_s2_q042.json gpt-4o-mini. About $0.03 and 15 minutes.",
+ "interleave": false,
+ "run_timeout_s": 3600,
+ "runs": [
+  {
+   "label": "ab06cc",
+   "dataset": "research:datasets/suite_q1s2/q042/q042.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "ticket": "BLD-05 (bundle B4 of plans/q2_dag.json); CAP-07, CAP-08, TGT-12, TGT-18 (proposed)",
+ "written_utc": "2026-10-15",
+ "status": "written before any B4 run",
+ "kernel": "The data-only kernel is the frozen B1 version (plans/b1_freeze.json: code hash and rule); B2-B4 use it unchanged. Thresholds below are fixed before any B2-B4 run, dev or held-out.",
+ "stability": "B = 10 row resamples with replacement (seed 20261015); the frozen kernel rebuilt on each; a DV-1 claim's stability is the share of resamples making the same claim; a directed claim's is the share giving the same arrow",
+ "files": "replicate rep000 of every scenario (1 per scenario: 25 files per family and split). Changed on 2026-10-15 before any B4 run (dev or held-out) from 'rep000 and rep001' to halve the compute (10 kernel rebuilds per file); recorded here.",
+ "map": "isotonic regression (pool-adjacent-violators) of correctness on stability, one map per family and claim kind, fitted on all dev files, frozen with sha256 in plans/b4_freeze.json before any held-out read; dev quality reported out of fold (5 folds by scenario)",
+ "selective_view": {
+  "cost_ratios": [
+   1,
+   2,
+   4
+  ],
+  "threshold": "act when calibrated probability >= c/(g+c): 0.5, 0.667, 0.8",
+  "half_coverage": "claims kept in order of calibrated probability (ties together) until at least half of all target-outcome pairs are covered"
+ },
+ "gates": {
+  "B4.1": "within-family ECE of calibrated DV-1 claims on held-out files <= 0.05 (as hashed)",
+  "B4.2": "realised precision >= claimed - 0.03 at c/g = 1, 2, 4 (as hashed)"
+ },
+ "landmark": {
+  "ER-2": "DV-1 precision > 0.80 at coverage >= 0.50 in both families, lower end of the scenario-cluster 95% interval",
+  "ER-3": "B4.1 and B4.2"
+ },
+ "predictions": {
+  "Q-B4a": "top-50%-coverage selective view > 0.78 precise on dev, out of fold (refuted: < 0.72)",
+  "Q-B4b": "calibrated out-of-fold ECE on dev <= 0.05 (refuted: > 0.08)"
+ },
+ "held_out_reads": "kernel/run_b4.py refuses the test split unless code and maps equal plans/b4_freeze.json; logged in analysis/results/q2_b4/access_log.jsonl"
+}

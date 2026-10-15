@@ -1,0 +1,4464 @@
+{
+ "mode": "apply",
+ "rule_sha256": "443354d8391aea24e7c32e5086b8557a54cbc78c767ede3aaf76f0cfc58906dc",
+ "answers": "/sessions/rcw-017bl4ttn1bvbjm9xvljn3tb/mnt/Fall 2026--DSC 180A/cc-research/analysis/results/refinement_v2/exploratory_lenient_answers.jsonl",
+ "invalid_replies_total": 1036,
+ "R4": {
+  "families_with_no_names_edge": 10,
+  "families_with_any": 0,
+  "families": 10,
+  "verdict": "SUPPORTED"
+ },
+ "R5": {
+  "hits": 9,
+  "families": 10,
+  "verdict": "SUPPORTED"
+ },
+ "R6": {
+  "hits": 5,
+  "families": 10,
+  "verdict": "REFUTED"
+ },
+ "separating_set_check": "not done: the pipeline does not record separating sets for the bootstrap step",
+ "rows": [
+  {
+   "key": "20261011T184856Z_s2_q011_r01_b3a03d",
+   "code": "q011",
+   "family": "s2_01",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6865671641791046,
+     "dir_f1_committed": 0.21276595744680848,
+     "dir_f1_random": 0.44776119402985076
+    },
+    "v2": {
+     "adj_f1": 0.6865671641791046,
+     "dir_f1_committed": 0.21276595744680848,
+     "dir_f1_random": 0.44776119402985076
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 7,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 7
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      5
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      19
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      14,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T190043Z_s2_q012_r01_e1f614",
+   "code": "q012",
+   "family": "s2_01",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6567164179104477,
+     "dir_f1_committed": 0.20833333333333334,
+     "dir_f1_random": 0.417910447761194
+    },
+    "v2": {
+     "adj_f1": 0.6567164179104477,
+     "dir_f1_committed": 0.20833333333333334,
+     "dir_f1_random": 0.417910447761194
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      5
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      19
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      14,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T191315Z_s2_q013_r01_9f3d11",
+   "code": "q013",
+   "family": "s2_01",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6461538461538461,
+     "dir_f1_committed": 0.13333333333333336,
+     "dir_f1_random": 0.3384615384615385
+    },
+    "v2": {
+     "adj_f1": 0.6461538461538461,
+     "dir_f1_committed": 0.17391304347826086,
+     "dir_f1_random": 0.3076923076923077
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 7
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      5
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "B->A",
+      "B->A"
+     ],
+     "used": true,
+     "direction": "b->a",
+     "source": "names"
+    },
+    {
+     "pair": [
+      7,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      21
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      17
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      14,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      18,
+      20
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T192513Z_s2_q021_r01_dfa292",
+   "code": "q021",
+   "family": "s2_02",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5862068965517242,
+     "dir_f1_committed": 0.18604651162790697,
+     "dir_f1_random": 0.27586206896551724
+    },
+    "v2": {
+     "adj_f1": 0.5862068965517242,
+     "dir_f1_committed": 0.22727272727272727,
+     "dir_f1_random": 0.4482758620689655
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 11,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 10
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      8
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      6,
+      12
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      14,
+      19
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      17,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T193340Z_s2_q022_r01_13bcd2",
+   "code": "q022",
+   "family": "s2_02",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6451612903225806,
+     "dir_f1_committed": 0.49122807017543857,
+     "dir_f1_random": 0.5161290322580646
+    },
+    "v2": {
+     "adj_f1": 0.6451612903225806,
+     "dir_f1_committed": 0.49122807017543857,
+     "dir_f1_random": 0.5161290322580646
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 5,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 5
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "undirected",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      5
+     ],
+     "type_by_data": "undirected",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      5
+     ],
+     "type_by_data": "undirected",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      11
+     ],
+     "type_by_data": "undirected",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      12
+     ],
+     "type_by_data": "undirected",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T194112Z_s2_q023_r01_4a0c60",
+   "code": "q023",
+   "family": "s2_02",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6,
+     "dir_f1_committed": 0.18604651162790697,
+     "dir_f1_random": 0.5
+    },
+    "v2": {
+     "adj_f1": 0.6,
+     "dir_f1_committed": 0.18604651162790697,
+     "dir_f1_random": 0.5
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "contradicts the mark set by the data": 1,
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      5
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "B->A",
+      "B->A",
+      "B->A"
+     ],
+     "used": false,
+     "why": "contradicts the mark set by the data"
+    },
+    {
+     "pair": [
+      2,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      12
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      17,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T194923Z_s2_q031_r01_a1dacd",
+   "code": "q031",
+   "family": "s2_03",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4337349397590362,
+     "dir_f1_committed": 0.1212121212121212,
+     "dir_f1_random": 0.2168674698795181
+    },
+    "v2": {
+     "adj_f1": 0.4337349397590362,
+     "dir_f1_committed": 0.17647058823529413,
+     "dir_f1_random": 0.3132530120481928
+    }
+   },
+   "names_edges": 2,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 7
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      23
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      3,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "B->A",
+      "B->A"
+     ],
+     "used": true,
+     "direction": "b->a",
+     "source": "names"
+    },
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      16,
+      24
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      18,
+      20
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T200345Z_s2_q032_r01_f9d169",
+   "code": "q032",
+   "family": "s2_03",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4523809523809524,
+     "dir_f1_committed": 0.06153846153846154,
+     "dir_f1_random": 0.23809523809523808
+    },
+    "v2": {
+     "adj_f1": 0.4523809523809524,
+     "dir_f1_committed": 0.06153846153846154,
+     "dir_f1_random": 0.23809523809523808
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 12,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 12
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      23
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      15
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      8
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      18,
+      20
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T201633Z_s2_q033_r01_e378d3",
+   "code": "q033",
+   "family": "s2_03",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4470588235294118,
+     "dir_f1_committed": 0.06349206349206349,
+     "dir_f1_random": 0.2823529411764706
+    },
+    "v2": {
+     "adj_f1": 0.4470588235294118,
+     "dir_f1_committed": 0.06349206349206349,
+     "dir_f1_random": 0.2823529411764706
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 14,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 14
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      23
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      8
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      14,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      15,
+      17
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      16,
+      24
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      18,
+      20
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T203658Z_s2_q041_r01_2c4a4c",
+   "code": "q041",
+   "family": "s2_04",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5901639344262294,
+     "dir_f1_committed": 0.18181818181818182,
+     "dir_f1_random": 0.2950819672131147
+    },
+    "v2": {
+     "adj_f1": 0.5901639344262294,
+     "dir_f1_committed": 0.33333333333333337,
+     "dir_f1_random": 0.3934426229508196
+    }
+   },
+   "names_edges": 4,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 5
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      22
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      2,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      4,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      7,
+      9
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      20
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      23
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      15,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T204625Z_s2_q042_r01_acf999",
+   "code": "q042",
+   "family": "s2_04",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6984126984126985,
+     "dir_f1_committed": 0.18181818181818182,
+     "dir_f1_random": 0.4761904761904762
+    },
+    "v2": {
+     "adj_f1": 0.6984126984126985,
+     "dir_f1_committed": 0.18181818181818182,
+     "dir_f1_random": 0.4761904761904762
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 10,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 10
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      22
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      18
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      23
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      15,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T205526Z_s2_q043_r01_ee50cf",
+   "code": "q043",
+   "family": "s2_04",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6874999999999999,
+     "dir_f1_committed": 0.18181818181818182,
+     "dir_f1_random": 0.46875
+    },
+    "v2": {
+     "adj_f1": 0.6874999999999999,
+     "dir_f1_committed": 0.18181818181818182,
+     "dir_f1_random": 0.46875
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 9
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      22
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      9
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      23
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      15,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T210452Z_s2_q051_r01_564d72",
+   "code": "q051",
+   "family": "s2_05",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4905660377358491,
+     "dir_f1_committed": 0.05128205128205127,
+     "dir_f1_random": 0.3773584905660377
+    },
+    "v2": {
+     "adj_f1": 0.4905660377358491,
+     "dir_f1_committed": 0.1,
+     "dir_f1_random": 0.26415094339622636
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "contradicts the mark set by the data": 1,
+    "paraphrases disagree or unknown": 6
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "A->B",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      13
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      19
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "B->A",
+      "B->A",
+      "B->A"
+     ],
+     "used": false,
+     "why": "contradicts the mark set by the data"
+    },
+    {
+     "pair": [
+      5,
+      11
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      8,
+      9
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "B->A",
+      "B->A",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "B->A",
+      "B->A",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      18
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "B->A",
+      "B->A",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T211057Z_s2_q052_r01_10c215",
+   "code": "q052",
+   "family": "s2_05",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.509090909090909,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.1818181818181818
+    },
+    "v2": {
+     "adj_f1": 0.509090909090909,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.1818181818181818
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      13
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      11
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      15
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      9
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      18
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T211722Z_s2_q053_r01_d2d0a6",
+   "code": "q053",
+   "family": "s2_05",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4905660377358491,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.26415094339622636
+    },
+    "v2": {
+     "adj_f1": 0.4905660377358491,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.26415094339622636
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 7,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 7
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      13
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "A->B",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      11
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      18
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      16
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T212440Z_s2_q061_r01_07d9ad",
+   "code": "q061",
+   "family": "s2_06",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.47761194029850745,
+     "dir_f1_committed": 0.18518518518518517,
+     "dir_f1_random": 0.417910447761194
+    },
+    "v2": {
+     "adj_f1": 0.47761194029850745,
+     "dir_f1_committed": 0.18518518518518517,
+     "dir_f1_random": 0.417910447761194
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 7,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 7
+   },
+   "records": [
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      14
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      8
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      17
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      18,
+      24
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      20,
+      22
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "B->A",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T213825Z_s2_q062_r01_e40c58",
+   "code": "q062",
+   "family": "s2_06",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4615384615384616,
+     "dir_f1_committed": 0.1509433962264151,
+     "dir_f1_random": 0.36923076923076914
+    },
+    "v2": {
+     "adj_f1": 0.4615384615384616,
+     "dir_f1_committed": 0.1509433962264151,
+     "dir_f1_random": 0.36923076923076914
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 5,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 5
+   },
+   "records": [
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      14
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      17
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      20,
+      22
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T215256Z_s2_q063_r01_32f8c8",
+   "code": "q063",
+   "family": "s2_06",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.4571428571428571,
+     "dir_f1_committed": 0.11320754716981131,
+     "dir_f1_random": 0.3142857142857143
+    },
+    "v2": {
+     "adj_f1": 0.4571428571428571,
+     "dir_f1_committed": 0.11320754716981131,
+     "dir_f1_random": 0.3142857142857143
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 6,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 6
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      24
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      14
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      17
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "B->A",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      20,
+      22
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T220644Z_s2_q071_r01_582c9e",
+   "code": "q071",
+   "family": "s2_07",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6557377049180327,
+     "dir_f1_committed": 0.2857142857142857,
+     "dir_f1_random": 0.4918032786885245
+    },
+    "v2": {
+     "adj_f1": 0.6557377049180327,
+     "dir_f1_committed": 0.2790697674418604,
+     "dir_f1_random": 0.4918032786885245
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      7
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      9
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      9
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      7,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      15,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T221746Z_s2_q072_r01_f38486",
+   "code": "q072",
+   "family": "s2_07",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6774193548387097,
+     "dir_f1_committed": 0.39130434782608686,
+     "dir_f1_random": 0.5161290322580645
+    },
+    "v2": {
+     "adj_f1": 0.6774193548387097,
+     "dir_f1_committed": 0.39130434782608686,
+     "dir_f1_random": 0.5161290322580645
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 6,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 6
+   },
+   "records": [
+    {
+     "pair": [
+      2,
+      12
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      15,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T223000Z_s2_q073_r01_1de2c9",
+   "code": "q073",
+   "family": "s2_07",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.6774193548387097,
+     "dir_f1_committed": 0.3555555555555555,
+     "dir_f1_random": 0.48387096774193544
+    },
+    "v2": {
+     "adj_f1": 0.6774193548387097,
+     "dir_f1_committed": 0.3555555555555555,
+     "dir_f1_random": 0.48387096774193544
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      13
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      9
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      7,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      15
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T224148Z_s2_q081_r01_7d01ca",
+   "code": "q081",
+   "family": "s2_08",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5483870967741935,
+     "dir_f1_committed": 0.20408163265306123,
+     "dir_f1_random": 0.22580645161290322
+    },
+    "v2": {
+     "adj_f1": 0.5483870967741935,
+     "dir_f1_committed": 0.2692307692307692,
+     "dir_f1_random": 0.3548387096774194
+    }
+   },
+   "names_edges": 3,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 6
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      4
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      1,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "B->A",
+      "B->A"
+     ],
+     "used": true,
+     "direction": "b->a",
+     "source": "names"
+    },
+    {
+     "pair": [
+      2,
+      9
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      4,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      17,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      20
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T225512Z_s2_q082_r01_52b5f1",
+   "code": "q082",
+   "family": "s2_08",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5396825396825397,
+     "dir_f1_committed": 0.16666666666666669,
+     "dir_f1_random": 0.2857142857142857
+    },
+    "v2": {
+     "adj_f1": 0.5396825396825397,
+     "dir_f1_committed": 0.16666666666666669,
+     "dir_f1_random": 0.2857142857142857
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      4
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      9
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      20
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T230654Z_s2_q083_r01_9c883f",
+   "code": "q083",
+   "family": "s2_08",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.634920634920635,
+     "dir_f1_committed": 0.21739130434782608,
+     "dir_f1_random": 0.507936507936508
+    },
+    "v2": {
+     "adj_f1": 0.634920634920635,
+     "dir_f1_committed": 0.21739130434782608,
+     "dir_f1_random": 0.507936507936508
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 9,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 9
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      4
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      16
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      2,
+      9
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      16
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      18
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      17,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      20
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T231824Z_s2_q091_r01_91c2d2",
+   "code": "q091",
+   "family": "s2_09",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.7017543859649122,
+     "dir_f1_committed": 0.2439024390243902,
+     "dir_f1_random": 0.38596491228070173
+    },
+    "v2": {
+     "adj_f1": 0.7017543859649122,
+     "dir_f1_committed": 0.3636363636363636,
+     "dir_f1_random": 0.42105263157894735
+    }
+   },
+   "names_edges": 3,
+   "asked_pairs": 11,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      12
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      0,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      1,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      7
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      10,
+      19
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T232807Z_s2_q092_r01_899c37",
+   "code": "q092",
+   "family": "s2_09",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.7241379310344828,
+     "dir_f1_committed": 0.19512195121951217,
+     "dir_f1_random": 0.4137931034482759
+    },
+    "v2": {
+     "adj_f1": 0.7241379310344828,
+     "dir_f1_committed": 0.19512195121951217,
+     "dir_f1_random": 0.4137931034482759
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 12,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 12
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      12
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      11
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      7
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      19
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T233701Z_s2_q093_r01_b34927",
+   "code": "q093",
+   "family": "s2_09",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.711864406779661,
+     "dir_f1_committed": 0.2439024390243902,
+     "dir_f1_random": 0.5084745762711864
+    },
+    "v2": {
+     "adj_f1": 0.711864406779661,
+     "dir_f1_committed": 0.2857142857142857,
+     "dir_f1_random": 0.576271186440678
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 13,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 12
+   },
+   "records": [
+    {
+     "pair": [
+      0,
+      12
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      0,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      1,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      11
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "B->A",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      7
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      19
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      8
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      21
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      14
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      19
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      16
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      13,
+      18
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T234632Z_s2_q101_r01_b577f3",
+   "code": "q101",
+   "family": "s2_10",
+   "role": "real",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5538461538461539,
+     "dir_f1_committed": 0.2222222222222222,
+     "dir_f1_random": 0.27692307692307694
+    },
+    "v2": {
+     "adj_f1": 0.5538461538461539,
+     "dir_f1_committed": 0.2545454545454545,
+     "dir_f1_random": 0.24615384615384614
+    }
+   },
+   "names_edges": 1,
+   "asked_pairs": 7,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 6
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      13
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      6
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      13
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "B->A",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      15
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "A->B",
+      "A->B",
+      "A->B"
+     ],
+     "used": true,
+     "direction": "a->b",
+     "source": "names"
+    },
+    {
+     "pair": [
+      9,
+      22
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "A->B",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      12,
+      13
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261011T235711Z_s2_q102_r01_3f4438",
+   "code": "q102",
+   "family": "s2_10",
+   "role": "neutral",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5217391304347827,
+     "dir_f1_committed": 0.2962962962962963,
+     "dir_f1_random": 0.4057971014492754
+    },
+    "v2": {
+     "adj_f1": 0.5217391304347827,
+     "dir_f1_committed": 0.2962962962962963,
+     "dir_f1_random": 0.4057971014492754
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 10,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 10
+   },
+   "records": [
+    {
+     "pair": [
+      1,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      6
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      19
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      8
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      10
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      13
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      22
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      11,
+      21
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      19,
+      20
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  },
+  {
+   "key": "20261012T000852Z_s2_q103_r01_919678",
+   "code": "q103",
+   "family": "s2_10",
+   "role": "swapped",
+   "scores": {
+    "v2d": {
+     "adj_f1": 0.5671641791044777,
+     "dir_f1_committed": 0.2545454545454545,
+     "dir_f1_random": 0.38805970149253727
+    },
+    "v2": {
+     "adj_f1": 0.5671641791044777,
+     "dir_f1_committed": 0.2545454545454545,
+     "dir_f1_random": 0.38805970149253727
+    }
+   },
+   "names_edges": 0,
+   "asked_pairs": 8,
+   "why_not_used": {
+    "paraphrases disagree or unknown": 8
+   },
+   "records": [
+    {
+     "pair": [
+      3,
+      6
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "B->A"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      3,
+      19
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      4,
+      17
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      5,
+      13
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      6,
+      14
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      8,
+      20
+     ],
+     "type_by_data": "a o-> b",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      9,
+      22
+     ],
+     "type_by_data": "o-o",
+     "answers": [
+      "unknown",
+      "unknown",
+      "unknown"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    },
+    {
+     "pair": [
+      10,
+      16
+     ],
+     "type_by_data": "b o-> a",
+     "answers": [
+      "unknown",
+      "unknown",
+      "A->B"
+     ],
+     "used": false,
+     "why": "paraphrases disagree or unknown"
+    }
+   ]
+  }
+ ],
+ "exploratory": "lenient re-parse of the recorded replies (code fence stripped), written after the pre-registered apply; reported beside R4-R6, never instead of them"
+}

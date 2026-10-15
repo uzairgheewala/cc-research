@@ -192,10 +192,10 @@
    ],
    "id": "BND-08",
    "llm_cost": "30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls",
-   "note": "Live run 11-12 Oct: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1 SUPPORTED, M2 REFUTED (5/10), M3 SUPPORTED, M4 SUPPORTED, M5 not run; L1 and Q1-Q3 pass; about $12.7. Open: DLV-02's gap (6 arms without a completed run), Uzair's call.",
+   "note": "Closed 14 Oct with DLV-02 under its restated criterion: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1, M3, M4 SUPPORTED; M2 REFUTED (5/10); M5 not run. Crashes are reported as a finding, not rerun.",
    "plan": "q1",
    "serves": [],
-   "status": "in_progress",
+   "status": "done",
    "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
    "track": null,
    "uzair_actions": [
@@ -240,10 +240,10 @@
    "closes": [],
    "id": "BND-10",
    "llm_cost": "none",
-   "note": "Measured 2026-10-12 (must-show complete; marked done once BND-08 closes, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. Live S2 alone: R1 REFUTED 17/30, R2 SUPPORTED 30/30. TGT-09 not met; carried to BND-11 (v2).",
+   "note": "Done 14 Oct (BND-08 closed, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. TGT-09 met by v2 in BND-11.",
    "plan": "q1",
    "serves": [],
-   "status": "in_progress",
+   "status": "done",
    "title": "Refinement v1: held-out test",
    "track": null,
    "uzair_actions": [],
@@ -267,10 +267,10 @@
    ],
    "id": "BND-11",
    "llm_cost": "about 30 short runs: only pairs v1 leaves adjacent and unoriented, three paraphrases each",
-   "note": "Prepared 2026-10-12: v2 frozen (data part never deletes; dev R1-R3 supported), 786 names questions over the 30 S2 tables (under $1), runner with retry/abstain, stub-tested. Waits on Uzair: formula replay jobs (free), names stub (free), names live.",
+   "note": "Done 14 Oct: v2 R1-R3 SUPPORTED 22/22 held-out formula files; names R4, R5 SUPPORTED, R6 REFUTED (1/10); 0 crashes.",
    "plan": "q1",
    "serves": [],
-   "status": "in_progress",
+   "status": "done",
    "title": "LIVE: Refinement v2, names only where the data are silent",
    "track": null,
    "uzair_actions": [
@@ -296,7 +296,7 @@
    ],
    "id": "BND-12",
    "llm_cost": "second model on the S1 arms (~45 runs); CARE control on one classic graph; Kitson & Constantinou LLM edge probabilities for Sachs (~55 pairs x k)",
-   "note": "Free part started 2026-10-12: REP-11's data-only Sachs numbers reproduced within 0.05 (conditional: Sachs has no data-identifiable direction). Live parts (second model, CARE control, LLM and fused Sachs numbers) wait on Uzair.",
+   "note": "Audit parts done (AUD-13, RQ-17; REP-11 data part reproduced). Remaining live parts (CARE moved-names control, LLM and fused Sachs numbers, CausalSteward) moved to the Q2 build (B3) on 14 Oct.",
    "plan": "q1",
    "serves": [],
    "status": "in_progress",
@@ -474,12 +474,12 @@
    ],
    "id": "AB-05",
    "llm_cost": "one run per agent on one public scenario: Vashishtha et al. order elicitor, PyWhy-LLM pairwise, MATMCD, causaliq-knowledge, Causal-Copilot on a second model; cap $5 in total",
-   "note": "causaliq live ok; Causal-Copilot gpt-4o-mini hit the upstream key crash; 3 probes to run.",
+   "note": "P8 supported: all five systems end to end (MATMCD and Vashishtha after resuming). Vashishtha loses 91% of its votes to its own token limit.",
    "plan": "audit",
    "serves": [
     "L2"
    ],
-   "status": "blocked",
+   "status": "done",
    "title": "LIVE (small): agent probes, install and one-run cost per agent",
    "track": "research",
    "uzair_actions": [
@@ -503,12 +503,12 @@
    ],
    "id": "AB-06",
    "llm_cost": "set from AB-05: about 3 arms x 10 dev scenarios x the agents that ran; Causal-Copilot $0.46/run measured; budget proposed in the AB-05 report before any spend",
-   "note": "120-run agent grid and the Causal-Copilot arm are ready; waits on your live runs.",
+   "note": "Tier A scored 14 Oct: P9 SUPPORTED (3 of 4 systems lose >= 0.10 with names swapped), P10 SUPPORTED (MATMCD below its own data-only graph). $32.11. Tier B not run (DEC-05).",
    "plan": "audit",
    "serves": [
     "L2"
    ],
-   "status": "blocked",
+   "status": "done",
    "title": "LIVE: field audit under names x layout controls",
    "track": "research",
    "uzair_actions": [
@@ -760,7 +760,7 @@
    ],
    "id": "AB-16",
    "llm_cost": "none",
-   "note": "Decide once the evidence is in.",
+   "note": "Decided 14 Oct: B (measurement + reliability-first claim ledger), A as the floor; methods + benchmark venue.",
    "plan": "audit",
    "serves": [
     "L1",
@@ -772,7 +772,7 @@
     "C2",
     "C3"
    ],
-   "status": "todo",
+   "status": "done",
    "title": "Wedge decision (gate)",
    "track": "wedge",
    "uzair_actions": [
@@ -793,7 +793,7 @@
    ],
    "id": "AB-17",
    "llm_cost": "none",
-   "note": "After AB-16.",
+   "note": "Skeleton and Q2 build pre-registration hashed 14 Oct (manifests/evidence/paper_prereg_2026-10-14.sha256).",
    "plan": "audit",
    "serves": [
     "L1",
@@ -802,7 +802,7 @@
     "L4",
     "L5"
    ],
-   "status": "todo",
+   "status": "done",
    "title": "Paper skeleton and pre-registration",
    "track": "wedge",
    "uzair_actions": [],
@@ -810,9 +810,323 @@
     "2026-11-10",
     "2026-11-21"
    ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [],
+   "closes": [
+    "CAP-05",
+    "CAP-11"
+   ],
+   "id": "B0",
+   "llm_cost": "none",
+   "note": "Done 15 Oct: B0.1 oracle 720/720 exact, 120/120 order-invariant; B0.2 fault suite 7/7; scorer reproduces 102 audit numbers exactly; baselines on the test splits.",
+   "plan": "q2",
+   "serves": [
+    "ER-F",
+    "ER-1",
+    "ER-2",
+    "ER-3",
+    "ER-4a",
+    "ER-C"
+   ],
+   "status": "done",
+   "title": "Engines, guards and the scorer",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-15",
+    "2026-10-24"
+   ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [
+    "B0"
+   ],
+   "closes": [
+    "BLD-02",
+    "BLD-14",
+    "CAP-09",
+    "TGT-10"
+   ],
+   "id": "B1",
+   "llm_cost": "none",
+   "note": "Done 15 Oct: rule C3 held out beats PC maxP on F1 and DV-1 in both families (ER-F met); ties GES on F1 (route A not met), beats it on DV-1. 1,750 ledgers verify; one aborted read, fixed as a class.",
+   "plan": "q2",
+   "serves": [
+    "ER-F",
+    "ER-4a",
+    "ER-2",
+    "ER-1"
+   ],
+   "status": "done",
+   "title": "Data-only ledger",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-10-22",
+    "2026-11-07"
+   ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [
+    "B1"
+   ],
+   "closes": [
+    "BLD-03",
+    "CAP-03",
+    "TGT-06"
+   ],
+   "id": "B2",
+   "llm_cost": "none",
+   "note": "Done 15 Oct: D+I >= D on DV-1 held out (both families) and on Chambers; ER-C met (kernel 0.926 vs GES 0.916).",
+   "plan": "q2",
+   "serves": [
+    "ER-C",
+    "ER-2"
+   ],
+   "status": "done",
+   "title": "Interventions and physical truth",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-11-03",
+    "2026-11-17"
+   ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [
+    "B1"
+   ],
+   "closes": [
+    "BLD-04",
+    "CAP-04",
+    "TGT-11",
+    "TGT-19"
+   ],
+   "id": "B3",
+   "llm_cost": "none",
+   "note": "Done 15 Oct, no live run (recorded AB-07 replies): ER-1 met (neutral = D, skeleton fixed, moved within T3, every ledger verifies); route B not met (+0.019 / +0.028).",
+   "plan": "q2",
+   "serves": [
+    "ER-1",
+    "ER-4a"
+   ],
+   "status": "done",
+   "title": "Knowledge as tiers",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-11-03",
+    "2026-11-24"
+   ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [
+    "B2",
+    "B3"
+   ],
+   "closes": [
+    "BLD-05",
+    "CAP-07",
+    "CAP-08",
+    "TGT-12",
+    "TGT-18"
+   ],
+   "id": "B4",
+   "llm_cost": "none",
+   "note": "Done 15 Oct: calibrated ECE 0.057 / 0.036 vs raw 0.199 / 0.165 (TGT-12 met); B4.1 fails on semantic; ER-2 met for formula only (semantic lower end 0.756); ER-3 not met.",
+   "plan": "q2",
+   "serves": [
+    "ER-2",
+    "ER-3"
+   ],
+   "status": "done",
+   "title": "Confidence and abstention",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-11-10",
+    "2026-12-01"
+   ]
+  },
+  {
+   "approval_needed": false,
+   "blocked_by": [
+    "B4"
+   ],
+   "closes": [
+    "BLD-15",
+    "TGT-20"
+   ],
+   "id": "B5",
+   "llm_cost": "none",
+   "note": "Done 15 Oct: adapter B5.1 passes on five systems; RCA through the ledger reproduces AB-12 (0.932 at 0.917); ER-4b not met (lower end 0.841, 44 issues). Held-out read ran after B4.1 failed; B5 uses nothing from B4 (deviation recorded).",
+   "plan": "q2",
+   "serves": [
+    "ER-4b"
+   ],
+   "status": "done",
+   "title": "Adapter and RCA",
+   "track": "build",
+   "uzair_actions": [],
+   "window": [
+    "2026-11-24",
+    "2026-12-15"
+   ]
   }
  ],
  "changes": [
+  {
+   "done": [
+    "BLD-02 B1 data-only claim ledger with invariants I1-I4, I7",
+    "BLD-03 B2 interventions as order evidence",
+    "BLD-04 B3 declared knowledge as tiers",
+    "BLD-05 B4 confidence, calibration, selective output",
+    "BLD-14 Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier…",
+    "BLD-15 Audit adapter: other systems' outputs read as typed claims with violation classes",
+    "CAP-03 Use intervention data",
+    "CAP-04 Declared knowledge as tiers, never edges",
+    "CAP-05 Invariance to column order",
+    "CAP-08 Abstention / selective claims",
+    "CAP-09 Provenance per edge with an independent checker",
+    "CAP-11 Determinism (same inputs, same ledger hash)",
+    "TGT-10 Zero change when columns are shuffled",
+    "TGT-11 Bounded harm when names are wrong",
+    "TGT-12 Calibration better than raw bootstrap frequencies on held-out scenarios"
+   ],
+   "points": [
+    "Q2 build pass 1 (BLD-02, BLD-03, BLD-04, BLD-05, BLD-15): bundles B0-B5 built and each read held out under its freeze; no API credit spent (B3 replays AB-07's recorded replies)",
+    "Landmarks (TGT-18, TGT-19, TGT-20): ER-F floors and ER-1 provenance met; ER-2 met for formula only (semantic lower end 0.756); ER-3, ER-4a, ER-4b not met; ER-C Chambers met (kernel 0.926 vs GES 0.916)",
+    "TGT-12 met: calibrated ECE 0.057 / 0.036 vs raw bootstrap 0.199 / 0.165; B4.1 gate missed on semantic in the under-claiming direction (CAP-07)",
+    "TGT-11 met: moved names within the exact T3 bound on 125/125 held-out files per family; neutral names equal the data-only ledger 125/125 (CAP-04)",
+    "EXT-07 opened for Uzair: causal-learn PC can return directed cycles (Meek stale ancestor matrix); draft note ready"
+   ],
+   "posted_utc": "2026-10-15T14:19:25Z",
+   "tickets": [
+    "BLD-02",
+    "BLD-03",
+    "BLD-04",
+    "BLD-05",
+    "BLD-14",
+    "BLD-15",
+    "CAP-03",
+    "CAP-04",
+    "CAP-05",
+    "CAP-07",
+    "CAP-08",
+    "CAP-09",
+    "CAP-11",
+    "EXT-07",
+    "TGT-06",
+    "TGT-10",
+    "TGT-11",
+    "TGT-12",
+    "TGT-18",
+    "TGT-19",
+    "TGT-20"
+   ]
+  },
+  {
+   "done": [
+    "AUD-13 Second model besides GPT-4o",
+    "AUD-38 AB-06 LIVE: field audit of LLM-using systems under names x layout controls",
+    "AUD-47 AB-17 Paper skeleton and pre-registration manifest",
+    "BND-08 LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
+    "BND-10 Refinement v1: held-out test",
+    "DEC-01 Adopt, redirect or enlarge program v2; which of E1-E5 in scope",
+    "DEC-05 AB-16 Wedge decision: paper spine, venue and the Q2 build",
+    "DLV-02 Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully…",
+    "RQ-05 T2 Deployed agents take order from names and layout",
+    "STR-01 E1 Field-wide audit of agents and LLM-assisted methods"
+   ],
+   "points": [
+    "AUD-38: AB-06 tier A scored. P9 supported: Causal-Copilot (gpt-4o), causaliq and MATMCD lose 0.10 or more directed F1 when names are swapped; P10 supported: MATMCD falls below its own data-only graph. Vashishtha is the exception (0.020). $32.11.",
+    "DEC-05: decided B, measurement plus a reliability-first claim ledger, with A as the floor. DEC-01 adopted as amended. AB-17 skeleton and Q2 build pre-registration hashed (AUD-47).",
+    "DLV-02 closed under its restated criterion (every arm reached S3; crashes counted as crashes); BND-08, BND-10, AUD-13 done. The audit chapter is closed; next is B0, then B1."
+   ],
+   "posted_utc": "2026-10-15T04:24:51Z",
+   "tickets": [
+    "AUD-13",
+    "AUD-38",
+    "AUD-47",
+    "BND-08",
+    "BND-10",
+    "DEC-01",
+    "DEC-05",
+    "DLV-02",
+    "RQ-05",
+    "STR-01"
+   ]
+  },
+  {
+   "done": [
+    "DLV-04 Q1 refinement research: a refinement step that never falls below its own algorithm on…",
+    "INF-09 Provider quota exhaustion is an infrastructure stop, not an agent failure",
+    "TGT-09 Never below the system's own data-only output"
+   ],
+   "points": [
+    "AUD-38: tier A resumed; 19 of 80 runs are now ok. Then the OpenAI account ran out of credits, and 61 runs were refused within seconds (HTTP 429 insufficient_quota) and recorded as agent failures. About $33 of tier A is left; $12.21 spent so far.",
+    "INF-09 (amendment 2, operational): a billing refusal now stops a run as aborted_quota, resumable from its recorded answers, and halts the batch at the first one. The 61 runs resume with the same command once credits are added."
+   ],
+   "posted_utc": "2026-10-14T19:11:00Z",
+   "tickets": [
+    "AUD-38",
+    "DLV-04",
+    "INF-09",
+    "TGT-09"
+   ]
+  },
+  {
+   "done": [
+    "BLD-06 Drop-in replacement for Causal-Copilot's refinement stage",
+    "BND-11 LIVE: Refinement v2, names only where the data are silent",
+    "CAP-10 Robustness to malformed model output",
+    "RQ-17 Do results hold for a second model?",
+    "TGT-13 Zero crashes from malformed model output"
+   ],
+   "points": [
+    "AUD-37 (AB-05): MATMCD and Vashishtha resumed and finished, so all five systems run end to end. On the probe scenario both hybrids end exactly at their own data-only PC graph (F1 0.407).",
+    "AUD-38 / RQ-17 done: the lost Causal-Copilot run was redone; on gpt-4o-mini without names it ends below plain PC in 9 of 10 families; name reliance 0.094 (gpt-4o 0.167).",
+    "AUD-38 amendment 1: tier A was stopped by a machine restart after 14 runs (12 ok). Vashishtha ties 85-93% of pairs on small scenarios, each a gpt-4o call, so its tier-A runs are cut to five scenarios (tier A now 80 runs, about $48; $7.92 spent). Spend is now read from the call logs, and cap hits resume on their own.",
+    "BND-11 / BLD-06 / CAP-10 done: refinement v2 never falls below the algorithm on held-out data (22 of 22 formula files). Names used only where the data are silent: wrong names cost nothing, right names help in 1 of 10 families (R6 refuted). gpt-4o fenced most JSON replies, so the strict contract abstained on a third of the questions; 0 crashes."
+   ],
+   "posted_utc": "2026-10-14T16:41:35Z",
+   "tickets": [
+    "AUD-37",
+    "AUD-38",
+    "BLD-06",
+    "BND-11",
+    "CAP-10",
+    "RQ-17",
+    "TGT-13"
+   ]
+  },
+  {
+   "done": [
+    "AUD-37 AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)",
+    "INF-08 Transient OSError EIO on the Docker bind mount: harness writes retry"
+   ],
+   "points": [
+    "AUD-37 (AB-05) done: P8 supported. causaliq, PyWhy-LLM (F1 0.329, $1.43) and Causal-Copilot on gpt-4o-mini ran end to end; MATMCD and Vashishtha stopped on our stub-based caps, not on failures (resume about $0.66). Vashishtha loses 91% of its triplet votes to its own 300-token limit and carries on silently (EXT-06).",
+    "AUD-38 / RQ-17: Causal-Copilot on gpt-4o-mini scored. Swapped names cost 0.094 directed F1 (gpt-4o 0.167); without names it ends below plain PC in 8 of 9 families; M2 refuted on both models. Two runs were hit by a disk I/O error (INF-08: harness writes now retry; one rerun planned).",
+    "AUD-38: the agent grid was re-priced from live numbers (full grid about $92 and 100 hours one at a time). Tier A (90 runs, about $52) answers P9 and P10; the batch runner now runs in parallel with reserved caps; pre-registration hashed before any live call.",
+    "DEC-05: the wedge decision pack is ready (analysis/reports/ab16_wedge_decision.md, approach_v1.md). Recommended: measurement + a reliability-first claim ledger built in gated bundles B0-B5, with measurement-only as the floor."
+   ],
+   "posted_utc": "2026-10-14T06:28:57Z",
+   "tickets": [
+    "AUD-37",
+    "AUD-38",
+    "DEC-05",
+    "EXT-06",
+    "INF-08",
+    "RQ-17"
+   ]
+  },
   {
    "done": [
     "AUD-34 AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
@@ -885,148 +1199,10 @@
     "RQ-14",
     "TGT-07"
    ]
-  },
-  {
-   "done": [
-    "AUD-32 Audit program DAG: research landscape, commercial landscape, wedge and paper",
-    "AUD-33 AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected…",
-    "AUD-35 AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call",
-    "AUD-36 AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold",
-    "AUD-39 AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)",
-    "AUD-40 AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence…",
-    "AUD-42 AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims",
-    "AUD-43 AB-12 Vertical probe: root-cause analysis",
-    "AUD-44 AB-13 Regulation and standards map: requirement -> ledger field",
-    "AUD-46 AB-15 Positioning closure: novelty matrix for L1-L5",
-    "DEC-02 Approve the tier-elicitation test (~900 short calls through Uzair's key)"
-   ],
-   "points": [
-    "AUD-33 (AB-01): controlled CausalArena scoreboard complete. PC with maxP removes the order effect in all three families (P2 supported) and scores 0.463 semantic vs the published PC 0.333; the authors' rule adds about +0.21 to FCI everywhere; GIES with targets is layout-free (0.539 vs published 0.568)",
-    "AUD-36 (AB-04): decision value on five benchmarks. On CausalArena learned graphs capture 0-55% of the CPDAG ceiling's value and PC/GES are worth less than doing nothing on synthetic; on Causal Chambers (physical truth) GES lifts precision +0.10 and comes within 0.08 of the ceiling, so L3 is CausalArena-scoped",
-    "AUD-35 (AB-03): dodiscover's PC fails the perfect-oracle test (597/720) and can return a cyclic graph; pgmpy and tigramite PCMCI+ are correct; bug-report drafts written",
-    "AUD-43 (AB-12): PetShop RCA, declared topology + abstention 0.93 AC@3 vs learned PC graph 0.21 (P15 supported)",
-    "AUD-39/40/42/44/46 done: rho-dial benchmark (2,500 files), theory pack (T5 restated), teardown of 33 tools, regulation map (50 requirements), novelty matrix (all claims partly open)",
-    "Waiting on Uzair: AUD-37 and AUD-48 live runs (about $3.6 + $3.1), AUD-34 Bayesys download, AUD-41 course-staff IRB question"
-   ],
-   "posted_utc": "2026-10-13T09:00:19Z",
-   "tickets": [
-    "AUD-32",
-    "AUD-33",
-    "AUD-34",
-    "AUD-35",
-    "AUD-36",
-    "AUD-37",
-    "AUD-39",
-    "AUD-40",
-    "AUD-41",
-    "AUD-42",
-    "AUD-43",
-    "AUD-44",
-    "AUD-46",
-    "AUD-48",
-    "DEC-02"
-   ]
-  },
-  {
-   "done": [
-    "AUD-27 Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy",
-    "AUD-28 Controlled re-score: released vs shuffled columns for every runnable baseline; PC…",
-    "AUD-29 Sortability of the CausalArena release (varsortability, R2-sortability)",
-    "AUD-30 Decision value (DV-1) and adjustment-identification distance for every baseline, with…",
-    "AUD-31 Cost of one Causal-Copilot run (the approved one-run cost check)",
-    "BLD-13 Claim-ledger record format, JSON Schema and verifier (V1-V8)"
-   ],
-   "points": [
-    "AUD-27: under a perfect independence oracle, Causal-Copilot's PC copy returns the true class on 460 of 720 runs (36% wrong); PyPI causal-learn 720/720; gCastle original/stable share the defect",
-    "AUD-28: PC orients worse in released column order (directed F1 0.356 vs 0.426 shuffled, semantic); cause is the collider conflict rule; maxP removes it (q gap 0.001)",
-    "AUD-30: committed-claim precision, semantic: empty graph 0.643, GES 0.753, true CPDAG 1.000; no method beats the empty graph on ancestor AID",
-    "AUD-31: one Causal-Copilot run costs median $0.457 (30 logged runs); nothing spent",
-    "BLD-13: claim-ledger format and verifier, 9 tests pass",
-    "AUD-32: audit program DAG (17 bundles AB-01..AB-17) proposed, awaiting Uzair's approval"
-   ],
-   "posted_utc": "2026-10-13T04:46:37Z",
-   "tickets": [
-    "AUD-27",
-    "AUD-28",
-    "AUD-29",
-    "AUD-30",
-    "AUD-31",
-    "AUD-32",
-    "BLD-13"
-   ]
-  },
-  {
-   "done": [
-    "AUD-18 Field audit: every causal-discovery system, its regimes, order source and evaluation…",
-    "AUD-19 Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark",
-    "AUD-20 Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W",
-    "AUD-21 Own-benchmark audit: requirements, pitfalls and candidate designs",
-    "AUD-22 Commercial audit: who buys causal analysis, for which decision, with which guarantee",
-    "AUD-23 Engine audit: libraries, capabilities, defects; build vs reuse for the ledger",
-    "AUD-24 Value-of-accuracy audit: how graph errors become decision errors",
-    "AUD-25 Packaging audit: delivery modes, output requirements, regulator needs, user complaints",
-    "AUD-26 Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse"
-   ],
-   "points": [
-    "INF-06: cc-research is repo-ready: .gitattributes keeps bytes exact, 6.7 GB of external data and runs listed by sha256 in manifests/excluded, CI (secret scan, snapshot, pins, tests, trace, site build) green on a clean clone",
-    "BLD-11: site/snapshot.json feeds the Causal Atlas site; every printed number comes from site/registry.py with its source file",
-    "AUD-26: eight desk audits (AUD-18..AUD-25, 385 sourced rows) and a synthesis; layout gain under the scoreboard's own orientation rule measured: PC +0.062, GES +0.022, FCI +0.221, zero when columns are shuffled"
-   ],
-   "posted_utc": "2026-10-13T02:42:11Z",
-   "tickets": [
-    "AUD-18",
-    "AUD-19",
-    "AUD-20",
-    "AUD-21",
-    "AUD-22",
-    "AUD-23",
-    "AUD-24",
-    "AUD-25",
-    "AUD-26",
-    "BLD-11",
-    "INF-06"
-   ]
-  },
-  {
-   "done": [
-    "BEN-10 Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build…",
-    "BND-07 Causal Chambers and intervention audit (no LLM)",
-    "CAP-17 Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)",
-    "DOM-09 What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on…",
-    "REP-09 Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score"
-   ],
-   "points": [
-    "BND-06: formula + synthetic100 for 5 methods (only PC order-dependent; mechanism: vendored causal-learn 0.1.3.8 skeleton, 21/24 files vs 0/22 upstream). C1 re-established. CAP-17 done (10 packages, validator exit 0). DOM-09 done. Open: AVICI (huggingface.co blocked) -> REP-07, BEN-07, BEN-11",
-    "BND-07 done: BEN-10 (8 datasets mapped; one-layer-deep check on the data: lt 57/57, wt 40/42 children shift, 0 non-descendant shifts; 6,200-row obs+int sample), REP-09 SUPPORTED (GES CPDAG identical to the authors')",
-    "BND-11 prepared: refinement v2 frozen (443354d8; data part never deletes; dev R1-R3 supported); 786 names questions; names_runner with retry/abstain; cc.ps1 names; formula replay jobs for v2's held-out",
-    "BND-12 free part: REP-11 data-only Sachs ensemble F1 0.647 vs 0.606 (reproduced, conditional: Sachs has no data-identifiable direction). BND-03: AUD-14 time-series wrapper job ready (jobs/aud14_ts_wrappers.json)",
-    "Blocked by egress (DOM-07, REP-07): AVICI + CDFM checkpoints (huggingface.co), CausalArena appendix B and CDFM tables (arXiv PDF unreadable here)"
-   ],
-   "posted_utc": "2026-10-12T10:13:55Z",
-   "tickets": [
-    "AUD-14",
-    "BEN-07",
-    "BEN-10",
-    "BEN-11",
-    "BLD-06",
-    "BND-03",
-    "BND-06",
-    "BND-07",
-    "BND-11",
-    "BND-12",
-    "CAP-10",
-    "CAP-17",
-    "DOM-07",
-    "DOM-09",
-    "REP-07",
-    "REP-09",
-    "REP-11",
-    "TGT-13"
-   ]
   }
  ],
- "generated_utc": "2026-10-13T23:08:41Z",
- "hash": "1839d541b2f5f87b2c4171e1f874630e62099601f87dc0ca0a78b12c995ef7fc",
+ "generated_utc": "2026-10-15T14:34:47Z",
+ "hash": "33429a222bfd3522b23c7a901fea1b6f26692e7f4c72e2cc869e593123103af2",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -1043,7 +1219,7 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P1",
-   "status": "in_progress",
+   "status": "done",
    "title": "Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded"
   },
   {
@@ -1059,9 +1235,9 @@
    "category": "0 Quarter 1 deliverables",
    "id": "DLV-04",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets"
   },
   {
@@ -1419,9 +1595,9 @@
    "category": "3 Audit: Causal-Copilot",
    "id": "AUD-13",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P1",
-   "status": "todo",
+   "status": "done",
    "title": "Second model besides GPT-4o"
   },
   {
@@ -1619,7 +1795,7 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P1",
-   "status": "blocked",
+   "status": "done",
    "title": "AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)"
   },
   {
@@ -1628,7 +1804,7 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P1",
-   "status": "blocked",
+   "status": "done",
    "title": "AB-06 LIVE: field audit of LLM-using systems under names x layout controls"
   },
   {
@@ -1707,9 +1883,9 @@
    "category": "3 Audit: Causal-Copilot",
    "id": "AUD-47",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P1",
-   "status": "todo",
+   "status": "done",
    "title": "AB-17 Paper skeleton and pre-registration manifest"
   },
   {
@@ -1725,9 +1901,9 @@
    "category": "15 Decisions",
    "id": "DEC-05",
    "kind": "decision",
-   "level": "V0",
+   "level": "V3",
    "pillar": "spine",
-   "status": "todo",
+   "status": "done",
    "title": "AB-16 Wedge decision: paper spine, venue and the Q2 build"
   },
   {
@@ -1887,9 +2063,9 @@
    "category": "5 Targets",
    "id": "TGT-06",
    "kind": "target",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P1",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)"
   },
   {
@@ -1916,34 +2092,34 @@
    "kind": "target",
    "level": "V3",
    "pillar": "P2",
-   "status": "in_progress",
+   "status": "done",
    "title": "Never below the system's own data-only output"
   },
   {
    "category": "5 Targets",
    "id": "TGT-10",
    "kind": "target",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Zero change when columns are shuffled"
   },
   {
    "category": "5 Targets",
    "id": "TGT-11",
    "kind": "target",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Bounded harm when names are wrong"
   },
   {
    "category": "5 Targets",
    "id": "TGT-12",
    "kind": "target",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Calibration better than raw bootstrap frequencies on held-out scenarios"
   },
   {
@@ -1952,7 +2128,7 @@
    "kind": "target",
    "level": "V3",
    "pillar": "P2",
-   "status": "in_progress",
+   "status": "done",
    "title": "Zero crashes from malformed model output"
   },
   {
@@ -2004,27 +2180,27 @@
    "category": "6 Required capabilities",
    "id": "CAP-03",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Use intervention data"
   },
   {
    "category": "6 Required capabilities",
    "id": "CAP-04",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Declared knowledge as tiers, never edges"
   },
   {
    "category": "6 Required capabilities",
    "id": "CAP-05",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Invariance to column order"
   },
   {
@@ -2040,27 +2216,27 @@
    "category": "6 Required capabilities",
    "id": "CAP-07",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Calibrated confidence per claim"
   },
   {
    "category": "6 Required capabilities",
    "id": "CAP-08",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Abstention / selective claims"
   },
   {
    "category": "6 Required capabilities",
    "id": "CAP-09",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Provenance per edge with an independent checker"
   },
   {
@@ -2069,16 +2245,16 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P2",
-   "status": "in_progress",
+   "status": "done",
    "title": "Robustness to malformed model output"
   },
   {
    "category": "6 Required capabilities",
    "id": "CAP-11",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "Determinism (same inputs, same ledger hash)"
   },
   {
@@ -2184,9 +2360,9 @@
    "category": "7 Research questions",
    "id": "RQ-05",
    "kind": "question",
-   "level": "V2",
+   "level": "V3",
    "pillar": "P1",
-   "status": "open",
+   "status": "done",
    "title": "T2 Deployed agents take order from names and layout"
   },
   {
@@ -2292,9 +2468,9 @@
    "category": "7 Research questions",
    "id": "RQ-17",
    "kind": "question",
-   "level": "V0",
+   "level": "V2",
    "pillar": "P1",
-   "status": "open",
+   "status": "done",
    "title": "Do results hold for a second model?"
   },
   {
@@ -2310,36 +2486,36 @@
    "category": "8 Build",
    "id": "BLD-02",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "B1 data-only claim ledger with invariants I1-I4, I7"
   },
   {
    "category": "8 Build",
    "id": "BLD-03",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "B2 interventions as order evidence"
   },
   {
    "category": "8 Build",
    "id": "BLD-04",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "B3 declared knowledge as tiers"
   },
   {
    "category": "8 Build",
    "id": "BLD-05",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
-   "status": "todo",
+   "status": "done",
    "title": "B4 confidence, calibration, selective output"
   },
   {
@@ -2348,7 +2524,7 @@
    "kind": "task",
    "level": "V3",
    "pillar": "P2",
-   "status": "in_progress",
+   "status": "done",
    "title": "Drop-in replacement for Causal-Copilot's refinement stage"
   },
   {
@@ -2418,9 +2594,9 @@
    "category": "8 Build",
    "id": "BLD-14",
    "kind": "task",
-   "level": "V2",
+   "level": "V3",
    "pillar": "spine",
-   "status": "todo",
+   "status": "done",
    "title": "Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check"
   },
   {
@@ -2724,9 +2900,9 @@
    "category": "14 Stretch",
    "id": "STR-01",
    "kind": "stretch",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P1",
-   "status": "open",
+   "status": "done",
    "title": "E1 Field-wide audit of agents and LLM-assisted methods"
   },
   {
@@ -2778,9 +2954,9 @@
    "category": "15 Decisions",
    "id": "DEC-01",
    "kind": "decision",
-   "level": "V0",
+   "level": "V3",
    "pillar": "spine",
-   "status": "open",
+   "status": "done",
    "title": "Adopt, redirect or enlarge program v2; which of E1-E5 in scope"
   },
   {
@@ -2951,7 +3127,7 @@
    "kind": "bundle",
    "level": "V3",
    "pillar": "spine",
-   "status": "in_progress",
+   "status": "done",
    "title": "LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)"
   },
   {
@@ -2969,7 +3145,7 @@
    "kind": "bundle",
    "level": "V3",
    "pillar": "spine",
-   "status": "in_progress",
+   "status": "done",
    "title": "Refinement v1: held-out test"
   },
   {
@@ -2978,7 +3154,7 @@
    "kind": "bundle",
    "level": "V3",
    "pillar": "spine",
-   "status": "in_progress",
+   "status": "done",
    "title": "LIVE: Refinement v2, names only where the data are silent"
   },
   {
@@ -3025,21 +3201,93 @@
    "pillar": "spine",
    "status": "done",
    "title": "Approve the Atlas v2 page sequence (and whether the market page is public)"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-06",
+   "kind": "decision",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Note to Vashishtha et al. maintainers: triplet answers cut off at 300 tokens (91% of votes lost on gpt-4o-mini)"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-08",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Transient OSError EIO on the Docker bind mount: harness writes retry"
+  },
+  {
+   "category": "10 Infrastructure",
+   "id": "INF-09",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Provider quota exhaustion is an infrastructure stop, not an agent failure"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-18",
+   "kind": "target",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "DV-1 precision > 0.80 at >= 50% coverage, both families, held out (landmark ER-2)"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-19",
+   "kind": "target",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Accuracy landmark ER-4a: data-only F1 above GES (route A), or knowledge tiers lift > 0.03 (route B)"
+  },
+  {
+   "category": "5 Targets",
+   "id": "TGT-20",
+   "kind": "target",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "RCA through the ledger: AC@3 >= 0.90 at coverage >= 0.5 on PetShop held out (landmark ER-4b)"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-15",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Audit adapter: other systems' outputs read as typed claims with violation classes"
+  },
+  {
+   "category": "13 External outputs",
+   "id": "EXT-07",
+   "kind": "decision",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "open",
+   "title": "Note to causal-learn maintainers: PC's Meek step can return a directed cycle (stale ancestor matrix)"
   }
  ],
  "lists": {
   "dev": {
    "pending_removals": 0,
-   "pending_updates": 6,
-   "rows": 222,
-   "rows_sha256": "adb86d26f098f9507a3f03459e0acf4f39f1b29fac99e8f8ef0b713b88c5ab23",
+   "pending_updates": 0,
+   "rows": 230,
+   "rows_sha256": "9434d8dd4f27a51a21b48a610abfad6ac5d81be9d791c3ad98218c80c41faeac",
    "slack_list": "F0C869P25NE"
   },
   "prod": {
    "pending_removals": 0,
    "pending_updates": 0,
    "rows": 67,
-   "rows_sha256": "dd9be4a6c4e50ba7d8c676fa5b63feadc826cbe71d69bfd0fb3531d1d2cfeeb4",
+   "rows_sha256": "ae270663b30647199c2dbc4039209ee3ffdb6709e496a885cab8393349537b91",
    "slack_list": "F0C8ADF3DNG"
   }
  },
@@ -3198,11 +3446,227 @@
   },
   "ab05.crash.runs": {
    "src": "analysis/reports/ab05_probe_results.md",
-   "value": 16.0
+   "value": 18.0
   },
   "ab05.crash.total": {
    "src": "analysis/reports/ab05_probe_results.md",
-   "value": 115.0
+   "value": 19.0
+  },
+  "ab05.pywhy.f1": {
+   "src": "analysis/results/ab05/live_calibration.json",
+   "value": 0.329114
+  },
+  "ab05.vash.pairs": {
+   "src": "analysis/results/ab05/live_calibration.json",
+   "value": 300
+  },
+  "ab05.vash.ties": {
+   "src": "analysis/results/ab05/live_calibration.json",
+   "value": 113
+  },
+  "ab05.vash.triplets": {
+   "src": "analysis/results/ab05/live_calibration.json",
+   "value": 2300
+  },
+  "ab05.vash.untagged": {
+   "src": "analysis/results/ab05/live_calibration.json",
+   "value": 0.9113
+  },
+  "ab06.P10": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": "supported"
+  },
+  "ab06.P9": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": "supported"
+  },
+  "ab06.causaliq.neutral": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.0397
+  },
+  "ab06.causaliq.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.251
+  },
+  "ab06.causaliq.nrn": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 10
+  },
+  "ab06.causaliq.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2833
+  },
+  "ab06.causaliq.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.0323
+  },
+  "ab06.cc.completed": {
+   "src": "analysis/reports/ab06_cc_second_model.md",
+   "value": 26.0
+  },
+  "ab06.cc.m4.families": {
+   "src": "analysis/results/ab06_cc/s2_verdicts.json",
+   "value": 10
+  },
+  "ab06.cc.m4.hits": {
+   "src": "analysis/results/ab06_cc/s2_verdicts.json",
+   "value": 9
+  },
+  "ab06.cc.real.S0": {
+   "src": "analysis/results/ab06_cc/partial_stages.json",
+   "value": 0.233
+  },
+  "ab06.cc.real.S3": {
+   "src": "analysis/results/ab06_cc/partial_stages.json",
+   "value": 0.208
+  },
+  "ab06.cc.reliance": {
+   "src": "analysis/reports/ab06_cc_second_model.md",
+   "value": 0.094
+  },
+  "ab06.cc.reliance.4o": {
+   "src": "analysis/reports/ab06_cc_second_model.md",
+   "value": 0.167
+  },
+  "ab06.cc.swapped.S3": {
+   "src": "analysis/results/ab06_cc/partial_stages.json",
+   "value": 0.114
+  },
+  "ab06.cc4o.neutral": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1931
+  },
+  "ab06.cc4o.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1668
+  },
+  "ab06.cc4o.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2866
+  },
+  "ab06.cc4o.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1198
+  },
+  "ab06.ccmini.neutral": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1439
+  },
+  "ab06.ccmini.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.0937
+  },
+  "ab06.ccmini.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2079
+  },
+  "ab06.ccmini.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1143
+  },
+  "ab06.empty.dv": {
+   "src": "analysis/reports/ab06_field_audit.md",
+   "value": 0.67
+  },
+  "ab06.matmcd.below.neutral": {
+   "src": "analysis/reports/ab06_field_audit.md",
+   "value": 9.0
+  },
+  "ab06.matmcd.below.swapped": {
+   "src": "analysis/reports/ab06_field_audit.md",
+   "value": 8.0
+  },
+  "ab06.matmcd.dv": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.6855
+  },
+  "ab06.matmcd.dv.floor": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.7199
+  },
+  "ab06.matmcd.floor": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.381
+  },
+  "ab06.matmcd.neutral": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2512
+  },
+  "ab06.matmcd.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1217
+  },
+  "ab06.matmcd.nrn": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 10
+  },
+  "ab06.matmcd.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.3803
+  },
+  "ab06.matmcd.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2586
+  },
+  "ab06.pywhyllm.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.2024
+  },
+  "ab06.pywhyllm.nrn": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 4
+  },
+  "ab06.pywhyllm.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.3139
+  },
+  "ab06.pywhyllm.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.1138
+  },
+  "ab06.tierA.usd": {
+   "src": "analysis/reports/ab06_prep.md",
+   "value": 48.23
+  },
+  "ab06.usd": {
+   "src": "analysis/reports/ab06_field_audit.md",
+   "value": 32.11
+  },
+  "ab06.vash.data": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 89
+  },
+  "ab06.vash.llm_order": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 11
+  },
+  "ab06.vashishtha.dv": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.7201
+  },
+  "ab06.vashishtha.dv.floor": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.7181
+  },
+  "ab06.vashishtha.floor": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.425
+  },
+  "ab06.vashishtha.nr": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.0198
+  },
+  "ab06.vashishtha.nrn": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 5
+  },
+  "ab06.vashishtha.real": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.4258
+  },
+  "ab06.vashishtha.swapped": {
+   "src": "analysis/results/ab06/ab06.json",
+   "value": 0.406
   },
   "ab07.ges.data.dv": {
    "src": "analysis/results/a3/a3_orient_only.json",
@@ -4016,6 +4480,330 @@
    "src": "analysis/results/published/leaderboard.json",
    "value": "GIES"
   },
+  "q2.b2.for.dv": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.0036485157630485876
+  },
+  "q2.b2.for.dv.lo": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": -0.003432995577942724
+  },
+  "q2.b2.for.perfile": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.004848716233785594
+  },
+  "q2.b2.sem.dv": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.01726906968667774
+  },
+  "q2.b2.sem.dv.lo": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.00641558003982162
+  },
+  "q2.b2.sem.perfile": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.016635874455150558
+  },
+  "q2.b3.for.files": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b3.for.gain": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.028028534269080602
+  },
+  "q2.b3.for.gain.hi": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.03732266193665966
+  },
+  "q2.b3.for.gain.lo": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.019055914131726255
+  },
+  "q2.b3.for.moved": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.003095896979171599
+  },
+  "q2.b3.for.neutral": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b3.for.t3": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b3.sem.files": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b3.sem.gain": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.018719063792481335
+  },
+  "q2.b3.sem.gain.hi": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.029734350751863915
+  },
+  "q2.b3.sem.gain.lo": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 0.010050065349998314
+  },
+  "q2.b3.sem.moved": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": -0.0014251806196780357
+  },
+  "q2.b3.sem.neutral": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b3.sem.t3": {
+   "src": "analysis/results/q2_b3/summary_test.json",
+   "value": 125
+  },
+  "q2.b4.for.cov": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.614574437802448
+  },
+  "q2.b4.for.ece": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.036063851212826945
+  },
+  "q2.b4.for.ece.hi": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.07565860491603124
+  },
+  "q2.b4.for.prec": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.8985641500694767
+  },
+  "q2.b4.for.prec.hi": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.9393945354409556
+  },
+  "q2.b4.for.prec.lo": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.8543036082147131
+  },
+  "q2.b4.for.raw": {
+   "src": "analysis/results/q2_b4/raw_vs_calibrated_test.json",
+   "value": 0.16457197819814273
+  },
+  "q2.b4.sem.cov": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.5776911836337068
+  },
+  "q2.b4.sem.ece": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.05686447632685957
+  },
+  "q2.b4.sem.ece.hi": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.0968895818605495
+  },
+  "q2.b4.sem.prec": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.811973018549747
+  },
+  "q2.b4.sem.prec.hi": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.8642352978781521
+  },
+  "q2.b4.sem.prec.lo": {
+   "src": "analysis/results/q2_b4/evaluate_test.json",
+   "value": 0.7560917335932699
+  },
+  "q2.b4.sem.raw": {
+   "src": "analysis/results/q2_b4/raw_vs_calibrated_test.json",
+   "value": 0.1994263862332692
+  },
+  "q2.b5.ac3": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 0.9318181818181818
+  },
+  "q2.b5.ac3.lo": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 0.8409090909090909
+  },
+  "q2.b5.answered": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 44
+  },
+  "q2.b5.cc.created": {
+   "src": "analysis/results/q2_b5/adapters.json",
+   "value": 384
+  },
+  "q2.b5.cov": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 0.9166666666666666
+  },
+  "q2.b5.learned": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 0.4
+  },
+  "q2.b5.learned.cov": {
+   "src": "analysis/results/q2_b5/rca_test.json",
+   "value": 0.5208333333333334
+  },
+  "q2.b5.matmcd.reversed": {
+   "src": "analysis/results/q2_b5/adapters.json",
+   "value": 398
+  },
+  "q2.ch.agree": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.9852216748768473
+  },
+  "q2.ch.ges": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.916256157635468
+  },
+  "q2.ch.kd": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.925
+  },
+  "q2.ch.kdi": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.9261083743842364
+  },
+  "q2.ch.pc": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.8865979381443299
+  },
+  "q2.ch.true.agree": {
+   "src": "analysis/results/q2_b2/summary_test.json",
+   "value": 0.9425837320574163
+  },
+  "q2.erf.for.dv": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.05269143952662936
+  },
+  "q2.erf.for.dv.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.10497033966878852
+  },
+  "q2.erf.for.dv.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.005763995513203493
+  },
+  "q2.erf.for.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.1151242646349018
+  },
+  "q2.erf.for.f1.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.1523983498264398
+  },
+  "q2.erf.for.f1.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.08200173442165666
+  },
+  "q2.erf.sem.dv": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.07326931997118247
+  },
+  "q2.erf.sem.dv.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.11462014486303318
+  },
+  "q2.erf.sem.dv.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.03390115555668622
+  },
+  "q2.erf.sem.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.053219647289471886
+  },
+  "q2.erf.sem.f1.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.08742369864189134
+  },
+  "q2.erf.sem.f1.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.020444409517728076
+  },
+  "q2.ges.for.dv": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.029807731883181865
+  },
+  "q2.ges.for.dv.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.060876844984999116
+  },
+  "q2.ges.for.dv.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.008984230283918334
+  },
+  "q2.ges.for.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.0018496273516408544
+  },
+  "q2.ges.for.f1.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.017114704448794
+  },
+  "q2.ges.for.f1.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": -0.012207866438852258
+  },
+  "q2.ges.sem.dv": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.027785875393988357
+  },
+  "q2.ges.sem.dv.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.04157629531868566
+  },
+  "q2.ges.sem.dv.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.014668387112551088
+  },
+  "q2.ges.sem.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": -0.0007095730148719731
+  },
+  "q2.ges.sem.f1.hi": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.0051316302765424876
+  },
+  "q2.ges.sem.f1.lo": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": -0.006986301849824626
+  },
+  "q2.lm.ER-1": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "met"
+  },
+  "q2.lm.ER-2": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "not met"
+  },
+  "q2.lm.ER-3": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "not met"
+  },
+  "q2.lm.ER-4a": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "not met"
+  },
+  "q2.lm.ER-4b": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "not met"
+  },
+  "q2.lm.ER-C": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "met"
+  },
+  "q2.lm.ER-F": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": "met"
+  },
+  "q2.paper.met": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": 2
+  },
+  "q2.wedge.met": {
+   "src": "analysis/results/q2_landmarks.json",
+   "value": 2
+  },
   "rep11.ours": {
    "src": "analysis/reports/rep11_sachs_data.md",
    "value": 0.647
@@ -4051,6 +4839,26 @@
   "v2.files": {
    "src": "analysis/results/refinement_v2/exploratory_s2_live.json",
    "value": 30
+  },
+  "v2.names.R5": {
+   "src": "analysis/results/refinement_v2/names_s2.json",
+   "value": 10
+  },
+  "v2.names.R6": {
+   "src": "analysis/results/refinement_v2/names_s2.json",
+   "value": 1
+  },
+  "v2.test.R1": {
+   "src": "analysis/results/refinement_v2/test_formula.json",
+   "value": 22
+  },
+  "v2.test.R3": {
+   "src": "analysis/results/refinement_v2/test_formula.json",
+   "value": 0.0097239093659487
+  },
+  "v2.test.files": {
+   "src": "analysis/results/refinement_v2/test_formula.json",
+   "value": 22
   }
  },
  "milestones": [
@@ -4123,6 +4931,46 @@
     "AB-17"
    ],
    "title": "Paper skeleton and pre-registration"
+  },
+  {
+   "date": "2026-11-07",
+   "id": "QM-1",
+   "requires": [
+    "B1"
+   ],
+   "title": "Floors known"
+  },
+  {
+   "date": "2026-11-17",
+   "id": "QM-2",
+   "requires": [
+    "B2"
+   ],
+   "title": "Physical-truth row known"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "QM-3",
+   "requires": [
+    "B3"
+   ],
+   "title": "Provenance known"
+  },
+  {
+   "date": "2026-12-01",
+   "id": "QM-4",
+   "requires": [
+    "B4"
+   ],
+   "title": "Paper constraints all known"
+  },
+  {
+   "date": "2026-12-15",
+   "id": "QM-5",
+   "requires": [
+    "B5"
+   ],
+   "title": "Wedge constraint known"
   }
  ],
  "schema": 1,
@@ -4131,7 +4979,10 @@
   "analysis/reports/ab02_second_scoreboard.md": "bcfb9ead7284fe403becc0e036ad79a5ed074183bef4b868f00e97d19fb743af",
   "analysis/reports/ab03_engine_forensics.md": "bd8a0c582eb9bdeb26a0d69c0f616c8067229f4d9fed524bb928e9ce5b57165d",
   "analysis/reports/ab04_decision_value.md": "e795c32858abf067be964783227d8afbeee2f37e7e4ede664e145be513c4d6c7",
-  "analysis/reports/ab05_probe_results.md": "20b769b2f6ccdadbe525553fe59309ca08654f1c7d59756a2f780f6d84c06294",
+  "analysis/reports/ab05_probe_results.md": "fb9a036cc411854db3ffcb71d271350be94df4ef86cff6159f9cb51d089fd340",
+  "analysis/reports/ab06_cc_second_model.md": "db9d9bf493eaee859c48ac936801fff243fc158bd4ef6345569543b32629fccb",
+  "analysis/reports/ab06_field_audit.md": "9add5480224fa62dd4b7fe5e7df201be0383b7b6ccc4e1fe44653cc829cc7e9a",
+  "analysis/reports/ab06_prep.md": "650334d2e138eda8e4fb5b448831599243960c552008b2faca7efa37f7d8f137",
   "analysis/reports/ab09_theory_pack.md": "2c266eedc06a0bb0f8fc06ac92e8ff2cbf3cafad0d540d551a789132f1fa8641",
   "analysis/reports/ab12_rca_probe.md": "07a0fb135d6cdd21d9e16e0f2e5819814817a537d00f340107bfadfebf497a04",
   "analysis/reports/ab14_market.md": "42e3173089b5c5483ab765566ab3ccb8bd902909a7ea4986d0d7c48497ac95f4",
@@ -4140,6 +4991,10 @@
   "analysis/results/a3/a3.json": "5372878c4310d107eeeae214f6e8ac6fd984be14d9b515143cbcb9874b187d80",
   "analysis/results/a3/a3_orient_only.json": "18bfc618b40a941d8259f42b32b739aaa72586150318230f92cf19ac2a435ca7",
   "analysis/results/ab02/bayesys_repro.json": "503485748a3ac95a5add3ff2183b132fac27e26372e10415a7cbf4d2bc32c609",
+  "analysis/results/ab05/live_calibration.json": "6c2541bde8cffea81e2c4a4d6d7c6c1734d7db72816525c8677435e143d87ae2",
+  "analysis/results/ab06/ab06.json": "37bb5c30761dd0f45d6360c446239dcb0bb02ba27d8217ef31a5f37e87ac460c",
+  "analysis/results/ab06_cc/partial_stages.json": "1f399dae76ea92b142aebd1c57e3c8caadfea0daafe6626a47a66b25d660f1a3",
+  "analysis/results/ab06_cc/s2_verdicts.json": "b06ceda7838d2468387d549c31f19edee66482bcce12debaa622d76e8ba1c861",
   "analysis/results/causalarena_calibration/order_baseline.json": "54892d4fddb5e57fc5ce11f434951a46d59ad4d8de01541d863f9b4b36cf284f",
   "analysis/results/chambers/sample/sample_status.json": "e10cf86a725b6d3c69a659f069b3329ef71a99d8c24e53c9d45f54212f4df632",
   "analysis/results/dom09/ida_timing.json": "8f4db9546a5ffe21dfa6e4721221b1e65ef3d760b7a2cbffc62b4f8b59131826",
@@ -4149,12 +5004,22 @@
   "analysis/results/methods/pc_skeleton_order_upstream.json": "68e72903d97fc67523dee9abf9633ee672b9fc7e23c0905bb4e4fd47ca000936",
   "analysis/results/methods/pc_skeleton_order_vendored.json": "e9cf0c1f19679b5faf291e332da13a7764122709c5dacf1ffcb8e6628042f433",
   "analysis/results/published/leaderboard.json": "90a81259a7d495ca3d8803be5eb799d824ee4989f23ca9ce4f1ac7f1088830e4",
+  "analysis/results/q2_b1/heldout.json": "87d7fb53301afda1f1cf15d0950b1923d5c379d7e7961413898ce05a10174ebe",
+  "analysis/results/q2_b2/summary_test.json": "a422a906d8c141d662780b56697d2d828d28db14ab22066c033ffa558c6f7a1f",
+  "analysis/results/q2_b3/summary_test.json": "dac745ced1ad9454f80e075beb795fba81a4d1a5e488974a3e08326766c3a86b",
+  "analysis/results/q2_b4/evaluate_test.json": "b3c20cf72e8fe840cd8d9ba8ca71c0fe21b116293df6888168316e2909827832",
+  "analysis/results/q2_b4/raw_vs_calibrated_test.json": "4d72e08cbcd9220dec3f6a3c75bc13e949a605bd5bf1da3eb910ae6fa01bdcdd",
+  "analysis/results/q2_b5/adapters.json": "046a3361af1f6d2c0040f89ba924379d35c0cc2cec8d882fa687da435e08be79",
+  "analysis/results/q2_b5/rca_test.json": "aa362861c6080e6248a69c3de5416b017cf4dfd8539ae92d65ed91bebc5d6617",
+  "analysis/results/q2_landmarks.json": "efd5f0e8bed240a88a4c95e34725334b9734ce9bdad9ffa846e6a355673cbd75",
   "analysis/results/refinement_v1/diagnosis_test_live_s2.json": "52fcfe04d07ce97e1991fee1143b99e1323317561e5eb03745b671e7cb7f9ea6",
   "analysis/results/refinement_v1/test_live_s2.json": "02b0b20b6c1ca96afa085cc908528335a80d64b53591d1567440795d9fc3def5",
   "analysis/results/refinement_v2/exploratory_s2_live.json": "debb94c4d3a3e415a1517d721b08b9d7486c5dca8c45d7d8c98afec2320cbae4",
+  "analysis/results/refinement_v2/names_s2.json": "b60b3d67e73e888f2a899b3cb17e84b90cad0a401adb77f218e48852b95a8092",
+  "analysis/results/refinement_v2/test_formula.json": "f7ac5b83661b3e000188ec04e9cd4ad1b372c13b53596002c91ab958afb6e9f7",
   "analysis/results/space/space_coords.json": "b1267a4cdd88c450b8cb82fb9a4de3e1e7d3b1705d9902ef09960c90c0e065f2",
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
   "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
  },
- "status_verified_utc": "2026-10-13T23:02:03Z"
+ "status_verified_utc": "2026-10-15T14:32:05Z"
 }

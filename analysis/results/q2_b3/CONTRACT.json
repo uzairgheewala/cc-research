@@ -1,0 +1,24 @@
+{
+ "producer": "kernel/run_b3.py, kernel/report_b23.py",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-04",
+  "CAP-04",
+  "TGT-11",
+  "TGT-19"
+ ],
+ "regime": "D+K",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (engines see canonical column order: sorted by value hash)",
+  "names": "per-row",
+  "supplier": "replay of AB-07's recorded gpt-4o tier replies through supplier/contract.py",
+  "knowledge_source": "gpt-4o tiers (AB-07, 3 phrasings, consensus)"
+ },
+ "orientation_rule": "undecided pairs oriented at random with a per-file seed, crc32(file name) (the AB-01 expectation rule)",
+ "metric_defs": {
+  "f1": "directed F1, expectation rule",
+  "gain": "D+K minus D directed F1, scenario-cluster interval",
+  "within_t3": "moved-arm expected-credit loss within the exact T3 bound"
+ }
+}

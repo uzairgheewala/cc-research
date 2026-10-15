@@ -1,0 +1,39 @@
+{
+ "ticket": "BLD-15 (proposed; bundle B5 of plans/q2_dag.json); TGT-20 (proposed), CAP-09",
+ "written_utc": "2026-10-15",
+ "status": "written after dev work on the PetShop train split and on the AB-06 outputs (both dev data), before any read of the PetShop test split through the ledger",
+ "kernel": "The data-only kernel is the frozen B1 version (plans/b1_freeze.json, rule C3), unchanged (core_sha256 recorded in plans/b5_freeze.json must equal B1's).",
+ "adapters": {
+  "code": "audit/adapters.py, audit/run_adapters.py, audit/export_cc_stages.py",
+  "inputs": "AB-06 run outputs (runs/ab06/<agent>/<scenario>/<arm>/result.json; dev split scenarios) and Causal-Copilot's BND-08 S2 stage graphs (rebuilt from recorded artifacts as analysis/partial_stages.py)",
+  "classes": [
+   "knowledge_created_connection",
+   "knowledge_deleted_connection",
+   "knowledge_reversed_data",
+   "unsourced_direction",
+   "direction_follows_names"
+  ],
+  "B5.1": "every flagged violation names a pair, a claim and a source; 0 'unknown' sources for agents that record provenance (MATMCD, Vashishtha et al., PyWhy-LLM, causaliq label every arrow); Causal-Copilot's provenance is reconstructed from stage graphs and labelled as such"
+ },
+ "rca": {
+  "code": "audit/rca.py",
+  "ledger": "kernel D (C3) on the normal period plus the declared topology as required-edge knowledge (operators); knowledge never connects: declared edges on unconnected pairs are overrides",
+  "view": "declared edges read from the ledger's knowledge records; NO fill by data claims. Chosen on the train split (analysis/results/q2_b5/rca_train_dev.json): with 10% or 25% of declared edges withheld, every fill rule tried (all data claims, both-engine claims, claims joining disconnected components) lowered AC@3 on answered issues against leaving the gaps (e.g. 25% withheld: 0.872 no fill, 0.743 best fill)",
+  "ranking": "AB-12's traversal and margin abstention, tau = 0.0 (AB-12's value tuned on train)",
+  "held_out": "PetShop test split, 48 issues; AB-12 already scored the same method on it outside the ledger (declared traversal + abstention: AC@3 0.932 on answered, coverage 0.917); the ledger route is expected to reproduce it",
+  "gap_experiment": "withheld 10% and 25% of declared edges, 5 seeds each, reported as a sensitivity (failure mode Q6), with the fill rules as rows"
+ },
+ "gates": {
+  "B5.1": "as above (adapters)",
+  "B5.2": "PetShop held-out with declared topology through the ledger and abstention: AC@3 at stated coverage reported against learned-graph RCA (descriptive, as hashed in plans/q2_build_prereg.json)"
+ },
+ "landmark": {
+  "ER-4b": "AC@3 on answered test issues >= 0.90 at coverage >= 0.5: met when the lower end of the 95% bootstrap interval over issues (2,000 resamples, seed 20261015) is >= 0.90 (docs/decisions/2026-10-14_q2_landmarks.md)"
+ },
+ "predictions": {
+  "P-B5a": "the ledger route reproduces AB-12's declared traversal exactly on the test split (AC@3 answered 0.932, coverage 0.917)",
+  "P-B5b": "ER-4b is not met under the interval rule: with about 44 answered issues the lower end falls below 0.90 even at a point estimate near 0.93",
+  "P-B5c": "on test, as on train, filling withheld declared edges with data claims lowers AC@3 against leaving the gaps"
+ },
+ "held_out_reads": "audit/rca.py --split test only after plans/b5_freeze.json exists; logged in analysis/results/q2_b5/access_log.jsonl"
+}

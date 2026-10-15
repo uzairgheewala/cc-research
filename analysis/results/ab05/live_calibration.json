@@ -1,0 +1,466 @@
+{
+ "ticket": "AUD-37 / AB-05",
+ "producer": "analysis/ab05_live_calibration.py",
+ "agents": {
+  "causaliq": {
+   "status": "ok",
+   "calls": 1,
+   "usd_live": 0.004337,
+   "wall_seconds": 5.83,
+   "f1": 0.230769,
+   "caps": {
+    "max_calls": 2,
+    "max_usd": 0.04
+   },
+   "live": {
+    "single": {
+     "calls": 1,
+     "prompt_mean": 471,
+     "completion_mean": 316,
+     "completion_max": 316,
+     "seconds_mean": 2.708,
+     "max_completion_tokens": [
+      "2000"
+     ],
+     "temperature": [
+      "0.1"
+     ],
+     "finish": {
+      "stop": 1
+     },
+     "requested_models": {
+      "gpt-4o": 1
+     },
+     "served_models": {
+      "gpt-4o-2024-08-06": 1
+     },
+     "usd": 0.004338
+    }
+   },
+   "stub": {
+    "single": {
+     "calls": 1,
+     "prompt_mean": 471,
+     "completion_mean": 1165,
+     "completion_max": 1165,
+     "seconds_mean": 0.004,
+     "max_completion_tokens": [
+      "2000"
+     ],
+     "temperature": [
+      "0.1"
+     ],
+     "finish": {
+      "stop": 1
+     },
+     "requested_models": {
+      "gpt-4o": 1
+     },
+     "served_models": {
+      "stub:gpt-4o": 1
+     },
+     "usd": 0.012828
+    }
+   },
+   "ratios": {
+    "single": {
+     "calls_live_over_stub": 1.0,
+     "prompt_live_over_stub": 1.0,
+     "completion_live_over_stub": 0.2712
+    }
+   }
+  },
+  "pywhyllm": {
+   "status": "ok",
+   "calls": 301,
+   "usd_live": 1.427123,
+   "wall_seconds": 1248.85,
+   "f1": 0.329114,
+   "caps": {
+    "max_calls": 452,
+    "max_usd": 1.83
+   },
+   "live": {
+    "context": {
+     "calls": 1,
+     "prompt_mean": 307,
+     "completion_mean": 204,
+     "completion_max": 204,
+     "seconds_mean": 2.473,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "None"
+     ],
+     "finish": {
+      "stop": 1
+     },
+     "requested_models": {
+      "gpt-4o": 1
+     },
+     "served_models": {
+      "gpt-4o-2024-08-06": 1
+     },
+     "usd": 0.002808
+    },
+    "pair": {
+     "calls": 300,
+     "prompt_mean": 376.5,
+     "completion_mean": 380.6,
+     "completion_max": 533,
+     "seconds_mean": 3.83,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "None"
+     ],
+     "finish": {
+      "stop": 300
+     },
+     "requested_models": {
+      "gpt-4o": 300
+     },
+     "served_models": {
+      "gpt-4o-2024-08-06": 300
+     },
+     "usd": 1.424315
+    }
+   },
+   "stub": {
+    "context": {
+     "calls": 1,
+     "prompt_mean": 307,
+     "completion_mean": 222,
+     "completion_max": 222,
+     "seconds_mean": 0.005,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "None"
+     ],
+     "finish": {
+      "stop": 1
+     },
+     "requested_models": {
+      "gpt-4o": 1
+     },
+     "served_models": {
+      "stub:gpt-4o": 1
+     },
+     "usd": 0.002988
+    },
+    "pair": {
+     "calls": 300,
+     "prompt_mean": 371.5,
+     "completion_mean": 312,
+     "completion_max": 312,
+     "seconds_mean": 0.002,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "None"
+     ],
+     "finish": {
+      "stop": 300
+     },
+     "requested_models": {
+      "gpt-4o": 300
+     },
+     "served_models": {
+      "stub:gpt-4o": 300
+     },
+     "usd": 1.214635
+    }
+   },
+   "ratios": {
+    "context": {
+     "calls_live_over_stub": 1.0,
+     "prompt_live_over_stub": 1.0,
+     "completion_live_over_stub": 0.9189
+    },
+    "pair": {
+     "calls_live_over_stub": 1.0,
+     "prompt_live_over_stub": 1.0135,
+     "completion_live_over_stub": 1.2199
+    }
+   }
+  },
+  "matmcd": {
+   "status": "aborted_cap",
+   "calls": 1131,
+   "usd_live": 0.409551,
+   "wall_seconds": 5567.91,
+   "f1": null,
+   "caps": {
+    "max_calls": 1800,
+    "max_usd": 0.41
+   },
+   "live": {
+    "constraint_yes_no": {
+     "calls": 531,
+     "prompt_mean": 844.9,
+     "completion_mean": 3,
+     "completion_max": 3,
+     "seconds_mean": 0.585,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "0.8"
+     ],
+     "finish": {
+      "stop": 531
+     },
+     "requested_models": {
+      "gpt-4o-mini": 531
+     },
+     "served_models": {
+      "gpt-4o-mini-2024-07-18": 531
+     },
+     "usd": 0.068254
+    },
+    "domain_knowledge": {
+     "calls": 600,
+     "prompt_mean": 905.4,
+     "completion_mean": 721.7,
+     "completion_max": 886,
+     "seconds_mean": 8.671,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "0.5"
+     ],
+     "finish": {
+      "stop": 600
+     },
+     "requested_models": {
+      "gpt-4o-mini": 600
+     },
+     "served_models": {
+      "gpt-4o-mini-2024-07-18": 600
+     },
+     "usd": 0.341296
+    }
+   },
+   "stub": {
+    "constraint_yes_no": {
+     "calls": 600,
+     "prompt_mean": 525.8,
+     "completion_mean": 3,
+     "completion_max": 3,
+     "seconds_mean": 0.001,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "0.8"
+     ],
+     "finish": {
+      "stop": 600
+     },
+     "requested_models": {
+      "gpt-4o-mini": 600
+     },
+     "served_models": {
+      "stub:gpt-4o-mini": 600
+     },
+     "usd": 0.048402
+    },
+    "domain_knowledge": {
+     "calls": 600,
+     "prompt_mean": 905.4,
+     "completion_mean": 400,
+     "completion_max": 400,
+     "seconds_mean": 0.003,
+     "max_completion_tokens": [
+      "None"
+     ],
+     "temperature": [
+      "0.5"
+     ],
+     "finish": {
+      "stop": 600
+     },
+     "requested_models": {
+      "gpt-4o-mini": 600
+     },
+     "served_models": {
+      "stub:gpt-4o-mini": 600
+     },
+     "usd": 0.225486
+    }
+   },
+   "ratios": {
+    "constraint_yes_no": {
+     "calls_live_over_stub": 0.885,
+     "prompt_live_over_stub": 1.6069,
+     "completion_live_over_stub": 1.0
+    },
+    "domain_knowledge": {
+     "calls_live_over_stub": 1.0,
+     "prompt_live_over_stub": 1.0,
+     "completion_live_over_stub": 1.8043
+    }
+   },
+   "matmcd": {
+    "calls_by_code": 1200,
+    "domain_knowledge_left": 0,
+    "yes_no_left": 69,
+    "usd_to_finish": 0.0089,
+    "usd_full_run": 0.4185
+   }
+  },
+  "vashishtha": {
+   "status": "aborted_cap",
+   "calls": 2360,
+   "usd_live": 1.256808,
+   "wall_seconds": 8216.77,
+   "f1": null,
+   "caps": {
+    "max_calls": 3501,
+    "max_usd": 1.27
+   },
+   "live": {
+    "tiebreak": {
+     "calls": 60,
+     "prompt_mean": 4063.2,
+     "completion_mean": 204.8,
+     "completion_max": 297,
+     "seconds_mean": 3.377,
+     "max_completion_tokens": [
+      "400"
+     ],
+     "temperature": [
+      "0.0"
+     ],
+     "finish": {
+      "stop": 60
+     },
+     "requested_models": {
+      "gpt-4o": 60
+     },
+     "served_models": {
+      "gpt-4o-2024-08-06": 60
+     },
+     "usd": 0.73237
+    },
+    "triplet": {
+     "calls": 2300,
+     "prompt_mean": 325.7,
+     "completion_mean": 298.6,
+     "completion_max": 300,
+     "seconds_mean": 3.441,
+     "max_completion_tokens": [
+      "300"
+     ],
+     "temperature": [
+      "0.0"
+     ],
+     "finish": {
+      "length": 2105,
+      "stop": 195
+     },
+     "requested_models": {
+      "gpt-4o-mini": 2300
+     },
+     "served_models": {
+      "gpt-4o-mini-2024-07-18": 2300
+     },
+     "usd": 0.524438
+    }
+   },
+   "stub": {
+    "tiebreak": {
+     "calls": 34,
+     "prompt_mean": 4059.2,
+     "completion_mean": 230,
+     "completion_max": 230,
+     "seconds_mean": 0.007,
+     "max_completion_tokens": [
+      "400"
+     ],
+     "temperature": [
+      "0.0"
+     ],
+     "finish": {
+      "stop": 34
+     },
+     "requested_models": {
+      "gpt-4o": 34
+     },
+     "served_models": {
+      "stub:gpt-4o": 34
+     },
+     "usd": 0.423235
+    },
+    "triplet": {
+     "calls": 2300,
+     "prompt_mean": 325.7,
+     "completion_mean": 223.4,
+     "completion_max": 256,
+     "seconds_mean": 0.002,
+     "max_completion_tokens": [
+      "300"
+     ],
+     "temperature": [
+      "0.0"
+     ],
+     "finish": {
+      "stop": 2300
+     },
+     "requested_models": {
+      "gpt-4o-mini": 2300
+     },
+     "served_models": {
+      "stub:gpt-4o-mini": 2300
+     },
+     "usd": 0.420684
+    }
+   },
+   "ratios": {
+    "tiebreak": {
+     "calls_live_over_stub": 1.7647,
+     "prompt_live_over_stub": 1.001,
+     "completion_live_over_stub": 0.8904
+    },
+    "triplet": {
+     "calls_live_over_stub": 1.0,
+     "prompt_live_over_stub": 1.0,
+     "completion_live_over_stub": 1.3366
+    }
+   },
+   "vashishtha": {
+    "triplets": 2300,
+    "variables": 25,
+    "pairs": 300,
+    "answers_without_tag": 2096,
+    "share_without_tag": 0.9113,
+    "answers_unparseable": 0,
+    "pairs_tied": 113,
+    "share_pairs_tied": 0.3767,
+    "pairs_with_no_vote": 90,
+    "note": "a pair is sent to the gpt-4o tie-breaker when tied; untagged answers cast no vote, so truncation turns votes into tie-breaker calls",
+    "stub": {
+     "triplets": 2300,
+     "variables": 25,
+     "pairs": 300,
+     "answers_without_tag": 0,
+     "share_without_tag": 0.0,
+     "answers_unparseable": 0,
+     "pairs_tied": 34,
+     "share_pairs_tied": 0.1133,
+     "pairs_with_no_vote": 0,
+     "note": "a pair is sent to the gpt-4o tie-breaker when tied; untagged answers cast no vote, so truncation turns votes into tie-breaker calls"
+    },
+    "tiebreak_calls_left": 53,
+    "usd_to_finish": 0.6469,
+    "usd_full_run": 1.9037
+   }
+  }
+ }
+}

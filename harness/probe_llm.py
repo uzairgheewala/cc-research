@@ -14,12 +14,19 @@ What the gate does for every request:
   * appends one record per request to calls.jsonl: request body, prompt sha256, served model, usage, seconds, cost.
   * resumable: a rerun into the same --out replays earlier successful responses for identical requests (free, marked
     "replayed") and continues with new calls; the caps apply to the whole logical run, replayed calls included.
+    state()["usd_new_at_served_prices"] is the cost of the calls actually sent in this attempt (v2, 14 Oct).
+  * max_calls counts answered calls; error responses (e.g. HTTP 429 rate limits, which the agents' own clients retry)
+    do not use it up, but more than max(25, 5% of max_calls) error responses stop the run (v2, 14 Oct: concurrent
+    batch runs can meet rate limits).
+  * writes to calls.jsonl survive a transient OSError EIO on the Windows bind mount (reopen and retry, v2, 14 Oct; the
+    AB-06 Causal-Copilot arm lost two runs to EIO on 14 Oct 00:19-00:25 UTC).
 
 Token counts in --stub mode are counted locally (tiktoken o200k_base when available, else characters/4; the counter used
 is recorded), and stub completions are padded to an assumed length per call type (set by the adapter, recorded per call),
 so stub-mode cost is an ESTIMATE of a live run, never a measurement.
 """
 import collections
+import errno
 import hashlib
 import json
 import os
@@ -63,6 +70,25 @@ class CapReached(BaseException):
         super().__init__(reason)
         self.reason = reason
         self.state = state
+
+
+class QuotaExhausted(BaseException):
+    """The provider refused for billing: no credits or quota left (HTTP 429 insufficient_quota). An infrastructure stop,
+    not an agent failure: nothing the agent does next can succeed, so the run stops cleanly and can be resumed (v2.2, 14 Oct:
+    61 AB-06 runs were recorded as agent failures when the account ran out of credits)."""
+
+    def __init__(self, reason, state):
+        super().__init__(reason)
+        self.reason = reason
+        self.state = state
+
+
+QUOTA_MARKERS = ("insufficient_quota", "no credits remaining", "exceeded your current quota")
+
+
+def is_quota_error(text):
+    t = (text or "").lower()
+    return any(m in t for m in QUOTA_MARKERS)
 
 
 class TokenCounter:
@@ -207,7 +233,10 @@ class ProbeLLM:
             for line in open(self.calls_path, encoding="utf-8"):
                 if not line.strip():
                     continue
-                r = json.loads(line)
+                try:
+                    r = json.loads(line)
+                except ValueError:       # a line cut short by a hard stop (v2.1): that call is simply asked again
+                    continue
                 if r.get("ok") and r.get("request_sha256") and r.get("response_text") is not None \
                         and bool(r.get("stub")) == self.stub:
                     self.replay[r["request_sha256"]].append(r)
@@ -222,6 +251,7 @@ class ProbeLLM:
         self._fh = open(self.calls_path, "a", encoding="utf-8")
         self.t = collections.Counter()           # calls, new_calls, replayed, errors, prompt/completion tokens
         self.usd_total = 0.0
+        self.usd_replayed = 0.0
         self.usd_gpt4o_total = 0.0
         self.seq = 0
         self.models_served = collections.Counter()
@@ -245,6 +275,7 @@ class ProbeLLM:
         return {"calls": self.t["calls"], "new_api_calls": self.t["new_calls"], "replayed_calls": self.t["replayed"],
                 "error_calls": self.t["errors"], "prompt_tokens": self.t["prompt_tokens"],
                 "completion_tokens": self.t["completion_tokens"], "usd_at_served_prices": round(self.usd_total, 6),
+                "usd_new_at_served_prices": round(self.usd_total - self.usd_replayed, 6),
                 "usd_at_gpt4o_list": round(self.usd_gpt4o_total, 6), "max_calls": self.max_calls,
                 "max_usd": self.max_usd, "served_models": dict(self.models_served),
                 "usage_sources": dict(self.usage_sources), "token_counter": self.counter.name}
@@ -258,12 +289,27 @@ class ProbeLLM:
 
     # ------------------------------------------------------------------------------------------------ core
     def _write(self, rec):
-        self._fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        self._fh.flush()
+        line = json.dumps(rec, ensure_ascii=False) + "\n"
+        for attempt in range(6):
+            try:
+                self._fh.write(line)
+                self._fh.flush()
+                return
+            except OSError as e:
+                if e.errno != errno.EIO or attempt == 5:
+                    raise
+                time.sleep(2 * (attempt + 1))
+                try:
+                    self._fh.close()
+                except OSError:
+                    pass
+                self._fh = open(self.calls_path, "a", encoding="utf-8")
 
     def _cap_check(self, body, prompt_est):
-        if self.max_calls is not None and self.t["calls"] >= self.max_calls:
+        if self.max_calls is not None and self.t["calls"] - self.t["errors"] >= self.max_calls:
             return "max_calls (%d) reached" % self.max_calls
+        if self.t["errors"] > max(25, 0.05 * (self.max_calls or 0)):
+            return "too many error responses (%d)" % self.t["errors"]
         if self.max_usd is not None:
             allowance = body.get("max_completion_tokens") or body.get("max_tokens") or self.assumed_completion_tokens
             prices, _ = price_for(body.get("model") or self.model)
@@ -360,6 +406,10 @@ class ProbeLLM:
         self._account(rec, served or requested, usage or {}, usage_source)
         rec.update({"served_model": served, "response_text": text, "seconds": round(time.time() - t0, 3)})
         self._write(rec)
+        if up.status_code == 429 and is_quota_error(rec.get("error_body")):
+            self.abort = {"reason": "provider quota exhausted", "at_seq": self.seq, "state": self.state()}
+            self._write({"event": "quota_exhausted", "seq": self.seq, "state": self.state()})
+            raise QuotaExhausted("provider quota exhausted (HTTP 429 insufficient_quota): add credits, then resume", self.state())
         keep = {k: v for k, v in up.headers.items() if k.lower() in ("content-type", "retry-after", "retry-after-ms",
                                                                       "x-request-id")}
         return httpx.Response(up.status_code, headers=keep, content=raw, request=request)
@@ -369,6 +419,8 @@ class ProbeLLM:
         prices, assumed = price_for(model)
         c = usd(pt, ct, prices)
         c4o = usd(pt, ct, GPT4O)
+        if rec.get("replayed"):
+            self.usd_replayed += c
         self.t["calls"] += 1
         self.t["prompt_tokens"] += pt
         self.t["completion_tokens"] += ct

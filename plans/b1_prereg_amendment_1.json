@@ -1,0 +1,18 @@
+{
+ "amends": "plans/b1_prereg.json",
+ "amendment": 1,
+ "written_utc": "2026-10-15",
+ "what_happened": "The first frozen B1 kernel (plans/b1_freeze_v1_e9d2702630b7faee.json, rule C3) stopped with a build error on a held-out semantic file after 36 test files (access log entry 2026-10-15T07:14:50Z). Its 36 rows are kept in analysis/results/q2_b1/aborted/test_semantic_v1_e9d2702630b7faee.jsonl; their scores were not read and are not used.",
+ "diagnosis": "Read on the failing file: only the equality of the engine's graph and the kernel's re-derivation (kernel/derive.py), no truth and no score. Skeleton and maxP stages equal; the maxP stage already contains a directed cycle (maxP applies colliders without an acyclicity check), and the engine's Meek step (stale ancestor matrix) and the re-derivation then orient one pair differently, both final graphs cyclic. The build's acceptance rule tolerated only one divergence shape (engine cyclic, re-derivation acyclic and a subset) and raised on this one.",
+ "fix_as_a_class": [
+  "a divergence between the engine's Meek step and the re-derivation is recorded (defect 'engine_meek_divergence', pairs listed), never fatal; the kernel always uses the re-derivation",
+  "every orientation on a directed cycle is withdrawn (pair kept adjacent, direction open) in the PC graph ('pc_directed_cycle'), after every combination rule ('rule_directed_cycle'; C2's union of two engines produced cycles on 45 of 250 dev files) and after interventions",
+  "the K7 checker re-applies both steps and checks the declared divergence pairs exactly",
+  "unit tests: tests/test_q2_kernel.py CycleGuard, EngineDivergence"
+ ],
+ "rung_R1_restated": "with GES withheld (rule pc) the kernel's graph equals causal-learn's plain pc(...) call on the same canonical columns on every dev file, except the pairs listed in the ledger's recorded defects (engine Meek divergence, directed cycles withdrawn); the number of set-aside pairs is reported per file",
+ "unchanged": [
+  "candidates, selection rule, gates B1.1-B1.3, pairing, thresholds, predictions"
+ ],
+ "procedure": "the dev split is rerun with the fixed kernel, the selection rule re-applied, a new freeze written (v2) and R3 rerun before a second, separately logged held-out read"
+}

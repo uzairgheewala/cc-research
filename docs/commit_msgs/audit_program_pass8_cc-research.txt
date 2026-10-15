@@ -1,0 +1,49 @@
+Audit pass 8: AB-06 tier A scored (P9, P10 supported); wedge decided (DEC-05 = B); AB-17 pre-registered; audit chapter closed
+
+AB-06 tier A (14 Oct, Uzair's resumed batch: 60 ok, 1 failed; 79 of 80 ok overall; $32.11 for the grid):
+- analysis/ab06_score.py: plan glob narrowed to "*__*__*.json" (TIERS.json in the plan folder raised KeyError 'run').
+- plans/ab06_prereg_amendment_3.json + manifests/evidence/ab06_prereg_amendment3_2026-10-14.sha256:
+  - the scorer file-selection fix;
+  - the one PyWhy-LLM swapped-arm crash (guidance TokenUsage, negative time-to-first-token) is an agent failure, not
+    retried; P9 does not depend on it.
+- analysis/results/ab06/ab06.json (+ CONTRACT.json):
+  - P9 SUPPORTED: Causal-Copilot (gpt-4o), causaliq and MATMCD lose >= 0.10 directed F1 real -> swapped;
+    PyWhy-LLM not entered (4 paired scenarios < 5).
+  - P10 SUPPORTED: MATMCD below its own data-only graph (0.381) with neutral 0.251 and swapped 0.259.
+  - Vashishtha: name reliance 0.020; 89 of 100 directions from data.
+  - DV-1: MATMCD 0.686, Vashishtha 0.720, empty graph 0.670 (779 claims).
+- analysis/ab06_figure.py -> analysis/results/ab06/name_reliance.png, .svg (dumbbell: real, swapped, neutral ring,
+  data-only tick).
+- analysis/reports/ab06_field_audit.md: verdicts, per-system table, MATMCD mechanism, provenance, failures, spend.
+- docs/drafts/bug_reports/agents_output_contracts_ab06.md: notes for maintainers (Uzair decides whether to send).
+
+Site (kit36, kit37, plus one line on the device):
+- site/registry.py: ab06.* keys.
+- site/pgs/pg_names.py: page 6 field-audit section and inline SVG figure (scrolls on narrow screens).
+- site/pgs/pg_home.py: finding 3 rewritten; "What the audits found"; chapter closed with DEC-05.
+- site/pgs/pg_theses.py, site/levels/theses.py: decision box and T3's next step (B0, then B1, under q2_build_prereg).
+- Build: 15 pages, 280 numbers, 0 errors, 0 warnings; pages index, names, theses re-read and marked reviewed.
+
+Decisions and the paper:
+- docs/decisions/2026-10-14_wedge_decision.md: DEC-05 = B (measurement + reliability-first claim ledger), A as the floor;
+  methods + benchmark venue; B0/B1 now; AB-06 tier B not run. DEC-01 adopted as amended (E1 done, scoped; E2-E5
+  deferred).
+- analysis/reports/ab16_wedge_decision.md: decision section; L2 met.
+- docs/decisions/2026-10-14_audit_closeout.md: DLV-02 criterion restated (every arm reached S3; crashes counted);
+  BND-08, BND-10, AUD-13 done; AUD-41 carried forward; BND-12's live parts moved to B3; EXT drafts left to Uzair.
+- docs/paper/skeleton.md, plans/q2_build_prereg.json (gates B0.1-B5.2) + manifests/evidence/paper_prereg_2026-10-14.sha256
+  (AUD-47), written before any held-out run of the build.
+- analysis/reports/audit_closeout.md: the chapter in one page (17 bundles, spend, landmarks, carry-forward).
+
+Tracker:
+- jobs/patches/p16_audit_closed.py: done: AUD-38, DEC-05, DEC-01, AUD-47, STR-01, RQ-05, DLV-02, AUD-13; bundles BND-08,
+  BND-10, BND-11, AB-06, AB-16, AB-17 done; BND-12 stays in progress (audit parts done, rest in B3); notes on EXT-06,
+  AUD-41, AUD-32.
+- Repinned: AUD-38, AUD-47, DEC-05, BND-01, TEAM-08.
+- Checks: tests 130 ok; verify 0 problems (225 items, 130 done); trace check 0 errors, 1 warning resolved (stale
+  12 Oct prod draft moved to relay_out/discarded/); prod-publish recorded; check_scores none non-conforming;
+  ci_check 0 errors; plan_check ok; secret scan 0 findings (20 files); snapshot fff4ad79f611.
+
+Slack:
+- Dev list: 15 rows updated. Prod list: DLV-02, AUD-17, RQ-05 updated (no rows added or removed).
+- Dev digest posted (ts 1792038291.413449). Prod digest left as a draft in #causal-discovery for Uzair.

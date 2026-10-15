@@ -28,7 +28,7 @@ WORD_BUDGET = 1800
 # registry key prefix -> first page allowed to print it (a result may not appear before its question)
 FIRST_PAGE = {"leak.": "scoreboard", "ab01.": "scoreboard", "ab02.": "scoreboard", "ab03.": "scoreboard", "bnd06.": "scoreboard",
               "ab04.": "decisions", "ab09.": "decisions", "cc.": "names", "ab07.": "names", "ab05.": "names",
-              "ab12.": "rca", "ab14.": "market"}
+              "ab12.": "rca", "ab14.": "market", "ab06.": "names"}
 
 CSS = """
 *{box-sizing:border-box}

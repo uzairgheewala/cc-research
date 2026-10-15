@@ -1,0 +1,282 @@
+{
+ "tickets": [
+  "BLD-02",
+  "BLD-03",
+  "BLD-04",
+  "BLD-05",
+  "BLD-15",
+  "TGT-18",
+  "TGT-19",
+  "TGT-20"
+ ],
+ "landmarks": {
+  "ER-F": {
+   "threshold": "F1 and DV-1 vs plain PC maxP: lower end >= -0.01, both families",
+   "met": true,
+   "evidence": "analysis/results/q2_b1/heldout.json",
+   "values": {
+    "semantic": {
+     "f1": {
+      "point": 0.053219647289471886,
+      "lo": 0.020444409517728076,
+      "hi": 0.08742369864189134,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 121
+     },
+     "dv1": {
+      "point": 0.07326931997118247,
+      "lo": 0.03390115555668622,
+      "hi": 0.11462014486303318,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014
+     }
+    },
+    "formula": {
+     "f1": {
+      "point": 0.1151242646349018,
+      "lo": 0.08200173442165666,
+      "hi": 0.1523983498264398,
+      "clusters": 18,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 90
+     },
+     "dv1": {
+      "point": 0.05269143952662936,
+      "lo": 0.005763995513203493,
+      "hi": 0.10497033966878852,
+      "clusters": 18,
+      "B": 2000,
+      "seed": 20261014
+     }
+    }
+   }
+  },
+  "ER-4a_route_A": {
+   "threshold": "data-only F1 above GES on one family: lower end > 0",
+   "met": false,
+   "evidence": "analysis/results/q2_b1/heldout.json",
+   "values": {
+    "semantic": {
+     "point": -0.0007095730148719731,
+     "lo": -0.006986301849824626,
+     "hi": 0.0051316302765424876,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014,
+     "files": 121
+    },
+    "formula": {
+     "point": 0.0018496273516408544,
+     "lo": -0.012207866438852258,
+     "hi": 0.017114704448794,
+     "clusters": 20,
+     "B": 2000,
+     "seed": 20261014,
+     "files": 93
+    }
+   }
+  },
+  "ER-4a_route_B": {
+   "threshold": "real-arm tier gain over B1 > 0.03 on one family: lower end > 0.03",
+   "met": false,
+   "evidence": "analysis/results/q2_b3/summary_test.json",
+   "values": {
+    "semantic": {
+     "point": 0.018719063792481335,
+     "lo": 0.010050065349998314,
+     "hi": 0.029734350751863915,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014,
+     "files": 125
+    },
+    "formula": {
+     "point": 0.028028534269080602,
+     "lo": 0.019055914131726255,
+     "hi": 0.03732266193665966,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014,
+     "files": 125
+    }
+   }
+  },
+  "ER-1": {
+   "threshold": "neutral arm == D; skeleton identical in every arm; moved-arm loss within T3 in 100% of files; every ledger verifies",
+   "met": true,
+   "evidence": "analysis/results/q2_b3/summary_test.json",
+   "values": {
+    "semantic": {
+     "neutral_identical": "125/125",
+     "moved_within_t3": "125/125"
+    },
+    "formula": {
+     "neutral_identical": "125/125",
+     "moved_within_t3": "125/125"
+    }
+   }
+  },
+  "ER-4a": {
+   "met": false,
+   "threshold": "route A or route B"
+  },
+  "ER-2": {
+   "threshold": "DV-1 precision > 0.80 at coverage >= 0.50, both families: lower end > 0.80",
+   "met": false,
+   "evidence": "analysis/results/q2_b4/evaluate_test.json",
+   "values": {
+    "semantic": {
+     "precision": {
+      "coverage": 0.5776911836337068,
+      "precision": 0.811973018549747,
+      "kept": 1186
+     },
+     "interval": {
+      "point": 0.811973018549747,
+      "lo": 0.7560917335932699,
+      "hi": 0.8642352978781521,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014
+     }
+    },
+    "formula": {
+     "precision": {
+      "coverage": 0.614574437802448,
+      "precision": 0.8985641500694767,
+      "kept": 2159
+     },
+     "interval": {
+      "point": 0.8985641500694767,
+      "lo": 0.8543036082147131,
+      "hi": 0.9393945354409556,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014
+     }
+    }
+   }
+  },
+  "ER-3": {
+   "threshold": "ECE <= 0.05 (upper end); realised >= claimed - 0.03 at c/g = 1, 2, 4 (lower end)",
+   "met": false,
+   "evidence": "analysis/results/q2_b4/evaluate_test.json",
+   "values": {
+    "semantic": {
+     "ece": {
+      "point": 0.0568644763268596,
+      "lo": 0.0481503388562054,
+      "hi": 0.0968895818605495,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014
+     },
+     "realised_minus_claimed": {
+      "1.0": {
+       "point": 0.04505235123146567,
+       "lo": -0.0022864792700001096,
+       "hi": 0.09280289447050101,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      },
+      "2.0": {
+       "point": 0.022811966996281074,
+       "lo": -0.03329633196603937,
+       "hi": 0.07925343377785257,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      },
+      "4.0": {
+       "point": 0.0003228253676231807,
+       "lo": -0.06046079407591322,
+       "hi": 0.051195820490578955,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      }
+     }
+    },
+    "formula": {
+     "ece": {
+      "point": 0.03606385121282688,
+      "lo": 0.016626871453927473,
+      "hi": 0.07565860491603124,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014
+     },
+     "realised_minus_claimed": {
+      "1.0": {
+       "point": 0.019928425707784636,
+       "lo": -0.02400525289685586,
+       "hi": 0.06347573245789494,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      },
+      "2.0": {
+       "point": 0.02395820391827652,
+       "lo": -0.022960022566418943,
+       "hi": 0.06838176296936697,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      },
+      "4.0": {
+       "point": 0.034871814224858966,
+       "lo": -0.00881425522412046,
+       "hi": 0.07544044514997954,
+       "clusters": 25,
+       "B": 2000,
+       "seed": 20261014
+      }
+     }
+    }
+   }
+  },
+  "ER-4b": {
+   "threshold": "AC@3 on answered PetShop test issues >= 0.90 at coverage >= 0.5: lower end",
+   "met": false,
+   "evidence": "analysis/results/q2_b5/rca_test.json",
+   "values": {
+    "AC@3_answered": 0.9318181818181818,
+    "coverage": 0.9166666666666666,
+    "lo": 0.8409090909090909,
+    "hi": 1.0,
+    "answered": 44,
+    "met": false,
+    "rule": "lower end of the 95% bootstrap interval over answered issues (2,000 resamples, seed 20261015) >= 0.90 at coverage >= 0.5"
+   }
+  },
+  "ER-C": {
+   "threshold": "report: kernel DV-1 precision on Causal Chambers within 0.03 of GES",
+   "met": true,
+   "report_only": true,
+   "evidence": "analysis/results/q2_b2/summary_test.json",
+   "values": {
+    "kernel_D_minus_GES": 0.008743842364532073,
+    "kernel_DI_minus_GES": 0.009852216748768461,
+    "within_0.03": [
+     true,
+     true
+    ]
+   }
+  }
+ },
+ "paper_constraints_met": [
+  "ER-F",
+  "ER-1"
+ ],
+ "wedge_constraints_met": [
+  "ER-F",
+  "ER-1"
+ ],
+ "paper_all_met": false,
+ "wedge_all_met": false
+}

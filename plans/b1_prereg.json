@@ -1,0 +1,41 @@
+{
+ "ticket": "BLD-02 (bundle B1 of plans/q2_dag.json); BLD-14, CAP-05, CAP-09, CAP-11, TGT-10, TGT-19 (proposed)",
+ "written_utc": "2026-10-15",
+ "design": [
+  "docs/design/q2_requirements_and_ladders.md",
+  "analysis/reports/approach_v1.md",
+  "plans/q2_build_prereg.json"
+ ],
+ "status": "written before the kernel's first dev run; the held-out read waits for plans/b1_freeze.json",
+ "disclosure": [
+  "Before this file was written, the five candidate rules were computed from the audit chapter's stored per-file rows of PC maxP and GES (shuffled arm), on the dev AND the test splits (scratch script, 2026-10-15). Dev, semantic / formula: F1 pc 0.457/0.366, ges 0.534/0.472, C1 0.471/0.383, C2 0.521/0.462, C3 0.528/0.468; DV-1 precision pc 0.726/0.750, ges 0.764/0.812, C1 0.756/0.760, C2 0.772/0.811, C3 0.781/0.824. Test: same ordering of rules (C3 0.522/0.458 F1; 0.770/0.812 DV-1). The test-split numbers of the candidate rules were therefore seen before the selection rule below was fixed. They agree with the dev ordering; the selection rule uses dev numbers only. This is a deviation from Q4 (baselines on the test splits are allowed; candidate kernel rules are not) and is recorded here and in the B1 report.",
+  "The kernel re-derives PC from its recorded tests and found, on 3 of 188 dev files tried on 2026-10-15, that causal-learn 0.1.4.8's Meek step returns a directed cycle (also in released column order). The kernel leaves the cycle-closing pairs open and records the defect; rung R1 is stated accordingly (below)."
+ ],
+ "candidates": {
+  "pc": "PC maxP alone",
+  "ges": "GES (BIC) alone",
+  "C1": "agreement",
+  "C2": "union with source",
+  "C3": "GES-led, PC-audited, with re-derivation of the surviving directions"
+ },
+ "selection_rule": "On the dev split of both families, with every dev file the kernel completed: for each rule, mean directed F1 (expectation rule) and pooled DV-1 precision of committed claims. Eligible: rules whose dev F1 is within 0.01 of the best rule's dev F1 in both families, and whose dev F1 and DV-1 precision are each at least PC maxP's (stored baseline rows, shuffled arm, paired files) minus 0.01 in both families. Chosen: the eligible rule with the highest DV-1 precision averaged over the two families (ties: the earlier rule in the order pc, C3, C2, C1, ges). If no rule is eligible: pc.",
+ "rungs": {
+  "R1": "with GES withheld (rule pc) the kernel's graph equals causal-learn's plain pc(X, 0.05, 'fisherz', stable=True, uc_rule=1, uc_priority=3) on the same canonical columns on every dev file, except pairs the engine oriented into a directed cycle, which the kernel leaves open and records as a defect",
+  "R2": "verify02 V1-V13 and the K7 checker accept every dev ledger of every rule",
+  "R3": "I1: under 6 column orders the ledger content (claims and evidence; positions excepted) is identical, with full engine reruns, on one dev file per scenario (50 files) and canonical-input identity on every dev file; I2: two builds of the same input give the same ledger hash",
+  "R4": "the selection rule above, applied to the dev numbers, recorded in plans/b1_freeze.json with the frozen code hash"
+ },
+ "gates": {
+  "B1.1": "invariants I1-I4 and I7 on every dev file (semantic, formula): 100% (as hashed in plans/q2_build_prereg.json)",
+  "B1.2": "held-out (test splits): directed F1 and DV-1 precision of the chosen data-only kernel against plain causal-learn PC with maxP (stored baseline rows, shuffled arm), paired by file; pass: mean difference >= -0.01 on both metrics in both families; refuted: <= -0.05 on either (as hashed). Landmark ER-F additionally needs the lower end of the scenario-cluster bootstrap 95% interval >= -0.01 (docs/decisions/2026-10-14_q2_landmarks.md).",
+  "B1.3": "verifier on every emitted ledger; mutation tests reject a ledger with one evidence record removed (as hashed)"
+ },
+ "pairing": "Files on which the stored PC maxP baseline failed (singular correlation matrix) are excluded from the paired comparison, as in AB-01; the kernel's own results on them (jitter retry) are reported separately. DV-1 precision is pooled over the paired files; its interval resamples scenarios.",
+ "predictions": {
+  "Q-B1a": "rung R1 holds; directed-cycle defects on 1-3% of files (refuted: any difference that is not the cycle defect)",
+  "Q-B1b": "C2 or C3 clears GES F1 on semantic by >= 0.01 on dev (as written in the design doc; the stored rows disclosed above already point to refuted)",
+  "Q-B1c": "the chosen rule's held-out F1 exceeds PC maxP's by >= 0.03 in both families (refuted: B1.2 fails)",
+  "Q-B1d": "ER-4a route A (held-out F1 above GES on one family) is not met by the chosen rule (refuted: met)"
+ },
+ "held_out_reads": "one per frozen kernel version, logged in analysis/results/q2_b1/access_log.jsonl by kernel/run_b1.py, which refuses the test split unless the code hash equals plans/b1_freeze.json"
+}

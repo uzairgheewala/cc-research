@@ -1,0 +1,113 @@
+Audit pass 5: AB-05 closed, Causal-Copilot second model scored, AB-06 grid re-planned and pre-registered, AB-16 decision pack
+
+AB-05, agent probes (AUD-37), done 14 Oct. P8 supported.
+- analysis/ab05_live_calibration.py (new) compares the live probe calls with the stub per agent and call kind, and writes
+  analysis/results/ab05/live_calibration.json (+ CONTRACT.json, not score-bearing).
+- Findings:
+  - causaliq, PyWhy-LLM (F1 0.329, $1.43) and Causal-Copilot on gpt-4o-mini ran end to end.
+  - MATMCD and Vashishtha stopped on our stub-based caps, not on agent failures.
+  - Vashishtha et al. lose 2,096 of 2,300 triplet answers (91%) to their own 300-token limit. 113 of 300 pairs then go
+    to the gpt-4o tie-breaker (recomputed with the repository's merge rule; the stub reconstruction matches its 34).
+- plans/ab05_probe_matmcd.json and plans/ab05_probe_vashishtha.json: caps raised for the resume ($0.46, $2.10), with a
+  cap_history entry each.
+- analysis/reports/ab05_probe_results.md rewritten. The cycle-step crash table now covers both models: 18 of 19 live
+  entries crashed.
+
+AB-06, Causal-Copilot second-model arm (AUD-38, RQ-17, BND-12):
+- Scored with stability.py (--min-runs 1), partial_stages.py and s2_analysis.py, label ab06cc, into
+  analysis/results/ab06_cc/ (+ CONTRACT.json).
+- On gpt-4o-mini: M2 refuted (3 of 9), M3 inconclusive (0.71), M4 supported (8 of 9). Name reliance 0.094, against
+  0.167 on gpt-4o.
+- analysis/reports/ab06_cc_second_model.md (new) holds the run accounting:
+  - 26 runs completed;
+  - 2 crashed on the cycle-step key;
+  - 2 were hit by an OSError EIO on the bind mount;
+  - 1 was an empty launch.
+- plans/ab06_cc_gpt4omini_s2_q042.json (new) reruns the run lost to EIO.
+
+AB-06 agent grid v2 (AUD-38), before any live grid call:
+- plans/calibrate_ab06.py (new) re-prices every plan from live call-kind means. The full grid is $91.84 and 99.8 h
+  sequential; v1 said $58.
+- plans/ab06/BUDGET.json is now v2, keeping v1 inside, and every plan's caps were rewritten.
+- plans/ab06/TIERS.json (new): tier A has 90 runs at $51.98; tier B has 30 runs at $39.86.
+- plans/ab06_prereg.json (new):
+  - P9 over 5 systems, each with an entry rule of at least 5 paired scenarios;
+  - P10 unchanged;
+  - the consequences of each outcome, fixed in advance.
+- manifests/evidence/ab06_prereg_2026-10-14.sha256 (new) covers 158 files: prereg, tiers, budget, scorer, harness and
+  all 120 plans with their names maps.
+- harness/agent_batch.py v2:
+  - --workers N, with running runs reserved at their hard cap against the total;
+  - --tier and --scenario filters;
+  - plans are recognised by the <agent>__<scenario>__<arm> name;
+  - only new spend is counted on resume (usd_new);
+  - an interrupted run resumes without --retry-failed;
+  - Ctrl-C logs what the stopped runs spent;
+  - AB06_PROBE_SCRIPT is a test hook.
+- harness/probe_llm.py:
+  - max_calls counts answered calls, and more than max(25, 5%) error responses stop the run (rate limits);
+  - usd_new_at_served_prices;
+  - calls.jsonl writes retry EIO.
+- harness/agent_probe.py: est_usd_new_at_served_prices; result.json and summary.json writes retry EIO.
+- cc.ps1 probebatch takes key=value options (workers=N tier=A arm=a+b scenario=s cap=X retry) and "all" for every agent.
+  The PowerShell parsing is untested here; the stub command in ab06_prep.md checks it for free.
+- analysis/ab06_score.py v2:
+  - Causal-Copilot is the fifth P9 system (gpt-4o, BND-08 S3; gpt-4o-mini reported as RQ-17);
+  - the entry rule;
+  - Vashishtha's untagged-answer share per run.
+- analysis/reports/ab06_prep.md rewritten as v2.
+- Tests:
+  - tests/test_ab06_batch.py: workers, reservation, tier, scenario, resume and replay accounting; 15 tests;
+  - tests/test_probe_gate.py (new): rate limits, error stop, usd_new, EIO; 4 tests, which need httpx and ran in the
+    probe venv.
+  - tests/test_agent_probe.py: all 10 pass in the probe venv.
+
+Infrastructure (INF-08, new, done): harness/cc_common.py dump_json retries EIO. The BLD-01 tools manifest was re-issued
+as manifests/evidence/BLD-01_tools_2026-10-14.sha256 (only cc_common.py changed).
+
+AB-16, the wedge decision (DEC-05, now open):
+- analysis/reports/ab16_wedge_decision.md (new):
+  - the L1-L5 / C1-C3 scorecard;
+  - the kill criteria;
+  - what the audit does not support;
+  - options A-D, recommending B with A as the floor;
+  - the five decisions for Uzair;
+  - the effect of each AB-06 outcome, fixed in advance.
+- analysis/reports/approach_v1.md (new):
+  - the reliability-first ledger design: guarantees G1-G8 mapped to measured failures;
+  - changes to program v2;
+  - binding times;
+  - failure modes Z1-Z9;
+  - bundles B0-B5 with must-show lists and gates;
+  - the evaluation protocol.
+
+Tracker:
+- jobs/patches/p11_audit_closeout.py:
+  - AUD-37 done; AUD-38 notes and evidence, still blocked on Uzair; RQ-17 in progress; DEC-05 open;
+  - EXT-06 and INF-08 added;
+  - notes on BND-12, EXT-03, CAP-10, STR-01 and RQ-05;
+  - bundles AB-05 done, plus notes on AB-06 and AB-16.
+- jobs/patches/p12_bld01_tools_manifest.py: BLD-01 points to the 2026-10-14 manifest.
+- Repinned: AUD-37, AUD-38, BLD-01, INF-01, INF-04, BND-01, INF-08, EXT-06, DEC-05, RQ-17, STR-01, RQ-05, CAP-10,
+  BND-12, EXT-03, DLV-02, TEAM-08.
+- Checks: verify 0 problems (224 items); tests 125 ok; check_scores, plan_check and ci_check 0 errors; trace check 0
+  errors; targeted secret scan 33 files, 0 findings.
+
+Site:
+- site/registry.py: the ab05.crash keys now cite the new text; 13 new ab05/ab06 keys.
+- site/build.py: ab06. keys first appear on the names page.
+- site/pgs/pg_names.py: crash counts, the second model and Vashishtha's truncation.
+- site/pgs/pg_theses.py: "The decision now open (DEC-05)".
+- site/pgs/pg_home.py: the closing line.
+- site/reviewed.json.
+- Build: 15 pages, 0 errors, 0 warnings, no overflow at 390 px.
+
+Slack:
+- Dev list: 13 rows updated and 2 added (EXT-06, INF-08; record ids in tracker/mirrors.json). Prod list: 4 rows
+  updated.
+- Dev digest posted (ts 1791959337.969379).
+- The 13 Oct prod digest Uzair sent was recorded (ts 1791898395.558129).
+- A new prod digest was drafted in #causal-discovery.
+- tracker/snapshot.json regenerated after the Slack writes.
+
+Transfers: kit32-kit33 (jobs/transfer/ is ignored). No relay files discarded.

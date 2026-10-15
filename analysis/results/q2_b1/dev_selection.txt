@@ -1,0 +1,17 @@
+semantic {'files': 125, 'pc_failed': 0, 'jittered': 20, 'ges_failed': 0, 'r1_equal': 125, 'r1_not_equal': 0, 'files_with_set_aside_pairs': 12, 'pairs_set_aside': 33, 'pc_defect_types': {'engine_meek_divergence': 5, 'pc_directed_cycle': 7}, 'rule_cycles': {'pc': 0, 'C3': 0, 'C2': 24, 'C1': 0, 'ges': 0}, 'ledgers_failing_verify_or_checker': 0, 'examples': [], 'ledgers': 625}
+  baseline PC maxP (paired) {'files': 105, 'f1': 0.4574, 'dv1_precision': 0.7263, 'dv1_coverage': 0.9366}
+  baseline GES (paired)     {'files': 105, 'f1': 0.5343, 'dv1_precision': 0.7636, 'dv1_coverage': 0.9531}
+  pc   all {'files': 125, 'f1': 0.4552, 'dv1_precision': 0.7197, 'dv1_coverage': 0.9198} | paired-pc {'files': 105, 'f1': 0.4582, 'dv1_precision': 0.7292, 'dv1_coverage': 0.9256}
+  C3   all {'files': 125, 'f1': 0.5224, 'dv1_precision': 0.7563, 'dv1_coverage': 0.8046} | paired-pc {'files': 105, 'f1': 0.5222, 'dv1_precision': 0.7794, 'dv1_coverage': 0.8048}
+  C2   all {'files': 125, 'f1': 0.5211, 'dv1_precision': 0.7637, 'dv1_coverage': 0.7775} | paired-pc {'files': 105, 'f1': 0.5229, 'dv1_precision': 0.7857, 'dv1_coverage': 0.7876}
+  C1   all {'files': 125, 'f1': 0.465, 'dv1_precision': 0.7393, 'dv1_coverage': 0.8356} | paired-pc {'files': 105, 'f1': 0.4708, 'dv1_precision': 0.7559, 'dv1_coverage': 0.832}
+  ges  all {'files': 125, 'f1': 0.5319, 'dv1_precision': 0.7424, 'dv1_coverage': 0.951} | paired-pc {'files': 105, 'f1': 0.5343, 'dv1_precision': 0.7636, 'dv1_coverage': 0.9531}
+formula {'files': 125, 'pc_failed': 0, 'jittered': 42, 'ges_failed': 0, 'r1_equal': 125, 'r1_not_equal': 0, 'files_with_set_aside_pairs': 4, 'pairs_set_aside': 11, 'pc_defect_types': {'engine_meek_divergence': 1, 'pc_directed_cycle': 3}, 'rule_cycles': {'pc': 0, 'C3': 0, 'C2': 16, 'C1': 0, 'ges': 0}, 'ledgers_failing_verify_or_checker': 0, 'examples': [], 'ledgers': 625}
+  baseline PC maxP (paired) {'files': 87, 'f1': 0.3653, 'dv1_precision': 0.7488, 'dv1_coverage': 0.9422}
+  baseline GES (paired)     {'files': 89, 'f1': 0.4674, 'dv1_precision': 0.812, 'dv1_coverage': 0.9744}
+  pc   all {'files': 125, 'f1': 0.3444, 'dv1_precision': 0.7465, 'dv1_coverage': 0.9391} | paired-pc {'files': 87, 'f1': 0.3667, 'dv1_precision': 0.7535, 'dv1_coverage': 0.9373}
+  C3   all {'files': 125, 'f1': 0.4402, 'dv1_precision': 0.8141, 'dv1_coverage': 0.8648} | paired-pc {'files': 87, 'f1': 0.4607, 'dv1_precision': 0.8207, 'dv1_coverage': 0.8707}
+  C2   all {'files': 125, 'f1': 0.4373, 'dv1_precision': 0.8134, 'dv1_coverage': 0.8526} | paired-pc {'files': 87, 'f1': 0.4593, 'dv1_precision': 0.8192, 'dv1_coverage': 0.8556}
+  C1   all {'files': 125, 'f1': 0.3571, 'dv1_precision': 0.751, 'dv1_coverage': 0.8992} | paired-pc {'files': 87, 'f1': 0.3808, 'dv1_precision': 0.7609, 'dv1_coverage': 0.8942}
+  ges  all {'files': 125, 'f1': 0.4469, 'dv1_precision': 0.8024, 'dv1_coverage': 0.9605} | paired-pc {'files': 87, 'f1': 0.4681, 'dv1_precision': 0.8092, 'dv1_coverage': 0.9709}
+eligible ['C3', 'ges'] chosen C3 Q-B1b refuted

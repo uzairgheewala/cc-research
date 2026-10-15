@@ -12,8 +12,17 @@ Predictions (plans/audit_dag.json): P9 at least three agents lose >= 0.10 direct
 none does); P10 at least one agent scores below its own data-only output with real names on DV-1 (refuted: all at or
 above). Causal-Copilot's own numbers come from BND-08 (gpt-4o) and are added as a fifth system when present.
 No model calls.
+
+v2 (14 Oct, before any live grid run; plans/ab06_prereg.json, hashed in manifests/evidence/ab06_prereg_2026-10-14.sha256):
+  * Systems for P9: the four agents plus Causal-Copilot on gpt-4o (BND-08, S3 directed F1 by data, paired by S2 family,
+    from analysis/results/stability_s2/partial_stages.json; already measured, declared as such). Causal-Copilot on
+    gpt-4o-mini (analysis/results/ab06_cc/partial_stages.json) is reported as RQ-17 and not counted again in P9.
+  * A system enters P9 only with at least 5 paired (real, swapped) scenarios; the verdict counts the systems that enter.
+  * Vashishtha et al.: per run, the share of triplet answers without an <Answer> tag (the repository's 300-token limit),
+    read from calls.jsonl, reported as a diagnostic.
+  * P10 is unchanged (agents that expose a data-only graph: MATMCD pc_only_initial, Vashishtha pc_only).
 """
-import argparse, json, os, statistics as st, sys
+import argparse, json, os, re, statistics as st, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -23,6 +32,48 @@ from decision_value_v2 import Truth, claims  # noqa: E402
 
 
 RUNS_ROOT = [ROOT]
+MIN_PAIRS_P9 = 5
+CC_SYSTEMS = (("causal_copilot_gpt4o", "stability_s2", True), ("causal_copilot_gpt4omini", "ab06_cc", False))
+
+
+def untagged_share(calls_path):
+    """Vashishtha et al.: share of triplet answers without <Answer>...</Answer> (the repository then casts no vote)."""
+    n = bad = 0
+    if not Path(calls_path).exists():
+        return None
+    for line in open(calls_path, encoding="utf-8"):
+        if "create a directed acyclic graph" not in line:
+            continue
+        r = json.loads(line)
+        if "request" not in r:
+            continue
+        n += 1
+        if not re.search(r"<Answer>(.*?)</Answer>", r.get("response_text") or ""):
+            bad += 1
+    return round(bad / n, 4) if n else None
+
+
+def cc_system(path):
+    """Causal-Copilot from partial_stages.json: S3 directed F1 (by data) per family and role; paired real - swapped."""
+    if not Path(path).exists():
+        return None
+    P = json.loads(Path(path).read_text(encoding="utf-8"))
+    fam = {}
+    for r in P["rows"]:
+        if r.get("S3_dir_f1_by_data") is None:
+            continue
+        fam.setdefault(r["family"], {}).setdefault(r["role"], []).append(r["S3_dir_f1_by_data"])
+    m = {f: {k: st.mean(v) for k, v in d.items()} for f, d in fam.items()}
+    dr = [v["real"] - v["swapped"] for v in m.values() if "real" in v and "swapped" in v]
+    dn = [v["real"] - v["neutral"] for v in m.values() if "real" in v and "neutral" in v]
+    out = {"source": str(path), "metric": "S3 directed F1 (graph handed to the cycle step), by data, per S2 family",
+           "families": len(m)}
+    for arm in ("real", "neutral", "swapped"):
+        xs = [v[arm] for v in m.values() if arm in v]
+        out[arm] = {"families": len(xs), "f1_mean": round(st.mean(xs), 4) if xs else None}
+    out["name_reliance_real_minus_swapped"] = {"paired_scenarios": len(dr), "mean": round(st.mean(dr), 4) if dr else None}
+    out["real_minus_neutral"] = {"paired_scenarios": len(dn), "mean": round(st.mean(dn), 4) if dn else None}
+    return out
 
 
 def local(p):
@@ -51,14 +102,12 @@ def main():
     ap.add_argument("--out", default=str(HERE / "results" / "ab06"))
     ap.add_argument("--stub", action="store_true")
     ap.add_argument("--runs-root", default=str(ROOT), help="what /research means for the run folders (default: this repository)")
-    ap.add_argument("--cc-bnd08", default=str(HERE / "results" / "stability_s2"), help="folder with the BND-08 Causal-Copilot scores, if any")
+    ap.add_argument("--cc-root", default=str(HERE / "results"), help="folder holding stability_s2/ and ab06_cc/ (Causal-Copilot partial_stages.json)")
     a = ap.parse_args()
     RUNS_ROOT[0] = Path(a.runs_root)
     tr = Truth(a.root, "semantic")
     rows = []
-    for p in sorted(Path(a.plans).glob("*.json")):
-        if p.name in ("BUDGET.json",):
-            continue
+    for p in sorted(Path(a.plans).glob("*__*__*.json")):      # plan files only (TIERS.json, BUDGET.json are not plans; v2.1)
         pl = json.loads(p.read_text(encoding="utf-8"))
         out = local(pl["run"]["out_stub" if a.stub else "out"])
         s = json.loads((out / "summary.json").read_text()) if (out / "summary.json").exists() else None
@@ -75,6 +124,8 @@ def main():
                 if isinstance(e, dict):
                     src[e.get("source", "unrecorded")] = src.get(e.get("source", "unrecorded"), 0) + 1
             rec["direction_sources"] = src
+            if pl["agent"] == "vashishtha":
+                rec["untagged_triplet_share"] = untagged_share(out / "calls.jsonl")
             for k, v in (r.get("variants") or {}).items():
                 if k.startswith("pc_only") and isinstance(v, dict):
                     ok2, com2, _ = dv(tr, f, v["directed"], v.get("undecided", []))
@@ -111,8 +162,22 @@ def main():
                 "dv1_precision_data_only": round(sum(r["dv_ok_data_only"] for r in do) / max(1, sum(r["dv_com_data_only"] for r in do)), 4),
                 "f1_final": round(st.mean(r["f1"] for r in do), 4),
                 "f1_data_only": round(st.mean(r["f1_data_only"] for r in do if r["f1_data_only"] is not None), 4) if any(r["f1_data_only"] is not None for r in do) else None}
-    losers = [ag for ag, A in res["agents"].items() if (A["name_reliance_real_minus_swapped"]["mean"] or 0) >= 0.10]
-    res["P9"] = {"agents_losing_ge_0.10": losers, "agents_measured": len(res["agents"]),
+        un = [r["untagged_triplet_share"] for r in rows if r["agent"] == agent and r.get("untagged_triplet_share") is not None]
+        if un:
+            A["untagged_triplet_share_mean"] = round(st.mean(un), 4)
+    res["causal_copilot"] = {}
+    systems = {ag: A["name_reliance_real_minus_swapped"] for ag, A in res["agents"].items()}
+    for name, folder, counts in CC_SYSTEMS:
+        c = cc_system(Path(a.cc_root) / folder / "partial_stages.json")
+        if c:
+            c["counted_in_P9"] = counts
+            res["causal_copilot"][name] = c
+            if counts:
+                systems[name] = c["name_reliance_real_minus_swapped"]
+    entered = {k: v for k, v in systems.items() if v["paired_scenarios"] >= MIN_PAIRS_P9}
+    losers = sorted(k for k, v in entered.items() if (v["mean"] or 0) >= 0.10)
+    res["P9"] = {"systems_entered": sorted(entered), "systems_not_entered": sorted(set(systems) - set(entered)),
+                 "losing_ge_0.10": losers, "min_paired_scenarios": MIN_PAIRS_P9,
                  "verdict": "supported" if len(losers) >= 3 else ("refuted" if not losers else "inconclusive")}
     below = [ag for ag, A in res["agents"].items() if "data_only_floor_real_arm" in A and
              A["data_only_floor_real_arm"]["dv1_precision_final"] < A["data_only_floor_real_arm"]["dv1_precision_data_only"]]

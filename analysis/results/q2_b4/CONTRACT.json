@@ -1,0 +1,24 @@
+{
+ "producer": "kernel/run_b4.py",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-05",
+  "CAP-07",
+  "CAP-08",
+  "TGT-12",
+  "TGT-18"
+ ],
+ "regime": "D",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (engines see canonical column order: sorted by value hash)",
+  "names": "not applicable",
+  "supplier": "none (data only)"
+ },
+ "orientation_rule": "not applicable (claims scored one by one)",
+ "metric_defs": {
+  "ece": "expected calibration error of calibrated claim probabilities (10 equal-width bins)",
+  "precision_at_half_coverage": "DV-1 precision of the claims kept in order of calibrated probability until half of all target-outcome pairs are covered",
+  "realised_minus_claimed": "realised precision minus mean claimed probability at threshold c/(g+c), c/g = 1, 2, 4"
+ }
+}

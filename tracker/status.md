@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-13T23:02:03Z)
+# Tracker status (verified 2026-10-15T14:32:05Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -8,9 +8,9 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | DLV-01 | ✅ | Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset | V3 |  |
-| DLV-02 | 👀 | Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded | V3 |  |
+| DLV-02 | ✅ | Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded | V3 |  |
 | DLV-03 | 👀 | Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage | V2 |  |
-| DLV-04 | ⏳ | Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets | V0 |  |
+| DLV-04 | ✅ | Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets | V3 |  |
 | DLV-05 | ⏳ | Q1 checkpoint (Mon 2 Nov) | V0 |  |
 | DLV-06 | ⏳ | Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec) | V0 |  |
 
@@ -65,7 +65,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-10 | ✅ | Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2] | V3 |  |
 | AUD-11 | ✅ | Behaviour at 20-40 variables: cost, runtime, crash rate | V3 |  |
 | AUD-12 | ✅ | Effect-estimation module (causal_inference/) | V3 |  |
-| AUD-13 | ⏳ | Second model besides GPT-4o | V0 |  |
+| AUD-13 | ✅ | Second model besides GPT-4o | V3 |  |
 | AUD-14 | 👀 | Torch-based and time-series wrappers, web-demo path, report quality | V3 |  |
 | AUD-15 | ✅ | Upstream branches newer than a31aa7c | V3 |  |
 | AUD-18 | ✅ | Field audit: every causal-discovery system, its regimes, order source and evaluation controls | V3 |  |
@@ -87,8 +87,8 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-34 | ✅ | AB-02 Second scoreboard: layout and conflict channels on other public benchmarks | V3 |  |
 | AUD-35 | ✅ | AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call | V3 |  |
 | AUD-36 | ✅ | AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold | V3 |  |
-| AUD-37 | 🔴 | AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap) | V3 |  |
-| AUD-38 | 🔴 | AB-06 LIVE: field audit of LLM-using systems under names x layout controls | V3 |  |
+| AUD-37 | ✅ | AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap) | V3 |  |
+| AUD-38 | ✅ | AB-06 LIVE: field audit of LLM-using systems under names x layout controls | V3 |  |
 | AUD-39 | ✅ | AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2) | V3 |  |
 | AUD-40 | ✅ | AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling | V3 |  |
 | AUD-41 | 🔴 | AB-10 Practitioner interviews (C1) | V3 |  |
@@ -97,14 +97,14 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | AUD-44 | ✅ | AB-13 Regulation and standards map: requirement -> ledger field | V3 |  |
 | AUD-45 | ✅ | AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence | V3 |  |
 | AUD-46 | ✅ | AB-15 Positioning closure: novelty matrix for L1-L5 | V3 |  |
-| AUD-47 | ⏳ | AB-17 Paper skeleton and pre-registration manifest | V0 |  |
+| AUD-47 | ✅ | AB-17 Paper skeleton and pre-registration manifest | V3 |  |
 | AUD-48 | ✅ | AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms | V3 |  |
 
 ## 15 Decisions
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| DEC-05 | ⏳ | AB-16 Wedge decision: paper spine, venue and the Q2 build | V0 |  |
+| DEC-05 | ✅ | AB-16 Wedge decision: paper spine, venue and the Q2 build | V3 |  |
 
 ## 4 Audit: benchmarks and data
 
@@ -132,14 +132,14 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | TGT-03 | ⏳ | Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971 | V2 |  |
 | TGT-04 | ⏳ | Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993 | V2 |  |
 | TGT-05 | ⏳ | Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets) | V2 |  |
-| TGT-06 | ⏳ | Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset) | V0 |  |
+| TGT-06 | 👀 | Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset) | V3 |  |
 | TGT-07 | ⏳ | Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled | V0 |  |
 | TGT-08 | 🔵 | Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79) | V2 |  |
-| TGT-09 | 👀 | Never below the system's own data-only output | V3 |  |
-| TGT-10 | ⏳ | Zero change when columns are shuffled | V0 |  |
-| TGT-11 | ⏳ | Bounded harm when names are wrong | V0 |  |
-| TGT-12 | ⏳ | Calibration better than raw bootstrap frequencies on held-out scenarios | V0 |  |
-| TGT-13 | 👀 | Zero crashes from malformed model output | V3 |  |
+| TGT-09 | ✅ | Never below the system's own data-only output | V3 |  |
+| TGT-10 | ✅ | Zero change when columns are shuffled | V3 |  |
+| TGT-11 | ✅ | Bounded harm when names are wrong | V3 |  |
+| TGT-12 | ✅ | Calibration better than raw bootstrap frequencies on held-out scenarios | V3 |  |
+| TGT-13 | ✅ | Zero crashes from malformed model output | V3 |  |
 | TGT-14 | ⏳ | Within the scoreboard's 1-hour budget per graph | V0 |  |
 | TGT-15 | ⏳ | Held-out interventional predictions better than regression on all variables | V0 |  |
 | TGT-16 | ⏳ | Experiment choice better than random on recorded Causal Chambers experiments | V0 |  |
@@ -150,15 +150,15 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 |---|---|---|---|---|
 | CAP-01 | ⏳ | Skeleton recall at variables with many causes (joint test per candidate edge) | V0 |  |
 | CAP-02 | ⏳ | Direction from the numbers (PC: 54%) | V0 |  |
-| CAP-03 | ⏳ | Use intervention data | V0 |  |
-| CAP-04 | ⏳ | Declared knowledge as tiers, never edges | V0 |  |
-| CAP-05 | ⏳ | Invariance to column order | V0 |  |
+| CAP-03 | ✅ | Use intervention data | V3 |  |
+| CAP-04 | ✅ | Declared knowledge as tiers, never edges | V3 |  |
+| CAP-05 | ✅ | Invariance to column order | V3 |  |
 | CAP-06 | ✅ | Keep 'direction unknown' edges | V3 |  |
-| CAP-07 | ⏳ | Calibrated confidence per claim | V0 |  |
-| CAP-08 | ⏳ | Abstention / selective claims | V0 |  |
-| CAP-09 | ⏳ | Provenance per edge with an independent checker | V0 |  |
-| CAP-10 | 👀 | Robustness to malformed model output | V3 |  |
-| CAP-11 | ⏳ | Determinism (same inputs, same ledger hash) | V0 |  |
+| CAP-07 | 👀 | Calibrated confidence per claim | V3 |  |
+| CAP-08 | ✅ | Abstention / selective claims | V3 |  |
+| CAP-09 | ✅ | Provenance per edge with an independent checker | V3 |  |
+| CAP-10 | ✅ | Robustness to malformed model output | V3 |  |
+| CAP-11 | ✅ | Determinism (same inputs, same ledger hash) | V3 |  |
 | CAP-12 | ⏳ | Runtime at 20-40 variables | V0 |  |
 | CAP-13 | ⏳ | Nonlinear and mixed-type dependence | V0 |  |
 | CAP-14 | ⏳ | Hidden common causes (PAG marks) | V0 |  |
@@ -175,7 +175,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | RQ-02 | ✅ | N2 (bundle 1): supported | V3 |  |
 | RQ-03 | ✅ | N1, N4, P3 (bundle 1): tested, inconclusive | V3 |  |
 | RQ-04 | 🔵 | T1 Order source explains most directed-edge accuracy | V2 |  |
-| RQ-05 | 🔵 | T2 Deployed agents take order from names and layout | V2 |  |
+| RQ-05 | ✅ | T2 Deployed agents take order from names and layout | V3 |  |
 | RQ-06 | 🔵 | T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target) | V2 |  |
 | RQ-07 | 🔵 | T4 Calibrated, machine-checkable claims with abstention | V2 |  |
 | RQ-08 | 🔵 | T5 What-if answers with identification status | V2 |  |
@@ -187,18 +187,18 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | RQ-14 | ✅ | O5 Same for formula vs 0.524 | V3 |  |
 | RQ-15 | 🔵 | Do LLM-written semantic graphs inflate name-based scores? | V0 |  |
 | RQ-16 | ✅ | Does PC's error pattern hold for other algorithms? | V3 |  |
-| RQ-17 | 🔵 | Do results hold for a second model? | V0 |  |
+| RQ-17 | ✅ | Do results hold for a second model? | V2 |  |
 
 ## 8 Build
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | BLD-01 | ✅ | Recording harness and analysis tools | V3 |  |
-| BLD-02 | ⏳ | B1 data-only claim ledger with invariants I1-I4, I7 | V0 |  |
-| BLD-03 | ⏳ | B2 interventions as order evidence | V0 |  |
-| BLD-04 | ⏳ | B3 declared knowledge as tiers | V0 |  |
-| BLD-05 | ⏳ | B4 confidence, calibration, selective output | V0 |  |
-| BLD-06 | 👀 | Drop-in replacement for Causal-Copilot's refinement stage | V3 |  |
+| BLD-02 | ✅ | B1 data-only claim ledger with invariants I1-I4, I7 | V3 |  |
+| BLD-03 | ✅ | B2 interventions as order evidence | V3 |  |
+| BLD-04 | ✅ | B3 declared knowledge as tiers | V3 |  |
+| BLD-05 | ✅ | B4 confidence, calibration, selective output | V3 |  |
+| BLD-06 | ✅ | Drop-in replacement for Causal-Copilot's refinement stage | V3 |  |
 | BLD-07 | ⏳ | C1 what-if answers with identification status and bounds | V0 |  |
 | BLD-08 | ⏳ | C2 next-experiment choice from recorded pool | V0 |  |
 | BLD-09 | ⏳ | Scoreboard-format export | V0 |  |
@@ -206,7 +206,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BLD-11 | ✅ | Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract | V3 |  |
 | BLD-12 | ✅ | Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts | V3 |  |
 | BLD-13 | ✅ | Claim-ledger record format, JSON Schema and verifier (V1-V8) | V3 |  |
-| BLD-14 | ⏳ | Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check | V2 |  |
+| BLD-14 | ✅ | Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check | V3 |  |
 
 ## 9 Evaluation protocol
 
@@ -270,7 +270,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| STR-01 | 🔵 | E1 Field-wide audit of agents and LLM-assisted methods | V0 |  |
+| STR-01 | ✅ | E1 Field-wide audit of agents and LLM-assisted methods | V3 |  |
 | STR-02 | 🔵 | E2 Public agent track | V0 |  |
 | STR-03 | 🔵 | E3 Real experiments via the Causal Chambers remote lab | V0 |  |
 | STR-04 | 🔵 | E4 Learned fusion (pretrained network with unreliable tier statements) | V0 |  |
@@ -281,7 +281,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| DEC-01 | 🔵 | Adopt, redirect or enlarge program v2; which of E1-E5 in scope | V0 |  |
+| DEC-01 | ✅ | Adopt, redirect or enlarge program v2; which of E1-E5 in scope | V3 |  |
 | DEC-02 | ✅ | Approve the tier-elicitation test (~900 short calls through Uzair's key) | V3 |  |
 | DEC-03 | 🔵 | Whether to tell CausalArena's maintainers about the column order | V0 |  |
 | DEC-04 | ✅ | Connect Slack; tracker in private #cd-tracker | V3 |  |
@@ -310,10 +310,10 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BND-05 | ✅ | Freeze the Quarter 1 dataset suite | V3 |  |
 | BND-06 | 👀 | Remaining baselines, order sensitivity, scoreboard package (no LLM) | V2 |  |
 | BND-07 | ✅ | Causal Chambers and intervention audit (no LLM) | V2 |  |
-| BND-08 | 👀 | LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2) | V3 |  |
+| BND-08 | ✅ | LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2) | V3 |  |
 | BND-09 | ✅ | Refinement v1 (no LLM): develop and freeze on the dev split | V3 |  |
-| BND-10 | 👀 | Refinement v1: held-out test | V3 |  |
-| BND-11 | 👀 | LIVE: Refinement v2, names only where the data are silent | V3 |  |
+| BND-10 | ✅ | Refinement v1: held-out test | V3 |  |
+| BND-11 | ✅ | LIVE: Refinement v2, names only where the data are silent | V3 |  |
 | BND-12 | 👀 | LIVE: second model and external replications | V2 |  |
 | BND-13 | ⏳ | Quarter 1 checkpoint package (2 Nov) | V0 |  |
 | BND-14 | ⏳ | Quarter 1 final: report, package, one-command reproduction (4 Dec) | V0 |  |
@@ -329,3 +329,36 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | DEC-06 | ✅ | Approve the Atlas v2 page sequence (and whether the market page is public) | V3 |  |
+
+## 13 External outputs
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| EXT-06 | 🔵 | Note to Vashishtha et al. maintainers: triplet answers cut off at 300 tokens (91% of votes lost on gpt-4o-mini) | V3 |  |
+
+## 10 Infrastructure
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| INF-08 | ✅ | Transient OSError EIO on the Docker bind mount: harness writes retry | V3 |  |
+| INF-09 | ✅ | Provider quota exhaustion is an infrastructure stop, not an agent failure | V3 |  |
+
+## 5 Targets
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| TGT-18 | 👀 | DV-1 precision > 0.80 at >= 50% coverage, both families, held out (landmark ER-2) | V3 |  |
+| TGT-19 | 👀 | Accuracy landmark ER-4a: data-only F1 above GES (route A), or knowledge tiers lift > 0.03 (route B) | V3 |  |
+| TGT-20 | 👀 | RCA through the ledger: AC@3 >= 0.90 at coverage >= 0.5 on PetShop held out (landmark ER-4b) | V3 |  |
+
+## 8 Build
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| BLD-15 | ✅ | Audit adapter: other systems' outputs read as typed claims with violation classes | V3 |  |
+
+## 13 External outputs
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| EXT-07 | 🔵 | Note to causal-learn maintainers: PC's Meek step can return a directed cycle (stale ancestor matrix) | V3 |  |

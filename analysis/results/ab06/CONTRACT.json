@@ -1,0 +1,25 @@
+{
+ "producer": "analysis/ab06_score.py",
+ "score_bearing": true,
+ "tickets": [
+  "AUD-38",
+  "STR-01",
+  "RQ-05",
+  "RQ-17"
+ ],
+ "regime": "per-row",
+ "regime_detail": "D+K: agents read names (real/neutral/swapped) and, where they take it, data",
+ "split": "dev",
+ "controls": {
+  "columns_shuffled": "always (seed 20261010)",
+  "names": "per-row",
+  "supplier": "per-row",
+  "knowledge_source": "each agent's LLM (models in plans/ab06/BUDGET.json)"
+ },
+ "orientation_rule": "undecided pairs at random (per-file seed), as the runner scores",
+ "metric_defs": {
+  "f1_mean": "mean directed F1 over ok runs",
+  "dv1_precision": "DV-1 committed-claim precision (released targets)",
+  "name_reliance_real_minus_swapped": "paired mean F1(real) - F1(swapped)"
+ }
+}

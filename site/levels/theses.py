@@ -60,21 +60,30 @@ T2 = thesis("T2", "P1",
 T3 = thesis("T3", "P2",
             "Order held as a typed, sourced partial order is (a) never below data-only, (b) boundedly harmed by wrong knowledge, (c) at or above the best published number in each regime.",
             "(a) or (b) fail on held-out scenarios. (c) is a target, reported whichever way it falls.",
-            "In progress", "prog",
+            "(a) and (b) supported; (c) not met", "prog",
             [f"Refinement v1 (BND-10, pooled {n('v1.files')}): R1 {n('v1.R1.hits')}/{t('v1.files')} and R2 {n('v1.R2.hits')}/{t('v1.files')}, inconclusive. It dropped {n('v1.dropped.all')} connections, {n('v1.dropped.true')} of them true.",
-             "Refinement v2 frozen (RULE sha 443354d8): keeps every data connection, uses names only where the data are silent. Dev R1-R3 supported; held-out pending.",
-             "The claim ledger itself (BLD-02, kernel B1) is not started and has no Q1 bundle."],
+             f"Refinement v2 (BND-11) keeps every data connection and uses names only where the data are silent. Held out (formula test, {n('v2.test.files')} files): R1 {n('v2.test.R1')}/{t('v2.test.files')}, R3 {n('v2.test.R3', '{:+.3f}')}. Swapped names cost nothing measurable (R5 {n('v2.names.R5')}/10); real names help in only {n('v2.names.R6')} of 10 families (R6 refuted).",
+             f"Ledger kernel (Q2 B1, rule C3), held out: directed F1 against plain PC with maxP {n('q2.erf.sem.f1', '{:+.3f}')} / {n('q2.erf.for.f1', '{:+.3f}')} "
+             f"(semantic / formula), against GES {n('q2.ges.sem.f1', '{:+.3f}')} / {n('q2.ges.for.f1', '{:+.3f}')}.",
+             f"Tiers on open pairs only (Q2 B3): neutral names equal the data-only ledger on {n('q2.b3.sem.neutral')}/{t('q2.b3.sem.files')} and "
+             f"{n('q2.b3.for.neutral')}/{t('q2.b3.for.files')} held-out files; moved names stay within the T3 bound on every file; real names add "
+             f"{n('q2.b3.sem.gain', '{:+.3f}')} / {n('q2.b3.for.gain', '{:+.3f}')}, below the published bests."],
             f"B1 data-only kernel at or above PC ({n('pc.F1')}) → knowledge tiers B3 (oracle tiers reach {n('oracle.depth.reg')}, above the published {n('pub.sem.D.best')}) → interventions B2 toward the {n('lim.sem.DI')} limit.",
-            "v2 held-out test after the free compute jobs; decide whether B1 enters Q1 (see the gap below).")
+            "(a) and (b) now hold held out. (c) needs either a data-only gain over GES or a stronger knowledge source; candidates in "
+            "docs/design/q2_kernel_v3_proposals.md.")
 
 T4 = thesis("T4", "P2",
             "Claims carry calibrated confidence and a machine-checkable derivation, so the system can decline to claim.",
             "Calibration error on held-out scenarios is no better than raw bootstrap frequencies, or the checker rejects its own derivations.",
-            "Not started", "todo",
-            ["Calibration method chosen (DOM-08): Platt scaling on bootstrap frequencies, fitted with whole scenarios held out; Brier score primary.",
-             "Causal-Copilot's bootstrap filter uses raw bootstrap frequencies with no calibration: the baseline to beat."],
+            "Supported against raw frequencies; gate missed on one family", "prog",
+            [f"Q2 B4, held out: calibrated error {n('q2.b4.sem.ece')} semantic and {n('q2.b4.for.ece')} formula, against {n('q2.b4.sem.raw')} and "
+             f"{n('q2.b4.for.raw')} for raw bootstrap frequencies (the baseline Causal-Copilot's filter uses). The refutation test fails: calibration beats raw.",
+             "The independent checker (K7) accepts every claim in every ledger built in B1-B3.",
+             f"The pre-registered 0.05 gate is missed on semantic, in the safe direction (claims are right more often than stated). "
+             f"Half-coverage precision {n('q2.b4.sem.prec')} semantic, {n('q2.b4.for.prec')} formula.",
+             "B4 pre-registered an isotonic map on 10-resample stability, fitted on dev and frozen before the read (DOM-08 had proposed Platt scaling)."],
             "precision at a stated coverage is the honest score once forced choice stops being the only view; it does not move F1 but tells a reader which claims to trust.",
-            "B4 after B1; coverage guarantee within one family only.")
+            "scenario-level shrinkage of the map and more scenarios; the coverage guarantee stays within one family.")
 
 T5 = thesis("T5", "P3",
             "The claims answer \"what happens if we set X?\" with a stated identification status, checkable on held-out interventions.",
@@ -127,12 +136,12 @@ cols = f"""<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: f
 </div>"""
 
 INV = [
-    ("I1", "Shuffling columns changes nothing", "Violated: the vendored PC changes its output in %s of %s files (BND-06)" % (n("pc.order.changed"), n("pc.order.files")), "dec", "a gate on every run"),
-    ("I2", "Same inputs, same ledger hash", "Not measured", "todo", "CAP-11"),
-    ("I3", "D+K with no knowledge equals D", "Not built", "todo", "gives T3(a)"),
-    ("I4", "No claim without evidence; the checker accepts every claim", "Not built", "todo", "CAP-09"),
-    ("I5", "Knowledge never creates or removes a connection", "v1 violated it (dropped %s). v2 enforces it by construction (tests/test_refinement_v2.py)" % n("v1.dropped.all"), "prog", "gives T3(b)"),
-    ("I6", "An intervention beats knowledge", "Not built", "todo", "needs B2"),
+    ("I1", "Shuffling columns changes nothing", "Holds for the ledger (50/50 dev files, 120/120 oracle graphs). The vendored PC changes its output in %s of %s files (BND-06)" % (n("pc.order.changed"), n("pc.order.files")), "done", "a gate on every run"),
+    ("I2", "Same inputs, same ledger hash", "Holds: 50/50 repeat builds (Q2 B1)", "done", "CAP-11"),
+    ("I3", "D+K with no knowledge equals D", "Holds held out: %s/%s and %s/%s files (Q2 B3)" % (n("q2.b3.sem.neutral"), t("q2.b3.sem.files"), n("q2.b3.for.neutral"), t("q2.b3.for.files")), "done", "gives T3(a)"),
+    ("I4", "No claim without evidence; the checker accepts every claim", "Holds: every claim cites records and K7 re-derives it (Q2 B1-B3)", "done", "CAP-09"),
+    ("I5", "Knowledge never creates or removes a connection", "v1 violated it (dropped %s). The ledger enforces it by construction; the skeleton never moved in any B3 arm" % n("v1.dropped.all"), "done", "gives T3(b)"),
+    ("I6", "An intervention beats knowledge", "Built (Q2 B2): an intervention overrides a data or knowledge direction and the claim records the conflict", "done", "CAP-03"),
     ("I7", "Malformed model output cannot crash a run", "Causal-Copilot violates it: %s of %s runs. Our names runner retries, then abstains" % (n("cc.crashed"), n("cc.runs")), "prog", "CAP-10"),
 ]
 inv_cells = []
@@ -173,9 +182,9 @@ _unb = [i["id"] for i in SNAP["items"] if i["id"].startswith("BLD-") and i["pill
 _share = {k: 100.0 * c["done"] / c["n"] for k, c in _pc.items()}
 gap_box = f"""<div style="flex: 1 1 380px; padding: 18px 20px; background: #FFFFFF; border: 2px dashed #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 8px">
 {tag("The gap this level exposes", "#8E2A2A")}
-<p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">The route to the bound runs through the ledger, and the ledger has no Q1 bundle.</p>
-<p style="margin: 0; font-size: 14px; line-height: 20px">The 14 Q1 bundles close measurement (P1) and refinement v1/v2, a patch to Causal-Copilot. The builds a thesis needs sit outside every bundle: {", ".join(_unb)}. That is why the work feels like it is circling: P1 is {_share["P1"]:.0f}% done, P2 {_share["P2"]:.0f}%, P3 {_share["P3"]:.0f}%.</p>
-<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> add a bundle for kernel B1 so G2 tests the ledger, or keep G2 as v1-vs-fallback and start B1 after the checkpoint.</p>
+<p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">The ledger exists and holds its promises; it does not yet beat the field's best numbers.</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px">After the Q2 build's first held-out pass, {t("q2.paper.met")} of 5 paper constraints are met (floors, provenance). Precision at half coverage, calibration, accuracy above GES and RCA at 0.90 are not yet: P1 is {_share["P1"]:.0f}% done, P2 {_share["P2"]:.0f}%, P3 {_share["P3"]:.0f}%.</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> which landmark a second kernel version chases first (docs/design/q2_kernel_v3_proposals.md).</p>
 </div>"""
 
 dec_box = f"""<div style="flex: 1 1 300px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px">
@@ -207,8 +216,9 @@ body = "\n".join([
                 "Each pillar owns a block of the space and a piece of the distance to the bound. Each thesis says what we claim, what would refute it, what the evidence says today, and how it gets us closer."),
     carve, spacemap(), cols, invariants, gates, ceiling,
     terms_panel(["thesis", "invariant", "ledger", "tier", "calib", "abstain", "ident", "ida", "gate", "regime"]),
-    footer("measurement is mostly done and has already corrected one thesis (T1 holds for PC, not for GES or FCI) and supported another (T2). The system theses are where the distance is closed, and they are barely started.",
-           "decide DEC-01 (adopt these theses as the plan) with the A3 evidence in hand, then bring kernel B1 into a bundle so the G2 checkpoint tests the ledger rather than a patch.",
+    footer("measurement is done and corrected one thesis (T1 holds for PC, not for GES or FCI). The ledger is built: T3(a) and (b) hold "
+           "held out, and T4 beats raw frequencies but misses its own gate on one family.",
+           "choose which landmark the second kernel version chases (accuracy above GES, calibration on semantic, or more RCA issues).",
            "Bundles.dc.html", "See the bundles"),
 ])
 

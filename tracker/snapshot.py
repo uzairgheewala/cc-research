@@ -70,15 +70,16 @@ def items():
 def bundles():
     dag = load("plans/q1_dag.json")
     audit = load("plans/audit_dag.json")
+    q2 = load("plans/q2_dag.json")
     out = []
-    for plan, b in [("q1", b) for b in dag["bundles"]] + [("audit", b) for b in audit["bundles"]]:
+    for plan, b in [("q1", b) for b in dag["bundles"]] + [("audit", b) for b in audit["bundles"]] + [("q2", b) for b in q2["bundles"]]:
         bid = b["id"]
         out.append({"id": bid, "title": b.get("title"), "status": C.BUNDLE_STATUS.get(bid) or "todo",
                     "blocked_by": b.get("depends_on") or b.get("blocked_by") or [], "closes": b.get("closes", []),
                     "window": b.get("window"), "llm_cost": b.get("llm_cost"), "approval_needed": b.get("approval_needed"),
                     "uzair_actions": b.get("uzair_actions") or [], "note": C.BUNDLE_NOTE.get(bid, ""), "plan": plan,
                     "track": b.get("track"), "serves": b.get("serves") or []})
-    return out, dag.get("milestones", []) + audit.get("milestones", [])
+    return out, dag.get("milestones", []) + audit.get("milestones", []) + q2.get("milestones", [])
 
 
 def lists():

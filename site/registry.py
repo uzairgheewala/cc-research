@@ -177,8 +177,8 @@ REG.update({
     "ab09.t3.checks": L(AB09R, "51,392", "yes, 51,392 checks, 0 violations"),
     "ab09.t3.violations": L(AB09R, "0", "51,392 checks, 0 violations"),
     # AB-05 / AB-07
-    "ab05.crash.runs": L(AB05R, "16", "Of 115 live runs, 16 (14%)"),
-    "ab05.crash.total": L(AB05R, "115", "Of 115 live runs, 16 (14%)"),
+    "ab05.crash.runs": L(AB05R, "18", "Of 19 live entries into the cycle step, 18 crashed"),
+    "ab05.crash.total": L(AB05R, "19", "Of 19 live entries into the cycle step, 18 crashed"),
     "ab07.o1.correct": J(A3, "verdicts", "O1", "value", "correct"),
     "ab07.o1.contra": J(A3, "verdicts", "O1", "value", "contradicted"),
     "ab07.o3.label.correct": J(A3, "verdicts", "O3", "by_label", "correct"),
@@ -210,4 +210,110 @@ REG.update({
     "ab14.est.pharma": L(AB14R, "$2.8-11M", "| $2.8-11M a year for the regulatory core"),
     "ab14.est.pharma.broad": L(AB14R, "$20-100M", "$20-100M a year across all registered RWE studies"),
 })
+
+# ---- 2026-10-14: AB-05 close-out and AB-06's Causal-Copilot second-model arm (page 6)
+AB05C = R + "ab05/live_calibration.json"
+CCR = "analysis/reports/ab06_cc_second_model.md"
+PSM = R + "ab06_cc/partial_stages.json"
+SVM = R + "ab06_cc/s2_verdicts.json"
+REG.update({
+    "ab05.vash.untagged": J(AB05C, "agents", "vashishtha", "vashishtha", "share_without_tag"),
+    "ab05.vash.ties": J(AB05C, "agents", "vashishtha", "vashishtha", "pairs_tied"),
+    "ab05.vash.pairs": J(AB05C, "agents", "vashishtha", "vashishtha", "pairs"),
+    "ab05.vash.triplets": J(AB05C, "agents", "vashishtha", "vashishtha", "triplets"),
+    "ab05.pywhy.f1": J(AB05C, "agents", "pywhyllm", "f1"),
+    "ab06.cc.real.S0": J(PSM, "by_role", "real", "S0_dir_all"), "ab06.cc.real.S3": J(PSM, "by_role", "real", "S3_dir_all"),
+    "ab06.cc.swapped.S3": J(PSM, "by_role", "swapped", "S3_dir_all"),
+    "ab06.cc.reliance": L(CCR, "0.094", "**0.167** | **0.094**"),
+    "ab06.cc.reliance.4o": L(CCR, "0.167", "**0.167** | **0.094**"),
+    "ab06.cc.m4.hits": J(SVM, "M4", "hits"), "ab06.cc.m4.families": J(SVM, "M4", "families"),
+    "ab06.cc.completed": L(CCR, "26", "| 26 | completed |"),
+    "ab06.tierA.usd": L("analysis/reports/ab06_prep.md", "48.23", "| **$48.23** |"),
+})
+
+# ---- 2026-10-14: BND-11 (refinement v2 held-out and names part)
+V2T = R + "refinement_v2/test_formula.json"
+V2N = R + "refinement_v2/names_s2.json"
+REG.update({
+    "v2.test.files": J(V2T, "summary", "files"), "v2.test.R1": J(V2T, "summary", "R1", "hits"),
+    "v2.test.R3": J(V2T, "summary", "R3", "mean_difference"),
+    "v2.names.R5": J(V2N, "R5", "hits"), "v2.names.R6": J(V2N, "R6", "hits"),
+})
+
+# ---- 2026-10-14: AB-06 field audit (page 6)
+AB6 = R + "ab06/ab06.json"
+AB06R = "analysis/reports/ab06_field_audit.md"
+_ab6 = {}
+for _ag in ("causaliq", "matmcd"):
+    for _arm in ("real", "neutral", "swapped"):
+        _ab6["ab06.%s.%s" % (_ag, _arm)] = J(AB6, "agents", _ag, _arm, "f1_mean")
+for _ag in ("pywhyllm", "vashishtha"):
+    for _arm in ("real", "swapped"):
+        _ab6["ab06.%s.%s" % (_ag, _arm)] = J(AB6, "agents", _ag, _arm, "f1_mean")
+for _ag in ("causaliq", "pywhyllm", "matmcd", "vashishtha"):
+    _ab6["ab06.%s.nr" % _ag] = J(AB6, "agents", _ag, "name_reliance_real_minus_swapped", "mean")
+    _ab6["ab06.%s.nrn" % _ag] = J(AB6, "agents", _ag, "name_reliance_real_minus_swapped", "paired_scenarios")
+for _ag in ("matmcd", "vashishtha"):
+    _ab6["ab06.%s.floor" % _ag] = J(AB6, "agents", _ag, "data_only_floor_real_arm", "f1_data_only")
+    _ab6["ab06.%s.dv" % _ag] = J(AB6, "agents", _ag, "data_only_floor_real_arm", "dv1_precision_final")
+    _ab6["ab06.%s.dv.floor" % _ag] = J(AB6, "agents", _ag, "data_only_floor_real_arm", "dv1_precision_data_only")
+for _k, _sys in (("cc4o", "causal_copilot_gpt4o"), ("ccmini", "causal_copilot_gpt4omini")):
+    for _arm in ("real", "neutral", "swapped"):
+        _ab6["ab06.%s.%s" % (_k, _arm)] = J(AB6, "causal_copilot", _sys, _arm, "f1_mean")
+    _ab6["ab06.%s.nr" % _k] = J(AB6, "causal_copilot", _sys, "name_reliance_real_minus_swapped", "mean")
+_ab6.update({
+    "ab06.P9": J(AB6, "P9", "verdict"), "ab06.P10": J(AB6, "P10", "verdict"),
+    "ab06.vash.llm_order": J(AB6, "agents", "vashishtha", "real", "direction_sources", "llm_order"),
+    "ab06.vash.data": J(AB6, "agents", "vashishtha", "real", "direction_sources", "data"),
+    "ab06.empty.dv": L(AB06R, "0.670", "scores DV-1 0.670 on these 10 scenarios"),
+    "ab06.matmcd.below.neutral": L(AB06R, "9", "below its own PC graph in 9 and 8 of 10 scenarios"),
+    "ab06.matmcd.below.swapped": L(AB06R, "8", "below its own PC graph in 9 and 8 of 10 scenarios"),
+    "ab06.usd": L(AB06R, "32.11", "Tier A cost $32.11"),
+})
+REG.update(_ab6)
+
+# ---- Q2 build, first held-out pass (2026-10-15; jobs/patches/s17_site_q2.py)
+HO = R + "q2_b1/heldout.json"
+B2S, B3S, B4E = R + "q2_b2/summary_test.json", R + "q2_b3/summary_test.json", R + "q2_b4/evaluate_test.json"
+RV, B5T, AD, LM = R + "q2_b4/raw_vs_calibrated_test.json", R + "q2_b5/rca_test.json", R + "q2_b5/adapters.json", R + "q2_landmarks.json"
+_q2 = {}
+for _f, _k in (("semantic", "sem"), ("formula", "for")):
+    for _vs, _p in (("vs_pc_maxp", "erf"), ("vs_ges", "ges")):
+        for _e in ("point", "lo", "hi"):
+            _s = "" if _e == "point" else "." + _e
+            _q2["q2.%s.%s.f1%s" % (_p, _k, _s)] = J(HO, "families", _f, _vs, "f1_diff", _e)
+            _q2["q2.%s.%s.dv%s" % (_p, _k, _s)] = J(HO, "families", _f, _vs, "dv1_pooled_diff", _e)
+    _q2["q2.b2.%s.dv" % _k] = J(B2S, "families", _f, "dv1_pooled_diff", "point")
+    _q2["q2.b2.%s.dv.lo" % _k] = J(B2S, "families", _f, "dv1_pooled_diff", "lo")
+    _q2["q2.b2.%s.perfile" % _k] = J(B2S, "families", _f, "dv1_mean_per_file_diff")
+    for _e in ("point", "lo", "hi"):
+        _q2["q2.b3.%s.gain%s" % (_k, "" if _e == "point" else "." + _e)] = J(B3S, "families", _f, "arms", "real", "gain", _e)
+    _q2["q2.b3.%s.files" % _k] = J(B3S, "families", _f, "arms", "neutral", "files")
+    _q2["q2.b3.%s.neutral" % _k] = J(B3S, "families", _f, "arms", "neutral", "claims_identical_to_D")
+    _q2["q2.b3.%s.t3" % _k] = J(B3S, "families", _f, "arms", "moved", "within_t3")
+    _q2["q2.b3.%s.moved" % _k] = J(B3S, "families", _f, "arms", "moved", "gain", "point")
+    for _e in ("point", "lo", "hi"):
+        _q2["q2.b4.%s.prec%s" % (_k, "" if _e == "point" else "." + _e)] = J(B4E, "families", _f, "dv", "er2_interval", _e)
+    _q2["q2.b4.%s.cov" % _k] = J(B4E, "families", _f, "dv", "selective_at_half_coverage", "coverage")
+    _q2["q2.b4.%s.ece" % _k] = J(B4E, "families", _f, "dv", "ece")
+    _q2["q2.b4.%s.ece.hi" % _k] = J(B4E, "families", _f, "dv", "ece_interval", "hi")
+    _q2["q2.b4.%s.raw" % _k] = J(RV, "families", _f, "dv", "ece_raw", "point")
+_CH = "chambers", "rows"
+_q2.update({
+    "q2.ch.kdi": J(B2S, *_CH, "kernel D+I (C3)", "precision"), "q2.ch.kd": J(B2S, *_CH, "kernel D (C3)", "precision"),
+    "q2.ch.ges": J(B2S, *_CH, "GES (BIC)", "precision"), "q2.ch.pc": J(B2S, *_CH, "PC maxP (plain call)", "precision"),
+    "q2.ch.agree": J(B2S, *_CH, "kernel D+I (C3)", "agreement_with_check_rows"),
+    "q2.ch.true.agree": J(B2S, *_CH, "true DAG", "agreement_with_check_rows"),
+    "q2.b5.ac3": J(B5T, "ER-4b", "AC@3_answered"), "q2.b5.ac3.lo": J(B5T, "ER-4b", "lo"), "q2.b5.cov": J(B5T, "ER-4b", "coverage"),
+    "q2.b5.answered": J(B5T, "ER-4b", "answered"),
+    "q2.b5.learned": J(B5T, "variants", "learned_ledger_only", "AC@3_answered"),
+    "q2.b5.learned.cov": J(B5T, "variants", "learned_ledger_only", "coverage"),
+    "q2.b5.cc.created": J(AD, "agents", "causal_copilot_gpt4o", "violations", "knowledge_created_connection"),
+    "q2.b5.matmcd.reversed": J(AD, "agents", "matmcd", "violations", "knowledge_reversed_data"),
+    "q2.paper.met": F(LM, lambda d: len(d["paper_constraints_met"])),
+    "q2.wedge.met": F(LM, lambda d: len(d["wedge_constraints_met"])),
+})
+for _er in ("ER-F", "ER-1", "ER-2", "ER-3", "ER-4a", "ER-4b", "ER-C"):
+    _q2["q2.lm." + _er] = F(LM, lambda d, _er=_er: "met" if d["landmarks"][_er]["met"] else "not met")
+REG.update(_q2)
 

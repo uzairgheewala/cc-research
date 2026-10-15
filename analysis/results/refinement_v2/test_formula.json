@@ -1,0 +1,671 @@
+{
+ "mode": "test",
+ "rule_sha256": "443354d8391aea24e7c32e5086b8557a54cbc78c767ede3aaf76f0cfc58906dc",
+ "replay_header": {
+  "M1": {
+   "refuted_if_share_at_most": 0.5,
+   "supported_if_share_at_least": 0.8,
+   "text": "M1: the bootstrap step lowers adjacency F1 below the algorithm's own output (PC, no LLM)"
+  },
+  "columns": "permuted per file (seed + crc32(file name)), neutral labels V01..",
+  "errors": 3,
+  "family": "formula",
+  "files": 25,
+  "method": "PC wrapper defaults; bootstrap 20 resamples; seed 0",
+  "shuffle_seed": 20261012,
+  "split": "test"
+ },
+ "summary": {
+  "files": 22,
+  "R1": {
+   "hits": 22,
+   "share": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "R2": {
+   "hits": 22,
+   "share": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "R3": {
+   "mean_difference": 0.0097239093659487,
+   "verdict": "SUPPORTED"
+  },
+  "means": {
+   "S0": {
+    "adj_f1": 0.5388,
+    "dir_f1_random": 0.3655,
+    "dir_f1_committed": 0.3105
+   },
+   "S1": {
+    "adj_f1": 0.4318,
+    "dir_f1_random": 0.3307,
+    "dir_f1_committed": 0.3139
+   },
+   "v2d": {
+    "adj_f1": 0.5388,
+    "dir_f1_random": 0.3753,
+    "dir_f1_committed": 0.3169
+   }
+  },
+  "all_edges_sourced": true
+ },
+ "rows": [
+  {
+   "key": "formula_biology_physiology_and_ecology_monod_microbial_growth__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6122448979591838,
+     "dir_f1_committed": 0.4,
+     "dir_f1_random": 0.4897959183673469
+    },
+    "S1": {
+     "adj_f1": 0.5,
+     "dir_f1_committed": 0.4102564102564103,
+     "dir_f1_random": 0.36363636363636365
+    },
+    "v2d": {
+     "adj_f1": 0.6122448979591838,
+     "dir_f1_committed": 0.380952380952381,
+     "dir_f1_random": 0.4489795918367347
+    }
+   },
+   "sources": {
+    "algorithm": 18,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_celestial_mechanics_and_astronomy_binary_star_total_mass_from_orbit__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.46875,
+     "dir_f1_committed": 0.2580645161290323,
+     "dir_f1_random": 0.25
+    },
+    "S1": {
+     "adj_f1": 0.4067796610169492,
+     "dir_f1_committed": 0.2711864406779661,
+     "dir_f1_random": 0.2711864406779661
+    },
+    "v2d": {
+     "adj_f1": 0.46875,
+     "dir_f1_committed": 0.22580645161290325,
+     "dir_f1_random": 0.21875
+    }
+   },
+   "sources": {
+    "algorithm": 20,
+    "algorithm; type from bootstrap": 6,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_celestial_mechanics_and_astronomy_escape_velocity_from_a_planetary_body__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.49315068493150693,
+     "dir_f1_committed": 0.16129032258064516,
+     "dir_f1_random": 0.2191780821917808
+    },
+    "S1": {
+     "adj_f1": 0.3636363636363636,
+     "dir_f1_committed": 0.16666666666666666,
+     "dir_f1_random": 0.2121212121212121
+    },
+    "v2d": {
+     "adj_f1": 0.49315068493150693,
+     "dir_f1_committed": 0.16129032258064516,
+     "dir_f1_random": 0.2191780821917808
+    }
+   },
+   "sources": {
+    "algorithm": 27,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_celestial_mechanics_and_astronomy_planetary_orbital_period_from_semi_major_axis__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 16,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5714285714285714,
+     "dir_f1_committed": 0.3913043478260869,
+     "dir_f1_random": 0.40816326530612246
+    },
+    "S1": {
+     "adj_f1": 0.5106382978723403,
+     "dir_f1_committed": 0.3913043478260869,
+     "dir_f1_random": 0.425531914893617
+    },
+    "v2d": {
+     "adj_f1": 0.5714285714285714,
+     "dir_f1_committed": 0.3829787234042554,
+     "dir_f1_random": 0.3673469387755102
+    }
+   },
+   "sources": {
+    "algorithm": 16,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_chemistry_kinetics_and_solutions_beer_lambert_absorbance__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5818181818181819,
+     "dir_f1_committed": 0.47058823529411764,
+     "dir_f1_random": 0.509090909090909
+    },
+    "S1": {
+     "adj_f1": 0.5660377358490567,
+     "dir_f1_committed": 0.48000000000000004,
+     "dir_f1_random": 0.45283018867924524
+    },
+    "v2d": {
+     "adj_f1": 0.5818181818181819,
+     "dir_f1_committed": 0.45283018867924524,
+     "dir_f1_random": 0.4727272727272728
+    }
+   },
+   "sources": {
+    "algorithm": 21,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_chemistry_kinetics_and_solutions_nernst_electrochemical_cell_potential__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6206896551724138,
+     "dir_f1_committed": 0.34615384615384615,
+     "dir_f1_random": 0.3793103448275862
+    },
+    "S1": {
+     "adj_f1": 0.5925925925925926,
+     "dir_f1_committed": 0.34615384615384615,
+     "dir_f1_random": 0.33333333333333337
+    },
+    "v2d": {
+     "adj_f1": 0.6206896551724138,
+     "dir_f1_committed": 0.43137254901960786,
+     "dir_f1_random": 0.4482758620689655
+    }
+   },
+   "sources": {
+    "algorithm": 21,
+    "algorithm; type from bootstrap": 6,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_classical_mechanics_and_fluid_mechanics_projectile_range_on_level_ground__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.4827586206896552,
+     "dir_f1_committed": 0.12765957446808512,
+     "dir_f1_random": 0.2758620689655173
+    },
+    "S1": {
+     "adj_f1": 0.2745098039215686,
+     "dir_f1_committed": 0.12765957446808512,
+     "dir_f1_random": 0.196078431372549
+    },
+    "v2d": {
+     "adj_f1": 0.4827586206896552,
+     "dir_f1_committed": 0.20833333333333334,
+     "dir_f1_random": 0.3103448275862069
+    }
+   },
+   "sources": {
+    "algorithm": 16,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_classical_mechanics_and_fluid_mechanics_quadratic_drag_terminal_velocity__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 22,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5454545454545454,
+     "dir_f1_committed": 0.35000000000000003,
+     "dir_f1_random": 0.3636363636363636
+    },
+    "S1": {
+     "adj_f1": 0.4761904761904762,
+     "dir_f1_committed": 0.35000000000000003,
+     "dir_f1_random": 0.380952380952381
+    },
+    "v2d": {
+     "adj_f1": 0.5454545454545454,
+     "dir_f1_committed": 0.3076923076923077,
+     "dir_f1_random": 0.4090909090909091
+    }
+   },
+   "sources": {
+    "algorithm": 18,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_classical_mechanics_and_fluid_mechanics_rolling_object_down_an_incline__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 24,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6440677966101696,
+     "dir_f1_committed": 0.5555555555555556,
+     "dir_f1_random": 0.576271186440678
+    },
+    "S1": {
+     "adj_f1": 0.5964912280701754,
+     "dir_f1_committed": 0.5555555555555556,
+     "dir_f1_random": 0.5614035087719298
+    },
+    "v2d": {
+     "adj_f1": 0.6440677966101696,
+     "dir_f1_committed": 0.5454545454545454,
+     "dir_f1_random": 0.576271186440678
+    }
+   },
+   "sources": {
+    "algorithm": 25,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_earth_science_hydrology_and_atmosphere_barometric_pressure_profile__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 16,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5384615384615385,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.23076923076923078
+    },
+    "S1": {
+     "adj_f1": 0.0,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.0
+    },
+    "v2d": {
+     "adj_f1": 0.5384615384615385,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.23076923076923078
+    }
+   },
+   "sources": {
+    "algorithm": 8,
+    "algorithm; type from bootstrap": 0,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_electromagnetism_and_circuits_coulomb_force_between_charges__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 21,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.4615384615384615,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.15384615384615385
+    },
+    "S1": {
+     "adj_f1": 0.0,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.0
+    },
+    "v2d": {
+     "adj_f1": 0.4615384615384615,
+     "dir_f1_committed": 0.0,
+     "dir_f1_random": 0.20512820512820515
+    }
+   },
+   "sources": {
+    "algorithm": 9,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_electromagnetism_and_circuits_lc_resonant_circuit__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 23,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.3846153846153846,
+     "dir_f1_committed": 0.1739130434782609,
+     "dir_f1_random": 0.30769230769230765
+    },
+    "S1": {
+     "adj_f1": 0.25,
+     "dir_f1_committed": 0.1739130434782609,
+     "dir_f1_random": 0.20833333333333334
+    },
+    "v2d": {
+     "adj_f1": 0.3846153846153846,
+     "dir_f1_committed": 0.13043478260869565,
+     "dir_f1_random": 0.2692307692307692
+    }
+   },
+   "sources": {
+    "algorithm": 16,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_electromagnetism_and_circuits_rl_current_rise__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5806451612903226,
+     "dir_f1_committed": 0.48275862068965514,
+     "dir_f1_random": 0.48387096774193544
+    },
+    "S1": {
+     "adj_f1": 0.5172413793103448,
+     "dir_f1_committed": 0.48275862068965514,
+     "dir_f1_random": 0.48275862068965514
+    },
+    "v2d": {
+     "adj_f1": 0.5806451612903226,
+     "dir_f1_committed": 0.4482758620689655,
+     "dir_f1_random": 0.5161290322580646
+    }
+   },
+   "sources": {
+    "algorithm": 21,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_energy_systems_and_environmental_engineering_building_heat_loss_load__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6071428571428571,
+     "dir_f1_committed": 0.42307692307692313,
+     "dir_f1_random": 0.5
+    },
+    "S1": {
+     "adj_f1": 0.5660377358490566,
+     "dir_f1_committed": 0.4313725490196078,
+     "dir_f1_random": 0.4150943396226415
+    },
+    "v2d": {
+     "adj_f1": 0.6071428571428571,
+     "dir_f1_committed": 0.4313725490196078,
+     "dir_f1_random": 0.5
+    }
+   },
+   "sources": {
+    "algorithm": 19,
+    "algorithm; type from bootstrap": 5,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_energy_systems_and_environmental_engineering_solar_photovoltaic_temperature_derating__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 24,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5614035087719298,
+     "dir_f1_committed": 0.375,
+     "dir_f1_random": 0.3859649122807018
+    },
+    "S1": {
+     "adj_f1": 0.4166666666666667,
+     "dir_f1_committed": 0.391304347826087,
+     "dir_f1_random": 0.4166666666666667
+    },
+    "v2d": {
+     "adj_f1": 0.5614035087719298,
+     "dir_f1_committed": 0.4166666666666667,
+     "dir_f1_random": 0.42105263157894735
+    }
+   },
+   "sources": {
+    "algorithm": 23,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_materials_and_structural_engineering_elastic_stress_strain_response__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 21,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.53125,
+     "dir_f1_committed": 0.18867924528301885,
+     "dir_f1_random": 0.28125000000000006
+    },
+    "S1": {
+     "adj_f1": 0.4482758620689656,
+     "dir_f1_committed": 0.18867924528301885,
+     "dir_f1_random": 0.2413793103448276
+    },
+    "v2d": {
+     "adj_f1": 0.53125,
+     "dir_f1_committed": 0.24561403508771928,
+     "dir_f1_random": 0.34375000000000006
+    }
+   },
+   "sources": {
+    "algorithm": 22,
+    "algorithm; type from bootstrap": 6,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_materials_and_structural_engineering_euler_column_buckling__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.523076923076923,
+     "dir_f1_committed": 0.4067796610169492,
+     "dir_f1_random": 0.43076923076923085
+    },
+    "S1": {
+     "adj_f1": 0.4838709677419355,
+     "dir_f1_committed": 0.4067796610169492,
+     "dir_f1_random": 0.4516129032258065
+    },
+    "v2d": {
+     "adj_f1": 0.523076923076923,
+     "dir_f1_committed": 0.3448275862068965,
+     "dir_f1_random": 0.39999999999999997
+    }
+   },
+   "sources": {
+    "algorithm": 22,
+    "algorithm; type from bootstrap": 2,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_materials_and_structural_engineering_fracture_toughness_criterion__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.4848484848484848,
+     "dir_f1_committed": 0.2333333333333333,
+     "dir_f1_random": 0.303030303030303
+    },
+    "S1": {
+     "adj_f1": 0.48387096774193544,
+     "dir_f1_committed": 0.24561403508771928,
+     "dir_f1_random": 0.2903225806451613
+    },
+    "v2d": {
+     "adj_f1": 0.4848484848484848,
+     "dir_f1_committed": 0.28571428571428575,
+     "dir_f1_random": 0.303030303030303
+    }
+   },
+   "sources": {
+    "algorithm": 19,
+    "algorithm; type from bootstrap": 11,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_optics_waves_and_acoustics_refraction_by_snell_s_law__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 24,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.47058823529411764,
+     "dir_f1_committed": 0.3333333333333333,
+     "dir_f1_random": 0.3137254901960784
+    },
+    "S1": {
+     "adj_f1": 0.4489795918367347,
+     "dir_f1_committed": 0.3333333333333333,
+     "dir_f1_random": 0.3673469387755102
+    },
+    "v2d": {
+     "adj_f1": 0.47058823529411764,
+     "dir_f1_committed": 0.32653061224489793,
+     "dir_f1_random": 0.3137254901960784
+    }
+   },
+   "sources": {
+    "algorithm": 19,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_optics_waves_and_acoustics_single_slit_diffraction_minima__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 24,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.456140350877193,
+     "dir_f1_committed": 0.2745098039215686,
+     "dir_f1_random": 0.3157894736842105
+    },
+    "S1": {
+     "adj_f1": 0.40740740740740744,
+     "dir_f1_committed": 0.2745098039215686,
+     "dir_f1_random": 0.29629629629629634
+    },
+    "v2d": {
+     "adj_f1": 0.456140350877193,
+     "dir_f1_committed": 0.34615384615384615,
+     "dir_f1_random": 0.38596491228070173
+    }
+   },
+   "sources": {
+    "algorithm": 17,
+    "algorithm; type from bootstrap": 3,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_thermodynamics_and_heat_transfer_counterflow_heat_exchanger_effectiveness__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 24,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.6875,
+     "dir_f1_committed": 0.5245901639344263,
+     "dir_f1_random": 0.5
+    },
+    "S1": {
+     "adj_f1": 0.6666666666666665,
+     "dir_f1_committed": 0.5245901639344263,
+     "dir_f1_random": 0.5079365079365079
+    },
+    "v2d": {
+     "adj_f1": 0.6875,
+     "dir_f1_committed": 0.5714285714285714,
+     "dir_f1_random": 0.5625
+    }
+   },
+   "sources": {
+    "algorithm": 25,
+    "algorithm; type from bootstrap": 4,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  },
+  {
+   "key": "formula_thermodynamics_and_heat_transfer_lumped_convective_cooling__formula_obs_only__rep000.npz",
+   "group": "replay:formula:test",
+   "p": 25,
+   "scores": {
+    "S0": {
+     "adj_f1": 0.5454545454545454,
+     "dir_f1_committed": 0.3548387096774194,
+     "dir_f1_random": 0.3636363636363636
+    },
+    "S1": {
+     "adj_f1": 0.523076923076923,
+     "dir_f1_committed": 0.3548387096774194,
+     "dir_f1_random": 0.39999999999999997
+    },
+    "v2d": {
+     "adj_f1": 0.5454545454545454,
+     "dir_f1_committed": 0.3278688524590164,
+     "dir_f1_random": 0.3333333333333333
+    }
+   },
+   "sources": {
+    "algorithm": 29,
+    "algorithm; type from bootstrap": 1,
+    "bootstrap: added": 0
+   },
+   "every_edge_has_source": true
+  }
+ ]
+}

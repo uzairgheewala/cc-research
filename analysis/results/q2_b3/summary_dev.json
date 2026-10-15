@@ -1,0 +1,319 @@
+{
+ "tickets": [
+  "BLD-04",
+  "CAP-04",
+  "TGT-11",
+  "TGT-19"
+ ],
+ "split": "dev",
+ "families": {
+  "semantic": {
+   "files": 125,
+   "arms": {
+    "real": {
+     "files": 125,
+     "f1_D": 0.5224396085515226,
+     "f1_DK": 0.547981312896527,
+     "gain": {
+      "point": 0.025541704345004412,
+      "lo": 0.01824348865140277,
+      "hi": 0.03338971276547663,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": 0.023743432519067544,
+      "lo": 0.017248338034921457,
+      "hi": 0.030313893682528646,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 388,
+     "decided_right": 270,
+     "decided_wrong": 22,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 18,
+     "ledgers_failing": 0,
+     "skipped_cycle": 35,
+     "supplier": {
+      "calls": 400,
+      "accepted": 0,
+      "accepted_normalised": 365,
+      "abstained": 10,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 35,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 365,
+      "normalisations.whitespace": 0
+     }
+    },
+    "neutral": {
+     "files": 125,
+     "f1_D": 0.5224899218045346,
+     "f1_DK": 0.5224899218045346,
+     "gain": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 0,
+     "decided_right": 0,
+     "decided_wrong": 0,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 125,
+     "ledgers_failing": 0,
+     "skipped_cycle": 0,
+     "supplier": {
+      "calls": 375,
+      "accepted": 0,
+      "accepted_normalised": 375,
+      "abstained": 0,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 0,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 375,
+      "normalisations.whitespace": 0
+     }
+    },
+    "moved": {
+     "files": 125,
+     "f1_D": 0.5225629376775505,
+     "f1_DK": 0.5229994073565065,
+     "gain": {
+      "point": 0.0004364696789559683,
+      "lo": -0.004189133304818738,
+      "hi": 0.005728351642077488,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": -0.002936252646191114,
+      "lo": -0.008229643785155515,
+      "hi": 0.0027152298126625948,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 453,
+     "decided_right": 158,
+     "decided_wrong": 187,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 11,
+     "ledgers_failing": 0,
+     "skipped_cycle": 26,
+     "supplier": {
+      "calls": 380,
+      "accepted": 0,
+      "accepted_normalised": 375,
+      "abstained": 0,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 5,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 375,
+      "normalisations.whitespace": 0
+     }
+    }
+   },
+   "B3.1": true,
+   "B3.2": true,
+   "B3.3": true,
+   "ER-4a_route_B": {
+    "gain": 0.025541704345004412,
+    "lower": 0.01824348865140277,
+    "met": false
+   }
+  },
+  "formula": {
+   "files": 125,
+   "arms": {
+    "real": {
+     "files": 125,
+     "f1_D": 0.44021887332354126,
+     "f1_DK": 0.4622742087155856,
+     "gain": {
+      "point": 0.022055335392044347,
+      "lo": 0.017067708347074967,
+      "hi": 0.02719704968959782,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": 0.020157201679984617,
+      "lo": 0.014697468074607938,
+      "hi": 0.026449326339483378,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 332,
+     "decided_right": 197,
+     "decided_wrong": 13,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 14,
+     "ledgers_failing": 0,
+     "skipped_cycle": 12,
+     "supplier": {
+      "calls": 385,
+      "accepted": 0,
+      "accepted_normalised": 375,
+      "abstained": 0,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 10,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 375,
+      "normalisations.whitespace": 0
+     }
+    },
+    "neutral": {
+     "files": 125,
+     "f1_D": 0.4391868766015923,
+     "f1_DK": 0.4391868766015923,
+     "gain": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 0,
+     "decided_right": 0,
+     "decided_wrong": 0,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 125,
+     "ledgers_failing": 0,
+     "skipped_cycle": 0,
+     "supplier": {
+      "calls": 375,
+      "accepted": 0,
+      "accepted_normalised": 375,
+      "abstained": 0,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 0,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 375,
+      "normalisations.whitespace": 0
+     }
+    },
+    "moved": {
+     "files": 125,
+     "f1_D": 0.4379742980340664,
+     "f1_DK": 0.4326130752664932,
+     "gain": {
+      "point": -0.005361222767573177,
+      "lo": -0.011327892975479719,
+      "hi": 0.00010388596605002067,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "expected_gain": {
+      "point": -0.006718856673299367,
+      "lo": -0.012462580976630519,
+      "hi": -0.0011376279071788648,
+      "clusters": 25,
+      "B": 2000,
+      "seed": 20261014,
+      "files": 125
+     },
+     "decided": 370,
+     "decided_right": 87,
+     "decided_wrong": 149,
+     "within_t3": 125,
+     "skeleton_identical": 125,
+     "claims_identical_to_D": 13,
+     "ledgers_failing": 0,
+     "skipped_cycle": 20,
+     "supplier": {
+      "calls": 375,
+      "accepted": 0,
+      "accepted_normalised": 375,
+      "abstained": 0,
+      "stopped": 0,
+      "failures.truncated": 0,
+      "failures.invalid_json": 0,
+      "failures.schema": 0,
+      "failures.empty": 0,
+      "failures.rate_limited": 0,
+      "failures.quota": 0,
+      "failures.transport": 0,
+      "normalisations.code_fence": 375,
+      "normalisations.whitespace": 0
+     }
+    }
+   },
+   "B3.1": true,
+   "B3.2": true,
+   "B3.3": true,
+   "ER-4a_route_B": {
+    "gain": 0.022055335392044347,
+    "lower": 0.017067708347074967,
+    "met": false
+   }
+  }
+ }
+}

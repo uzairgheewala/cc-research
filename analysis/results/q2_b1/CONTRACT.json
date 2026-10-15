@@ -1,0 +1,26 @@
+{
+ "producer": "kernel/run_b1.py, kernel/report_b1.py, kernel/invariance.py",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-02",
+  "BLD-14",
+  "CAP-05",
+  "CAP-09",
+  "CAP-11",
+  "TGT-10",
+  "TGT-19"
+ ],
+ "regime": "D",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (engines see canonical column order: sorted by value hash)",
+  "names": "not applicable",
+  "supplier": "none (data only)"
+ },
+ "orientation_rule": "undecided pairs oriented at random with a per-file seed, crc32(file name) (the AB-01 expectation rule)",
+ "metric_defs": {
+  "f1": "directed F1, expectation rule",
+  "dv1": "DV-1 committed-claim precision and coverage (released targets)",
+  "f1_diff": "kernel minus baseline, scenario-cluster bootstrap 95% interval (B = 2000, seed 20261014)"
+ }
+}

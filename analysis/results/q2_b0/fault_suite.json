@@ -1,0 +1,148 @@
+{
+ "tickets": [
+  "CAP-10",
+  "TGT-13",
+  "BLD-04"
+ ],
+ "gate": "B0.2",
+ "cases": [
+  {
+   "case": "missing_key",
+   "outcome": "abstained",
+   "expected": "abstained",
+   "failures": [
+    "schema",
+    "schema"
+   ],
+   "normalisations": [],
+   "attempts": 2,
+   "ok": true
+  },
+  {
+   "case": "truncation",
+   "outcome": "abstained",
+   "expected": "abstained",
+   "failures": [
+    "truncated",
+    "truncated"
+   ],
+   "normalisations": [],
+   "attempts": 2,
+   "ok": true
+  },
+  {
+   "case": "invalid_json",
+   "outcome": "abstained",
+   "expected": "abstained",
+   "failures": [
+    "invalid_json",
+    "invalid_json"
+   ],
+   "normalisations": [],
+   "attempts": 2,
+   "ok": true
+  },
+  {
+   "case": "code_fenced_json",
+   "outcome": "accepted_normalised",
+   "expected": "accepted_normalised",
+   "failures": [
+    null
+   ],
+   "normalisations": [
+    "code_fence"
+   ],
+   "attempts": 1,
+   "ok": true
+  },
+  {
+   "case": "empty_reply",
+   "outcome": "abstained",
+   "expected": "abstained",
+   "failures": [
+    "empty",
+    "empty"
+   ],
+   "normalisations": [],
+   "attempts": 2,
+   "ok": true
+  },
+  {
+   "case": "http_429_storm",
+   "outcome": "abstained",
+   "expected": "abstained",
+   "failures": [
+    "rate_limited",
+    "rate_limited",
+    "rate_limited"
+   ],
+   "normalisations": [],
+   "attempts": 3,
+   "ok": true
+  },
+  {
+   "case": "quota_refusal",
+   "outcome": "stopped",
+   "expected": "stopped",
+   "failures": [
+    "quota"
+   ],
+   "normalisations": [],
+   "attempts": 1,
+   "ok": true
+  }
+ ],
+ "counts": {
+  "calls": 13,
+  "accepted": 0,
+  "accepted_normalised": 1,
+  "abstained": 5,
+  "stopped": 1,
+  "failures": {
+   "truncated": 2,
+   "invalid_json": 2,
+   "schema": 2,
+   "empty": 2,
+   "rate_limited": 3,
+   "quota": 1,
+   "transport": 0
+  },
+  "normalisations": {
+   "code_fence": 1,
+   "whitespace": 0
+  }
+ },
+ "data_only_when_failed": [
+  {
+   "case": "missing_key",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  },
+  {
+   "case": "truncation",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  },
+  {
+   "case": "invalid_json",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  },
+  {
+   "case": "empty_reply",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  },
+  {
+   "case": "http_429_storm",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  },
+  {
+   "case": "quota_refusal",
+   "claims_equal_data_only": true,
+   "verify_failures": {}
+  }
+ ],
+ "pass": true
+}

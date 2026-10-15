@@ -1,0 +1,23 @@
+{
+ "producer": "audit/rca.py, audit/run_adapters.py, audit/export_cc_stages.py",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-15",
+  "TGT-20",
+  "CAP-09"
+ ],
+ "regime": "per-row",
+ "regime_detail": "RCA: D (normal period) + declared topology (knowledge); adapters: classes of agents' outputs (AB-06, dev scenarios)",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (engines see canonical column order: sorted by value hash)",
+  "names": "per-row",
+  "supplier": "per-row",
+  "knowledge_source": "PetShop declared topology; agents' LLMs (AB-06)"
+ },
+ "orientation_rule": "not applicable (AC@k ranks root causes; adapters classify claims)",
+ "metric_defs": {
+  "AC@3_answered": "share of answered issues whose true root cause is in the top 3",
+  "coverage": "share of issues answered"
+ }
+}

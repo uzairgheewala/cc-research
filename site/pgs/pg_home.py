@@ -27,8 +27,10 @@ findings = ul([
     f"{n('pub.sem.D.PC')} to {n('ab01.sem.maxp.ctrl')}. {link('scoreboard', 'Page 4')}",
     f"<b>Learned graphs rarely beat 'nothing moves'.</b> On CausalArena the best methods capture a third to a half of the "
     f"decision value the data allow; on physical data they do better. {link('decisions', 'Page 5')}",
-    f"<b>LLM agents take directions from variable names.</b> Causal-Copilot follows swapped names on {n('cc.M3.hits')} of "
-    f"{n('cc.M3.n')} edges and adds nothing with neutral names. {link('names', 'Page 6')}",
+    f"<b>LLM agents take directions from variable names.</b> With names swapped, three of the five systems audited lose "
+    f"0.10 or more directed F1 (causaliq-knowledge {n('ab06.causaliq.nr', '{:.2f}')}, Causal-Copilot {n('ab06.cc4o.nr', '{:.2f}')}, "
+    f"MATMCD {n('ab06.matmcd.nr', '{:.2f}')}), and MATMCD falls below its own data-only graph. The one that resists is the one "
+    f"whose data decide the graph. {link('names', 'Page 6')}",
     f"<b>Stated structure plus abstention wins where it exists.</b> In incident root cause analysis a declared service map "
     f"scores {n('ab12.c.ac3')} top-3 accuracy against {n('ab12.b.ac3')} for a learned graph. {link('rca', 'Page 7')}",
 ])
@@ -46,13 +48,15 @@ BODY = "\n".join([
       "worth acting on, and where an LLM agent's answers come from. The constructive goal is a system that keeps every causal "
       "claim's source, says how sure it is, declines when it should, and never does worse than its own data.", 18),
     paths,
-    H2("What the audits found so far"),
+    H2("What the audits found"),
     findings,
     H2("Where this is heading"),
     box(f'<p class="prose" style="margin: 0">The evidence points to a product: an independent audit of the causal claims other '
         f'people\'s AI agents make, starting with incident root cause analysis. The desk research on that market is on '
         f'{link("market", "page 9")}. The build order is deliberate: the claim ledger is made reliable first (its invariants, '
         f'never below its data, bounded harm from wrong knowledge, calibration measured on held-out data) and only then is '
-        f'anything built on top. {link("theses", "Page 8")} has the claims and the plan.</p>', tone="blue"),
+        f'anything built on top. {link("theses", "Page 8")} has the claims and the plan. The audit chapter closed on 14 Oct with '
+        f'that decision (DEC-05): keep every measurement result, and build the claim ledger in gated steps, the checker for '
+        f'other agents\' claims last.</p>', tone="blue"),
     latest_html,
 ])

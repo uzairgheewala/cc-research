@@ -1,0 +1,32 @@
+{
+ "ticket": "BLD-04 (bundle B3 of plans/q2_dag.json); CAP-04, TGT-11, TGT-19 (proposed)",
+ "written_utc": "2026-10-15",
+ "status": "written before any B3 run",
+ "kernel": "The data-only kernel is the frozen B1 version (plans/b1_freeze.json: code hash and rule); B2-B4 use it unchanged. Thresholds below are fixed before any B2-B4 run, dev or held-out.",
+ "knowledge_source": "AB-07's recorded gpt-4o tier replies (plans/results/a3_tiers_answers.jsonl; requests, prompts and model hashed in plans/a3_prereg.json; collected 2026-10-12), replayed through the supplier contract (supplier/contract.py) with the tier schema (supplier/tiers.py). No new model call: a live run would ask the same pre-registered prompts at temperature 0 of the same model.",
+ "disclosure": [
+  "AB-07 scored these replies for tier accuracy on all 100 public scenarios (dev and test) and computed a post hoc orient-only lift on PC and GES rows over all public files (analysis/results/a3/a3_orient_only.json: GES 0.528 -> 0.546 semantic, tiers applied to every adjacency). The B3 rule below differs (open pairs only, consensus) and its dev or test numbers had not been computed when this file was written.",
+  "finish_reason was not recorded by the AB-07 runner; truncation therefore cannot be detected in the replay and is listed as a limit (max_tokens was 1500)."
+ ],
+ "rules": [
+  "consensus: a pair is ordered only when every answering phrasing puts one variable in a strictly earlier tier, the same way, and at least two of the three phrasings answered",
+  "orient-only: only pairs the data-only ledger left open (x-y) are oriented; no connection added or removed; no data direction reversed",
+  "no propagation through Meek's rules",
+  "an orientation that would close a directed cycle is skipped and recorded"
+ ],
+ "arms": "real / neutral / moved names (plans/a3_scenarios.json); columns in released order are re-ordered canonically by the kernel, so layout never reaches the engines",
+ "gates": {
+  "B3.1": "on every held-out file: the neutral-arm D+K claims equal the D claims; in every arm the D+K skeleton equals D's",
+  "B3.2": "moved arm: expected-credit F1 loss of D+K against D within the exact T3 bound in 100% of held-out files",
+  "B3.3": "real arm: family-mean directed F1 of D+K not below D by more than 0.01 (reported: the gain with its interval)"
+ },
+ "landmark": {
+  "ER-1": "B3.1 and B3.2 on held-out, plus verify02 V1-V13 and the K7 checker on every D+K ledger",
+  "ER-4a_route_B": "real-arm gain of D+K over D (directed F1, expectation rule) > 0.03 on at least one family, lower end of the scenario-cluster 95% interval"
+ },
+ "predictions": {
+  "P-B3a": "B3.1 holds (AB-07: neutral names give one tier in 300 of 300 replies)",
+  "P-B3b": "real-arm gain between 0.00 and 0.03 on both families (route B not met); refuted if > 0.03 on either"
+ },
+ "held_out_reads": "kernel/run_b3.py refuses the test split unless the code hash equals plans/b3_freeze.json; logged in analysis/results/q2_b3/access_log.jsonl"
+}

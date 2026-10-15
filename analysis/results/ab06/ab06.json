@@ -1,0 +1,1998 @@
+{
+ "tickets": [
+  "AUD-38",
+  "STR-01",
+  "RQ-05",
+  "RQ-17"
+ ],
+ "stub": false,
+ "agents": {
+  "causaliq": {
+   "real": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.2833,
+    "dv1_precision": 0.7125,
+    "dv1_coverage": 1.0,
+    "usd": 0.057,
+    "direction_sources": {
+     "llm": 137
+    }
+   },
+   "neutral": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.0397,
+    "dv1_precision": 0.6573,
+    "dv1_coverage": 1.0,
+    "usd": 0.045,
+    "direction_sources": {
+     "llm": 137
+    }
+   },
+   "swapped": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.0323,
+    "dv1_precision": 0.6534,
+    "dv1_coverage": 1.0,
+    "usd": 0.056,
+    "direction_sources": {
+     "llm": 140
+    }
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 10,
+    "mean": 0.251
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 10,
+    "mean": 0.2437
+   }
+  },
+  "matmcd": {
+   "real": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.3803,
+    "dv1_precision": 0.6855,
+    "dv1_coverage": 1.0,
+    "usd": 3.231,
+    "direction_sources": {
+     "llm": 253
+    }
+   },
+   "neutral": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.2512,
+    "dv1_precision": 0.6624,
+    "dv1_coverage": 1.0,
+    "usd": 2.953,
+    "direction_sources": {
+     "llm": 254
+    }
+   },
+   "swapped": {
+    "runs": 10,
+    "ok": 10,
+    "not_ok": {},
+    "f1_mean": 0.2586,
+    "dv1_precision": 0.6585,
+    "dv1_coverage": 1.0,
+    "usd": 3.23,
+    "direction_sources": {
+     "llm": 255
+    }
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 10,
+    "mean": 0.1217
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 10,
+    "mean": 0.1291
+   },
+   "data_only_floor_real_arm": {
+    "variant": "pc_only_initial",
+    "scenarios": 10,
+    "dv1_precision_final": 0.6855,
+    "dv1_precision_data_only": 0.7199,
+    "f1_final": 0.3803,
+    "f1_data_only": 0.381
+   }
+  },
+  "pywhyllm": {
+   "real": {
+    "runs": 10,
+    "ok": 5,
+    "not_ok": {
+     "not run": 5
+    },
+    "f1_mean": 0.3139,
+    "dv1_precision": 0.5449,
+    "dv1_coverage": 1.0,
+    "usd": 5.0,
+    "direction_sources": {
+     "llm": 676
+    }
+   },
+   "neutral": {
+    "runs": 10,
+    "ok": 0,
+    "not_ok": {
+     "not run": 10
+    },
+    "f1_mean": null,
+    "dv1_precision": null,
+    "dv1_coverage": null,
+    "usd": 0,
+    "direction_sources": {}
+   },
+   "swapped": {
+    "runs": 10,
+    "ok": 4,
+    "not_ok": {
+     "not run": 5,
+     "failed": 1
+    },
+    "f1_mean": 0.1138,
+    "dv1_precision": 0.4348,
+    "dv1_coverage": 1.0,
+    "usd": 4.951,
+    "direction_sources": {
+     "llm": 489
+    }
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 4,
+    "mean": 0.2024
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 0,
+    "mean": null
+   }
+  },
+  "vashishtha": {
+   "real": {
+    "runs": 10,
+    "ok": 5,
+    "not_ok": {
+     "not run": 5
+    },
+    "f1_mean": 0.4258,
+    "dv1_precision": 0.7201,
+    "dv1_coverage": 0.9942,
+    "usd": 6.086,
+    "direction_sources": {
+     "data": 89,
+     "llm_order": 11
+    }
+   },
+   "neutral": {
+    "runs": 10,
+    "ok": 0,
+    "not_ok": {
+     "not run": 10
+    },
+    "f1_mean": null,
+    "dv1_precision": null,
+    "dv1_coverage": null,
+    "usd": 0,
+    "direction_sources": {}
+   },
+   "swapped": {
+    "runs": 10,
+    "ok": 5,
+    "not_ok": {
+     "not run": 5
+    },
+    "f1_mean": 0.406,
+    "dv1_precision": 0.7185,
+    "dv1_coverage": 0.9884,
+    "usd": 6.504,
+    "direction_sources": {
+     "data": 89,
+     "llm_order": 11
+    }
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 5,
+    "mean": 0.0198
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 0,
+    "mean": null
+   },
+   "data_only_floor_real_arm": {
+    "variant": "pc_only",
+    "scenarios": 5,
+    "dv1_precision_final": 0.7201,
+    "dv1_precision_data_only": 0.7181,
+    "f1_final": 0.4258,
+    "f1_data_only": 0.425
+   },
+   "untagged_triplet_share_mean": 0.8437
+  }
+ },
+ "causal_copilot": {
+  "causal_copilot_gpt4o": {
+   "source": "/sessions/rcw-017bl4ttn1bvbjm9xvljn3tb/mnt/Fall 2026--DSC 180A/cc-research/analysis/results/stability_s2/partial_stages.json",
+   "metric": "S3 directed F1 (graph handed to the cycle step), by data, per S2 family",
+   "families": 10,
+   "real": {
+    "families": 10,
+    "f1_mean": 0.2866
+   },
+   "neutral": {
+    "families": 10,
+    "f1_mean": 0.1931
+   },
+   "swapped": {
+    "families": 10,
+    "f1_mean": 0.1198
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 10,
+    "mean": 0.1668
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 10,
+    "mean": 0.0934
+   },
+   "counted_in_P9": true
+  },
+  "causal_copilot_gpt4omini": {
+   "source": "/sessions/rcw-017bl4ttn1bvbjm9xvljn3tb/mnt/Fall 2026--DSC 180A/cc-research/analysis/results/ab06_cc/partial_stages.json",
+   "metric": "S3 directed F1 (graph handed to the cycle step), by data, per S2 family",
+   "families": 10,
+   "real": {
+    "families": 10,
+    "f1_mean": 0.2079
+   },
+   "neutral": {
+    "families": 10,
+    "f1_mean": 0.1439
+   },
+   "swapped": {
+    "families": 10,
+    "f1_mean": 0.1143
+   },
+   "name_reliance_real_minus_swapped": {
+    "paired_scenarios": 10,
+    "mean": 0.0937
+   },
+   "real_minus_neutral": {
+    "paired_scenarios": 10,
+    "mean": 0.064
+   },
+   "counted_in_P9": false
+  }
+ },
+ "P9": {
+  "systems_entered": [
+   "causal_copilot_gpt4o",
+   "causaliq",
+   "matmcd",
+   "vashishtha"
+  ],
+  "systems_not_entered": [
+   "pywhyllm"
+  ],
+  "losing_ge_0.10": [
+   "causal_copilot_gpt4o",
+   "causaliq",
+   "matmcd"
+  ],
+  "min_paired_scenarios": 5,
+  "verdict": "supported"
+ },
+ "P10": {
+  "agents_with_data_only_mode": [
+   "matmcd",
+   "vashishtha"
+  ],
+  "below_own_data_only": [
+   "matmcd"
+  ],
+  "verdict": "supported"
+ },
+ "rows": [
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.00298,
+   "calls": 1,
+   "f1": 0.052632,
+   "dv_ok": 28,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 9
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.005995,
+   "calls": 1,
+   "f1": 0.428571,
+   "dv_ok": 30,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 13
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.005815,
+   "calls": 1,
+   "f1": 0.0,
+   "dv_ok": 27,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 13
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.00408,
+   "calls": 1,
+   "f1": 0.035714,
+   "dv_ok": 49,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 13
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.005723,
+   "calls": 1,
+   "f1": 0.338983,
+   "dv_ok": 55,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 16
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.005292,
+   "calls": 1,
+   "f1": 0.0,
+   "dv_ok": 50,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 14
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.0038,
+   "calls": 1,
+   "f1": 0.038462,
+   "dv_ok": 42,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 12
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.006765,
+   "calls": 1,
+   "f1": 0.344828,
+   "dv_ok": 42,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 18
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.005345,
+   "calls": 1,
+   "f1": 0.0,
+   "dv_ok": 39,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 14
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.00382,
+   "calls": 1,
+   "f1": 0.0,
+   "dv_ok": 48,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 9
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.005595,
+   "calls": 1,
+   "f1": 0.245614,
+   "dv_ok": 51,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 10
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.007415,
+   "calls": 1,
+   "f1": 0.029851,
+   "dv_ok": 49,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 20
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.00509,
+   "calls": 1,
+   "f1": 0.041667,
+   "dv_ok": 60,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 14
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.004762,
+   "calls": 1,
+   "f1": 0.297872,
+   "dv_ok": 66,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 13
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.003882,
+   "calls": 1,
+   "f1": 0.0,
+   "dv_ok": 59,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 10
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.005665,
+   "calls": 1,
+   "f1": 0.0625,
+   "dv_ok": 75,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 20
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.008238,
+   "calls": 1,
+   "f1": 0.290323,
+   "dv_ok": 81,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 18
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.007137,
+   "calls": 1,
+   "f1": 0.096774,
+   "dv_ok": 74,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 18
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.00566,
+   "calls": 1,
+   "f1": 0.030769,
+   "dv_ok": 76,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 15
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.00428,
+   "calls": 1,
+   "f1": 0.3,
+   "dv_ok": 80,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 10
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.00494,
+   "calls": 1,
+   "f1": 0.032258,
+   "dv_ok": 75,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 12
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.004307,
+   "calls": 1,
+   "f1": 0.030303,
+   "dv_ok": 45,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 14
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.00496,
+   "calls": 1,
+   "f1": 0.212121,
+   "dv_ok": 48,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 14
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.00674,
+   "calls": 1,
+   "f1": 0.085714,
+   "dv_ok": 44,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 18
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.00567,
+   "calls": 1,
+   "f1": 0.065574,
+   "dv_ok": 45,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 20
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.003938,
+   "calls": 1,
+   "f1": 0.156863,
+   "dv_ok": 52,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 10
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.003998,
+   "calls": 1,
+   "f1": 0.039216,
+   "dv_ok": 50,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 10
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "neutral",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.003547,
+   "calls": 1,
+   "f1": 0.039216,
+   "dv_ok": 44,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 11
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "real",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.006522,
+   "calls": 1,
+   "f1": 0.218182,
+   "dv_ok": 50,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 15
+   }
+  },
+  {
+   "agent": "causaliq",
+   "arm": "swapped",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.005293,
+   "calls": 1,
+   "f1": 0.039216,
+   "dv_ok": 42,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 11
+   }
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.160324,
+   "calls": 544,
+   "f1": 0.291667,
+   "dv_ok": 27,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 19
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 31,
+   "dv_com_data_only": 48,
+   "f1_data_only": 0.489796
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.185023,
+   "calls": 544,
+   "f1": 0.530612,
+   "dv_ok": 28,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 20
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 31,
+   "dv_com_data_only": 48,
+   "f1_data_only": 0.489796
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.187094,
+   "calls": 544,
+   "f1": 0.27451,
+   "dv_ok": 27,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 22
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 31,
+   "dv_com_data_only": 48,
+   "f1_data_only": 0.489796
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.366782,
+   "calls": 1200,
+   "f1": 0.264706,
+   "dv_ok": 53,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 25
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 56,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.424242
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.401269,
+   "calls": 1200,
+   "f1": 0.363636,
+   "dv_ok": 51,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 23
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 56,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.424242
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 0.38501,
+   "calls": 1200,
+   "f1": 0.484848,
+   "dv_ok": 58,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 23
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 56,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.424242
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.291153,
+   "calls": 1012,
+   "f1": 0.3125,
+   "dv_ok": 35,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 24
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 41,
+   "dv_com_data_only": 61,
+   "f1_data_only": 0.548387
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.319949,
+   "calls": 1012,
+   "f1": 0.360656,
+   "dv_ok": 40,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 21
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 41,
+   "dv_com_data_only": 61,
+   "f1_data_only": 0.548387
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.314615,
+   "calls": 1014,
+   "f1": 0.290323,
+   "dv_ok": 38,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 22
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 41,
+   "dv_com_data_only": 61,
+   "f1_data_only": 0.548387
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.316553,
+   "calls": 1104,
+   "f1": 0.277778,
+   "dv_ok": 48,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 25
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.371429
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.34971,
+   "calls": 1104,
+   "f1": 0.478873,
+   "dv_ok": 56,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 24
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.371429
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 0.352082,
+   "calls": 1104,
+   "f1": 0.197183,
+   "dv_ok": 49,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 24
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.371429
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.20197,
+   "calls": 684,
+   "f1": 0.145455,
+   "dv_ok": 55,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 21
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 65,
+   "dv_com_data_only": 90,
+   "f1_data_only": 0.290909
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.20736,
+   "calls": 684,
+   "f1": 0.363636,
+   "dv_ok": 58,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 21
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 65,
+   "dv_com_data_only": 90,
+   "f1_data_only": 0.290909
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.211035,
+   "calls": 684,
+   "f1": 0.254545,
+   "dv_ok": 57,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 21
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 65,
+   "dv_com_data_only": 90,
+   "f1_data_only": 0.290909
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.336592,
+   "calls": 1104,
+   "f1": 0.155844,
+   "dv_ok": 80,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 33
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 73,
+   "dv_com_data_only": 104,
+   "f1_data_only": 0.285714
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.38651,
+   "calls": 1104,
+   "f1": 0.38961,
+   "dv_ok": 81,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 33
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 73,
+   "dv_com_data_only": 104,
+   "f1_data_only": 0.285714
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "green_roof_runoff_retention",
+   "status": "ok",
+   "usd": 0.388365,
+   "calls": 1104,
+   "f1": 0.155844,
+   "dv_ok": 65,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 33
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 73,
+   "dv_com_data_only": 104,
+   "f1_data_only": 0.285714
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.320862,
+   "calls": 1104,
+   "f1": 0.233766,
+   "dv_ok": 79,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 27
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 72,
+   "dv_com_data_only": 99,
+   "f1_data_only": 0.38961
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.361683,
+   "calls": 1104,
+   "f1": 0.311688,
+   "dv_ok": 80,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 27
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 72,
+   "dv_com_data_only": 99,
+   "f1_data_only": 0.38961
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "ok",
+   "usd": 0.359076,
+   "calls": 1104,
+   "f1": 0.202532,
+   "dv_ok": 79,
+   "dv_com": 115,
+   "dv_pairs": 115,
+   "direction_sources": {
+    "llm": 29
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 72,
+   "dv_com_data_only": 99,
+   "f1_data_only": 0.38961
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.359003,
+   "calls": 1200,
+   "f1": 0.321839,
+   "dv_ok": 43,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 35
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 72,
+   "f1_data_only": 0.413793
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.383757,
+   "calls": 1200,
+   "f1": 0.413793,
+   "dv_ok": 45,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 35
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 72,
+   "f1_data_only": 0.413793
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "ok",
+   "usd": 0.391348,
+   "calls": 1200,
+   "f1": 0.258824,
+   "dv_ok": 47,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 33
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 72,
+   "f1_data_only": 0.413793
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.329905,
+   "calls": 1104,
+   "f1": 0.246154,
+   "dv_ok": 50,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 24
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 68,
+   "f1_data_only": 0.208955
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.343295,
+   "calls": 1104,
+   "f1": 0.235294,
+   "dv_ok": 48,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 27
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 68,
+   "f1_data_only": 0.208955
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "library_fine_elimination_returns",
+   "status": "ok",
+   "usd": 0.341139,
+   "calls": 1104,
+   "f1": 0.208955,
+   "dv_ok": 48,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 26
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 68,
+   "f1_data_only": 0.208955
+  },
+  {
+   "agent": "matmcd",
+   "arm": "neutral",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.26963,
+   "calls": 924,
+   "f1": 0.262295,
+   "dv_ok": 46,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 21
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 47,
+   "dv_com_data_only": 59,
+   "f1_data_only": 0.387097
+  },
+  {
+   "agent": "matmcd",
+   "arm": "real",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.292202,
+   "calls": 924,
+   "f1": 0.354839,
+   "dv_ok": 47,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 22
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 47,
+   "dv_com_data_only": 59,
+   "f1_data_only": 0.387097
+  },
+  {
+   "agent": "matmcd",
+   "arm": "swapped",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "ok",
+   "usd": 0.299969,
+   "calls": 924,
+   "f1": 0.258065,
+   "dv_ok": 45,
+   "dv_com": 63,
+   "dv_pairs": 63,
+   "direction_sources": {
+    "llm": 22
+   },
+   "data_only_variant": "pc_only_initial",
+   "dv_ok_data_only": 47,
+   "dv_com_data_only": 59,
+   "f1_data_only": 0.387097
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.616873,
+   "calls": 137,
+   "f1": 0.355932,
+   "dv_ok": 38,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 89
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 0.614703,
+   "calls": 137,
+   "f1": 0.169492,
+   "dv_ok": 26,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "llm": 89
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 1.321113,
+   "calls": 301,
+   "f1": 0.354286,
+   "dv_ok": 38,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 132
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 1.324735,
+   "calls": 301,
+   "f1": 0.092486,
+   "dv_ok": 30,
+   "dv_com": 72,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "llm": 130
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 1.09255,
+   "calls": 254,
+   "f1": 0.238806,
+   "dv_ok": 39,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 161
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 1.109535,
+   "calls": 254,
+   "f1": 0.113402,
+   "dv_ok": 30,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "llm": 154
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 1.224133,
+   "calls": 277,
+   "f1": 0.304933,
+   "dv_ok": 22,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "llm": 176
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "failed",
+   "usd": 1.150623,
+   "calls": 263
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.74568,
+   "calls": 172,
+   "f1": 0.315789,
+   "dv_ok": 51,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 118
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.751553,
+   "calls": 172,
+   "f1": 0.08,
+   "dv_ok": 34,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "llm": 116
+   }
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "neutral",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "real",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "pywhyllm",
+   "arm": "swapped",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 1.562297,
+   "calls": 796,
+   "f1": 0.489796,
+   "dv_ok": 31,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "data": 17
+   },
+   "untagged_triplet_share": 0.9868,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 31,
+   "dv_com_data_only": 48,
+   "f1_data_only": 0.489796
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "apartment_heat_exposure_shading_ac",
+   "status": "ok",
+   "usd": 1.692806,
+   "calls": 807,
+   "f1": 0.489796,
+   "dv_ok": 31,
+   "dv_com": 48,
+   "dv_pairs": 48,
+   "direction_sources": {
+    "data": 17,
+    "llm_order": 1
+   },
+   "untagged_triplet_share": 0.9956,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 31,
+   "dv_com_data_only": 48,
+   "f1_data_only": 0.489796
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 1.285463,
+   "calls": 2363,
+   "f1": 0.363636,
+   "dv_ok": 56,
+   "dv_com": 70,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "data": 18,
+    "llm_order": 4
+   },
+   "untagged_triplet_share": 0.8643,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 56,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.424242
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "backup_frequency_ransomware_loss",
+   "status": "ok",
+   "usd": 1.368588,
+   "calls": 2370,
+   "f1": 0.393939,
+   "dv_ok": 58,
+   "dv_com": 71,
+   "dv_pairs": 72,
+   "direction_sources": {
+    "data": 18,
+    "llm_order": 4
+   },
+   "untagged_triplet_share": 0.8674,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 56,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.424242
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 0.959753,
+   "calls": 1818,
+   "f1": 0.548387,
+   "dv_ok": 46,
+   "dv_com": 66,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "data": 16,
+    "llm_order": 5
+   },
+   "untagged_triplet_share": 0.7804,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 41,
+   "dv_com_data_only": 61,
+   "f1_data_only": 0.548387
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "bike_share_rebalancing_spatial_demand",
+   "status": "ok",
+   "usd": 1.220094,
+   "calls": 1840,
+   "f1": 0.483871,
+   "dv_ok": 42,
+   "dv_com": 63,
+   "dv_pairs": 66,
+   "direction_sources": {
+    "data": 16,
+    "llm_order": 5
+   },
+   "untagged_triplet_share": 0.8244,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 41,
+   "dv_com_data_only": 61,
+   "f1_data_only": 0.548387
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 1.816189,
+   "calls": 2137,
+   "f1": 0.4,
+   "dv_ok": 49,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "data": 21,
+    "llm_order": 1
+   },
+   "untagged_triplet_share": 0.9338,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.371429
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "conveyor_vibration_package_damage",
+   "status": "ok",
+   "usd": 1.638969,
+   "calls": 2122,
+   "f1": 0.371429,
+   "dv_ok": 49,
+   "dv_com": 69,
+   "dv_pairs": 69,
+   "direction_sources": {
+    "data": 21,
+    "llm_order": 1
+   },
+   "untagged_triplet_share": 0.8943,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 49,
+   "dv_com_data_only": 69,
+   "f1_data_only": 0.371429
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.461871,
+   "calls": 990,
+   "f1": 0.327273,
+   "dv_ok": 65,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "data": 17,
+    "llm_order": 1
+   },
+   "untagged_triplet_share": 0.6264,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 65,
+   "dv_com_data_only": 90,
+   "f1_data_only": 0.290909
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "curb_pricing_delivery_dwell",
+   "status": "ok",
+   "usd": 0.58402,
+   "calls": 1000,
+   "f1": 0.290909,
+   "dv_ok": 65,
+   "dv_com": 90,
+   "dv_pairs": 90,
+   "direction_sources": {
+    "data": 17
+   },
+   "untagged_triplet_share": 0.6636,
+   "data_only_variant": "pc_only",
+   "dv_ok_data_only": 65,
+   "dv_com_data_only": 90,
+   "f1_data_only": 0.290909
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "green_roof_runoff_retention",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "injection_molding_cooling_warp",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "insurance_deductible_claim_reporting",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "library_fine_elimination_returns",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "neutral",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "real",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  },
+  {
+   "agent": "vashishtha",
+   "arm": "swapped",
+   "scenario": "medication_titration_cgm_meal_timing",
+   "status": "not run",
+   "usd": null,
+   "calls": null
+  }
+ ]
+}

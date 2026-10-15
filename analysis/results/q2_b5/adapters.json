@@ -1,0 +1,475 @@
+{
+ "tickets": [
+  "BLD-15",
+  "CAP-09"
+ ],
+ "agents": {
+  "causaliq": {
+   "runs": 30,
+   "arrows": 414,
+   "sources": {
+    "knowledge": 414
+   },
+   "unknown_sources": 0,
+   "records_provenance": true,
+   "runs_without_data_floor": 30,
+   "violations": {
+    "direction_follows_names": 133
+   },
+   "examples": {},
+   "names_pairs": [
+    {
+     "scenario": "apartment_heat_exposure_shading_ac",
+     "flips": 12,
+     "knowledge_arrows_real": 13
+    },
+    {
+     "scenario": "backup_frequency_ransomware_loss",
+     "flips": 16,
+     "knowledge_arrows_real": 16
+    },
+    {
+     "scenario": "bike_share_rebalancing_spatial_demand",
+     "flips": 17,
+     "knowledge_arrows_real": 18
+    },
+    {
+     "scenario": "conveyor_vibration_package_damage",
+     "flips": 10,
+     "knowledge_arrows_real": 10
+    },
+    {
+     "scenario": "curb_pricing_delivery_dwell",
+     "flips": 13,
+     "knowledge_arrows_real": 13
+    },
+    {
+     "scenario": "green_roof_runoff_retention",
+     "flips": 18,
+     "knowledge_arrows_real": 18
+    },
+    {
+     "scenario": "injection_molding_cooling_warp",
+     "flips": 10,
+     "knowledge_arrows_real": 10
+    },
+    {
+     "scenario": "insurance_deductible_claim_reporting",
+     "flips": 13,
+     "knowledge_arrows_real": 14
+    },
+    {
+     "scenario": "library_fine_elimination_returns",
+     "flips": 10,
+     "knowledge_arrows_real": 10
+    },
+    {
+     "scenario": "medication_titration_cgm_meal_timing",
+     "flips": 14,
+     "knowledge_arrows_real": 15
+    }
+   ]
+  },
+  "matmcd": {
+   "runs": 30,
+   "arrows": 762,
+   "sources": {
+    "knowledge": 762
+   },
+   "unknown_sources": 0,
+   "records_provenance": true,
+   "runs_without_data_floor": 0,
+   "violations": {
+    "knowledge_reversed_data": 398,
+    "knowledge_deleted_connection": 17,
+    "knowledge_created_connection": 23,
+    "direction_follows_names": 104
+   },
+   "examples": {
+    "knowledge_reversed_data": [
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "2",
+       "7"
+      ],
+      "claim": "7->2",
+      "source": "knowledge",
+      "evidence": "data-only graph commits 2->7",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "real"
+     },
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "4",
+       "13"
+      ],
+      "claim": "13->4",
+      "source": "knowledge",
+      "evidence": "data-only graph commits 4->13",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "real"
+     },
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "4",
+       "15"
+      ],
+      "claim": "15->4",
+      "source": "knowledge",
+      "evidence": "data-only graph commits 4->15",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "real"
+     }
+    ],
+    "knowledge_deleted_connection": [
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "5",
+       "9"
+      ],
+      "claim": "none",
+      "source": "knowledge",
+      "evidence": "present in the agent's data-only graph (pc_only_initial), absent from its final graph",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "neutral"
+     },
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "9",
+       "10"
+      ],
+      "claim": "none",
+      "source": "knowledge",
+      "evidence": "present in the agent's data-only graph (pc_only_initial), absent from its final graph",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "swapped"
+     },
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "9",
+       "11"
+      ],
+      "claim": "none",
+      "source": "knowledge",
+      "evidence": "present in the agent's data-only graph (pc_only_initial), absent from its final graph",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "swapped"
+     }
+    ],
+    "knowledge_created_connection": [
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "5",
+       "10"
+      ],
+      "claim": "10->5",
+      "source": "knowledge",
+      "evidence": "absent from the agent's data-only graph (pc_only_initial)",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "swapped"
+     },
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "9",
+       "13"
+      ],
+      "claim": "13->9",
+      "source": "knowledge",
+      "evidence": "absent from the agent's data-only graph (pc_only_initial)",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "swapped"
+     },
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "9",
+       "15"
+      ],
+      "claim": "9->15",
+      "source": "knowledge",
+      "evidence": "absent from the agent's data-only graph (pc_only_initial)",
+      "scenario": "apartment_heat_exposure_shading_ac",
+      "arm": "swapped"
+     }
+    ]
+   },
+   "names_pairs": [
+    {
+     "scenario": "apartment_heat_exposure_shading_ac",
+     "flips": 10,
+     "knowledge_arrows_real": 20
+    },
+    {
+     "scenario": "backup_frequency_ransomware_loss",
+     "flips": 5,
+     "knowledge_arrows_real": 23
+    },
+    {
+     "scenario": "bike_share_rebalancing_spatial_demand",
+     "flips": 7,
+     "knowledge_arrows_real": 21
+    },
+    {
+     "scenario": "conveyor_vibration_package_damage",
+     "flips": 15,
+     "knowledge_arrows_real": 24
+    },
+    {
+     "scenario": "curb_pricing_delivery_dwell",
+     "flips": 8,
+     "knowledge_arrows_real": 21
+    },
+    {
+     "scenario": "green_roof_runoff_retention",
+     "flips": 15,
+     "knowledge_arrows_real": 33
+    },
+    {
+     "scenario": "injection_molding_cooling_warp",
+     "flips": 11,
+     "knowledge_arrows_real": 27
+    },
+    {
+     "scenario": "insurance_deductible_claim_reporting",
+     "flips": 16,
+     "knowledge_arrows_real": 35
+    },
+    {
+     "scenario": "library_fine_elimination_returns",
+     "flips": 12,
+     "knowledge_arrows_real": 27
+    },
+    {
+     "scenario": "medication_titration_cgm_meal_timing",
+     "flips": 5,
+     "knowledge_arrows_real": 22
+    }
+   ]
+  },
+  "pywhyllm": {
+   "runs": 9,
+   "arrows": 1165,
+   "sources": {
+    "knowledge": 1165
+   },
+   "unknown_sources": 0,
+   "records_provenance": true,
+   "runs_without_data_floor": 9,
+   "violations": {
+    "direction_follows_names": 351
+   },
+   "examples": {},
+   "names_pairs": [
+    {
+     "scenario": "apartment_heat_exposure_shading_ac",
+     "flips": 60,
+     "knowledge_arrows_real": 89
+    },
+    {
+     "scenario": "backup_frequency_ransomware_loss",
+     "flips": 100,
+     "knowledge_arrows_real": 132
+    },
+    {
+     "scenario": "bike_share_rebalancing_spatial_demand",
+     "flips": 111,
+     "knowledge_arrows_real": 161
+    },
+    {
+     "scenario": "curb_pricing_delivery_dwell",
+     "flips": 80,
+     "knowledge_arrows_real": 118
+    }
+   ]
+  },
+  "vashishtha": {
+   "runs": 10,
+   "arrows": 200,
+   "sources": {
+    "data_pattern": 178,
+    "knowledge": 22
+   },
+   "unknown_sources": 0,
+   "records_provenance": true,
+   "runs_without_data_floor": 0,
+   "violations": {
+    "direction_follows_names": 4
+   },
+   "examples": {},
+   "names_pairs": [
+    {
+     "scenario": "apartment_heat_exposure_shading_ac",
+     "flips": 0,
+     "knowledge_arrows_real": 0
+    },
+    {
+     "scenario": "backup_frequency_ransomware_loss",
+     "flips": 2,
+     "knowledge_arrows_real": 4
+    },
+    {
+     "scenario": "bike_share_rebalancing_spatial_demand",
+     "flips": 2,
+     "knowledge_arrows_real": 5
+    },
+    {
+     "scenario": "conveyor_vibration_package_damage",
+     "flips": 0,
+     "knowledge_arrows_real": 1
+    },
+    {
+     "scenario": "curb_pricing_delivery_dwell",
+     "flips": 0,
+     "knowledge_arrows_real": 1
+    }
+   ]
+  },
+  "causal_copilot_gpt4o": {
+   "runs": 30,
+   "arrows": 529,
+   "sources": {
+    "data_pattern": 126,
+    "knowledge": 403
+   },
+   "unknown_sources": 0,
+   "records_provenance": false,
+   "provenance": "reconstructed from stage graphs (S0-S3)",
+   "runs_without_data_floor": 0,
+   "violations": {
+    "knowledge_created_connection": 384,
+    "knowledge_deleted_connection": 32,
+    "knowledge_reversed_data": 11,
+    "direction_follows_names": 198
+   },
+   "examples": {
+    "knowledge_created_connection": [
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "TAL_s",
+       "peak_zone_setpoint_C"
+      ],
+      "claim": "TAL_s->peak_zone_setpoint_C",
+      "source": "knowledge (reconstructed)",
+      "evidence": "absent from S1",
+      "run": "20261011T184856Z_s2_q011_r01_b3a03d",
+      "role": "real"
+     },
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "TAL_s",
+       "preheat_soak_setpoint_C"
+      ],
+      "claim": "TAL_s->preheat_soak_setpoint_C",
+      "source": "knowledge (reconstructed)",
+      "evidence": "absent from S1",
+      "run": "20261011T184856Z_s2_q011_r01_b3a03d",
+      "role": "real"
+     },
+     {
+      "class": "knowledge_created_connection",
+      "pair": [
+       "TAL_s",
+       "realized_peak_temp_C"
+      ],
+      "claim": "TAL_s->realized_peak_temp_C",
+      "source": "knowledge (reconstructed)",
+      "evidence": "absent from S1",
+      "run": "20261011T184856Z_s2_q011_r01_b3a03d",
+      "role": "real"
+     }
+    ],
+    "knowledge_deleted_connection": [
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "paste_batch_context",
+       "paste_solvent_mass_fraction"
+      ],
+      "claim": "none",
+      "source": "reconstructed: removed at S1->S2 (LLM)",
+      "evidence": "present in S1, absent from S3",
+      "run": "20261011T184856Z_s2_q011_r01_b3a03d",
+      "role": "real"
+     },
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "V16_unsafe_crossing_true",
+       "V8_visible_remaining_seconds"
+      ],
+      "claim": "none",
+      "source": "reconstructed: removed at S1->S2 (LLM)",
+      "evidence": "present in S1, absent from S3",
+      "run": "20261011T192513Z_s2_q021_r01_dfa292",
+      "role": "real"
+     },
+     {
+      "class": "knowledge_deleted_connection",
+      "pair": [
+       "V6_arrival_time_within_cycle_s",
+       "V9_group_size_at_decision"
+      ],
+      "claim": "none",
+      "source": "reconstructed: removed at S1->S2 (LLM)",
+      "evidence": "present in S1, absent from S3",
+      "run": "20261011T192513Z_s2_q021_r01_dfa292",
+      "role": "real"
+     }
+    ],
+    "knowledge_reversed_data": [
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "residual_entrained_gas_mg",
+       "wetting_index"
+      ],
+      "claim": "wetting_index->residual_entrained_gas_mg",
+      "source": "knowledge (reconstructed)",
+      "evidence": "S1 commits residual_entrained_gas_mg->wetting_index",
+      "run": "20261011T184856Z_s2_q011_r01_b3a03d",
+      "role": "real"
+     },
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "preheat_soak_setpoint_C",
+       "volatile_generation_cumulative_mg"
+      ],
+      "claim": "volatile_generation_cumulative_mg->preheat_soak_setpoint_C",
+      "source": "knowledge (reconstructed)",
+      "evidence": "S1 commits preheat_soak_setpoint_C->volatile_generation_cumulative_mg",
+      "run": "20261011T191315Z_s2_q013_r01_9f3d11",
+      "role": "swapped"
+     },
+     {
+      "class": "knowledge_reversed_data",
+      "pair": [
+       "local_cumulative_departure_fraction",
+       "congestion_index_at_decision"
+      ],
+      "claim": "congestion_index_at_decision->local_cumulative_departure_fraction",
+      "source": "knowledge (reconstructed)",
+      "evidence": "S1 commits local_cumulative_departure_fraction->congestion_index_at_decision",
+      "run": "20261011T194923Z_s2_q031_r01_a1dacd",
+      "role": "real"
+     }
+    ]
+   }
+  }
+ },
+ "B5.1": {
+  "every_violation_traced": true,
+  "unknown_sources_where_provenance_recorded": 0,
+  "pass": true
+ }
+}

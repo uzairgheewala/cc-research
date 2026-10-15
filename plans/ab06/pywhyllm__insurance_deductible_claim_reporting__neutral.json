@@ -11,14 +11,18 @@
   "agent_opts": {},
   "jitter": 1e-06,
   "names_map": "/research/plans/ab06/names/insurance_deductible_claim_reporting__neutral.json",
-  "max_calls": 452,
-  "max_usd": 1.82,
+  "max_calls": 377,
+  "max_usd": 1.76,
   "out": "/research/runs/ab06/pywhyllm/insurance_deductible_claim_reporting/neutral/",
   "out_stub": "/research/runs/ab06_stub/pywhyllm/insurance_deductible_claim_reporting/neutral/"
  },
  "basis": {
   "stub_calls": 301,
   "stub_est_usd": 1.2078,
-  "note": "ESTIMATE from the AB-05 stub run"
+  "note": "ESTIMATE from the AB-05 stub run",
+  "live_est_usd": 1.3983,
+  "live_est_calls": 301,
+  "live_est_hours": 0.32,
+  "calibration": "plans/calibrate_ab06.py from analysis/results/ab05/live_calibration.json (AB-05 live probes, 13 Oct)"
  }
 }

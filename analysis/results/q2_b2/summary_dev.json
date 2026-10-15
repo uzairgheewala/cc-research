@@ -1,0 +1,85 @@
+{
+ "tickets": [
+  "BLD-03",
+  "CAP-03",
+  "TGT-06"
+ ],
+ "split": "dev",
+ "families": {
+  "semantic": {
+   "files": 125,
+   "D": {
+    "f1": 0.5108419601216038,
+    "dv1_precision": 0.7508559689568591,
+    "dv1_coverage": 0.8356700047687172
+   },
+   "DI": {
+    "f1": 0.5274698122872108,
+    "dv1_precision": 0.7589703588143526,
+    "dv1_coverage": 0.8558893657606104
+   },
+   "dv1_mean_per_file_diff": 0.006192899472854112,
+   "dv1_pooled_diff": {
+    "point": 0.008114389857493465,
+    "lo": -0.003243536387261106,
+    "hi": 0.020598023477871225,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014
+   },
+   "f1_diff": {
+    "point": 0.016627852165607082,
+    "lo": 0.007978885026315326,
+    "hi": 0.026321979122602198,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014,
+    "files": 125
+   },
+   "oriented": 412,
+   "oriented_right": 358,
+   "propagated": 44,
+   "conflicts": 184,
+   "ledgers_failing": 0,
+   "B2.2_family": true
+  },
+  "formula": {
+   "files": 125,
+   "D": {
+    "f1": 0.4329597001515715,
+    "dv1_precision": 0.8017739273927392,
+    "dv1_coverage": 0.8787915407854985
+   },
+   "DI": {
+    "f1": 0.43524615427620683,
+    "dv1_precision": 0.8091049817056009,
+    "dv1_coverage": 0.8587311178247734
+   },
+   "dv1_mean_per_file_diff": 0.004783400081991965,
+   "dv1_pooled_diff": {
+    "point": 0.007331054312861629,
+    "lo": -0.0019024695458956797,
+    "hi": 0.01996762659140765,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014
+   },
+   "f1_diff": {
+    "point": 0.002286454124635334,
+    "lo": -0.001490506306749522,
+    "hi": 0.006367704358483201,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014,
+    "files": 125
+   },
+   "oriented": 170,
+   "oriented_right": 120,
+   "propagated": 25,
+   "conflicts": 216,
+   "ledgers_failing": 0,
+   "B2.2_family": true
+  }
+ },
+ "B2.2_arena": true
+}

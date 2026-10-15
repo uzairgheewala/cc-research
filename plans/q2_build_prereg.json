@@ -1,0 +1,106 @@
+{
+ "ticket": "AUD-47 (AB-17); BLD-02..05, BLD-07, BLD-14",
+ "written_utc": "2026-10-14",
+ "design": "analysis/reports/approach_v1.md",
+ "rule": "Each bundle's gate is fixed here before its first run. A bundle that misses a gate is fixed and rerun as a new frozen version; thresholds are never changed after results are seen. Every deviation is recorded in the ledger's plan-and-deviations field and in an amendment file next to this one.",
+ "splits": {
+  "design": "dev splits of plans/splits.json (CausalArena semantic and formula, 25 scenarios each)",
+  "held_out": [
+   "test splits of plans/splits.json (25 per family), scored once per frozen kernel version",
+   "Causal Chambers light tunnel (physical truth, real interventions)",
+   "AB-08 decoupled-semantics benchmark (rho dial)",
+   "PetShop RCA test split (B5 only)"
+  ]
+ },
+ "controls": {
+  "columns": "shuffled for every scored file",
+  "names": "real / neutral / swapped where names are read",
+  "scoring": "directed F1 under the expectation rule (undecided pairs at random, per-file seed); DV-1 committed-claim precision and coverage; both stated with every number"
+ },
+ "gates": {
+  "B0": [
+   {
+    "id": "B0.1",
+    "test": "engine oracle check on 120 random DAGs x 6 column orders",
+    "pass": "720/720 exact class and 120/120 order-invariant"
+   },
+   {
+    "id": "B0.2",
+    "test": "supplier fault-injection suite: missing key, truncation (finish_reason=length), invalid JSON, code-fenced JSON, empty reply, HTTP 429 storm, quota refusal",
+    "pass": "every case completes; each failure and each accepted normalisation is counted in the ledger; claims on affected pairs equal the data-only output"
+   }
+  ],
+  "B1": [
+   {
+    "id": "B1.1",
+    "test": "invariants I1-I4 and I7 on every dev file (semantic, formula)",
+    "pass": "100% of files"
+   },
+   {
+    "id": "B1.2",
+    "test": "held-out (test splits): directed F1 and DV-1 precision of the data-only kernel against plain causal-learn PC with maxP, paired by file",
+    "pass": "mean difference >= -0.01 on both metrics in both families",
+    "refuted": "<= -0.05 on either"
+   },
+   {
+    "id": "B1.3",
+    "test": "verifier V1-V8 on every emitted ledger",
+    "pass": "every ledger accepted; mutation tests reject a ledger with one evidence record removed"
+   }
+  ],
+  "B2": [
+   {
+    "id": "B2.1",
+    "test": "constructed intervention-vs-knowledge conflicts",
+    "pass": "intervention wins in 100%, conflict recorded"
+   },
+   {
+    "id": "B2.2",
+    "test": "DV-1 precision on CausalArena D+I test files and Causal Chambers",
+    "pass": ">= B1 on the same files (paired mean difference >= 0)"
+   }
+  ],
+  "B3": [
+   {
+    "id": "B3.1",
+    "test": "I3 and I5 on every held-out file and arm",
+    "pass": "neutral arm output == D output; skeleton identical to D in every arm"
+   },
+   {
+    "id": "B3.2",
+    "test": "swapped-arm loss against the data-only output",
+    "pass": "within the T3 bound in 100% of files"
+   },
+   {
+    "id": "B3.3",
+    "test": "real-arm directed F1 against B1",
+    "pass": "never below B1 by more than 0.01 on any family mean (reported: the gain)"
+   }
+  ],
+  "B4": [
+   {
+    "id": "B4.1",
+    "test": "within-family calibration error on held-out scenarios (map fitted on dev, frozen)",
+    "pass": "<= 0.05"
+   },
+   {
+    "id": "B4.2",
+    "test": "claimed vs realised precision of the selective view at c/g = 1, 2, 4",
+    "pass": "realised >= claimed - 0.03 at each"
+   }
+  ],
+  "B5": [
+   {
+    "id": "B5.1",
+    "test": "adapters for Causal-Copilot stages, MATMCD, Vashishtha, PyWhy-LLM, causaliq on the AB-06 outputs",
+    "pass": "every flagged violation traced to a claim and a source; 0 'unknown' sources where the agent records provenance"
+   },
+   {
+    "id": "B5.2",
+    "test": "PetShop held-out with declared topology and abstention",
+    "pass": "AC@3 at stated coverage reported against learned-graph RCA (no threshold: descriptive)"
+   }
+  ]
+ },
+ "order": "strict: B0 -> B1 -> B2/B3 -> B4 -> B5; a bundle builds only on predecessors that passed"
+}

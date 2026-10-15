@@ -1,11 +1,12 @@
 # Causal-Copilot research harness launcher (Windows PowerShell + Docker Desktop).
 # Usage:  powershell -ExecutionPolicy Bypass -File .\cc.ps1 <command>
-# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent] | compute <job> | fetch | queue | stop | shell | help
+# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent|all] [workers=N tier=A arm=a+b scenario=s cap=X retry] | compute <job> | fetch | queue | stop | shell | help
 param(
     [Parameter(Position = 0)] [string] $Command = "help",
     [Parameter(Position = 1)] [string] $Arg1 = "",
     [Parameter(Position = 2)] [string] $Arg2 = "",
-    [Parameter(Position = 3)] [string] $Arg3 = ""
+    [Parameter(Position = 3)] [string] $Arg3 = "",
+    [Parameter(ValueFromRemainingArguments = $true)] [string[]] $Rest = @()
 )
 
 $Research  = $PSScriptRoot
@@ -150,7 +151,18 @@ switch ($Command.ToLower()) {
         $base = @("run", "--rm", "-i", "--init")
         $common = @("-v", "${Research}:/research", "-w", "/research", "-e", "PYTHONPATH=", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1")
         $cmd = @("python", "/research/harness/agent_batch.py", "--plans", "/research/plans/$leaf")
-        if ($Arg3) { $cmd += @("--agent", $Arg3) }
+        if ($Arg3 -and $Arg3 -ne "all") { $cmd += @("--agent", $Arg3) }
+        # Further options as key=value words (no leading dashes, so PowerShell never reads them as its own parameters):
+        #   workers=4  arm=real+swapped  scenario=name1+name2  cap=60  retry   ("+" separates values; "," also works with -File)
+        foreach ($t in $Rest) {
+            if ($t -match '^workers=([0-9]+)$') { $cmd += @("--workers", $Matches[1]) }
+            elseif ($t -match '^cap=([0-9.]+)$') { $cmd += @("--max-usd-total", $Matches[1]) }
+            elseif ($t -match '^arm=([a-z,+]+)$') { $cmd += @("--arm") + ($Matches[1] -split "[,+]") }
+            elseif ($t -match '^scenario=([A-Za-z0-9_,+]+)$') { $cmd += @("--scenario") + ($Matches[1] -split "[,+]") }
+            elseif ($t -match '^tier=([A-Za-z0-9]+)$') { $cmd += @("--tier", $Matches[1]) }
+            elseif ($t -eq "retry") { $cmd += "--retry-failed" }
+            else { Fail "unknown probebatch option: $t (use workers=N, tier=A, arm=a+b, scenario=s1+s2, cap=X, retry)" }
+        }
         if ($Arg2 -eq "stub") {
             $dockerArgs = $base + @("--network", "none") + $common + @("cc-probes:ab05-1") + $cmd + @("--stub")
         }
@@ -232,7 +244,8 @@ switch ($Command.ToLower()) {
         Write-Host "  tiers <file> [stub] AB-07 tier questions (live; 'stub' = offline, no cost)"
         Write-Host "  probebuild         build the AB-05 agent-probe image (once)"
         Write-Host "  probe <plan> [stub] AB-05 agent probe (live; 'stub' = offline, no cost)"
-        Write-Host "  probebatch <dir> [stub|live] [agent]  AB-06 folder of probe plans, resumable, total cap"
+        Write-Host "  probebatch <dir> [stub|live] [agent|all] [options]  AB-06 folder of probe plans, resumable, total cap"
+        Write-Host "                     options: workers=N  tier=A  arm=real+swapped  scenario=s1+s2  cap=X  retry"
         Write-Host "  names <file> [stub] BND-11 direction questions from cc-research\plans (live; 'stub' = offline, no cost)"
         Write-Host "  compute <job>      run a no-cost compute job from cc-research\jobs (no network, no key)"
         Write-Host "  fetch              download public benchmark data into cc-research\external (no LLM, no cost)"

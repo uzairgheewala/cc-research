@@ -233,4 +233,12 @@ def dump_json(path, obj, scrub=None):
     text = json.dumps(obj, indent=2, default=repr, ensure_ascii=False)
     if scrub:
         text = scrub(text)
-    Path(path).write_text(text, encoding="utf-8")
+    for attempt in range(6):          # 14 Oct: a transient OSError EIO on the Windows bind mount lost two run summaries
+        try:
+            Path(path).write_text(text, encoding="utf-8")
+            return
+        except OSError as e:
+            if getattr(e, "errno", None) != 5 or attempt == 5:
+                raise
+            import time as _t
+            _t.sleep(2 * (attempt + 1))

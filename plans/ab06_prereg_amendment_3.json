@@ -1,0 +1,18 @@
+{
+ "ticket": "AUD-38 (AB-06)",
+ "amends": "plans/ab06_prereg.json, amendments 1 and 2 (all manifests kept)",
+ "written_utc": "2026-10-14T23:30Z",
+ "kind": "operational only: no design, prediction, threshold or scoring-rule change",
+ "state_when_written": "tier A finished: 79 of 80 ok; 1 failed (PyWhy-LLM, conveyor_vibration_package_damage, swapped). Grid spend $32.11.",
+ "changes": [
+  {
+   "what": "analysis/ab06_score.py reads only plan files (<agent>__<scenario>__<arm>.json)",
+   "why": "amendment 1 added plans/ab06/TIERS.json to the plan folder; the scorer's glob picked it up and stopped with KeyError 'run' before scoring anything. The scoring rules are unchanged."
+  },
+  {
+   "what": "the one failed tier-A run is counted as an agent failure and not retried, as the prereg's failure rule says",
+   "why": "it failed inside PyWhy-LLM's guidance library: a pydantic check rejected a negative time-to-first-token (-1.04 s), i.e. the library crashes when the host clock steps backwards between two of its own timestamps. The trigger is environmental, but the crash is the library's own; it is reported as found. P9's verdict does not depend on it: three systems lose >= 0.10 without PyWhy-LLM, which enters P9 with 4 paired scenarios (< 5) and is reported as not entered."
+  }
+ ],
+ "files": "hashed in manifests/evidence/ab06_prereg_amendment3_2026-10-14.sha256"
+}

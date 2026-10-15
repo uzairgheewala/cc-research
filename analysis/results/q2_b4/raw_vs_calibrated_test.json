@@ -1,0 +1,119 @@
+{
+ "what": "TGT-12: calibrated claim probabilities against raw bootstrap frequencies (stability used as the probability), on the",
+ "source_rows": "stab_test_<family>.jsonl",
+ "families": {
+  "semantic": {
+   "dv": {
+    "claims": 1569,
+    "ece_raw": {
+     "point": 0.1994263862332692,
+     "lo": 0.15662859213665434,
+     "hi": 0.2491740100410696,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_calibrated": {
+     "point": 0.0568644763268596,
+     "lo": 0.0481503388562054,
+     "hi": 0.0968895818605495,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_raw_minus_calibrated": {
+     "point": 0.1425619099064096,
+     "lo": 0.09015442793393584,
+     "hi": 0.1658564377926625,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    }
+   },
+   "edges": {
+    "claims": 1019,
+    "ece_raw": {
+     "point": 0.22659470068694698,
+     "lo": 0.16581199885094716,
+     "hi": 0.277297261009666,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_calibrated": {
+     "point": 0.040926593726580675,
+     "lo": 0.024422653292141012,
+     "hi": 0.09177580776902579,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_raw_minus_calibrated": {
+     "point": 0.1856681069603663,
+     "lo": 0.10895989256346758,
+     "hi": 0.19412297321704228,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    }
+   }
+  },
+  "formula": {
+   "dv": {
+    "claims": 3119,
+    "ece_raw": {
+     "point": 0.16457197819814273,
+     "lo": 0.12706429505483588,
+     "hi": 0.21644899496266742,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_calibrated": {
+     "point": 0.03606385121282688,
+     "lo": 0.016626871453927473,
+     "hi": 0.07565860491603124,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_raw_minus_calibrated": {
+     "point": 0.12850812698531586,
+     "lo": 0.08093336003717518,
+     "hi": 0.16717026982809144,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    }
+   },
+   "edges": {
+    "claims": 903,
+    "ece_raw": {
+     "point": 0.21483942414174975,
+     "lo": 0.16990172467790532,
+     "hi": 0.26532669184139934,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_calibrated": {
+     "point": 0.047437045453723105,
+     "lo": 0.025382347180139018,
+     "hi": 0.09365232619223583,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    },
+    "ece_raw_minus_calibrated": {
+     "point": 0.16740237868802665,
+     "lo": 0.07822596232834066,
+     "hi": 0.22789206014378366,
+     "clusters": 25,
+     "B": 2000,
+     "seed": 20261014
+    }
+   }
+  }
+ },
+ "TGT-12_met": true
+}

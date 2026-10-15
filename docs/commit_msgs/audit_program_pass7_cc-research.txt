@@ -1,0 +1,34 @@
+Audit pass 7: AB-06 tier A resumed; 61 runs refused for lack of OpenAI credits; quota stops become resumable (amendment 2, INF-09)
+
+What happened (14 Oct, Uzair's resume of tier A):
+- 7 more runs finished, so 19 of 80 tier-A runs are ok.
+- Then the OpenAI account ran out of credits. Every remaining run failed within seconds with HTTP 429 insufficient_quota
+  ("You have no credits remaining"): 25 MATMCD, 24 causaliq, 7 Vashishtha, 5 PyWhy-LLM.
+- They were recorded as agent failures, and the batch kept launching new ones.
+- Tier A spend is $12.21, per the call logs.
+
+Fix, as a class (plans/ab06_prereg_amendment_2.json, operational only; manifest
+manifests/evidence/ab06_prereg_amendment2_2026-10-14.sha256):
+- harness/probe_llm.py:
+  - QuotaExhausted (a BaseException, so agent retry loops cannot swallow it) is raised on a 429 whose body reports
+    insufficient_quota or no credits;
+  - a "quota_exhausted" event is written to calls.jsonl.
+- harness/agent_probe.py: status "aborted_quota", exit 5.
+- harness/agent_batch.py:
+  - quota stops are resumable without --retry-failed, including older "failed" runs recognised by their message;
+  - the first quota stop ends the launching of new runs (batch exit 5).
+- Tests:
+  - tests/test_ab06_batch.py: 18;
+  - tests/test_probe_gate.py: 6 (probe venv);
+  - tests/test_agent_probe.py: 10/10 (probe venv).
+- analysis/reports/ab06_prep.md: run log and commands.
+
+Tracker:
+- jobs/patches/p15_quota_stop.py: INF-09 added (done); AUD-38's manifest check moves to amendment 2; AUD-38 is blocked on
+  credits.
+- Repinned: AUD-37, AUD-38, STR-01, BND-01, INF-08, INF-09.
+- Checks: verify 0 problems (225 items); tests 130 ok; ci_check and trace check 0 errors; secret scan 0 findings.
+
+Slack:
+- Dev list: AUD-38 and INF-05 updated, INF-09 added (record id in tracker/mirrors.json).
+- Dev digest posted (ts 1792005060.267529).

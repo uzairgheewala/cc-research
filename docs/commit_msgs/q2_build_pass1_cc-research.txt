@@ -1,0 +1,57 @@
+Q2 build pass 1: bundles B0-B5 built and read held out; ER-F, ER-1, ER-C met; ER-2, ER-3, ER-4a, ER-4b measured, not met
+
+No API credit spent. Plan: plans/q2_dag.json, approved 15 Oct (docs/decisions/2026-10-15_q2_dag_approved.md), amended once
+(plans/amend_q2_dag_2026-10-15.py: built paths, tickets issued, B3 replays AB-07's recorded replies). Every bundle has a
+pre-registration written before its runs, a freeze (kernel/freeze.py: code hash, core hash equal to B1's, calibration maps),
+and logged held-out reads (analysis/results/q2_b<k>/access_log.jsonl). Hashes: manifests/evidence/q2_build_2026-10-15.sha256.
+
+B0 engines, guards, scorer (kit38):
+- engines/ (pinned causal-learn 0.1.4.8, ges, gies; MANIFEST.json), engines/oracle_check.py: B0.1 720/720 exact, 120/120
+  order-invariant. supplier/ (contract, tiers, fault suite): B0.2 7/7. score/: 102 audit numbers reproduced, max diff 0.
+  analysis/reports/q2_b0_engines_guards.md.
+
+B1 data-only ledger (kit38):
+- kernel/ (derive, policy, build, checker K7, views, run_b1, invariance, report_b1), ledger/schema02.py, ledger/verify02.py.
+- plans/b1_prereg.json, b1_prereg_amendment_1.json (engine divergences recorded, never fatal; cycles withdrawn), b1_freeze.json.
+- Rule C3 chosen on dev; held out vs PC maxP F1 +0.053 / +0.115, DV-1 +0.073 / +0.053 (ER-F met); vs GES F1 -0.001 / +0.002.
+- One aborted held-out read (build error on a causal-learn defect), archived unread, fixed as a class, re-read once.
+- docs/drafts/bug_reports/causal_learn_meek_directed_cycle.md (EXT-07). analysis/reports/q2_b1_data_only_ledger.md.
+
+B2 interventions (kit39): kernel/interventions.py, run_b2.py; D+I >= D held out (B2.2 pass); Chambers kernel 0.926 vs GES
+0.916 (ER-C met). analysis/q2_b2_orientation_diag.py (dev only; kit41: most wrong orientations are collapsed paths, formula
+adds shift false positives, Meek propagation from them right 36-40%). analysis/reports/q2_b2_interventions.md.
+
+B3 knowledge as tiers (kit39): kernel/knowledge.py, run_b3.py; B3.1-B3.3 pass held out (ER-1 met); real-name gain +0.019 /
++0.028 (route B not met). analysis/q2_b3_ceiling_dev.py: oracle ceiling of the rule +0.060 / +0.044 on dev.
+analysis/reports/q2_b3_knowledge_tiers.md.
+
+B4 confidence (kit39, kit40): kernel/confidence.py, run_b4.py, calibration/map_*.json; B4.1 fails on semantic (ECE 0.057),
+B4.2 passes; ER-2 met for formula only; ER-3 not met; TGT-12 met (analysis/q2_b4_raw_vs_calibrated.py).
+analysis/reports/q2_b4_confidence.md.
+
+B5 adapter and RCA (kit38, kit40): audit/; B5.1 pass; RCA through the ledger reproduces AB-12 (0.932 at 0.917), ER-4b not met
+(lower end 0.841, 44 issues). Held-out read ran after B4.1 failed; B5 uses nothing from B4 (deviation recorded).
+analysis/reports/q2_b5_audit_adapter_rca.md.
+
+Summary and next: analysis/reports/q2_build_results.md (landmark table from kernel/landmarks.py ->
+analysis/results/q2_landmarks.json); docs/design/q2_kernel_v3_proposals.md (K3-1 identical columns, K3-3 intervention
+orientations, K3-4 calibration, route A candidates).
+
+CI and score contract: analysis/results/q2_b0..q2_b5/CONTRACT.json; tests/run_tests.py 171 ran, 0 failures; check_scores:
+nonconforming none.
+
+Tracker:
+- jobs/patches/p17_q2_build.py: issues TGT-18, TGT-19, TGT-20, BLD-15, EXT-07; done: BLD-02, BLD-03, BLD-04, BLD-05,
+  BLD-14, BLD-15, CAP-03, CAP-04, CAP-05, CAP-08, CAP-09, CAP-11, TGT-10, TGT-11, TGT-12; in progress: CAP-07, TGT-06,
+  TGT-18, TGT-19, TGT-20; Q2 bundles B0-B5 in BUNDLE_STATUS; tracker/snapshot.py loads plans/q2_dag.json as plan "q2".
+- tracker/selftest_trace.py: fixtures set the state they test (W3 blocker picked from unfinished tickets; T11 forces DLV-02
+  unfinished; check output with every warning listed); 45/45. Repinned BND-01, TEAM-08, BLD-11, BLD-12, CAP-03, CAP-09, BLD-03, TGT-06, TGT-19.
+- tracker/mirrors.json: record IDs of the five new dev-list rows. Stale 13 Oct relay drafts (already copied to
+  relay_out/discarded/) moved to relay_out/discarded/duplicates_2026-10-15/.
+- verify: 230 items, 145 done, 0 problems; trace check: 0 errors, 0 warnings; secret scan 0 findings; ci_check 0 errors.
+- Slack: dev list 17 rows updated, 5 added; prod list 12 rows updated (no rows added or removed); dev digest posted
+  (ts 1792073965.504939); prod digest created as a draft for Uzair.
+
+Site (jobs/patches/s17_site_q2.py): registry q2.* keys; status page Q2 landmark table and bundle table; Level 3 T3, T4,
+invariants I1-I6, gap box and footer updated. Build: 15 pages, 0 errors, 0 warnings; status and theses re-read and marked
+reviewed.

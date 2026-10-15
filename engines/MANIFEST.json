@@ -1,0 +1,75 @@
+{
+ "format": "cc-engine-manifest/1",
+ "tickets": [
+  "CAP-05",
+  "CAP-11",
+  "BLD-02"
+ ],
+ "pins": {
+  "python": "3.11",
+  "numpy": "1.26.4",
+  "scipy": "1.13.1",
+  "causallearn": "0.1.4.8",
+  "ges": "1.1.0",
+  "gies": "0.0.3"
+ },
+ "settings": {
+  "pc_maxp": {
+   "alpha": 0.05,
+   "indep_test": "fisherz",
+   "stable": true,
+   "uc_rule": 1,
+   "uc_priority": 3,
+   "call": "causallearn.search.ConstraintBased.PC.pc(X, 0.05, 'fisherz', stable=True, uc_rule=1, uc_priority=3)"
+  },
+  "ges_bic": {
+   "package": "ges",
+   "call": "ges.fit_bic(Z), Z = column z-scores",
+   "lambda": "log(n)/2",
+   "phases": [
+    "forward",
+    "backward",
+    "turning"
+   ]
+  },
+  "gies": {
+   "package": "gies",
+   "call": "gies.fit_bic(data, targets), one environment per intervened-cell pattern",
+   "jitter_sd": 1e-06,
+   "jitter_seed": "crc32(file name)"
+  },
+  "canonical_order": "columns sorted by sha256 of their float64 little-endian values; ties (identical columns) by original position",
+  "threads": 1,
+  "singular_data": "a singular correlation matrix is a typed failure 'singular'; the kernel may retry once with seeded Gaussian jitter sd 1e-6 (the GIES baseline's rule) and records the retry in the run report"
+ },
+ "environment": {
+  "python": "3.11.17",
+  "packages": {
+   "numpy": {
+    "version": "1.26.4",
+    "tree_sha256": "9223df571620af65aa9c3848d65b54f9413bab8c2ef1322d132f38144836f525"
+   },
+   "scipy": {
+    "version": "1.13.1",
+    "tree_sha256": "97060c0590e0669c0d9a11739202c6bec579ca77a0cfa3bc147f2c0686138d72"
+   },
+   "causallearn": {
+    "version": "0.1.4.8",
+    "tree_sha256": "bd70786d2ff15795a35df2e3964dad9c5c0a46f90ae7ae7b3a975152acd182aa"
+   },
+   "ges": {
+    "version": "1.1.0",
+    "tree_sha256": "6364c5744b24c4a5e273e724b85dafe21e5c517301992a9b8254bbb652ff36e4"
+   },
+   "gies": {
+    "version": "0.0.3",
+    "tree_sha256": "7f1b08f395d624e11dc1ef82a96fe4f5cca9dfe7eafe560b34d485e59eaaeab3"
+   }
+  }
+ },
+ "threads_env": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ }
+}

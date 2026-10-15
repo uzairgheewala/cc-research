@@ -1,0 +1,6 @@
+causaliq    runs  30 arrows  414 sources {'knowledge': 414} unknown 0 no-floor 30 violations {'direction_follows_names': 133}
+matmcd      runs  30 arrows  762 sources {'knowledge': 762} unknown 0 no-floor 0 violations {'knowledge_reversed_data': 398, 'knowledge_deleted_connection': 17, 'knowledge_created_connection': 23, 'direction_follows_names': 104}
+pywhyllm    runs   9 arrows 1165 sources {'knowledge': 1165} unknown 0 no-floor 9 violations {'direction_follows_names': 351}
+vashishtha  runs  10 arrows  200 sources {'data_pattern': 178, 'knowledge': 22} unknown 0 no-floor 0 violations {'direction_follows_names': 4}
+causal_copilot_gpt4o runs  30 arrows  529 sources {'data_pattern': 126, 'knowledge': 403} unknown 0 no-floor 0 violations {'knowledge_created_connection': 384, 'knowledge_deleted_connection': 32, 'knowledge_reversed_data': 11, 'direction_follows_names': 198}
+B5.1 {'every_violation_traced': True, 'unknown_sources_where_provenance_recorded': 0, 'pass': True}

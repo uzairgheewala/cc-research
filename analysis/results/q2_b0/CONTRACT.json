@@ -1,0 +1,25 @@
+{
+ "producer": "engines/oracle_check.py, supplier/fault_suite.py, score/repro.py, score/baselines.py",
+ "score_bearing": true,
+ "tickets": [
+  "CAP-05",
+  "CAP-11",
+  "CAP-10",
+  "EVL-03",
+  "BLD-02"
+ ],
+ "regime": "per-row",
+ "regime_detail": "baselines.json: D (observational files) and D+I (GIES on obs_int files); oracle_check and fault_suite are checks, not scores",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (seed per file, as AB-01)",
+  "names": "not applicable",
+  "supplier": "per-row"
+ },
+ "orientation_rule": "undecided pairs oriented at random with a per-file seed, crc32(file name) (the AB-01 expectation rule)",
+ "metric_defs": {
+  "f1": "directed F1, expectation rule",
+  "dv1_precision": "DV-1 committed-claim precision against released targets",
+  "dv1_coverage": "share of target-outcome pairs with a committed claim"
+ }
+}

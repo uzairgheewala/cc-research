@@ -1,0 +1,277 @@
+{
+ "tickets": [
+  "BLD-02",
+  "TGT-19"
+ ],
+ "rule_text": "On the dev split of both families, with every dev file the kernel completed: for each rule, mean directed F1 (expectation rule) and pooled DV-1 precision of committed claims. Eligible: rules whose dev F1 is within 0.01 of the best rule's dev F1 in both families, and whose dev F1 and DV-1 precision are each at least PC maxP's (stored baseline rows, shuffled arm, paired files) minus 0.01 in both families. Chosen: the eligible rule with the highest DV-1 precision averaged over the two families (ties: the earlier rule in the order pc, C3, C2, C1, ges). If no rule is eligible: pc.",
+ "families": {
+  "semantic": {
+   "checks": {
+    "files": 125,
+    "pc_failed": 0,
+    "jittered": 20,
+    "ges_failed": 0,
+    "r1_equal": 125,
+    "r1_not_equal": 0,
+    "cycle_defect_files": 5,
+    "ledgers_failing_verify_or_checker": 0,
+    "examples": [],
+    "ledgers": 625
+   },
+   "rules_all_files": {
+    "pc": {
+     "files": 125,
+     "f1": 0.45563564882909585,
+     "dv1_precision": 0.7178376147735479,
+     "dv1_coverage": 0.9244635193133047
+    },
+    "C3": {
+     "files": 125,
+     "f1": 0.5221341602460743,
+     "dv1_precision": 0.7562825983878615,
+     "dv1_coverage": 0.8045779685264663
+    },
+    "C2": {
+     "files": 125,
+     "f1": 0.5213997579101035,
+     "dv1_precision": 0.7437665172928876,
+     "dv1_coverage": 0.8300429184549356
+    },
+    "C1": {
+     "files": 125,
+     "f1": 0.4663413744242733,
+     "dv1_precision": 0.7398208007258705,
+     "dv1_coverage": 0.8409155937052932
+    },
+    "ges": {
+     "files": 125,
+     "f1": 0.5319302148780937,
+     "dv1_precision": 0.742352823187243,
+     "dv1_coverage": 0.9509775870290892
+    }
+   },
+   "rules_paired_with_pc_maxp": {
+    "pc": {
+     "files": 105,
+     "f1": 0.45838281391371855,
+     "dv1_precision": 0.7268902363568865,
+     "dv1_coverage": 0.9309907834101383
+    },
+    "C3": {
+     "files": 105,
+     "f1": 0.5216489085890668,
+     "dv1_precision": 0.7794159748067564,
+     "dv1_coverage": 0.8048387096774193
+    },
+    "C2": {
+     "files": 105,
+     "f1": 0.5216106674432012,
+     "dv1_precision": 0.7711757269279393,
+     "dv1_coverage": 0.8201612903225807
+    },
+    "C1": {
+     "files": 105,
+     "f1": 0.47190707800745685,
+     "dv1_precision": 0.7563556410608767,
+     "dv1_coverage": 0.8383640552995392
+    },
+    "ges": {
+     "files": 105,
+     "f1": 0.534315520167476,
+     "dv1_precision": 0.7635682340142632,
+     "dv1_coverage": 0.9531105990783411
+    }
+   },
+   "pc_maxp_baseline_paired": {
+    "files": 105,
+    "f1": 0.4574207680740668,
+    "dv1_precision": 0.7263222632226323,
+    "dv1_coverage": 0.9366359447004609
+   },
+   "ges_baseline_paired": {
+    "files": 105,
+    "f1": 0.534315520167476,
+    "dv1_precision": 0.7635682340142632,
+    "dv1_coverage": 0.9531105990783411
+   },
+   "rules_paired_with_ges": {
+    "pc": {
+     "files": 105,
+     "f1": 0.45838281391371855,
+     "dv1_precision": 0.7268902363568865,
+     "dv1_coverage": 0.9309907834101383
+    },
+    "C3": {
+     "files": 105,
+     "f1": 0.5216489085890668,
+     "dv1_precision": 0.7794159748067564,
+     "dv1_coverage": 0.8048387096774193
+    },
+    "C2": {
+     "files": 105,
+     "f1": 0.5216106674432012,
+     "dv1_precision": 0.7711757269279393,
+     "dv1_coverage": 0.8201612903225807
+    },
+    "C1": {
+     "files": 105,
+     "f1": 0.47190707800745685,
+     "dv1_precision": 0.7563556410608767,
+     "dv1_coverage": 0.8383640552995392
+    },
+    "ges": {
+     "files": 105,
+     "f1": 0.534315520167476,
+     "dv1_precision": 0.7635682340142632,
+     "dv1_coverage": 0.9531105990783411
+    }
+   }
+  },
+  "formula": {
+   "checks": {
+    "files": 125,
+    "pc_failed": 0,
+    "jittered": 42,
+    "ges_failed": 0,
+    "r1_equal": 125,
+    "r1_not_equal": 0,
+    "cycle_defect_files": 1,
+    "ledgers_failing_verify_or_checker": 0,
+    "examples": [],
+    "ledgers": 625
+   },
+   "rules_all_files": {
+    "pc": {
+     "files": 125,
+     "f1": 0.3453678512085394,
+     "dv1_precision": 0.7458932238193019,
+     "dv1_coverage": 0.941631419939577
+    },
+    "C3": {
+     "files": 125,
+     "f1": 0.4399935212108652,
+     "dv1_precision": 0.8142867127979311,
+     "dv1_coverage": 0.8644712990936556
+    },
+    "C2": {
+     "files": 125,
+     "f1": 0.43692262059591197,
+     "dv1_precision": 0.8070784177654406,
+     "dv1_coverage": 0.8706948640483384
+    },
+    "C1": {
+     "files": 125,
+     "f1": 0.35800425686328147,
+     "dv1_precision": 0.7510576858505137,
+     "dv1_coverage": 0.8997583081570997
+    },
+    "ges": {
+     "files": 125,
+     "f1": 0.4468749734577455,
+     "dv1_precision": 0.8023526451531735,
+     "dv1_coverage": 0.9605438066465257
+    }
+   },
+   "rules_paired_with_pc_maxp": {
+    "pc": {
+     "files": 87,
+     "f1": 0.36669000207866403,
+     "dv1_precision": 0.7528161919589706,
+     "dv1_coverage": 0.9390264877880977
+    },
+    "C3": {
+     "files": 87,
+     "f1": 0.46071798200165925,
+     "dv1_precision": 0.8208218095614381,
+     "dv1_coverage": 0.870657034743722
+    },
+    "C2": {
+     "files": 87,
+     "f1": 0.4582122213928956,
+     "dv1_precision": 0.8102168392264114,
+     "dv1_coverage": 0.8804609563123496
+    },
+    "C1": {
+     "files": 87,
+     "f1": 0.38115124104140324,
+     "dv1_precision": 0.7609343458617707,
+     "dv1_coverage": 0.8946508427932577
+    },
+    "ges": {
+     "files": 87,
+     "f1": 0.46805548527530577,
+     "dv1_precision": 0.8092116917626218,
+     "dv1_coverage": 0.9709322325421397
+    }
+   },
+   "pc_maxp_baseline_paired": {
+    "files": 87,
+    "f1": 0.36529667493030105,
+    "dv1_precision": 0.7488134355604235,
+    "dv1_coverage": 0.9422084623323014
+   },
+   "ges_baseline_paired": {
+    "files": 89,
+    "f1": 0.467369498131038,
+    "dv1_precision": 0.8120434705148761,
+    "dv1_coverage": 0.9743945838034893
+   },
+   "rules_paired_with_ges": {
+    "pc": {
+     "files": 89,
+     "f1": 0.3632951025490073,
+     "dv1_precision": 0.7546364985163204,
+     "dv1_coverage": 0.9360298585192257
+    },
+    "C3": {
+     "files": 89,
+     "f1": 0.46203329614817695,
+     "dv1_precision": 0.8240887480190174,
+     "dv1_coverage": 0.8763128200677025
+    },
+    "C2": {
+     "files": 89,
+     "f1": 0.4595765562628133,
+     "dv1_precision": 0.8124877089478859,
+     "dv1_coverage": 0.8827358736220814
+    },
+    "C1": {
+     "files": 89,
+     "f1": 0.3790004777627521,
+     "dv1_precision": 0.7630074605173918,
+     "dv1_coverage": 0.8958423747938546
+    },
+    "ges": {
+     "files": 89,
+     "f1": 0.46928871636525243,
+     "dv1_precision": 0.8136895719774819,
+     "dv1_coverage": 0.9713566530683101
+    }
+   }
+  }
+ },
+ "best_f1": {
+  "semantic": 0.5319302148780937,
+  "formula": 0.4468749734577455
+ },
+ "eligible": [
+  "C3",
+  "ges"
+ ],
+ "eligible_dv1_mean": {
+  "C3": 0.7852846555928963,
+  "ges": 0.7723527341702083
+ },
+ "chosen": "C3",
+ "Q-B1b": {
+  "semantic": {
+   "C2_minus_ges": -0.012704852724274796,
+   "C3_minus_ges": -0.012666611578409204
+  },
+  "formula": {
+   "C2_minus_ges": -0.007792941868224712,
+   "C3_minus_ges": -0.005336201982861055
+  },
+  "verdict": "refuted"
+ }
+}

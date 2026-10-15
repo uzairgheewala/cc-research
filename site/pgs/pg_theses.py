@@ -18,6 +18,14 @@ reliability = box(
     f"and abstention are measured on held-out data before anyone is asked to trust them. In decisions as sensitive as these, "
     f"reliability is the product.</p>", tone="orange")
 
+decision = box(
+    f"{H3('The decision (DEC-05, 14 Oct)')}"
+    f"<p class='prose' style='margin: 0'>The audit ended with one choice: the paper's spine and the build. Decided: keep "
+    f"every measurement result as the floor and build the ledger in a fixed order (engines and guards, "
+    f"the data-only ledger, interventions, knowledge as {T('tier', 'tiers')}, then calibration and "
+    f"abstention), each step passing its gate before the next. A checker for other agents' claims, the audit product's "
+    f"core, comes last.</p>", tone="blue")
+
 matrix = section(
     H2("The grid again, with what has been measured"),
     P("Page 3 showed the grid with limits and published numbers. Here it is with our measurements, the agent from page 6, and "
@@ -37,6 +45,7 @@ BODY = "\n".join([
       f"that tests it is organised in {T('bundle', 'bundles')}, and the decisions it feeds are taken at {T('gate', 'gates')}."),
     pillars_intro,
     reliability,
+    decision,
     P("Each card below gives the claim, what would refute it (written before the evidence), what the evidence says today, and "
       "the route from where it stands to the limit.", 15),
     delevel(L3.cols),

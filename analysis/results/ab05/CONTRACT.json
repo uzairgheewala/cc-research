@@ -1,0 +1,24 @@
+{
+ "producer": "analysis/ab05_live_calibration.py",
+ "score_bearing": false,
+ "tickets": [
+  "AUD-37"
+ ],
+ "regime": "per-row",
+ "regime_detail": "live probe calls of four agents against their stub runs; costs, tokens, call kinds, truncation",
+ "split": "public",
+ "controls": {
+  "columns_shuffled": "always (seed 20261010)",
+  "names": "real",
+  "supplier": "each agent's documented model",
+  "knowledge_source": "each agent's LLM"
+ },
+ "orientation_rule": "n/a (F1 values are copied from the probes' summaries, where undecided pairs are oriented at random per file seed)",
+ "metric_defs": {
+  "prompt_mean": "mean prompt tokens per call of a kind",
+  "completion_mean": "mean completion tokens per call of a kind",
+  "share_without_tag": "Vashishtha et al.: share of triplet answers without an <Answer> tag",
+  "pairs_tied": "pairs sent to the tie-breaker under the repository's merge rule, recomputed from the live answers"
+ },
+ "note": "Not a score: calibration of cost and behaviour. Used by plans/calibrate_ab06.py."
+}

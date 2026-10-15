@@ -1,0 +1,31 @@
+{
+ "ticket": "BLD-03 (bundle B2 of plans/q2_dag.json); CAP-03, TGT-06, TGT-15",
+ "written_utc": "2026-10-15",
+ "status": "written before any B2 run",
+ "kernel": "The data-only kernel is the frozen B1 version (plans/b1_freeze.json: code hash and rule); B2-B4 use it unchanged. Thresholds below are fixed before any B2-B4 run, dev or held-out.",
+ "rules": [
+  "shift evidence: Welch statistic of Y in the rows intervening on T alone vs the observational rows, two-sided normal approximation, alpha 0.01, at least 5 rows (AB-04's rule)",
+  "an adjacent pair (T, Y) with a shift is oriented T -> Y (i_essential); the intervention overrides a data direction and the claim records the conflict",
+  "both members shifting each other: left as the data had it, conflict recorded",
+  "no shift is not used to orient",
+  "Meek R1-R3 from all directed claims over the data's skeleton; added orientations are source 'intervention'",
+  "connections are never added or removed",
+  "D+I+K: interventions are applied before tiers; a tier statement against an intervention direction is attached to the claim and recorded as overridden by the intervention record (V4)"
+ ],
+ "data": {
+  "causalarena": "obs_int files (800 observational + 200 intervened rows); D = kernel on the observational rows; D+I adds the single-target intervened rows as shift evidence; dev split for development, test split held out",
+  "chambers": "the BEN-10 light-tunnel sample (1,000 observational rows; 100 rows per single-target regime); constant observational columns dropped (AB-04); each regime's rows split in half by seed 20261015 + regime: first half evidence, second half the agreement check; held out (read once per freeze)"
+ },
+ "gates": {
+  "B2.1": "constructed conflicts (tests/test_q2_interventions.py) resolved for the intervention in 100% and recorded; verify02 V4 and the K7 checker accept every D+I ledger",
+  "B2.2": "DV-1 precision of D+I >= D on the same files: mean per-file difference >= 0 on the CausalArena test split in both families, and pooled precision D+I >= D on Chambers (as hashed in plans/q2_build_prereg.json)"
+ },
+ "landmark": {
+  "ER-C": "report: kernel D and D+I DV-1 precision on Chambers against GES's on the same observational rows (target: within 0.03); agreement of committed claims with the check-half rows, reported against the true DAG's"
+ },
+ "predictions": {
+  "P-B2a": "on CausalArena test files D+I raises DV-1 precision over D by 0.00-0.03 per family (released targets are mostly inputs, so few adjacent pairs are oriented); refuted: any family below 0",
+  "P-B2b": "on Chambers kernel D+I DV-1 precision is within 0.03 of GES or above"
+ },
+ "held_out_reads": "kernel/run_b2.py refuses the test split and Chambers unless the code hash equals plans/b2_freeze.json; reads logged in analysis/results/q2_b2/access_log.jsonl"
+}

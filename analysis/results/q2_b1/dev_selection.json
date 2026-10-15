@@ -1,0 +1,301 @@
+{
+ "tickets": [
+  "BLD-02",
+  "TGT-19"
+ ],
+ "rule_text": "On the dev split of both families, with every dev file the kernel completed: for each rule, mean directed F1 (expectation rule) and pooled DV-1 precision of committed claims. Eligible: rules whose dev F1 is within 0.01 of the best rule's dev F1 in both families, and whose dev F1 and DV-1 precision are each at least PC maxP's (stored baseline rows, shuffled arm, paired files) minus 0.01 in both families. Chosen: the eligible rule with the highest DV-1 precision averaged over the two families (ties: the earlier rule in the order pc, C3, C2, C1, ges). If no rule is eligible: pc.",
+ "families": {
+  "semantic": {
+   "checks": {
+    "files": 125,
+    "pc_failed": 0,
+    "jittered": 20,
+    "ges_failed": 0,
+    "r1_equal": 125,
+    "r1_not_equal": 0,
+    "files_with_set_aside_pairs": 12,
+    "pairs_set_aside": 33,
+    "pc_defect_types": {
+     "engine_meek_divergence": 5,
+     "pc_directed_cycle": 7
+    },
+    "rule_cycles": {
+     "pc": 0,
+     "C3": 0,
+     "C2": 24,
+     "C1": 0,
+     "ges": 0
+    },
+    "ledgers_failing_verify_or_checker": 0,
+    "examples": [],
+    "ledgers": 625
+   },
+   "rules_all_files": {
+    "pc": {
+     "files": 125,
+     "f1": 0.4552474845092611,
+     "dv1_precision": 0.7197221070095396,
+     "dv1_coverage": 0.9197901764425369
+    },
+    "C3": {
+     "files": 125,
+     "f1": 0.5224396085515226,
+     "dv1_precision": 0.7562825983878615,
+     "dv1_coverage": 0.8045779685264663
+    },
+    "C2": {
+     "files": 125,
+     "f1": 0.521143130115411,
+     "dv1_precision": 0.7637389597644749,
+     "dv1_coverage": 0.7774916547448736
+    },
+    "C1": {
+     "files": 125,
+     "f1": 0.46499392374629633,
+     "dv1_precision": 0.7392991667617852,
+     "dv1_coverage": 0.8355746304244158
+    },
+    "ges": {
+     "files": 125,
+     "f1": 0.5319302148780937,
+     "dv1_precision": 0.742352823187243,
+     "dv1_coverage": 0.9509775870290892
+    }
+   },
+   "rules_paired_with_pc_maxp": {
+    "pc": {
+     "files": 105,
+     "f1": 0.45815880877105813,
+     "dv1_precision": 0.7291511077918845,
+     "dv1_coverage": 0.9255760368663595
+    },
+    "C3": {
+     "files": 105,
+     "f1": 0.5221637091038673,
+     "dv1_precision": 0.7794159748067564,
+     "dv1_coverage": 0.8048387096774193
+    },
+    "C2": {
+     "files": 105,
+     "f1": 0.5229440030679564,
+     "dv1_precision": 0.7856933879461674,
+     "dv1_coverage": 0.787557603686636
+    },
+    "C1": {
+     "files": 105,
+     "f1": 0.47080422319031634,
+     "dv1_precision": 0.7558847964552755,
+     "dv1_coverage": 0.8320276497695852
+    },
+    "ges": {
+     "files": 105,
+     "f1": 0.534315520167476,
+     "dv1_precision": 0.7635682340142632,
+     "dv1_coverage": 0.9531105990783411
+    }
+   },
+   "pc_maxp_baseline_paired": {
+    "files": 105,
+    "f1": 0.4574207680740668,
+    "dv1_precision": 0.7263222632226323,
+    "dv1_coverage": 0.9366359447004609
+   },
+   "ges_baseline_paired": {
+    "files": 105,
+    "f1": 0.534315520167476,
+    "dv1_precision": 0.7635682340142632,
+    "dv1_coverage": 0.9531105990783411
+   },
+   "rules_paired_with_ges": {
+    "pc": {
+     "files": 105,
+     "f1": 0.45815880877105813,
+     "dv1_precision": 0.7291511077918845,
+     "dv1_coverage": 0.9255760368663595
+    },
+    "C3": {
+     "files": 105,
+     "f1": 0.5221637091038673,
+     "dv1_precision": 0.7794159748067564,
+     "dv1_coverage": 0.8048387096774193
+    },
+    "C2": {
+     "files": 105,
+     "f1": 0.5229440030679564,
+     "dv1_precision": 0.7856933879461674,
+     "dv1_coverage": 0.787557603686636
+    },
+    "C1": {
+     "files": 105,
+     "f1": 0.47080422319031634,
+     "dv1_precision": 0.7558847964552755,
+     "dv1_coverage": 0.8320276497695852
+    },
+    "ges": {
+     "files": 105,
+     "f1": 0.534315520167476,
+     "dv1_precision": 0.7635682340142632,
+     "dv1_coverage": 0.9531105990783411
+    }
+   }
+  },
+  "formula": {
+   "checks": {
+    "files": 125,
+    "pc_failed": 0,
+    "jittered": 42,
+    "ges_failed": 0,
+    "r1_equal": 125,
+    "r1_not_equal": 0,
+    "files_with_set_aside_pairs": 4,
+    "pairs_set_aside": 11,
+    "pc_defect_types": {
+     "engine_meek_divergence": 1,
+     "pc_directed_cycle": 3
+    },
+    "rule_cycles": {
+     "pc": 0,
+     "C3": 0,
+     "C2": 16,
+     "C1": 0,
+     "ges": 0
+    },
+    "ledgers_failing_verify_or_checker": 0,
+    "examples": [],
+    "ledgers": 625
+   },
+   "rules_all_files": {
+    "pc": {
+     "files": 125,
+     "f1": 0.3444307442903004,
+     "dv1_precision": 0.7464933727962939,
+     "dv1_coverage": 0.9390936555891238
+    },
+    "C3": {
+     "files": 125,
+     "f1": 0.44021887332354126,
+     "dv1_precision": 0.8141419787590833,
+     "dv1_coverage": 0.864773413897281
+    },
+    "C2": {
+     "files": 125,
+     "f1": 0.43730839055693715,
+     "dv1_precision": 0.8133947554925585,
+     "dv1_coverage": 0.8525679758308157
+    },
+    "C1": {
+     "files": 125,
+     "f1": 0.35713174544775633,
+     "dv1_precision": 0.751041526676522,
+     "dv1_coverage": 0.899214501510574
+    },
+    "ges": {
+     "files": 125,
+     "f1": 0.4468749734577455,
+     "dv1_precision": 0.8023526451531735,
+     "dv1_coverage": 0.9605438066465257
+    }
+   },
+   "rules_paired_with_pc_maxp": {
+    "pc": {
+     "files": 87,
+     "f1": 0.36669000207866403,
+     "dv1_precision": 0.7534636205156436,
+     "dv1_coverage": 0.9373065015479877
+    },
+    "C3": {
+     "files": 87,
+     "f1": 0.46071798200165925,
+     "dv1_precision": 0.8207407407407408,
+     "dv1_coverage": 0.8707430340557275
+    },
+    "C2": {
+     "files": 87,
+     "f1": 0.4593447152196784,
+     "dv1_precision": 0.8191778068147553,
+     "dv1_coverage": 0.8556071551427589
+    },
+    "C1": {
+     "files": 87,
+     "f1": 0.3808363300037714,
+     "dv1_precision": 0.7609155606847471,
+     "dv1_coverage": 0.8942208462332302
+    },
+    "ges": {
+     "files": 87,
+     "f1": 0.46805548527530577,
+     "dv1_precision": 0.8092116917626218,
+     "dv1_coverage": 0.9709322325421397
+    }
+   },
+   "pc_maxp_baseline_paired": {
+    "files": 87,
+    "f1": 0.36529667493030105,
+    "dv1_precision": 0.7488134355604235,
+    "dv1_coverage": 0.9422084623323014
+   },
+   "ges_baseline_paired": {
+    "files": 89,
+    "f1": 0.467369498131038,
+    "dv1_precision": 0.8120434705148761,
+    "dv1_coverage": 0.9743945838034893
+   },
+   "rules_paired_with_ges": {
+    "pc": {
+     "files": 89,
+     "f1": 0.3632951025490073,
+     "dv1_precision": 0.7552954292084727,
+     "dv1_coverage": 0.9342938980991233
+    },
+    "C3": {
+     "files": 89,
+     "f1": 0.46203329614817695,
+     "dv1_precision": 0.8240071308309399,
+     "dv1_coverage": 0.8763996180887076
+    },
+    "C2": {
+     "files": 89,
+     "f1": 0.4606836007901179,
+     "dv1_precision": 0.8215767634854771,
+     "dv1_coverage": 0.8576512455516014
+    },
+    "C1": {
+     "files": 89,
+     "f1": 0.37869264337765124,
+     "dv1_precision": 0.7629895308259015,
+     "dv1_coverage": 0.8954083846888291
+    },
+    "ges": {
+     "files": 89,
+     "f1": 0.46928871636525243,
+     "dv1_precision": 0.8136895719774819,
+     "dv1_coverage": 0.9713566530683101
+    }
+   }
+  }
+ },
+ "best_f1": {
+  "semantic": 0.5319302148780937,
+  "formula": 0.4468749734577455
+ },
+ "eligible": [
+  "C3",
+  "ges"
+ ],
+ "eligible_dv1_mean": {
+  "C3": 0.7852122885734725,
+  "ges": 0.7723527341702083
+ },
+ "chosen": "C3",
+ "Q-B1b": {
+  "semantic": {
+   "C2_minus_ges": -0.011371517099519557,
+   "C3_minus_ges": -0.01215181106360863
+  },
+  "formula": {
+   "C2_minus_ges": -0.006685897340920122,
+   "C3_minus_ges": -0.005336201982861055
+  },
+  "verdict": "refuted"
+ }
+}

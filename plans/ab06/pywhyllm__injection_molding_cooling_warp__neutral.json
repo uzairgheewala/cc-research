@@ -11,14 +11,18 @@
   "agent_opts": {},
   "jitter": 1e-06,
   "names_map": "/research/plans/ab06/names/injection_molding_cooling_warp__neutral.json",
-  "max_calls": 416,
-  "max_usd": 1.69,
+  "max_calls": 347,
+  "max_usd": 1.62,
   "out": "/research/runs/ab06/pywhyllm/injection_molding_cooling_warp/neutral/",
   "out_stub": "/research/runs/ab06_stub/pywhyllm/injection_molding_cooling_warp/neutral/"
  },
  "basis": {
   "stub_calls": 277,
   "stub_est_usd": 1.1251,
-  "note": "ESTIMATE from the AB-05 stub run"
+  "note": "ESTIMATE from the AB-05 stub run",
+  "live_est_usd": 1.2839,
+  "live_est_calls": 277,
+  "live_est_hours": 0.294,
+  "calibration": "plans/calibrate_ab06.py from analysis/results/ab05/live_calibration.json (AB-05 live probes, 13 Oct)"
  }
 }

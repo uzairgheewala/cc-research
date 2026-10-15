@@ -1,0 +1,23 @@
+{
+ "producer": "kernel/run_b2.py, kernel/report_b23.py",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-03",
+  "CAP-03",
+  "TGT-06"
+ ],
+ "regime": "D+I",
+ "regime_detail": "D (observational rows of obs_int files) against D+I (plus single-target shift evidence); Chambers light tunnel",
+ "split": "per-row",
+ "controls": {
+  "columns_shuffled": "always (engines see canonical column order: sorted by value hash)",
+  "names": "not applicable",
+  "supplier": "none (data only)"
+ },
+ "orientation_rule": "undecided pairs oriented at random with a per-file seed, crc32(file name) (the AB-01 expectation rule)",
+ "metric_defs": {
+  "f1": "directed F1, expectation rule",
+  "dv1_precision": "DV-1 committed-claim precision (released targets)",
+  "agreement_with_check_rows": "Chambers: share of committed claims agreeing with the held-back half of each regime's rows"
+ }
+}
