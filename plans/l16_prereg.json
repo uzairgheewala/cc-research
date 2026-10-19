@@ -1,0 +1,53 @@
+{
+ "version": "l16-1",
+ "tickets": ["TGT-18", "TGT-19"],
+ "written_utc": "2026-10-19T20:38:00Z",
+ "status": "written before any applicability-condition number was computed; dev split only; no test split read; no kernel change; no model calls",
+ "design": "docs/design/q2_lever_map.md row L16; analysis/reports/q2_linkfilt_dev.md 'The open architectural question'",
+ "question": "Can a condition decide where the link filters licensed on formula (L8a triangle order; L7 stability) may act, so that a kernel that does not know a dataset's family acts on them only where they are precise? Two kinds: an observable condition computed from the file's data and its ledger, or a declared one (a typed statement about the domain).",
+ "why_now": "linkfilt-1 (16 Oct): L8a cut precision 0.81 with 25% of false links cut on formula, 0.63-0.71 on semantic; L7 0.81 / 38% on formula, 0.75 on semantic. Through the ledger both families look the same (triangle share 0.68 / 0.70, mean degree 4.0 / 4.0; triangle share vs per-scenario cut precision r = 0.38). Removing false links is worth +0.03 DV-1 precision, +0.12 coverage and +0.14 directed F1 on the headroom ladder.",
+ "units": {
+  "files": "the 125 dev obs files per family (regime D), v3 ledger (rule C3, Meek R1/R3 open), found links labelled true / shadow / common_cause / unrelated against the truth (labels used only for scoring)",
+  "gate": "decided per file: a dataset in use is one file, so the condition must be computable from one file",
+  "L7": "secondary, on the 25 rep000 dev files per family, only if the 500 resample engines are rebuilt in the cache this round"
+ },
+ "observable_features": {
+  "G1_triangle_share": "share of the ledger's links that sit in at least one ledger triangle (linkfilt-1's reference; known weak)",
+  "G2_dpi_violation_share": "among ledger links in a triangle, the share whose L8a ratio is below 0.5",
+  "G3_real_triangle_estimate": "for every ledger triangle, its weakest link by |Spearman| is tested for a _|_ b | m (Fisher z on the partial correlation of ranks, m the triangle's third variable); G3 = 1 - pi0, pi0 = Storey's estimate at lambda 0.5, clipped to [0, 1]: the estimated share of weakest triangle links that are real direct links. Each test is underpowered, the p-value distribution is not",
+  "G4_discrete_share": "share of columns with at most 10 distinct values",
+  "G5_monotone_gap": "mean over ledger links of |Spearman| - |Pearson|",
+  "G6_density": "ledger links per variable"
+ },
+ "selection_rule": {
+  "folds": "5 folds of scenarios, each holding 5 semantic and 5 formula dev scenarios (sorted scenario order within family, k mod 5)",
+  "per_fold": "on the 4 training folds, for each feature g, side (act when g <= t, or g >= t), threshold t (the 10th..90th percentiles of g over training files) and filter cut-off c (L8 grid 0.5..1.0): pooled cut precision of the gated cuts over both families. Choose the combination with the largest pooled cut recall among those with cut precision >= 0.80 and >= 30 cuts. Apply it to the 5th fold.",
+  "also_reported": "each feature alone (its own side, threshold and cut-off cross-fitted the same way), so the number of comparisons behind the selected gate is visible"
+ },
+ "licence_rule": {
+  "bar": "cross-fitted, pooled over both families: cut precision >= 0.80 and cut recall >= 0.10 of all false links (both families together)",
+  "why_pooled": "the kernel does not know the family; the licence has to hold on the mixture it would face",
+  "transfer_guard": "a licensed gate must also order scenarios within each family: Spearman rho between the gate feature and per-scenario cut precision (at the gate's modal cut-off) >= 0.30 in each family. A gate that only separates the two families is a family detector for this benchmark and its licence would not transfer; it is reported as 'licensed here, not transferable'"
+ },
+ "declared_condition": {
+  "statement": "typed knowledge record {type: domain_structure, claim: 'mechanisms are mostly chains: few direct effects alongside mediated ones of the same cause', licenses: [L8a, L7], source: declared, scope: dataset}",
+  "value_if_right": "the oracle gate (true family label: act on formula files only), cross-fitted cut-offs as linkfilt-1: pooled precision and recall",
+  "harm_if_wrong": "the same filter at formula's cross-fitted cut-offs applied to semantic files: cut precision, true links lost, and DV-1 precision / coverage / directed F1 change (no re-orientation). This is the bound a wrong declaration can cost, as T3 bounds wrong tiers"
+ },
+ "predictions": {
+  "P-A1": "No observable feature earns the pooled licence for L8a. Refuted if any single feature or the selected gate does.",
+  "P-A2": "G3 is the feature most correlated with per-scenario L8a cut precision pooled (|rho| largest of G1-G6), and |rho| >= 0.40. Refuted if another feature is larger or G3's |rho| < 0.25.",
+  "P-A3": "Any gate that earns the pooled licence fails the transfer guard (within-family rho < 0.30 in at least one family). Refuted if a licensed gate passes the guard in both families.",
+  "P-A4": "A wrong declaration costs at most 0.02 DV-1 precision and at most 0.03 directed F1 on semantic (cuts withdraw claims; they never add one), while true links lost on semantic exceed 10%. Refuted if the DV-1 precision cost exceeds 0.04."
+ },
+ "failure_modes_named_in_advance": [
+  "Family detector: a feature that separates CausalArena's two generators (discrete share, density) can gate perfectly here and mean nothing on another benchmark (the transfer guard).",
+  "Selection over many gates (6 features x 2 sides x 9 thresholds x 6 cut-offs) can overfit the training folds; the cross-fitted fold is the only number that counts, and the single-feature rows show the spread.",
+  "G3 depends on the triangle's mediator being the real one; triangles built on missed or false links give p-values from the wrong conditioning set.",
+  "Storey's pi0 is biased up when tests are underpowered (non-null p-values look uniform), which makes G3 read 'shadows' too often on semantic: the gate would be too permissive there.",
+  "Rank partial correlation is a linear test on ranks; non-monotone dependence is invisible to it.",
+  "Per-scenario cut precision rests on few cuts in some scenarios; scenarios with fewer than 5 cuts are left out of the rho computations and counted.",
+  "Cutting without re-orientation: answer-level numbers are a lower bound, as in linkfilt-1."
+ ],
+ "outputs": "analysis/results/q2_v3/l16_dev.json (+ per-file rows l16_files_dev.jsonl.gz); analysis/reports/q2_l16_dev.md; lever map row L16"
+}

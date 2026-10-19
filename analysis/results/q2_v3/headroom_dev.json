@@ -1,0 +1,233 @@
+{
+ "split": "dev",
+ "rule": "C3",
+ "steps": {
+  "O0": "ledger as is",
+  "O1": "reversed found links righted",
+  "O2": "+ open found links oriented",
+  "O3": "+ false links removed",
+  "O4": "+ missed links added (= truth)"
+ },
+ "families": {
+  "semantic": {
+   "v2_D": {
+    "files": 125,
+    "wall_seconds": 5.0,
+    "ladder": {
+     "O0": {
+      "precision": 0.756,
+      "coverage": 0.805,
+      "yes_precision": 0.671,
+      "f1": 0.522
+     },
+     "O1": {
+      "precision": 0.813,
+      "coverage": 0.786,
+      "yes_precision": 0.708,
+      "f1": 0.602
+     },
+     "O2": {
+      "precision": 0.805,
+      "coverage": 0.902,
+      "yes_precision": 0.703,
+      "f1": 0.644
+     },
+     "O3": {
+      "precision": 0.858,
+      "coverage": 0.973,
+      "yes_precision": 1.0,
+      "f1": 0.788
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.96,
+      "yes_precision": 1.0,
+      "f1": 0.975
+     }
+    }
+   },
+   "v3_D": {
+    "files": 125,
+    "wall_seconds": 4.8,
+    "ladder": {
+     "O0": {
+      "precision": 0.793,
+      "coverage": 0.692,
+      "yes_precision": 0.735,
+      "f1": 0.513
+     },
+     "O1": {
+      "precision": 0.839,
+      "coverage": 0.666,
+      "yes_precision": 0.753,
+      "f1": 0.571
+     },
+     "O2": {
+      "precision": 0.833,
+      "coverage": 0.845,
+      "yes_precision": 0.763,
+      "f1": 0.637
+     },
+     "O3": {
+      "precision": 0.859,
+      "coverage": 0.962,
+      "yes_precision": 1.0,
+      "f1": 0.78
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.944,
+      "yes_precision": 1.0,
+      "f1": 0.968
+     }
+    }
+   },
+   "v3_DxR": {
+    "files": 25,
+    "wall_seconds": 2.8,
+    "ladder": {
+     "O0": {
+      "precision": 0.864,
+      "coverage": 0.646,
+      "yes_precision": 0.807,
+      "f1": 0.537
+     },
+     "O1": {
+      "precision": 0.878,
+      "coverage": 0.662,
+      "yes_precision": 0.788,
+      "f1": 0.586
+     },
+     "O2": {
+      "precision": 0.868,
+      "coverage": 0.845,
+      "yes_precision": 0.79,
+      "f1": 0.656
+     },
+     "O3": {
+      "precision": 0.895,
+      "coverage": 0.959,
+      "yes_precision": 1.0,
+      "f1": 0.835
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.941,
+      "yes_precision": 1.0,
+      "f1": 0.965
+     }
+    }
+   }
+  },
+  "formula": {
+   "v2_D": {
+    "files": 125,
+    "wall_seconds": 4.1,
+    "ladder": {
+     "O0": {
+      "precision": 0.814,
+      "coverage": 0.865,
+      "yes_precision": 0.698,
+      "f1": 0.44
+     },
+     "O1": {
+      "precision": 0.845,
+      "coverage": 0.863,
+      "yes_precision": 0.705,
+      "f1": 0.537
+     },
+     "O2": {
+      "precision": 0.846,
+      "coverage": 0.926,
+      "yes_precision": 0.707,
+      "f1": 0.569
+     },
+     "O3": {
+      "precision": 0.855,
+      "coverage": 0.987,
+      "yes_precision": 1.0,
+      "f1": 0.776
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.977,
+      "yes_precision": 1.0,
+      "f1": 0.986
+     }
+    }
+   },
+   "v3_D": {
+    "files": 125,
+    "wall_seconds": 4.2,
+    "ladder": {
+     "O0": {
+      "precision": 0.843,
+      "coverage": 0.755,
+      "yes_precision": 0.754,
+      "f1": 0.435
+     },
+     "O1": {
+      "precision": 0.867,
+      "coverage": 0.757,
+      "yes_precision": 0.744,
+      "f1": 0.511
+     },
+     "O2": {
+      "precision": 0.865,
+      "coverage": 0.865,
+      "yes_precision": 0.75,
+      "f1": 0.565
+     },
+     "O3": {
+      "precision": 0.854,
+      "coverage": 0.979,
+      "yes_precision": 1.0,
+      "f1": 0.771
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.967,
+      "yes_precision": 1.0,
+      "f1": 0.983
+     }
+    }
+   },
+   "v3_DxR": {
+    "files": 25,
+    "wall_seconds": 2.3,
+    "ladder": {
+     "O0": {
+      "precision": 0.865,
+      "coverage": 0.774,
+      "yes_precision": 0.768,
+      "f1": 0.463
+     },
+     "O1": {
+      "precision": 0.876,
+      "coverage": 0.782,
+      "yes_precision": 0.742,
+      "f1": 0.522
+     },
+     "O2": {
+      "precision": 0.866,
+      "coverage": 0.881,
+      "yes_precision": 0.738,
+      "f1": 0.578
+     },
+     "O3": {
+      "precision": 0.877,
+      "coverage": 0.976,
+      "yes_precision": 1.0,
+      "f1": 0.81
+     },
+     "O4": {
+      "precision": 1.0,
+      "coverage": 0.961,
+      "yes_precision": 1.0,
+      "f1": 0.981
+     }
+    }
+   }
+  }
+ }
+}

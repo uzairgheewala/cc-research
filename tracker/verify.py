@@ -40,12 +40,55 @@ def resolve(p):
     return RESEARCH / p
 
 
+# File-hash cache (local only; .gitignored). Rehashing every manifest-listed file on each run takes over three minutes on
+# a cold Windows mount (the Causal Chambers extract alone is 34 s), more than the device shell allows. A file whose size
+# and modification time (ns) are unchanged keeps its hash. CI never has the cache, so every CI run hashes from scratch;
+# VERIFY_NO_CACHE=1 does the same locally.
+_HC_PATH = HERE / ".hash_cache.json"
+_HC = None
+_HC_NEW = [0]
+
+
+def _use_cache():
+    return os.environ.get("VERIFY_NO_CACHE") != "1"
+
+
+def _hc():
+    global _HC
+    if _HC is None:
+        _HC = {}
+        if _use_cache() and _HC_PATH.exists():
+            try:
+                _HC = json.load(open(_HC_PATH, encoding="utf-8"))
+            except (OSError, ValueError):
+                _HC = {}
+    return _HC
+
+
+def save_hash_cache():
+    if _use_cache() and _HC is not None:
+        tmp = _HC_PATH.with_suffix(".tmp")
+        json.dump(_HC, open(tmp, "w", encoding="utf-8"))
+        os.replace(tmp, _HC_PATH)
+
+
 def sha(path):
+    st = os.stat(path)
+    key, sig = str(Path(path).resolve()), "%d:%d" % (st.st_size, st.st_mtime_ns)
+    cache = _hc()
+    hit = cache.get(key)
+    if _use_cache() and hit and hit[0] == sig:
+        return hit[1]
     h = hashlib.sha256()
     with open(path, "rb") as fh:
         for chunk in iter(lambda: fh.read(1 << 20), b""):
             h.update(chunk)
-    return h.hexdigest()
+    d = h.hexdigest()
+    cache[key] = [sig, d]
+    _HC_NEW[0] += 1
+    if _HC_NEW[0] % 200 == 0:          # a run cut short by a time limit still leaves its work behind
+        save_hash_cache()
+    return d
 
 
 def digest(ev):
@@ -72,6 +115,17 @@ def digest(ev):
     for f in files:
         h.update(("%s:%s\n" % (os.path.relpath(f, RESEARCH.parent), sha(f))).encode())
     return "set:" + h.hexdigest(), len(files)
+
+
+_METAS = {}
+
+
+def _meta(f):
+    """runs/<id>/meta.json, parsed once per process: several items check the same 159 runs, and each meta.json carries
+    the code-tree identity listing (a full re-read per check took most of a verify run on the Windows mount)."""
+    if f not in _METAS:
+        _METAS[f] = json.load(open(f, encoding="utf-8"))
+    return _METAS[f]
 
 
 def get(obj, ptr):
@@ -115,7 +169,7 @@ def run_check(c):
             if c.get("manifest"):           # restrict to the runs that existed when the ticket closed
                 listed = {l.split("  ", 1)[1].strip() for l in open(resolve(c["manifest"]), encoding="utf-8") if l.strip()}
                 files = [f for f in files if os.path.relpath(f, RESEARCH).replace(os.sep, "/") in listed]
-            metas = [json.load(open(f, encoding="utf-8")) for f in files]
+            metas = [_meta(f) for f in files]
             live = [m for m in metas if not m.get("stub_llm")] if c.get("live") else metas
             failed = sum(1 for m in live if m.get("failure"))
             msgs, ok = [], True
@@ -209,6 +263,7 @@ def main():
         entries.append({"t": stamp, "item": it["id"], "event": "verify", "status": status, "effective": effective, "level": rec["level"],
                         "evidence": evrec, "checks_failed": len(failed)})
     json.dump(pins, open(PINS, "w"), indent=1, sort_keys=True)
+    save_hash_cache()
     with open(LOG, "a", encoding="utf-8") as fh:
         for e in entries:
             fh.write(json.dumps(e) + "\n")

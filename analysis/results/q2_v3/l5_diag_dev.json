@@ -1,0 +1,131 @@
+{
+ "post_hoc": true,
+ "tickets": [
+  "TGT-18",
+  "CAP-03"
+ ],
+ "families": {
+  "semantic": {
+   "true": {
+    "tests": 630,
+    "t_ancestor_of_y": 521,
+    "moved": 326,
+    "moved_given_ancestor": 323,
+    "moved_not_ancestor": 3,
+    "mediator_found": 346,
+    "moved_with_mediator": 184,
+    "moved_with_mediator_pC_ge_0.05": 12,
+    "power_moved_when_ancestor": 0.62,
+    "false_moves_when_not_ancestor": 0.028
+   },
+   "shadow": {
+    "tests": 182,
+    "t_ancestor_of_y": 175,
+    "moved": 59,
+    "moved_given_ancestor": 59,
+    "moved_not_ancestor": 0,
+    "mediator_found": 131,
+    "moved_with_mediator": 48,
+    "moved_with_mediator_pC_ge_0.05": 23,
+    "power_moved_when_ancestor": 0.337,
+    "false_moves_when_not_ancestor": 0.0
+   },
+   "common_cause": {
+    "tests": 88,
+    "t_ancestor_of_y": 0,
+    "moved": 1,
+    "moved_given_ancestor": 0,
+    "moved_not_ancestor": 1,
+    "mediator_found": 58,
+    "moved_with_mediator": 1,
+    "moved_with_mediator_pC_ge_0.05": 1,
+    "power_moved_when_ancestor": null,
+    "false_moves_when_not_ancestor": 0.011
+   },
+   "unrelated": {
+    "tests": 159,
+    "t_ancestor_of_y": 0,
+    "moved": 2,
+    "moved_given_ancestor": 0,
+    "moved_not_ancestor": 2,
+    "mediator_found": 95,
+    "moved_with_mediator": 2,
+    "moved_with_mediator_pC_ge_0.05": 0,
+    "power_moved_when_ancestor": null,
+    "false_moves_when_not_ancestor": 0.013
+   },
+   "rule_X_exploratory": {
+    "fired": 239,
+    "false_share": 0.653,
+    "true_but_reversed_in_ledger": 10,
+    "by_kind": {
+     "true": 83,
+     "shadow": 61,
+     "common_cause": 28,
+     "unrelated": 67
+    }
+   }
+  },
+  "formula": {
+   "true": {
+    "tests": 350,
+    "t_ancestor_of_y": 171,
+    "moved": 94,
+    "moved_given_ancestor": 88,
+    "moved_not_ancestor": 6,
+    "mediator_found": 259,
+    "moved_with_mediator": 68,
+    "moved_with_mediator_pC_ge_0.05": 14,
+    "power_moved_when_ancestor": 0.515,
+    "false_moves_when_not_ancestor": 0.034
+   },
+   "shadow": {
+    "tests": 185,
+    "t_ancestor_of_y": 84,
+    "moved": 19,
+    "moved_given_ancestor": 17,
+    "moved_not_ancestor": 2,
+    "mediator_found": 169,
+    "moved_with_mediator": 16,
+    "moved_with_mediator_pC_ge_0.05": 7,
+    "power_moved_when_ancestor": 0.202,
+    "false_moves_when_not_ancestor": 0.02
+   },
+   "common_cause": {
+    "tests": 102,
+    "t_ancestor_of_y": 0,
+    "moved": 2,
+    "moved_given_ancestor": 0,
+    "moved_not_ancestor": 2,
+    "mediator_found": 88,
+    "moved_with_mediator": 1,
+    "moved_with_mediator_pC_ge_0.05": 0,
+    "power_moved_when_ancestor": null,
+    "false_moves_when_not_ancestor": 0.02
+   },
+   "unrelated": {
+    "tests": 92,
+    "t_ancestor_of_y": 0,
+    "moved": 1,
+    "moved_given_ancestor": 0,
+    "moved_not_ancestor": 1,
+    "mediator_found": 53,
+    "moved_with_mediator": 0,
+    "moved_with_mediator_pC_ge_0.05": 0,
+    "power_moved_when_ancestor": null,
+    "false_moves_when_not_ancestor": 0.011
+   },
+   "rule_X_exploratory": {
+    "fired": 117,
+    "false_share": 0.709,
+    "true_but_reversed_in_ledger": 5,
+    "by_kind": {
+     "true": 34,
+     "shadow": 29,
+     "common_cause": 24,
+     "unrelated": 30
+    }
+   }
+  }
+ }
+}

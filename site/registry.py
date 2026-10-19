@@ -317,3 +317,24 @@ for _er in ("ER-F", "ER-1", "ER-2", "ER-3", "ER-4a", "ER-4b", "ER-C"):
     _q2["q2.lm." + _er] = F(LM, lambda d, _er=_er: "met" if d["landmarks"][_er]["met"] else "not met")
 REG.update(_q2)
 
+# ---- kernel v3 (2026-10-15; jobs/patches/s19_site_v3.py)
+V3T = R + "q2_v3/v3_test.json"
+FLS, FLF = R + "q2_v3/floor_dev_semantic.json", R + "q2_v3/floor_dev_formula.json"
+K0S = R + "q2_v3/k0_check_v2_semantic.json"
+_v3 = {}
+for _f, _k in (("semantic", "sem"), ("formula", "for")):
+    for _r in ("D", "DxR"):
+        _v3["q2v3.%s.%s.p" % (_k, _r)] = J(V3T, "families", _f, _r, "precision_half")
+        _v3["q2v3.%s.%s.lo" % (_k, _r)] = J(V3T, "families", _f, _r, "er2_interval", "lo")
+        _v3["q2v3.%s.%s.cov" % (_k, _r)] = J(V3T, "families", _f, _r, "coverage_half")
+        _v3["q2v3.%s.%s.ece" % (_k, _r)] = J(V3T, "families", _f, _r, "ece")
+        _v3["q2v3.%s.%s.ecehi" % (_k, _r)] = J(V3T, "families", _f, _r, "ece_interval", "hi")
+        _v3["q2v3.%s.%s.er2" % (_k, _r)] = F(V3T, lambda d, _f=_f, _r=_r: "met" if d["families"][_f][_r]["ER-2_met"] else "not met")
+_v3.update({
+    "q2v3.floor.sem": J(FLS, "classes", "floor", "share_of_true_links"), "q2v3.floor.for": J(FLF, "classes", "floor", "share_of_true_links"),
+    "q2v3.missed.sem": J(FLS, "missed_share"), "q2v3.missed.for": J(FLF, "missed_share"),
+    "q2v3.gap.sem": J(FLS, "classes", "method_linear", "share_of_true_links"), "q2v3.gap.for": J(FLF, "classes", "method_linear", "share_of_true_links"),
+    "q2v3.k0.equal": J(K0S, "row_hashes_equal"),
+})
+REG.update(_v3)
+

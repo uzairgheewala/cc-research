@@ -1,0 +1,14 @@
+{
+ "producer": "kernel/harness.py, kernel/experiment.py, kernel/k2_eval.py, kernel/k4_eval.py, kernel/v3.py, analysis/q2_floor.py, analysis/q2_dirsig*.py, analysis/q2_linkfilt*.py, analysis/q2_l16.py, analysis/q2_l5*.py",
+ "score_bearing": true,
+ "tickets": ["BLD-16", "TGT-18", "CAP-07", "TGT-12", "TGT-19", "CAP-03"],
+ "regime": "per-row",
+ "regime_detail": "D (one file, 1,000 rows) and DxR (a scenario's five replicates pooled, 5,000 rows); k2_dev: D+K replayed from AB-07; l5_*: D+I (ledger on the 800 observational rows of obs_int files, released single-target rows as evidence)",
+ "split": "per-row",
+ "controls": {"columns_shuffled": "always (engines see canonical column order: sorted by value hash)", "names": "per-row",
+              "supplier": "none (data only), except k2_dev: replay of AB-07's recorded gpt-4o tier replies", "knowledge_source": "gpt-4o tiers (AB-07) in k2_dev only"},
+ "orientation_rule": "undecided pairs oriented at random with a per-file seed, crc32(file name) (the AB-01 expectation rule)",
+ "metric_defs": {"precision_half": "DV-1 precision of the half-coverage view (claims in order of calibrated probability, ties together)",
+                 "ece": "expected calibration error of calibrated DV-1 probabilities (10 equal-width bins)",
+                 "missed_share": "share of true links with no adjacency claim", "f1": "directed F1, expectation rule"}
+}

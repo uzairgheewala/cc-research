@@ -210,9 +210,10 @@ body = "\n".join([
     f'<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">{detail}{queue}</div>',
     audit_intro, audit_host,
     footer("%d of %d Q1 bundles and %d of %d audit bundles are done; the audit chapter closed on 14 Oct (DEC-05). The Q2 build, six bundles B0-B5, "
-           "was built and read held out on 15 Oct: the ledger kernel now exists and holds its invariants (status page)." % (
+           "was built and read held out on 15 Oct, then read a second time as kernel v3: the ledger holds its invariants and meets "
+           "the precision landmark for formula (status page)." % (
                sum(b["status"] == "done" for b in Q1B), len(Q1B), sum(b["status"] == "done" for b in AB), len(AB)),
-           "choose which of the landmarks still open (accuracy above GES, semantic calibration, root-cause accuracy at 0.90) a second kernel version chases.",
+           'choose between more scenarios (every open landmark is within one interval width of its bar) and a v4 aimed at links: missed and false links cause most wrong answers and most wrong directions.',
            "Stages.dc.html", "Zoom into one run"),
 ])
 

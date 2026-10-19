@@ -1,0 +1,66 @@
+{
+ "semantic": {
+  "cut_off": 0.7,
+  "cuts": {
+   "cut": 1011,
+   "cut_shadow": 335,
+   "cut_unrelated": 195,
+   "cut_true": 348,
+   "cut_true_in_true_triangle": 288,
+   "cut_common_cause": 133,
+   "cut_true_no_true_triangle": 60
+  },
+  "by_pair_type": {
+   "continuous": {
+    "in_triangle": 1030,
+    "false_share_in_triangle": 0.429,
+    "cuts": 257,
+    "cut_precision": 0.658
+   },
+   "masspoint_end": {
+    "in_triangle": 1277,
+    "false_share_in_triangle": 0.425,
+    "cuts": 372,
+    "cut_precision": 0.624
+   },
+   "discrete_end": {
+    "in_triangle": 1326,
+    "false_share_in_triangle": 0.468,
+    "cuts": 382,
+    "cut_precision": 0.686
+   }
+  }
+ },
+ "formula": {
+  "cut_off": 0.7,
+  "cuts": {
+   "cut": 951,
+   "cut_shadow": 354,
+   "cut_true": 195,
+   "cut_true_in_true_triangle": 99,
+   "cut_unrelated": 294,
+   "cut_common_cause": 108,
+   "cut_true_no_true_triangle": 96
+  },
+  "by_pair_type": {
+   "continuous": {
+    "in_triangle": 2763,
+    "false_share_in_triangle": 0.553,
+    "cuts": 666,
+    "cut_precision": 0.826
+   },
+   "masspoint_end": {
+    "in_triangle": 529,
+    "false_share_in_triangle": 0.567,
+    "cuts": 129,
+    "cut_precision": 0.775
+   },
+   "discrete_end": {
+    "in_triangle": 632,
+    "false_share_in_triangle": 0.495,
+    "cuts": 156,
+    "cut_precision": 0.679
+   }
+  }
+ }
+}

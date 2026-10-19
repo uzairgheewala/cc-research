@@ -1,0 +1,47 @@
+{
+ "version": "dirsig-1",
+ "tickets": ["TGT-19", "TGT-18", "CAP-02"],
+ "written_utc": "2026-10-16T00:40:00Z",
+ "status": "written before any CausalArena number for these signals was computed; dev split only; no test split read; no kernel change",
+ "design": "docs/design/q2_lever_map.md (rows D4, D5, D6, D10; section 6 item 1)",
+ "question": "Can a direction signal that does not depend on collider patterns orient found links accurately enough to be a licence (acted on) in the ledger?",
+ "signals": {
+  "D4_entropy_lingam": "linear non-Gaussian likelihood ratio, m-spacing entropies; continuous pairs only",
+  "D5a_anm_hsic": "additive noise model, cubic regression spline, HSIC on a 500-row subsample",
+  "D5b_reci": "regression error after min-max scaling",
+  "D5c_igci": "information-geometric slope estimator; continuous pairs only",
+  "D6_hnm_hsic": "heteroscedastic noise model: residual divided by a fitted scale before HSIC",
+  "D10_cds": "conditional distribution similarity; any pair, continuous columns in 10 quantile bins"
+ },
+ "code": "kernel/asym.py (sign conventions tested in tests/test_q2_asym.py on textbook cases before this file was written)",
+ "units": {
+  "links": "found links of the v3 ledger (rule C3, Meek R1/R3 open) on the 125 dev files per family (regime D) and the 25 pooled dev tables (regime DxR)",
+  "accuracy": "share of true found links whose direction the signal gets right (sign of the score)",
+  "strata": "committed by the ledger and right / committed and reversed / left open and the truth's equivalence class orients it / left open and the class leaves it open",
+  "shadows": "false found links where one end is an ancestor of the other: 'right' means the signal points from the ancestor (the answer-level sense)",
+  "pair_types": "both continuous / one discrete (<= 10 values) / both discrete"
+ },
+ "licence_rule": {
+  "bar": 0.80,
+  "why": "above Meek rule 2 (0.75, kept) and well above Meek rule 1 (0.64, withdrawn); below colliders (0.87)",
+  "threshold": "per signal and family, the smallest |score| quantile threshold at which accuracy on the training folds reaches the bar; chosen on 4 of 5 scenario folds, measured on the fifth; reported as cross-fitted accuracy and yield",
+  "licence_if": "cross-fitted accuracy >= 0.80 with yield >= 10% of the left-open true links in regime D, in a family"
+ },
+ "predictions": {
+  "P-DS1": "No signal reaches 0.80 accuracy on all true found links without a threshold (refuted if any does, in either family and regime).",
+  "P-DS2": "At least one signal earns a licence (cross-fitted accuracy >= 0.80 at >= 10% yield of left-open true links, regime D) in at least one family. Refuted if none does.",
+  "P-DS3": "At full yield on continuous pairs, the nonlinear signals (D5a or D6) are more accurate than the linear one (D4), because the mechanisms are nonlinear (thresholds, products, stocks). Refuted if D4 is the best of the three in both families.",
+  "P-DS4": "Every signal's full-yield accuracy is at least as high in DxR as in D (more rows). Refuted if any signal drops by more than 0.03.",
+  "P-DS5": "On links the ledger committed by a collider, where a signal confidently disagrees (top quarter of |score|), the collider is right more often than the signal: no override licence. Refuted if any signal is right on more than half of those disagreements in either family."
+ },
+ "failure_modes_named_in_advance": [
+  "Clamped and boundary-heavy variables (range_policy clamp; audit warnings 'boundary_mass') put probability mass at a point: m-spacing entropy and IGCI treat ties as near-zero spacings and can be pulled either way.",
+  "Measurement-error nodes (observed_x = x + error, binomial thinning) violate the additive-noise model in the cause and are known to flip ANM-type signals.",
+  "Multiplicative mechanisms (products, stocks) are not additive-noise models; HNM (D6) may partly cover them, D5a may not.",
+  "Pairwise signals ignore a child's other parents: a strong co-parent acts as noise and weakens the signal; confounding by an observed common cause is not removed (conditional variants are a separate, unmeasured lever).",
+  "Links are only the found ones: accuracy is conditional on the ledger's errors (a found link next to a missed one is a harder case).",
+  "Discrete pairs: D4 and D5c decline; D5a/D5b/D6 use group means as the regression; D10 is the only signal designed for them.",
+  "The bar and threshold rule are fixed here; a signal that passes only with a threshold tuned after seeing the cross-fitted result does not pass."
+ ],
+ "outputs": "analysis/results/q2_v3/dirsig_dev.json; analysis/reports/q2_dirsig_dev.md; a row per signal added to docs/design/q2_lever_map.md"
+}

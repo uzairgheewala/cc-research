@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-15T17:25:04Z)
+# Tracker status (verified 2026-10-19T21:19:14Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -149,7 +149,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | CAP-01 | ⏳ | Skeleton recall at variables with many causes (joint test per candidate edge) | V0 |  |
-| CAP-02 | ⏳ | Direction from the numbers (PC: 54%) | V0 |  |
+| CAP-02 | ⏳ | Direction from the numbers (PC: 54%) | V3 |  |
 | CAP-03 | ✅ | Use intervention data | V3 |  |
 | CAP-04 | ✅ | Declared knowledge as tiers, never edges | V3 |  |
 | CAP-05 | ✅ | Invariance to column order | V3 |  |
@@ -362,3 +362,15 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | EXT-07 | 🔵 | Note to causal-learn maintainers: PC's Meek step can return a directed cycle (stale ancestor matrix) | V3 |  |
+
+## 8 Build
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| BLD-16 | ✅ | Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates regime | V3 |  |
+
+## 4 Audit: benchmarks and data
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| BEN-13 | ⏳ | CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall | V2 |  |

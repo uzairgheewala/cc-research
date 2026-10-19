@@ -1,0 +1,48 @@
+{
+ "version": "linkfilt-1",
+ "tickets": ["TGT-18", "TGT-19"],
+ "written_utc": "2026-10-16T03:10:00Z",
+ "status": "written before any CausalArena number for these filters was computed; dev split only; no test split read; no kernel change",
+ "design": "docs/design/q2_lever_map.md rows L8 (shadow ordering) and L7 (resampling stability as a link filter); section 6 item 1",
+ "question": "Can a filter withdraw the ledger's false links, above all the shadows (54% of false links), precisely enough to be acted on?",
+ "why_now": "Headroom ladder: removing false links is worth +0.03 DV-1 precision, +0.12 coverage and +0.14 directed F1 (semantic v3, D); both direction rounds (dirsig-1, dirsig-2) traced their failures back to link errors.",
+ "filters": {
+  "L8a": "data-processing inequality on |Spearman|: cut a found link whose dpi_ratio (min over ledger triangles of s(a,b) / min(s(a,m), s(m,b))) is below a cut-off c; links in no triangle are never cut",
+  "L8b": "the same on binned mutual information, Miller-Madow corrected",
+  "L7": "resampling stability: share of 10 bootstrap resamples (kernel.harness resample_indices, seed 20261015, B4's draws) whose v3 ledger contains the link; cut below a cut-off theta",
+  "L7_or_L8a": "secondary: the union of the two cuts, each at its own cross-fitted cut-off"
+ },
+ "code": "kernel/linkfilt.py (tested in tests/test_q2_linkfilt.py on a chain with its shadow), analysis/q2_linkfilt.py",
+ "units": {
+  "links": "found links of the v3 ledger (rule C3, Meek R1/R3 open), regime D. L8: all 125 dev files per family. L7: the 25 first-replicate dev files per family (the files B4 resampled; one file per scenario)",
+  "cut_precision": "share of cut links that are false",
+  "cut_recall": "share of the ledger's false links that are cut",
+  "true_lost": "share of the ledger's true found links that are cut"
+ },
+ "licence_rule": {
+  "bar": "cross-fitted cut precision >= 0.80 and cross-fitted cut recall >= 0.10, in a family",
+  "cut_off": "per filter and family, the most permissive cut-off (largest c or theta from the grid) whose cut precision on 4 of 5 scenario folds is >= 0.80 with at least 30 cuts; measured on the 5th fold",
+  "grids": {"L8": [0.5, 0.6, 0.7, 0.8, 0.9, 1.0], "L7": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]},
+  "why_0.80": "a cut withdraws a claim; it must be right at least as often as the weakest licence the ledger keeps acting on (Meek R2, 0.75) and match the direction licence bar"
+ },
+ "answer_level": "secondary: on each held-out fold, the ledger's graph with the cuts removed (no re-orientation: directions that relied on a cut link stay as they were) is re-scored for DV-1 precision and coverage and directed F1, against the uncut graph",
+ "predictions": {
+  "P-LF0": "Shadows sit in triangles: at least 40% of the ledger's shadow false links are in a ledger triangle, both families. Refuted if below 25% in either.",
+  "P-LF1": "L8a does not earn a licence in either family: true triangles (a -> m -> b plus a -> b) are common enough in designed SCMs that the weakest link of a triangle is often real. Refuted if L8a earns a licence in either family.",
+  "P-LF2": "L8b's cross-fitted cut precision is within 0.03 of L8a's or above it, both families. Refuted if more than 0.03 below in either.",
+  "P-LF3": "Stability separates true from false links overall: the probability that a random true link is more stable than a random false link (AUC) is >= 0.70, both families. Refuted if below 0.60 in either.",
+  "P-LF4": "Shadows are stable: among false links, shadows' median stability exceeds unrelated false links' by >= 0.10, both families (a shadow is a systematic consequence of a real path, not noise). Refuted if not in either.",
+  "P-LF5": "L7 earns a licence in at least one family, by cutting unstable unrelated and common-cause false links. Refuted if in neither.",
+  "P-LF6": "Any licensed filter raises the fold-wise DV-1 precision and directed F1 of the ledger by >= 0.01 in its family. Refuted if a licensed filter lowers either."
+ },
+ "failure_modes_named_in_advance": [
+  "True triangles: a real direct link a -> b next to a real path a -> m -> b can be weaker than both path links; DPI cuts it (this is P-LF1's bet).",
+  "Shadows of a missed mediator: when the ledger missed a-m or m-b, the shadow a-b has no triangle and no ordering filter can see it; it also carries the only connection the ledger has between a and b, so cutting it would hurt answers.",
+  "Nonlinear and non-monotone links: |Spearman| understates them, so a real non-monotone link can look like the weakest of a triangle (L8b is the guard).",
+  "Mutual-information bias differs by column type (discrete vs binned); the estimator is Miller-Madow corrected, and a residual bias is still possible.",
+  "Stability can be high for systematic errors: GES re-finds a shadow on every resample if the path is strong (P-LF4's bet), so L7 may cut mostly unrelated links, a minority of false links.",
+  "L7 is measured on 25 files per family (one per scenario), so its fold-wise numbers carry more noise than L8's.",
+  "Cutting without re-orientation leaves collider directions whose licence used a cut link; the answer-level numbers are therefore a lower bound on what a re-derived ledger would do, and may differ in sign."
+ ],
+ "outputs": "analysis/results/q2_v3/linkfilt_dev.json; analysis/reports/q2_linkfilt_dev.md; lever map rows L7, L8 updated"
+}

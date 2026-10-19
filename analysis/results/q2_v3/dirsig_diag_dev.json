@@ -1,0 +1,553 @@
+{
+ "semantic": {
+  "links": 3473,
+  "mapped_share": 0.966,
+  "indeg": {
+   "1": {
+    "n": 418,
+    "D4_entropy_lingam": 0.646,
+    "D5a_anm_hsic": 0.704,
+    "D5b_reci": 0.679,
+    "D5c_igci": 0.607,
+    "D6_hnm_hsic": 0.673,
+    "D10_cds": 0.765
+   },
+   "2": {
+    "n": 668,
+    "D4_entropy_lingam": 0.508,
+    "D5a_anm_hsic": 0.556,
+    "D5b_reci": 0.523,
+    "D5c_igci": 0.465,
+    "D6_hnm_hsic": 0.574,
+    "D10_cds": 0.55
+   },
+   "3": {
+    "n": 921,
+    "D4_entropy_lingam": 0.575,
+    "D5a_anm_hsic": 0.594,
+    "D5b_reci": 0.568,
+    "D5c_igci": 0.547,
+    "D6_hnm_hsic": 0.631,
+    "D10_cds": 0.65
+   },
+   "4": {
+    "n": 1466,
+    "D4_entropy_lingam": 0.473,
+    "D5a_anm_hsic": 0.477,
+    "D5b_reci": 0.566,
+    "D5c_igci": 0.6,
+    "D6_hnm_hsic": 0.504,
+    "D10_cds": 0.592
+   }
+  },
+  "masspoint": {
+   "none": {
+    "n": 1773,
+    "D4_entropy_lingam": 0.648,
+    "D5a_anm_hsic": 0.668,
+    "D5b_reci": 0.701,
+    "D5c_igci": 0.661,
+    "D6_hnm_hsic": 0.683,
+    "D10_cds": 0.755
+   },
+   "1-5%": {
+    "n": 368,
+    "D4_entropy_lingam": 0.443,
+    "D5a_anm_hsic": 0.579,
+    "D5b_reci": 0.515,
+    "D5c_igci": 0.412,
+    "D6_hnm_hsic": 0.683,
+    "D10_cds": 0.579
+   },
+   "5-20%": {
+    "n": 532,
+    "D4_entropy_lingam": 0.265,
+    "D5a_anm_hsic": 0.59,
+    "D5b_reci": 0.502,
+    "D5c_igci": 0.402,
+    "D6_hnm_hsic": 0.611,
+    "D10_cds": 0.585
+   },
+   "20%+": {
+    "n": 800,
+    "D4_entropy_lingam": 0.041,
+    "D5a_anm_hsic": 0.236,
+    "D5b_reci": 0.348,
+    "D5c_igci": 0.276,
+    "D6_hnm_hsic": 0.235,
+    "D10_cds": 0.35
+   }
+  },
+  "mechanism": {
+   "count_or_event_process": {
+    "n": 571,
+    "D4_entropy_lingam": 0.436,
+    "D5a_anm_hsic": 0.377,
+    "D5b_reci": 0.504,
+    "D5c_igci": 0.525,
+    "D6_hnm_hsic": 0.398,
+    "D10_cds": 0.549
+   },
+   "custom_physical_law": {
+    "n": 281,
+    "D4_entropy_lingam": 0.465,
+    "D5a_anm_hsic": 0.569,
+    "D5b_reci": 0.609,
+    "D5c_igci": 0.486,
+    "D6_hnm_hsic": 0.587,
+    "D10_cds": 0.52
+   },
+   "stock_flow_or_accumulation": {
+    "n": 261,
+    "D4_entropy_lingam": 0.495,
+    "D5a_anm_hsic": 0.521,
+    "D5b_reci": 0.609,
+    "D5c_igci": 0.63,
+    "D6_hnm_hsic": 0.51,
+    "D10_cds": 0.687
+   },
+   "categorical_or_ordinal_rule": {
+    "n": 235,
+    "D4_entropy_lingam": 0.732,
+    "D5a_anm_hsic": 0.521,
+    "D5b_reci": 0.391,
+    "D5c_igci": 0.333,
+    "D6_hnm_hsic": 0.456,
+    "D10_cds": 0.507
+   },
+   "mixture_or_regime_switch": {
+    "n": 224,
+    "D4_entropy_lingam": 0.616,
+    "D5a_anm_hsic": 0.694,
+    "D5b_reci": 0.566,
+    "D5c_igci": 0.607,
+    "D6_hnm_hsic": 0.635,
+    "D10_cds": 0.656
+   },
+   "piecewise_or_threshold": {
+    "n": 224,
+    "D4_entropy_lingam": 0.409,
+    "D5a_anm_hsic": 0.446,
+    "D5b_reci": 0.432,
+    "D5c_igci": 0.626,
+    "D6_hnm_hsic": 0.42,
+    "D10_cds": 0.417
+   },
+   "multiplicative_product": {
+    "n": 176,
+    "D4_entropy_lingam": 0.528,
+    "D5a_anm_hsic": 0.523,
+    "D5b_reci": 0.71,
+    "D5c_igci": 0.616,
+    "D6_hnm_hsic": 0.761,
+    "D10_cds": 0.717
+   },
+   "saturating_response": {
+    "n": 174,
+    "D4_entropy_lingam": 0.669,
+    "D5a_anm_hsic": 0.695,
+    "D5b_reci": 0.672,
+    "D5c_igci": 0.511,
+    "D6_hnm_hsic": 0.741,
+    "D10_cds": 0.707
+   },
+   "deterministic_formula": {
+    "n": 169,
+    "D4_entropy_lingam": 0.567,
+    "D5a_anm_hsic": 0.669,
+    "D5b_reci": 0.698,
+    "D5c_igci": 0.642,
+    "D6_hnm_hsic": 0.704,
+    "D10_cds": 0.775
+   },
+   "unmapped": {
+    "n": 119,
+    "D4_entropy_lingam": 0.697,
+    "D5a_anm_hsic": 0.647,
+    "D5b_reci": 0.462,
+    "D5c_igci": 0.47,
+    "D6_hnm_hsic": 0.588,
+    "D10_cds": 0.569
+   },
+   "bounded_sigmoid_index": {
+    "n": 117,
+    "D4_entropy_lingam": 0.519,
+    "D5a_anm_hsic": 0.513,
+    "D5b_reci": 0.692,
+    "D5c_igci": 0.646,
+    "D6_hnm_hsic": 0.624,
+    "D10_cds": 0.735
+   },
+   "min_max_or_clamp_logic": {
+    "n": 112,
+    "D4_entropy_lingam": 0.486,
+    "D5a_anm_hsic": 0.5,
+    "D5b_reci": 0.625,
+    "D5c_igci": 0.472,
+    "D6_hnm_hsic": 0.67,
+    "D10_cds": 0.732
+   },
+   "additive_index": {
+    "n": 108,
+    "D4_entropy_lingam": 0.792,
+    "D5a_anm_hsic": 0.824,
+    "D5b_reci": 0.778,
+    "D5c_igci": 0.5,
+    "D6_hnm_hsic": 0.704,
+    "D10_cds": 0.822
+   },
+   "measurement_error_model": {
+    "n": 103,
+    "D4_entropy_lingam": 0.377,
+    "D5a_anm_hsic": 0.417,
+    "D5b_reci": 0.476,
+    "D5c_igci": 0.584,
+    "D6_hnm_hsic": 0.544,
+    "D10_cds": 0.568
+   },
+   "exponential_or_log": {
+    "n": 95,
+    "D4_entropy_lingam": 0.286,
+    "D5a_anm_hsic": 0.695,
+    "D5b_reci": 0.453,
+    "D5c_igci": 0.571,
+    "D6_hnm_hsic": 0.811,
+    "D10_cds": 0.747
+   },
+   "ratio_or_normalization": {
+    "n": 92,
+    "D4_entropy_lingam": 0.167,
+    "D5a_anm_hsic": 0.37,
+    "D5b_reci": 0.641,
+    "D5c_igci": 0.667,
+    "D6_hnm_hsic": 0.576,
+    "D10_cds": 0.522
+   },
+   "table:multiply": {
+    "n": 79,
+    "D4_entropy_lingam": 0.449,
+    "D5a_anm_hsic": 0.532,
+    "D5b_reci": 0.57,
+    "D5c_igci": 0.638,
+    "D6_hnm_hsic": 0.278,
+    "D10_cds": 0.582
+   },
+   "linear_affine": {
+    "n": 73,
+    "D4_entropy_lingam": 0.7,
+    "D5a_anm_hsic": 0.575,
+    "D5b_reci": 0.658,
+    "D5c_igci": 0.725,
+    "D6_hnm_hsic": 0.767,
+    "D10_cds": 0.753
+   },
+   "exogenous_sampling": {
+    "n": 68,
+    "D4_entropy_lingam": 0.885,
+    "D5a_anm_hsic": 0.921,
+    "D5b_reci": 0.714,
+    "D5c_igci": 0.577,
+    "D6_hnm_hsic": 0.937,
+    "D10_cds": 0.934
+   },
+   "power_law": {
+    "n": 41,
+    "D4_entropy_lingam": 0.355,
+    "D5a_anm_hsic": 0.512,
+    "D5b_reci": 0.415,
+    "D5c_igci": 0.484,
+    "D6_hnm_hsic": 0.488,
+    "D10_cds": 0.39
+   },
+   "table:clip": {
+    "n": 40,
+    "D4_entropy_lingam": 0.771,
+    "D5a_anm_hsic": 0.8,
+    "D5b_reci": 0.625,
+    "D5c_igci": 0.6,
+    "D6_hnm_hsic": 0.775,
+    "D10_cds": 0.625
+   }
+  },
+  "clean_single_parent_no_masspoint": {
+   "n": 215,
+   "D4_entropy_lingam": 0.705,
+   "D5a_anm_hsic": 0.847,
+   "D5b_reci": 0.712,
+   "D5c_igci": 0.63,
+   "D6_hnm_hsic": 0.786,
+   "D10_cds": 0.908
+  }
+ },
+ "formula": {
+  "links": 2897,
+  "mapped_share": 0.911,
+  "indeg": {
+   "1": {
+    "n": 261,
+    "D4_entropy_lingam": 0.381,
+    "D5a_anm_hsic": 0.731,
+    "D5b_reci": 0.573,
+    "D5c_igci": 0.571,
+    "D6_hnm_hsic": 0.681,
+    "D10_cds": 0.756
+   },
+   "2": {
+    "n": 1098,
+    "D4_entropy_lingam": 0.579,
+    "D5a_anm_hsic": 0.539,
+    "D5b_reci": 0.627,
+    "D5c_igci": 0.645,
+    "D6_hnm_hsic": 0.573,
+    "D10_cds": 0.635
+   },
+   "3": {
+    "n": 928,
+    "D4_entropy_lingam": 0.447,
+    "D5a_anm_hsic": 0.44,
+    "D5b_reci": 0.651,
+    "D5c_igci": 0.629,
+    "D6_hnm_hsic": 0.616,
+    "D10_cds": 0.629
+   },
+   "4": {
+    "n": 610,
+    "D4_entropy_lingam": 0.47,
+    "D5a_anm_hsic": 0.415,
+    "D5b_reci": 0.551,
+    "D5c_igci": 0.594,
+    "D6_hnm_hsic": 0.585,
+    "D10_cds": 0.549
+   }
+  },
+  "masspoint": {
+   "none": {
+    "n": 2472,
+    "D4_entropy_lingam": 0.522,
+    "D5a_anm_hsic": 0.521,
+    "D5b_reci": 0.639,
+    "D5c_igci": 0.635,
+    "D6_hnm_hsic": 0.638,
+    "D10_cds": 0.649
+   },
+   "1-5%": {
+    "n": 90,
+    "D4_entropy_lingam": 0.5,
+    "D5a_anm_hsic": 0.589,
+    "D5b_reci": 0.511,
+    "D5c_igci": 0.577,
+    "D6_hnm_hsic": 0.567,
+    "D10_cds": 0.667
+   },
+   "5-20%": {
+    "n": 117,
+    "D4_entropy_lingam": 0.122,
+    "D5a_anm_hsic": 0.538,
+    "D5b_reci": 0.393,
+    "D5c_igci": 0.405,
+    "D6_hnm_hsic": 0.581,
+    "D10_cds": 0.388
+   },
+   "20%+": {
+    "n": 218,
+    "D4_entropy_lingam": 0.104,
+    "D5a_anm_hsic": 0.108,
+    "D5b_reci": 0.495,
+    "D5c_igci": 0.542,
+    "D6_hnm_hsic": 0.138,
+    "D10_cds": 0.414
+   }
+  },
+  "mechanism": {
+   "deterministic_formula": {
+    "n": 424,
+    "D4_entropy_lingam": 0.427,
+    "D5a_anm_hsic": 0.36,
+    "D5b_reci": 0.654,
+    "D5c_igci": 0.704,
+    "D6_hnm_hsic": 0.671,
+    "D10_cds": 0.586
+   },
+   "linear_affine": {
+    "n": 274,
+    "D4_entropy_lingam": 0.611,
+    "D5a_anm_hsic": 0.625,
+    "D5b_reci": 0.485,
+    "D5c_igci": 0.565,
+    "D6_hnm_hsic": 0.629,
+    "D10_cds": 0.616
+   },
+   "unmapped": {
+    "n": 259,
+    "D4_entropy_lingam": 0.419,
+    "D5a_anm_hsic": 0.409,
+    "D5b_reci": 0.657,
+    "D5c_igci": 0.686,
+    "D6_hnm_hsic": 0.476,
+    "D10_cds": 0.657
+   },
+   "measurement_error_model": {
+    "n": 240,
+    "D4_entropy_lingam": 0.619,
+    "D5a_anm_hsic": 0.683,
+    "D5b_reci": 0.579,
+    "D5c_igci": 0.558,
+    "D6_hnm_hsic": 0.662,
+    "D10_cds": 0.688
+   },
+   "custom_physical_law": {
+    "n": 167,
+    "D4_entropy_lingam": 0.425,
+    "D5a_anm_hsic": 0.461,
+    "D5b_reci": 0.659,
+    "D5c_igci": 0.614,
+    "D6_hnm_hsic": 0.563,
+    "D10_cds": 0.51
+   },
+   "table:multiply": {
+    "n": 151,
+    "D4_entropy_lingam": 0.452,
+    "D5a_anm_hsic": 0.479,
+    "D5b_reci": 0.678,
+    "D5c_igci": 0.671,
+    "D6_hnm_hsic": 0.541,
+    "D10_cds": 0.638
+   },
+   "table:add": {
+    "n": 144,
+    "D4_entropy_lingam": 0.657,
+    "D5a_anm_hsic": 0.806,
+    "D5b_reci": 0.655,
+    "D5c_igci": 0.418,
+    "D6_hnm_hsic": 0.604,
+    "D10_cds": 0.728
+   },
+   "ratio_or_normalization": {
+    "n": 130,
+    "D4_entropy_lingam": 0.487,
+    "D5a_anm_hsic": 0.4,
+    "D5b_reci": 0.752,
+    "D5c_igci": 0.757,
+    "D6_hnm_hsic": 0.654,
+    "D10_cds": 0.728
+   },
+   "calibration_gain_offset": {
+    "n": 128,
+    "D4_entropy_lingam": 0.557,
+    "D5a_anm_hsic": 0.57,
+    "D5b_reci": 0.547,
+    "D5c_igci": 0.626,
+    "D6_hnm_hsic": 0.633,
+    "D10_cds": 0.549
+   },
+   "saturating_response": {
+    "n": 93,
+    "D4_entropy_lingam": 0.47,
+    "D5a_anm_hsic": 0.495,
+    "D5b_reci": 0.581,
+    "D5c_igci": 0.348,
+    "D6_hnm_hsic": 0.602,
+    "D10_cds": 0.511
+   },
+   "piecewise_or_threshold": {
+    "n": 93,
+    "D4_entropy_lingam": 0.694,
+    "D5a_anm_hsic": 0.434,
+    "D5b_reci": 0.448,
+    "D5c_igci": 0.444,
+    "D6_hnm_hsic": 0.349,
+    "D10_cds": 0.658
+   },
+   "table:if_else": {
+    "n": 76,
+    "D4_entropy_lingam": 0.194,
+    "D5a_anm_hsic": 0.408,
+    "D5b_reci": 0.289,
+    "D5c_igci": 0.639,
+    "D6_hnm_hsic": 0.487,
+    "D10_cds": 0.351
+   },
+   "min_max_or_clamp_logic": {
+    "n": 74,
+    "D4_entropy_lingam": 0.464,
+    "D5a_anm_hsic": 0.464,
+    "D5b_reci": 0.594,
+    "D5c_igci": 0.449,
+    "D6_hnm_hsic": 0.435,
+    "D10_cds": 0.522
+   },
+   "categorical_or_ordinal_rule": {
+    "n": 64,
+    "D4_entropy_lingam": null,
+    "D5a_anm_hsic": 0.281,
+    "D5b_reci": 0.312,
+    "D5c_igci": null,
+    "D6_hnm_hsic": 0.297,
+    "D10_cds": 0.625
+   },
+   "count_or_event_process": {
+    "n": 60,
+    "D4_entropy_lingam": 0.686,
+    "D5a_anm_hsic": 0.117,
+    "D5b_reci": 0.617,
+    "D5c_igci": 0.286,
+    "D6_hnm_hsic": 0.7,
+    "D10_cds": 0.617
+   },
+   "multiplicative_product": {
+    "n": 60,
+    "D4_entropy_lingam": 0.024,
+    "D5a_anm_hsic": 0.183,
+    "D5b_reci": 0.783,
+    "D5c_igci": 0.951,
+    "D6_hnm_hsic": 0.717,
+    "D10_cds": 0.667
+   },
+   "table:clip": {
+    "n": 51,
+    "D4_entropy_lingam": 0.659,
+    "D5a_anm_hsic": 0.627,
+    "D5b_reci": 0.941,
+    "D5c_igci": 0.707,
+    "D6_hnm_hsic": 0.745,
+    "D10_cds": 0.686
+   },
+   "exogenous_sampling": {
+    "n": 50,
+    "D4_entropy_lingam": 0.6,
+    "D5a_anm_hsic": 0.6,
+    "D5b_reci": 0.62,
+    "D5c_igci": 0.733,
+    "D6_hnm_hsic": 0.74,
+    "D10_cds": 0.646
+   },
+   "power_law": {
+    "n": 44,
+    "D4_entropy_lingam": 0.75,
+    "D5a_anm_hsic": 0.523,
+    "D5b_reci": 0.5,
+    "D5c_igci": 0.5,
+    "D6_hnm_hsic": 0.636,
+    "D10_cds": 0.325
+   },
+   "nonmonotonic_response": {
+    "n": 41,
+    "D4_entropy_lingam": 0.259,
+    "D5a_anm_hsic": 0.878,
+    "D5b_reci": 0.78,
+    "D5c_igci": 0.667,
+    "D6_hnm_hsic": 0.805,
+    "D10_cds": 0.732
+   }
+  },
+  "clean_single_parent_no_masspoint": {
+   "n": 228,
+   "D4_entropy_lingam": 0.397,
+   "D5a_anm_hsic": 0.778,
+   "D5b_reci": 0.571,
+   "D5c_igci": 0.594,
+   "D6_hnm_hsic": 0.717,
+   "D10_cds": 0.775
+  }
+ }
+}

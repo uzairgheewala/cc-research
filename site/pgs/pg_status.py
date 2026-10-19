@@ -58,6 +58,16 @@ Q2_TABLE = table(["", "Landmark", "Held-out value", "Rule (conservative end of t
 ], caption="Semantic / formula where two values are given. Each bundle was frozen before its held-out read; B1's first read "
            "stopped on a build error and was re-read once after a class fix (analysis/reports/q2_build_results.md).")
 
+def _v3row(fam, k, reg):  # s20 trim
+    return ["%s, %s" % (fam, {"D": "1,000 rows", "DxR": "5,000 rows (pooled)"}[reg]),
+            f"{n('q2v3.%s.%s.p' % (k, reg))} [{n('q2v3.%s.%s.lo' % (k, reg))}]",
+            f"{n('q2v3.%s.%s.ece' % (k, reg))} [{n('q2v3.%s.%s.ecehi' % (k, reg))}]", "<b>%s</b>" % t("q2v3.%s.%s.er2" % (k, reg))]
+
+
+V3_TABLE = table(["Family, rows", "Precision at half coverage [lower end]", "Calibration error [upper end]", "ER-2"],
+                 [_v3row(f, k, r) for f, k in (("semantic", "sem"), ("formula", "for")) for r in ("D", "DxR")],
+                 caption="Second held-out read (analysis/reports/q2_v3_heldout.md); ER-3 not met in any row.")
+
 Q2_BUNDLES = table(["Bundle", "Title", "Status"],
                    [[b["id"], b["title"], b["status"].replace("_", " ")] for b in q2], mono_cols=(0,),
                    caption="Each bundle's result is in analysis/reports/q2_b&lt;k&gt;_*.md and in the Slack lists.")
@@ -77,14 +87,19 @@ BODY = "\n".join([
     H2("Q2 build: the landmarks after the first held-out pass"),
     P(f"The paper needs ER-F, ER-1, ER-2, ER-3 and ER-4a; the wedge needs ER-F, ER-1, ER-2, ER-3 and ER-4b. After the held-out "
       f"reads, {t('q2.paper.met')} of 5 paper constraints and {t('q2.wedge.met')} of 5 wedge constraints are met."),
-    Q2_TABLE, Q2_BUNDLES,
+    Q2_TABLE, (Q2_BUNDLES if any(b["status"] != "done" for b in q2) else
+               P("%s-%s are done; results in analysis/reports/q2_b&lt;k&gt;_*.md." % (q2[0]["id"], q2[-1]["id"]))),
+    H3("Kernel v3: the second held-out read"),
+    P(f"On dev, {n('q2v3.floor.sem', '{:.0%}')} / {n('q2v3.floor.for', '{:.0%}')} of true links (semantic / formula) carry no "
+      f"usable signal at 1,000 rows; {n('q2v3.gap.sem', '{:.0%}')} / {n('q2v3.gap.for', '{:.0%}')} more are a search gap no tested lever closed."),
+    V3_TABLE,
     you(L4.audit_intro), you(L4.audit_host),
     H2("Quarter 1 plan"),
     delevel(L4.legend), delevel(L4.host),
     f'<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">{you(delevel(L4.detail))}{you(delevel(L4.queue))}</div>',
     delevel(L3.gates),
-    answer(f"{cnt.get('done', 0)} of {len(items)} tracked items are done. The audit chapter is closed and the Q2 build has had its "
-           f"first held-out pass: floors and provenance are met; precision, calibration, accuracy and RCA landmarks are not yet. "
-           f"The next step is choosing which of those to chase with a second kernel version.",
+    answer(f"{cnt.get('done', 0)} of {len(items)} tracked items are done. The audit chapter is closed and the Q2 kernel has had two "
+           f"held-out reads: floors and provenance are met, precision for formula only; calibration, accuracy above GES and RCA "
+           f"at 0.90 are not.",
            "What changed since you last looked?"),
 ])

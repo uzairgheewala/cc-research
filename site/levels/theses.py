@@ -69,8 +69,10 @@ T3 = thesis("T3", "P2",
              f"{n('q2.b3.for.neutral')}/{t('q2.b3.for.files')} held-out files; moved names stay within the T3 bound on every file; real names add "
              f"{n('q2.b3.sem.gain', '{:+.3f}')} / {n('q2.b3.for.gain', '{:+.3f}')}, below the published bests."],
             f"B1 data-only kernel at or above PC ({n('pc.F1')}) → knowledge tiers B3 (oracle tiers reach {n('oracle.depth.reg')}, above the published {n('pub.sem.D.best')}) → interventions B2 toward the {n('lim.sem.DI')} limit.",
-            "(a) and (b) now hold held out. (c) needs either a data-only gain over GES or a stronger knowledge source; candidates in "
-            "docs/design/q2_kernel_v3_proposals.md.")
+            "(a) and (b) now hold held out. (c) needs direction evidence beyond the equivalence class: kernel v3 found that neither a "
+            "lower GES penalty, propagating knowledge, nor pairwise asymmetry gets there (analysis/reports/q2_dirsig_dev.md).")
+
+NEXT = 'choose between more scenarios (every open landmark is within one interval width of its bar) and a v4 aimed at links: missed and false links cause most wrong answers and most wrong directions.'
 
 T4 = thesis("T4", "P2",
             "Claims carry calibrated confidence and a machine-checkable derivation, so the system can decline to claim.",
@@ -81,7 +83,9 @@ T4 = thesis("T4", "P2",
              "The independent checker (K7) accepts every claim in every ledger built in B1-B3.",
              f"The pre-registered 0.05 gate is missed on semantic, in the safe direction (claims are right more often than stated). "
              f"Half-coverage precision {n('q2.b4.sem.prec')} semantic, {n('q2.b4.for.prec')} formula.",
-             "B4 pre-registered an isotonic map on 10-resample stability, fitted on dev and frozen before the read (DOM-08 had proposed Platt scaling)."],
+             "B4 pre-registered an isotonic map on 10-resample stability, fitted on dev and frozen before the read (DOM-08 had proposed Platt scaling).",
+             f"Kernel v3 (second read): a model on ledger features brings calibration error to {n('q2v3.sem.D.ece')} / "
+             f"{n('q2v3.for.D.ece')} (semantic / formula); its upper end stays above 0.05 on 25 scenarios."],
             "precision at a stated coverage is the honest score once forced choice stops being the only view; it does not move F1 but tells a reader which claims to trust.",
             "scenario-level shrinkage of the map and more scenarios; the coverage guarantee stays within one family.")
 
@@ -184,7 +188,7 @@ gap_box = f"""<div style="flex: 1 1 380px; padding: 18px 20px; background: #FFFF
 {tag("The gap this level exposes", "#8E2A2A")}
 <p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">The ledger exists and holds its promises; it does not yet beat the field's best numbers.</p>
 <p style="margin: 0; font-size: 14px; line-height: 20px">After the Q2 build's first held-out pass, {t("q2.paper.met")} of 5 paper constraints are met (floors, provenance). Precision at half coverage, calibration, accuracy above GES and RCA at 0.90 are not yet: P1 is {_share["P1"]:.0f}% done, P2 {_share["P2"]:.0f}%, P3 {_share["P3"]:.0f}%.</p>
-<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> which landmark a second kernel version chases first (docs/design/q2_kernel_v3_proposals.md).</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> more scenarios, or a v4 on the semantic search gap (analysis/reports/q2_v3_heldout.md).</p>
 </div>"""
 
 dec_box = f"""<div style="flex: 1 1 300px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px">
@@ -218,7 +222,7 @@ body = "\n".join([
     terms_panel(["thesis", "invariant", "ledger", "tier", "calib", "abstain", "ident", "ida", "gate", "regime"]),
     footer("measurement is done and corrected one thesis (T1 holds for PC, not for GES or FCI). The ledger is built: T3(a) and (b) hold "
            "held out, and T4 beats raw frequencies but misses its own gate on one family.",
-           "choose which landmark the second kernel version chases (accuracy above GES, calibration on semantic, or more RCA issues).",
+           NEXT,
            "Bundles.dc.html", "See the bundles"),
 ])
 

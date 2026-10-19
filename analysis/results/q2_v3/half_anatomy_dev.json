@@ -1,0 +1,190 @@
+{
+ "semantic": {
+  "D": {
+   "pairs": 10485,
+   "answered": 7260,
+   "kept": 5402,
+   "kept_coverage": 0.515,
+   "kept_precision": 0.808,
+   "kept_threshold": 0.733,
+   "kept_yes": 1053,
+   "kept_yes_precision": 0.752,
+   "kept_no": 4349,
+   "kept_no_precision": 0.821,
+   "kept_wrong": 1038,
+   "kept_wrong_no_share": 0.749,
+   "dropped": 1858,
+   "dropped_precision": 0.751,
+   "dropped_yes_share": 0.361,
+   "all_yes_precision": 0.735,
+   "all_no_precision": 0.811,
+   "probability_bands": {
+    "0.5-0.6": {
+     "n": 0,
+     "right_share": null,
+     "yes_share": null
+    },
+    "0.6-0.7": {
+     "n": 678,
+     "right_share": 0.683,
+     "yes_share": 0.478
+    },
+    "0.7-0.8": {
+     "n": 2260,
+     "right_share": 0.78,
+     "yes_share": 0.267
+    },
+    "0.8-0.9": {
+     "n": 4308,
+     "right_share": 0.818,
+     "yes_share": 0.181
+    },
+    "0.9-1.0": {
+     "n": 14,
+     "right_share": 0.643,
+     "yes_share": 1.0
+    }
+   }
+  },
+  "DxR": {
+   "pairs": 2097,
+   "answered": 1355,
+   "kept": 1092,
+   "kept_coverage": 0.521,
+   "kept_precision": 0.878,
+   "kept_threshold": 0.85,
+   "kept_yes": 289,
+   "kept_yes_precision": 0.83,
+   "kept_no": 803,
+   "kept_no_precision": 0.895,
+   "kept_wrong": 133,
+   "kept_wrong_no_share": 0.632,
+   "dropped": 263,
+   "dropped_precision": 0.806,
+   "dropped_yes_share": 0.357,
+   "all_yes_precision": 0.807,
+   "all_no_precision": 0.887,
+   "probability_bands": {
+    "0.5-0.6": {
+     "n": 0,
+     "right_share": null,
+     "yes_share": null
+    },
+    "0.6-0.7": {
+     "n": 0,
+     "right_share": null,
+     "yes_share": null
+    },
+    "0.7-0.8": {
+     "n": 46,
+     "right_share": 0.891,
+     "yes_share": 0.5
+    },
+    "0.8-0.9": {
+     "n": 1309,
+     "right_share": 0.863,
+     "yes_share": 0.275
+    },
+    "0.9-1.0": {
+     "n": 0,
+     "right_share": null,
+     "yes_share": null
+    }
+   }
+  }
+ },
+ "formula": {
+  "D": {
+   "pairs": 16550,
+   "answered": 12494,
+   "kept": 8281,
+   "kept_coverage": 0.5,
+   "kept_precision": 0.891,
+   "kept_threshold": 0.848,
+   "kept_yes": 1495,
+   "kept_yes_precision": 0.835,
+   "kept_no": 6786,
+   "kept_no_precision": 0.903,
+   "kept_wrong": 904,
+   "kept_wrong_no_share": 0.728,
+   "dropped": 4213,
+   "dropped_precision": 0.75,
+   "dropped_yes_share": 0.362,
+   "all_yes_precision": 0.754,
+   "all_no_precision": 0.872,
+   "probability_bands": {
+    "0.5-0.6": {
+     "n": 107,
+     "right_share": 0.561,
+     "yes_share": 1.0
+    },
+    "0.6-0.7": {
+     "n": 520,
+     "right_share": 0.71,
+     "yes_share": 0.694
+    },
+    "0.7-0.8": {
+     "n": 1699,
+     "right_share": 0.8,
+     "yes_share": 0.287
+    },
+    "0.8-0.9": {
+     "n": 7253,
+     "right_share": 0.864,
+     "yes_share": 0.211
+    },
+    "0.9-1.0": {
+     "n": 2764,
+     "right_share": 0.877,
+     "yes_share": 0.141
+    }
+   }
+  },
+  "DxR": {
+   "pairs": 3310,
+   "answered": 2561,
+   "kept": 1719,
+   "kept_coverage": 0.519,
+   "kept_precision": 0.882,
+   "kept_threshold": 0.87,
+   "kept_yes": 382,
+   "kept_yes_precision": 0.806,
+   "kept_no": 1337,
+   "kept_no_precision": 0.904,
+   "kept_wrong": 202,
+   "kept_wrong_no_share": 0.634,
+   "dropped": 842,
+   "dropped_precision": 0.828,
+   "dropped_yes_share": 0.361,
+   "all_yes_precision": 0.768,
+   "all_no_precision": 0.9,
+   "probability_bands": {
+    "0.5-0.6": {
+     "n": 20,
+     "right_share": 0.65,
+     "yes_share": 1.0
+    },
+    "0.6-0.7": {
+     "n": 69,
+     "right_share": 0.594,
+     "yes_share": 0.942
+    },
+    "0.7-0.8": {
+     "n": 142,
+     "right_share": 0.761,
+     "yes_share": 0.641
+    },
+    "0.8-0.9": {
+     "n": 2172,
+     "right_share": 0.879,
+     "yes_share": 0.211
+    },
+    "0.9-1.0": {
+     "n": 155,
+     "right_share": 0.897,
+     "yes_share": 0.316
+    }
+   }
+  }
+ }
+}

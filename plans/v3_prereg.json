@@ -1,0 +1,34 @@
+{
+ "version": "kernel v3",
+ "tickets": ["TGT-18", "CAP-07", "TGT-12", "BLD-16 (proposed: v3 views and regimes)"],
+ "written_utc": "2026-10-15",
+ "status": "written after the K0-K4 dev experiments (all dev, out of fold where a model is fitted) and before any v3 read of a test split",
+ "design": "docs/design/q2_kernel_v3_design.md; dev evidence in analysis/reports/q2_v3_k1_k2_dev.md",
+ "kernel": "v2's data-only core unchanged (kernel/build.py, derive.py, policy.py, engines/core.py; core_sha256 must equal B1's), rule C3. v3 adds two views and a second regime; no claim of the ledger changes and no ledger hash changes.",
+ "views": {
+  "direction": "directions whose licence is meek_r1 or meek_r3 are not acted on (shown as open) in every view a score is computed from (DV-1, F1). Chosen on dev: R1 directions right 64% (semantic) / 60% (formula) of the time on true links against 87% / 83% for collider directions.",
+  "confidence": "each DV-1 answer gets a probability: gradient-boosted classifier (sklearn HistGradientBoostingClassifier, max_iter 200, learning_rate 0.05, max_leaf_nodes 15, no early stopping, random_state 0) on kernel/claim_features.py features, mapped by an isotonic map fitted on 5-fold (by scenario) cross-fitted scores; one model per family and regime, fitted on every dev scenario (kernel.v3 fit), sha256 in plans/v3_freeze.json."
+ },
+ "regimes": {
+  "D": "one file (1,000 rows), every file of the split: 125 per family",
+  "DxR": "a scenario's five replicate files pooled (5,000 rows), 25 tables per family; same graph and generator in every replicate (asserted when the table is built). A different claim, 'given 5,000 rows of this system', always reported beside D and never in its place."
+ },
+ "statistics": "as B4 (kernel/run_b4.py evaluate): precision of the half-coverage view (claims in order of probability, ties together, until half of all target-outcome pairs are covered) with a scenario-cluster bootstrap interval (B 2000, seed 20261014) recomputing the cut in each draw; ECE (10 bins) with its interval; realised minus claimed precision at p >= c/(g+c), c/g = 1, 2, 4, with intervals.",
+ "landmarks": {
+  "ER-2": "lower end of the half-coverage precision interval > 0.80 with coverage >= 0.5, both families (docs/decisions/2026-10-14_q2_landmarks.md); reported per regime",
+  "ER-3": "ECE upper end <= 0.05 and every realised-minus-claimed lower end >= -0.03, both families; reported per regime"
+ },
+ "dev_results_out_of_fold": {
+  "semantic_D": {"precision_half": 0.808, "lower": 0.744, "ece": 0.028, "ece_upper": 0.068},
+  "semantic_DxR": {"precision_half": 0.878, "lower": 0.836, "ece": 0.008, "ece_upper": 0.048},
+  "formula_D": {"precision_half": 0.891, "lower": 0.861, "ece": 0.020, "ece_upper": 0.046},
+  "formula_DxR": {"precision_half": 0.882, "lower": 0.852, "ece": 0.007, "ece_upper": 0.048}
+ },
+ "predictions": {
+  "P-V3a": "ER-2 met in DxR for both families (refuted if either lower end <= 0.80)",
+  "P-V3b": "ER-2 not met in D for semantic (lower end <= 0.80), met in D for formula",
+  "P-V3c": "ER-3 not met in either regime: with 25 scenario clusters the realised-minus-claimed intervals are about +-0.04 wide even when the point gap is 0.000 (dev: points -0.000 to -0.025, lower ends -0.039 to -0.093), so the -0.03 lower-end rule cannot be cleared at this benchmark size whatever the calibration. Refuted if ER-3 is met in any regime.",
+  "P-V3d": "point ECE <= 0.04 in every family and regime (refuted if any > 0.06)"
+ },
+ "held_out": "the CausalArena test splits were read once by v2 (B1-B4). This is the second read of the same splits, reported as such beside v2's numbers; no unread split exists. kernel/v3.py refuses the test split unless the code hash and the four confidence models equal plans/v3_freeze.json; reads logged in analysis/results/q2_v3/access_log.jsonl."
+}

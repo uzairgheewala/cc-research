@@ -1,0 +1,11 @@
+{
+ "producer": "analysis/q2_missed_links_study.py",
+ "score_bearing": true,
+ "tickets": ["BLD-16"],
+ "regime": "D",
+ "regime_detail": "true links the v2 kernel (rule C3) missed on dev files; oracle-parent tests and pooled replicates",
+ "split": "dev",
+ "controls": {"columns_shuffled": "always (engines see canonical column order: sorted by value hash)", "names": "not applicable", "supplier": "none (data only)"},
+ "metric_defs": {"r2_gain": "held-out R2 gain from adding the missed parent to a boosting fit on the child's true parents",
+                 "z_pooled": "|corr| * sqrt(n - 3) on the scenario's five replicates pooled", "discrete": "either column has <= 10 distinct values"}
+}

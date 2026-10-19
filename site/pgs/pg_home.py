@@ -50,6 +50,10 @@ build = ul([
     f"<b>Root cause analysis runs through the ledger.</b> Declared topology as knowledge reproduces the audit's number exactly: "
     f"AC@3 {n('q2.b5.ac3')} at coverage {n('q2.b5.cov')}, against {n('q2.b5.learned')} for the learned graph alone; {n('q2.b5.answered')} "
     f"issues keep the interval's lower end at {n('q2.b5.ac3.lo')}. {link('rca', 'Page 7')}",
+    f"<b>Kernel v3 reads the same ledger more carefully.</b> Not acting on the weakest directions and scoring each answer from "
+    f"the ledger's own features: formula answers are {n('q2v3.for.D.p')} precise at half coverage (lower end "
+    f"{n('q2v3.for.D.lo')}, landmark met); semantic {n('q2v3.sem.D.p')}, capped by links the data cannot show "
+    f"({n('q2v3.floor.sem', '{:.0%}')} of true links leave no usable signal). {link('status', 'Page 10')}",
 ])
 
 latest = (SNAP.get("changes") or [{}])[0]
@@ -75,7 +79,8 @@ BODY = "\n".join([
         f'{link("market", "page 9")}. The claim ledger is now built and tested in gated steps: of the seven landmarks set in advance, the '
         f'floors, provenance and the physical-truth row are met; precision at half coverage, calibration, accuracy above GES and '
         f'root-cause accuracy at 0.90 are measured and not yet met ({t("q2.paper.met")} of 5 paper constraints, {t("q2.wedge.met")} of 5 '
-        f'for the product). {link("status", "Page 10")} has the table; {link("theses", "Page 8")} the claims. The next step is '
-        f'choosing which landmark a second version of the ledger chases, each under its own pre-registration.</p>', tone="blue"),
+        f'for the product). {link("status", "Page 10")} has the table; {link("theses", "Page 8")} the claims. A second version, '
+        f'read once more held out, meets the precision landmark for formula but not semantic; the open choice is between more '
+        f'scenarios to narrow every interval and a third version aimed at the links the search misses.</p>', tone="blue"),
     latest_html,
 ])

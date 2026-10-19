@@ -1,0 +1,48 @@
+Lever rows L16 (applicability conditions for link filters) and L5 (interventions as link evidence), pre-registered and measured on dev; BEN-13; CRS-01 moved
+
+No API credit spent; no kernel change; dev split only (no test split read). Kit48 (jobs/patches/p23_l16_l5.py).
+Engine cache rebuilt on a fresh cloud host (dev obs and obs_int, both families; kernel.harness fill); the rebuilt v3
+ledgers give the same links and triangle ratios as linkfilt-1 in 250 of 250 files.
+
+L16 (19 Oct):
+- Pre-registered before its numbers: plans/l16_prereg.json, hashed in manifests/evidence/l16_prereg_2026-10-19.sha256
+  (with analysis/q2_l16.py and tests/test_q2_l16_l5.py).
+- analysis/q2_l16.py -> analysis/results/q2_v3/l16_dev.json (+ l16_files_dev.jsonl.gz); report analysis/reports/q2_l16_dev.md.
+- Six observable per-file features (triangle share, strong-violation share, Storey estimate of real triangles, discrete
+  share, monotone gap, density) gating the L8a triangle-order filter, cross-fitted on folds mixing both families.
+- Result: four single-feature gates and the selected gate clear the pooled bar (0.800-0.815, 15-20% of false links) only
+  at the strictest cut-off on denser files (ungated best 0.776); every licensed gate fails the transfer guard (within-family
+  rho <= 0.33); semantic cuts right 0.72-0.76. Recorded "licensed here, not transferable"; not acted on. The real-triangle
+  estimate tracks nothing (rho 0.14). Declared condition: right +0.009 DV-1 / +0.017 coverage / +0.011 F1 (formula); wrong
+  -0.002 / +0.002 / 0.000 with 8.8% of semantic true links withdrawn. Predictions: P-A1 refuted, P-A2 refuted, P-A3
+  supported, P-A4 partly.
+
+L5 (19 Oct):
+- Pre-registered before its numbers: plans/l5_prereg.json, hashed in manifests/evidence/l5_prereg_2026-10-19.sha256
+  (prereg hash unchanged since 20:41Z; the manifest pins the code after one verdict-line correction: P-L5-2 is judged on
+  the rule's grid, not on empty cross-fitted picks).
+- analysis/q2_l5.py -> analysis/results/q2_v3/l5_dev.json (+ l5_links_dev.jsonl.gz); post hoc analysis/q2_l5_diag.py ->
+  l5_diag_dev.json; report analysis/reports/q2_l5_dev.md.
+- Result: no licence for shadow cuts (S), no-effect cuts (N) or adds (A). Reach 20% / 13% of false links (about 3 effective
+  targets x 40 rows per semantic file; formula's interventions mostly ineffective). The signal is real: given the mediator
+  the shift disappears for 48% of moved shadows and 7% of moved true links; power (34% of shadows move) and reach bind.
+  Adds 9-14% true. Confirmed links 78% true vs 59% base (candidate confidence feature). Predictions: P-L5-0 partly,
+  P-L5-1 refuted, P-L5-2 refuted, P-L5-3 supported, P-L5-4 refuted, P-L5-5 not tested.
+
+Also:
+- docs/design/q2_lever_map.md: L5 and L16 TRIED; 29 of 36 applicable rows measured or ruled (81%); next list updated.
+- analysis/results/q2_v3/CONTRACT.json: producers and the D+I regime of l5_* added.
+- tests/test_q2_l16_l5.py (4 tests, NumPy only). Writing it exposed a failure mode for rule S (the observational
+  regression absorbs part of a direct effect into the mediator's coefficient), recorded in the L5 report.
+- BEN-13 (CausalBench shortcut audit) added to the catalogue with docs/project_snapshots/2026-10-19/benchmark-targets.md;
+  Dev list row Rec0CA9ERLX4K (record ID mirrored from mirrors.json plus the new row).
+- CRS-01 due 2026-10-29 (Uzair, 19 Oct: Thu 29 Oct 10:45 am PT).
+- Tracker: TGT-18 and TGT-19 evidence, checks and notes; repins CAP-02, TGT-18, TGT-19 (lever map), BND-01
+  (tests/last_run.json, run in the cloud venv: 194 OK, 16 skipped); CAP-02 reviewed (W1: its own rows unchanged).
+  Slack dev rows TGT-18, TGT-19, INF-05, CRS-01, BEN-13; list-synced dev; prod list unchanged (list-diff 0).
+  Dev digest posted (#cd-tracker ts 1792445127.123049) and recorded.
+- Checks: verify 0 problems; trace check 0 errors (3 warnings: the unsent prod digest drafts of 14 and 15 Oct); secret scan
+  0 findings; ci_check 0 errors; site build 0 errors / 0 warnings; snapshot a1108ffd2c4b ok.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiuaycm

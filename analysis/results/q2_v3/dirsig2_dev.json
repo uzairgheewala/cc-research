@@ -1,0 +1,951 @@
+{
+ "prereg": "plans/dirsig2_prereg.json",
+ "cells": {
+  "semantic": {
+   "true_found": 3473,
+   "gated_true": 970,
+   "gate_keep_share": 0.279,
+   "left_open_true_all": 926,
+   "left_open_true_gated": 227,
+   "signals": {
+    "D4_entropy_lingam": {
+     "ungated": {
+      "n": 2114,
+      "acc": 0.52
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.575
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.559
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.708
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.539
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.485
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.688
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.791
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D5a_anm_hsic": {
+     "ungated": {
+      "n": 3443,
+      "acc": 0.55
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.56
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.542
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.708
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.539
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.455
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.619
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.776
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D5b_reci": {
+     "ungated": {
+      "n": 3441,
+      "acc": 0.571
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.599
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.589
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.679
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.576
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.752
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.506
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.806
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D5c_igci": {
+     "ungated": {
+      "n": 2111,
+      "acc": 0.563
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.567
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.564
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.594
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.561
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.752
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.469
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.582
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 3,
+      "acted": 35,
+      "accuracy": 0.4,
+      "open_acted": 17,
+      "open_accuracy": 0.0,
+      "open_yield": 0.075,
+      "licence": false,
+      "open_yield_all": 0.018
+     }
+    },
+    "D6_hnm_hsic": {
+     "ungated": {
+      "n": 3443,
+      "acc": 0.571
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.57
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.567
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.594
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.572
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.554
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.575
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.567
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D10_cds": {
+     "ungated": {
+      "n": 3400,
+      "acc": 0.619
+     },
+     "gated": {
+      "n": 943,
+      "acc": 0.637
+     },
+     "gated_child_multi_parent": {
+      "n": 856,
+      "acc": 0.62
+     },
+     "gated_child_single_parent": {
+      "n": 87,
+      "acc": 0.805
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 638,
+       "acc": 0.638
+      },
+      "committed_reversed": {
+       "n": 96,
+       "acc": 0.677
+      },
+      "open_class_orients": {
+       "n": 149,
+       "acc": 0.55
+      },
+      "open_class_open": {
+       "n": 60,
+       "acc": 0.783
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "C5a_cond_anm": {
+     "ungated": {
+      "n": 3468,
+      "acc": 0.55
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.577
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.553
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.774
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.558
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.406
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.688
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.761
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "C6_cond_hnm": {
+     "ungated": {
+      "n": 3468,
+      "acc": 0.509
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.501
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.484
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.642
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.464
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.525
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.581
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.627
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "C5b_cond_reci": {
+     "ungated": {
+      "n": 3468,
+      "acc": 0.598
+     },
+     "gated": {
+      "n": 970,
+      "acc": 0.616
+     },
+     "gated_child_multi_parent": {
+      "n": 864,
+      "acc": 0.63
+     },
+     "gated_child_single_parent": {
+      "n": 106,
+      "acc": 0.509
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 642,
+       "acc": 0.701
+      },
+      "committed_reversed": {
+       "n": 101,
+       "acc": 0.248
+      },
+      "open_class_orients": {
+       "n": 160,
+       "acc": 0.494
+      },
+      "open_class_open": {
+       "n": 67,
+       "acc": 0.657
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 5,
+      "acted": 308,
+      "accuracy": 0.834,
+      "open_acted": 44,
+      "open_accuracy": 0.568,
+      "open_yield": 0.194,
+      "licence": false,
+      "open_yield_all": 0.048
+     }
+    },
+    "D14_mass_side": {
+     "ungated": {
+      "n": 754,
+      "acc": 0.416
+     },
+     "gated": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_child_multi_parent": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_child_single_parent": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 0,
+       "acc": null
+      },
+      "committed_reversed": {
+       "n": 0,
+       "acc": null
+      },
+      "open_class_orients": {
+       "n": 0,
+       "acc": null
+      },
+      "open_class_open": {
+       "n": 0,
+       "acc": null
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    }
+   },
+   "D14_mass_side": {
+    "n": 754,
+    "acc": 0.416
+   }
+  },
+  "formula": {
+   "true_found": 2897,
+   "gated_true": 2081,
+   "gate_keep_share": 0.718,
+   "left_open_true_all": 696,
+   "left_open_true_gated": 459,
+   "signals": {
+    "D4_entropy_lingam": {
+     "ungated": {
+      "n": 2380,
+      "acc": 0.501
+     },
+     "gated": {
+      "n": 2044,
+      "acc": 0.507
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.512
+     },
+     "gated_child_single_parent": {
+      "n": 116,
+      "acc": 0.414
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1330,
+       "acc": 0.523
+      },
+      "committed_reversed": {
+       "n": 288,
+       "acc": 0.413
+      },
+      "open_class_orients": {
+       "n": 354,
+       "acc": 0.559
+      },
+      "open_class_open": {
+       "n": 72,
+       "acc": 0.333
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D5a_anm_hsic": {
+     "ungated": {
+      "n": 2852,
+      "acc": 0.495
+     },
+     "gated": {
+      "n": 2051,
+      "acc": 0.481
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.47
+     },
+     "gated_child_single_parent": {
+      "n": 123,
+      "acc": 0.642
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1330,
+       "acc": 0.47
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.422
+      },
+      "open_class_orients": {
+       "n": 354,
+       "acc": 0.528
+      },
+      "open_class_open": {
+       "n": 78,
+       "acc": 0.667
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D5b_reci": {
+     "ungated": {
+      "n": 2863,
+      "acc": 0.614
+     },
+     "gated": {
+      "n": 2051,
+      "acc": 0.639
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.636
+     },
+     "gated_child_single_parent": {
+      "n": 123,
+      "acc": 0.683
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1330,
+       "acc": 0.658
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.564
+      },
+      "open_class_orients": {
+       "n": 354,
+       "acc": 0.607
+      },
+      "open_class_open": {
+       "n": 78,
+       "acc": 0.744
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 2,
+      "acted": 45,
+      "accuracy": 0.667,
+      "open_acted": 4,
+      "open_accuracy": 0.75,
+      "open_yield": 0.009,
+      "licence": false,
+      "open_yield_all": 0.006
+     }
+    },
+    "D5c_igci": {
+     "ungated": {
+      "n": 2387,
+      "acc": 0.624
+     },
+     "gated": {
+      "n": 2051,
+      "acc": 0.626
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.629
+     },
+     "gated_child_single_parent": {
+      "n": 123,
+      "acc": 0.577
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1330,
+       "acc": 0.652
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.585
+      },
+      "open_class_orients": {
+       "n": 354,
+       "acc": 0.565
+      },
+      "open_class_open": {
+       "n": 78,
+       "acc": 0.603
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 1,
+      "acted": 10,
+      "accuracy": 0.5,
+      "open_acted": 1,
+      "open_accuracy": 1.0,
+      "open_yield": 0.002,
+      "licence": false,
+      "open_yield_all": 0.001
+     }
+    },
+    "D6_hnm_hsic": {
+     "ungated": {
+      "n": 2852,
+      "acc": 0.598
+     },
+     "gated": {
+      "n": 2051,
+      "acc": 0.596
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.598
+     },
+     "gated_child_single_parent": {
+      "n": 123,
+      "acc": 0.569
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1330,
+       "acc": 0.61
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.519
+      },
+      "open_class_orients": {
+       "n": 354,
+       "acc": 0.613
+      },
+      "open_class_open": {
+       "n": 78,
+       "acc": 0.564
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "D10_cds": {
+     "ungated": {
+      "n": 2641,
+      "acc": 0.621
+     },
+     "gated": {
+      "n": 1856,
+      "acc": 0.609
+     },
+     "gated_child_multi_parent": {
+      "n": 1780,
+      "acc": 0.611
+     },
+     "gated_child_single_parent": {
+      "n": 76,
+      "acc": 0.566
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1255,
+       "acc": 0.633
+      },
+      "committed_reversed": {
+       "n": 232,
+       "acc": 0.509
+      },
+      "open_class_orients": {
+       "n": 318,
+       "acc": 0.591
+      },
+      "open_class_open": {
+       "n": 51,
+       "acc": 0.588
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 3,
+      "acted": 113,
+      "accuracy": 0.717,
+      "open_acted": 18,
+      "open_accuracy": 0.667,
+      "open_yield": 0.049,
+      "licence": false,
+      "open_yield_all": 0.026
+     }
+    },
+    "C5a_cond_anm": {
+     "ungated": {
+      "n": 2893,
+      "acc": 0.467
+     },
+     "gated": {
+      "n": 2077,
+      "acc": 0.415
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.405
+     },
+     "gated_child_single_parent": {
+      "n": 149,
+      "acc": 0.544
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1333,
+       "acc": 0.373
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.467
+      },
+      "open_class_orients": {
+       "n": 373,
+       "acc": 0.485
+      },
+      "open_class_open": {
+       "n": 82,
+       "acc": 0.598
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "C6_cond_hnm": {
+     "ungated": {
+      "n": 2893,
+      "acc": 0.42
+     },
+     "gated": {
+      "n": 2077,
+      "acc": 0.367
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.358
+     },
+     "gated_child_single_parent": {
+      "n": 149,
+      "acc": 0.483
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1333,
+       "acc": 0.307
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.484
+      },
+      "open_class_orients": {
+       "n": 373,
+       "acc": 0.464
+      },
+      "open_class_open": {
+       "n": 82,
+       "acc": 0.5
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    },
+    "C5b_cond_reci": {
+     "ungated": {
+      "n": 2893,
+      "acc": 0.624
+     },
+     "gated": {
+      "n": 2077,
+      "acc": 0.647
+     },
+     "gated_child_multi_parent": {
+      "n": 1928,
+      "acc": 0.656
+     },
+     "gated_child_single_parent": {
+      "n": 149,
+      "acc": 0.523
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 1333,
+       "acc": 0.759
+      },
+      "committed_reversed": {
+       "n": 289,
+       "acc": 0.322
+      },
+      "open_class_orients": {
+       "n": 373,
+       "acc": 0.515
+      },
+      "open_class_open": {
+       "n": 82,
+       "acc": 0.561
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 5,
+      "acted": 522,
+      "accuracy": 0.927,
+      "open_acted": 50,
+      "open_accuracy": 0.72,
+      "open_yield": 0.11,
+      "licence": false,
+      "open_yield_all": 0.072
+     }
+    },
+    "D14_mass_side": {
+     "ungated": {
+      "n": 408,
+      "acc": 0.353
+     },
+     "gated": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_child_multi_parent": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_child_single_parent": {
+      "n": 0,
+      "acc": null
+     },
+     "gated_by_stratum": {
+      "committed_right": {
+       "n": 0,
+       "acc": null
+      },
+      "committed_reversed": {
+       "n": 0,
+       "acc": null
+      },
+      "open_class_orients": {
+       "n": 0,
+       "acc": null
+      },
+      "open_class_open": {
+       "n": 0,
+       "acc": null
+      }
+     },
+     "crossfit_gated": {
+      "thresholds_found": 0,
+      "acted": 0,
+      "accuracy": null,
+      "open_acted": 0,
+      "open_accuracy": null,
+      "open_yield": 0.0,
+      "licence": false,
+      "open_yield_all": 0.0
+     }
+    }
+   },
+   "D14_mass_side": {
+    "n": 408,
+    "acc": 0.353
+   }
+  }
+ }
+}

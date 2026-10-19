@@ -1,6 +1,6 @@
-# Trace check (2026-10-15T17:26:03Z)
+# Trace check (2026-10-19T21:25:45Z)
 
-status.json verified 2026-10-15T17:25:04Z. Dev tickets 230; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-10-19T21:19:14Z. Dev tickets 232; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -10,18 +10,20 @@ status.json verified 2026-10-15T17:25:04Z. Dev tickets 230; prod rows 67 (7 grou
 | blocks | links.txt | 1 |
 | blocks | plan | 25 |
 | curates | links.txt | 66 |
-| evidences | catalogue | 708 |
+| evidences | catalogue | 789 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 631 |
-| mirrors | mirrors.json | 297 |
+| mentions | scan | 661 |
+| mirrors | mirrors.json | 299 |
 | parent_of | links.txt | 23 |
-| published_at | links.txt | 236 |
+| published_at | links.txt | 246 |
 | relates | links.txt | 1 |
 
-## Findings: 0 errors, 0 warnings
+## Findings: 0 errors, 3 warnings
 
-none
+- **WARN R3** tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
+- **WARN R3** tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
+- **WARN R3** tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 
 ## Prod rows
 
@@ -42,7 +44,7 @@ none
 | AUD-17 | group | in_progress | in_progress | V3 | - | AUD-10, AUD-11, AUD-12, AUD-13, AUD-14, AUD-15, BEN-01, BEN-02, BEN-03, BEN-04, BEN-05, BEN-06, BEN-07, BEN-08, BEN-09, BEN-10, BEN-11, BEN-12 |
 | TGT-17 | group | in_progress | in_progress | V0 | - | TGT-01, TGT-02, TGT-03, TGT-04, TGT-05, TGT-06, TGT-07, TGT-08, TGT-09, TGT-10, TGT-11, TGT-12, TGT-13, TGT-14, TGT-15, TGT-16 |
 | CAP-01 | passthrough | todo | todo | V0 | - | CAP-01 |
-| CAP-02 | passthrough | todo | todo | V0 | - | CAP-02 |
+| CAP-02 | passthrough | todo | todo | V3 | - | CAP-02 |
 | CAP-03 | passthrough | done | done | V3 | - | CAP-03 |
 | CAP-04 | passthrough | done | done | V3 | - | CAP-04 |
 | CAP-05 | passthrough | done | done | V3 | - | CAP-05 |
@@ -95,6 +97,6 @@ none
 | EVL-06 | passthrough | done | done | V3 | - | EVL-06 |
 | EVL-07 | passthrough | done | done | V3 | - | EVL-07 |
 
-## Dev tickets in no prod row (104)
+## Dev tickets in no prod row (106)
 
-AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BLD-12, BLD-13, BLD-14, BLD-15, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TGT-18, TGT-19, TGT-20
+AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BEN-13, BLD-12, BLD-13, BLD-14, BLD-15, BLD-16, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TGT-18, TGT-19, TGT-20

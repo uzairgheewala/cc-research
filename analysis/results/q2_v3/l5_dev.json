@@ -1,0 +1,319 @@
+{
+ "prereg": "plans/l5_prereg.json",
+ "tickets": [
+  "TGT-18",
+  "TGT-19",
+  "CAP-03"
+ ],
+ "families": {
+  "semantic": {
+   "files": 125,
+   "targets_per_file": 3.8,
+   "effective_per_file": 2.87,
+   "links": 5406,
+   "false_links": 2042,
+   "testable_links": 1013,
+   "testable_false": 414,
+   "reach_false": 0.203,
+   "testable_kinds": {
+    "true": 599,
+    "shadow": 182,
+    "common_cause": 81,
+    "unrelated": 151
+   },
+   "two_test_links": 46,
+   "testable_with_mediator": 605,
+   "grid_S": {
+    "0.05": {
+     "cuts": 36,
+     "false_cut": 24
+    },
+    "0.1": {
+     "cuts": 33,
+     "false_cut": 24
+    },
+    "0.2": {
+     "cuts": 23,
+     "false_cut": 15
+    },
+    "0.3": {
+     "cuts": 21,
+     "false_cut": 13
+    },
+    "0.5": {
+     "cuts": 15,
+     "false_cut": 9
+    }
+   },
+   "grid_N": {
+    "0.05": {
+     "cuts": 20,
+     "false_cut": 15
+    },
+    "0.1": {
+     "cuts": 19,
+     "false_cut": 14
+    },
+    "0.2": {
+     "cuts": 16,
+     "false_cut": 12
+    },
+    "0.3": {
+     "cuts": 10,
+     "false_cut": 7
+    },
+    "0.5": {
+     "cuts": 3,
+     "false_cut": 3
+    }
+   },
+   "S": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "cuts": 0,
+    "cut_precision": null,
+    "cut_recall_testable": 0.0,
+    "cut_recall_all_false": 0.0,
+    "true_lost": 0.0,
+    "cut_by_kind": {
+     "shadow": 0,
+     "common_cause": 0,
+     "unrelated": 0,
+     "true": 0
+    },
+    "licence": false
+   },
+   "N": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "cuts": 0,
+    "cut_precision": null,
+    "cut_recall_testable": 0.0,
+    "cut_recall_all_false": 0.0,
+    "true_lost": 0.0,
+    "cut_by_kind": {
+     "shadow": 0,
+     "common_cause": 0,
+     "unrelated": 0,
+     "true": 0
+    },
+    "licence": false
+   },
+   "A": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "adds": 0,
+    "add_precision": null,
+    "add_direction_right": null,
+    "recall_of_reachable_missed": 0.0,
+    "recall_of_all_missed": 0.0,
+    "licence": false
+   },
+   "grid_A": {
+    "0.001": {
+     "adds": 70,
+     "true": 8
+    },
+    "0.01": {
+     "adds": 155,
+     "true": 17
+    },
+    "0.05": {
+     "adds": 194,
+     "true": 19
+    }
+   },
+   "add_candidates": 450,
+   "add_candidates_true": 39,
+   "missed_true_links": 1756,
+   "missed_reachable": 246,
+   "confirm": {
+    "confirmed": 431,
+    "true_share": 0.782,
+    "base_rate_testable": 0.591
+   },
+   "answers_licensed": null,
+   "answers_S_unlicensed": null
+  },
+  "formula": {
+   "files": 125,
+   "targets_per_file": 5.92,
+   "effective_per_file": 1.22,
+   "links": 5523,
+   "false_links": 2675,
+   "testable_links": 674,
+   "testable_false": 345,
+   "reach_false": 0.129,
+   "testable_kinds": {
+    "true": 329,
+    "shadow": 170,
+    "common_cause": 86,
+    "unrelated": 89
+   },
+   "two_test_links": 55,
+   "testable_with_mediator": 524,
+   "grid_S": {
+    "0.05": {
+     "cuts": 21,
+     "false_cut": 7
+    },
+    "0.1": {
+     "cuts": 20,
+     "false_cut": 7
+    },
+    "0.2": {
+     "cuts": 17,
+     "false_cut": 6
+    },
+    "0.3": {
+     "cuts": 12,
+     "false_cut": 4
+    },
+    "0.5": {
+     "cuts": 8,
+     "false_cut": 3
+    }
+   },
+   "grid_N": {
+    "0.05": {
+     "cuts": 37,
+     "false_cut": 24
+    },
+    "0.1": {
+     "cuts": 32,
+     "false_cut": 22
+    },
+    "0.2": {
+     "cuts": 25,
+     "false_cut": 18
+    },
+    "0.3": {
+     "cuts": 17,
+     "false_cut": 12
+    },
+    "0.5": {
+     "cuts": 9,
+     "false_cut": 7
+    }
+   },
+   "S": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "cuts": 0,
+    "cut_precision": null,
+    "cut_recall_testable": 0.0,
+    "cut_recall_all_false": 0.0,
+    "true_lost": 0.0,
+    "cut_by_kind": {
+     "shadow": 0,
+     "common_cause": 0,
+     "unrelated": 0,
+     "true": 0
+    },
+    "licence": false
+   },
+   "N": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "cuts": 0,
+    "cut_precision": null,
+    "cut_recall_testable": 0.0,
+    "cut_recall_all_false": 0.0,
+    "true_lost": 0.0,
+    "cut_by_kind": {
+     "shadow": 0,
+     "common_cause": 0,
+     "unrelated": 0,
+     "true": 0
+    },
+    "licence": false
+   },
+   "A": {
+    "picks": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "adds": 0,
+    "add_precision": null,
+    "add_direction_right": null,
+    "recall_of_reachable_missed": 0.0,
+    "recall_of_all_missed": 0.0,
+    "licence": false
+   },
+   "grid_A": {
+    "0.001": {
+     "adds": 40,
+     "true": 4
+    },
+    "0.01": {
+     "adds": 72,
+     "true": 7
+    },
+    "0.05": {
+     "adds": 83,
+     "true": 12
+    }
+   },
+   "add_candidates": 177,
+   "add_candidates_true": 16,
+   "missed_true_links": 1517,
+   "missed_reachable": 109,
+   "confirm": {
+    "confirmed": 142,
+    "true_share": 0.754,
+    "base_rate_testable": 0.488
+   },
+   "answers_licensed": null,
+   "answers_S_unlicensed": null
+  }
+ },
+ "licences": [],
+ "verdicts": {
+  "P-L5-0": "partly",
+  "P-L5-1": "refuted",
+  "P-L5-2": "refuted",
+  "P-L5-2_detail": {
+   "tau_with_30_or_more_cuts_below_bar": [
+    [
+     "formula",
+     "0.05"
+    ],
+    [
+     "formula",
+     "0.1"
+    ]
+   ]
+  },
+  "P-L5-3": "supported",
+  "P-L5-4": "refuted",
+  "P-L5-5": "not tested (no licence)"
+ }
+}

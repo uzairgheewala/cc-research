@@ -728,7 +728,8 @@ item("INF-05", "INF", "Unit tests for our code; caching by content hash", "done"
 item("INF-06", "INF", "Public repository preparation (no keys, licences, no redistribution, run-record size)", "todo"),
 item("INF-07", "INF", "One command reproduces every number in the report", "todo"),
 # ---------------- 11 Course
-item("CRS-01", "CRS", "TA check-in 1 (TA: Nate)", "todo", kind="deadline", due="2026-10-19"),
+item("CRS-01", "CRS", "TA check-in 1 (TA: Nate)", "todo", kind="deadline", due="2026-10-29",
+     note="Rescheduled: Thursday 29 Oct 2026, 10:45 am PT (Uzair, 19 Oct)."),
 item("CRS-02", "CRS", "Quarter 1 checkpoint", "todo", kind="deadline", due="2026-11-02"),
 item("CRS-03", "CRS", "TA check-in 2", "todo", kind="deadline", due="2026-11-20"),
 item("CRS-04", "CRS", "Quarter 1 final (50%)", "todo", kind="deadline", due="2026-12-04"),
@@ -1573,3 +1574,133 @@ BUNDLE_NOTE.update({
     "B5": "Done 15 Oct: adapter B5.1 passes on five systems; RCA through the ledger reproduces AB-12 (0.932 at 0.917); ER-4b not met "
           "(lower end 0.841, 44 issues). Held-out read ran after B4.1 failed; B5 uses nothing from B4 (deviation recorded).",
 })
+
+# ---- overrides p18 (2026-10-15): kernel v3 (K0-K4), dev experiments, freeze 0cda331ea81cf0dd, second held-out read
+_V3 = "analysis/results/q2_v3/"
+_V3R, _V3D, _V3K0 = "analysis/reports/q2_v3_heldout.md", "analysis/reports/q2_v3_k1_k2_dev.md", "analysis/reports/q2_v3_k0_engine_cache.md"
+ITEMS.append(item("BLD-16", "BLD", "Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates regime", "done",
+                  criterion="K0: cache rebuild reproduces v2 dev ledgers hash-for-hash and B4 stability; K1-K4 measured on dev with their "
+                            "predictions judged; v3 pre-registered, frozen and read held out once",
+                  evidence=["kernel/cache.py", "kernel/harness.py", "kernel/experiment.py", "kernel/v3.py", "kernel/claim_features.py",
+                            "plans/v3_prereg.json", "plans/v3_freeze.json", "manifests/evidence/v3_prereg_2026-10-15.sha256",
+                            _V3 + "k0_check_v2_semantic.json", _V3 + "k0_check_v2_formula.json", _V3 + "k0_check_b4_semantic.json",
+                            _V3 + "v3_test.json", _V3 + "access_log.jsonl", _V3K0, _V3D, _V3R],
+                  checks=[J(_V3 + "k0_check_v2_semantic.json", ["pass"], "true"), J(_V3 + "k0_check_v2_formula.json", ["pass"], "true"),
+                          J(_V3 + "k0_check_b4_semantic.json", ["pass"], "true"),
+                          {"t": "manifest", "path": "manifests/evidence/v3_prereg_2026-10-15.sha256"},
+                          J(_V3 + "v3_test.json", ["freeze"], "eq", "0cda331ea81cf0dd")],
+                  note="K0: 1,250/1,250 v2 dev ledgers rebuilt hash-for-hash from cache; a dev experiment now takes ~10 s per family "
+                       "(30-70 min in v2). K1 link-recovery levers fail on dev (recovered links 33% precise; GES penalty 0.5 lowers F1); "
+                       "floor measured (9.0% / 6.8% of true links have no usable signal). K2 weights refuted as a landmark lever. "
+                       "v3 = v2 ledger + direction view (Meek R1/R3 not acted on) + feature confidence model; held out (second read): "
+                       "ER-2 met for formula (D 0.908 [0.876], DxR 0.911 [0.863]), not semantic (D 0.830 [0.783], DxR 0.866 [0.799]); "
+                       "ECE 0.021-0.026, ER-3 not met (upper ends 0.051-0.074)."))
+_P18 = {
+    "TGT-18": dict(note="v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): "
+                        "semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] "
+                        "(short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. "
+                        "Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3)."),
+    "TGT-19": dict(note="Measured, not met (v2). v3 dev: route A still ties GES even with 5,000 rows (C3 0.551 vs GES 0.559, semantic "
+                        "pooled); a lower GES penalty lowers F1 (0.522 -> 0.466). Route B: Meek propagation from knowledge adds "
+                        "+0.001; the oracle ceiling of the orient-only rule is +0.060 / +0.044. Needs direction evidence beyond the "
+                        "equivalence class (v4)."),
+    "CAP-07": dict(note="v3 confidence model (ledger features, isotonic on cross-fitted scores): held-out ECE 0.021 semantic / 0.025 "
+                        "formula (v2 0.057 / 0.036); realised >= claimed at every threshold in D; ER-3 not met because the ECE "
+                        "upper ends (0.063 / 0.051) exceed 0.05 on 25 scenario clusters."),
+    "CAP-11": dict(note="50/50 repeat builds give the same ledger hash (B1 R3) within one host. Across hosts the hash needs the "
+                        "OpenBLAS kernel family pinned (OPENBLAS_CORETYPE=SKYLAKEX, threads 1): without it every p-value moves in the "
+                        "14th digit (found by K0, 15 Oct); kernel/cache.py keys on both."),
+}
+for _i in ITEMS:
+    if _i["id"] in _P18:
+        _i.update({k: v for k, v in _P18[_i["id"]].items() if v is not None})
+        if _i["id"] in ("TGT-18", "CAP-07"):
+            _i["evidence"] = list(_i["evidence"]) + [_V3 + "v3_test.json", _V3R]
+        if _i["id"] == "TGT-19":
+            _i["evidence"] = list(_i["evidence"]) + [_V3D]
+        if _i["id"] == "CAP-11":
+            _i["evidence"] = list(_i["evidence"]) + [_V3K0, "kernel/cache.py"]
+
+# ---- overrides p19 (2026-10-15): stage-by-stage anatomy of the ledger's losses (dev; corrects the dev report's blame table)
+_AN = ["analysis/q2_anatomy.py", "analysis/q2_half_anatomy.py", "analysis/results/q2_v3/anatomy_dev.json",
+       "analysis/results/q2_v3/half_anatomy_dev.json", "analysis/reports/q2_v3_anatomy.md"]
+for _i in ITEMS:
+    if _i["id"] in ("BLD-16", "TGT-18"):
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _AN if e not in _i["evidence"]]
+
+# ---- overrides p20 (2026-10-15): lever map and headroom ladder (dev)
+_LM = ["docs/design/q2_lever_map.md", "analysis/q2_headroom.py", "analysis/results/q2_v3/headroom_dev.json"]
+for _i in ITEMS:
+    if _i["id"] in ("TGT-18", "TGT-19"):
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _LM if e not in _i["evidence"]]
+
+# ---- overrides p21 (2026-10-16): direction signals that do not depend on colliders (dirsig-1, dirsig-2; dev)
+_DS = ["kernel/asym.py", "kernel/asym_cond.py", "tests/test_q2_asym.py", "tests/test_q2_asym_cond.py",
+       "plans/dirsig_prereg.json", "plans/dirsig2_prereg.json", "manifests/evidence/dirsig_prereg_2026-10-16.sha256",
+       "manifests/evidence/dirsig2_prereg_2026-10-16.sha256", "analysis/q2_dirsig.py", "analysis/q2_dirsig_diag.py",
+       "analysis/q2_dirsig2.py", "analysis/results/q2_v3/dirsig_dev.json", "analysis/results/q2_v3/dirsig_diag_dev.json",
+       "analysis/results/q2_v3/dirsig2_dev.json", "analysis/reports/q2_dirsig_dev.md", "docs/design/q2_lever_map.md"]
+for _i in ITEMS:
+    if _i["id"] == "CAP-02":
+        _i["note"] = ("Measured 16 Oct (dev, two pre-registered rounds): nine collider-free direction signals (non-Gaussian, "
+                      "additive-noise, regression-error, IGCI, heteroscedastic, conditional-distribution, and conditional "
+                      "variants) are right 0.42-0.64 of the time on found links at 1,000 rows; no licence. Failure classes: "
+                      "children with mass points (signals confidently wrong), children with several parents, mechanisms "
+                      "outside every model. Lead: IGCI on pooled formula 0.86 on 153 links, to confirm on a fresh family.")
+        _i["evidence"] = list(_i.get("evidence") or []) + [e for e in _DS if e not in (_i.get("evidence") or [])]
+        _i["checks"] = list(_i.get("checks") or []) + [{"t": "manifest", "path": "manifests/evidence/dirsig_prereg_2026-10-16.sha256"},
+                                                       {"t": "manifest", "path": "manifests/evidence/dirsig2_prereg_2026-10-16.sha256"}]
+    if _i["id"] == "TGT-19":
+        _i["note"] = _i["note"] + (" 16 Oct: route A through pairwise asymmetry is closed at 1,000 rows on CausalArena "
+                                   "(analysis/reports/q2_dirsig_dev.md); open direction sources are interventions and knowledge.")
+        _i["evidence"] = list(_i["evidence"]) + ["analysis/reports/q2_dirsig_dev.md"]
+
+# ---- overrides p22 (2026-10-16): link filters L8 / L7 (linkfilt-1; dev)
+_LF = ["kernel/linkfilt.py", "tests/test_q2_linkfilt.py", "plans/linkfilt_prereg.json",
+       "manifests/evidence/linkfilt_prereg_2026-10-16.sha256", "analysis/q2_linkfilt.py", "analysis/q2_linkfilt_diag.py",
+       "analysis/results/q2_v3/linkfilt_dev.json", "analysis/results/q2_v3/linkfilt_diag_dev.json", "analysis/reports/q2_linkfilt_dev.md"]
+for _i in ITEMS:
+    if _i["id"] == "TGT-18":
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _LF if e not in _i["evidence"]]
+        _i["checks"] = list(_i.get("checks") or []) + [{"t": "manifest", "path": "manifests/evidence/linkfilt_prereg_2026-10-16.sha256"}]
+        _i["note"] = _i["note"] + (" 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula "
+                                   "(cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links "
+                                   "sit beside a real mediated path; neither can act until an applicability condition exists "
+                                   "(analysis/reports/q2_linkfilt_dev.md).")
+
+# ---- overrides p23 (2026-10-19): L16 applicability conditions and L5 interventions as link evidence (dev); BEN-13
+_L16 = ["plans/l16_prereg.json", "manifests/evidence/l16_prereg_2026-10-19.sha256", "analysis/q2_l16.py", "tests/test_q2_l16_l5.py",
+        "analysis/results/q2_v3/l16_dev.json", "analysis/reports/q2_l16_dev.md", "docs/design/q2_lever_map.md"]
+_L5 = ["plans/l5_prereg.json", "manifests/evidence/l5_prereg_2026-10-19.sha256", "analysis/q2_l5.py", "analysis/q2_l5_diag.py",
+       "analysis/results/q2_v3/l5_dev.json", "analysis/results/q2_v3/l5_diag_dev.json", "analysis/reports/q2_l5_dev.md"]
+for _i in ITEMS:
+    if _i["id"] == "TGT-18":
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _L16 + _L5 if e not in _i["evidence"]]
+        _i["checks"] = list(_i.get("checks") or []) + [
+            {"t": "manifest", "path": "manifests/evidence/l16_prereg_2026-10-19.sha256"},
+            {"t": "manifest", "path": "manifests/evidence/l5_prereg_2026-10-19.sha256"},
+            J("analysis/results/q2_v3/l16_dev.json", ["verdicts", "P-A3"], "eq", "supported"),
+            J("analysis/results/q2_v3/l16_dev.json", ["selected_gate", "transfer_guard", "passes"], "eq", False),
+            J("analysis/results/q2_v3/l5_dev.json", ["licences"], "len_eq", 0)]
+        _i["note"] = _i["note"] + (" 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar "
+                                   "(0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the "
+                                   "transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted "
+                                   "on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong "
+                                   "(analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is "
+                                   "real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per "
+                                   "target (analysis/reports/q2_l5_dev.md).")
+    if _i["id"] == "TGT-19":
+        _i["evidence"] = list(_i["evidence"]) + [e for e in ["analysis/reports/q2_l5_dev.md", "analysis/results/q2_v3/l5_dev.json"] if e not in _i["evidence"]]
+        _i["note"] = _i["note"] + (" 19 Oct: adding missed links from interventions (L5 rule A) is 9-14% precise on dev; no licence "
+                                   "(analysis/reports/q2_l5_dev.md).")
+ITEMS.append(item("BEN-13", "BEN", "CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall",
+                  "todo", kind="task",
+                  criterion=("Two published rows per cell line (K562, RPE1) reproduced within tolerance before any re-score claim; then per "
+                             "published method: (a) edge-placement control on mean Wasserstein and FOR; (b) names-only baseline on the "
+                             "biological and statistical evaluations under a gene-label permutation; the share of each published score each "
+                             "channel accounts for, with intervals; predictions and thresholds hashed before the first re-score"),
+                  evidence=["docs/project_snapshots/2026-10-19/benchmark-targets.md"],
+                  note=("Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data "
+                        "download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step "
+                        "toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5.")))
+

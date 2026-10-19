@@ -56,6 +56,8 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--maps", nargs="*", default=[], help="calibration map files (under calibration/) to hash into the freeze")
     ap.add_argument("--same-core-as", default=None, help="refuse unless the data-only core equals this bundle's freeze (e.g. b1)")
+    ap.add_argument("--models", default=None, help="a models index (e.g. calibration/v3_models.json): every model's sha256 goes into the freeze")
+    ap.add_argument("--prereg", default=None, help="the pre-registration this freeze answers to (its sha256 goes into the freeze)")
     a = ap.parse_args()
     path = ROOT / "plans" / ("%s_freeze.json" % a.bundle)
     h, listing = code_sha256()
@@ -70,7 +72,12 @@ def main():
     maps = {}
     for m in a.maps:
         maps[Path(m).name] = hashlib.sha256((ROOT / "calibration" / Path(m).name).read_bytes()).hexdigest()
-    rec = {"bundle": a.bundle, "id": h[:16], "code_sha256": h, "core_sha256": core_sha256(), "rule": a.rule, "note": a.note, "maps": maps,
+    models = {}
+    if a.models:
+        for k, v in json.load(open(ROOT / a.models)).items():
+            models[k] = hashlib.sha256((ROOT / v["path"]).read_bytes()).hexdigest()
+    prereg = {"path": a.prereg, "sha256": hashlib.sha256((ROOT / a.prereg).read_bytes()).hexdigest()} if a.prereg else None
+    rec = {"bundle": a.bundle, "id": h[:16], "code_sha256": h, "core_sha256": core_sha256(), "rule": a.rule, "note": a.note, "maps": maps, "models": models, "prereg": prereg,
            "written_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "files": listing}
     print(json.dumps({k: v for k, v in rec.items() if k != "files"}, indent=1))
     if a.write:

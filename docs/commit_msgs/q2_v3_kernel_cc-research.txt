@@ -1,0 +1,117 @@
+Kernel v3: engine cache (K0), link-recovery and floor study (K1), decision weights (K2), feature confidence (K4); v3 frozen and read held out
+
+No API credit spent. Design: docs/design/q2_kernel_v3_design.md (approved 15 Oct). Pre-registration plans/v3_prereg.json and
+freeze plans/v3_freeze.json (id 0cda331ea81cf0dd, data-only core equal to B1's), hashed in
+manifests/evidence/v3_prereg_2026-10-15.sha256. Second read of the CausalArena test splits (v2 read them once).
+
+K0 engine cache and experiment loop (analysis/reports/q2_v3_k0_engine_cache.md):
+- kernel/cache.py (key: canonical-table hash, engine manifest, settings incl. BLAS threads and OPENBLAS_CORETYPE),
+  kernel/harness.py (fill, check-v2, check-b4, k1), kernel/experiment.py, engines/variants.py (GES penalty variant).
+- Must-show: v2 dev ledgers rebuilt hash-for-hash 1,250/1,250 (5 rules x 125 files x 2 families); B4 stability
+  reproduced 373/373; a full dev experiment ~10 s per family.
+- Found and fixed as a class: OpenBLAS picked different kernels on a new host (Prescott vs SkylakeX) and moved every
+  p-value in the 14th digit; the kernel family and threads are pinned and keyed.
+
+K1-K4 on dev (analysis/reports/q2_v3_k1_k2_dev.md):
+- kernel/recover.py (test battery, cell-mean and boosting residual tests, link audit): recovered links 33% precise;
+  GES penalty 0.5 lowers F1 0.522 -> 0.466. P-K1a, P-K1b refuted.
+- analysis/q2_floor.py: missed links split into floor (9.0% / 6.8% of true links), search gap (14.2% / 20.1%), nonlinear
+  (5.2% / 4.9%), sample size (3.8% / 1.8%).
+- Pooled replicates (5,000 rows, regime DxR): misses 32% -> 24% semantic, DV-1 precision 0.756 -> 0.816.
+- kernel/weights.py, kernel/k2_eval.py: Meek propagation from knowledge adds +0.001 F1 (not adopted); weights do not predict
+  oracle gain (P-K2 refuted).
+- kernel/claim_features.py, kernel/k4_eval.py: confidence from ledger features; Meek R1 directions right 64% / 60%.
+
+v3 held out (analysis/reports/q2_v3_heldout.md; kernel/v3.py; calibration/v3_*.pkl):
+- ER-2 met for formula (D 0.908 [0.876], DxR 0.911 [0.863]); not semantic (D 0.830 [0.783], DxR 0.866 [0.799]).
+- ECE 0.021-0.026 (v2 0.057 / 0.036); ER-3 not met (upper ends 0.051-0.074).
+- Predictions: P-V3a refuted (semantic DxR lower end 0.799), P-V3b supported, P-V3c supported (outcome; reason partly
+  different), P-V3d supported.
+
+Tests: tests/test_q2_cache.py (5), tests/test_q2_v3.py (6), NumPy only.
+Tracker: jobs/patches/p18_kernel_v3.py (BLD-16 done; TGT-18, TGT-19, CAP-07, CAP-11 notes and evidence; /cache/ ignored).
+Site: jobs/patches/s19_site_v3.py (v3 registry keys, status-page v3 table, home finding, T4 evidence).
+
+Closeout (15 Oct, on the device):
+- tracker/verify.py: local file-hash cache keyed by resolved path and size:mtime_ns (tracker/.hash_cache.json, ignored;
+  VERIFY_NO_CACHE=1 turns it off; CI never has it) and a per-process memo for runs/<id>/meta.json. verify 180 s+ -> 87 s
+  cold, 15 s warm on the Windows mount. BLD-10 repinned for it.
+- Repins after deliberate changes: BLD-02, BLD-05, BLD-10, BND-01, TEAM-08 (TEAM-08 twice: site pages changed again below).
+- .gitignore: /cache/ (p18), /tracker/.hash_cache.json, /tracker/.hash_cache.tmp.
+- Site: jobs/patches/s20_status_v3_trim.py (status page back under 1,800 words: v3 table regime in the family cell,
+  intervals in brackets; the Q2 bundle table folds to one sentence while every bundle is done) and
+  jobs/patches/s21_site_after_v3.py (prose that still said "choose which landmark a second kernel version chases" on
+  status, home, theses T3(c), and the Level 3 / Level 4 footers now states the v3 result and the open choice). Status,
+  index and theses re-read rendered and marked reviewed; 0 errors, 0 warnings.
+- Selftest run on a local copy of the repo (the mount is too slow for its trace checks): 45/45, output byte-identical.
+- Slack: dev list updates CAP-07, CAP-11, INF-05, TGT-18, TGT-19 and add BLD-16 (Rec0CAGRY27B2, in tracker/mirrors.json);
+  prod list updates CAP-07, CAP-11; list-synced dev and prod; prod-publish. list-diff 0 / 0.
+- Digests: dev posted in #cd-tracker (ts 1792101854.226419); prod created as a draft in #causal-discovery
+  (20261015T220451Z, recorded --draft). It supersedes the unsent 14:19 prod draft and carries both rounds.
+- tracker/relay_out: unsent 13 Oct prod drafts (195332Z, 220140Z) moved to relay_out/discarded/ (R3).
+- Checks: verify 0 problems; tools/ci_check.py 0 errors; tests/run_tests.py 182 OK (19 skipped); trace check 0 errors,
+  0 warnings; snapshot 760f257d8349, snapshot --check ok.
+
+Anatomy (15 Oct, after the closeout; kit44, jobs/patches/p19_anatomy.py):
+- analysis/q2_anatomy.py and analysis/q2_half_anatomy.py (dev, from the engine cache, ~1 min for both families): every
+  stage's counts for v2 and v3 in D and DxR: links (found / missed / false by kind), directions (committed, right,
+  reversed, open; by licence; against what the truth leaves open), answers (yes / no precision; wrong yes and wrong no
+  by first wrong edge), and the confident half's make-up. Results analysis/results/q2_v3/{anatomy,half_anatomy}_dev.json;
+  report analysis/reports/q2_v3_anatomy.md.
+- Correction: q2_v3_k1_k2_dev.md section 3's blame table over-credited reversed links (381); with the edge that actually
+  leaves T's true descendants blamed, semantic wrong "yes" is 343 unrelated / 231 common-cause / 120 reversed / 111
+  backward-shadow. Noted in the dev report; the anatomy report supersedes it.
+- Evidence added to BLD-16 and TGT-18 (p19); repins BLD-16, TGT-18, BND-01 (tests/last_run.json). Unsent 13 Oct prod
+  draft 230819Z moved to relay_out/discarded/. verify 0 problems; trace check 0 / 0; snapshot eee3960888b8 ok.
+
+Lever map (15 Oct; kit45, jobs/patches/p20_lever_map.py):
+- docs/design/q2_lever_map.md: every source of evidence about links (15) and directions (13), each USED / TRIED /
+  UNMEASURED / BARRED / N/A with its dev accuracy and yield; 18 of 26 applicable sources measured or ruled (69%).
+- analysis/q2_headroom.py -> analysis/results/q2_v3/headroom_dev.json: the headroom ladder (ledger -> reversals righted
+  -> opens oriented -> false links removed -> missed links added), DV-1 and F1 per step. Semantic v3: missed links cost
+  0.14 precision / 0.19 F1; false links 0.03 / 0.14; reversed directions 0.05 / 0.06; commitment +0.15 coverage.
+- Seven architecture measures (lever coverage, per-stage headroom, attribution budget, licence table, floor accounting,
+  invariants, read budget) to be carried by every version report. Evidence on TGT-18, TGT-19; repinned.
+
+Direction signals (16 Oct; kit46, jobs/patches/p21_dirsig.py, jobs/patches/s22_site_dirsig.py):
+- kernel/asym.py (round 1: six pairwise signals, D4 entropy-LiNGAM, D5a ANM-HSIC, D5b RECI, D5c IGCI, D6 HNM-HSIC, D10
+  CDS) and kernel/asym_cond.py (round 2: mass-point gate, conditional C5a/C6/C5b, D14 mass side); sign conventions and
+  antisymmetry tested on textbook cases (tests/test_q2_asym.py, tests/test_q2_asym_cond.py; NumPy only, in CI).
+- Pre-registered before their numbers: plans/dirsig_prereg.json, plans/dirsig2_prereg.json, hashed in
+  manifests/evidence/dirsig{,2}_prereg_2026-10-16.sha256 (manifest checks on CAP-02).
+- analysis/q2_dirsig.py, q2_dirsig_diag.py, q2_dirsig2.py -> analysis/results/q2_v3/dirsig*_dev.json (+ per-link rows,
+  .jsonl.gz); report analysis/reports/q2_dirsig_dev.md. Dev only, regime D and DxR, both families.
+- Result: no licence in nine signals over two rounds (0.42-0.64 at full yield). Failure classes: child mass points
+  (signals confidently wrong), children with several parents, mechanism families outside every model. Conditioning on
+  ledger neighbours fails (the sets carry the ledger's link errors). Lead only: IGCI on pooled formula, 0.86 on 153 links.
+  Predictions: P-DS1 supported, P-DS2 refuted, P-DS3 supported, P-DS4 supported, P-DS5 refuted by one cell; P2-1
+  supported, P2-2 refuted, P2-3 supported, P2-4 refuted, P2-5 refuted and reversed, P2-6 supported.
+- docs/design/q2_lever_map.md: D4, D5, D6, D10 TRIED; rows D10b (conditional) and D14 (mass side) added; the 15 Oct
+  count corrected (it said 18 of 26; the tables gave 19 of 33); now 25 of 35 applicable rows measured or ruled (71%).
+- Tracker: CAP-02 note and evidence, TGT-19 note (route A via pairwise asymmetry closed at 1,000 rows). Slack: dev rows
+  CAP-02, TGT-18, TGT-19, BLD-16; prod row CAP-02; list-synced both; prod-publish.
+- Site: s22 replaces "a v4 aimed at ... direction evidence beyond GES" with "a v4 aimed at links" and extends T3(c);
+  theses re-read and marked reviewed.
+- Lint: unused names removed in analysis/q2_dirsig.py and analysis/q2_anatomy.py. Repins: CAP-02, TGT-19, BLD-16, TGT-18,
+  BLD-02 (kernel/ gained two modules), BND-01 (tests/last_run.json). Tests 188 OK (19 skipped); verify 0 problems;
+  ci_check 0 errors; trace check 0 / 0.
+
+Link filters (16 Oct; kit47, jobs/patches/p22_linkfilt.py):
+- kernel/linkfilt.py: Spearman and mutual-information (Miller-Madow corrected) strength matrices and the triangle
+  data-processing-inequality ratio; tests/test_q2_linkfilt.py (a chain with its shadow; MI near zero for independent
+  columns). Pre-registered before its numbers: plans/linkfilt_prereg.json, hashed in
+  manifests/evidence/linkfilt_prereg_2026-10-16.sha256 (manifest check on TGT-18).
+- 500 resample engines filled in the cloud cache (25 first-replicate dev files x 10 resamples x 2 families; B4's draws;
+  64 min). The cache is not shipped (gitignored); kernel.harness fill --resamples 10 rebuilds it.
+- analysis/q2_linkfilt.py -> analysis/results/q2_v3/linkfilt_dev.json (+ per-link rows); post hoc
+  analysis/q2_linkfilt_diag.py -> linkfilt_diag_dev.json; report analysis/reports/q2_linkfilt_dev.md.
+- Result: L8a (triangle order, Spearman) and L7 (stability) earn a licence on formula (cut precision 0.81; 25% / 38% of
+  false links cut; 5.6% / 8.4% of true links lost; F1 +0.011 / +0.022, DV-1 precision +0.009 / +0.000, coverage up) and
+  not on semantic (0.63-0.75), where 83% of the true links L8a would cut sit in a real triangle (55% of semantic true
+  links do, 35% of formula's). The ledger looks the same in both families, so neither filter can act until an
+  applicability condition exists (new lever-map row L16). Predictions: P-LF0, 3, 4, 5 supported; P-LF1, 2 refuted;
+  P-LF6 partly (F1 met, DV-1 precision short of +0.01, not lowered).
+- docs/design/q2_lever_map.md: L7, L8 TRIED; L16 added; licence table; 27 of 36 applicable rows measured or ruled (75%).
+- Repins: TGT-18, TGT-19, BLD-02 (kernel/ gained linkfilt.py; prod-published to clear W1), CAP-02 (lever map),
+  BND-01 (tests). Slack dev: INF-05, TGT-18. Tests 190 OK (19 skipped); verify 0 problems; ci_check 0 errors;
+  trace check 0 / 0; snapshot de0e6913b667 ok.

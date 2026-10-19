@@ -17,7 +17,7 @@
   "Note": "S1: Sachs (4 arms) and abalone, Auto MPG, concrete, DWD (3 arms each). S2: 10 CausalArena semantic test scenarios, columns shuffled, real/neutral/swapped, gates D1-D11 pass. One swapped labelling (s2_03) is the best found within the search budget (2 shared pairs), not proved minimal; recorded in its card.",
   "Links": "child of DLV-06 · implemented by BND-05 · parent of BEN-06, BEN-12",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DLV-02": {
   "Item": "DLV-02  Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded",
@@ -37,7 +37,7 @@
   "Note": "Closed 14 Oct under the restated criterion: 84 live runs on S1 and 30 on S2; every arm reached S3. The 6 S2 arms whose only gpt-4o run crashed at the cycle step are not rerun: the crash is the system's own (18 of 19 live entries) and is reported as a finding.",
   "Links": "child of DLV-06 · implemented by BND-08 · parent of AUD-09, REP-01, REP-02",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DLV-03": {
   "Item": "DLV-03  Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage",
@@ -57,7 +57,7 @@
   "Note": "Measurements exist for S1 (AUD-03 to AUD-09, RQ-01 to RQ-03) and S2 (AUD-10, stage table per arm); the Q1 write-up is not done.",
   "Links": "child of DLV-06 · implemented by BND-13 · parent of AUD-03, AUD-04, AUD-05, AUD-06, AUD-07, AUD-08, RQ-01, RQ-02, RQ-03",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DLV-04": {
   "Item": "DLV-04  Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets",
@@ -77,7 +77,7 @@
   "Note": "Refinement v2 (BND-11), frozen 12 Oct, evaluated 14 Oct: adjacency F1 not below the algorithm's (within 0.02) in 22 of 22 held-out formula files; 0 crashes in 1,571 live model calls; every edge labelled with its source (data / names). Under the same controls as BND-08 (columns shuffled, three name arms).",
   "Links": "child of DLV-06 · implemented by BND-11 · parent of BLD-06, CAP-06, CAP-10, TGT-09, TGT-13",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DLV-05": {
   "Item": "DLV-05  Q1 checkpoint (Mon 2 Nov)",
@@ -97,7 +97,7 @@
   "Note": "",
   "Links": "implemented by BND-13 · implements CRS-02",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DLV-06": {
   "Item": "DLV-06  Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)",
@@ -117,7 +117,7 @@
   "Note": "",
   "Links": "implemented by BND-14 · implements CRS-04 · parent of DLV-01, DLV-02, DLV-03, DLV-04",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-01": {
   "Item": "REP-01  Run Causal-Copilot a31aa7c unmodified end to end with GPT-4o, fully recorded",
@@ -137,7 +137,7 @@
   "Note": "",
   "Links": "child of DLV-02 · curated into REP-14",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-02": {
   "Item": "REP-02  Code untouched before and after every run (1,332 files byte-identical)",
@@ -157,7 +157,7 @@
   "Note": "",
   "Links": "child of DLV-02 · curated into REP-14",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-03": {
   "Item": "REP-03  Reproduce the paper's headline claims (arXiv 2504.13263)",
@@ -177,7 +177,7 @@
   "Note": "22 claims tabled (BND-03): none reproducible from the repo (data absent; the scorer scores pre-refinement output and orients non-directed edges from the truth, evaluator.py:154-215). Live-only claims stay 'not attempted' until BND-08/12.",
   "Links": "curated into REP-14 · implemented by BND-14",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-04": {
   "Item": "REP-04  Check the paper's text against the code (divergences D1-D9)",
@@ -197,7 +197,7 @@
   "Note": "Full pass over the methods sections (BND-03): 45 claims, divergences D10-D23 added to D1-D9; every code citation resolves in the a31aa7c tree (gate A1).",
   "Links": "curated into REP-14 · implemented by BND-03",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-05": {
   "Item": "REP-05  Reproduce CausalArena's published PC baseline (scorer calibration, F1)",
@@ -217,7 +217,7 @@
   "Note": "",
   "Links": "curated into REP-15",
   "In prod": "REP-15 Replicate CausalArena baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-06": {
   "Item": "REP-06  Explain why SHD does not reproduce (ours 37.5, published 33.5)",
@@ -237,7 +237,7 @@
   "Note": "Not settleable from public data. The authors' baseline code orients undecided CPDAG edges lower index -> higher ('liberal', TabCausal run_pc.py) and counts a reversal once; under that rule our SHD is 35.43 (within 2.81 of 33.52) but F1 0.396 (published 0.333, tolerance 0.045); under random orientation F1 matches and SHD does not. The published means also cover 50 unreleased scenarios. The paper's appendix B (which states the rule) could not be read.",
   "Links": "curated into REP-15 · implemented by BND-04",
   "In prod": "REP-15 Replicate CausalArena baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-07": {
   "Item": "REP-07  Reproduce more published CausalArena rows: GES/GIES, FCI, LiNGAM, NOTEARS, AVICI, CDFM (CPU)",
@@ -257,7 +257,7 @@
   "Note": "Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run.",
   "Links": "curated into REP-15 · implemented by BND-06",
   "In prod": "REP-15 Replicate CausalArena baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-08": {
   "Item": "REP-08  Reproduce the R2-sortability analysis (Reisach et al. 2023) on CausalArena",
@@ -277,7 +277,7 @@
   "Note": "",
   "Links": "curated into REP-15",
   "In prod": "REP-15 Replicate CausalArena baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-09": {
   "Item": "REP-09  Reproduce the Causal Chambers authors' GES baseline and CDFM's chamber score",
@@ -297,7 +297,7 @@
   "Note": "GES (BIC, forward/backward/turning) on lt uniform_reference, 10,000 rows, the authors' 20 variables: CPDAG identical to the authors'; 12 DAGs, precision 0.55-0.60, recall 0.564-0.615 (reported 0.55-0.60 / 0.56-0.62). CDFM's 0.727 recorded as not reproducible here: checkpoint only on huggingface.co (blocked by the egress allowlist) and its chamber protocol not pinned.",
   "Links": "implemented by BND-07",
   "In prod": "itself (as: Replicate Causal Chambers baselines)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-10": {
   "Item": "REP-10  Reproduce CARE's moved-names control on one classic graph",
@@ -317,7 +317,7 @@
   "Note": "",
   "Links": "implemented by BND-12",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-11": {
   "Item": "REP-11  Reproduce Kitson & Constantinou's Sachs numbers (0.61 / 0.40 / 0.73)",
@@ -337,7 +337,7 @@
   "Note": "Data part (no LLM) reproduced within 0.05 with Python stand-ins for bnlearn/Tetrad: ensemble F1 0.647 vs 0.606, single-run mean 0.259 vs 0.293; merge, DAG conversion and F1 cross-checked against the authors' PyPI code (identical). Conditional: Sachs has no data-identifiable direction, so the ensemble's arrows come from Tabu-Stable's orientation. Open: LLM 0.40 and fused 0.73 (BND-12, live).",
   "Links": "curated into REP-14 · implemented by BND-12",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-12": {
   "Item": "REP-12  Reproduce CausalSteward's external score for Causal-Copilot (F1 0.08 at 53 variables)",
@@ -357,7 +357,7 @@
   "Note": "Obtainable (BND-02): Zenodo record 13871097, CC BY 4.0, 11.2 GB; published score F1 0.078 (std 0.012), FCI on the 53-node set. Not downloaded; a live run is a Q2 candidate.",
   "Links": "curated into REP-14 · implemented by BND-12",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "REP-13": {
   "Item": "REP-13  Re-read every second-hand literature claim before it enters the report",
@@ -377,7 +377,7 @@
   "Note": "72 claims: 55 confirmed, 17 corrected (corrections written into pass 6 and pass 7, superseding the text), 0 removed; Friedman et al. UAI 1999 confirmed separately. Read through a summarising fetch tool: quotes to be checked against the PDF before a mentor or course document.",
   "Links": "curated into REP-14 · implemented by BND-02",
   "In prod": "REP-14 Replicate Causal-Copilot paper claims and results",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-01": {
   "Item": "DOM-01  Theory baseline: identifiability, finite samples, untestable assumptions; what 'perfect' means",
@@ -397,7 +397,7 @@
   "Note": "",
   "Links": "curated into DOM-14",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-02": {
   "Item": "DOM-02  Literature map in 9 clusters",
@@ -417,7 +417,7 @@
   "Note": "Agent reports are second-hand (A) until re-read; see REP-13.",
   "Links": "curated into DOM-13",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-03": {
   "Item": "DOM-03  Benchmark landscape and what '100%' means on each",
@@ -437,7 +437,7 @@
   "Note": "",
   "Links": "curated into DOM-13",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-04": {
   "Item": "DOM-04  Nearest prior work for each claim we might make",
@@ -457,7 +457,7 @@
   "Note": "",
   "Links": "curated into DOM-13",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-05": {
   "Item": "DOM-05  Commercial landscape, first pass",
@@ -477,7 +477,7 @@
   "Note": "",
   "Links": "curated into DOM-13 · implemented by BND-01",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-06": {
   "Item": "DOM-06  Weighing against the WorldReset forecasting project",
@@ -497,7 +497,7 @@
   "Note": "",
   "Links": "curated into DOM-13 · implemented by BND-01",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-07": {
   "Item": "DOM-07  Deep reads: CausalDS, CARE, CausalArena appendices B-C, ACI scoring, Li & Russo implementation",
@@ -517,7 +517,7 @@
   "Note": "CausalDS, CARE, ACI, Li & Russo done. CausalArena appendices B-C could not be read (HTML stops in section 6.2, PDF text empty); the scoring protocol was taken from the authors' baseline code instead (protocol_check.json). Closes when appendix B is read.",
   "Links": "curated into DOM-13 · implemented by BND-02",
   "In prod": "DOM-13 Literature mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-08": {
   "Item": "DOM-08  Choose a calibration method for bootstrap confidence",
@@ -537,7 +537,7 @@
   "Note": "Platt scaling fitted with whole scenarios held out (5 folds); raw frequency as the baseline; isotonic as a diagnostic; conformal deferred; Brier score primary.",
   "Links": "curated into DOM-14 · implemented by BND-02",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-09": {
   "Item": "DOM-09  What is practical for 'what if we set X?' at 20-40 variables (IDA, adjustment on CPDAG/PAG, bounds)",
@@ -557,7 +557,7 @@
   "Note": "Local IDA on PC's CPDAG at 25 variables: 600 pairs in 0.06 s; 52% identified within the class; true parents among the candidates for only 7 of 25 X. Computation is not the obstacle; skeleton recall is.",
   "Links": "curated into DOM-14 · implemented by BND-06",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-10": {
   "Item": "DOM-10  Active experiment-design baselines: which to implement",
@@ -577,7 +577,7 @@
   "Note": "CBED (MIT, Python/JAX) and pcalg::opt.target (GPL, R). R is not installable in either sandbox (CRAN blocked); recorded for Q2.",
   "Links": "curated into DOM-14 · implemented by BND-02",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-11": {
   "Item": "DOM-11  Pretrained discovery models: order-invariance by design, CPU checkpoints",
@@ -597,7 +597,7 @@
   "Note": "Only AVICI, FoundCause and Arrow state variable-order equivariance; Arrow has no released weights; TabCausal, SEA and CauScale code carry no licence.",
   "Links": "curated into DOM-14 · implemented by BND-02",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DOM-12": {
   "Item": "DOM-12  Hidden common causes, time series, 100+ variables",
@@ -617,7 +617,7 @@
   "Note": "Proposal: Q1 measures what happens to PAG marks; time series and 100+ variables move to Q2. G1 (16 Oct) confirms or changes it.",
   "Links": "curated into DOM-14 · implemented by BND-02",
   "In prod": "DOM-14 Theoretical baselines",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-01": {
   "Item": "AUD-01  Architecture map: 8-step CLI path, state object, LLM call points, storage",
@@ -637,7 +637,7 @@
   "Note": "Only in the ledger; no standalone report in cc-research.",
   "Links": "curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-02": {
   "Item": "AUD-02  LLM dependency map: 51 call sites, 88 logical points, 29 decisions, 3 graph-writing points",
@@ -657,7 +657,7 @@
   "Note": "",
   "Links": "curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-03": {
   "Item": "AUD-03  Edge lineage tool: every final edge traced to the step that set it",
@@ -677,7 +677,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-04": {
   "Item": "AUD-04  Refinement audit without the LLM: bootstrap step deletes non-directed edges",
@@ -697,7 +697,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-05": {
   "Item": "AUD-05  Name controls on 5 datasets: real 93% / neutral 0% / moved 90% of final edges written by the LLM",
@@ -717,7 +717,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-06": {
   "Item": "AUD-06  Reliability: 12 of 84 runs crashed; cycle step failed 9 of 9; one request got 3 answers",
@@ -737,7 +737,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-07": {
   "Item": "AUD-07  Stability: algorithm choice stable; edge decisions vary; bootstrap seeded by accident; numpy unseeded",
@@ -757,7 +757,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-08": {
   "Item": "AUD-08  Survivor-bias check: crashed runs do not change conclusions",
@@ -777,7 +777,7 @@
   "Note": "",
   "Links": "child of DLV-03 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-09": {
   "Item": "AUD-09  Leak scan of neutral-name arms: no real name in any prompt before the final graph",
@@ -797,7 +797,7 @@
   "Note": "",
   "Links": "child of DLV-02 · curated into AUD-16",
   "In prod": "AUD-16 Architecture mapping",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-10": {
   "Item": "AUD-10  Causal-Copilot on CausalArena's named scenarios (10 x real/neutral/moved, columns shuffled) [A2]",
@@ -817,7 +817,7 @@
   "Note": "30 live runs 11-12 Oct (gpt-4o-2024-08-06), all reached S3. M2 REFUTED (real-name lift >= 0.10 in 5 of 10 families; mean +0.09), M3 SUPPORTED (swapped: 81 of 101 LLM-set edges follow labels), M4 SUPPORTED (neutral S3 below plain PC in 8 of 10), M1 SUPPORTED (dev replay 19 of 23). Without s2_02: M2 5 of 9, INCONCLUSIVE.",
   "Links": "curated into AUD-17 · implemented by BND-08",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-11": {
   "Item": "AUD-11  Behaviour at 20-40 variables: cost, runtime, crash rate",
@@ -837,7 +837,7 @@
   "Note": "Live at 20-25 variables: 110k prompt + 14.6k completion tokens per run (about $12.7 for 30 at $2.50/$10 per M; the stub estimate was low because live runs chose FCI, the stub PC); 302-1130 s per run; 6 of 30 crashed at the cycle step (real 5, swapped 1, neutral 0).",
   "Links": "curated into AUD-17 · implemented by BND-08",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-12": {
   "Item": "AUD-12  Effect-estimation module (causal_inference/)",
@@ -857,7 +857,7 @@
   "Note": "Reachable only from the web demo; causal_inference/main.py is broken (:32, :39); <-> and o-> treated as parents when choosing confounders (inference.py:242-246, micro-test); 'metalearners' has no wrapper; 'counterfactual' runs an interventional shift.",
   "Links": "curated into AUD-17 · implemented by BND-03",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-13": {
   "Item": "AUD-13  Second model besides GPT-4o",
@@ -877,7 +877,7 @@
   "Note": "Causal-Copilot on gpt-4o-mini, 30 runs: M4 supported 9/10, M2 refuted on both models; name reliance 0.094 vs 0.167 on gpt-4o (RQ-17).",
   "Links": "curated into AUD-17 · implemented by BND-12",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-14": {
   "Item": "AUD-14  Torch-based and time-series wrappers, web-demo path, report quality",
@@ -897,7 +897,7 @@
   "Note": "Static audit done (BND-03): CORL crashes program.py (corl.py:93 vs program.py:53); Granger needs integer column names; the CLI time-series path plots a None revised_graph (main.py:307, code trace); the report's fixed text claims voting and 'top three' algorithms the code does not do. Still open: one offline stub run of a time-series wrapper.",
   "Links": "curated into AUD-17 · implemented by BND-03",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-15": {
   "Item": "AUD-15  Upstream branches newer than a31aa7c",
@@ -917,7 +917,7 @@
   "Note": "Upstream main is still a31aa7c. C1 (cycle step) is a regression from defa4df (2025-06-26), which dropped the structured-output schema; no branch fixes C1 or C2.",
   "Links": "curated into AUD-17 · implemented by BND-03",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-18": {
   "Item": "AUD-18  Field audit: every causal-discovery system, its regimes, order source and evaluation controls",
@@ -937,7 +937,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-19": {
   "Item": "AUD-19  Benchmark audit: ground-truth origin, scored views and leak channels of every benchmark",
@@ -957,7 +957,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-20": {
   "Item": "AUD-20  Theory audit: identifiability, sample and experiment bounds per cell of Q x R x W",
@@ -977,7 +977,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-21": {
   "Item": "AUD-21  Own-benchmark audit: requirements, pitfalls and candidate designs",
@@ -997,7 +997,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-22": {
   "Item": "AUD-22  Commercial audit: who buys causal analysis, for which decision, with which guarantee",
@@ -1017,7 +1017,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-23": {
   "Item": "AUD-23  Engine audit: libraries, capabilities, defects; build vs reuse for the ledger",
@@ -1037,7 +1037,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-24": {
   "Item": "AUD-24  Value-of-accuracy audit: how graph errors become decision errors",
@@ -1057,7 +1057,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-25": {
   "Item": "AUD-25  Packaging audit: delivery modes, output requirements, regulator needs, user complaints",
@@ -1077,7 +1077,7 @@
   "Note": "Desk audit, 2026-10-12 (analysis/audits/AUDIT_PROGRAM.md). Sources read that day; second-hand items labelled.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-26": {
   "Item": "AUD-26  Audit synthesis: where the open room is, what makes a tool worth using, build vs reuse",
@@ -1097,7 +1097,7 @@
   "Note": "Decision input for DEC-01.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-27": {
   "Item": "AUD-27  Engine oracle check: PC and FCI under a perfect independence oracle, every engine copy",
@@ -1117,7 +1117,7 @@
   "Note": "No model calls. The copy's FCI step is not deterministic under threads (533 vs 531).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-28": {
   "Item": "AUD-28  Controlled re-score: released vs shuffled columns for every runnable baseline; PC conflict-rule mechanism",
@@ -1137,7 +1137,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-29": {
   "Item": "AUD-29  Sortability of the CausalArena release (varsortability, R2-sortability)",
@@ -1157,7 +1157,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-30": {
   "Item": "AUD-30  Decision value (DV-1) and adjustment-identification distance for every baseline, with ceilings and the empty-graph baseline",
@@ -1177,7 +1177,7 @@
   "Note": "Baselines use all 250 files, methods the files they finished; AB-04 pairs them.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-31": {
   "Item": "AUD-31  Cost of one Causal-Copilot run (the approved one-run cost check)",
@@ -1197,7 +1197,7 @@
   "Note": "Answered from the 30 logged BND-08 runs; nothing spent.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-32": {
   "Item": "AUD-32  Audit program DAG: research landscape, commercial landscape, wedge and paper",
@@ -1217,7 +1217,7 @@
   "Note": "Approved 12 Oct. The chapter closed 14 Oct: 17 bundles done or closed by decision; see analysis/reports/audit_closeout.md.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-33": {
   "Item": "AUD-33  AB-01 Controlled scoreboard, CausalArena complete (all families, D and D+I, corrected leaderboard)",
@@ -1237,7 +1237,7 @@
   "Note": "Results in the report; predictions P1/P2 verdicts in rescore_v2.json.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-34": {
   "Item": "AUD-34  AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
@@ -1257,7 +1257,7 @@
   "Note": "Bayesys reproduced (16 of 31 PC-Stable/FCI cells at alpha 0.05; PC 10 of 15). P3 supported (3 of 6 networks in topological order); P4 inconclusive. Bayesys's half-credit F1 moves at most 0.03 when columns are shuffled, so the layout leak needs an index tie-break (CausalArena's forced choice) to pay. Engine channel: causal-learn GES on PROPERTY -0.07 to -0.09 on the released order. gCastle not reproduced, no claim.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-35": {
   "Item": "AUD-35  AB-03 Engine forensics: perfect-oracle and determinism checks for every engine agents call",
@@ -1277,7 +1277,7 @@
   "Note": "P5 refuted as worded (no further wrong skeleton); new defect class: dodiscover PC orients wrongly under an oracle and can return a cyclic graph. Bug-report drafts for EXT-03 in docs/drafts/bug_reports/.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-36": {
   "Item": "AUD-36  AB-04 Decision-value scoreboard across benchmarks, with the usefulness threshold",
@@ -1297,7 +1297,7 @@
   "Note": "Five benchmarks: CausalArena semantic, formula, synthetic; Causal Chambers (physical truth, real interventions); Sachs (weak).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-37": {
   "Item": "AUD-37  AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)",
@@ -1317,7 +1317,7 @@
   "Note": "P8 supported, all five systems end to end: causaliq, PyWhy-LLM (F1 0.329), Causal-Copilot on gpt-4o-mini, and MATMCD and Vashishtha after resuming on 14 Oct (replayed paid answers; +$0.009 and +$0.651). On the probe scenario both hybrids end exactly at their own data-only PC graph (F1 0.407). Vashishtha loses 91% of triplet votes to its 300-token limit (EXT-06). Spent $3.79 of $5.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-38": {
   "Item": "AUD-38  AB-06 LIVE: field audit of LLM-using systems under names x layout controls",
@@ -1337,7 +1337,7 @@
   "Note": "Tier A scored 14 Oct (80 runs, 79 ok; $32.11 for the grid, $48.23 with the earlier quota-stopped attempt). P9 SUPPORTED: Causal-Copilot (gpt-4o), causaliq and MATMCD lose >= 0.10 directed F1 when names are swapped (PyWhy-LLM not entered: 4 paired scenarios < 5). P10 SUPPORTED: MATMCD scores below its own data-only graph with neutral or swapped names. Vashishtha is the exception (name reliance 0.020): 89 of 100 directions come from data. One PyWhy-LLM run crashed inside the guidance library (negative time-to-first-token); counted as an agent failure, not retried (amendment 3). Tier B not run (DEC-05).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-39": {
   "Item": "AUD-39  AB-08 Name-reliance benchmark with a rho dial (decoupled semantics, B2)",
@@ -1357,7 +1357,7 @@
   "Note": "Benchmark built and validated (2,500 files, 257.7 MB, outside git under external/b2_namereliance; manifest sha256). P11 holds for the reference methods; agent curves come from AB-06.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-40": {
   "Item": "AUD-40  AB-09 Theory pack: identity, error budget, bounded harm, conflict-rule order dependence, DV ceiling",
@@ -1377,7 +1377,7 @@
   "Note": "T1-T4 hold as stated; T5 restated (coverage = constant-answer share minus definite causes without a directed path). F1 = S x a holds per file, not for family means (corrects the AUD-28 wording).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-41": {
   "Item": "AUD-41  AB-10 Practitioner interviews (C1)",
@@ -1397,7 +1397,7 @@
   "Note": "Carried forward past the audit chapter (docs/decisions/2026-10-14_audit_closeout.md): interviews still decide P13 and C1; they run whenever a chance arises and gate nothing.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-42": {
   "Item": "AUD-42  AB-11 Competitive teardown: open tools hands-on, closed tools by documented claims",
@@ -1417,7 +1417,7 @@
   "Note": "33 tools by documentation, 10 run by hand. P14 strong form survives narrowed: no tool stores a per-direction source linked to evidence (CausalNex 'origin' and Tetrad verbose text are partial).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-43": {
   "Item": "AUD-43  AB-12 Vertical probe: root-cause analysis",
@@ -1437,7 +1437,7 @@
   "Note": "PetShop test (48 issues): declared topology + abstention AC@3 0.93 at coverage 0.92 vs learned-graph (PC) 0.21; P15 supported, almost all of the gap from topology.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-44": {
   "Item": "AUD-44  AB-13 Regulation and standards map: requirement -> ledger field",
@@ -1457,7 +1457,7 @@
   "Note": "50 requirements, 21 texts; five ledger gaps ranked (plan/deviations, assumptions, lineage, reviews, question/context: BLD-14). Venue: W3C AI Computed Provenance CG.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-45": {
   "Item": "AUD-45  AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public demand evidence",
@@ -1477,7 +1477,7 @@
   "Note": "Done 13 Oct without interviews (Uzair's decision). Start in IT incident RCA as a vendor-neutral audit of AI SRE agents' root-cause claims; marketing a close second; pharma third. Obtainable (estimates): RCA $1.8-9M ARR in ~3 yrs; marketing $3-67.5M at maturity; pharma core $2.8-11M/yr. 'Causal AI' sizings span $28.9M-$59.2B. H2 best supported; H1 for provenance, not abstention; H3 by analogy only.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-46": {
   "Item": "AUD-46  AB-15 Positioning closure: novelty matrix for L1-L5",
@@ -1497,7 +1497,7 @@
   "Note": "All five claims partly open. Must cite Colombo & Maathuis 2014 (scoops PC order dependence), CARE (single-system name collapse), Li & Russo 2026 (orient-only LLM knowledge).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-47": {
   "Item": "AUD-47  AB-17 Paper skeleton and pre-registration manifest",
@@ -1517,7 +1517,7 @@
   "Note": "Skeleton (claims C1-C10, sections, figures, venue) and the Q2 build pre-registration (gates B0.1-B5.2 with thresholds, splits, controls, order) hashed 14 Oct, before any held-out run of the build.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "AUD-48": {
   "Item": "AUD-48  AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name arms",
@@ -1537,7 +1537,7 @@
   "Note": "Live 13 Oct (gpt-4o-2024-08-06, 914 calls, about $2.08). O1 inconclusive (69.4% correct, 12.1% contradicted), O2 supported, O3 supported by data, O4 refuted (0.448), O5 refuted (0.384). Orient-only use of the tiers (exploratory): GES 0.528 -> 0.546 semantic.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-05": {
   "Item": "DEC-05  AB-16 Wedge decision: paper spine, venue and the Q2 build",
@@ -1557,7 +1557,7 @@
   "Note": "Decided 14 Oct (Uzair delegated it with AB-06's results in hand): B, measurement plus a reliability-first claim ledger, with A (measurement only) as the floor. Venue class: methods with a benchmark contribution. B0 and B1 start now; AB-06 tier B not run.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-01": {
   "Item": "BEN-01  CausalArena public release inspected (families, files, graph convention)",
@@ -1577,7 +1577,7 @@
   "Note": "",
   "Links": "curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-02": {
   "Item": "BEN-02  Column-order leak: every true edge runs earlier column -> later column in every released file",
@@ -1597,7 +1597,7 @@
   "Note": "",
   "Links": "curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-03": {
   "Item": "BEN-03  Identifiable ceilings 0.957 / 0.971 (obs); at least 0.974 / 0.993 with released interventions",
@@ -1617,7 +1617,7 @@
   "Note": "",
   "Links": "curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-04": {
   "Item": "BEN-04  Error budget for PC: 1.000 -> 0.957 -> 0.611 -> 0.335; directions right 54%",
@@ -1637,7 +1637,7 @@
   "Note": "",
   "Links": "curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-05": {
   "Item": "BEN-05  Value of oracle order knowledge (inputs only: 0.470; full depth + regression: 0.714)",
@@ -1657,7 +1657,7 @@
   "Note": "",
   "Links": "curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-06": {
   "Item": "BEN-06  Repo datasets vs CausalArena index: Auto MPG does not match",
@@ -1677,7 +1677,7 @@
   "Note": "",
   "Links": "child of DLV-01 · curated into AUD-17",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-07": {
   "Item": "BEN-07  Do CausalArena's wrappers shuffle columns; are top methods affected?",
@@ -1697,7 +1697,7 @@
   "Note": "Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. Open: AVICI (pretrained; checkpoint download blocked).",
   "Links": "curated into AUD-17 · implemented by BND-06",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-08": {
   "Item": "BEN-08  SHD definition mismatch (see REP-06)",
@@ -1717,7 +1717,7 @@
   "Note": "The authors' SHD counts a reversal once (metrics.py: sum(diff) - 0.5*sum(diff*diff.T)), which is our pair-level SHD; with their orientation rule it gives 35.43 on the public 50 (within tolerance of 33.52). F1 then does not match (REP-06).",
   "Links": "curated into AUD-17 · implemented by BND-04",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-09": {
   "Item": "BEN-09  Replay sampler: which declared interventions are interventions in name only",
@@ -1737,7 +1737,7 @@
   "Note": "On the released obs+int files (produced by the same generator spec the replay sampler executes): no detectable shift in the target or any child for 252 of 945 declared interventions (semantic) and 1,354 of 1,520 (formula), KS with Holm at 1%. About 28 intervened rows per target, so shifts below roughly KS D 0.4 go undetected: 'no detectable effect', not proof of none. Most targets are roots (655 / 1,200), resampled per the release's semantics.",
   "Links": "curated into AUD-17 · implemented by BND-07",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-10": {
   "Item": "BEN-10  Causal Chambers: map 8 datasets to ground-truth graphs; check 'one layer deep'; build obs+int sample",
@@ -1757,7 +1757,7 @@
   "Note": "All 8 datasets use the 'standard' configuration: lt 38 variables / 57 edges, wt 32 / 42, every edge input -> output (longest path 1). On the validation data: lt 57/57 children shift, wt 40/42 (load_out -> pressure_intake p 0.082; osr_downwind -> pressure_downwind fails only after Holm over 868 tests); 0 non-descendant shifts in either. Sample: 6,200 rows, 53 regimes.",
   "Links": "curated into AUD-17 · implemented by BND-07",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-11": {
   "Item": "BEN-11  Error budgets for GES, FCI, pretrained models; formula and synthetic families",
@@ -1777,7 +1777,7 @@
   "Note": "Done for PC, GES, FCI, DirectLiNGAM, NOTEARS x semantic, formula, synthetic100 (15 budgets; failed files scored empty and counted). Open: pretrained models (AVICI checkpoint blocked by the egress allowlist; Uzair can download two files by hand).",
   "Links": "curated into AUD-17 · implemented by BND-06",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BEN-12": {
   "Item": "BEN-12  Reliability of real-data reference graphs",
@@ -1797,7 +1797,7 @@
   "Note": "Sachs: repo 19 edges vs bnlearn 17 (16 shared adjacencies, 1 reversed: PIP3-Plcg) vs CausalArena 20 (edge list not available here). Auto MPG mismatched. Abalone, concrete, DWD: provenance only. S2: exact (simulator graph).",
   "Links": "child of DLV-01 · curated into AUD-17 · implemented by BND-05",
   "In prod": "AUD-17 Causal-Copilot on CausalArena's named scenarios",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-01": {
   "Item": "TGT-01  Semantic, numbers only: reach 0.634 (FoundCause); GIES 0.552; ceiling 0.957",
@@ -1817,7 +1817,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-02": {
   "Item": "TGT-02  Semantic, numbers + interventions: reach 0.568 (GIES); ceiling >= 0.974",
@@ -1837,7 +1837,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-03": {
   "Item": "TGT-03  Formula, numbers only: reach 0.524 (FoundCause); ceiling 0.971",
@@ -1857,7 +1857,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-04": {
   "Item": "TGT-04  Formula, numbers + interventions: reach >= 0.534 (TabCausal; check other rows); ceiling >= 0.993",
@@ -1877,7 +1877,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-05": {
   "Item": "TGT-05  Real data: 0.391 observational (CDFM); 0.462 with interventions (TabCausal, 7 sets)",
@@ -1897,7 +1897,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-06": {
   "Item": "TGT-06  Causal Chambers alone: 0.727 reported by CDFM (second-hand; check subset)",
@@ -1917,7 +1917,7 @@
   "Note": "ER-C met on DV-1 precision: kernel D 0.925, D+I 0.926, GES 0.916, PC maxP 0.887; agreement with held-back rows 0.985 (true DAG 0.943). The F1 comparison with CDFM's second-hand 0.727 needs its subset confirmed (REP-09) and was not pre-registered for B2.",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-07": {
   "Item": "TGT-07  Numbers + declared knowledge: >= 0.634 semantic, >= 0.524 formula, columns shuffled",
@@ -1937,7 +1937,7 @@
   "Note": "Unblocked 13 Oct by AUD-48.",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-08": {
   "Item": "TGT-08  Derived requirement: skeleton F1 x direction accuracy >= 0.634 (e.g. 0.80 x 0.79)",
@@ -1957,7 +1957,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-09": {
   "Item": "TGT-09  Never below the system's own data-only output",
@@ -1977,7 +1977,7 @@
   "Note": "Met by refinement v2, the frozen successor of v1 (its data part keeps every algorithm adjacency): adjacency F1 >= the algorithm's - 0.02 in 22 of 22 held-out formula files (and 30 of 30 live S2 tables, exploratory: read in BND-10). v1 itself stays inconclusive (BND-10). The criterion's 'v1' is the means named on 9 Oct; the target is the property.",
   "Links": "child of DLV-04 · curated into TGT-17 · implemented by BND-11",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-10": {
   "Item": "TGT-10  Zero change when columns are shuffled",
@@ -1997,7 +1997,7 @@
   "Note": "Met by construction and measured: 50/50 dev files, 120/120 oracle DAGs.",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-11": {
   "Item": "TGT-11  Bounded harm when names are wrong",
@@ -2017,7 +2017,7 @@
   "Note": "125/125 per family; realised moved-arm F1 change -0.001 [-0.007, +0.004] / +0.003 [-0.006, +0.013].",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-12": {
   "Item": "TGT-12  Calibration better than raw bootstrap frequencies on held-out scenarios",
@@ -2037,7 +2037,7 @@
   "Note": "Raw minus calibrated ECE +0.143 [+0.090, +0.166] semantic, +0.129 [+0.081, +0.167] formula (DV-1 claims), computed from the rows of B4's single logged read.",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-13": {
   "Item": "TGT-13  Zero crashes from malformed model output",
@@ -2057,7 +2057,7 @@
   "Note": "Zero crashes over the BND-11 live run (786 questions, 1,571 calls).",
   "Links": "child of DLV-04 · curated into TGT-17 · implemented by BND-11",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-14": {
   "Item": "TGT-14  Within the scoreboard's 1-hour budget per graph",
@@ -2077,7 +2077,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-15": {
   "Item": "TGT-15  Held-out interventional predictions better than regression on all variables",
@@ -2097,7 +2097,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-16": {
   "Item": "TGT-16  Experiment choice better than random on recorded Causal Chambers experiments",
@@ -2117,7 +2117,7 @@
   "Note": "",
   "Links": "curated into TGT-17",
   "In prod": "TGT-17 Targets from evidence",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-01": {
   "Item": "CAP-01  Skeleton recall at variables with many causes (joint test per candidate edge)",
@@ -2137,7 +2137,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-02": {
   "Item": "CAP-02  Direction from the numbers (PC: 54%)",
@@ -2145,19 +2145,19 @@
   "Category": "6 Required capabilities",
   "Status": "⏳ To-do",
   "Kind": "task",
-  "Evidence level": "V0",
+  "Evidence level": "V3",
   "Closing criterion": "",
-  "Evidence": "",
-  "Checks": "",
+  "Evidence": "kernel/asym.py\nkernel/asym_cond.py\ntests/test_q2_asym.py\ntests/test_q2_asym_cond.py\nplans/dirsig_prereg.json\nplans/dirsig2_prereg.json\nmanifests/evidence/dirsig_prereg_2026-10-16.sha256\nmanifests/evidence/dirsig2_prereg_2026-10-16.sha256\nanalysis/q2_dirsig.py\nanalysis/q2_dirsig_diag.py\nanalysis/q2_dirsig2.py\nanalysis/results/q2_v3/dirsig_dev.json\nanalysis/results/q2_v3/dirsig_diag_dev.json\nanalysis/results/q2_v3/dirsig2_dev.json\nanalysis/reports/q2_dirsig_dev.md\ndocs/design/q2_lever_map.md",
+  "Checks": "PASS 0 listed files changed or missing; PASS 0 listed files changed or missing",
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
   "Due": "",
   "Problems": "",
-  "Note": "",
+  "Note": "Measured 16 Oct (dev, two pre-registered rounds): nine collider-free direction signals (non-Gaussian, additive-noise, regression-error, IGCI, heteroscedastic, conditional-distribution, and conditional variants) are right 0.42-0.64 of the time on found links at 1,000 rows; no licence. Failure classes: children with mass points (signals confidently wrong), children with several parents, mechanisms outside every model. Lead: IGCI on pooled formula 0.86 on 153 links, to confirm on a fresh family.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-03": {
   "Item": "CAP-03  Use intervention data",
@@ -2177,7 +2177,7 @@
   "Note": "Single-target intervention rows enter as shift evidence (Welch, alpha 0.01); an intervention overrides a data direction and the claim records the conflict.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-04": {
   "Item": "CAP-04  Declared knowledge as tiers, never edges",
@@ -2197,7 +2197,7 @@
   "Note": "Tiers orient only pairs the data left open; consensus of the answering phrasings; no propagation; cycles skipped and recorded.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-05": {
   "Item": "CAP-05  Invariance to column order",
@@ -2217,7 +2217,7 @@
   "Note": "B0.1: 120/120 oracle DAGs order-invariant (6 orders each). B1 R3: 50/50 dev files identical claims and evidence under 6 orders with full engine reruns. Names can still break ties among exactly identical columns (B3 finding; docs/design/q2_kernel_v3_proposals.md K3-1).",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-06": {
   "Item": "CAP-06  Keep 'direction unknown' edges",
@@ -2237,7 +2237,7 @@
   "Note": "Frozen 2026-10-11 (RULE.json sha256 da3cb260...). Dev (92 files: 69 live tables + 23 CausalArena dev replays): v1 keeps 663 of 697 non-directed algorithm edges (95%), the pipeline's bootstrap step 206 (30%). Test replay (25 files): 109 of 117 vs 61.",
   "Links": "child of DLV-04 · implemented by BND-09",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-07": {
   "Item": "CAP-07  Calibrated confidence per claim",
@@ -2247,17 +2247,17 @@
   "Kind": "task",
   "Evidence level": "V3",
   "Closing criterion": "",
-  "Evidence": "analysis/results/q2_b4/evaluate_test.json\nanalysis/results/q2_b4/raw_vs_calibrated_test.json\nanalysis/reports/q2_b4_confidence.md",
+  "Evidence": "analysis/results/q2_b4/evaluate_test.json\nanalysis/results/q2_b4/raw_vs_calibrated_test.json\nanalysis/reports/q2_b4_confidence.md\nanalysis/results/q2_v3/v3_test.json\nanalysis/reports/q2_v3_heldout.md",
   "Checks": "PASS TGT-12_met = true (true )",
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
   "Due": "",
   "Problems": "",
-  "Note": "Every claim carries a calibrated probability (isotonic map on 10-resample stability). Held-out ECE 0.057 semantic / 0.036 formula against 0.199 / 0.165 raw; the 0.05 gate is missed on semantic. Proposals in docs/design/q2_kernel_v3_proposals.md (K3-4).",
+  "Note": "v3 confidence model (ledger features, isotonic on cross-fitted scores): held-out ECE 0.021 semantic / 0.025 formula (v2 0.057 / 0.036); realised >= claimed at every threshold in D; ER-3 not met because the ECE upper ends (0.063 / 0.051) exceed 0.05 on 25 scenario clusters.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-08": {
   "Item": "CAP-08  Abstention / selective claims",
@@ -2277,7 +2277,7 @@
   "Note": "Selective view at c/g = 1, 2, 4 (act when p >= 0.5, 0.667, 0.8) and at half coverage; realised precision at or above claimed in both families.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-09": {
   "Item": "CAP-09  Provenance per edge with an independent checker",
@@ -2297,7 +2297,7 @@
   "Note": "0 failing ledgers across B1 (1,750), B2 (1,002) and B3 (750 held-out and 750 dev D+K ledgers).",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-10": {
   "Item": "CAP-10  Robustness to malformed model output",
@@ -2317,7 +2317,7 @@
   "Note": "0 crashes in 1,571 live calls (BND-11): every malformed reply was retried once or abstained. Lesson for approach v1 G7: the strict contract turned gpt-4o's code fences into 251 abstentions; a contract must declare its accepted normalisations and count them.",
   "Links": "child of DLV-04 · implemented by BND-11",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-11": {
   "Item": "CAP-11  Determinism (same inputs, same ledger hash)",
@@ -2327,17 +2327,17 @@
   "Kind": "task",
   "Evidence level": "V3",
   "Closing criterion": "Same inputs, same ledger hash",
-  "Evidence": "analysis/results/q2_b1/invariance_dev.json\nanalysis/reports/q2_b1_data_only_ledger.md",
+  "Evidence": "analysis/results/q2_b1/invariance_dev.json\nanalysis/reports/q2_b1_data_only_ledger.md\nanalysis/reports/q2_v3_k0_engine_cache.md\nkernel/cache.py",
   "Checks": "PASS hash_repeat_identical = 50 (eq 50)",
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
   "Due": "",
   "Problems": "",
-  "Note": "50/50 repeat builds give the same ledger hash (B1 R3); single-threaded engines pinned in engines/MANIFEST.json.",
+  "Note": "50/50 repeat builds give the same ledger hash (B1 R3) within one host. Across hosts the hash needs the OpenBLAS kernel family pinned (OPENBLAS_CORETYPE=SKYLAKEX, threads 1): without it every p-value moves in the 14th digit (found by K0, 15 Oct); kernel/cache.py keys on both.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-12": {
   "Item": "CAP-12  Runtime at 20-40 variables",
@@ -2357,7 +2357,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-13": {
   "Item": "CAP-13  Nonlinear and mixed-type dependence",
@@ -2377,7 +2377,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-14": {
   "Item": "CAP-14  Hidden common causes (PAG marks)",
@@ -2397,7 +2397,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-15": {
   "Item": "CAP-15  'What if we set X?' with identification status and bounds",
@@ -2417,7 +2417,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-16": {
   "Item": "CAP-16  Choose the next experiment",
@@ -2437,7 +2437,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-17": {
   "Item": "CAP-17  Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)",
@@ -2457,7 +2457,7 @@
   "Note": "10 packages (PC, GES, FCI, DirectLiNGAM, NOTEARS x released / shuffled columns), 600 rows each (semantic 250, formula 250, synthetic100); the official validator exits 0 on all 10. Nothing submitted.",
   "Links": "implemented by BND-14",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CAP-18": {
   "Item": "CAP-18  Cost per run measured at 25 variables",
@@ -2477,7 +2477,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-01": {
   "Item": "RQ-01  P1-P3 (pass 4b, Sachs): supported",
@@ -2497,7 +2497,7 @@
   "Note": "",
   "Links": "child of DLV-03",
   "In prod": "itself (as: Does the LLM review write edges from the variable names rather than the data, and does the bootstrap step delete undirected edges? (Sachs, pass 4b P1-P3: supported))",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-02": {
   "Item": "RQ-02  N2 (bundle 1): supported",
@@ -2517,7 +2517,7 @@
   "Note": "",
   "Links": "child of DLV-03",
   "In prod": "itself (as: With neutral names, does the LLM write at most half as many edges as with real names? (bundle 1 N2: supported))",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-03": {
   "Item": "RQ-03  N1, N4, P3 (bundle 1): tested, inconclusive",
@@ -2537,7 +2537,7 @@
   "Note": "Closed as tested; the questions themselves remain open.",
   "Links": "child of DLV-03",
   "In prod": "itself (as: On four more datasets, do moved names steer the LLM's edges, does refinement lower adjacency F1, and does the bootstrap step drop most undirected edges? (bundle 1 N1, N4, P3: inconclusive))",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-04": {
   "Item": "RQ-04  T1 Order source explains most directed-edge accuracy",
@@ -2557,7 +2557,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself (as: Does the source of a method's order information explain most of its directed-edge accuracy on public benchmarks?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-05": {
   "Item": "RQ-05  T2 Deployed agents take order from names and layout",
@@ -2577,7 +2577,7 @@
   "Note": "Answered: three of the four systems entered lose >= 0.10 directed F1 when names are swapped (Causal-Copilot gpt-4o, causaliq, MATMCD). Vashishtha does not (0.020); it takes 89% of directions from data.",
   "Links": "",
   "In prod": "itself (as: Do deployed agents take edge directions from names and column layout rather than from the numbers?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-06": {
   "Item": "RQ-06  T3 Typed, sourced partial order: never below data-only, bounded harm, best published per regime (target)",
@@ -2597,7 +2597,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself (as: Can a system that holds order as a typed, sourced partial order stay at or above its own data-only output, be only boundedly harmed by wrong knowledge, and reach the best published number in each information regime?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-07": {
   "Item": "RQ-07  T4 Calibrated, machine-checkable claims with abstention",
@@ -2617,7 +2617,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself (as: Can every claim carry calibrated confidence and a machine-checkable derivation, so that the system can decline to claim?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-08": {
   "Item": "RQ-08  T5 What-if answers with identification status",
@@ -2637,7 +2637,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself (as: Can the graph answer 'what happens if we set X?' with a stated identification status, verified on held-out interventions?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-09": {
   "Item": "RQ-09  T6 Experiment choice beats random on recorded experiments",
@@ -2657,7 +2657,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself (as: Can the system pick the experiment that settles the most open directions, better than random on recorded real experiments?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-10": {
   "Item": "RQ-10  O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
@@ -2677,7 +2677,7 @@
   "Note": "Answered 13 Oct: no, narrowly: 69.4% of true edges ordered correctly, 12.1% contradicted (semantic, consensus tiers).",
   "Links": "",
   "In prod": "itself (as: With real names, does a model's ordering of variables get at least 70% of true edges right and contradict at most 10%?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-11": {
   "Item": "RQ-11  O2 Neutral names give no order information",
@@ -2697,7 +2697,7 @@
   "Note": "Answered 13 Oct: yes. With neutral names the model puts every variable in one tier.",
   "Links": "",
   "In prod": "itself (as: With neutral names, does the model supply no order information at all?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-12": {
   "Item": "RQ-12  O3 Moved names: tiers follow the labels",
@@ -2717,7 +2717,7 @@
   "Note": "Answered 13 Oct: yes. Moved names: ordering follows the labels (72% correct by label) and is worse than chance by data.",
   "Links": "",
   "In prod": "itself (as: With names moved onto other columns, does the model's ordering follow the labels instead of the data?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-13": {
   "Item": "RQ-13  O4 Regression on model tiers reaches 0.634 (semantic)",
@@ -2737,7 +2737,7 @@
   "Note": "Answered 13 Oct: no. Regression on the model's tiers 0.448 (oracle depth 0.714).",
   "Links": "",
   "In prod": "itself (as: Does regression on the model's ordering reach the best published 0.634 on CausalArena's semantic family with columns shuffled?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-14": {
   "Item": "RQ-14  O5 Same for formula vs 0.524",
@@ -2757,7 +2757,7 @@
   "Note": "Answered 13 Oct: no. 0.384 on formula (oracle depth 0.615).",
   "Links": "",
   "In prod": "itself (as: Does the same reach the best published 0.524 on the formula family?)",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-15": {
   "Item": "RQ-15  Do LLM-written semantic graphs inflate name-based scores?",
@@ -2777,7 +2777,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-16": {
   "Item": "RQ-16  Does PC's error pattern hold for other algorithms?",
@@ -2797,7 +2797,7 @@
   "Note": "No. Committed-direction accuracy GES 0.807, FCI 0.798 (PC 0.544): Q4a refuted. Cost of direction errors GES 0.117, FCI 0.228 (PC 0.276): Q4b inconclusive. FCI's cost is undecided pairs (73% of found true adjacencies), not wrong arrows. PC's 0.544 is for the released (topological) order; shuffled it is 0.722 (BND-06), so the pattern was order-specific too.",
   "Links": "implemented by BND-04",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RQ-17": {
   "Item": "RQ-17  Do results hold for a second model?",
@@ -2817,7 +2817,7 @@
   "Note": "Causal-Copilot on gpt-4o-mini (10 families x 3 arms): the structure holds (M4 supported 9/10, M2 refuted on both models, the same bootstrap loss); name reliance is smaller (0.094 vs 0.167), and the model review lowers directed F1 even with real names (0.233 -> 0.208).",
   "Links": "implemented by BND-12",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-01": {
   "Item": "BLD-01  Recording harness and analysis tools",
@@ -2837,7 +2837,7 @@
   "Note": "Tool manifest re-taken 2026-10-12 after neutral_leak_scan.py learned label variants and scenario words from MAPPING (rerun on bundle 1: identical result, 0 leaks); the 10-09 manifest stays as history. Tools manifest re-issued 2026-10-14 (harness/cc_common.py: EIO write retry, INF-08); the 2026-10-12 manifest stays as the record of the earlier state.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-02": {
   "Item": "BLD-02  B1 data-only claim ledger with invariants I1-I4, I7",
@@ -2857,7 +2857,7 @@
   "Note": "Rule C3 (GES-led, PC-audited) chosen on dev. Held out against plain PC maxP: F1 +0.053 / +0.115, DV-1 +0.073 / +0.053 (semantic / formula), every interval above zero; against GES F1 -0.001 / +0.002, DV-1 +0.028 / +0.030. One aborted read (build error on an engine defect), fixed as a class by amendment 1 and re-read once.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-03": {
   "Item": "BLD-03  B2 interventions as order evidence",
@@ -2877,7 +2877,7 @@
   "Note": "Held out: D+I DV-1 mean per-file gain +0.017 / +0.005 (semantic / formula); Chambers D+I 0.926 vs D 0.925; 0 failing ledgers.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-04": {
   "Item": "BLD-04  B3 declared knowledge as tiers",
@@ -2897,7 +2897,7 @@
   "Note": "No new model call: AB-07's recorded gpt-4o replies replayed through the supplier contract. Neutral arm equals D 125/125 per family; skeleton never moves; moved-arm loss within T3 125/125; 0 failing ledgers.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-05": {
   "Item": "BLD-05  B4 confidence, calibration, selective output",
@@ -2917,7 +2917,7 @@
   "Note": "Held out: B4.1 (ECE <= 0.05) fails on semantic (0.057) and passes on formula (0.036); B4.2 passes (realised >= claimed - 0.03 at c/g = 1, 2, 4 on point estimates). The semantic miss is under-claiming: test claims are right more often than dev claims at the same stability.",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-06": {
   "Item": "BLD-06  Drop-in replacement for Causal-Copilot's refinement stage",
@@ -2937,7 +2937,7 @@
   "Note": "v2 is the drop-in replacement: it never falls below the algorithm on held-out data (formula test 22/22) and sources every edge; names add little (R6 refuted) and wrong names cost nothing measurable (R5).",
   "Links": "child of DLV-04 · implemented by BND-11",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-07": {
   "Item": "BLD-07  C1 what-if answers with identification status and bounds",
@@ -2957,7 +2957,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-08": {
   "Item": "BLD-08  C2 next-experiment choice from recorded pool",
@@ -2977,7 +2977,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-09": {
   "Item": "BLD-09  Scoreboard-format export",
@@ -2997,7 +2997,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-10": {
   "Item": "BLD-10  Evidence tracker for this list (catalogue, verify, Slack List mirror)",
@@ -3017,7 +3017,7 @@
   "Note": "",
   "Links": "relates BLD-11",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-11": {
   "Item": "BLD-11  Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract",
@@ -3037,7 +3037,7 @@
   "Note": "",
   "Links": "blocks TEAM-07 · relates BLD-10",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-12": {
   "Item": "BLD-12  Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts",
@@ -3057,7 +3057,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-13": {
   "Item": "BLD-13  Claim-ledger record format, JSON Schema and verifier (V1-V8)",
@@ -3077,7 +3077,7 @@
   "Note": "No discovery engine yet; PROV-O export and causal-cmd/Tetrad interop are later steps.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-14": {
   "Item": "BLD-14  Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check",
@@ -3097,7 +3097,7 @@
   "Note": "Ledger v0.2 fields (plan, deviations, assumptions with sensitivities, lineage, question, orientation convention, engine outputs, reviews); the verifier runs every check (V1-V13) even after a failure.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-01": {
   "Item": "EVL-01  Every score states its regime (D / D+I / D+K / D+I+K)",
@@ -3117,7 +3117,7 @@
   "Note": "",
   "Links": "implemented by BND-01",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-02": {
   "Item": "EVL-02  Controls on every score (columns shuffled; names real/neutral/moved; supplier; interventions)",
@@ -3137,7 +3137,7 @@
   "Note": "",
   "Links": "implemented by BND-01",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-03": {
   "Item": "EVL-03  Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional error, cost",
@@ -3157,7 +3157,7 @@
   "Note": "",
   "Links": "implemented by BND-01",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-04": {
   "Item": "EVL-04  Predictions and thresholds fixed in code before every live run",
@@ -3177,7 +3177,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-05": {
   "Item": "EVL-05  Development / held-out split by scenario number before any tuning",
@@ -3197,7 +3197,7 @@
   "Note": "",
   "Links": "implemented by BND-01",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-06": {
   "Item": "EVL-06  Stage-by-stage scoring of any pipeline",
@@ -3217,7 +3217,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EVL-07": {
   "Item": "EVL-07  Must-show list and gates for every live step",
@@ -3237,7 +3237,7 @@
   "Note": "",
   "Links": "",
   "In prod": "itself",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-01": {
   "Item": "INF-01  Harness v3, Docker image, cc.ps1 commands, stub LLM, plan runner, fetcher",
@@ -3257,7 +3257,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-02": {
   "Item": "INF-02  Analysis tools with gates",
@@ -3277,7 +3277,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-03": {
   "Item": "INF-03  External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets)",
@@ -3297,7 +3297,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-04": {
   "Item": "INF-04  Compute-job command on Uzair's machine (sandbox caps steps at 180 s)",
@@ -3317,7 +3317,7 @@
   "Note": "Container run 2026-10-11 (Uzair): 4 chunks, each stopped by its 4 s budget and resumed; output sha256 84e50886... identical to the one-shot and shell runs; J2 printed in every chunk: no secret-like variables, no network, /app/.env size 0.",
   "Links": "implemented by BND-01",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-05": {
   "Item": "INF-05  Unit tests for our code; caching by content hash",
@@ -3328,7 +3328,7 @@
   "Evidence level": "V3",
   "Closing criterion": "Unit tests for the scorer, graph conversions, CPDAG/Meek, job resumption, the score contract and the splits pass; jobkit keys cached results by input sha256",
   "Evidence": "tests/test_core.py\ntests/run_tests.py\nanalysis/jobkit.py",
-  "Checks": "PASS ok = true (true ); PASS ran = 171 (ge 18); PASS found: def input_key",
+  "Checks": "PASS ok = true (true ); PASS ran = 194 (ge 18); PASS found: def input_key",
   "Reproduce": "python tests/run_tests.py",
   "Reopen if": "",
   "Blocked by": "",
@@ -3337,7 +3337,7 @@
   "Note": "",
   "Links": "implemented by BND-01",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-06": {
   "Item": "INF-06  Public repository preparation (no keys, licences, no redistribution, run-record size)",
@@ -3357,7 +3357,7 @@
   "Note": "",
   "Links": "implemented by BND-14",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-07": {
   "Item": "INF-07  One command reproduces every number in the report",
@@ -3377,7 +3377,7 @@
   "Note": "",
   "Links": "implemented by BND-14",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-01": {
   "Item": "CRS-01  TA check-in 1 (TA: Nate)",
@@ -3392,12 +3392,12 @@
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
-  "Due": "2026-10-19",
+  "Due": "2026-10-29",
   "Problems": "",
-  "Note": "",
+  "Note": "Rescheduled: Thursday 29 Oct 2026, 10:45 am PT (Uzair, 19 Oct).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-02": {
   "Item": "CRS-02  Quarter 1 checkpoint",
@@ -3417,7 +3417,7 @@
   "Note": "",
   "Links": "implemented by DLV-05",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-03": {
   "Item": "CRS-03  TA check-in 2",
@@ -3437,7 +3437,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-04": {
   "Item": "CRS-04  Quarter 1 final (50%)",
@@ -3457,7 +3457,7 @@
   "Note": "",
   "Links": "implemented by DLV-06",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-05": {
   "Item": "CRS-05  Quarter 2 proposal: written proposal, weekly schedule, 2-3 min pitch (15%)",
@@ -3477,7 +3477,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-06": {
   "Item": "CRS-06  Quarter 2 deliverables: public repo, website, PDF report, poster; showcase 2nd week of March 2027",
@@ -3497,7 +3497,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "CRS-07": {
   "Item": "CRS-07  Decision gate G1",
@@ -3517,7 +3517,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-01": {
   "Item": "TEAM-01  Causal Discovery section for the shared mentor document",
@@ -3537,7 +3537,7 @@
   "Note": "v3 ready; 'Proposed project' part waits on DEC-01.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-02": {
   "Item": "TEAM-02  Plain-language explainer for meetings, saved as a file",
@@ -3557,7 +3557,7 @@
   "Note": "Written 2026-10-10 for TA check-in 1 (19-23 Oct); each number is tied to its source line by a check.",
   "Links": "implemented by BND-05",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-03": {
   "Item": "TEAM-03  Recruit at least one teammate",
@@ -3577,7 +3577,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-04": {
   "Item": "TEAM-04  Ask the mentor: group of 2-3 in Q2? Scope of 'replicate, measure, strengthen'?",
@@ -3597,7 +3597,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-05": {
   "Item": "TEAM-05  Do not count on answers from Prof. Huang's group",
@@ -3617,7 +3617,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-06": {
   "Item": "TEAM-06  Weekly status post",
@@ -3637,7 +3637,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-07": {
   "Item": "TEAM-07  Tailored public goals post in #causal-discovery",
@@ -3657,7 +3657,7 @@
   "Note": "Index and status legend posted by Uzair on 9 Oct; first prod digest sent by Uzair (ts 1791613267.243749, recorded 11 Oct).",
   "Links": "blocked by BLD-11",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-01": {
   "Item": "EXT-01  Note to CausalArena's maintainers about column order",
@@ -3677,7 +3677,7 @@
   "Note": "Backed by two benchmarks (AB-01, AB-02): shuffle released columns, or score with a tie-break-invariant rule.",
   "Links": "blocked by DEC-03",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-02": {
   "Item": "EXT-02  Scoreboard submission package with regime and controls stated",
@@ -3697,7 +3697,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-03": {
   "Item": "EXT-03  Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer)",
@@ -3717,7 +3717,7 @@
   "Note": "Evidence grows: 18 of 19 live entries into the cycle step crashed at judge_functions.py:562 (15 gpt-4o, 3 of 4 gpt-4o-mini; the one survivor returned both 'nodes' and 'removed_edge').",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-04": {
   "Item": "EXT-04  Paper: evaluations track or workshop",
@@ -3737,7 +3737,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-05": {
   "Item": "EXT-05  Course website, poster, report",
@@ -3757,7 +3757,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-01": {
   "Item": "STR-01  E1 Field-wide audit of agents and LLM-assisted methods",
@@ -3777,7 +3777,7 @@
   "Note": "Done in scoped form: five systems (four agents and Causal-Copilot on two models), tier A only. Tier B and further systems are not part of the audit chapter.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-02": {
   "Item": "STR-02  E2 Public agent track",
@@ -3797,7 +3797,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-03": {
   "Item": "STR-03  E3 Real experiments via the Causal Chambers remote lab",
@@ -3817,7 +3817,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-04": {
   "Item": "STR-04  E4 Learned fusion (pretrained network with unreliable tier statements)",
@@ -3837,7 +3837,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-05": {
   "Item": "STR-05  E5 Hidden confounders, time series, 100+ variables",
@@ -3857,7 +3857,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "STR-06": {
   "Item": "STR-06  Product angle: auditable causal analyst",
@@ -3877,7 +3877,7 @@
   "Note": "AB-14 (13 Oct): sell a vendor-neutral audit of other agents' causal claims, not a causal-AI platform; start in IT incident RCA.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-01": {
   "Item": "DEC-01  Adopt, redirect or enlarge program v2; which of E1-E5 in scope",
@@ -3897,7 +3897,7 @@
   "Note": "Adopted as amended 14 Oct: E1 done in a scoped form (STR-01); E2-E5 deferred behind the Q2 build gates.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-02": {
   "Item": "DEC-02  Approve the tier-elicitation test (~900 short calls through Uzair's key)",
@@ -3917,7 +3917,7 @@
   "Note": "Approved 2026-10-12 with the audit DAG; the run is AUD-48 (AB-07).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-03": {
   "Item": "DEC-03  Whether to tell CausalArena's maintainers about the column order",
@@ -3937,7 +3937,7 @@
   "Note": "",
   "Links": "blocks EXT-01",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-04": {
   "Item": "DEC-04  Connect Slack; tracker in private #cd-tracker",
@@ -3957,7 +3957,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-01": {
   "Item": "RSK-01  LLM-written semantic graphs make names 'work' for the wrong reason (guard: formula + Causal Chambers alongside)",
@@ -3977,7 +3977,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-02": {
   "Item": "RSK-02  Data-only system may not reach GIES 0.552 (guard: claim targets only where they hold)",
@@ -3997,7 +3997,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-03": {
   "Item": "RSK-03  Scope too large for one person (guard: decision gates; tracks shrink in fixed order)",
@@ -4017,7 +4017,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-04": {
   "Item": "RSK-04  Prior work closes the gap first (guard: dated measurements; positioning kept current)",
@@ -4037,7 +4037,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-05": {
   "Item": "RSK-05  Benchmark files change (guard: dated result; shuffling stays a required control)",
@@ -4057,7 +4057,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-06": {
   "Item": "RSK-06  Model snapshot changes mid-study (guard: snapshot per call; one per comparison)",
@@ -4077,7 +4077,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-07": {
   "Item": "RSK-07  Thresholds tuned after seeing results (guard: thresholds in code, hashed plans, held-out split)",
@@ -4097,7 +4097,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "RSK-08": {
   "Item": "RSK-08  Sandbox limits 180 s per step (guard: compute command on Uzair's machine)",
@@ -4117,7 +4117,7 @@
   "Note": "",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-01": {
   "Item": "BND-01  Ground rules and infrastructure: compute jobs, score contract, frozen splits, ticket hygiene",
@@ -4137,7 +4137,7 @@
   "Note": "Closed 2026-10-11 after Uzair's container smoke run: J1 (shell and container) and J2 pass; 18 unit tests pass; every result directory has a CONTRACT.json (check_scores: none non-conforming). Runner: claude + one Uzair command. API spend: none.",
   "Links": "blocks BND-04, BND-05, BND-07, BND-08, BND-09 · implements DOM-05, DOM-06, EVL-01, EVL-02, EVL-03, EVL-05, INF-04, INF-05",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-02": {
   "Item": "BND-02  Primary sources: literature re-reads, deep reads, method choices",
@@ -4157,7 +4157,7 @@
   "Note": "REP-13, DOM-08, DOM-10, DOM-11, DOM-12 done; DOM-07 waits on CausalArena appendix B (unreadable so far). Runner: claude (web, no API spend). API spend: none.",
   "Links": "blocks BND-06, BND-12, BND-14 · implements DOM-07, DOM-08, DOM-10, DOM-11, DOM-12, REP-13",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-03": {
   "Item": "BND-03  Paper and code audit: headline claims, methods text, untouched modules, upstream drift",
@@ -4177,7 +4177,7 @@
   "Note": "Static audit done (gates A1, A2 pass); open: REP-03 live-only claims, AUD-14 one offline stub run of a time-series wrapper. Runner: claude (read-only copies; no API spend). API spend: none.",
   "Links": "blocks BND-13 · implements AUD-12, AUD-14, AUD-15, REP-04",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-04": {
   "Item": "BND-04  G1 input: GES and FCI error budgets, SHD definition (no LLM)",
@@ -4197,7 +4197,7 @@
   "Note": "Built 2026-10-10: RQ-16, REP-06, BEN-08 done; marked done 2026-10-11 once BND-01 closed (W3). BEN-11 continues in BND-06. Runner: claude via compute jobs. API spend: none.",
   "Links": "blocked by BND-01 · blocks BND-06, BND-13 · implements BEN-08, REP-06, RQ-16",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-05": {
   "Item": "BND-05  Freeze the Quarter 1 dataset suite",
@@ -4217,7 +4217,7 @@
   "Note": "Built 2026-10-10; gates D1-D11 pass and the rebuild is byte-identical (--check). Marked done 2026-10-11 once BND-01 closed (rule W3). Runner: claude (no LLM). API spend: none.",
   "Links": "blocked by BND-01 · blocks BND-08, BND-09, BND-11, BND-12, BND-13 · implements BEN-12, DLV-01, TEAM-02",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-06": {
   "Item": "BND-06  Remaining baselines, order sensitivity, scoreboard package (no LLM)",
@@ -4237,7 +4237,7 @@
   "Note": "Q4c refuted (PC order-dependent; mechanism: the vendored causal-learn 0.1.3.8 skeleton). Formula and synthetic100 done for 5 methods; C1 re-established; CAP-17 package validated (10 packages); DOM-09 done. Open only: AVICI (checkpoint only on huggingface.co, blocked) for REP-07, BEN-07, BEN-11. Runner: claude via compute jobs. API spend: none.",
   "Links": "blocked by BND-02, BND-04 · blocks BND-13 · implements BEN-07, BEN-11, DOM-09, REP-07",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-07": {
   "Item": "BND-07  Causal Chambers and intervention audit (no LLM)",
@@ -4257,7 +4257,7 @@
   "Note": "Done 2026-10-12: BEN-09 (intervention audit), BEN-10 (mapping, one-layer-deep check: no contradiction of the graphs, obs+int sample), REP-09 (GES CPDAG identical to the authors'; CDFM not reproducible here). Runner: claude via compute jobs. API spend: none.",
   "Links": "blocked by BND-01 · blocks BND-14 · implements BEN-09, BEN-10, REP-09",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-08": {
   "Item": "BND-08  LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
@@ -4277,7 +4277,7 @@
   "Note": "Closed 14 Oct with DLV-02 under its restated criterion: 30 runs, 24 completed, 6 crashed at the cycle step, all reached S3. M1, M3, M4 SUPPORTED; M2 REFUTED (5/10); M5 not run. Crashes are reported as a finding, not rerun. Runner: Uzair (live, his key) after a free stub run. API spend: 30 full pipeline runs at ~23 variables (cost measured on the stub run and capped in the plan file); optional part d: 150 single names-only calls.",
   "Links": "blocked by BND-01, BND-05 · blocks BND-10, BND-13 · implements AUD-10, AUD-11, DLV-02",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-09": {
   "Item": "BND-09  Refinement v1 (no LLM): develop and freeze on the dev split",
@@ -4297,7 +4297,7 @@
   "Note": "Done 2026-10-11. Dev, 92 files (69 live tables, 23 CausalArena dev replays): R1 0.79 INCONCLUSIVE, R2 0.96 SUPPORTED, R3 +0.023 SUPPORTED; non-directed edges kept 95% vs the pipeline's 30%. Frozen: RULE.json sha256 da3cb260..., 01:11:03Z. Runner: claude (replay). API spend: none.",
   "Links": "blocked by BND-01, BND-05 · blocks BND-10, BND-11 · implements CAP-06",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-10": {
   "Item": "BND-10  Refinement v1: held-out test",
@@ -4317,7 +4317,7 @@
   "Note": "Done 14 Oct (BND-08 closed, rule W3). Pooled held-out (55 tables): R1 INCONCLUSIVE 40/55, R2 INCONCLUSIVE 47/55, R3 SUPPORTED -0.003. TGT-09 met by v2 in BND-11. Runner: claude (replay). API spend: none.",
   "Links": "blocked by BND-08, BND-09 · blocks BND-14",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-11": {
   "Item": "BND-11  LIVE: Refinement v2, names only where the data are silent",
@@ -4337,7 +4337,7 @@
   "Note": "Done 14 Oct: v2 R1-R3 SUPPORTED 22/22 held-out formula files; names R4, R5 SUPPORTED, R6 REFUTED (1/10); 0 crashes.",
   "Links": "blocked by BND-05, BND-09 · blocks BND-14 · implements BLD-06, CAP-10, DLV-04, TGT-09, TGT-13",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-12": {
   "Item": "BND-12  LIVE: second model and external replications",
@@ -4357,7 +4357,7 @@
   "Note": "Audit parts done (AUD-13, RQ-17; REP-11 data part reproduced). Remaining live parts (CARE moved-names control, LLM and fused Sachs numbers, CausalSteward) moved to the Q2 build (B3) on 14 Oct.",
   "Links": "blocked by BND-02, BND-05 · implements AUD-13, REP-10, REP-11, REP-12, RQ-17",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-13": {
   "Item": "BND-13  Quarter 1 checkpoint package (2 Nov)",
@@ -4377,7 +4377,7 @@
   "Note": "Runner: claude; Uzair submits. API spend: none.",
   "Links": "blocked by BND-03, BND-04, BND-05, BND-06, BND-08 · blocks BND-14 · implements DLV-03, DLV-05",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BND-14": {
   "Item": "BND-14  Quarter 1 final: report, package, one-command reproduction (4 Dec)",
@@ -4397,7 +4397,7 @@
   "Note": "Runner: claude; Uzair submits. API spend: none.",
   "Links": "blocked by BND-02, BND-07, BND-10, BND-11, BND-13 · implements CAP-17, DLV-06, INF-06, INF-07, REP-03",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TEAM-08": {
   "Item": "TEAM-08  Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)",
@@ -4417,7 +4417,7 @@
   "Note": "Built 13 Oct on the existing Pages site: Home + 11 pages in four acts + glossary, evidence index, about. The build fails on missing numbers, term-order violations, early results, broken links and unlabelled market $ figures. Phone overflow (390 px, 15 pages) checked by hand with Playwright; not yet in CI.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "DEC-06": {
   "Item": "DEC-06  Approve the Atlas v2 page sequence (and whether the market page is public)",
@@ -4437,7 +4437,7 @@
   "Note": "Approved 13 Oct: 4 acts / 13 pages on the existing GitHub Pages site; Home leads with the research and links the market/wedge; market page public.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-06": {
   "Item": "EXT-06  Note to Vashishtha et al. maintainers: triplet answers cut off at 300 tokens (91% of votes lost on gpt-4o-mini)",
@@ -4457,7 +4457,7 @@
   "Note": "Draft ready (docs/drafts/bug_reports/); AB-06 adds the PyWhy guidance clock crash and MATMCD notes in docs/drafts/bug_reports/agents_output_contracts_ab06.md. Uzair decides whether to send.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-08": {
   "Item": "INF-08  Transient OSError EIO on the Docker bind mount: harness writes retry",
@@ -4477,7 +4477,7 @@
   "Note": "14 Oct 00:19-00:25 UTC: two AB-06 Causal-Copilot runs hit Errno 5 (q041 lost only its summary and is scored from state; q042 lost the run). Cause not identified (Windows file locking by sync or antivirus is the usual one). Causal-Copilot's own writes cannot be protected without changing it.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "INF-09": {
   "Item": "INF-09  Provider quota exhaustion is an infrastructure stop, not an agent failure",
@@ -4497,7 +4497,7 @@
   "Note": "14 Oct: the OpenAI account ran out of credits mid-batch; 61 AB-06 runs failed in seconds and were recorded as agent failures while the batch kept launching. Fixed as a class: the gate raises QuotaExhausted (BaseException, so agent retry loops cannot swallow it), runs end 'aborted_quota' (exit 5), earlier quota 'failed' runs are recognised by message, and the batch stops launching.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-18": {
   "Item": "TGT-18  DV-1 precision > 0.80 at >= 50% coverage, both families, held out (landmark ER-2)",
@@ -4507,17 +4507,17 @@
   "Kind": "target",
   "Evidence level": "V3",
   "Closing criterion": "Lower end of the scenario-cluster 95% interval of DV-1 precision of the selective view at >= 0.50 coverage > 0.80 on the CausalArena test split, semantic and formula (docs/decisions/2026-10-14_q2_landmarks.md)",
-  "Evidence": "analysis/results/q2_b4/evaluate_test.json\nanalysis/results/q2_landmarks.json\nanalysis/reports/q2_b4_confidence.md",
-  "Checks": "PASS landmarks/ER-2/met = false (false )",
+  "Evidence": "analysis/results/q2_b4/evaluate_test.json\nanalysis/results/q2_landmarks.json\nanalysis/reports/q2_b4_confidence.md\nanalysis/results/q2_v3/v3_test.json\nanalysis/reports/q2_v3_heldout.md\nanalysis/q2_anatomy.py\nanalysis/q2_half_anatomy.py\nanalysis/results/q2_v3/anatomy_dev.json\nanalysis/results/q2_v3/half_anatomy_dev.json\nanalysis/reports/q2_v3_anatomy.md\ndocs/design/q2_lever_map.md\nanalysis/q2_headroom.py\nanalysis/results/q2_v3/headroom_dev.json\nkernel/linkfilt.py\ntests/test_q2_linkfilt.py\nplans/linkfilt_prereg.json\nmanifests/evidence/linkfilt_prereg_2026-10-16.sha256\nanalysis/q2_linkfilt.py\nanalysis/q2_linkfilt_diag.py\nanalysis/results/q2_v3/linkfilt_dev.json\nanalysis/results/q2_v3/linkfilt_diag_dev.json\nanalysis/reports/q2_linkfilt_dev.md\nplans/l16_prereg.json\nmanifests/evidence/l16_prereg_2026-10-19.sha256\nanalysis/q2_l16.py\ntests/test_q2_l16_l5.py\nanalysis/results/q2_v3/l16_dev.json\nanalysis/reports/q2_l16_dev.md\nplans/l5_prereg.json\nmanifests/evidence/l5_prereg_2026-10-19.sha256\nanalysis/q2_l5.py\nanalysis/q2_l5_diag.py\nanalysis/results/q2_v3/l5_dev.json\nanalysis/results/q2_v3/l5_diag_dev.json\nanalysis/reports/q2_l5_dev.md",
+  "Checks": "PASS landmarks/ER-2/met = false (false ); PASS 0 listed files changed or missing; PASS 0 listed files changed or missing; PASS 0 listed files changed or missing; PASS verdicts/P-A3 = \"supported\" (eq \"supported\"); PASS selected_gate/transfer_guard/passes = false (eq false); PASS licences = [] (len_eq 0)",
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
   "Due": "",
   "Problems": "",
-  "Note": "Measured, not met: semantic 0.812 [0.756, 0.864] at coverage 0.578; formula 0.899 [0.854, 0.939] at 0.615 (met for formula alone). 25 scenarios per family set the interval.",
+  "Note": "v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] (short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3). 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula (cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links sit beside a real mediated path; neither can act until an applicability condition exists (analysis/reports/q2_linkfilt_dev.md). 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong (analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target (analysis/reports/q2_l5_dev.md).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-19": {
   "Item": "TGT-19  Accuracy landmark ER-4a: data-only F1 above GES (route A), or knowledge tiers lift > 0.03 (route B)",
@@ -4527,17 +4527,17 @@
   "Kind": "target",
   "Evidence level": "V3",
   "Closing criterion": "Route A: kernel D minus GES directed F1, lower end > 0 on one family; route B: D+K minus D (real names), lower end > 0.03 on one family; held out",
-  "Evidence": "analysis/results/q2_b1/heldout.json\nanalysis/results/q2_b3/summary_test.json\nanalysis/results/q2_landmarks.json\nanalysis/reports/q2_b1_data_only_ledger.md\nanalysis/reports/q2_b3_knowledge_tiers.md\ndocs/design/q2_kernel_v3_proposals.md",
+  "Evidence": "analysis/results/q2_b1/heldout.json\nanalysis/results/q2_b3/summary_test.json\nanalysis/results/q2_landmarks.json\nanalysis/reports/q2_b1_data_only_ledger.md\nanalysis/reports/q2_b3_knowledge_tiers.md\ndocs/design/q2_kernel_v3_proposals.md\nanalysis/reports/q2_v3_k1_k2_dev.md\ndocs/design/q2_lever_map.md\nanalysis/q2_headroom.py\nanalysis/results/q2_v3/headroom_dev.json\nanalysis/reports/q2_dirsig_dev.md\nanalysis/reports/q2_l5_dev.md\nanalysis/results/q2_v3/l5_dev.json",
   "Checks": "PASS ER-4a_route_A_met = false (false ); PASS families/formula/ER-4a_route_B/met = false (false )",
   "Reproduce": "",
   "Reopen if": "",
   "Blocked by": "",
   "Due": "",
   "Problems": "",
-  "Note": "Measured, not met. Route A: F1 against GES -0.001 [-0.007, +0.005] / +0.002 [-0.012, +0.017]. Route B: tier gain +0.019 [+0.010, +0.030] / +0.028 [+0.019, +0.037], lower ends below 0.03. Candidates for a v3 kernel in docs/design/q2_kernel_v3_proposals.md.",
+  "Note": "Measured, not met (v2). v3 dev: route A still ties GES even with 5,000 rows (C3 0.551 vs GES 0.559, semantic pooled); a lower GES penalty lowers F1 (0.522 -> 0.466). Route B: Meek propagation from knowledge adds +0.001; the oracle ceiling of the orient-only rule is +0.060 / +0.044. Needs direction evidence beyond the equivalence class (v4). 16 Oct: route A through pairwise asymmetry is closed at 1,000 rows on CausalArena (analysis/reports/q2_dirsig_dev.md); open direction sources are interventions and knowledge. 19 Oct: adding missed links from interventions (L5 rule A) is 9-14% precise on dev; no licence (analysis/reports/q2_l5_dev.md).",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "TGT-20": {
   "Item": "TGT-20  RCA through the ledger: AC@3 >= 0.90 at coverage >= 0.5 on PetShop held out (landmark ER-4b)",
@@ -4557,7 +4557,7 @@
   "Note": "Measured, not met under the interval rule: AC@3 0.932 [0.841, 1.000] at coverage 0.917 on 44 answered issues (reproduces AB-12 exactly). A lower end of 0.90 needs at most one miss at this sample size: more issues, not a better ranking.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "BLD-15": {
   "Item": "BLD-15  Audit adapter: other systems' outputs read as typed claims with violation classes",
@@ -4577,7 +4577,7 @@
   "Note": "Five systems' AB-06 outputs read as typed claims; Causal-Copilot's sources rebuilt from stage graphs (30/30 equal) and labelled. Flags e.g. 384 connections Causal-Copilot's knowledge created against its data floor, 398 MATMCD reversals of its own data.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
  },
  "EXT-07": {
   "Item": "EXT-07  Note to causal-learn maintainers: PC's Meek step can return a directed cycle (stale ancestor matrix)",
@@ -4597,6 +4597,46 @@
   "Note": "Found in B1 rung R1 (6 dev and 6 held-out files). The kernel works around it (re-derivation, cycles withdrawn and recorded), so nothing waits on the note.",
   "Links": "",
   "In prod": "",
-  "Verified": "2026-10-15"
+  "Verified": "2026-10-19"
+ },
+ "BLD-16": {
+  "Item": "BLD-16  Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates regime",
+  "ID": "BLD-16",
+  "Category": "8 Build",
+  "Status": "✅ Done",
+  "Kind": "task",
+  "Evidence level": "V3",
+  "Closing criterion": "K0: cache rebuild reproduces v2 dev ledgers hash-for-hash and B4 stability; K1-K4 measured on dev with their predictions judged; v3 pre-registered, frozen and read held out once",
+  "Evidence": "kernel/cache.py\nkernel/harness.py\nkernel/experiment.py\nkernel/v3.py\nkernel/claim_features.py\nplans/v3_prereg.json\nplans/v3_freeze.json\nmanifests/evidence/v3_prereg_2026-10-15.sha256\nanalysis/results/q2_v3/k0_check_v2_semantic.json\nanalysis/results/q2_v3/k0_check_v2_formula.json\nanalysis/results/q2_v3/k0_check_b4_semantic.json\nanalysis/results/q2_v3/v3_test.json\nanalysis/results/q2_v3/access_log.jsonl\nanalysis/reports/q2_v3_k0_engine_cache.md\nanalysis/reports/q2_v3_k1_k2_dev.md\nanalysis/reports/q2_v3_heldout.md\nanalysis/q2_anatomy.py\nanalysis/q2_half_anatomy.py\nanalysis/results/q2_v3/anatomy_dev.json\nanalysis/results/q2_v3/half_anatomy_dev.json\nanalysis/reports/q2_v3_anatomy.md",
+  "Checks": "PASS pass = true (true ); PASS pass = true (true ); PASS pass = true (true ); PASS 0 listed files changed or missing; PASS freeze = \"0cda331ea81cf0dd\" (eq \"0cda331ea81cf0dd\")",
+  "Reproduce": "",
+  "Reopen if": "",
+  "Blocked by": "",
+  "Due": "",
+  "Problems": "",
+  "Note": "K0: 1,250/1,250 v2 dev ledgers rebuilt hash-for-hash from cache; a dev experiment now takes ~10 s per family (30-70 min in v2). K1 link-recovery levers fail on dev (recovered links 33% precise; GES penalty 0.5 lowers F1); floor measured (9.0% / 6.8% of true links have no usable signal). K2 weights refuted as a landmark lever. v3 = v2 ledger + direction view (Meek R1/R3 not acted on) + feature confidence model; held out (second read): ER-2 met for formula (D 0.908 [0.876], DxR 0.911 [0.863]), not semantic (D 0.830 [0.783], DxR 0.866 [0.799]); ECE 0.021-0.026, ER-3 not met (upper ends 0.051-0.074).",
+  "Links": "",
+  "In prod": "",
+  "Verified": "2026-10-19"
+ },
+ "BEN-13": {
+  "Item": "BEN-13  CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall",
+  "ID": "BEN-13",
+  "Category": "4 Audit: benchmarks and data",
+  "Status": "⏳ To-do",
+  "Kind": "task",
+  "Evidence level": "V2",
+  "Closing criterion": "Two published rows per cell line (K562, RPE1) reproduced within tolerance before any re-score claim; then per published method: (a) edge-placement control on mean Wasserstein and FOR; (b) names-only baseline on the biological and statistical evaluations under a gene-label permutation; the share of each published score each channel accounts for, with intervals; predictions and thresholds hashed before the first re-score",
+  "Evidence": "docs/project_snapshots/2026-10-19/benchmark-targets.md",
+  "Checks": "",
+  "Reproduce": "",
+  "Reopen if": "",
+  "Blocked by": "",
+  "Due": "",
+  "Problems": "",
+  "Note": "Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5.",
+  "Links": "",
+  "In prod": "",
+  "Verified": "2026-10-19"
  }
 }

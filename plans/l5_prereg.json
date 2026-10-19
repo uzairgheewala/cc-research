@@ -1,0 +1,52 @@
+{
+ "version": "l5-1",
+ "tickets": ["TGT-18", "TGT-19", "CAP-03"],
+ "written_utc": "2026-10-19T20:41:00Z",
+ "status": "written before any L5 cut, add or confirmation number was computed; dev split only; no test split read; no kernel change; no model calls. Looked at before writing (descriptive, no link scored): per dev obs_int file, semantic has 3 released targets of 25 variables (median 40 single-target rows each; 93% of targets visibly shifted by their own intervention); formula has 7 of 18 (median 29 rows; 15% visibly shifted). BEN-09 had already reported formula's interventions as mostly in name only.",
+ "design": "docs/design/q2_lever_map.md row L5 ('interventional data as link evidence: does Y shift under do(X) given Y's other parents'); section 6 item 3",
+ "question": "Can single-target interventions withdraw the ledger's false links (above all shadows) or add its missed links precisely enough to be acted on? An exogenous intervention is the one source that separates a shadow from a real weak direct link by construction: under do(t), a shadow t ... y through a mediator m shows no shift in y once m is held fixed, a direct link t -> y does.",
+ "why_now": "three levers (CI tests, direction signals, triangle order) hit the same wall at 1,000 rows: nothing observational separates a shadow from a real weak direct link. Headroom ladder (semantic v3, D): removing false links +0.03 DV-1 precision / +0.14 F1; adding missed links +0.14 / +0.19, the largest step.",
+ "units": {
+  "files": "the 125 dev obs_int files per family. Ledger: v3 (rule C3, Meek R1/R3 open) on the 800 observational rows, from the engine cache (kernel.harness fill --source obs_int)",
+  "targets": "released targets (score.bench.released_targets: at least 5 rows intervening on that variable alone); a target is effective when its own values in those rows differ from the observational rows (Welch, p < 0.01). Only effective targets are used",
+  "testable_link": "a found link {t, y} with t an effective target",
+  "labels": "true / shadow / common_cause / unrelated as linkfilt-1 (truth used only for scoring)"
+ },
+ "statistics": {
+  "M": "marginal shift: Welch statistic of y in do(t) rows vs observational rows (B2's statistic); p_M",
+  "C": "conditional shift: y regressed (least squares, intercept) on Z over the observational rows; the residuals of the do(t) rows vs those of the observational rows, Welch; p_C. Z = the ledger neighbours of y that are also ledger neighbours of t (the triangle third variables, candidate mediators); C is defined only when Z is non-empty",
+  "C_add": "for an effective target t and a variable y not adjacent to t in the ledger: Z = ledger neighbours of y whose own values shift under do(t) (p_M < 0.01; candidate mediators); C as above. Defined when do(t) shifts y marginally (p_M < 0.01)"
+ },
+ "rules": {
+  "S_cut_shadow": "cut {t, y} when p_M < 0.01 and Z is non-empty and p_C >= tau",
+  "N_cut_no_effect": "cut {a, b} when both are effective targets and neither moves the other (p_M >= tau in both directions)",
+  "A_add": "add t -> y (direction source 'intervention') when p_M < 0.01 and p_C_add < alpha_add",
+  "confirm": "a testable link with p_C < 0.01 (or, with Z empty, p_M < 0.01) is 'confirmed' (support only; nothing changes)"
+ },
+ "grids": {"tau": [0.05, 0.1, 0.2, 0.3, 0.5], "alpha_add": [0.001, 0.01, 0.05]},
+ "licence_rule": {
+  "cut_bar": "per family, cross-fitted by scenario (5 folds, as linkfilt-1): the most permissive tau whose cut precision on 4 folds is >= 0.80 with >= 30 cuts, measured on the 5th. Licence: cross-fitted cut precision >= 0.80 and cut recall >= 0.10 of the ledger's testable false links. Recall over all false links is reported beside it",
+  "add_bar": "the same with alpha_add (most permissive passing): add precision (share of added pairs that are true links) >= 0.80 with >= 30 adds; recall = share of missed true links with an effective-target end that are added",
+  "why_0.80": "the bar every acted-on licence clears (linkfilt-1, lever map measure 4)"
+ },
+ "answer_level": "secondary: on each held-out fold, the ledger graph with licensed cuts removed and licensed adds inserted (oriented t -> y; no Meek re-derivation) re-scored for DV-1 precision, coverage and directed F1 against the unchanged graph",
+ "predictions": {
+  "P-L5-0": "Reach: at least 20% of the ledger's semantic false links are testable; on formula at most 10% (ineffective interventions). Refuted if semantic is below 10% or formula above 20%.",
+  "P-L5-1": "Rule S earns a cut licence on semantic, where both link filters failed. Refuted if its cross-fitted cut precision is below 0.80 on semantic.",
+  "P-L5-2": "Rule N's cut precision is >= 0.80 wherever it has >= 30 cuts, but it has fewer than 30 cuts per family (few links join two effective targets). Refuted if it has >= 30 cuts below 0.80 precision.",
+  "P-L5-3": "Rule A does not earn an add licence in either family: the candidate mediators are ledger neighbours and carry its missed links (dirsig-2's lesson). Refuted if A earns one.",
+  "P-L5-4": "Confirmed links are true at least 90% of the time on semantic, against the ledger's base rate of true among testable links. Refuted if below 0.80.",
+  "P-L5-5": "Where a cut or add licence holds, DV-1 precision on the held-out folds rises by >= 0.005 and directed F1 does not fall. Refuted if either falls."
+ },
+ "failure_modes_named_in_advance": [
+  "Power: about 40 (semantic) and 29 (formula) intervened rows per target; a real weak direct effect can show no conditional shift, so rule S can cut real links. This is the bet P-L5-1 makes against.",
+  "Ineffective interventions: a target whose own values barely move says nothing about its children; such targets are excluded, which is why formula's reach is small.",
+  "Missed mediators: a shadow whose mediator the ledger missed has no triangle, so Z is empty and rule S cannot act on it.",
+  "Nonlinear mediation: a linear regression of y on Z leaves a residual shift when y depends on m nonlinearly, so a shadow looks direct (rule S keeps it: conservative for cuts, harmful for rule A).",
+  "Extrapolation: do(t) can push the mediators outside their observational range, where the observational fit is wrong.",
+  "Colliders in Z: a triangle third variable can be a common child of t and y; conditioning on it opens a path and makes a shadow or a false link look direct (conservative for cuts).",
+  "Only three targets per semantic file: reach is bounded by the release, whatever the rule.",
+  "Many tests per file: thresholds are cross-fitted, never chosen on the fold they are scored on."
+ ],
+ "outputs": "analysis/results/q2_v3/l5_dev.json (+ per-link rows l5_links_dev.jsonl.gz); analysis/reports/q2_l5_dev.md; lever map row L5"
+}

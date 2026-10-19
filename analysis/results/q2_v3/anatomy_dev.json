@@ -1,0 +1,605 @@
+{
+ "split": "dev",
+ "rule": "C3",
+ "configs": {
+  "v2_D": {
+   "open": [],
+   "source": "obs"
+  },
+  "v3_D": {
+   "open": [
+    "meek_r1",
+    "meek_r3"
+   ],
+   "source": "obs"
+  },
+  "v2_DxR": {
+   "open": [],
+   "source": "pooled"
+  },
+  "v3_DxR": {
+   "open": [
+    "meek_r1",
+    "meek_r3"
+   ],
+   "source": "pooled"
+  }
+ },
+ "families": {
+  "semantic": {
+   "v2_D": {
+    "links": {
+     "true": 5120,
+     "found": 3473,
+     "missed": 1647,
+     "missed_share": 0.322,
+     "claimed": 5506,
+     "false": 2033,
+     "link_precision": 0.631,
+     "false_shadow": 1106,
+     "false_common_cause": 538,
+     "false_unrelated": 389
+    },
+    "directions": {
+     "found_true_links": 3473,
+     "committed": 2864,
+     "left_open": 609,
+     "committed_share": 0.825,
+     "right": 2420,
+     "reversed": 444,
+     "right_share": 0.845,
+     "left_open_and_truth_leaves_open": 194,
+     "left_open_but_truth_orients": 415,
+     "true_links_truth_leaves_open": 435,
+     "committed_but_truth_leaves_open": 156,
+     "of_those_right": 86,
+     "by_licence": {
+      "meek_r1": {
+       "n": 316,
+       "right": 203,
+       "right_share": 0.642
+      },
+      "meek_r2": {
+       "n": 40,
+       "right": 30,
+       "right_share": 0.75
+      },
+      "meek_r3": {
+       "n": 1,
+       "right": 0,
+       "right_share": 0.0
+      },
+      "v_structure": {
+       "n": 2507,
+       "right": 2187,
+       "right_share": 0.872
+      }
+     }
+    },
+    "answers": {
+     "pairs": 10485,
+     "answered": 8436,
+     "coverage": 0.805,
+     "precision": 0.756,
+     "nothing_moves_floor": 0.652,
+     "yes": 2449,
+     "yes_right": 1644,
+     "yes_wrong": 805,
+     "yes_precision": 0.671,
+     "no": 5987,
+     "no_right": 4736,
+     "no_wrong": 1251,
+     "no_precision": 0.791,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 111,
+      "common_cause_link": 231,
+      "reversed_true_link": 120,
+      "unrelated_link": 343
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 778,
+      "reversed_link": 473
+     }
+    },
+    "files": 125,
+    "wall_seconds": 4.6
+   },
+   "v3_D": {
+    "links": {
+     "true": 5120,
+     "found": 3473,
+     "missed": 1647,
+     "missed_share": 0.322,
+     "claimed": 5506,
+     "false": 2033,
+     "link_precision": 0.631,
+     "false_shadow": 1106,
+     "false_common_cause": 538,
+     "false_unrelated": 389
+    },
+    "directions": {
+     "found_true_links": 3473,
+     "committed": 2547,
+     "left_open": 926,
+     "committed_share": 0.733,
+     "right": 2217,
+     "reversed": 330,
+     "right_share": 0.87,
+     "left_open_and_truth_leaves_open": 252,
+     "left_open_but_truth_orients": 674,
+     "true_links_truth_leaves_open": 435,
+     "committed_but_truth_leaves_open": 98,
+     "of_those_right": 53,
+     "by_licence": {
+      "meek_r2": {
+       "n": 40,
+       "right": 30,
+       "right_share": 0.75
+      },
+      "v_structure": {
+       "n": 2507,
+       "right": 2187,
+       "right_share": 0.872
+      }
+     }
+    },
+    "answers": {
+     "pairs": 10485,
+     "answered": 7260,
+     "coverage": 0.692,
+     "precision": 0.793,
+     "nothing_moves_floor": 0.652,
+     "yes": 1723,
+     "yes_right": 1266,
+     "yes_wrong": 457,
+     "yes_precision": 0.735,
+     "no": 5537,
+     "no_right": 4493,
+     "no_wrong": 1044,
+     "no_precision": 0.811,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 39,
+      "common_cause_link": 144,
+      "reversed_true_link": 58,
+      "unrelated_link": 216
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 742,
+      "reversed_link": 302
+     }
+    },
+    "files": 125,
+    "wall_seconds": 5.0
+   },
+   "v2_DxR": {
+    "links": {
+     "true": 1024,
+     "found": 781,
+     "missed": 243,
+     "missed_share": 0.237,
+     "claimed": 1309,
+     "false": 528,
+     "link_precision": 0.597,
+     "false_shadow": 318,
+     "false_common_cause": 130,
+     "false_unrelated": 80
+    },
+    "directions": {
+     "found_true_links": 781,
+     "committed": 638,
+     "left_open": 143,
+     "committed_share": 0.817,
+     "right": 556,
+     "reversed": 82,
+     "right_share": 0.871,
+     "left_open_and_truth_leaves_open": 40,
+     "left_open_but_truth_orients": 103,
+     "true_links_truth_leaves_open": 87,
+     "committed_but_truth_leaves_open": 34,
+     "of_those_right": 21,
+     "by_licence": {
+      "meek_r1": {
+       "n": 64,
+       "right": 43,
+       "right_share": 0.672
+      },
+      "meek_r2": {
+       "n": 12,
+       "right": 8,
+       "right_share": 0.667
+      },
+      "v_structure": {
+       "n": 562,
+       "right": 505,
+       "right_share": 0.899
+      }
+     }
+    },
+    "answers": {
+     "pairs": 2097,
+     "answered": 1572,
+     "coverage": 0.75,
+     "precision": 0.816,
+     "nothing_moves_floor": 0.652,
+     "yes": 513,
+     "yes_right": 378,
+     "yes_wrong": 135,
+     "yes_precision": 0.737,
+     "no": 1059,
+     "no_right": 905,
+     "no_wrong": 154,
+     "no_precision": 0.855,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 15,
+      "common_cause_link": 43,
+      "reversed_true_link": 28,
+      "unrelated_link": 49
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 103,
+      "reversed_link": 51
+     }
+    },
+    "files": 25,
+    "wall_seconds": 3.0
+   },
+   "v3_DxR": {
+    "links": {
+     "true": 1024,
+     "found": 781,
+     "missed": 243,
+     "missed_share": 0.237,
+     "claimed": 1309,
+     "false": 528,
+     "link_precision": 0.597,
+     "false_shadow": 318,
+     "false_common_cause": 130,
+     "false_unrelated": 80
+    },
+    "directions": {
+     "found_true_links": 781,
+     "committed": 574,
+     "left_open": 207,
+     "committed_share": 0.735,
+     "right": 513,
+     "reversed": 61,
+     "right_share": 0.894,
+     "left_open_and_truth_leaves_open": 52,
+     "left_open_but_truth_orients": 155,
+     "true_links_truth_leaves_open": 87,
+     "committed_but_truth_leaves_open": 22,
+     "of_those_right": 13,
+     "by_licence": {
+      "meek_r2": {
+       "n": 12,
+       "right": 8,
+       "right_share": 0.667
+      },
+      "v_structure": {
+       "n": 562,
+       "right": 505,
+       "right_share": 0.899
+      }
+     }
+    },
+    "answers": {
+     "pairs": 2097,
+     "answered": 1355,
+     "coverage": 0.646,
+     "precision": 0.864,
+     "nothing_moves_floor": 0.652,
+     "yes": 383,
+     "yes_right": 309,
+     "yes_wrong": 74,
+     "yes_precision": 0.807,
+     "no": 972,
+     "no_right": 862,
+     "no_wrong": 110,
+     "no_precision": 0.887,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 7,
+      "common_cause_link": 28,
+      "reversed_true_link": 5,
+      "unrelated_link": 34
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 71,
+      "reversed_link": 39
+     }
+    },
+    "files": 25,
+    "wall_seconds": 2.9
+   }
+  },
+  "formula": {
+   "v2_D": {
+    "links": {
+     "true": 4365,
+     "found": 2897,
+     "missed": 1468,
+     "missed_share": 0.336,
+     "claimed": 5609,
+     "false": 2712,
+     "link_precision": 0.516,
+     "false_shadow": 1468,
+     "false_common_cause": 621,
+     "false_unrelated": 623
+    },
+    "directions": {
+     "found_true_links": 2897,
+     "committed": 2462,
+     "left_open": 435,
+     "committed_share": 0.85,
+     "right": 1979,
+     "reversed": 483,
+     "right_share": 0.804,
+     "left_open_and_truth_leaves_open": 130,
+     "left_open_but_truth_orients": 305,
+     "true_links_truth_leaves_open": 240,
+     "committed_but_truth_leaves_open": 92,
+     "of_those_right": 47,
+     "by_licence": {
+      "meek_r1": {
+       "n": 257,
+       "right": 153,
+       "right_share": 0.595
+      },
+      "meek_r2": {
+       "n": 56,
+       "right": 45,
+       "right_share": 0.804
+      },
+      "meek_r3": {
+       "n": 4,
+       "right": 1,
+       "right_share": 0.25
+      },
+      "v_structure": {
+       "n": 2145,
+       "right": 1780,
+       "right_share": 0.83
+      }
+     }
+    },
+    "answers": {
+     "pairs": 16550,
+     "answered": 14312,
+     "coverage": 0.865,
+     "precision": 0.814,
+     "nothing_moves_floor": 0.694,
+     "yes": 4045,
+     "yes_right": 2822,
+     "yes_wrong": 1223,
+     "yes_precision": 0.698,
+     "no": 10267,
+     "no_right": 8830,
+     "no_wrong": 1437,
+     "no_precision": 0.86,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 167,
+      "common_cause_link": 197,
+      "reversed_true_link": 229,
+      "unrelated_link": 630
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 913,
+      "reversed_link": 524
+     }
+    },
+    "files": 125,
+    "wall_seconds": 3.9
+   },
+   "v3_D": {
+    "links": {
+     "true": 4365,
+     "found": 2897,
+     "missed": 1468,
+     "missed_share": 0.336,
+     "claimed": 5609,
+     "false": 2712,
+     "link_precision": 0.516,
+     "false_shadow": 1468,
+     "false_common_cause": 621,
+     "false_unrelated": 623
+    },
+    "directions": {
+     "found_true_links": 2897,
+     "committed": 2201,
+     "left_open": 696,
+     "committed_share": 0.76,
+     "right": 1825,
+     "reversed": 376,
+     "right_share": 0.829,
+     "left_open_and_truth_leaves_open": 164,
+     "left_open_but_truth_orients": 532,
+     "true_links_truth_leaves_open": 240,
+     "committed_but_truth_leaves_open": 58,
+     "of_those_right": 32,
+     "by_licence": {
+      "meek_r2": {
+       "n": 56,
+       "right": 45,
+       "right_share": 0.804
+      },
+      "v_structure": {
+       "n": 2145,
+       "right": 1780,
+       "right_share": 0.83
+      }
+     }
+    },
+    "answers": {
+     "pairs": 16550,
+     "answered": 12494,
+     "coverage": 0.755,
+     "precision": 0.843,
+     "nothing_moves_floor": 0.694,
+     "yes": 3021,
+     "yes_right": 2279,
+     "yes_wrong": 742,
+     "yes_precision": 0.754,
+     "no": 9473,
+     "no_right": 8259,
+     "no_wrong": 1214,
+     "no_precision": 0.872,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 88,
+      "common_cause_link": 122,
+      "reversed_true_link": 98,
+      "unrelated_link": 434
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 838,
+      "reversed_link": 376
+     }
+    },
+    "files": 125,
+    "wall_seconds": 3.7
+   },
+   "v2_DxR": {
+    "links": {
+     "true": 873,
+     "found": 625,
+     "missed": 248,
+     "missed_share": 0.284,
+     "claimed": 1258,
+     "false": 633,
+     "link_precision": 0.497,
+     "false_shadow": 349,
+     "false_common_cause": 142,
+     "false_unrelated": 142
+    },
+    "directions": {
+     "found_true_links": 625,
+     "committed": 529,
+     "left_open": 96,
+     "committed_share": 0.846,
+     "right": 450,
+     "reversed": 79,
+     "right_share": 0.851,
+     "left_open_and_truth_leaves_open": 28,
+     "left_open_but_truth_orients": 68,
+     "true_links_truth_leaves_open": 48,
+     "committed_but_truth_leaves_open": 15,
+     "of_those_right": 11,
+     "by_licence": {
+      "meek_r1": {
+       "n": 44,
+       "right": 29,
+       "right_share": 0.659
+      },
+      "meek_r2": {
+       "n": 14,
+       "right": 12,
+       "right_share": 0.857
+      },
+      "meek_r3": {
+       "n": 1,
+       "right": 1,
+       "right_share": 1.0
+      },
+      "v_structure": {
+       "n": 470,
+       "right": 408,
+       "right_share": 0.868
+      }
+     }
+    },
+    "answers": {
+     "pairs": 3310,
+     "answered": 2883,
+     "coverage": 0.871,
+     "precision": 0.831,
+     "nothing_moves_floor": 0.694,
+     "yes": 879,
+     "yes_right": 618,
+     "yes_wrong": 261,
+     "yes_precision": 0.703,
+     "no": 2004,
+     "no_right": 1779,
+     "no_wrong": 225,
+     "no_precision": 0.888,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 27,
+      "common_cause_link": 47,
+      "reversed_true_link": 24,
+      "unrelated_link": 163
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 159,
+      "reversed_link": 66
+     }
+    },
+    "files": 25,
+    "wall_seconds": 2.3
+   },
+   "v3_DxR": {
+    "links": {
+     "true": 873,
+     "found": 625,
+     "missed": 248,
+     "missed_share": 0.284,
+     "claimed": 1258,
+     "false": 633,
+     "link_precision": 0.497,
+     "false_shadow": 349,
+     "false_common_cause": 142,
+     "false_unrelated": 142
+    },
+    "directions": {
+     "found_true_links": 625,
+     "committed": 484,
+     "left_open": 141,
+     "committed_share": 0.774,
+     "right": 420,
+     "reversed": 64,
+     "right_share": 0.868,
+     "left_open_and_truth_leaves_open": 34,
+     "left_open_but_truth_orients": 107,
+     "true_links_truth_leaves_open": 48,
+     "committed_but_truth_leaves_open": 9,
+     "of_those_right": 6,
+     "by_licence": {
+      "meek_r2": {
+       "n": 14,
+       "right": 12,
+       "right_share": 0.857
+      },
+      "v_structure": {
+       "n": 470,
+       "right": 408,
+       "right_share": 0.868
+      }
+     }
+    },
+    "answers": {
+     "pairs": 3310,
+     "answered": 2561,
+     "coverage": 0.774,
+     "precision": 0.865,
+     "nothing_moves_floor": 0.694,
+     "yes": 686,
+     "yes_right": 527,
+     "yes_wrong": 159,
+     "yes_precision": 0.768,
+     "no": 1875,
+     "no_right": 1687,
+     "no_wrong": 188,
+     "no_precision": 0.9,
+     "yes_wrong_by_cause": {
+      "backward_shadow": 15,
+      "common_cause_link": 37,
+      "reversed_true_link": 11,
+      "unrelated_link": 96
+     },
+     "no_wrong_by_cause": {
+      "missed_link": 139,
+      "reversed_link": 49
+     }
+    },
+    "files": 25,
+    "wall_seconds": 2.3
+   }
+  }
+ }
+}

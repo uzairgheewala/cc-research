@@ -982,6 +982,42 @@
  ],
  "changes": [
   {
+   "done": [],
+   "points": [
+    "L16 applicability conditions (TGT-18): an observable gate (ledger density or triangle share) clears the pooled bar for the triangle-order filter (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the pre-registered transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so nothing is acted on. A declared domain-structure statement is the route to build: +0.009 DV-1 / +0.017 coverage / +0.011 F1 on formula when right, -0.002 / +0.002 / 0.000 on semantic when wrong",
+    "L5 interventions as link evidence (TGT-18, TGT-19, CAP-03): no licence. The shadow signal is real (given the mediator, the shift disappears for 48% of moved shadows and 7% of moved true links), but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target; adds from interventions are 9-14% precise",
+    "BEN-13 opened: CausalBench (GSK) shortcut audit, the scale-and-interventions leg. CRS-01 (TA check-in 1) moved to Thu 29 Oct, 10:45 am PT"
+   ],
+   "posted_utc": "2026-10-19T21:25:27Z",
+   "tickets": [
+    "BEN-13",
+    "CAP-03",
+    "CRS-01",
+    "TGT-18",
+    "TGT-19"
+   ]
+  },
+  {
+   "done": [
+    "BLD-16 Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates…"
+   ],
+   "points": [
+    "Kernel v3 built (BLD-16): the engine cache rebuilds all 1,250 v2 dev ledgers hash-for-hash, so a dev experiment takes ~10 s per family instead of 30-70 min; cross-machine hashes need OpenBLAS pinned (CAP-11)",
+    "Missed links (TGT-19): every link-recovery lever failed on dev (recovered links 33% precise; GES penalty 0.5 lowers F1). Floor measured: 9.0% / 6.8% of true links carry no usable signal; 14% / 20% are a search gap",
+    "ER-2, second held-out read (TGT-18): met for formula (0.908 [0.876]; pooled 0.911 [0.863]); not met for semantic (0.830 [0.783]; pooled 0.866 [0.799], short by 0.001)",
+    "CAP-07: held-out ECE 0.021 / 0.025 (v2 0.057 / 0.036); ER-3 still not met, upper ends 0.051-0.074 on 25 scenarios",
+    "Open choice for Uzair: more scenarios to narrow every interval, or a v4 on the semantic search gap / direction evidence beyond GES (TGT-19)"
+   ],
+   "posted_utc": "2026-10-15T22:04:14Z",
+   "tickets": [
+    "BLD-16",
+    "CAP-07",
+    "CAP-11",
+    "TGT-18",
+    "TGT-19"
+   ]
+  },
+  {
    "done": [
     "BLD-02 B1 data-only claim ledger with invariants I1-I4, I7",
     "BLD-03 B2 interventions as order evidence",
@@ -1147,62 +1183,10 @@
     "EXT-01",
     "TEAM-08"
    ]
-  },
-  {
-   "done": [
-    "AUD-45 AB-14 Market map and three vertical briefs (RCA, marketing, pharma RWE), with public…"
-   ],
-   "points": [
-    "AUD-45 (AB-14) done without interviews (decision recorded): market map plus three vertical briefs. 'Causal AI' sizings span $28.9M to $59.2B and cannot be used; the money is in AI SRE agents, MMM and RWE. Start in IT incident RCA as a vendor-neutral audit of AI SRE agents' root-cause claims; marketing second; pharma third. Every figure labelled; estimates show inputs.",
-    "STR-06 / AUD-41: public demand evidence (indirect, stands in for interviews): H2 best supported; H1 supported for provenance but nothing measures abstention; H3 only by analogy (LLM-evaluation funding). P13 still needs interviews.",
-    "DEC-05: audit DAG v2, so AB-14 and AB-16 no longer wait on AB-10; interviews run whenever a chance arises.",
-    "TEAM-08 / DEC-06: site readability pass done (no dates in headings, stale text fixed, phone layout fixed). Atlas v2 design, four acts and thirteen pages, waits on Uzair's approval."
-   ],
-   "posted_utc": "2026-10-13T22:00:59Z",
-   "tickets": [
-    "AUD-41",
-    "AUD-45",
-    "DEC-05",
-    "DEC-06",
-    "STR-06",
-    "TEAM-08"
-   ]
-  },
-  {
-   "done": [
-    "AUD-48 AB-07 LIVE: knowledge elicitation run (A3, DEC-02): tiers, three phrasings, three name…",
-    "RQ-10 O1 Real names: >=70% of true edges ordered correctly, <=10% contradicted",
-    "RQ-11 O2 Neutral names give no order information",
-    "RQ-12 O3 Moved names: tiers follow the labels",
-    "RQ-13 O4 Regression on model tiers reaches 0.634 (semantic)",
-    "RQ-14 O5 Same for formula vs 0.524"
-   ],
-   "points": [
-    "AUD-48 (AB-07) done: A3 scored. Names alone order 69% of true edges correctly (12% contradicted); with moved names the order follows the labels and is worse than chance against the data; neutral names give nothing. Tiers alone reach 0.448, below GES on data (0.528). Used orient-only, GES goes to 0.546; wrong tiers cost 0.19 (bounded).",
-    "AUD-34 (AB-02): Bayesys measured. ASIA, SPORTS and PATHFINDER are released in topological order (P3 supported); an earlier-column tie-break gains +0.04 to +0.30 there and about 0 elsewhere. PC's conflict-rule gap shows on 2 of 3 ordered networks (P4 inconclusive). Waits on the published xlsx for the reproduction gate.",
-    "AUD-37 (AB-05): causaliq live ok (F1 0.231, $0.004). Causal-Copilot on gpt-4o-mini died at judge_functions.py:562, the upstream key bug behind 16 of 115 live runs; documented, not patched.",
-    "AUD-38 (AB-06): 120-run agent grid, Causal-Copilot second-model arm, batch runner and scorer ready and stub-tested; batch never pays twice for a crash and stops at the total cap.",
-    "RQ-10..14 answered; CAP-04, BLD-04, TGT-07 unblocked."
-   ],
-   "posted_utc": "2026-10-13T19:53:18Z",
-   "tickets": [
-    "AUD-34",
-    "AUD-37",
-    "AUD-38",
-    "AUD-48",
-    "BLD-04",
-    "CAP-04",
-    "RQ-10",
-    "RQ-11",
-    "RQ-12",
-    "RQ-13",
-    "RQ-14",
-    "TGT-07"
-   ]
   }
  ],
- "generated_utc": "2026-10-15T17:25:58Z",
- "hash": "1c8e000ab6d3f6016964bdbe6c3de1887221084cf8b77e56a54754b7efc710ed",
+ "generated_utc": "2026-10-19T21:26:30Z",
+ "hash": "a1108ffd2c4b8e0381553b76769b95d725fb351c89e593c7daaa2c133af16466",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -2171,7 +2155,7 @@
    "category": "6 Required capabilities",
    "id": "CAP-02",
    "kind": "task",
-   "level": "V0",
+   "level": "V3",
    "pillar": "P2",
    "status": "todo",
    "title": "Direction from the numbers (PC: 54%)"
@@ -3273,21 +3257,39 @@
    "pillar": "spine",
    "status": "open",
    "title": "Note to causal-learn maintainers: PC's Meek step can return a directed cycle (stale ancestor matrix)"
+  },
+  {
+   "category": "8 Build",
+   "id": "BLD-16",
+   "kind": "task",
+   "level": "V3",
+   "pillar": "spine",
+   "status": "done",
+   "title": "Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates regime"
+  },
+  {
+   "category": "4 Audit: benchmarks and data",
+   "id": "BEN-13",
+   "kind": "task",
+   "level": "V2",
+   "pillar": "P1",
+   "status": "todo",
+   "title": "CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall"
   }
  ],
  "lists": {
   "dev": {
    "pending_removals": 0,
    "pending_updates": 0,
-   "rows": 230,
-   "rows_sha256": "9434d8dd4f27a51a21b48a610abfad6ac5d81be9d791c3ad98218c80c41faeac",
+   "rows": 232,
+   "rows_sha256": "b402bdebf3f4c92e5760839edac23056daa3e00adda0d2cb91fd489cb31cd154",
    "slack_list": "F0C869P25NE"
   },
   "prod": {
    "pending_removals": 0,
    "pending_updates": 0,
    "rows": 67,
-   "rows_sha256": "ae270663b30647199c2dbc4039209ee3ffdb6709e496a885cab8393349537b91",
+   "rows_sha256": "ef5987a386fa3f2c5cfd183cca36553b967f7de809ee22eebf47acdc6a57be7f",
    "slack_list": "F0C8ADF3DNG"
   }
  },
@@ -4804,6 +4806,130 @@
    "src": "analysis/results/q2_landmarks.json",
    "value": 2
   },
+  "q2v3.floor.for": {
+   "src": "analysis/results/q2_v3/floor_dev_formula.json",
+   "value": 0.06804123711340206
+  },
+  "q2v3.floor.sem": {
+   "src": "analysis/results/q2_v3/floor_dev_semantic.json",
+   "value": 0.0896484375
+  },
+  "q2v3.for.D.cov": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.5624252775405636
+  },
+  "q2v3.for.D.ece": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.024817378709575445
+  },
+  "q2v3.for.D.ecehi": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.05093267770637156
+  },
+  "q2v3.for.D.er2": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": "met"
+  },
+  "q2v3.for.D.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.8761927236041928
+  },
+  "q2v3.for.D.p": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.9080878631440429
+  },
+  "q2v3.for.DxR.cov": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.6051807571875889
+  },
+  "q2v3.for.DxR.ece": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.02097036686303893
+  },
+  "q2v3.for.DxR.ecehi": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.058359747139949576
+  },
+  "q2v3.for.DxR.er2": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": "met"
+  },
+  "q2v3.for.DxR.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.8627158039941831
+  },
+  "q2v3.for.DxR.p": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.9111006585136406
+  },
+  "q2v3.gap.for": {
+   "src": "analysis/results/q2_v3/floor_dev_formula.json",
+   "value": 0.2013745704467354
+  },
+  "q2v3.gap.sem": {
+   "src": "analysis/results/q2_v3/floor_dev_semantic.json",
+   "value": 0.141796875
+  },
+  "q2v3.k0.equal": {
+   "src": "analysis/results/q2_v3/k0_check_v2_semantic.json",
+   "value": 625
+  },
+  "q2v3.missed.for": {
+   "src": "analysis/results/q2_v3/floor_dev_formula.json",
+   "value": 0.33631156930126005
+  },
+  "q2v3.missed.sem": {
+   "src": "analysis/results/q2_v3/floor_dev_semantic.json",
+   "value": 0.3216796875
+  },
+  "q2v3.sem.D.cov": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.5446663419386264
+  },
+  "q2v3.sem.D.ece": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.021080635326254257
+  },
+  "q2v3.sem.D.ecehi": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.06261066861482432
+  },
+  "q2v3.sem.D.er2": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": "not met"
+  },
+  "q2v3.sem.D.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.7832741204967787
+  },
+  "q2v3.sem.D.p": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.8302629225541048
+  },
+  "q2v3.sem.DxR.cov": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.515830491962981
+  },
+  "q2v3.sem.DxR.ece": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.02552313169467535
+  },
+  "q2v3.sem.DxR.ecehi": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.07425705551571919
+  },
+  "q2v3.sem.DxR.er2": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": "not met"
+  },
+  "q2v3.sem.DxR.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.7990127597822676
+  },
+  "q2v3.sem.DxR.p": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.8659112370160529
+  },
   "rep11.ours": {
    "src": "analysis/reports/rep11_sachs_data.md",
    "value": 0.647
@@ -5012,6 +5138,10 @@
   "analysis/results/q2_b5/adapters.json": "046a3361af1f6d2c0040f89ba924379d35c0cc2cec8d882fa687da435e08be79",
   "analysis/results/q2_b5/rca_test.json": "aa362861c6080e6248a69c3de5416b017cf4dfd8539ae92d65ed91bebc5d6617",
   "analysis/results/q2_landmarks.json": "efd5f0e8bed240a88a4c95e34725334b9734ce9bdad9ffa846e6a355673cbd75",
+  "analysis/results/q2_v3/floor_dev_formula.json": "8321e328ec16a0d0193ab1345a2c11ddc0eff765361fcb088099f9936137dc22",
+  "analysis/results/q2_v3/floor_dev_semantic.json": "5771b792611c428f23b6c677646afc70524a23e56fb1a8525ed62a936776fc21",
+  "analysis/results/q2_v3/k0_check_v2_semantic.json": "f3e6108e5e936780456fa1c6db32679059079fffbcbdfb8b3fb73036137752d6",
+  "analysis/results/q2_v3/v3_test.json": "f70297b4923ac85e88cfbc6213cac40ef54109587af0b0bf1029d995f1197367",
   "analysis/results/refinement_v1/diagnosis_test_live_s2.json": "52fcfe04d07ce97e1991fee1143b99e1323317561e5eb03745b671e7cb7f9ea6",
   "analysis/results/refinement_v1/test_live_s2.json": "02b0b20b6c1ca96afa085cc908528335a80d64b53591d1567440795d9fc3def5",
   "analysis/results/refinement_v2/exploratory_s2_live.json": "debb94c4d3a3e415a1517d721b08b9d7486c5dca8c45d7d8c98afec2320cbae4",
@@ -5021,5 +5151,5 @@
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
   "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
  },
- "status_verified_utc": "2026-10-15T17:25:04Z"
+ "status_verified_utc": "2026-10-19T21:19:14Z"
 }
