@@ -1279,6 +1279,11 @@
   "files": 1,
   "pinned": "2026-10-10T21:56:43Z"
  },
+ "BEN-07|plans/x5_prereg.json": {
+  "digest": "0525ee14a7d99e1f94e1d4365daa5c2f7294b3b1d1f6d4e22155a13ec4ffeb37",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
  "BEN-08|analysis/results/causalarena_calibration/pc_calibration.json": {
   "digest": "5af11628547d2d40934d2722a666bb5564ff4ab48dcd9327a3dc823a537afa0e",
   "files": 1,
@@ -1439,10 +1444,70 @@
   "files": 1,
   "pinned": "2026-10-10T16:07:08Z"
  },
+ "BEN-13|analysis/ben13/evaluate.py": {
+  "digest": "1d9b828a3b77261576afbdfd3be642ca95425a4a4a7fc354c9ea6ed237ba5660",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/fetch.py": {
+  "digest": "15ddd7938240bac4652ec7f4b6c4211d4cd7df295acb557dabaa08cfcfe233b7",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/literature.py": {
+  "digest": "f0b36138c5888bdb5fc4c3257b6db99ccde855ff65def18f4f774edf9b6ed9fb",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/methods.py": {
+  "digest": "ca2e743b0e7acaadedf7113b52d340c0c7db3ea109ec9696682aa412ed0f1f53",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/run.py": {
+  "digest": "be34210a9c54c643bbaab64d2282a006f8153aa2604b1e63c13f36379cebe9a0",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/stream_preprocess.py": {
+  "digest": "b6a881fad705b60969d2a8b6cddc32292a110f52031e889e31804d1a91d51df9",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|analysis/ben13/synth.py": {
+  "digest": "db6b8a0eb81c28385d8f7fd367347ccf500cbbdaf0c0ac583e5d5288c7b0e3c1",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|docker/Dockerfile.bench": {
+  "digest": "a01d7df69763a6cba1356747f19c874a9a93cff730d0174633b589fe86bc008c",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|docker/requirements_bench.txt": {
+  "digest": "ad9308c7c1548689dcb4b0bd6db6182fddd68c4ffee2979a5501331f77ba61bc",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
  "BEN-13|docs/project_snapshots/2026-10-19/benchmark-targets.md": {
   "digest": "611f98766333c8e740f459c225f1f6e097b342b133112f59bdd2f9de78773029",
   "files": 1,
-  "pinned": "2026-10-19T21:18:23Z"
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|manifests/evidence/explain_ben13_prereg_2026-10-20.sha256": {
+  "digest": "19d6557f7a447e48ad63f641d3b7ea1d24928f3dbb8b74c5650274351aa994a6",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|plans/ben13_prereg.json": {
+  "digest": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "BEN-13|tests/test_ben13_stream.py": {
+  "digest": "296d662aac60be9c56b351f74ae6b80af1ba0e38c7660f1fe35cb341b95c0ea0",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "BLD-01|analysis/": {
   "digest": "set:7bab6320d427c6e39cacf863c3b3999f73371ca4fda5a68e027b686d92a20a02",
@@ -1452,7 +1517,7 @@
  "BLD-01|analysis/README.md": {
   "digest": "37dd15aa6fd54506a28b39b9f18a0a7c09641a4162ad866e763eeed5e0eaff70",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T16:18:29Z"
  },
  "BLD-01|harness/": {
   "digest": "set:6b9cc563a621acfa080c64a31ff15e6ac999a7379f32e3d46d65b72cd8a8beb3",
@@ -1472,7 +1537,12 @@
  "BLD-01|manifests/evidence/BLD-01_tools_2026-10-14.sha256": {
   "digest": "11caa6b300862047def417f4518209c064fc779d40b3775c5f7d904eddcdf517",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T16:18:08Z"
+ },
+ "BLD-01|manifests/evidence/BLD-01_tools_2026-10-20.sha256": {
+  "digest": "7c25d072ccdb254afdd822af4588dd86b3f65ea774682c90ab2d813c9aa3d7c2",
+  "files": 1,
+  "pinned": "2026-10-20T16:18:29Z"
  },
  "BLD-02|analysis/reports/q2_b1_data_only_ledger.md": {
   "digest": "b8257fe6ed341707b955bcb335fa522ec6b4f521e83ab7ab3073f9bdd547309d",
@@ -1690,34 +1760,34 @@
   "pinned": "2026-10-15T21:37:49Z"
  },
  "BLD-11|AGENTS.md": {
-  "digest": "1d355c79e479c5e102a1a40f67dd71e316e0802fa0008896edb7dc220d129094",
+  "digest": "7ea91b536d3e3fa044e9fe5c101fd95310bc8d2d66757d857c3609e3836c9c4f",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-11|CLAUDE.md": {
   "digest": "c9f852833d76239f4516e2dad074cfbd3894bcd1959bca5a2512578168ef1db7",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-11|tracker/LINKS.md": {
   "digest": "2af21d62cc92979cd26c7d74ee7b9591d75843684af4620d1db965bc9af13f80",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-11|tracker/selftest_trace.json": {
   "digest": "d07a11c1c39eb17109d4844ebdac790fac073b32c44e4189d28c61d3fc911fcc",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-11|tracker/selftest_trace.py": {
   "digest": "d06472c7acf83da55f2d99b2a2432aee87cfbe4084b2df214692cd16ec3717f9",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-11|tracker/trace.py": {
   "digest": "78c6b01aed75440011c28add19b996d7213af6fcd5271f60f531ea9a3d004012",
   "files": 1,
-  "pinned": "2026-10-15T14:10:45Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "BLD-12|tracker/RELAY.md": {
   "digest": "6eb934d71e997514e2f03c707bdce08e29c8efb86f7493f4cf2440e04ec61efb",
@@ -1927,32 +1997,32 @@
  "BND-01|analysis/check_scores.py": {
   "digest": "f18dd09f366700d959abe0dd166abb7df8f688bea03337918645151cde317cab",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-01|jobs/gates.json": {
   "digest": "3668d227efc1038992a1b1862ea90176128f938644de02ecd7ac89fd59d2f20d",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-01|jobs/smoke/log.jsonl": {
   "digest": "824b0492741701d974032dddd4e08f7e8d7f7e7b14108e3efe85cc5328dd6494",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-01|jobs/smoke_container/log.jsonl": {
   "digest": "d568e8c5030c30118e06072b653ccd8082ba8abd4d0b2e435fdd572f46e383c6",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-01|plans/splits.json": {
   "digest": "beb74ec321ecee5262b11b5cc5c2efb3e49fe3c17e3b6f6a84c91e633922baa1",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-01|tests/last_run.json": {
-  "digest": "5a963401d84afc813e49723711dd22867da86804ba2b4e29199c262e6ce19ba0",
+  "digest": "1b5cd3f4ed6c5d05f51f45d366544c057f88d5603ae5e2da83e3e812487f21af",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "BND-02|analysis/literature/bnd02/dom07_deep_reads.md": {
   "digest": "66bf3d7677fa9d53f64e3f3c9c92e959736fe8f0e18a176fe3d72e9721db9989",
@@ -2332,82 +2402,82 @@
  "CAP-02|analysis/q2_dirsig.py": {
   "digest": "50390c6f74ff5240c330b4c1106568381ebeded904793b69be42a469c4a4ef2d",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/q2_dirsig2.py": {
   "digest": "7c0b0a0af90c1bb149ee5bdf94b69c41360d138301638ced403716d924ccbeee",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/q2_dirsig_diag.py": {
   "digest": "209d3949e5831c8f4052831f7316fe456a64cf2ea9c809afe0f366b5f6ce836f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/reports/q2_dirsig_dev.md": {
   "digest": "83daf418fb23d226f0fc003068bce040c22bc3f3718cffdc481e320ab1ffb69f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/results/q2_v3/dirsig2_dev.json": {
   "digest": "ee17330a16e7c6320d342306b39e42b8dab0c4d8a506b28aa33bf48434dccfa0",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/results/q2_v3/dirsig_dev.json": {
   "digest": "52fde5cb8cb489da117cb285e0f4944d6a99e46883f3f4b50464350f26f59868",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|analysis/results/q2_v3/dirsig_diag_dev.json": {
   "digest": "b94d9c24d88e6d706556b36bea4b5c9cf147f6f12dd42172da0842a57d19224f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|docs/design/q2_lever_map.md": {
   "digest": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|kernel/asym.py": {
   "digest": "4a1b4a6e8c2d1a24d36aada5e0d6f68b150bcabbe952e3cda89f770ef6aa7134",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|kernel/asym_cond.py": {
   "digest": "8d49c1efda50c0e5b4da802ad34cef4c8aa8d44b3d35776e4d7ac6306fa52c13",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|manifests/evidence/dirsig2_prereg_2026-10-16.sha256": {
   "digest": "8933714088d6fb8b96f66e18f88f0a1c60716ac40606c6cc91591a33618ddd12",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|manifests/evidence/dirsig_prereg_2026-10-16.sha256": {
   "digest": "7ac4d24d3b764a1e963e36764e254f49a49cb9a29582dfc5afbabcd8ffda0e83",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|plans/dirsig2_prereg.json": {
   "digest": "3ff002a43eb21706d5cc72f93146ffa49b583826e8f3bb8f3eaff5ab8d0c9d25",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|plans/dirsig_prereg.json": {
   "digest": "664badacafd201c97b1b6ffcd485752ad2085c5c4a10ac3b20610e80b79022f3",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|tests/test_q2_asym.py": {
   "digest": "13b41f2e3fc0717a473823270aaffce6659bd8dda00c9c130aae435fc1e556df",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-02|tests/test_q2_asym_cond.py": {
   "digest": "f00f5e997b1de75bbf62f3a6cc0b6ec0183e3653a3e003727e0a1d1afbbf86a9",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T16:30:50Z"
  },
  "CAP-03|analysis/reports/q2_b2_interventions.md": {
   "digest": "bd15c32dea9abf20afcc6e3f66a3ddabf6051d61e2fb4e8036a5bda766140952",
@@ -2954,6 +3024,11 @@
   "files": 1,
   "pinned": "2026-10-10T17:50:07Z"
  },
+ "EXT-03|jobs/fork/ext-03-cycle-step-key.patch": {
+  "digest": "3b19628627d33d6cb5370d9ecefeaf32689aabdef5046b2f1e25dab4af726794",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
  "EXT-06|analysis/ab05_live_calibration.py": {
   "digest": "7b46115931cdd3a098c834e9121a0a6c10ddaef43cf2c8e284733d1806de1cb6",
   "files": 1,
@@ -2985,9 +3060,9 @@
   "pinned": "2026-10-15T13:56:02Z"
  },
  "INF-01|cc.ps1": {
-  "digest": "9453aa3ba3996cc65c820d61db559a9ae787453fc286430aadd12182e7d783df",
+  "digest": "9dc0f94753a876dddba19776262b535eba8746c54eae19ad233a6dd1dc988525",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-01|docker/": {
   "digest": "set:b6c9090a165d6c30c0a1370216e844e04df181d5a76355f57799501e45852922",
@@ -2997,12 +3072,12 @@
  "INF-01|harness/fetch_external.py": {
   "digest": "2de41a8dc34f56fb0058dc689585fb3d9dc3bc3db4b6fcdb5f959c599af5354f",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-01|manifests/evidence/INF-01_docker_2026-10-10.sha256": {
   "digest": "156c5023c5e51adaaf7d5206d36b5fe3bba3fb11c09e304f1eaaa2d05a9bb94c",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-02|analysis/README.md": {
   "digest": "37dd15aa6fd54506a28b39b9f18a0a7c09641a4162ad866e763eeed5e0eaff70",
@@ -3017,77 +3092,122 @@
  "INF-04|analysis/jobkit.py": {
   "digest": "2971bd7c6e325efcd3a0fe98ea29626023d6a40e112e336009813f25c8b68cc7",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-04|analysis/smoke_job.py": {
   "digest": "dfc42e456c0bdddcf8d331bdbf9b75f34314930cd2c8e03d95c78b0d75b719a5",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-04|cc.ps1": {
-  "digest": "9453aa3ba3996cc65c820d61db559a9ae787453fc286430aadd12182e7d783df",
+  "digest": "9dc0f94753a876dddba19776262b535eba8746c54eae19ad233a6dd1dc988525",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-04|harness/compute_job.py": {
   "digest": "be00835e9702ea07035009590082cca1e2f8d455ea4b5bc0d007ca31b1dcb431",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-04|jobs/gates.json": {
   "digest": "3668d227efc1038992a1b1862ea90176128f938644de02ecd7ac89fd59d2f20d",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-04|jobs/smoke_container/log.jsonl": {
   "digest": "d568e8c5030c30118e06072b653ccd8082ba8abd4d0b2e435fdd572f46e383c6",
   "files": 1,
-  "pinned": "2026-10-14T06:22:30Z"
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-05|analysis/jobkit.py": {
   "digest": "2971bd7c6e325efcd3a0fe98ea29626023d6a40e112e336009813f25c8b68cc7",
   "files": 1,
-  "pinned": "2026-10-13T02:09:52Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-05|tests/run_tests.py": {
-  "digest": "238c4373f0aca20dccc594a186630d349735e9bad9a8e5674268c8a7e4b4f6ef",
+  "digest": "6cbe88a2ecae6b0a41b059f92ed91708570333a63dfded9af2248031f5f3b8c1",
   "files": 1,
-  "pinned": "2026-10-13T02:09:52Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-05|tests/test_core.py": {
   "digest": "7ae5ba1f9ca8ae8c50b9abb61ef31b0dd5be7922acc0e359b80733cbc06c238e",
   "files": 1,
-  "pinned": "2026-10-13T02:09:52Z"
+  "pinned": "2026-10-20T16:18:08Z"
+ },
+ "INF-06|analysis/fork_check.py": {
+  "digest": "5c7603f06fb8d96ef139ff13ba674331e9df5f0649bdc16430f43d95561ba43c",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|docs/FORK.md": {
+  "digest": "c8290fb731ec8ccf0c7acd5c44b5b190d402ea3cb384a50e7e0b03e19c77db5a",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|harness/fork_branch.py": {
+  "digest": "7f7f71f78eab7451f63505f37077b93dce843318fc94091a11ee2126e8d86eff",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|jobs/fork/bld-06-refinement-v2.json": {
+  "digest": "e694c3632127574f89f3f5b8855be2967a1a06647b933116b0a47ad7f05b80c8",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|jobs/fork/bld-06-refinement-v2.patch": {
+  "digest": "8bb8ce3ed1e6b14f8ffda1453d62b46be199db81f16d52eb7f12b7f7b6a24fc4",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|jobs/fork/ext-03-cycle-step-key.json": {
+  "digest": "395c0013f6d2f7e36ccb0f003eaef55b776f0dce2d33818421b3af69fb7f6408",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|jobs/fork/ext-03-cycle-step-key.patch": {
+  "digest": "3b19628627d33d6cb5370d9ecefeaf32689aabdef5046b2f1e25dab4af726794",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|jobs/fork/make_branches.ps1": {
+  "digest": "18e8110299b7245c98c82911d652adbcbae6d3428b48ce6150800a7edaf2195b",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
+ },
+ "INF-06|tests/test_fork_patches.py": {
+  "digest": "e4f1c6d42b2cf32fdb0056c84f39fa8210aa91beec36d2a40d438bb25640455b",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:04Z"
  },
  "INF-08|analysis/reports/ab06_cc_second_model.md": {
   "digest": "db9d9bf493eaee859c48ac936801fff243fc158bd4ef6345569543b32629fccb",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-08|harness/agent_probe.py": {
   "digest": "cd858501f784319047f1e71e342706d064b5917fa8b76b93833be6abd06552dc",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-08|harness/cc_common.py": {
-  "digest": "c96217d480c94f2fa2bc83b66d7b18e04a553ecb6074c7ee2f2b6d4e1e113b9f",
+  "digest": "9193aa8902adbcabcc6fe11fe942d400fc16148ae20fc0f1afba0307b29551e2",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-08|harness/probe_llm.py": {
   "digest": "57710006d9d8b093e70ffa90e409c57f2b62e06f69b4dfa22ba4e2c95f31f87b",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-08|plans/ab06_cc_gpt4omini_s2_q042.json": {
   "digest": "67a208a6e4ef7426465ec670d222ddf6d9c091cc9309dbeae28e879e6314644b",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-08|tests/test_probe_gate.py": {
   "digest": "6053920b908a8d59051ef936ae90eb2dccd0c7b40ca6abab26a1aa773ac2dd53",
   "files": 1,
-  "pinned": "2026-10-14T19:09:11Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "INF-09|harness/agent_batch.py": {
   "digest": "cb5a53a5742cb50e36270e368718fce09b8ce7f2c6eeded7ca02a477d5e5277e",
@@ -3118,6 +3238,61 @@
   "digest": "6053920b908a8d59051ef936ae90eb2dccd0c7b40ca6abab26a1aa773ac2dd53",
   "files": 1,
   "pinned": "2026-10-14T19:09:11Z"
+ },
+ "INF-10|WAVE_STATE.md": {
+  "digest": "ab0081cdd6009077c3b7acff5fb71d9f9ab254d65d5ae352b105f27d70b2b652",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|analysis/wave_canary.py": {
+  "digest": "6496cc3af73bb45fb71734150a900afc7c864795870fbedb6c5431edd783783b",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|docker/Dockerfile.kernel": {
+  "digest": "3e7ed865259e6f1beaa2c9abaf4984b64dd482f12d16dd0e60b3274681866350",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|docker/requirements_kernel.txt": {
+  "digest": "2d7cc6661bf62c748c8b652a6050693c5f8e5549cb84fd6456e252207cb219aa",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|docs/WAVES.md": {
+  "digest": "fdcf30d87e71d3eb2c6947d1b51cbdafde593282974ea249410965c6afbf640f",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|harness/live_capped.py": {
+  "digest": "9d65c11e6e162d51314ae4a074268dbeac50d4440deac703456a44b7befce1d3",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|harness/wave.py": {
+  "digest": "8380d6f230a177357c379bab183d0ce5fc71f662835faaf863e860c5c27660ac",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|jobs/waves/A/canary_expected.json": {
+  "digest": "1407997c41d96b6cba3cf91b1456b39fd50f4978090dbd372c99192dca27c4f2",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|jobs/waves/A/plan.md": {
+  "digest": "5341aa6ac55a3b7a5aab7c880130743bf57b1aaab8a4d6f666b537be70d90e4d",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|jobs/waves/A/sheet.json": {
+  "digest": "6d2cc9f708388016fdb5a2552205cccbe66f3af7ed34f835fa0885f1e638ed5d",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
+ },
+ "INF-10|tests/test_wave_runner.py": {
+  "digest": "423fc53161ca9752b8ebbe0908cc111215332d5fc96cf589da83af1393203ebd",
+  "files": 1,
+  "pinned": "2026-10-20T17:37:14Z"
  },
  "REP-01|manifests/evidence/plans_results_2026-10-09.sha256": {
   "digest": "5dfa95e4b606a984c8c69c34b3d794829fdea14e1ee08b4eb7bb36496fbc7e56",
@@ -3232,27 +3407,52 @@
  "REP-07|analysis/reports/bnd04_results.md": {
   "digest": "524b0cb59600046c53295d6a5bc6deab48fa5f5b0ea47a9b91c7115e3598db1c",
   "files": 1,
-  "pinned": "2026-10-10T21:56:43Z"
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "REP-07|analysis/reports/bnd06_families.md": {
   "digest": "362f18931eabcb933e49132c2a234bc38d8ea9bb7dceaff3b7f5e36890811967",
   "files": 1,
-  "pinned": "2026-10-12T09:21:52Z"
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "REP-07|analysis/reports/bnd06_interim.md": {
   "digest": "349c89c76aaa20a66792342c08c8aefa8a7252181b81398bb37855204876d423",
   "files": 1,
-  "pinned": "2026-10-10T21:56:43Z"
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "REP-07|analysis/results/methods/bnd06_families.json": {
   "digest": "6a3064ac93a46310860a150f5317aff97d8b001b06838b97f76a103ce2567fea",
   "files": 1,
-  "pinned": "2026-10-12T09:21:52Z"
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "REP-07|analysis/results/methods/bnd06_verdicts.json": {
   "digest": "5f52b17cca5a09e9f67dc148b03a2c730febd68e43c36cde6c49c5bd439d79c6",
   "files": 1,
-  "pinned": "2026-10-10T21:56:43Z"
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "REP-07|analysis/x5_pretrained.py": {
+  "digest": "2f705e3ce43a7262891298f716dc77c5c367365ce1345b7896514ee0d869a306",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "REP-07|docker/Dockerfile.x5": {
+  "digest": "57485e7e2af2a1875212b2599730f77acc678ff592f53fa68033b2bb4053a4a4",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "REP-07|docker/requirements_x5.txt": {
+  "digest": "eff56151973e22a3494c5f65933ac259b69b3fcfc49db25a665c729b0bd9f7de",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "REP-07|manifests/evidence/x5_prereg_2026-10-20.sha256": {
+  "digest": "621c9dda9fc63ea6606a20feb8d1e823ab239a4cbea6b0e101b9c9d66eca2f5f",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
+ },
+ "REP-07|plans/x5_prereg.json": {
+  "digest": "0525ee14a7d99e1f94e1d4365daa5c2f7294b3b1d1f6d4e22155a13ec4ffeb37",
+  "files": 1,
+  "pinned": "2026-10-20T17:25:36Z"
  },
  "REP-08|analysis/causalarena_sortability.py": {
   "digest": "1aff7b2a43ad6a7b2db9d68d3de309c4fd7e757cd77346d41fd0136760ed9da2",
@@ -3542,12 +3742,12 @@
  "TEAM-08|analysis/reports/site_flow_design.md": {
   "digest": "d63037338051203dc3c23b689b9dd999690b88ea754b12b5361e097a8627d4df",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/build.py": {
-  "digest": "b4f16768e9bcac5b15fe58204e4d218ae7f3ba1ae929b7e0309a31f66a86eb7e",
+  "digest": "8dae89faefbad73c38bb780394551053dc0e85266f3269b54be3f76a6a440098",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/levels/bundles.py": {
   "digest": "ac4705609705d676e060187aa5c3f377d9f885d67ad2e38878ec2332c83f8348",
@@ -3562,102 +3762,142 @@
  "TEAM-08|site/pagekit.py": {
   "digest": "c94c9faf11b9025da4c61e228ab4e0c8f00b9f25226db1a119dda193f4f61f0f",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pages.py": {
-  "digest": "aa18cac4431caca6f109f045e94396532fb2fb7f11d2161551862366e262bdd5",
+  "digest": "f340f86c566d003d1cb7afa6aff5e3ca6fba8f6a6d4a3fde73d3db8e1237042c",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_about.py": {
   "digest": "68e9b260e25b558a61ed84986cff21efac1ad8e5b11693cc8578e8290ae07da5",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_changes.py": {
   "digest": "47ec5b73575ad568515f21b04f04306c6b231fb572fa59f4c4ab8d70f9792703",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_decisions.py": {
   "digest": "49bcb6f66965824ad272c1484eba83b8c37bfdaddea4a7171d7ed58808cc879d",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_evidence.py": {
   "digest": "265bd81ad7e76054a50dd745ce64004ddc55ca9688c7a7b7d0873b106f67f069",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_glossary.py": {
   "digest": "446d3f7e7d406e7f2f9641d55179bca1aa9245bc593e3ab0db95d7ebca5de4ac",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_home.py": {
-  "digest": "ef906626e2e4359c3a8a2aaf9f03a50e575c5bc04f5a06320bbf47ce77890bcb",
+  "digest": "0a70e60fde37e42b0b5333a8b9c0954643629427da6fc7d0ae177f81996e856c",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_market.py": {
   "digest": "56c43c0fc23333e2274e6f53da8660a183feb39b4198fac206c0a878c527a566",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_names.py": {
   "digest": "f0c80011ef672d2d41568252530bbb2305107d6b5b2dbaa9348fb773d802422b",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_primer.py": {
   "digest": "e4a0471f8b57bae80836f7a9e9181f213856754cfe1385c9a0fe46a2f01166a4",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_rca.py": {
   "digest": "4a36d94cb3f3f8bf94b291a3dfe03ae65936e01dda9fedcb5bb30d90d5519878",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_scoreboard.py": {
   "digest": "e7fcd77b332546b794a370a04bd4b4dd4d703b9835b2c4e5ac3de946af0a328a",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_scoring.py": {
   "digest": "ca67be9d09a747fd4bd202244998db964ff40ae64858b44ac2be5aa25e1807d6",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_space.py": {
   "digest": "d0c5eec68198d1b8e98929e05093d02673bcbf8dfc018ac4687e0469c08b5cd1",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_status.py": {
-  "digest": "f5bbe9f67a97773b8e9feb22338bbb2ca1192a991c93b4476df6fab1f150b68e",
+  "digest": "7259b64180a4edefc062548f906560bb5128ba50c8fbae98e30c88a88153e922",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/pgs/pg_theses.py": {
   "digest": "2fb7ffb0780f8eab1ceb3a517de1da9e29c8af0f19e974813cce8de68deae9a8",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/registry.py": {
-  "digest": "34f60b563b65682496e423cc66af6edaafca62131044c8a83e372f8fedfb4860",
+  "digest": "c6c27211a609664e6dc02411af0acd20e0aabb62cba825fb4f1423769ca31104",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|site/terms.py": {
   "digest": "324b2be607e9890c99eee447cfa339c2614323a3959adfd9978e45c7690edb39",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
  },
  "TEAM-08|tracker/snapshot.py": {
-  "digest": "136615a66c33cc9e1eedc1f2316ec4ee15b43fc5b80a051d91fbf8166c9159d8",
+  "digest": "66f4f0daecfe5bdf402afd2fb35b59050dae90f995bd2c9ffd505a719a7c0f9f",
   "files": 1,
-  "pinned": "2026-10-15T22:06:47Z"
+  "pinned": "2026-10-20T16:18:08Z"
+ },
+ "TEAM-09|site/build.py": {
+  "digest": "8dae89faefbad73c38bb780394551053dc0e85266f3269b54be3f76a6a440098",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|site/levels/bundles.py": {
+  "digest": "d84056acd6f760d2a95933cc8c31abee46593ff4d51d6a92deda9b786a267497",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|site/levels/theses.py": {
+  "digest": "00f22b1d252d082815ab1ab9fd9b2bf9d7ba9c8426c746c9555a34163c772a1f",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|site/literals.json": {
+  "digest": "fe36336dd7349a810207251992363ee0dd4428c28a7672c33f4f4313d17ce9d8",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|site/pages.py": {
+  "digest": "f340f86c566d003d1cb7afa6aff5e3ca6fba8f6a6d4a3fde73d3db8e1237042c",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|site/registry.py": {
+  "digest": "c6c27211a609664e6dc02411af0acd20e0aabb62cba825fb4f1423769ca31104",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|tests/test_site_s23.py": {
+  "digest": "f49705b8bd3e1d28d1ccce0a423c476fe58107bd726285c9d3d63e40ae88602c",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
+ },
+ "TEAM-09|tracker/snapshot.py": {
+  "digest": "66f4f0daecfe5bdf402afd2fb35b59050dae90f995bd2c9ffd505a719a7c0f9f",
+  "files": 1,
+  "pinned": "2026-10-20T16:17:37Z"
  },
  "TGT-01|analysis/results/error_budget/error_budget.json": {
   "digest": "db36efbda4109c03dbdf689ad4774b3362f0dcf8ef08c94c5509cb2043057e87",
@@ -3807,242 +4047,292 @@
  "TGT-18|analysis/q2_anatomy.py": {
   "digest": "b39a5b0d21c4b480ffeab1cbc26647905d418ee9b72083feb45581053e735f05",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|analysis/q2_explain.py": {
+  "digest": "69b6ed64e70628357ecc21ce7997fd9117cfa90f97f280577ed4ca1163431816",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|analysis/q2_family2.py": {
+  "digest": "54df3bc6c1af638132d6eb59cc2a48341cfcf65aaae6f30d83307abcb6c3b090",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_half_anatomy.py": {
   "digest": "fcdc35bdd2ca6b450ab315acfda8a8c513333c6f72d69fe891484c531089ac6a",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_headroom.py": {
   "digest": "0cc60307394d098385cbec1c46e5ef6437d9987020682229bd6c43c0c1f04091",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_l16.py": {
   "digest": "1b49d5d0cd3f486505260c7e3244a231c805a4f75f045db1b5b18929cacff48e",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_l5.py": {
   "digest": "e0fb13658db3984600ca37e675934a4f0aa976ba2fef50d2ab417aff3b01a80e",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_l5_diag.py": {
   "digest": "b7db25d482d5583d7caf0bd39b3a1c33b543a70bd6f47b70920fa6e3dfcd893c",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_linkfilt.py": {
   "digest": "fb78e0295761ca070299a2d1f9087f2d2a7745344fde5323d6c8fed134d4bde7",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/q2_linkfilt_diag.py": {
   "digest": "44781d5b9de8722943714ed8558814c32a37e4094e494655b29b75e74adec418",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_b4_confidence.md": {
   "digest": "1e76904492ac3325f651325ba45d45ea60dbdee9026c32893418e5a85213b12f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|analysis/reports/q2_explain_dev.md": {
+  "digest": "2ddbb8305cc6ad7eb9c8e372157103d6046be605446a3f1029aaaa4072f87a80",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_l16_dev.md": {
   "digest": "b2af88a3b99ba42163b9ae052b4d71496f58a108bb91ecf78320b94441d1197f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_l5_dev.md": {
   "digest": "4799cabd1944bc5116b63097deca144a4b7d12b2ce0a86b58f38f1da009a6503",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_linkfilt_dev.md": {
   "digest": "3976d8d56f6af2b4cdd6768bd2f7b2c39c9748726700e4c4138cdd355f239ff5",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_v3_anatomy.md": {
   "digest": "adfad910757b381c21baf66c3ff6a9cf276ac7336b0a93141c8aca6a68a76b9a",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/reports/q2_v3_heldout.md": {
   "digest": "70f22ccbb0d9538abd795d60062194c9326f27722469da8d0b403f1e5e16330b",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_b4/evaluate_test.json": {
   "digest": "b3c20cf72e8fe840cd8d9ba8ca71c0fe21b116293df6888168316e2909827832",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_landmarks.json": {
   "digest": "efd5f0e8bed240a88a4c95e34725334b9734ce9bdad9ffa846e6a355673cbd75",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/anatomy_dev.json": {
   "digest": "1a7d1e0975afac9bd77bd0538f05b6f690a00d257a5b3e04388fb94d2e9b2df3",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|analysis/results/q2_v3/explain_dev.json": {
+  "digest": "d0a40fdad2681c067139d2ee3d130f312843e6c9701abd00ec42b5ee7e0e379d",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/half_anatomy_dev.json": {
   "digest": "6e5ab4763e9e5d782a1cd62aca4e715f709c02223d9a3b980d9de9ae6c25d73c",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/headroom_dev.json": {
   "digest": "df2fb92a7f372d797e37e9d2df9126a2db72b6a687a14ac46a558a52d4358916",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/l16_dev.json": {
   "digest": "046362046c3f1e937abb83ba2a4a47011e2ae65fde89b2344268dcd957a14f06",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/l5_dev.json": {
   "digest": "9b3265e45876f806d2f213205f604b36a99b3b43162abe4653757e45c90c0cc0",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/l5_diag_dev.json": {
   "digest": "19463be8e09d5edb11f681ed948069deac6050b8a4974d6db9c3528d7b413fd9",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/linkfilt_dev.json": {
   "digest": "7036ca8b812db2cadb0ea7ae76a3e106ee01c1a2f1c901a90af134d026ad965e",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/linkfilt_diag_dev.json": {
   "digest": "e49465bca40d64178b179bed06e13a6d78ede5c1d4ba4af9b8e5bbf82943879a",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|analysis/results/q2_v3/v3_test.json": {
   "digest": "f70297b4923ac85e88cfbc6213cac40ef54109587af0b0bf1029d995f1197367",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|docs/design/q2_lever_map.md": {
   "digest": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|kernel/linkfilt.py": {
   "digest": "ef0ad59b1358c6861aeba8825f9d475647ab09b3fc3178e62c6ac4c0ddb10ce5",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|manifests/evidence/explain_x123_results_2026-10-20.sha256": {
+  "digest": "22493e9da90b0de33c37251d92efb9b26e8f9d73afea855c2a51821f16bdd8e5",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|manifests/evidence/family2_prereg_2026-10-20.sha256": {
+  "digest": "fec746575584992f8c5a8918875c2acf5913b6167d46dacc7e26a3ba8a1bae92",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|manifests/evidence/l16_prereg_2026-10-19.sha256": {
   "digest": "5c79defb3f4c406f320bb589c4b87f8f8a70254f4777f937e18e9b8549a727e9",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|manifests/evidence/l5_prereg_2026-10-19.sha256": {
   "digest": "b201e8d929f4410ce4e9ebf678e6b2627a17a2b338e35c1706fa059e1d029cfc",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|manifests/evidence/linkfilt_prereg_2026-10-16.sha256": {
   "digest": "30c2b23b09eeb2e5e1ebfd5b5c99a35edd6fb28ea99f4174a31cf88dbb54faf8",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|plans/l16_prereg.json": {
   "digest": "b8e5445084651b23333488acfb3d97a58fbeaf8a6ba339013c5dbd33960bbf53",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|plans/l5_prereg.json": {
   "digest": "8318ec40af0cb4d1fc9653555d04b897619e98e44724870fa10984b1276e07ac",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|plans/linkfilt_prereg.json": {
   "digest": "77faa7ad4e12acbe6f458e7b391403df11942aacd637a80906560493e56a4b0f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|plans/q2_explain_prereg.json": {
+  "digest": "81266d375a5c9e695f5e9a4e2be9ddde9d04f88653aaade4c5b7c0b331da96d9",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-18|plans/v3_prereg_amendment_1_family2.json": {
+  "digest": "4ae74205e5884f9a390bac4c5b4bac3cb6a5089b07a6ac22ba6273641bc60074",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|tests/test_q2_l16_l5.py": {
   "digest": "8e9698d1352109a5a1a10c7dbf13901a42baf7cef2d75d9353932e1654e6e1fe",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-18|tests/test_q2_linkfilt.py": {
   "digest": "bdb3d35d4ae403e8cdae0326265cf449b14d3807bf20162343b225436cc5e8eb",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/q2_headroom.py": {
   "digest": "0cc60307394d098385cbec1c46e5ef6437d9987020682229bd6c43c0c1f04091",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/reports/q2_b1_data_only_ledger.md": {
   "digest": "b8257fe6ed341707b955bcb335fa522ec6b4f521e83ab7ab3073f9bdd547309d",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/reports/q2_b3_knowledge_tiers.md": {
   "digest": "e8514367a81b1e029ce31768607f0642a549122e59ae213b28fcbab8c017a59d",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/reports/q2_dirsig_dev.md": {
   "digest": "83daf418fb23d226f0fc003068bce040c22bc3f3718cffdc481e320ab1ffb69f",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-19|analysis/reports/q2_explain_dev.md": {
+  "digest": "2ddbb8305cc6ad7eb9c8e372157103d6046be605446a3f1029aaaa4072f87a80",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/reports/q2_l5_dev.md": {
   "digest": "4799cabd1944bc5116b63097deca144a4b7d12b2ce0a86b58f38f1da009a6503",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/reports/q2_v3_k1_k2_dev.md": {
   "digest": "0f3d0d746119a437fc81b488cfc1dd96f393ac26e2d39f4dfcc7a3dcc4885c7b",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/results/q2_b1/heldout.json": {
   "digest": "87d7fb53301afda1f1cf15d0950b1923d5c379d7e7961413898ce05a10174ebe",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/results/q2_b3/summary_test.json": {
   "digest": "dac745ced1ad9454f80e075beb795fba81a4d1a5e488974a3e08326766c3a86b",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/results/q2_landmarks.json": {
   "digest": "efd5f0e8bed240a88a4c95e34725334b9734ce9bdad9ffa846e6a355673cbd75",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
+ },
+ "TGT-19|analysis/results/q2_v3/explain_dev.json": {
+  "digest": "d0a40fdad2681c067139d2ee3d130f312843e6c9701abd00ec42b5ee7e0e379d",
+  "files": 1,
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/results/q2_v3/headroom_dev.json": {
   "digest": "df2fb92a7f372d797e37e9d2df9126a2db72b6a687a14ac46a558a52d4358916",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|analysis/results/q2_v3/l5_dev.json": {
   "digest": "9b3265e45876f806d2f213205f604b36a99b3b43162abe4653757e45c90c0cc0",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|docs/design/q2_kernel_v3_proposals.md": {
   "digest": "43296f002a0f1089358e29fd9fd78602b1e5febfe0e4f0a7f6ef5564c9e6d9b1",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-19|docs/design/q2_lever_map.md": {
   "digest": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "files": 1,
-  "pinned": "2026-10-19T21:19:14Z"
+  "pinned": "2026-10-20T17:26:29Z"
  },
  "TGT-20|analysis/reports/q2_b5_audit_adapter_rca.md": {
   "digest": "04eb30f7c68ae799311c8e607a9e5acb56530e978631fe8444cf00bb439d8543",

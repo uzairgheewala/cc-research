@@ -1,6 +1,6 @@
 # Causal-Copilot research harness launcher (Windows PowerShell + Docker Desktop).
 # Usage:  powershell -ExecutionPolicy Bypass -File .\cc.ps1 <command>
-# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent|all] [workers=N tier=A arm=a+b scenario=s cap=X retry] | compute <job> | fetch | queue | stop | shell | help
+# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent|all] [workers=N tier=A arm=a+b scenario=s cap=X retry] | compute <job> | kernelbuild | benchbuild | x5build | wave <id> [workers] [memGB] | wavepack <id> | fetch | queue | stop | shell | help
 param(
     [Parameter(Position = 0)] [string] $Command = "help",
     [Parameter(Position = 1)] [string] $Arg1 = "",
@@ -12,6 +12,12 @@ param(
 $Research  = $PSScriptRoot
 $Root      = Split-Path -Parent $Research
 $Repo      = Join-Path $Root "Causal-Copilot"
+$MainRepo  = $Repo
+# INF-06: a ticket-branch run uses that branch's own clone (one checkout per branch, so main stays the untouched baseline
+# while a branch runs); its .env is the main clone's, mounted read-only, never copied.
+if ($env:CC_BRANCH -and $env:CC_BRANCH -ne "main") {
+    $Repo = Join-Path $Root ("Causal-Copilot-branches\" + $env:CC_BRANCH)
+}
 $BaseImage = "causal-copilot-cpu:a31aa7c"
 $Image     = "cc-research:a31aa7c-1"
 
@@ -22,6 +28,13 @@ function Fail([string] $Message) {
 
 function Invoke-InContainer {
     param([string[]] $Cmd, [string[]] $Extra = @())
+    # INF-06: a ticket branch run (set $env:CC_BRANCH = "bld-06-refinement-v2"); the harness checks the tree against
+    # jobs\fork\<branch>.json and records branch, commit and patch in meta.json
+    if ($env:CC_BRANCH -and $env:CC_BRANCH -ne "main") {
+        $Extra += @("-e", "CC_BRANCH=$($env:CC_BRANCH)")
+        $mainEnv = Join-Path $MainRepo ".env"
+        if (Test-Path $mainEnv) { $Extra += @("-v", "${mainEnv}:/app/.env:ro") }
+    }
     $dockerArgs = @("run", "--rm", "-i", "--init") + $Extra + @(
         "-v", "${Repo}:/app",
         "-v", "${Research}:/research",
@@ -226,6 +239,66 @@ switch ($Command.ToLower()) {
         New-Item -ItemType Directory -Force -Path $q | Out-Null
         New-Item -ItemType File -Force -Path (Join-Path $q "STOP") | Out-Null
         Write-Host "[cc] STOP requested. The queue runner exits after the run in progress. For an immediate stop: docker stop cc-queue"
+    }
+
+    "kernelbuild" {
+        # INF-10: the pinned kernel image for wave sheets (docker\Dockerfile.kernel; context = cc-research\docker).
+        & docker build -f (Join-Path $Research "docker\Dockerfile.kernel") -t "cc-kernel:wave-a" (Join-Path $Research "docker")
+        if ($LASTEXITCODE -ne 0) { Fail "kernel image build failed" }
+        $imgDir = Join-Path $Research "jobs\waves\images"
+        New-Item -ItemType Directory -Force -Path $imgDir | Out-Null
+        & docker image inspect "cc-kernel:wave-a" --format "{{.Id}}" | Out-File -Encoding ascii (Join-Path $imgDir "kernel.id")
+        Get-Content (Join-Path $imgDir "kernel.id")
+    }
+
+    "benchbuild" {
+        # BEN-13: causalbench evaluation image (docker\Dockerfile.bench).
+        & docker build -f (Join-Path $Research "docker\Dockerfile.bench") -t "cc-bench:wave-a" (Join-Path $Research "docker")
+        if ($LASTEXITCODE -ne 0) { Fail "bench image build failed" }
+        $imgDir = Join-Path $Research "jobs\waves\images"
+        New-Item -ItemType Directory -Force -Path $imgDir | Out-Null
+        & docker image inspect "cc-bench:wave-a" --format "{{.Id}}" | Out-File -Encoding ascii (Join-Path $imgDir "bench.id")
+        Get-Content (Join-Path $imgDir "bench.id")
+    }
+
+    "x5build" {
+        # X5 (REP-07): AVICI inference image (docker\Dockerfile.x5).
+        & docker build -f (Join-Path $Research "docker\Dockerfile.x5") -t "cc-x5:wave-a" (Join-Path $Research "docker")
+        if ($LASTEXITCODE -ne 0) { Fail "x5 image build failed" }
+        $imgDir = Join-Path $Research "jobs\waves\images"
+        New-Item -ItemType Directory -Force -Path $imgDir | Out-Null
+        & docker image inspect "cc-x5:wave-a" --format "{{.Id}}" | Out-File -Encoding ascii (Join-Path $imgDir "x5.id")
+        Get-Content (Join-Path $imgDir "x5.id")
+    }
+
+    "wave" {
+        # INF-10: run one wave's sheet (harness\wave.py, standard-library Python on this machine; it starts the containers).
+        # usage: cc.ps1 wave A [workers] [memGB]    -> jobs\waves\A\sheet.json; run it again to resume
+        if (-not $Arg1) { Fail "usage: cc.ps1 wave <wave id> [workers] [memGB]" }
+        $sheet = Join-Path $Research "jobs\waves\$Arg1\sheet.json"
+        if (-not (Test-Path $sheet)) { Fail "sheet not found: $sheet" }
+        $py = Get-Command py -ErrorAction SilentlyContinue
+        $pyArgs = @()
+        if ($py) { $pyExe = "py"; $pyArgs = @("-3") } else {
+            $py = Get-Command python -ErrorAction SilentlyContinue
+            if (-not $py) { Fail "Python 3.8+ is needed on this machine for the wave runner (winget install Python.Python.3.12)" }
+            $pyExe = "python" }
+        $workers = if ($Arg2) { $Arg2 } else { "2" }
+        $runArgs = $pyArgs + @((Join-Path $Research "harness\wave.py"), "run", "--sheet", $sheet, "--workers", $workers)
+        if ($Arg3) { $runArgs += @("--mem", $Arg3) }
+        & $pyExe @runArgs
+        $code = $LASTEXITCODE
+        & $pyExe @($pyArgs + @((Join-Path $Research "harness\wave.py"), "pack", "--sheet", $sheet))
+        Write-Host ""
+        Write-Host "[cc] wave $Arg1 exit code: $code. Send back: cc-research\jobs\waves\$Arg1\return_$Arg1.zip"
+        exit $code
+    }
+
+    "wavepack" {
+        if (-not $Arg1) { Fail "usage: cc.ps1 wavepack <wave id>" }
+        $py = Get-Command py -ErrorAction SilentlyContinue
+        if ($py) { & py -3 (Join-Path $Research "harness\wave.py") pack --sheet (Join-Path $Research "jobs\waves\$Arg1\sheet.json") }
+        else { & python (Join-Path $Research "harness\wave.py") pack --sheet (Join-Path $Research "jobs\waves\$Arg1\sheet.json") }
     }
 
     "shell" {

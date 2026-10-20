@@ -1,0 +1,1693 @@
+{
+ "wave": "A",
+ "written": "2026-10-20",
+ "identity_manifest": "jobs/waves/A/identity.sha256",
+ "code_identity": "bab2fc0c6a72d0680d5fd86a875b95df3f0331c9bf8cd51f10e0f80c08618f08",
+ "cpu_probe_image": "python:3.11-slim-bookworm",
+ "disk_gb": 60,
+ "profiles": {
+  "kernel": {
+   "image": "cc-kernel:wave-a",
+   "network": "none",
+   "env": {
+    "OPENBLAS_CORETYPE": "SKYLAKEX",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_KERNEL"
+  },
+  "bench": {
+   "image": "cc-bench:wave-a",
+   "network": "none",
+   "env": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "OMP_NUM_THREADS": "1"
+   },
+   "built_by": "B_BENCH"
+  },
+  "bench_net": {
+   "image": "cc-bench:wave-a",
+   "network": "bridge",
+   "env": {
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_BENCH"
+  },
+  "x5": {
+   "image": "cc-x5:wave-a",
+   "network": "none",
+   "env": {
+    "HF_HUB_OFFLINE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "OMP_NUM_THREADS": "1"
+   },
+   "built_by": "B_X5"
+  },
+  "x5_net": {
+   "image": "cc-x5:wave-a",
+   "network": "bridge",
+   "env": {
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_X5"
+  },
+  "kernel_tree": {
+   "image": "cc-kernel:wave-a",
+   "network": "none",
+   "env": {
+    "OPENBLAS_CORETYPE": "SKYLAKEX",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_KERNEL",
+   "workdir": "/tree/cc-research",
+   "mounts": [
+    {
+     "src": "cc-research",
+     "dst": "/tree/cc-research"
+    },
+    {
+     "src": "Causal-Copilot",
+     "dst": "/tree/Causal-Copilot",
+     "ro": true
+    },
+    {
+     "src": "cc-research/jobs/empty.env",
+     "dst": "/tree/Causal-Copilot/.env",
+     "ro": true
+    }
+   ],
+   "note": "the folder layout the tracker checks expect (cc-research next to Causal-Copilot); the key file is masked by an empty file"
+  }
+ },
+ "runs": [
+  {
+   "id": "B_KERNEL",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "kernelbuild"
+   ],
+   "est_min": 6,
+   "done": {
+    "file": "jobs/waves/images/kernel.id"
+   },
+   "ticket": "INF-10",
+   "depends_on": [],
+   "class": "A0"
+  },
+  {
+   "id": "B_BENCH",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "benchbuild"
+   ],
+   "est_min": 4,
+   "done": {
+    "file": "jobs/waves/images/bench.id"
+   },
+   "ticket": "BEN-13",
+   "depends_on": [],
+   "class": "A0"
+  },
+  {
+   "id": "B_X5",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "x5build"
+   ],
+   "est_min": 8,
+   "done": {
+    "file": "jobs/waves/images/x5.id"
+   },
+   "ticket": "REP-07",
+   "depends_on": [],
+   "class": "A0"
+  },
+  {
+   "id": "T_HOST",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--pattern",
+    "test_wave_runner.py",
+    "--out",
+    "jobs/waves/A/out/tests_host.json"
+   ],
+   "est_min": 1,
+   "done": {
+    "file": "jobs/waves/A/out/tests_host.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_HOST"
+   ],
+   "ticket": "INF-10",
+   "depends_on": [],
+   "class": "A0"
+  },
+  {
+   "id": "T_KERNEL",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--out",
+    "jobs/waves/A/out/tests_kernel.json"
+   ],
+   "est_min": 4,
+   "depends_on": [
+    "B_KERNEL"
+   ],
+   "done": {
+    "file": "jobs/waves/A/out/tests_kernel.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_KERNEL"
+   ],
+   "mem_gb": 2,
+   "ticket": "INF-10",
+   "class": "A0"
+  },
+  {
+   "id": "T_BENCH",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--pattern",
+    "test_ben13*.py",
+    "--out",
+    "jobs/waves/A/out/tests_bench.json"
+   ],
+   "est_min": 2,
+   "depends_on": [
+    "B_BENCH"
+   ],
+   "done": {
+    "file": "jobs/waves/A/out/tests_bench.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_BENCH"
+   ],
+   "mem_gb": 1,
+   "ticket": "BEN-13",
+   "class": "A0"
+  },
+  {
+   "id": "CHECKS",
+   "class": "A0",
+   "profile": "kernel_tree",
+   "cmd": [
+    "python",
+    "tools/kit_checks.py",
+    "--out",
+    "jobs/waves/A/out/checks.json"
+   ],
+   "est_min": 4,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "jobs/waves/A/out/checks.json"
+   },
+   "decides": [
+    "M_TRACE",
+    "M_SITE"
+   ],
+   "mem_gb": 1,
+   "ticket": "INF-10",
+   "note": "AGENTS.md's once-per-kit checks on the machine that holds runs/ and external/ (the sandbox's verify cannot see them)"
+  },
+  {
+   "id": "B2GEN",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/b2_generator.py",
+    "--root",
+    "external/causalarena",
+    "--out",
+    "external/b2_namereliance",
+    "--reps",
+    "1"
+   ],
+   "est_min": 3,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "external/b2_namereliance/MANIFEST.json"
+   },
+   "mem_gb": 1,
+   "ticket": "TGT-18",
+   "note": "skipped when the generator's folder already exists (any reps): replicate 0 is identical either way",
+   "class": "A1"
+  },
+  {
+   "id": "CANARY",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/wave_canary.py",
+    "--expect",
+    "jobs/waves/A/canary_expected.json",
+    "--out",
+    "jobs/waves/A/out/canary.json"
+   ],
+   "est_min": 3,
+   "depends_on": [
+    "B2GEN"
+   ],
+   "done": {
+    "file": "jobs/waves/A/out/canary.json"
+   },
+   "decides": [
+    "M_CANARY"
+   ],
+   "mem_gb": 1,
+   "ticket": "INF-10",
+   "class": "A1"
+  },
+  {
+   "id": "STUB_06",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "plan",
+    "fork_bld06_stub.json"
+   ],
+   "env": {
+    "CC_BRANCH": "bld-06-refinement-v2"
+   },
+   "est_min": 45,
+   "depends_on": [
+    "T_HOST"
+   ],
+   "done": {
+    "glob": "plans/results/*_fork_bld06_stub.result.json"
+   },
+   "ticket": "BLD-06",
+   "class": "A1"
+  },
+  {
+   "id": "CHK_06",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "analysis/fork_check.py",
+    "--plan",
+    "fork_bld06_stub"
+   ],
+   "est_min": 1,
+   "depends_on": [
+    "STUB_06"
+   ],
+   "done": {
+    "file": "analysis/results/fork/fork_bld06_stub.json"
+   },
+   "decides": [
+    "M_STUB06_ID",
+    "M_STUB06_RUN"
+   ],
+   "ticket": "BLD-06",
+   "class": "A1"
+  },
+  {
+   "id": "STUB_03",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "plan",
+    "fork_ext03_stub.json"
+   ],
+   "env": {
+    "CC_BRANCH": "ext-03-cycle-step-key"
+   },
+   "est_min": 45,
+   "depends_on": [
+    "T_HOST"
+   ],
+   "done": {
+    "glob": "plans/results/*_fork_ext03_stub.result.json"
+   },
+   "ticket": "EXT-03",
+   "class": "A1"
+  },
+  {
+   "id": "CHK_03",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "analysis/fork_check.py",
+    "--plan",
+    "fork_ext03_stub"
+   ],
+   "est_min": 1,
+   "depends_on": [
+    "STUB_03"
+   ],
+   "done": {
+    "file": "analysis/results/fork/fork_ext03_stub.json"
+   },
+   "decides": [
+    "M_STUB03_ID",
+    "M_STUB03_RUN"
+   ],
+   "ticket": "EXT-03",
+   "class": "A1"
+  },
+  {
+   "id": "FETCH_CB",
+   "profile": "bench_net",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.fetch"
+   ],
+   "est_min": 60,
+   "depends_on": [
+    "T_BENCH"
+   ],
+   "done": {
+    "file": "external/causalbench/FETCHED.json",
+    "contains": "\"_required_ok\": true"
+   },
+   "mem_gb": 0.5,
+   "ticket": "BEN-13",
+   "class": "A1"
+  },
+  {
+   "id": "FETCH_X5",
+   "profile": "x5_net",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "fetch"
+   ],
+   "est_min": 3,
+   "depends_on": [
+    "B_X5"
+   ],
+   "done": {
+    "file": "external/x5/avici_cache/FETCHED.json"
+   },
+   "mem_gb": 1,
+   "ticket": "REP-07",
+   "class": "A1"
+  },
+  {
+   "id": "X4_SEM",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/q2_explain.py",
+    "x4",
+    "--family",
+    "semantic",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 4,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "analysis/results/q2_v3/x4/explain_x4_dev_semantic_part{k}of{n}.done"
+   },
+   "mem_gb": 1.5,
+   "ticket": "TGT-18",
+   "class": "A2"
+  },
+  {
+   "id": "X4_FOR",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/q2_explain.py",
+    "x4",
+    "--family",
+    "formula",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 4,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "analysis/results/q2_v3/x4/explain_x4_dev_formula_part{k}of{n}.done"
+   },
+   "mem_gb": 1.5,
+   "ticket": "TGT-18",
+   "class": "A2"
+  },
+  {
+   "id": "X4_LEDGER",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/q2_explain.py",
+    "ledger"
+   ],
+   "est_min": 1,
+   "depends_on": [
+    "X4_SEM",
+    "X4_FOR"
+   ],
+   "done": {
+    "file": "analysis/results/q2_v3/explain_dev.json",
+    "contains": "nonlinear_detected"
+   },
+   "decides": [
+    "M_X4"
+   ],
+   "ticket": "TGT-18",
+   "class": "A2"
+  },
+  {
+   "id": "X5_PROBE",
+   "profile": "x5",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "run",
+    "--family",
+    "semantic",
+    "--order",
+    "shuffled",
+    "--part",
+    "1/25"
+   ],
+   "est_min": 3,
+   "depends_on": [
+    "FETCH_X5"
+   ],
+   "done": {
+    "file": "analysis/results/x5/semantic_shuffled_part1of25.done"
+   },
+   "mem_gb": 3,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "X5_SEM_SHUF",
+   "profile": "x5",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "run",
+    "--family",
+    "semantic",
+    "--order",
+    "shuffled"
+   ],
+   "parts": 2,
+   "est_min": 6,
+   "depends_on": [
+    "X5_PROBE"
+   ],
+   "when": "ok(X5_PROBE)",
+   "done": {
+    "file": "analysis/results/x5/semantic_shuffled_part{k}of{n}.done"
+   },
+   "mem_gb": 3,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "X5_SEM_ORIG",
+   "profile": "x5",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "run",
+    "--family",
+    "semantic",
+    "--order",
+    "original"
+   ],
+   "parts": 2,
+   "est_min": 6,
+   "depends_on": [
+    "X5_PROBE"
+   ],
+   "when": "ok(X5_PROBE)",
+   "done": {
+    "file": "analysis/results/x5/semantic_original_part{k}of{n}.done"
+   },
+   "mem_gb": 3,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "X5_FOR_SHUF",
+   "profile": "x5",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "run",
+    "--family",
+    "formula",
+    "--order",
+    "shuffled"
+   ],
+   "parts": 2,
+   "est_min": 6,
+   "depends_on": [
+    "X5_PROBE"
+   ],
+   "when": "ok(X5_PROBE)",
+   "done": {
+    "file": "analysis/results/x5/formula_shuffled_part{k}of{n}.done"
+   },
+   "mem_gb": 3,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "X5_FOR_ORIG",
+   "profile": "x5",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "run",
+    "--family",
+    "formula",
+    "--order",
+    "original"
+   ],
+   "parts": 2,
+   "est_min": 6,
+   "depends_on": [
+    "X5_PROBE"
+   ],
+   "when": "ok(X5_PROBE)",
+   "done": {
+    "file": "analysis/results/x5/formula_original_part{k}of{n}.done"
+   },
+   "mem_gb": 3,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "X5_SCORE",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/x5_pretrained.py",
+    "score"
+   ],
+   "est_min": 20,
+   "depends_on": [
+    "X5_SEM_SHUF",
+    "X5_SEM_ORIG",
+    "X5_FOR_SHUF",
+    "X5_FOR_ORIG"
+   ],
+   "done": {
+    "file": "analysis/results/x5/x5_dev.json"
+   },
+   "decides": [
+    "M_X5_P1",
+    "M_X5_P3",
+    "M_X5_ORD_HI",
+    "M_X5_ORD_LO"
+   ],
+   "mem_gb": 1.5,
+   "ticket": "REP-07",
+   "class": "A2"
+  },
+  {
+   "id": "F2_FILL",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/q2_family2.py",
+    "fill",
+    "--workers",
+    "1"
+   ],
+   "parts": 8,
+   "est_min": 42,
+   "depends_on": [
+    "B2GEN"
+   ],
+   "done": {
+    "file": "analysis/results/q2_v3/family2_fill/part{k}of{n}.json"
+   },
+   "mem_gb": 1,
+   "ticket": "TGT-18",
+   "class": "A2"
+  },
+  {
+   "id": "CB_PRE_K",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.stream_preprocess",
+    "--h5ad",
+    "external/causalbench/k562.h5ad",
+    "--summary",
+    "external/causalbench/summary_stats.xlsx",
+    "--sheet",
+    "TabB_K562_day6_summary_stat",
+    "--out",
+    "external/causalbench/dataset_k562_filtered.npz"
+   ],
+   "est_min": 35,
+   "depends_on": [
+    "FETCH_CB"
+   ],
+   "done": {
+    "file": "external/causalbench/dataset_k562_filtered.npz.json"
+   },
+   "decides": [
+    "M_CB_K_CELLS",
+    "M_CB_K_GENES"
+   ],
+   "mem_gb": 1.5,
+   "ticket": "BEN-13",
+   "class": "A2"
+  },
+  {
+   "id": "CB_PRE_R",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.stream_preprocess",
+    "--h5ad",
+    "external/causalbench/rpe1.h5ad",
+    "--summary",
+    "external/causalbench/summary_stats.xlsx",
+    "--sheet",
+    "TabC_RPE1_summary_statistic",
+    "--out",
+    "external/causalbench/dataset_rpe1_filtered.npz"
+   ],
+   "est_min": 35,
+   "depends_on": [
+    "FETCH_CB"
+   ],
+   "done": {
+    "file": "external/causalbench/dataset_rpe1_filtered.npz.json"
+   },
+   "decides": [
+    "M_CB_R_CELLS",
+    "M_CB_R_GENES"
+   ],
+   "mem_gb": 1.5,
+   "ticket": "BEN-13",
+   "class": "A2"
+  },
+  {
+   "id": "F2_READ",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "analysis/q2_family2.py",
+    "read",
+    "--held-out-read",
+    "0cda331ea81cf0dd",
+    "--workers",
+    "2"
+   ],
+   "est_min": 20,
+   "depends_on": [
+    "F2_FILL"
+   ],
+   "when": "ok(F2_FILL) and pass(M_T_KERNEL)",
+   "done": {
+    "file": "analysis/results/q2_v3/family2_read.json"
+   },
+   "decides": [
+    "M_F2_ER2",
+    "M_F2_ECE"
+   ],
+   "mem_gb": 2,
+   "ticket": "TGT-18",
+   "class": "A3"
+  },
+  {
+   "id": "CB_CELLS_K",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "cells",
+    "--line",
+    "k562"
+   ],
+   "parts": 3,
+   "est_min": 45,
+   "depends_on": [
+    "CB_PRE_K"
+   ],
+   "when": "pass(M_CB_K_CELLS) and pass(M_T_BENCH)",
+   "done": {
+    "file": "analysis/results/ben13/k562/.part{k}of{n}.done"
+   },
+   "mem_gb": 2.5,
+   "ticket": "BEN-13",
+   "class": "A3"
+  },
+  {
+   "id": "CB_CELLS_R",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "cells",
+    "--line",
+    "rpe1"
+   ],
+   "parts": 3,
+   "est_min": 45,
+   "depends_on": [
+    "CB_PRE_R"
+   ],
+   "when": "pass(M_CB_R_CELLS) and pass(M_T_BENCH)",
+   "done": {
+    "file": "analysis/results/ben13/rpe1/.part{k}of{n}.done"
+   },
+   "mem_gb": 2.5,
+   "ticket": "BEN-13",
+   "class": "A3"
+  },
+  {
+   "id": "CB_MERGE",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "merge"
+   ],
+   "est_min": 1,
+   "depends_on": [
+    "CB_CELLS_K",
+    "CB_CELLS_R"
+   ],
+   "done": {
+    "file": "analysis/results/ben13/summary.json"
+   },
+   "decides": [
+    "M_CB_S1",
+    "M_CB_EVAL"
+   ],
+   "ticket": "BEN-13",
+   "class": "A3"
+  },
+  {
+   "id": "LIVE_06",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "harness/live_capped.py",
+    "--plan",
+    "plans/fork_bld06_live.json",
+    "--cap-usd",
+    "25",
+    "--branch",
+    "bld-06-refinement-v2"
+   ],
+   "est_min": 420,
+   "est_usd": 14,
+   "cap_usd": 25,
+   "depends_on": [
+    "CHK_06",
+    "CHK_03"
+   ],
+   "when": "pass(M_STUB06_ID) and pass(M_STUB06_RUN) and pass(M_T_HOST)",
+   "done": {
+    "file": "plans/results/fork_bld06_live.capped.json",
+    "contains": "\"finished\": true"
+   },
+   "cost_from": {
+    "file": "plans/results/fork_bld06_live.capped.json",
+    "ptr": [
+     "usd_total"
+    ]
+   },
+   "ticket": "BLD-06",
+   "class": "L"
+  },
+  {
+   "id": "CHK_06L",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "analysis/fork_check.py",
+    "--plan",
+    "fork_bld06_live"
+   ],
+   "est_min": 1,
+   "cap_usd": 0,
+   "depends_on": [
+    "LIVE_06"
+   ],
+   "done": {
+    "file": "analysis/results/fork/fork_bld06_live.json"
+   },
+   "decides": [
+    "M_LIVE06"
+   ],
+   "ticket": "BLD-06",
+   "class": "L"
+  }
+ ],
+ "must_shows": [
+  {
+   "id": "M_T_HOST",
+   "bundle": "A1",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/tests_host.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_T_KERNEL",
+   "bundle": "A1",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/tests_kernel.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_T_BENCH",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/tests_bench.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_TRACE",
+   "bundle": "A1",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/checks.json",
+    "ptr": [
+     "trace_errors"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_SITE",
+   "bundle": "A7",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/checks.json",
+    "ptr": [
+     "site_errors"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CANARY",
+   "bundle": "A1",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/A/out/canary.json",
+    "ptr": [
+     "match"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_STUB06_ID",
+   "bundle": "A2",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/fork/fork_bld06_stub.json",
+    "ptr": [
+     "identity_ok_all"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_STUB06_RUN",
+   "bundle": "A2",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/fork/fork_bld06_stub.json",
+    "ptr": [
+     "refinement_v2_ran"
+    ]
+   },
+   "bar": {
+    "op": ">=",
+    "value": 6
+   },
+   "gate": true
+  },
+  {
+   "id": "M_STUB03_ID",
+   "bundle": "A2",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/fork/fork_ext03_stub.json",
+    "ptr": [
+     "identity_ok_all"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_STUB03_RUN",
+   "bundle": "A2",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/fork/fork_ext03_stub.json",
+    "ptr": [
+     "cycle_step_keyerrors"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_X4",
+   "bundle": "A3",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/q2_v3/explain_dev.json",
+    "ptr": [
+     "families",
+     "semantic",
+     "x4",
+     "nonlinear_detected_beyond_null"
+    ]
+   },
+   "bar": {
+    "op": ">=",
+    "value": 0.3
+   },
+   "gate": false
+  },
+  {
+   "id": "M_X5_P1",
+   "bundle": "A5",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/x5/x5_dev.json",
+    "ptr": [
+     "families",
+     "semantic",
+     "paired",
+     "avici_shuffled_minus_ges",
+     "lo"
+    ]
+   },
+   "bar": {
+    "op": ">",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_X5_P3",
+   "bundle": "A5",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/x5/x5_dev.json",
+    "ptr": [
+     "families",
+     "formula",
+     "paired",
+     "avici_shuffled_minus_ges",
+     "lo"
+    ]
+   },
+   "bar": {
+    "op": ">",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_X5_ORD_HI",
+   "bundle": "A5",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/x5/x5_dev.json",
+    "ptr": [
+     "families",
+     "semantic",
+     "order_effect"
+    ]
+   },
+   "bar": {
+    "op": "<=",
+    "value": 0.02
+   },
+   "gate": false
+  },
+  {
+   "id": "M_X5_ORD_LO",
+   "bundle": "A5",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/x5/x5_dev.json",
+    "ptr": [
+     "families",
+     "semantic",
+     "order_effect"
+    ]
+   },
+   "bar": {
+    "op": ">=",
+    "value": -0.02
+   },
+   "gate": false
+  },
+  {
+   "id": "M_F2_ER2",
+   "bundle": "A4",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/q2_v3/family2_read.json",
+    "ptr": [
+     "subsets",
+     "all",
+     "ER-2_met"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_F2_ECE",
+   "bundle": "A4",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/q2_v3/family2_read.json",
+    "ptr": [
+     "subsets",
+     "all",
+     "ece"
+    ]
+   },
+   "bar": {
+    "op": "<=",
+    "value": 0.05
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_K_CELLS",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "external/causalbench/dataset_k562_filtered.npz.json",
+    "ptr": [
+     "cells_out"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 162751
+   },
+   "gate": true
+  },
+  {
+   "id": "M_CB_K_GENES",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "external/causalbench/dataset_k562_filtered.npz.json",
+    "ptr": [
+     "genes_out"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 622
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_R_CELLS",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "external/causalbench/dataset_rpe1_filtered.npz.json",
+    "ptr": [
+     "cells_out"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 162733
+   },
+   "gate": true
+  },
+  {
+   "id": "M_CB_R_GENES",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "external/causalbench/dataset_rpe1_filtered.npz.json",
+    "ptr": [
+     "genes_out"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 383
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_S1",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/ben13/summary.json",
+    "ptr": [
+     "reproduction_all"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_EVAL",
+   "bundle": "A6",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/ben13/summary.json",
+    "ptr": [
+     "fast_equals_full_all"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_LIVE06",
+   "bundle": "A2",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/fork/fork_bld06_live.json",
+    "ptr": [
+     "completed"
+    ]
+   },
+   "bar": {
+    "op": ">=",
+    "value": 25
+   },
+   "gate": false
+  }
+ ],
+ "decisions": [
+  {
+   "if": "pass(M_T_KERNEL) and pass(M_CANARY)",
+   "then": "hosts agree: every number of this sheet is read as produced"
+  },
+  {
+   "if": "fail(M_CANARY)",
+   "then": "hosts differ (BLAS family or package build): family-2, X4 and X5 numbers are read as this host's; wave B reruns the canary under this host's coretype in the sandbox before comparing with dev numbers"
+  },
+  {
+   "if": "fail(M_TRACE)",
+   "then": "tracker errors on Uzair's machine: wave B fixes them first (the sandbox cannot see runs/ and external/, so its own check was not authoritative)"
+  },
+  {
+   "if": "pass(M_X4)",
+   "then": "X4: the nonlinear-only class is kernel-detectable; with X1, missed links are explained except the floor; wave B writes the explanation ledger"
+  },
+  {
+   "if": "fail(M_X4)",
+   "then": "X4: even a kernel test does not see the nonlinear-only class beyond null; it joins the floor as 'no usable signal at 1,000 rows'"
+  },
+  {
+   "if": "pass(M_X5_P1)",
+   "then": "D2-engine: wave B designs a pretrained engine beside GES inside the ledger (audited like GES), and the 0.634 bar becomes comparable"
+  },
+  {
+   "if": "fail(M_X5_P1)",
+   "then": "D1 stays the paper's line; the D2-score route (a nonlinear score inside GES) is a wave-B design question only"
+  },
+  {
+   "if": "fail(M_X5_ORD_HI) or fail(M_X5_ORD_LO)",
+   "then": "AVICI reads column order: only the shuffled arm is interpreted; report it as an order-sensitivity finding (BEN-07)"
+  },
+  {
+   "if": "pass(M_F2_ER2) and pass(M_F2_ECE)",
+   "then": "family 2: precision and calibration transfer; ER-2 / ER-3 reported per family beside CausalArena"
+  },
+  {
+   "if": "fail(M_F2_ECE)",
+   "then": "the confidence model is family-specific: calibration is stated per family only"
+  },
+  {
+   "if": "pass(M_CB_K_CELLS) and pass(M_CB_R_CELLS) and pass(M_CB_S1)",
+   "then": "BEN-13 S1 passes: wave B writes the shortcut-share table (placement, permutation, echo, literature)"
+  },
+  {
+   "if": "pass(M_CB_K_CELLS) and fail(M_CB_S1)",
+   "then": "CausalBench protocol not reproduced: wave B diagnoses with the sensitivity cells; no re-score claim"
+  },
+  {
+   "if": "fail(M_CB_K_CELLS) or fail(M_CB_R_CELLS)",
+   "then": "preprocessing counts differ from the paper's: compare the sidecar counts; no BEN-13 claim"
+  },
+  {
+   "if": "pass(M_LIVE06)",
+   "then": "refinement v2 runs inside Causal-Copilot on the fork: wave B scores it against BND-08's unmodified runs and the Q1 checkpoint (BND-13) shows the changed pipeline"
+  },
+  {
+   "if": "skipped(LIVE_06)",
+   "then": "the live run waited on the branch stubs (or the fork): after the fork, run the sheet again (finished jobs are not repeated)"
+  }
+ ],
+ "return_files": [
+  "jobs/waves/A/out/*.json",
+  "analysis/results/fork/*.json",
+  "analysis/results/q2_v3/explain_dev.json",
+  "analysis/results/q2_v3/family2_read.json",
+  "analysis/results/q2_v3/family2_fill/*.json",
+  "analysis/results/x5/x5_dev.json",
+  "analysis/results/ben13/summary.json",
+  "external/causalbench/*.npz.json",
+  "external/causalbench/FETCHED.json",
+  "external/x5/avici_cache/FETCHED.json",
+  "plans/results/fork_bld06_live.capped.json",
+  "jobs/waves/images/*.id"
+ ],
+ "identity_globs": [
+  "analysis/a3_make_requests.py",
+  "analysis/a3_orient_only.py",
+  "analysis/a3_score.py",
+  "analysis/ab02_alarm_order.py",
+  "analysis/ab02_bayesys.py",
+  "analysis/ab02_bayesys_repro.py",
+  "analysis/ab04_figures.py",
+  "analysis/ab05_live_calibration.py",
+  "analysis/ab06_figure.py",
+  "analysis/ab06_score.py",
+  "analysis/ab11_ledger_adapters.py",
+  "analysis/ab11_teardown_run.py",
+  "analysis/ab12_rca_probe.py",
+  "analysis/authors_rule_layout_check.py",
+  "analysis/b2_generator.py",
+  "analysis/b2_reference_methods.py",
+  "analysis/b2_score.py",
+  "analysis/baseline_variants_run.py",
+  "analysis/ben13/__init__.py",
+  "analysis/ben13/evaluate.py",
+  "analysis/ben13/fetch.py",
+  "analysis/ben13/literature.py",
+  "analysis/ben13/methods.py",
+  "analysis/ben13/run.py",
+  "analysis/ben13/stream_preprocess.py",
+  "analysis/ben13/synth.py",
+  "analysis/bnd04_summary.py",
+  "analysis/bnd06_summary.py",
+  "analysis/bnd06_summary_families.py",
+  "analysis/bnd08_summary.py",
+  "analysis/bnd11_lenient_parse.py",
+  "analysis/bootstrap_replay_ca.py",
+  "analysis/bootstrap_replay_family.py",
+  "analysis/causalarena_io.py",
+  "analysis/causalarena_load.py",
+  "analysis/causalarena_methods.py",
+  "analysis/causalarena_order_baseline.py",
+  "analysis/causalarena_pc_calibration.py",
+  "analysis/causalarena_protocol_check.py",
+  "analysis/causalarena_sortability.py",
+  "analysis/cc_graph.py",
+  "analysis/chambers_fetch.py",
+  "analysis/chambers_io.py",
+  "analysis/chambers_map.py",
+  "analysis/chambers_sample.py",
+  "analysis/chambers_validate.py",
+  "analysis/check_citations.py",
+  "analysis/check_scores.py",
+  "analysis/column_order_check.py",
+  "analysis/dataset_match_check.py",
+  "analysis/decision_value.py",
+  "analysis/decision_value_v2.py",
+  "analysis/dom09_ida_timing.py",
+  "analysis/dv_chambers_sachs.py",
+  "analysis/encoding_consumers.py",
+  "analysis/engine_forensics.py",
+  "analysis/engine_oracle_check.py",
+  "analysis/engine_shims.py",
+  "analysis/error_budget.py",
+  "analysis/fork_check.py",
+  "analysis/intervention_audit.py",
+  "analysis/interview_synthesis.py",
+  "analysis/job_gates.py",
+  "analysis/jobkit.py",
+  "analysis/lineage.py",
+  "analysis/llm_inventory_build.py",
+  "analysis/llm_inventory_scan.py",
+  "analysis/make_dataset_cards.py",
+  "analysis/make_datasets.py",
+  "analysis/make_splits.py",
+  "analysis/make_suite.py",
+  "analysis/make_suite_ca.py",
+  "analysis/merge_shards.py",
+  "analysis/method_error_budget.py",
+  "analysis/name_prefix_check.py",
+  "analysis/neutral_leak_scan.py",
+  "analysis/notears_linear.py",
+  "analysis/order_value.py",
+  "analysis/package_submission.py",
+  "analysis/partial_stages.py",
+  "analysis/pc_orientation_order.py",
+  "analysis/pc_skeleton_order_check.py",
+  "analysis/pc_upstream_failure_check.py",
+  "analysis/pc_upstream_run.py",
+  "analysis/published_extract.py",
+  "analysis/q2_anatomy.py",
+  "analysis/q2_b2_orientation_diag.py",
+  "analysis/q2_b3_ceiling_dev.py",
+  "analysis/q2_b4_raw_vs_calibrated.py",
+  "analysis/q2_dirsig.py",
+  "analysis/q2_dirsig2.py",
+  "analysis/q2_dirsig_diag.py",
+  "analysis/q2_explain.py",
+  "analysis/q2_family2.py",
+  "analysis/q2_floor.py",
+  "analysis/q2_half_anatomy.py",
+  "analysis/q2_headroom.py",
+  "analysis/q2_l16.py",
+  "analysis/q2_l5.py",
+  "analysis/q2_l5_diag.py",
+  "analysis/q2_linkfilt.py",
+  "analysis/q2_linkfilt_diag.py",
+  "analysis/q2_missed_links_study.py",
+  "analysis/reference_reliability.py",
+  "analysis/refinement_offline.py",
+  "analysis/refinement_offline_report.py",
+  "analysis/refinement_offline_seeds.py",
+  "analysis/refinement_v1.py",
+  "analysis/refinement_v1_diagnose.py",
+  "analysis/refinement_v1_test_live.py",
+  "analysis/refinement_v2.py",
+  "analysis/rep09_ges.py",
+  "analysis/rep11_sachs_data.py",
+  "analysis/rescore_controls.py",
+  "analysis/rescore_controls_v2.py",
+  "analysis/s2_analysis.py",
+  "analysis/s2_baselines.py",
+  "analysis/score_record.py",
+  "analysis/shd_variants.py",
+  "analysis/smoke_job.py",
+  "analysis/sortability_audit.py",
+  "analysis/space_coords.py",
+  "analysis/stability.py",
+  "analysis/stub_cost.py",
+  "analysis/theory_checks.py",
+  "analysis/ts_wrapper_check.py",
+  "analysis/upstream_check.py",
+  "analysis/wave_canary.py",
+  "analysis/x5_pretrained.py",
+  "calibration/v3_formula_D.pkl",
+  "calibration/v3_formula_DxR.pkl",
+  "calibration/v3_models.json",
+  "calibration/v3_semantic_D.pkl",
+  "calibration/v3_semantic_DxR.pkl",
+  "cc.ps1",
+  "docker/Dockerfile.bench",
+  "docker/Dockerfile.kernel",
+  "docker/Dockerfile.overlay",
+  "docker/Dockerfile.probes",
+  "docker/Dockerfile.x5",
+  "docker/requirements_bench.txt",
+  "docker/requirements_kernel.txt",
+  "docker/requirements_x5.txt",
+  "engines/__init__.py",
+  "engines/core.py",
+  "engines/manifest.py",
+  "engines/oracle_check.py",
+  "engines/variants.py",
+  "harness/agent_batch.py",
+  "harness/agent_probe.py",
+  "harness/cc_common.py",
+  "harness/cc_trace.py",
+  "harness/compute_job.py",
+  "harness/fetch_external.py",
+  "harness/fork_branch.py",
+  "harness/live_capped.py",
+  "harness/names_runner.py",
+  "harness/preflight.py",
+  "harness/probe_io.py",
+  "harness/probe_llm.py",
+  "harness/run_plan.py",
+  "harness/run_traced.py",
+  "harness/stub_llm.py",
+  "harness/tiers_runner.py",
+  "harness/wave.py",
+  "jobs/fork/bld-06",
+  "jobs/fork/bld-06-refinement-v2.json",
+  "jobs/fork/bld-06-refinement-v2.patch",
+  "jobs/fork/bld-06-refinement-v2.sha256",
+  "jobs/fork/bld-06/__pycache__",
+  "jobs/fork/bld-06/refinement_v2_dropin.py",
+  "jobs/fork/ext-03-cycle-step-key.json",
+  "jobs/fork/ext-03-cycle-step-key.patch",
+  "jobs/fork/ext-03-cycle-step-key.sha256",
+  "jobs/fork/make_branches.ps1",
+  "jobs/waves/A/canary_expected.json",
+  "kernel/__init__.py",
+  "kernel/asym.py",
+  "kernel/asym_cond.py",
+  "kernel/build.py",
+  "kernel/cache.py",
+  "kernel/checker.py",
+  "kernel/claim_features.py",
+  "kernel/confidence.py",
+  "kernel/derive.py",
+  "kernel/experiment.py",
+  "kernel/freeze.py",
+  "kernel/harness.py",
+  "kernel/interventions.py",
+  "kernel/invariance.py",
+  "kernel/k2_eval.py",
+  "kernel/k4_eval.py",
+  "kernel/knowledge.py",
+  "kernel/landmarks.py",
+  "kernel/ledger_hash.py",
+  "kernel/linkfilt.py",
+  "kernel/policy.py",
+  "kernel/recover.py",
+  "kernel/report_b1.py",
+  "kernel/report_b23.py",
+  "kernel/run_b1.py",
+  "kernel/run_b2.py",
+  "kernel/run_b3.py",
+  "kernel/run_b4.py",
+  "kernel/v3.py",
+  "kernel/views.py",
+  "kernel/weights.py",
+  "ledger/**/*.py",
+  "plans/a3_prereg.json",
+  "plans/ab06_prereg.json",
+  "plans/ab06_prereg_amendment_1.json",
+  "plans/ab06_prereg_amendment_2.json",
+  "plans/ab06_prereg_amendment_3.json",
+  "plans/b1_prereg.json",
+  "plans/b1_prereg_amendment_1.json",
+  "plans/b2_prereg.json",
+  "plans/b3_prereg.json",
+  "plans/b4_prereg.json",
+  "plans/b5_prereg.json",
+  "plans/ben13_prereg.json",
+  "plans/bnd06_prereg.json",
+  "plans/dirsig2_prereg.json",
+  "plans/dirsig_prereg.json",
+  "plans/fork_bld06_live.json",
+  "plans/fork_bld06_stub.json",
+  "plans/fork_ext03_stub.json",
+  "plans/l16_prereg.json",
+  "plans/l5_prereg.json",
+  "plans/linkfilt_prereg.json",
+  "plans/q2_build_prereg.json",
+  "plans/q2_explain_prereg.json",
+  "plans/splits.json",
+  "plans/v3_freeze.json",
+  "plans/v3_prereg.json",
+  "plans/v3_prereg_amendment_1_family2.json",
+  "plans/x5_prereg.json",
+  "score/__init__.py",
+  "score/baselines.py",
+  "score/bench.py",
+  "score/calib.py",
+  "score/dv.py",
+  "score/graph.py",
+  "score/paired.py",
+  "score/rca.py",
+  "score/repro.py",
+  "site/build.py",
+  "site/levels/bounds.py",
+  "site/levels/bundles.py",
+  "site/levels/common.py",
+  "site/levels/main.py",
+  "site/levels/plots.py",
+  "site/levels/stages.py",
+  "site/levels/theses.py",
+  "site/levels/theses_map.py",
+  "site/pagekit.py",
+  "site/pages.py",
+  "site/pgs/pg_about.py",
+  "site/pgs/pg_changes.py",
+  "site/pgs/pg_decisions.py",
+  "site/pgs/pg_evidence.py",
+  "site/pgs/pg_glossary.py",
+  "site/pgs/pg_home.py",
+  "site/pgs/pg_market.py",
+  "site/pgs/pg_names.py",
+  "site/pgs/pg_primer.py",
+  "site/pgs/pg_rca.py",
+  "site/pgs/pg_scoreboard.py",
+  "site/pgs/pg_scoring.py",
+  "site/pgs/pg_space.py",
+  "site/pgs/pg_status.py",
+  "site/pgs/pg_theses.py",
+  "site/pillars.py",
+  "site/registry.py",
+  "site/terms.py",
+  "tests/q2_oracle.py",
+  "tests/run_tests.py",
+  "tests/test_ab06_batch.py",
+  "tests/test_ab11_adapters.py",
+  "tests/test_agent_probe.py",
+  "tests/test_b2_generator.py",
+  "tests/test_ben13_stream.py",
+  "tests/test_core.py",
+  "tests/test_fork_patches.py",
+  "tests/test_interview_synthesis.py",
+  "tests/test_ledger_verify.py",
+  "tests/test_probe_gate.py",
+  "tests/test_q2_asym.py",
+  "tests/test_q2_asym_cond.py",
+  "tests/test_q2_cache.py",
+  "tests/test_q2_confidence.py",
+  "tests/test_q2_interventions.py",
+  "tests/test_q2_kernel.py",
+  "tests/test_q2_l16_l5.py",
+  "tests/test_q2_linkfilt.py",
+  "tests/test_q2_score.py",
+  "tests/test_q2_supplier.py",
+  "tests/test_q2_v3.py",
+  "tests/test_refinement_v2.py",
+  "tests/test_site_s23.py",
+  "tests/test_theory.py",
+  "tests/test_tiers_runner.py",
+  "tests/test_wave_runner.py",
+  "tools/ci_check.py",
+  "tools/data_manifest.py",
+  "tools/kit_checks.py",
+  "tools/secret_scan.py",
+  "tracker/catalogue.py",
+  "tracker/plan_check.py",
+  "tracker/relay.py",
+  "tracker/selftest_trace.py",
+  "tracker/snapshot.py",
+  "tracker/trace.py",
+  "tracker/verify.py"
+ ]
+}

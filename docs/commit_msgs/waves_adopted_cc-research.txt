@@ -1,0 +1,17 @@
+Adopt batched waves: docs/WAVES.md, WAVE_STATE.md, AGENTS.md section; INF-10; engine cache persisted
+
+No code change to the kernel or the harness; no API credit spent. Kit49 (jobs/patches/p24_waves.py).
+- docs/WAVES.md: how the batched-waves method maps onto this folder (classes F/H/L/M/D, run sheet and RETURN.json
+  files, the loop, the lessons from the L16 / L5 round).
+- WAVE_STATE.md: the file a new session reads first; wave A planned (A1-A7: wave runner, fork support, explanation round
+  X1-X4, second held-out family, X5 pretrained models under controls, BEN-13 S0-S2, site S23), its sheet, manual steps,
+  decisions with defaults; waves B and C outlined.
+- AGENTS.md: "How work is batched (waves)" section. BLD-11 repinned (AGENTS.md is its evidence) and reviewed.
+- INF-10 (wave runner and kit builder) added; Dev list row Rec0CA3K8T6B1, mirrored; list-synced dev.
+- jobs/transfer/cache_engines_2026-10-19.tgz (gitignored): the 500-entry engine cache built in the L16 / L5 round, kept
+  so no later wave rebuilds it.
+- Checks: verify 0 problems; trace check 0 errors (3 warnings: unsent prod drafts of 14 and 15 Oct); snapshot
+  b62e97bbde2d; site build 0 errors / 0 warnings; secret scan 0 findings; ci_check 0 errors.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiuaycm

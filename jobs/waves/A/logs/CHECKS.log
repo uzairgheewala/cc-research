@@ -1,0 +1,18 @@
+
+# 2026-10-20T16:52:30Z CHECKS
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "tools/kit_checks.py", "--out", "jobs/waves/A/out/checks.json"]
+[checks] verify      exit 0
+[checks] trace       exit 1
+[checks] snapshot    exit 0
+[checks] secret_scan exit 0
+[checks] ci_check    exit 1
+[checks] site        exit 0
+
+# 2026-10-20T17:32:29Z CHECKS
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/tree/cc-research", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/tree/cc-research", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\Causal-Copilot:/tree/Causal-Copilot:ro", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research\\jobs\\empty.env:/tree/Causal-Copilot/.env:ro", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "tools/kit_checks.py", "--out", "jobs/waves/A/out/checks.json"]
+[checks] verify      exit 0
+[checks] trace       exit 0
+[checks] snapshot    exit 0
+[checks] secret_scan exit 0
+[checks] ci_check    exit 1
+[checks] site        exit 0

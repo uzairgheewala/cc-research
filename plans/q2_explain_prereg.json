@@ -1,0 +1,37 @@
+{
+ "version": 1,
+ "tickets": ["TGT-18", "TGT-19"],
+ "written_utc": "2026-10-20T07:50:00Z",
+ "status": "pre-registered before any X1-X4 number was computed (wave A); the code (analysis/q2_explain.py) was smoke-run on 3 files only to check it runs",
+ "question": "Of the semantic gap left unexplained on 19 Oct (search-gap misses 14% of true links, unrelated false links 19% of false links, reversal causes), how much has a known mechanism, and does the search gap call for a different engine (D2) or for measurement plus the reliability ledger (D1)?",
+ "units": "dev split, 125 files per family (25 scenarios x 5 replicates), the frozen v3 ledger (rule C3) from the engine cache; missed-link classes as in analysis/results/q2_v3/floor_dev_<family>.json",
+ "investigations": {
+  "X1": "GES's own score (ges 1.1.0 GaussObsL0Pen, lambda log(n)/2, z-scored columns): gain of each missed link given the other true parents; gain of each false link added to the true graph (better direction); BIC of the true DAG vs GES's output",
+  "X2": "maxP (priority 3) + Meek (causal-learn 0.1.4.8, Fisher z) on the true skeleton vs on the ledger's skeleton; each ledger reversal on a found true link is skeleton-caused (fixed on the true skeleton), rule-caused (still reversed) or opened",
+  "X3": "nested OLS F-test (discrete columns as indicators, continuous as cubic polynomials, both directions, Bonferroni) on the floor class given the other true parents; null calibration on 2 true-null pairs per file (local Markov)",
+  "X4": "KCI (causal-learn) on the nonlinear-only class given the other true parents, same null pairs; heavy, on Uzair's machine"
+ },
+ "predictions": {
+  "P1": "semantic search-gap (method_linear) missed links: share with positive score gain is at least 0.5 (the score sees most of them given the true parents)",
+  "P2": "semantic unrelated false links: share with positive gain on the true graph is at least 0.3 (a sizeable part is linear-score misspecification)",
+  "P3": "semantic: the true DAG scores higher than GES's output on at most 0.3 of files (GES mostly reaches a graph the score prefers)",
+  "P4": "semantic: at least 0.5 of ledger reversals on found true links are skeleton-caused",
+  "P5": "semantic floor class: detected share minus null rejection rate is at most 0.15 (the floor is mostly real)",
+  "P6": "semantic nonlinear-only class: KCI detected share minus null rejection rate is at least 0.3"
+ },
+ "rules": {
+  "d2_search_share_at_least": 0.5,
+  "d1_search_share_at_most": 0.2,
+  "d2_score_misspecification_at_least": 0.5,
+  "decision": "on the semantic family: search share >= 0.5 -> D2-search (a better search/engine inside the ledger is the lever); else unrelated-false-link misspecification share >= 0.5 -> D2-score (a nonlinear/discrete score is the lever); else search share <= 0.2 -> D1 (measurement paper + ledger); otherwise D1-with-search-follow-up",
+  "formula": "the same numbers are reported for formula; the rule is decided on semantic only (the family that misses ER-2)",
+  "explained_share": "a gap segment counts as explained when an investigation assigns it a mechanism: score-invisible (X1 gain <= 0), search-missed (X1 gain > 0), skeleton-caused / rule-caused (X2), discrete-detectable (X3 beyond null), kernel-detectable (X4 beyond null)"
+ },
+ "failure_modes_named_in_advance": [
+  "pdag_to_dag fails on an inconsistent GES output: recorded per file, excluded from the global comparison only",
+  "the gain of a missed link given the TRUE other parents can differ from its gain given the parents GES actually found; X1 measures what a search reaching the true parents would see, not what this search saw",
+  "maxP on the true skeleton is PC's orientation phase, not GES's; X2 attributes reversals under PC's rules, which v3 uses only as the audit",
+  "two null pairs per file give about 250 null tests per family: a rejection-rate estimate with s.e. about 0.014 at 0.05"
+ ],
+ "outputs": ["analysis/results/q2_v3/explain_x123_dev_<family>.json", "analysis/results/q2_v3/x4/*.jsonl", "analysis/results/q2_v3/explain_dev.json"]
+}

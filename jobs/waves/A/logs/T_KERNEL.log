@@ -1,0 +1,67 @@
+
+# 2026-10-20T16:51:00Z T_KERNEL
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "tests/run_tests.py", "--out", "jobs/waves/A/out/tests_kernel.json"]
+.......................s...sssss.ssss.....{
+ "files": 2,
+ "hash_mismatch_or_missing": [],
+ "n_bad": 0,
+ "unlisted": [],
+ "generator_sha256_matches": true
+}
+...sssss......................wrote 1 blind copies to /tmp/tmprjrj7ogf/blind
+.wrote /tmp/tmpsxxh019j/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+wrote /tmp/tmpsxxh019j/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmpscoi739t/out/synthesis.json (provisional, n=8)
+  H1: 2 supports / 0 refutes / 6 silent of 8 -> inconclusive
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 4 supports / 0 refutes / 4 silent of 8 -> supported
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+..no notes found in /tmp/tmpv2u47e0c/notes; nothing written
+.wrote /tmp/tmp3mn68k96/out/synthesis.json (final, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 2 supports / 0 refutes / 3 silent of 5 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmpihksx7wi/out/synthesis.json (provisional, n=8)
+  H1: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 3 supports / 0 refutes / 5 silent of 8 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+........REFUSED: 1 problem(s); nothing written. Fix the notes and rerun.
+  P01.json: when_wrong: contains what looks like an email address (b**********); paraphrase or remove it
+....................ssssss...............................................................................................[wave] REFUSED: code identity does not match the sheet (['code.py'])
+.[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        ok         0.0 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed /tmp/tmpve4cuprc/cc-research/jobs/waves/T/return_T.zip (4.9 KB); 0 files over 5 MB left on this machine
+..
+----------------------------------------------------------------------
+Ran 210 tests in 78.041s
+
+OK (skipped=21)

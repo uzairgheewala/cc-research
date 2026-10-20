@@ -1,0 +1,64 @@
+# X5 image (REP-07, BEN-07): AVICI 1.0.7 inference only. avici itself is installed with --no-deps (its full requirement
+# list pulls TensorFlow and Jupyter, which inference never imports); jax 0.4.30 still has PositionalSharding (0.7.1 does not),
+# which avici 1.0.7 imports; pyarrow 10.0.1 as avici pins it. Checked by import in a clean Python 3.11 venv on 20 Oct.
+# deepdiff and psutil added 20 Oct after the first sheet: unpickling the checkpoint imports avici.backbone (deepdiff); checked by a
+# full load_pretrained + inference on a random tiny checkpoint in a clean venv.
+absl-py==2.5.1
+certifi==2026.10.19
+charset-normalizer==3.5.2
+chex==0.1.86
+contourpy==1.3.3
+cycler==0.12.1
+deepdiff==8.0.1
+dm-haiku==0.0.12
+etils==1.14.0
+filelock==4.2.4
+flax==0.10.4
+fonttools==4.67.0
+fsspec==2026.9.0
+huggingface-hub==0.25.2
+humanize==4.16.0
+idna==3.20
+igraph==1.0.0
+jax==0.4.30
+jaxlib==0.4.30
+jmp==0.0.4
+kiwisolver==1.5.1
+markdown-it-py==4.2.0
+matplotlib==3.11.2
+mdurl==0.1.2
+ml-dtypes==0.4.1
+msgpack==1.2.3
+nest-asyncio==1.6.0
+networkx==3.4.2
+numpy==1.26.4
+opt_einsum==3.4.0
+optax==0.2.3
+orbax-checkpoint==0.6.4
+orderly-set==5.2.2
+packaging==26.3
+pandas==2.2.3
+pillow==13.0.0
+protobuf==7.36.2
+psutil==6.0.0
+pyarrow==10.0.1
+pyflakes==4.0.3
+Pygments==2.21.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+pytz==2026.5
+PyYAML==6.0.3
+requests==2.34.2
+rich==15.0.0
+scipy==1.13.1
+six==1.17.0
+tabulate==0.10.0
+tensorstore==0.1.74
+texttable==1.7.2
+toolz==1.2.0
+tqdm==4.66.5
+treescope==0.1.10
+typing_extensions==4.16.0
+tzdata==2026.5
+urllib3==2.8.0
+zipp==4.1.1

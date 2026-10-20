@@ -119,10 +119,18 @@ def main():
     print("[harness] checking code identity against baseline %s ..." % BASELINE_COMMIT)
     ident = verify_tree()
     meta["tree_identity"] = ident
+    # INF-06: which tree this run used: "main" (the untouched baseline) or a ticket branch with its commit and patch
+    meta["fork"] = {"branch": ident.get("branch"), "ticket": ident.get("ticket"), "git": ident.get("git"),
+                    "patch_sha256": ident.get("patch_sha256"), "head_ok": ident.get("head_ok")}
+    if ident.get("branch") not in (None, "main"):
+        print("[harness] ticket branch %s (%s), commit %s" % (ident["branch"], ident.get("ticket"),
+                                                             (ident.get("git") or {}).get("commit")))
     summary["must_show"]["1_code_identity"] = "OK" if ident["ok"] else "DRIFT"
     if not ident["ok"] and not a.allow_drift:
-        summary["status"] = "ABORTED: repo differs from baseline (missing=%d changed=%d). Use --allow-drift to override." % (
-            len(ident["missing"]), len(ident["changed"]))
+        summary["status"] = "ABORTED: repo differs from %s (missing=%d changed=%d%s). Use --allow-drift to override." % (
+            "branch " + ident["branch"] if ident.get("branch") not in (None, "main") else "baseline",
+            len(ident["missing"]), len(ident["changed"]),
+            "" if ident.get("head_ok", True) else ", checkout is not on that branch")
         finish(2)
     pre_extra = set(ident["extra_unexpected"])
 

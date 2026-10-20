@@ -1,0 +1,36 @@
+{
+ "version": 1,
+ "amends": "plans/v3_prereg.json",
+ "tickets": ["TGT-18", "CAP-07"],
+ "written_utc": "2026-10-20T09:45:00Z",
+ "status": "pre-registered before frozen kernel v3 scored any file of this family (wave A; decision D-2 default taken: our labelled generator now, Causal Chambers report-only). Smoke: the scoring path ran on 10 files of one test scenario generated in the agent's sandbox (precision 0.738 at coverage 0.513 there); those numbers are not part of the read and the files are regenerated identically on Uzair's machine.",
+ "why": "ER-2 and ER-3 intervals on CausalArena are as wide as 25 test scenarios make them; the 15 Oct round recommended a second held-out family. Every CausalArena test split has now been read twice (v2, v3).",
+ "family": {
+  "name": "b2_namereliance (analysis/b2_generator.py, b2-gen/1.0, seed 20261012)",
+  "files": "replicate 0 of every (source scenario, track, rho): 50 public semantic scenarios x {linear, nonlinear} x rho {0, 0.25, 0.5, 0.75, 1} = 500 files of 1,000 rows",
+  "what_v3_sees": "data only; columns standardised and shuffled by the generator; the names never reach the kernel (rho changes only the true graph G_D)",
+  "truth": "G_D (the file's g); every variable is a DV-1 target (no interventional files)",
+  "cluster": "the source scenario (50 clusters)"
+ },
+ "frozen": "plans/v3_freeze.json (code sha256 and the four confidence models); regime D; the semantic D confidence model is applied unchanged",
+ "metrics": "ER-2: half-coverage precision lower end > 0.80 at coverage >= 0.5; ER-3: ECE upper end <= 0.05 and realised-minus-claimed lower ends >= -0.03 at cost ratios 1, 2, 4; intervals by scenario-cluster bootstrap (B = 2000, seed 20261014), exactly kernel/v3.scored",
+ "primary": "all 500 files",
+ "secondary": ["linear track only", "nonlinear track only", "files whose source scenario is in the CausalArena test split (25 scenarios)"],
+ "predictions": {
+  "F1": "all files: half-coverage precision point within 0.05 of CausalArena semantic D held out (0.830)",
+  "F2": "linear track precision exceeds nonlinear track precision by at least 0.03",
+  "F3": "all files: ECE point <= 0.05 (the confidence model transfers within its calibration error)",
+  "F4": "interval widths (ER-2) narrower than CausalArena semantic D's (0.091) because 50 clusters"
+ },
+ "rules": {
+  "transfer": "F1 and F3 hold: v3's reliability claims transfer to a second family; ER-2/ER-3 verdicts on this family are reported beside CausalArena's, never pooled with them",
+  "no_transfer": "F3 fails (ECE > 0.05): the confidence model is family-specific; the paper states calibration per family only",
+  "one_read": "the read is logged in analysis/results/q2_v3/access_log.jsonl and refused a second time"
+ },
+ "chambers": "Causal Chambers wind tunnel (wt) is report-only in this wave: the light tunnel (lt) was read before, so no Chambers number is a held-out claim",
+ "failure_modes_named_in_advance": [
+  "engine cost: GES on these files takes 15-70 s each (the sandbox smoke), so the fill is a heavy job in parts",
+  "the generator's files on Uzair's machine differ from a fresh generation: checked by the canary (file sha256 of one b2 file)"
+ ],
+ "outputs": ["analysis/results/q2_v3/family2_read.json"]
+}

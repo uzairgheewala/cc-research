@@ -1,0 +1,25 @@
+
+# 2026-10-20T16:57:37Z FETCH_X5
+# argv: ["docker", "run", "--rm", "--init", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-x5:wave-a", "python", "analysis/x5_pretrained.py", "fetch"]
+Traceback (most recent call last):
+  File "/research/analysis/x5_pretrained.py", line 192, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/research/analysis/x5_pretrained.py", line 188, in main
+    return {"fetch": cmd_fetch, "run": cmd_run, "score": cmd_score}[a.cmd](a)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/analysis/x5_pretrained.py", line 68, in cmd_fetch
+    avici.load_pretrained(download=MODEL, cache_path=str(CKPT))
+  File "/usr/local/lib/python3.11/site-packages/avici/pretrain.py", line 247, in load_pretrained
+    state, loaded_config = load_checkpoint(root_path)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/avici/utils/load.py", line 40, in load_checkpoint
+    state = pickle.load(file)
+            ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/avici/backbone.py", line 13, in <module>
+    from deepdiff import DeepDiff
+ModuleNotFoundError: No module named 'deepdiff'
+
+# 2026-10-20T17:38:06Z FETCH_X5
+# argv: ["docker", "run", "--rm", "--init", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-x5:wave-a", "python", "analysis/x5_pretrained.py", "fetch"]
+fetched 7 files

@@ -1,0 +1,13 @@
+# Bench image (BEN-13): causalbench 1.1.2's evaluation and splitting code plus a streamed preprocessing path.
+# causalbench is installed with --no-deps: its model stack (torch, cdt, arboreto, scanpy, ...) is never imported.
+#   cc.ps1 benchbuild       (docker build -f docker/Dockerfile.bench -t cc-bench:wave-a docker)
+FROM python:3.11-slim-bookworm
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+COPY requirements_bench.txt /opt/req/requirements_bench.txt
+RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_bench.txt \
+ && python -m pip install --no-cache-dir --no-compile --no-deps causalbench==1.1.2 \
+ && python -c "import types, sys; sys.modules['gdown'] = types.ModuleType('gdown'); \
+from causalscbench.evaluation import statistical_evaluation, biological_evaluation; \
+from causalscbench.data_access.utils import splitting; import anndata, h5py, openpyxl; print('bench image ok')"
+WORKDIR /research

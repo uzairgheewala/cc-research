@@ -1,0 +1,59 @@
+diff --git a/postprocess/judge_functions.py b/postprocess/judge_functions.py
+index 7bd8ed6..66c5db9 100644
+--- a/postprocess/judge_functions.py
++++ b/postprocess/judge_functions.py
+@@ -549,17 +549,29 @@ def edges_to_relationship(data, edges_dict, boot_edges_prob=None):
+ 
+ 
+ def LLM_remove_cycles(args, message):
++    # EXT-03: the prompt never named the key this function reads, so the reply's key varied and response['nodes'] raised
++    # KeyError (18 of 19 live entries into this step). The prompt now names the key and the reply is read defensively;
++    # None means "no usable answer" and the caller falls back to a deterministic choice.
+     client = LLMClient(args)
+-    class VarList(BaseModel):
+-        nodes: list[str]
+-    
+     response = client.chat_completion(
+         prompt=message,
+-        system_prompt="You are a helpful assistant, the following relationships form a cycle, please choose an egde to remove this cycle, and save nodes of this edge in a list.",
++        system_prompt=("You are a helpful assistant, the following relationships form a cycle, please choose an edge to "
++                       "remove this cycle. Reply with JSON only, exactly of the form "
++                       "{\"nodes\": [\"<cause variable>\", \"<effect variable>\"]}."),
+         json_response=True
+     )
+-    
+-    return response['nodes']
++    if isinstance(response, dict):
++        nodes = response.get('nodes')
++        if nodes is None:
++            lists = [v for v in response.values() if isinstance(v, list)]
++            nodes = lists[0] if len(lists) == 1 else None
++    elif isinstance(response, list):
++        nodes = response
++    else:
++        nodes = None
++    if not isinstance(nodes, list) or len(nodes) != 2 or not all(isinstance(n, str) for n in nodes):
++        return None
++    return nodes
+ 
+ def check_cycle(args, data, graph):
+     columns = data.columns
+@@ -587,8 +599,16 @@ def check_cycle(args, data, graph):
+             logger.debug(f"Cycle prompt: {prompt[:100]}...", "LLM")
+             remove_nodes = LLM_remove_cycles(args, prompt)
+             logger.debug(f"Remove nodes: {remove_nodes}", "CycleRemoval")
+-            ind_i = columns.str.lower().get_loc(remove_nodes[0].lower())
+-            ind_j = columns.str.lower().get_loc(remove_nodes[1].lower())
++            lower = [c.lower() for c in columns]
++            in_cycle = [str(n).lower() for n in cycle]
++            if (remove_nodes is None or any(str(n).lower() not in lower for n in remove_nodes)
++                    or any(str(n).lower() not in in_cycle for n in remove_nodes)):
++                # EXT-03 fallback: no usable answer, or names that are not on this cycle: remove the cycle's closing
++                # edge (last node -> first node), deterministic and logged
++                logger.warning(f"Cycle step: no usable model answer ({remove_nodes}); removing {cycle[-1]} -> {cycle[0]}")
++                remove_nodes = [cycle[-1], cycle[0]]
++            ind_i = lower.index(str(remove_nodes[0]).lower())
++            ind_j = lower.index(str(remove_nodes[1]).lower())
+             graph[ind_i, ind_j] = graph[ind_j, ind_i] = 0
+     
+     return graph

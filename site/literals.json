@@ -1,0 +1,11 @@
+{
+ "about": "S23 (20 Oct): hand-written sentences that are true only while a ticket or bundle has a given status. site/build.py fails when such a sentence is on its page and the status has moved on; rewrite the sentence (or derive it) and update or remove its guard. Statuses: done, in_progress, todo, blocked, open, reopened.",
+ "guards": [
+  {"page": "names", "text": "we measure Causal-Copilot as shipped and do not patch it", "ticket": "INF-06",
+   "valid_while": ["todo", "in_progress", "open", "blocked"], "why": "true until the fork's branches are run (wave A)"},
+  {"page": "theses", "text": "the explanation round decides between measurement plus the ledger and a stronger engine", "ticket": "TGT-18",
+   "valid_while": ["todo", "in_progress", "open"], "why": "the D1 / D2 choice is made in wave B from X1-X5"},
+  {"page": "status", "text": "Zoom: the next bundle", "ticket": "BND-11", "valid_while": ["todo", "in_progress", "blocked"],
+   "why": "the BND-11 panel is hidden once it is done; this guard catches a panel that comes back hard-coded"}
+ ]
+}

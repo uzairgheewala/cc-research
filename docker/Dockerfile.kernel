@@ -1,0 +1,11 @@
+# Kernel image (INF-10): runs the wave sheet's heavy no-cost jobs (kernel, analysis, tests) on Uzair's machine.
+# Build context = cc-research/docker (only the requirements file is copied). No repo code, data or key is in the image;
+# cc-research is mounted at /research at run time and jobs run with --network none.
+#   cc.ps1 kernelbuild      (docker build -f docker/Dockerfile.kernel -t cc-kernel:wave-a docker)
+FROM python:3.11-slim-bookworm
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_CORETYPE=SKYLAKEX
+COPY requirements_kernel.txt /opt/req/requirements_kernel.txt
+RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_kernel.txt \
+ && python -c "import causallearn, ges, gies, numpy, scipy, networkx; print('kernel image ok', numpy.__version__, scipy.__version__)"
+WORKDIR /research

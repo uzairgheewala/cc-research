@@ -22,6 +22,7 @@ import common  # noqa: E402
 import pagekit  # noqa: E402
 from pages import PAGES, ACTS, SEQUENCE, SCAN_EXEMPT, REDIRECTS  # noqa: E402
 from terms import TERMS  # noqa: E402
+from registry import SUPERSEDED  # noqa: E402
 
 REVIEWED = HERE / "reviewed.json"
 WORD_BUDGET = 1800
@@ -122,10 +123,28 @@ def prevnext(cur):
     return '<nav class="pn">%s</nav>' % "".join(out)
 
 
+def fingerprint(item):
+    """S23: status | number of evidence files | note hash. A ticket whose research moves as evidence or notes while its
+    status stays in_progress now changes fingerprint, so its pages come up for re-reading."""
+    if item is None:
+        return None
+    return "%s|%s|%s" % (item["status"], item.get("evidence_n", "?"), item.get("note_sha", "?"))
+
+
+def _changed(seen, fp):
+    """A review recorded before S23 stored the status only: compare the status part, so the format change alone does not
+    put every page on the list."""
+    if seen is None or fp is None:
+        return seen != fp
+    if "|" not in str(seen):
+        return seen != fp.split("|", 1)[0]
+    return seen != fp
+
+
 def reread():
-    """Pages whose tickets changed status since the page was last reviewed."""
+    """Pages whose tickets changed (status, evidence count or note) since the page was last reviewed."""
     rev = json.load(open(REVIEWED, encoding="utf-8")) if REVIEWED.exists() else {}
-    st = {i["id"]: i["status"] for i in common.SNAP["items"]}
+    fp = {i["id"]: fingerprint(i) for i in common.SNAP["items"]}
     out = []
     for p in PAGES:
         seen = rev.get(p["slug"])
@@ -133,18 +152,42 @@ def reread():
             if p["tickets"]:
                 out.append({"page": p["slug"], "why": "never reviewed"})
             continue
-        ch = ["%s: %s -> %s" % (t, seen.get(t), st.get(t)) for t in p["tickets"] if seen.get(t) != st.get(t)]
+        ch = ["%s: %s -> %s" % (t, seen.get(t, "not bound at review"), fp.get(t)) for t in p["tickets"]
+              if t not in seen or _changed(seen.get(t), fp.get(t))]
         if ch:
             out.append({"page": p["slug"], "why": "; ".join(ch)})
     return out
 
 
+def superseded_errors(slug, body):
+    """S23: a registry number from a superseded read may be printed only when marked historic (common.n(historic=True))."""
+    errs = []
+    for hist, key in re.findall(r'<a class="ev"( data-historic="1")?[^>]*title="([^" ]+) ·', body):
+        for pre, rec in SUPERSEDED.items():
+            if key.startswith(pre) and not hist:
+                errs.append("%s: %s is from a superseded read (%s); print %s instead, or mark it historic" % (
+                    slug, key, rec["why"], rec["by"]))
+    return errs
+
+
+def literal_errors(rendered, items, guards):
+    """S23: hand-written text on a page that is true only while a ticket or bundle has a given status."""
+    st = {i["id"]: i["status"] for i in items}
+    errs = []
+    for g in guards:
+        body = rendered.get(g["page"], "")
+        if g["text"] in visible_text(body) and st.get(g["ticket"]) not in g["valid_while"]:
+            errs.append("%s: stale literal '%s' (true only while %s is %s; it is %s)" % (
+                g["page"], g["text"][:60], g["ticket"], "/".join(g["valid_while"]), st.get(g["ticket"])))
+    return errs
+
+
 def mark_reviewed(slugs):
     rev = json.load(open(REVIEWED, encoding="utf-8")) if REVIEWED.exists() else {}
-    st = {i["id"]: i["status"] for i in common.SNAP["items"]}
+    fp = {i["id"]: fingerprint(i) for i in common.SNAP["items"]}
     for p in PAGES:
         if "all" in slugs or p["slug"] in slugs:
-            rev[p["slug"]] = {t: st.get(t) for t in p["tickets"]}
+            rev[p["slug"]] = {t: fp.get(t) for t in p["tickets"]}
     json.dump(rev, open(REVIEWED, "w", encoding="utf-8"), indent=1, sort_keys=True)
     print("marked reviewed:", ", ".join(sorted(rev)))
 
@@ -203,6 +246,7 @@ def main():
                             ctx = txt[max(0, mm.start() - 40): mm.end() + 40]
                             errors.append("%s: uses '%s' (term %s, taught on %s): ...%s..." % (p["slug"], mm.group(0), tid, intro, ctx))
                             break
+        errors += superseded_errors(p["slug"], body)
         for key in nums:
             for pre, first in FIRST_PAGE.items():
                 if key.startswith(pre) and order[first] > order[p["slug"]] and p["slug"] not in SCAN_EXEMPT:
@@ -215,6 +259,9 @@ def main():
         for bad in (r"Level [1-5]\b", r"\.dc\.html", r"Zoom (in|out)"):
             if re.search(bad, body):
                 errors.append("%s: leftover from the single-page site: %s" % (p["slug"], bad))
+    # S23: hand-written text bound to a ticket's or bundle's status (site/literals.json)
+    guards = json.load(open(HERE / "literals.json", encoding="utf-8"))["guards"] if (HERE / "literals.json").exists() else []
+    errors += literal_errors(rendered, common.SNAP["items"] + [{"id": b["id"], "status": b["status"]} for b in common.SNAP["bundles"]], guards)
     # every term is defined on its introducing page
     for tid, (_n, _d, intro, _f) in TERMS.items():
         if intro in rendered and ('data-term="%s"' % tid) not in rendered[intro]:

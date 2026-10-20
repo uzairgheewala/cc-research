@@ -1,0 +1,67 @@
+{
+ "tickets": [
+  "REP-07",
+  "BEN-07",
+  "TGT-18"
+ ],
+ "model": "scm-v0",
+ "split": "dev",
+ "families": {
+  "semantic": {
+   "files": 125,
+   "mean_f1": {
+    "avici_original": 0.2510959527177408,
+    "avici_shuffled": 0.2510959527177408,
+    "ges": 0.5319678287482082,
+    "v3": 0.5130085738844239
+   },
+   "n": {
+    "avici_original": 125,
+    "avici_shuffled": 125,
+    "ges": 125,
+    "v3": 125
+   },
+   "paired": {
+    "avici_shuffled_minus_ges": {
+     "mean": -0.2808718760304674,
+     "lo": -0.329760748765934,
+     "hi": -0.23172508549123066
+    },
+    "avici_shuffled_minus_v3": {
+     "mean": -0.26191262116668296,
+     "lo": -0.30581288526332223,
+     "hi": -0.2140354090770216
+    }
+   },
+   "order_effect": 0.0
+  },
+  "formula": {
+   "files": 125,
+   "mean_f1": {
+    "avici_original": 0.3043298198873895,
+    "avici_shuffled": 0.3043298198873895,
+    "ges": 0.44955762569626445,
+    "v3": 0.43586762574544113
+   },
+   "n": {
+    "avici_original": 125,
+    "avici_shuffled": 125,
+    "ges": 123,
+    "v3": 125
+   },
+   "paired": {
+    "avici_shuffled_minus_ges": {
+     "mean": -0.145686057766331,
+     "lo": -0.19333913094764232,
+     "hi": -0.0948198582494157
+    },
+    "avici_shuffled_minus_v3": {
+     "mean": -0.13153780585805175,
+     "lo": -0.18108956898790893,
+     "hi": -0.08158150764360213
+    }
+   },
+   "order_effect": 0.0
+  }
+ }
+}

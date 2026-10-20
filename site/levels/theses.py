@@ -78,11 +78,11 @@ T4 = thesis("T4", "P2",
             "Claims carry calibrated confidence and a machine-checkable derivation, so the system can decline to claim.",
             "Calibration error on held-out scenarios is no better than raw bootstrap frequencies, or the checker rejects its own derivations.",
             "Supported against raw frequencies; gate missed on one family", "prog",
-            [f"Q2 B4, held out: calibrated error {n('q2.b4.sem.ece')} semantic and {n('q2.b4.for.ece')} formula, against {n('q2.b4.sem.raw')} and "
-             f"{n('q2.b4.for.raw')} for raw bootstrap frequencies (the baseline Causal-Copilot's filter uses). The refutation test fails: calibration beats raw.",
+            [f"Q2 B4, held out: calibrated error {n('q2.b4.sem.ece', historic=True)} semantic and {n('q2.b4.for.ece', historic=True)} formula, against {n('q2.b4.sem.raw', historic=True)} and "
+             f"{n('q2.b4.for.raw', historic=True)} for raw bootstrap frequencies (the baseline Causal-Copilot's filter uses). The refutation test fails: calibration beats raw.",
              "The independent checker (K7) accepts every claim in every ledger built in B1-B3.",
              f"The pre-registered 0.05 gate is missed on semantic, in the safe direction (claims are right more often than stated). "
-             f"Half-coverage precision {n('q2.b4.sem.prec')} semantic, {n('q2.b4.for.prec')} formula.",
+             f"Half-coverage precision {n('q2.b4.sem.prec', historic=True)} semantic, {n('q2.b4.for.prec', historic=True)} formula.",
              "B4 pre-registered an isotonic map on 10-resample stability, fitted on dev and frozen before the read (DOM-08 had proposed Platt scaling).",
              f"Kernel v3 (second read): a model on ledger features brings calibration error to {n('q2v3.sem.D.ece')} / "
              f"{n('q2v3.for.D.ece')} (semantic / formula); its upper end stays above 0.05 on 25 scenarios."],
@@ -166,8 +166,12 @@ invariants = f"""<section style="display: flex; flex-direction: column; gap: 12p
 </section>"""
 
 GATES = [
-    ("G1", "", "GES and FCI budgets (done, BND-04); knowledge elicitation A3 (done, AB-07: names alone order 69% of true edges; tiers alone 0.448)", "Decides: keep or drop the knowledge route. Evidence is in; the call is open.", "prog"),
-    ("G2", "", "Program v2: kernel B1 passes I1-I4, I7 and beats PC held-out. The Q1 DAG instead asks: refinement v1 or fallback (BND-13)", "The two plans disagree here", "dec"),
+    ("G1", "", "GES and FCI budgets (done, BND-04); knowledge elicitation A3 (done, AB-07: names alone order 69% of true edges; tiers alone 0.448)",
+     "Decides: keep or drop the knowledge route. Evidence is in; the call is open." if bundle_status("AB-16") != "done" else
+     "Decided by AB-16 (the wedge decision): knowledge stays as declared structure, never as a vote.", "prog" if bundle_status("AB-16") != "done" else "done"),
+    ("G2", "", "Program v2: kernel B1 passes I1-I4, I7 and beats PC held-out. The Q1 DAG instead asks: refinement v1 or fallback (BND-13)",
+     "The two plans disagree here" if item("DEC-01")["status"] != "done" else "Decided by DEC-01: program v2 adopted; refinement v2 runs beside it as the Causal-Copilot fix (BLD-06)",
+     "dec" if item("DEC-01")["status"] != "done" else "done"),
     ("G3", "", "Scores in three regimes with all controls; scoreboard package (BND-14)", "Decides: what moves to Q2", "todo"),
     ("G4", "", "Calibration B4, effects C1, experiments C2, second model, Causal Chambers; paper draft", "Cut C2 first, then C1", "todo"),
 ]
@@ -181,6 +185,8 @@ for g, d, need, dec, st in GATES:
 </div>""")
 
 _pc = pillar_counts()
+
+
 _bundled = {x for b in SNAP["bundles"] for x in b["closes"]}
 _unb = [i["id"] for i in SNAP["items"] if i["id"].startswith("BLD-") and i["pillar"] in ("P2", "P3") and i["id"] not in _bundled]
 _share = {k: 100.0 * c["done"] / c["n"] for k, c in _pc.items()}
@@ -188,7 +194,7 @@ gap_box = f"""<div style="flex: 1 1 380px; padding: 18px 20px; background: #FFFF
 {tag("The gap this level exposes", "#8E2A2A")}
 <p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">The ledger exists and holds its promises; it does not yet beat the field's best numbers.</p>
 <p style="margin: 0; font-size: 14px; line-height: 20px">After the Q2 build's first held-out pass, {t("q2.paper.met")} of 5 paper constraints are met (floors, provenance). Precision at half coverage, calibration, accuracy above GES and RCA at 0.90 are not yet: P1 is {_share["P1"]:.0f}% done, P2 {_share["P2"]:.0f}%, P3 {_share["P3"]:.0f}%.</p>
-<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Choice:</b> more scenarios, or a v4 on the semantic search gap (analysis/reports/q2_v3_heldout.md).</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px"><b>Next:</b> the explanation round decides between measurement plus the ledger and a stronger engine inside it (analysis/reports/q2_explain_dev.md); a second held-out family widens the scenario count.</p>
 </div>"""
 
 dec_box = f"""<div style="flex: 1 1 300px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px">

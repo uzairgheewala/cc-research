@@ -1,0 +1,12 @@
+# X5 image (REP-07, BEN-07): a pretrained causal-discovery engine (AVICI, Lorch et al. 2022) for analysis/x5_pretrained.py.
+#   cc.ps1 x5build          (docker build -f docker/Dockerfile.x5 -t cc-x5:wave-a docker)
+# The checkpoint is not in the image: the sheet's fetch job downloads it into cc-research\external\x5 (network on); every
+# other job runs with --network none and HF_HUB_OFFLINE=1.
+FROM python:3.11-slim-bookworm
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 XLA_FLAGS=--xla_cpu_multi_thread_eigen=false
+COPY requirements_x5.txt /opt/req/requirements_x5.txt
+RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_x5.txt \
+ && python -m pip install --no-cache-dir --no-compile --no-deps avici==1.0.7 \
+ && python -c "import avici, jax; from avici import load_pretrained; print('x5 image ok', jax.__version__)"
+WORKDIR /research

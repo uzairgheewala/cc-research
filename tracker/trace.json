@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-19T21:25:44Z",
- "status_verified_utc": "2026-10-19T21:19:14Z",
+ "generated_utc": "2026-10-20T17:34:13Z",
+ "status_verified_utc": "2026-10-20T17:32:32Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -1846,7 +1846,9 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "BLD-01"
+    ],
     "last_review": "2026-10-16T02:14:48Z"
    }
   },
@@ -2056,8 +2058,10 @@
     "derived_status": "done",
     "published_status": "done",
     "min_level": "V3",
-    "suspect": [],
-    "last_review": "2026-10-16T02:14:48Z"
+    "suspect": [
+     "BLD-11"
+    ],
+    "last_review": "2026-10-20T04:51:34Z"
    }
   },
   "BLD-12": {
@@ -2283,9 +2287,9 @@
    "kind": "dev",
    "title": "Public repository preparation (no keys, licences, no redistribution, run-record size)",
    "category": "10 Infrastructure",
-   "status": "todo",
-   "effective_status": "todo",
-   "level": "V0",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
    "in_prod": false
   },
   "INF-07": {
@@ -2447,7 +2451,7 @@
    "category": "13 External outputs",
    "status": "open",
    "effective_status": "open",
-   "level": "V0",
+   "level": "V2",
    "in_prod": false
   },
   "EXT-04": {
@@ -2859,8 +2863,26 @@
    "kind": "dev",
    "title": "CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall",
    "category": "4 Audit: benchmarks and data",
-   "status": "todo",
-   "effective_status": "todo",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
+   "in_prod": false
+  },
+  "INF-10": {
+   "kind": "dev",
+   "title": "Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json)",
+   "category": "10 Infrastructure",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
+   "in_prod": false
+  },
+  "TEAM-09": {
+   "kind": "dev",
+   "title": "Site drift detector (S23): Q2 bindings, evidence-aware re-read, superseded reads, guarded literals",
+   "category": "12 Team and communication",
+   "status": "done",
+   "effective_status": "done",
    "level": "V2",
    "in_prod": false
   },
@@ -2899,7 +2921,9 @@
     "derived_status": "in_progress",
     "published_status": "in_progress",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "REP-07"
+    ],
     "last_review": "2026-10-16T02:14:48Z"
    }
   },
@@ -2994,7 +3018,9 @@
     "derived_status": "in_progress",
     "published_status": "in_progress",
     "min_level": "V3",
-    "suspect": [],
+    "suspect": [
+     "BEN-07"
+    ],
     "last_review": "2026-10-16T02:14:48Z"
    }
   },
@@ -3215,6 +3241,21 @@
    "kind": "file"
   },
   "file:analysis/reports/bnd04_results.md": {
+   "kind": "file"
+  },
+  "file:plans/x5_prereg.json": {
+   "kind": "file"
+  },
+  "file:manifests/evidence/x5_prereg_2026-10-20.sha256": {
+   "kind": "file"
+  },
+  "file:analysis/x5_pretrained.py": {
+   "kind": "file"
+  },
+  "file:docker/Dockerfile.x5": {
+   "kind": "file"
+  },
+  "file:docker/requirements_x5.txt": {
    "kind": "file"
   },
   "file:analysis/results/causalarena_calibration/sortability.json": {
@@ -4213,7 +4254,7 @@
   "file:analysis/results/methods/bnd04_verdicts.json": {
    "kind": "file"
   },
-  "file:manifests/evidence/BLD-01_tools_2026-10-14.sha256": {
+  "file:manifests/evidence/BLD-01_tools_2026-10-20.sha256": {
    "kind": "file"
   },
   "file:analysis/README.md": {
@@ -4397,6 +4438,33 @@
    "kind": "file"
   },
   "file:tests/run_tests.py": {
+   "kind": "file"
+  },
+  "file:docs/FORK.md": {
+   "kind": "file"
+  },
+  "file:harness/fork_branch.py": {
+   "kind": "file"
+  },
+  "file:jobs/fork/bld-06-refinement-v2.json": {
+   "kind": "file"
+  },
+  "file:jobs/fork/ext-03-cycle-step-key.json": {
+   "kind": "file"
+  },
+  "file:jobs/fork/bld-06-refinement-v2.patch": {
+   "kind": "file"
+  },
+  "file:jobs/fork/ext-03-cycle-step-key.patch": {
+   "kind": "file"
+  },
+  "file:jobs/fork/make_branches.ps1": {
+   "kind": "file"
+  },
+  "file:tests/test_fork_patches.py": {
+   "kind": "file"
+  },
+  "file:analysis/fork_check.py": {
    "kind": "file"
   },
   "project:claude/shared-doc-causal-section-draft.md": {
@@ -4633,6 +4701,30 @@
   "file:analysis/reports/q2_l5_dev.md": {
    "kind": "file"
   },
+  "file:plans/q2_explain_prereg.json": {
+   "kind": "file"
+  },
+  "file:analysis/q2_explain.py": {
+   "kind": "file"
+  },
+  "file:analysis/reports/q2_explain_dev.md": {
+   "kind": "file"
+  },
+  "file:analysis/results/q2_v3/explain_dev.json": {
+   "kind": "file"
+  },
+  "file:manifests/evidence/explain_x123_results_2026-10-20.sha256": {
+   "kind": "file"
+  },
+  "file:plans/v3_prereg_amendment_1_family2.json": {
+   "kind": "file"
+  },
+  "file:manifests/evidence/family2_prereg_2026-10-20.sha256": {
+   "kind": "file"
+  },
+  "file:analysis/q2_family2.py": {
+   "kind": "file"
+  },
   "file:docs/design/q2_kernel_v3_proposals.md": {
    "kind": "file"
   },
@@ -4694,6 +4786,87 @@
    "kind": "file"
   },
   "file:docs/project_snapshots/2026-10-19/benchmark-targets.md": {
+   "kind": "file"
+  },
+  "file:plans/ben13_prereg.json": {
+   "kind": "file"
+  },
+  "file:manifests/evidence/explain_ben13_prereg_2026-10-20.sha256": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/stream_preprocess.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/run.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/methods.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/evaluate.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/literature.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/fetch.py": {
+   "kind": "file"
+  },
+  "file:analysis/ben13/synth.py": {
+   "kind": "file"
+  },
+  "file:tests/test_ben13_stream.py": {
+   "kind": "file"
+  },
+  "file:docker/Dockerfile.bench": {
+   "kind": "file"
+  },
+  "file:docker/requirements_bench.txt": {
+   "kind": "file"
+  },
+  "file:docs/WAVES.md": {
+   "kind": "file"
+  },
+  "file:WAVE_STATE.md": {
+   "kind": "file"
+  },
+  "file:harness/wave.py": {
+   "kind": "file"
+  },
+  "file:tests/test_wave_runner.py": {
+   "kind": "file"
+  },
+  "file:docker/Dockerfile.kernel": {
+   "kind": "file"
+  },
+  "file:docker/requirements_kernel.txt": {
+   "kind": "file"
+  },
+  "file:analysis/wave_canary.py": {
+   "kind": "file"
+  },
+  "file:jobs/waves/A/plan.md": {
+   "kind": "file"
+  },
+  "file:jobs/waves/A/sheet.json": {
+   "kind": "file"
+  },
+  "file:jobs/waves/A/canary_expected.json": {
+   "kind": "file"
+  },
+  "file:harness/live_capped.py": {
+   "kind": "file"
+  },
+  "file:site/literals.json": {
+   "kind": "file"
+  },
+  "file:site/levels/bundles.py": {
+   "kind": "file"
+  },
+  "file:site/levels/theses.py": {
+   "kind": "file"
+  },
+  "file:tests/test_site_s23.py": {
    "kind": "file"
   },
   "slacklist:F0C869P25NE/Rec0C869Y8C9Y": {
@@ -5179,6 +5352,9 @@
   "slacklist:F0C869P25NE/Rec0C99TBG9LJ": {
    "kind": "slacklist"
   },
+  "slacklist:F0C869P25NE/Rec0CA3K8T6B1": {
+   "kind": "slacklist"
+  },
   "slacklist:F0C869P25NE/Rec0C88CY66NM": {
    "kind": "slacklist"
   },
@@ -5605,13 +5781,19 @@
   "file:plans/b5_prereg.json": {
    "kind": "file"
   },
+  "file:plans/fork_bld06_live.json": {
+   "kind": "file"
+  },
+  "file:plans/fork_bld06_stub.json": {
+   "kind": "file"
+  },
+  "file:plans/fork_ext03_stub.json": {
+   "kind": "file"
+  },
   "file:plans/q1_dag.json": {
    "kind": "file"
   },
   "file:plans/q2_dag.json": {
-   "kind": "file"
-  },
-  "file:docs/FORK.md": {
    "kind": "file"
   },
   "file:docs/REPO.md": {
@@ -8322,6 +8504,41 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:plans/x5_prereg.json",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:manifests/evidence/x5_prereg_2026-10-20.sha256",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/x5_pretrained.py",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/Dockerfile.x5",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/requirements_x5.txt",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/causalarena_calibration/sortability.json",
    "rel": "evidences",
    "dst": "REP-08",
@@ -10373,6 +10590,13 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:plans/x5_prereg.json",
+   "rel": "evidences",
+   "dst": "BEN-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/causalarena_calibration/protocol_check.json",
    "rel": "evidences",
    "dst": "BEN-08",
@@ -11353,7 +11577,7 @@
    "origin": "catalogue"
   },
   {
-   "src": "file:manifests/evidence/BLD-01_tools_2026-10-14.sha256",
+   "src": "file:manifests/evidence/BLD-01_tools_2026-10-20.sha256",
    "rel": "evidences",
    "dst": "BLD-01",
    "note": "",
@@ -12004,6 +12228,69 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:docs/FORK.md",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/fork_branch.py",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/bld-06-refinement-v2.json",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/ext-03-cycle-step-key.json",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/bld-06-refinement-v2.patch",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/ext-03-cycle-step-key.patch",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/make_branches.ps1",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_fork_patches.py",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/fork_check.py",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "project:claude/shared-doc-causal-section-draft.md",
    "rel": "evidences",
    "dst": "TEAM-01",
@@ -12078,6 +12365,13 @@
    "rel": "blocks",
    "dst": "EXT-01",
    "note": "Uzair's decision (DEC-03)",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/fork/ext-03-cycle-step-key.patch",
+   "rel": "evidences",
+   "dst": "EXT-03",
+   "note": "",
    "origin": "catalogue"
   },
   {
@@ -13229,6 +13523,62 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:plans/q2_explain_prereg.json",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/q2_explain.py",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/q2_explain_dev.md",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/q2_v3/explain_dev.json",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:manifests/evidence/explain_x123_results_2026-10-20.sha256",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/v3_prereg_amendment_1_family2.json",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:manifests/evidence/family2_prereg_2026-10-20.sha256",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/q2_family2.py",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/q2_b1/heldout.json",
    "rel": "evidences",
    "dst": "TGT-19",
@@ -13314,6 +13664,20 @@
   },
   {
    "src": "file:analysis/results/q2_v3/l5_dev.json",
+   "rel": "evidences",
+   "dst": "TGT-19",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/reports/q2_explain_dev.md",
+   "rel": "evidences",
+   "dst": "TGT-19",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/results/q2_v3/explain_dev.json",
    "rel": "evidences",
    "dst": "TGT-19",
    "note": "",
@@ -13540,6 +13904,223 @@
    "src": "file:docs/project_snapshots/2026-10-19/benchmark-targets.md",
    "rel": "evidences",
    "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/ben13_prereg.json",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:manifests/evidence/explain_ben13_prereg_2026-10-20.sha256",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/stream_preprocess.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/run.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/methods.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/evaluate.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/literature.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/fetch.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/ben13/synth.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_ben13_stream.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/Dockerfile.bench",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/requirements_bench.txt",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docs/WAVES.md",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:WAVE_STATE.md",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/wave.py",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_wave_runner.py",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/Dockerfile.kernel",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:docker/requirements_kernel.txt",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:analysis/wave_canary.py",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/waves/A/plan.md",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/waves/A/sheet.json",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/waves/A/canary_expected.json",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:harness/live_capped.py",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/build.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/pages.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/registry.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/literals.json",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/levels/bundles.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/levels/theses.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_site_s23.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tracker/snapshot.py",
+   "rel": "evidences",
+   "dst": "TEAM-09",
    "note": "",
    "origin": "catalogue"
   },
@@ -15206,6 +15787,13 @@
    "src": "slacklist:F0C869P25NE/Rec0C99TBG9LJ",
    "rel": "mirrors",
    "dst": "INF-09",
+   "note": "",
+   "origin": "mirrors.json"
+  },
+  {
+   "src": "slacklist:F0C869P25NE/Rec0CA3K8T6B1",
+   "rel": "mirrors",
+   "dst": "INF-10",
    "note": "",
    "origin": "mirrors.json"
   },
@@ -18269,6 +18857,20 @@
    "origin": "scan"
   },
   {
+   "src": "file:analysis/reports/q2_explain_dev.md",
+   "rel": "mentions",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:analysis/reports/q2_explain_dev.md",
+   "rel": "mentions",
+   "dst": "TGT-19",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:analysis/reports/q2_l16_dev.md",
    "rel": "mentions",
    "dst": "TGT-18",
@@ -19053,6 +19655,13 @@
    "origin": "scan"
   },
   {
+   "src": "file:plans/ben13_prereg.json",
+   "rel": "mentions",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:plans/bnd06_prereg.json",
    "rel": "mentions",
    "dst": "BEN-07",
@@ -19133,6 +19742,55 @@
    "src": "file:plans/dirsig_prereg.json",
    "rel": "mentions",
    "dst": "TGT-19",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_live.json",
+   "rel": "mentions",
+   "dst": "BLD-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_live.json",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_stub.json",
+   "rel": "mentions",
+   "dst": "BLD-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_stub.json",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_stub.json",
+   "rel": "mentions",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_ext03_stub.json",
+   "rel": "mentions",
+   "dst": "EXT-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_ext03_stub.json",
+   "rel": "mentions",
+   "dst": "INF-06",
    "note": "",
    "origin": "scan"
   },
@@ -20019,6 +20677,20 @@
    "origin": "scan"
   },
   {
+   "src": "file:plans/q2_explain_prereg.json",
+   "rel": "mentions",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/q2_explain_prereg.json",
+   "rel": "mentions",
+   "dst": "TGT-19",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:plans/v3_prereg.json",
    "rel": "mentions",
    "dst": "BLD-16",
@@ -20041,6 +20713,41 @@
   },
   {
    "src": "file:plans/v3_prereg.json",
+   "rel": "mentions",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/v3_prereg_amendment_1_family2.json",
+   "rel": "mentions",
+   "dst": "CAP-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/v3_prereg_amendment_1_family2.json",
+   "rel": "mentions",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/x5_prereg.json",
+   "rel": "mentions",
+   "dst": "BEN-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/x5_prereg.json",
+   "rel": "mentions",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/x5_prereg.json",
    "rel": "mentions",
    "dst": "TGT-18",
    "note": "",
@@ -20169,6 +20876,13 @@
    "src": "file:docs/REPO.md",
    "rel": "mentions",
    "dst": "INF-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/WAVES.md",
+   "rel": "mentions",
+   "dst": "INF-10",
    "note": "",
    "origin": "scan"
   },
@@ -20804,6 +21518,26 @@
   }
  ],
  "findings": [
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)"
+  },
+  {
+   "severity": "WARN",
+   "code": "W1",
+   "message": "BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-20T04:51)"
+  },
   {
    "severity": "WARN",
    "code": "R3",

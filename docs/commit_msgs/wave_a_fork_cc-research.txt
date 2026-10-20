@@ -1,0 +1,19 @@
+Wave A follow-up: fork set up, first-run failures fixed by class
+
+Tickets: INF-06, INF-10, BEN-13, REP-07, TGT-18, TGT-19
+
+- Fork (at Uzair's request, 20 Oct): github.com/uzairgheewala/Causal-Copilot (main = a31aa7c). ../Causal-Copilot became a
+  clone of it in place (fetch + reset --mixed; working files untouched, .env never opened or copied); tag baseline-a31aa7c.
+  Branch folders ../Causal-Copilot-branches/{ext-03-cycle-step-key (da55264), bld-06-refinement-v2 (55a490a)}, each
+  passing the harness's branch check. Branches and tag not yet pushed (needs Uzair's credentials).
+- cc.ps1: a branch run (CC_BRANCH) mounts its branch folder and the main .env read-only. docs/FORK.md, make_branches.ps1.
+- First sheet run fixes: runner test fixture as bytes (Windows CRLF); BEN-13 stream test compares with causalbench's
+  preprocess_dataset on the same machine (scanpy in the bench image; float32 SIMD differs by CPU); X5 image gains
+  deepdiff and psutil (checkpoint unpickling); canary judges claim structure (the full ledger hash is not portable across
+  CPUs: CAP-11 note for wave B); kit checks run in the real folder layout (kernel_tree profile, .env masked); test
+  done-checks require "ok": true.
+- Repins with reasons: BEN-13, REP-07, INF-10, BLD-11, INF-01, INF-04, INF-06, TGT-18, TGT-19 (explain_dev.json re-merged
+  by the sheet's X4 run).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiuaycm

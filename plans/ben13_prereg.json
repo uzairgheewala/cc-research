@@ -1,0 +1,59 @@
+{
+ "version": 1,
+ "tickets": ["BEN-13"],
+ "written_utc": "2026-10-20T07:30:00Z",
+ "status": "pre-registered before any CausalBench data was downloaded or scored by us (wave A)",
+ "question": "How much of each published CausalBench statistical score is carried by (a) the choice of strongly perturbing parents alone (edge placement), (b) the specific gene identities (label permutation), and (c) the metric echoing a total-effect ranking (test-oracle ceiling); and what do literature networks (names-only predictions) score on both metrics?",
+ "scope_this_wave": "S0 data and preprocessing (streamed, bit-identical to causalbench 1.1.2 on synthetic files), S1 reproduction of two published rows per cell line, S2 controls. The names-only LLM arm (S3) is not run (decision D-3 = no, 19 Oct).",
+ "data": {
+  "source": "causalbench 1.1.2 URLs (analysis/ben13/fetch.py); preprocessing = causalbench preprocess_dataset with summary-stats filter, streamed (analysis/ben13/stream_preprocess.py)",
+  "expected_shapes": {"k562": {"cells": 162751, "genes": 622}, "rpe1": {"cells": 162733, "genes": 383}},
+  "expected_shapes_source": "CausalBench paper (arXiv 2210.17283) as quoted in docs/project_snapshots/2026-10-19/benchmark-targets.md"
+ },
+ "protocol": {
+  "split": "causalbench DatasetSplitter: test_size 0.2, random_state 0, stratified by intervention",
+  "training": "get_interventional(): every knockdown (100 % interventions)",
+  "max_path_length": -1,
+  "omission_estimation_size": 500,
+  "metric": "statistical Evaluator: mean Wasserstein over output-graph edges; false omission rate over 500 sampled negatives (random.seed(0)); biological: causalbench biological Evaluator (undirected true positives) per literature set",
+  "evaluator": "causalbench's own classes; the all-path per-depth tests are skipped (not reported in any published table); the md_k1000_fullcb cell runs the original method unchanged and must give identical numbers",
+  "sensitivity_cells": "md_k1000/md_k5000 with omission_estimation_size 1000 and with max_path_length 3 (the published protocol does not state these two values)"
+ },
+ "published": {
+  "k562": {"md_k1000": {"wasserstein": 0.590, "for": 0.170}, "md_k5000": {"wasserstein": 0.442, "for": 0.143}},
+  "rpe1": {"md_k1000": {"wasserstein": 0.712, "for": 0.122}, "md_k5000": {"wasserstein": 0.384, "for": 0.078}},
+  "source": "CausalBench Communications Biology 2025 / Challenge report (arXiv 2308.15395), as recorded 19 Oct in benchmark-targets.md; MeanDifference (Kowiel et al.)"
+ },
+ "method_spec": "mean_difference: |mean(child | parent knocked down) - mean(child | non-targeting)| over training cells, every parent with knockdown cells, every child != parent, top k; ties by (parent, child) id",
+ "tolerance": {"wasserstein": 0.03, "for": 0.035, "why": "FOR from 500 negatives has a binomial s.e. of about 0.016 at 0.15; Wasserstein differences of 0.03 would change no published ranking at these budgets"},
+ "controls": {
+  "rewire_children": "20 seeded draws per k: each parent keeps its out-degree, children uniform among other genes",
+  "permute_labels": "20 seeded draws per k: one random bijection of gene ids applied to every edge",
+  "random": "20 seeded uniform networks per k (seed 0 = random_k<k>)",
+  "test_oracle": "mean_difference ranked on the test split itself (ceiling of a total-effect ranking; not a method)",
+  "literature": "STRING links, STRING physical, CORUM, ChIP-seq pairs among the dataset's genes, used as predicted networks; 20 label permutations and 20 random networks of the same size each"
+ },
+ "statistics": {
+  "placement_share": "(W_rewire_mean - W_random_mean) / (W_md - W_random_mean); range from the 2.5 / 97.5 percentiles of the rewire draws",
+  "echo_ratio": "W_md / W_test_oracle",
+  "names_channel": "literature network W against random of the same size; literature precision against its own permuted draws"
+ },
+ "predictions": {
+  "P1": "placement_share (Wasserstein) at k = 1000 is at least 0.5 in both lines: most of MeanDifference's Wasserstein comes from choosing strong-effect parents, not from the specific children",
+  "P2": "permute_labels W mean lies inside the random networks' 2.5-97.5 % range at both k in both lines (sanity: the score needs the specific genes)",
+  "P3": "echo_ratio at k = 1000 is at least 0.9 in both lines (MeanDifference is near the ceiling of a total-effect ranking on held-out cells)",
+  "P4": "STRING-links networks score a mean Wasserstein above the 97.5 % point of random networks of the same size in both lines (literature names carry knockdown signal on the statistical metric)"
+ },
+ "rules": {
+  "S0_pass": "both lines' preprocessed shapes equal expected_shapes exactly",
+  "S1_pass": "all four published rows within tolerance under the primary protocol",
+  "claims_allowed": "share numbers are reported as findings only if S0_pass and S1_pass; otherwise they are reported as 'protocol not reproduced' with the sensitivity cells, and wave B diagnoses the protocol first"
+ },
+ "failure_modes_named_in_advance": [
+  "the published FOR used a different negative sample size or path length: the sensitivity cells show how far FOR moves",
+  "the published rows used a different split or a different MeanDifference tie rule: Wasserstein then differs by more than the tolerance at k = 5000, where ties are many",
+  "CORUM's old download address is gone: the CORUM channel is reported missing",
+  "Docker's memory limit below about 3 GB: the load of the 400 MB K562 matrix and its split copies fails; the sheet asks for 4 GB"
+ ],
+ "outputs": ["analysis/results/ben13/<line>/<cell>.json", "analysis/results/ben13/summary.json", "external/causalbench/dataset_<line>_filtered.npz.json"]
+}

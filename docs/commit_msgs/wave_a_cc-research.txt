@@ -1,0 +1,24 @@
+Wave A: wave runner, fork branches, explanation round X1-X3, family-2 and X5 setups, BEN-13 S0-S2, site S23
+
+Tickets: INF-10, INF-06, BLD-06, EXT-03, TGT-18, TGT-19, CAP-07, REP-07, BEN-07, BEN-13, TEAM-09
+
+- harness/wave.py: run sheets (preflight with code identity, disk, Docker memory and BLAS family; when-gates over
+  must-shows; resume; parts within a memory budget; verdict.json; return zip). cc.ps1: kernelbuild, benchbuild, x5build,
+  wave, wavepack; CC_BRANCH passed into containers. tests/test_wave_runner.py.
+- Fork: jobs/fork/ patches for ext-03-cycle-step-key and bld-06-refinement-v2 (made from upstream's a31aa7c blobs),
+  branch descriptions and manifests, make_branches.ps1; harness/cc_common.py checks a branch run against its manifest and
+  the checkout's HEAD; run_traced.py records branch, commit and patch; harness/live_capped.py (dollar cap per series).
+  AGENTS.md rule 3 amended (main stays the baseline; changes only on ticket branches). docs/FORK.md: autocrlf=false.
+- Explanation round X1-X3 (analysis/q2_explain.py, analysis/reports/q2_explain_dev.md; pre-registered): the linear-Gaussian
+  score explains both semantic gaps; rule outcome D2-search, global check points at the score.
+- Family 2 (analysis/q2_family2.py, plans/v3_prereg_amendment_1_family2.json) and X5 (analysis/x5_pretrained.py,
+  plans/x5_prereg.json): code, pre-registrations, smoke runs; reads on the wave A sheet.
+- BEN-13 (analysis/ben13/): streamed CausalBench preprocessing, bit-identical to causalbench 1.1.2 on synthetic files;
+  MeanDifference, controls, literature networks; plans/ben13_prereg.json; docker/Dockerfile.bench.
+- Site S23: Q2 tickets bound to home, status, theses; re-read fingerprint includes evidence count and note; superseded
+  reads need a historic mark; site/literals.json guards hand-written sentences.
+- Tracker: p25 (INF-10, BEN-13, INF-06 in progress; TEAM-09 done); repins with reasons (BLD-01 new tool manifest, INF-01,
+  INF-04, INF-05, INF-08, BND-01, BLD-11, TEAM-08). tests: 210 run, 21 skipped, 0 failures (kernel package set).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

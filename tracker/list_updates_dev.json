@@ -1,5 +1,21 @@
 {
  "list": "F0C869P25NE",
- "updates": {},
+ "updates": {
+  "INF-10": {
+   "record_id": null,
+   "cells": {
+    "Item": "INF-10  Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json)",
+    "ID": "INF-10",
+    "Category": "10 Infrastructure",
+    "Status": "⏳ To-do",
+    "Kind": "task",
+    "Evidence level": "V2",
+    "Closing criterion": "cc.ps1 wave <id> runs a sheet on Uzair's machine: preflight checks code identity, disk, RAM and files; one canary per job runs first; gated jobs are skipped when their gate fails; a failing job stops only itself; RETURN.json is written incrementally with status, exit, code identity, output hashes, cost and wall time; the kit builder ships code, the engine cache and needed data to the agent's sandbox; unit tests",
+    "Evidence": "docs/WAVES.md\nWAVE_STATE.md",
+    "Note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary.",
+    "Verified": "2026-10-20"
+   }
+  }
+ },
  "rows_no_longer_in_files": []
 }

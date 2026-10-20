@@ -11,7 +11,10 @@ UCSD DSC 180A. Everything we claim must be checkable from the files in this fold
 
 1. Never open, print, copy or summarise `../Causal-Copilot/.env`; never ask anyone to paste an API key.
 2. Never write credentials or tokens anywhere (this includes the Jupyter token inside `../DSC180A-Methodology-1-main.zip`).
-3. Never modify, refactor or overwrite anything in `../Causal-Copilot`. Every run checks it against `manifests/baseline_a31aa7c.sha256`.
+3. Never modify, refactor or overwrite anything in `../Causal-Copilot` yourself. `main` of the fork stays the untouched
+   baseline (checked against `manifests/baseline_a31aa7c.sha256` before every run). Changes live only on ticket branches,
+   written by the agent as patch files in `jobs/fork/` and applied by Uzair (`jobs/fork/make_branches.ps1`, docs/FORK.md);
+   a branch run sets `CC_BRANCH` and is checked against `jobs/fork/<branch>.json`.
 4. Never run git write operations on Uzair's repositories.
 5. Never start anything that spends API credit (`cc.ps1 golden`, `cc.ps1 plan ...`, the queue runner). Write the plan; Uzair runs it.
 6. Analysis code and results go in `analysis/`; plans in `plans/`; nothing outside `cc-research/`.
@@ -79,6 +82,14 @@ into `manifests/excluded/` with `python tools/data_manifest.py`.
 Work is done in bundles (`plans/q1_dag.json`, explained in `analysis/reports/q1_execution_plan.md`), each a ticket with a
 must-show list. `python tracker/plan_check.py` must pass before a bundle starts. Never start a LIVE bundle: prepare it, and
 Uzair approves and runs it.
+
+## How work is batched (waves)
+
+Read `WAVE_STATE.md` first, then `docs/WAVES.md`. One "go" from Uzair is one wave: read the last run sheet's
+`verdict.json` (inside `return_<wave>.zip`), build all the logic for every unblocked bundle (design, hashed pre-registration, code, tests, a free smoke
+run of every heavy or live job), pack every heavy (H) and live (L) job into one run sheet, list manual steps and
+decisions (with defaults) once, hand over in one message, and stop. Never wait on or poll Uzair's runs; never rebuild in
+the sandbox what a previous wave computed (the engine cache ships with the kit); run tests and checks once per kit.
 
 ## Where things are
 

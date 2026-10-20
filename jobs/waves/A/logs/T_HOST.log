@@ -1,0 +1,45 @@
+
+# 2026-10-20T16:50:05Z T_HOST
+# argv: ["C:\\Users\\uzair\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "tests/run_tests.py", "--pattern", "test_wave_runner.py", "--out", "jobs/waves/A/out/tests_host.json"]
+..F.
+======================================================================
+FAIL: test_run_gate_resume_score_pack (test_wave_runner.WaveRunnerTest.test_run_gate_resume_score_pack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\uzair\Documents\UCSD\Fall 2026\DSC 180A\cc-research\tests\test_wave_runner.py", line 79, in test_run_gate_resume_score_pack
+    self.assertEqual(W.run(), 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: 2 != 0
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.394s
+
+FAILED (failures=1)
+[wave] REFUSED: code identity does not match the sheet (['code.py'])
+[wave] REFUSED: code identity does not match the sheet (['code.py'])
+
+# 2026-10-20T17:32:26Z T_HOST
+# argv: ["C:\\Users\\uzair\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "tests/run_tests.py", "--pattern", "test_wave_runner.py", "--out", "jobs/waves/A/out/tests_host.json"]
+..[wave] REFUSED: code identity does not match the sheet (['code.py'])
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.0 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+..
+----------------------------------------------------------------------
+Ran 4 tests in 2.101s
+
+OK
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed C:\Users\uzair\AppData\Local\Temp\tmp9_d3whqw\cc-research\jobs\waves\T\return_T.zip (5.1 KB); 0 files over 5 MB left on this machine

@@ -338,3 +338,10 @@ _v3.update({
 })
 REG.update(_v3)
 
+
+
+# S23 (20 Oct): which reads a landmark binds to. A key under a superseded prefix may still be printed, but only as history
+# (common.n(..., historic=True)); the build fails otherwise. v3's second held-out read binds ER-2 and ER-3 (plans/v3_freeze.json).
+SUPERSEDED = {
+    "q2.b4.": {"by": "q2v3.<family>.<regime>.*", "why": "B4 was the first held-out read; kernel v3's second read binds ER-2 / ER-3"},
+}

@@ -226,12 +226,14 @@ def fmt(val, spec=None):
     return "{:.3f}".format(val)
 
 
-def n(key, spec=None, bold=False):
-    """A registry number as text, linked to the file it comes from."""
+def n(key, spec=None, bold=False, historic=False):
+    """A registry number as text, linked to the file it comes from. historic=True marks a number from a superseded read
+    printed as history (site/registry.SUPERSEDED; the build refuses it otherwise)."""
     val = fmt(v(key), spec)
     src = SNAP["metrics"][key]["src"]
     inner = "<b>%s</b>" % val if bold else val
-    return f'<a class="ev" href="{EVBASE[0]}{src}" title="{key} · {src}">{inner}</a>'
+    hist = ' data-historic="1"' if historic else ""
+    return f'<a class="ev"{hist} href="{EVBASE[0]}{src}" title="{key} · {src}">{inner}</a>'
 
 
 def t(key, spec=None):
@@ -257,6 +259,11 @@ def pc_line(p):
 
 def item(item_id):
     return next(i for i in SNAP["items"] if i["id"] == item_id)
+
+
+def bundle_status(bundle_id):
+    """A plan bundle's status from the snapshot (None when the bundle is not in any plan)."""
+    return next((b["status"] for b in SNAP["bundles"] if b["id"] == bundle_id), None)
 
 
 def bundle(bid):

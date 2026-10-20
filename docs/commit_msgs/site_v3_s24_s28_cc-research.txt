@@ -1,0 +1,26 @@
+Site v3: Today landing, gaps page, explorer, prod-only feed (s24-s28)
+
+Tickets: TEAM-10, TEAM-11, TEAM-12
+
+- s24 (TEAM-10): the gap model. site/gaps_spec.json (8 boards, 13 landmarks, 6 error classes), site/deliverables.json,
+  site/gapkit.py: a landmark's gap type (met / needs more test cases / needs a better method / not comparable yet / not run
+  yet) is derived from its binding value, cautious end, bar and the board's ruler, never written. Explanation segments read
+  the shared explanation ledger (B1) when it exists, else one traced block per error class. Registry block for the numbers
+  it reads (headroom, anatomy totals, published bars, CausalBench rows, due dates, the lever map as a parsed table);
+  files from parallel chats registered only once present. Build runs the model's checks and the private-path check
+  (registry.PRIVATE_PATHS, empty until the repo split is decided). tests/test_site_v3.py.
+- s25 (TEAM-11): index is Today, the one-page landing: headline numbers, every landmark against its bar, the repair
+  staircase, what each deliverable needs, how well the errors are understood, what moved. 600-word budget and a
+  plain-language check (no ticket ids, no metric acronyms), both build errors.
+- s26 (TEAM-10): the gaps page (Act IV) with one card per board, and "where this stands now" strips on scoreboard, names,
+  rca and status.
+- s27 (TEAM-11): the explorer (Reference): landmarks over time, the error map, the lever map (29 of 36 measured or ruled),
+  every tracked item with search and filters; works with JavaScript off; explore.json under 300 KB.
+- s28 (TEAM-12): the public feed shows posted prod digests only, with a count of dev digests since; a dev digest in the
+  snapshot fails the build (decision D-4 changed by Uzair, 20 Oct).
+
+Repinned TEAM-08, TEAM-09: these patches changed site/build.py, site/pages.py, site/registry.py, site/pgs/pg_changes.py and
+tracker/snapshot.py, which those tickets pin.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TX89QtiaGaFvBSN4BAmLxQ

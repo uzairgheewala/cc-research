@@ -1,0 +1,48 @@
+# Bench image (BEN-13): causalbench 1.1.2's evaluation and splitting code, and scanpy, so tests/test_ben13_stream.py can compare
+# the streamed preprocessing with causalbench's own preprocess_dataset on the same machine (NumPy's float32 SIMD kernels differ by
+# CPU, so a digest frozen on another machine cannot be the test; seen 20 Oct: AVX2 host vs AVX-512 sandbox).
+# causalbench itself is installed with --no-deps (Dockerfile.bench). = the sandbox's bench venv of 20 Oct + pyflakes.
+anndata==0.10.9
+array-api-compat==1.15.0
+cloudpickle==3.1.2
+contourpy==1.3.3
+cycler==0.12.1
+et_xmlfile==2.0.0
+fonttools==4.67.0
+formulaic==1.2.2
+h5py==3.12.1
+interface_meta==2.0.1
+joblib==1.6.0
+kiwisolver==1.5.1
+legacy-api-wrap==1.5
+llvmlite==0.50.0
+matplotlib==3.11.2
+narwhals==2.27.1
+natsort==8.4.0
+networkx==3.6.1
+numba==0.68.0
+numpy==1.26.4
+openpyxl==3.1.5
+packaging==26.3
+pandas==2.2.3
+patsy==1.0.3
+pillow==13.0.0
+pynndescent==0.6.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+pytz==2026.5
+scanpy==1.10.3
+scikit-learn==1.5.2
+scipy==1.13.1
+seaborn==0.13.2
+session_info==1.0.1
+six==1.17.0
+statsmodels==0.15.0
+stdlib-list==0.12.0
+threadpoolctl==3.7.0
+tqdm==4.70.1
+typing_extensions==4.16.0
+tzdata==2026.5
+umap-learn==0.5.7
+wrapt==2.5.1
+pyflakes==4.0.3

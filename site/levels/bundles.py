@@ -117,7 +117,7 @@ for i, (who, txt) in enumerate(steps, 1):
     colour = {"done": "#1D5C99", "you": "#8E2A2A", "me": "#4E5751"}[who]
     label = {"done": "done", "you": "you", "me": "Claude"}[who]
     step_html.append(f'<li style="display: flex; gap: 10px; align-items: baseline"><span style="flex: 0 0 64px; font-family: {MONO}; font-size: 12px; font-weight: 600; color: {colour}">{i} · {label}</span><span>{txt}</span></li>')
-detail = f"""<section style="flex: 1 1 520px; padding: 18px 20px; background: #FFFFFF; border: 1.5px solid #B85A12; border-radius: 10px; display: flex; flex-direction: column; gap: 10px">
+detail = "" if bundle("BND-11")["status"] == "done" else f"""<section style="flex: 1 1 520px; padding: 18px 20px; background: #FFFFFF; border: 1.5px solid #B85A12; border-radius: 10px; display: flex; flex-direction: column; gap: 10px">
 {tag("Zoom: the next bundle · BND-11", "#9A4A0E")}
 <p style="margin: 0; font-family: {COND}; font-size: 22px; line-height: 28px; font-weight: 600">Refinement v2: names only where the data are silent</p>
 <p style="margin: 0; font-size: 14px; line-height: 20px">Closes CAP-10 and TGT-13 (no crash from malformed model output), TGT-09 (never below its own data-only output, missed by v1), BLD-06 (drop-in replacement for Causal-Copilot's refinement stage) and DLV-04 (the Q1 refinement result). On the Atlas it is the first step into the thesis cell, still as a patch rather than the ledger.</p>
@@ -133,11 +133,16 @@ QUEUE = [("Free", "cc.ps1 compute: bootstrap_replay_ca_formula_dev.json, _test.j
 QUEUE += [("Decide", "%s %s" % (d, ttl), "tracker: open") for d, ttl in _dec]
 QUEUE += [("Decide", "Bring kernel B1 into Q1 as a bundle, or start it after the G2 checkpoint", "what G2 tests")] if "BLD-02" not in _bundled else []
 QUEUE += [("Waits", "%s: %s" % (b, bundle(b)["title"]), "the bundle note says it waits on you") for b in _waits if b != "BND-11" and not b.startswith("AB-")]
-QUEUE += [("Live", "cc.ps1 probe ab05_probe_[pywhyllm|matmcd|vashishtha].json (AB-05; stub first)", "three agent probes left"),
-          ("Live", "cc.ps1 plan ab06_cc_gpt4omini_s2.json gpt-4o-mini (AB-06, about $1)", "Causal-Copilot on a second model, BND-08 grid"),
-          ("Live", "cc.ps1 probebatch ab06 live [causaliq|matmcd|vashishtha|pywhyllm] (AB-06, about $58 in all, total cap $60; stub first)", "the field audit of the four agents, cheapest first"),
-          ("Get", "Bayesys results_noisyPaper.xlsx into external\\bayesys (AB-02)", "the reproduction gate before any claim on the published Bayesys numbers"),
-          ("Ask", "Course staff: do the AB-10 interviews need an IRB determination?", "docs/interviews/human_subjects_check.md")] if any(b["id"] == "AB-05" for b in AB) else []
+# S23: each hand-written entry shows only while the bundle it belongs to is open (was: while AB-05 merely existed)
+QUEUE += [e for bid, e in [
+    ("AB-05", ("Live", "cc.ps1 probe ab05_probe_[pywhyllm|matmcd|vashishtha].json (AB-05; stub first)", "three agent probes left")),
+    ("AB-06", ("Live", "cc.ps1 plan ab06_cc_gpt4omini_s2.json gpt-4o-mini (AB-06, about $1)", "Causal-Copilot on a second model, BND-08 grid")),
+    ("AB-06", ("Live", "cc.ps1 probebatch ab06 live [causaliq|matmcd|vashishtha|pywhyllm] (AB-06, about $58 in all, total cap $60; stub first)", "the field audit of the four agents, cheapest first")),
+    ("AB-02", ("Get", "Bayesys results_noisyPaper.xlsx into external\\bayesys (AB-02)", "the reproduction gate before any claim on the published Bayesys numbers")),
+    ("AB-10", ("Ask", "Course staff: do the AB-10 interviews need an IRB determination?", "docs/interviews/human_subjects_check.md")),
+] if bundle_status(bid) not in (None, "done")]
+if not QUEUE:
+    QUEUE = [("Waves", "The current wave's run sheet and manual steps: WAVE_STATE.md and jobs/waves/", "one command per wave (docs/WAVES.md)")]
 qrows = "".join(f'<li style="display: grid; grid-template-columns: 58px 1fr; gap: 8px"><span style="font-family: {MONO}; font-size: 12px; font-weight: 600; color: #8E2A2A">{k}</span><span>{t}<br><span style="color: #4E5751; font-size: 13px">{w}</span></span></li>' for k, t, w in QUEUE)
 queue = f"""<section style="flex: 1 1 420px; padding: 18px 20px; background: #F6E7E7; border: 1.5px solid #8E2A2A; border-radius: 10px; display: flex; flex-direction: column; gap: 10px">
 {tag("Waiting on you", "#8E2A2A")}

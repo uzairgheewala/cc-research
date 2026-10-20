@@ -40,10 +40,11 @@ Q2_TABLE = table(["", "Landmark", "Held-out value", "Rule (conservative end of t
         f"moved names within T3 on {n('q2.b3.sem.t3')} and {n('q2.b3.for.t3')}",
         "100% of held-out files; every ledger verifies"),
     _lm("ER-2", "DV-1 precision at half coverage",
-        f"{n('q2.b4.sem.prec')} [{n('q2.b4.sem.prec.lo')}, {n('q2.b4.sem.prec.hi')}] / {n('q2.b4.for.prec')} [{n('q2.b4.for.prec.lo')}, {n('q2.b4.for.prec.hi')}]",
+        f"{n('q2v3.sem.D.p')} [{n('q2v3.sem.D.lo')}] / {n('q2v3.for.D.p')} [{n('q2v3.for.D.lo')}] (v3, second read)",
         "lower end > 0.80, both families"),
     _lm("ER-3", "Calibration",
-        f"ECE {n('q2.b4.sem.ece')} / {n('q2.b4.for.ece')} (raw {n('q2.b4.sem.raw')} / {n('q2.b4.for.raw')})",
+        f"ECE {n('q2v3.sem.D.ece')} [{n('q2v3.sem.D.ecehi')}] / {n('q2v3.for.D.ece')} [{n('q2v3.for.D.ecehi')}] (v3); first read "
+        f"{n('q2.b4.sem.ece', historic=True)} / {n('q2.b4.for.ece', historic=True)}",
         "ECE upper end <= 0.05; realised >= claimed - 0.03"),
     _lm("ER-4a", "Accuracy: route A (F1 above GES) or B (tiers > 0.03)",
         f"A: {n('q2.ges.sem.f1', '{:+.3f}')} / {n('q2.ges.for.f1', '{:+.3f}')}; B: {n('q2.b3.sem.gain', '{:+.3f}')} [{n('q2.b3.sem.gain.lo', '{:+.3f}')}] / "

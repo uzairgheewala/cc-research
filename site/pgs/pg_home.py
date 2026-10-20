@@ -44,9 +44,9 @@ build = ul([
     f"and {n('q2.b3.for.neutral')}/{t('q2.b3.for.files')} files; wrong names cost at most the proven bound on every file; every claim "
     f"re-derives from its evidence. Real names add {n('q2.b3.sem.gain', '{:+.3f}')} / {n('q2.b3.for.gain', '{:+.3f}')}, below the bar of 0.03. "
     f"{link('theses', 'Page 8')}",
-    f"<b>Calibrated confidence beats raw bootstrap shares.</b> Calibration error {n('q2.b4.sem.ece')} / {n('q2.b4.for.ece')} against "
-    f"{n('q2.b4.sem.raw')} / {n('q2.b4.for.raw')} raw; precision of the half-coverage view {n('q2.b4.sem.prec')} / {n('q2.b4.for.prec')}. "
-    f"The 0.80 and 0.05 bars are cleared on formula and missed on semantic.",
+    f"<b>Calibrated confidence beats raw bootstrap shares.</b> In the first held-out read, calibration error was "
+    f"{n('q2.b4.sem.ece', historic=True)} / {n('q2.b4.for.ece', historic=True)} against {n('q2.b4.sem.raw', historic=True)} / "
+    f"{n('q2.b4.for.raw', historic=True)} for raw shares; the second read (kernel v3, below) is the one the landmarks use.",
     f"<b>Root cause analysis runs through the ledger.</b> Declared topology as knowledge reproduces the audit's number exactly: "
     f"AC@3 {n('q2.b5.ac3')} at coverage {n('q2.b5.cov')}, against {n('q2.b5.learned')} for the learned graph alone; {n('q2.b5.answered')} "
     f"issues keep the interval's lower end at {n('q2.b5.ac3.lo')}. {link('rca', 'Page 7')}",

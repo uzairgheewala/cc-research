@@ -1,0 +1,434 @@
+{
+ "runs": {
+  "T_HOST": {
+   "id": "T_HOST",
+   "class": "A0",
+   "start": "2026-10-20T17:32:26Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:32:29Z",
+   "wall_min": 0.04
+  },
+  "B_BENCH": {
+   "id": "B_BENCH",
+   "class": "A0",
+   "start": "2026-10-20T17:32:26Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:33:32Z",
+   "wall_min": 1.09
+  },
+  "B_KERNEL": {
+   "id": "B_KERNEL",
+   "class": "A0",
+   "start": "2026-10-20T16:50:06Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T16:51:00Z",
+   "wall_min": 0.9
+  },
+  "T_BENCH": {
+   "id": "T_BENCH",
+   "class": "A0",
+   "start": "2026-10-20T17:33:32Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:33:55Z",
+   "wall_min": 0.39
+  },
+  "STUB_03": {
+   "id": "STUB_03",
+   "class": "A1",
+   "start": "2026-10-20T17:38:27Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 125
+    }
+   ],
+   "exit": 125,
+   "status": "failed",
+   "end": "2026-10-20T17:38:43Z",
+   "wall_min": 0.27
+  },
+  "STUB_06": {
+   "id": "STUB_06",
+   "class": "A1",
+   "start": "2026-10-20T17:38:43Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 125
+    }
+   ],
+   "exit": 125,
+   "status": "failed",
+   "end": "2026-10-20T17:39:01Z",
+   "wall_min": 0.29
+  },
+  "FETCH_CB": {
+   "id": "FETCH_CB",
+   "class": "A1",
+   "start": "2026-10-20T17:39:01Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 1
+    }
+   ],
+   "exit": 1,
+   "status": "failed",
+   "end": "2026-10-20T17:43:59Z",
+   "wall_min": 4.97
+  },
+  "CB_PRE_K": {
+   "id": "CB_PRE_K",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "CB_PRE_R": {
+   "id": "CB_PRE_R",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "CB_CELLS_K": {
+   "id": "CB_CELLS_K",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "CB_CELLS_R": {
+   "id": "CB_CELLS_R",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "CHK_03": {
+   "id": "CHK_03",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T17:38:43Z"
+  },
+  "CHK_06": {
+   "id": "CHK_06",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T17:39:01Z"
+  },
+  "CB_MERGE": {
+   "id": "CB_MERGE",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "LIVE_06": {
+   "id": "LIVE_06",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "CHK_06L": {
+   "id": "CHK_06L",
+   "status": "skipped",
+   "why": "dependency not ok",
+   "end": "2026-10-20T18:24:07Z"
+  },
+  "T_KERNEL": {
+   "id": "T_KERNEL",
+   "class": "A0",
+   "start": "2026-10-20T16:51:00Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T16:52:30Z",
+   "wall_min": 1.5
+  },
+  "B_X5": {
+   "id": "B_X5",
+   "class": "A0",
+   "start": "2026-10-20T17:33:55Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:35:59Z",
+   "wall_min": 2.06
+  },
+  "CHECKS": {
+   "id": "CHECKS",
+   "class": "A0",
+   "start": "2026-10-20T17:32:29Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:38:05Z",
+   "wall_min": 5.61
+  },
+  "FETCH_X5": {
+   "id": "FETCH_X5",
+   "class": "A1",
+   "start": "2026-10-20T17:38:06Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:38:27Z",
+   "wall_min": 0.35
+  },
+  "X5_PROBE": {
+   "id": "X5_PROBE",
+   "class": "A2",
+   "start": "2026-10-20T17:40:19Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:41:45Z",
+   "wall_min": 1.43
+  },
+  "B2GEN": {
+   "id": "B2GEN",
+   "class": "A1",
+   "start": "2026-10-20T16:57:37Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T16:58:52Z",
+   "wall_min": 1.25
+  },
+  "CANARY": {
+   "id": "CANARY",
+   "class": "A1",
+   "start": "2026-10-20T17:38:06Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:40:19Z",
+   "wall_min": 2.22
+  },
+  "X5_FOR_ORIG": {
+   "id": "X5_FOR_ORIG",
+   "class": "A2",
+   "start": "2026-10-20T17:41:45Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:55:56Z",
+   "wall_min": 14.18
+  },
+  "X5_FOR_SHUF": {
+   "id": "X5_FOR_SHUF",
+   "class": "A2",
+   "start": "2026-10-20T17:55:56Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T18:09:35Z",
+   "wall_min": 13.66
+  },
+  "X5_SEM_ORIG": {
+   "id": "X5_SEM_ORIG",
+   "class": "A2",
+   "start": "2026-10-20T18:09:35Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T18:24:07Z",
+   "wall_min": 14.52
+  },
+  "X5_SEM_SHUF": {
+   "id": "X5_SEM_SHUF",
+   "class": "A2",
+   "start": "2026-10-20T18:24:07Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T18:40:20Z",
+   "wall_min": 16.22
+  },
+  "X5_SCORE": {
+   "id": "X5_SCORE",
+   "class": "A2",
+   "start": "2026-10-20T18:40:20Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T19:28:11Z",
+   "wall_min": 47.84
+  },
+  "X4_FOR": {
+   "id": "X4_FOR",
+   "class": "A2",
+   "start": "2026-10-20T16:57:59Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:07:58Z",
+   "wall_min": 9.99
+  },
+  "X4_SEM": {
+   "id": "X4_SEM",
+   "class": "A2",
+   "start": "2026-10-20T17:00:46Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:12:13Z",
+   "wall_min": 11.45
+  },
+  "X4_LEDGER": {
+   "id": "X4_LEDGER",
+   "class": "A2",
+   "start": "2026-10-20T17:12:13Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-20T17:12:14Z",
+   "wall_min": 0.02
+  }
+ },
+ "identity": {
+  "ok": true,
+  "checked": 314,
+  "changed_or_missing": []
+ },
+ "host": {
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.0",
+  "cpus": 16,
+  "workers": 2,
+  "mem_gb": 0,
+  "started": "2026-10-20T16:49:41Z"
+ },
+ "env_overrides": {
+  "OPENBLAS_CORETYPE": "HASWELL"
+ },
+ "preflight": {
+  "disk_free_gb": 149.8,
+  "docker_mem_gb": 6.2,
+  "images_missing": [],
+  "avx512f": false,
+  "avx2": true,
+  "note": "this CPU has no AVX-512: BLAS runs with HASWELL; engine results can differ in the last digits from the agent's cache, which the canary digest checks",
+  "mem_budget_gb": 4.3
+ }
+}

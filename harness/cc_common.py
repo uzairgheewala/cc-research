@@ -26,7 +26,9 @@ ALLOWED_EXTRA = [
     "causal_discovery/context/hp_rerank_prompt_test.txt",
     "__pycache__/*", "*/__pycache__/*", "*.pyc",
     ".pytest_cache/*", ".ruff_cache/*",
+    ".git/*", ".git",                        # the fork's clone (INF-06); the tree itself is still checked file by file
 ]
+FORK_DIR = RESEARCH / "jobs" / "fork"
 PLACEHOLDER_KEYS = {"", "your_openai_api_key_here", "your_openrouter_api_key_here"}
 
 
@@ -56,18 +58,59 @@ def _hash_cached(path, use_cache):
     return digest
 
 
-def verify_tree(repo=REPO, manifest=MANIFEST, use_cache=False):
-    """Compare the repo tree with the recorded baseline. Read-only.
+def branch_spec():
+    """The ticket branch a run is asked to use (env CC_BRANCH; unset or "main" = the untouched baseline), from
+    jobs/fork/<branch>.json: ticket, base commit, patch file and sha256, the branch's tree manifest and its sha256."""
+    b = os.environ.get("CC_BRANCH", "").strip()
+    if not b or b == "main":
+        return None
+    p = FORK_DIR / ("%s.json" % b)
+    if not p.is_file():
+        raise SystemExit("CC_BRANCH=%s but %s does not exist" % (b, p))
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+def git_head(repo=REPO):
+    """Branch and commit of a git checkout, read from .git without running git. None when the tree is not a clone."""
+    g = Path(repo) / ".git"
+    try:
+        if g.is_file():                                   # a worktree: ".git" names the real git dir
+            g = (Path(repo) / g.read_text(encoding="utf-8").split(":", 1)[1].strip()).resolve()
+        head = (g / "HEAD").read_text(encoding="utf-8").strip()
+    except (OSError, IndexError):
+        return None
+    if not head.startswith("ref: "):
+        return {"branch": None, "commit": head}
+    ref = head[5:]
+    commit = None
+    if (g / ref).is_file():
+        commit = (g / ref).read_text(encoding="utf-8").strip()
+    elif (g / "packed-refs").is_file():
+        for line in (g / "packed-refs").read_text(encoding="utf-8").splitlines():
+            if line.endswith(" " + ref):
+                commit = line.split(" ", 1)[0]
+    return {"branch": ref.split("refs/heads/", 1)[-1], "commit": commit}
+
+
+def verify_tree(repo=REPO, manifest=None, use_cache=False):
+    """Compare the repo tree with the recorded baseline, or with a ticket branch's manifest when CC_BRANCH is set
+    (jobs/fork/<branch>.json). Read-only.
 
     use_cache=False hashes every file (used before a run). use_cache=True re-hashes only files whose
     size or modification time changed since the earlier check in this process (used after a run)."""
+    spec = branch_spec()
+    if manifest is None:
+        manifest = (RESEARCH / spec["manifest"]) if spec else MANIFEST
+    expected = spec["manifest_sha256"] if spec else EXPECTED_MANIFEST_DIGEST
     out = {"repo": str(repo), "manifest": str(manifest), "baseline_commit": BASELINE_COMMIT,
+           "branch": spec["branch"] if spec else "main", "ticket": spec.get("ticket") if spec else None,
+           "patch_sha256": spec.get("patch_sha256") if spec else None, "git": git_head(repo),
            "manifest_digest_ok": False, "n_listed": 0, "missing": [], "changed": [],
            "extra_allowed": 0, "extra_unexpected": [], "ok": False}
     if not manifest.is_file():
         out["error"] = "manifest file not found"
         return out
-    out["manifest_digest_ok"] = (sha256_file(manifest) == EXPECTED_MANIFEST_DIGEST)
+    out["manifest_digest_ok"] = (sha256_file(manifest) == expected)
     listed = {}
     for line in manifest.read_text(encoding="utf-8").splitlines():
         if not line.strip():
@@ -84,6 +127,8 @@ def verify_tree(repo=REPO, manifest=MANIFEST, use_cache=False):
         elif _hash_cached(p, use_cache) != digest:
             out["changed"].append(rel)
     for root, _dirs, files in os.walk(repo):
+        if os.path.abspath(root) == os.path.abspath(str(repo)) and ".git" in _dirs:
+            _dirs.remove(".git")                 # git's own store: not part of the tree (its HEAD is checked above)
         for f in files:
             rel = os.path.relpath(os.path.join(root, f), repo).replace(os.sep, "/")
             if rel in listed:
@@ -93,6 +138,10 @@ def verify_tree(repo=REPO, manifest=MANIFEST, use_cache=False):
             else:
                 out["extra_unexpected"].append(rel)
     out["ok"] = bool(out["manifest_digest_ok"] and not out["missing"] and not out["changed"])
+    if spec:
+        # a branch run must also be checked out at that branch (the files alone could come from an uncommitted edit)
+        out["head_ok"] = bool(out["git"] and out["git"].get("branch") == spec["branch"])
+        out["ok"] = out["ok"] and out["head_ok"]
     return out
 
 

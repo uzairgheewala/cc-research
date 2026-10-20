@@ -1,0 +1,17 @@
+
+# 2026-10-20T18:40:20Z X5_SCORE
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "analysis/x5_pretrained.py", "score"]
+{
+ "semantic": {
+  "avici_original": 0.2510959527177408,
+  "avici_shuffled": 0.2510959527177408,
+  "ges": 0.5319678287482082,
+  "v3": 0.5130085738844239
+ },
+ "formula": {
+  "avici_original": 0.3043298198873895,
+  "avici_shuffled": 0.3043298198873895,
+  "ges": 0.44955762569626445,
+  "v3": 0.43586762574544113
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "plan_id": "fork_bld06_stub",
+ "note": "Wave A (BLD-06, INF-06): zero-cost stub run of the fork branch bld-06-refinement-v2 on BND-08's 2 stub scenarios x real/neutral/swapped (6 runs). Run with CC_BRANCH=bld-06-refinement-v2 (the wave sheet sets it). Must show: every run passes the branch identity check (meta.fork.head_ok), reaches the end of the pipeline, and records refinement v2's sources (llm_errors.refinement_v2).",
+ "interleave": true,
+ "run_timeout_s": 7200,
+ "runs": [
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q051/q051.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q052/q052.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q053/q053.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q021/q021.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q022/q022.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f06stub",
+   "dataset": "research:datasets/suite_q1s2/q023/q023.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ],
+ "stub_llm": true
+}

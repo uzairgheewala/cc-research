@@ -1,0 +1,29 @@
+{
+ "version": 1,
+ "tickets": ["REP-07", "BEN-07", "TGT-18"],
+ "written_utc": "2026-10-20T09:40:00Z",
+ "status": "pre-registered before any AVICI prediction on CausalArena existed (wave A); the adapter was smoke-tested with a stand-in model only",
+ "question": "Does a pretrained engine trained on simulated nonlinear mechanisms (AVICI scm-v0) beat the linear-Gaussian GES that leads kernel v3, on CausalArena dev files with shuffled columns? (The D2-score lever from X1.)",
+ "model": {"name": "AVICI", "package": "avici 1.0.7 (--no-deps; docker/requirements_x5.txt)", "checkpoint": "scm-v0 from huggingface.co (hashed in external/x5/avici_cache/FETCHED.json at fetch)", "input": "the file's data matrix only; no names"},
+ "files": "CausalArena semantic and formula dev splits (125 files each); the test split is not read",
+ "controls": {"order": "original column order (leaks the causal order) and a seeded shuffle (crc32 of the file name); the shuffled arm is primary", "names": "not an input to AVICI (nothing to control)"},
+ "edges": "p(i -> j) > 0.5; when both directions pass, the larger is kept",
+ "metric": "directed F1 per file (score/graph.directed_f1), mean over files; paired difference against GES and against kernel v3's directed view on the same files, 95% scenario-cluster bootstrap (B = 2000, seed 20261020)",
+ "predictions": {
+  "P1": "semantic, shuffled: AVICI mean directed F1 minus GES's is above 0 with the interval's lower end above 0",
+  "P2": "|original - shuffled| AVICI F1 is at most 0.02 in both families (the model does not read column order)",
+  "P3": "formula, shuffled: AVICI minus GES lower end above 0"
+ },
+ "rules": {
+  "D2_engine_supported": "P1 holds: a pretrained engine is the D2 candidate wave B builds into the ledger (as an engine beside GES, audited like GES)",
+  "D2_engine_not_supported": "AVICI minus GES upper end below 0.02 on semantic: D2-score needs a different route (a nonlinear score inside GES), and D1 stays the paper's line",
+  "otherwise": "inconclusive at 125 files: report and keep D1"
+ },
+ "not_run": "FoundCause and CDFM: weights not located on 20 Oct; they are not run and nothing is claimed about them",
+ "failure_modes_named_in_advance": [
+  "the checkpoint cannot be downloaded (huggingface.co unreachable): the X5 jobs are skipped by the sheet's gate, recorded as not run",
+  "AVICI's output depends on input order despite its design: P2 fails and only the shuffled arm is interpreted",
+  "inference memory: about 1 GB per file at d <= 25, n = 1,000; the sheet asks for 3 GB per worker"
+ ],
+ "outputs": ["analysis/results/x5/<family>_<order>_part*.jsonl", "analysis/results/x5/x5_dev.json"]
+}

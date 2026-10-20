@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-19T21:19:14Z)
+# Tracker status (verified 2026-10-20T17:37:14Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -229,7 +229,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | INF-03 | ✅ | External data on disk (CausalArena 1.57 GB; 8 Causal Chambers datasets) | V3 |  |
 | INF-04 | ✅ | Compute-job command on Uzair's machine (sandbox caps steps at 180 s) | V3 |  |
 | INF-05 | ✅ | Unit tests for our code; caching by content hash | V3 |  |
-| INF-06 | ⏳ | Public repository preparation (no keys, licences, no redistribution, run-record size) | V0 |  |
+| INF-06 | 👀 | Public repository preparation (no keys, licences, no redistribution, run-record size) | V2 |  |
 | INF-07 | ⏳ | One command reproduces every number in the report | V0 |  |
 
 ## 11 Course
@@ -262,7 +262,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 |---|---|---|---|---|
 | EXT-01 | 🔵 | Note to CausalArena's maintainers about column order | V2 |  |
 | EXT-02 | ⏳ | Scoreboard submission package with regime and controls stated | V0 |  |
-| EXT-03 | 🔵 | Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer) | V0 |  |
+| EXT-03 | 🔵 | Bug report to Causal-Copilot upstream (cycle-step key; empty startup answer) | V2 |  |
 | EXT-04 | ⏳ | Paper: evaluations track or workshop | V0 |  |
 | EXT-05 | ⏳ | Course website, poster, report | V0 |  |
 
@@ -373,4 +373,16 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| BEN-13 | ⏳ | CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall | V2 |  |
+| BEN-13 | 👀 | CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall | V2 |  |
+
+## 10 Infrastructure
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| INF-10 | 👀 | Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json) | V2 |  |
+
+## 12 Team and communication
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| TEAM-09 | ✅ | Site drift detector (S23): Q2 bindings, evidence-aware re-read, superseded reads, guarded literals | V2 |  |

@@ -1,0 +1,51 @@
+{
+ "plan_id": "fork_ext03_stub",
+ "note": "Wave A (EXT-03, INF-06): zero-cost stub run of the fork branch ext-03-cycle-step-key on the same 6 stub runs. Must show: identity check on the branch, no KeyError in the cycle step.",
+ "interleave": true,
+ "run_timeout_s": 7200,
+ "runs": [
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q051/q051.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q052/q052.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q053/q053.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q021/q021.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q022/q022.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "f03stub",
+   "dataset": "research:datasets/suite_q1s2/q023/q023.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ],
+ "stub_llm": true
+}

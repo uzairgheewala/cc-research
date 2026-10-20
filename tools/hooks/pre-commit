@@ -1,7 +1,17 @@
 #!/bin/sh
 # Installed with: git config core.hooksPath tools/hooks
 # Blocks a commit that stages a credential or a file over 50 MB.
-python tools/secret_scan.py --staged || {
+# Git for Windows runs this under its own sh, where "python" is often missing (or is the Microsoft Store stub);
+# try the Windows launcher first, then python3, then python, and say so plainly if none works.
+PY=""
+for cand in "py -3" python3 python; do
+  if $cand -c "import sys" >/dev/null 2>&1; then PY="$cand"; break; fi
+done
+if [ -z "$PY" ]; then
+  echo "pre-commit: no working Python found (tried: py -3, python3, python); the secret scan did not run." >&2
+  exit 1
+fi
+$PY tools/secret_scan.py --staged || {
   echo "pre-commit: secret scan failed; unstage the file (git restore --staged <file>) and fix it." >&2
   exit 1
 }

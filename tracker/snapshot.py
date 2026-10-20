@@ -62,7 +62,10 @@ def metrics():
 def items():
     st = load("tracker/status.json")
     rows = [{"id": i["id"], "category": i["category"], "title": i["title"], "kind": i.get("kind"),
-             "status": i["effective_status"], "level": i.get("level"), "pillar": pillars.pillar(i["id"])}
+             "status": i["effective_status"], "level": i.get("level"), "pillar": pillars.pillar(i["id"]),
+             # S23: what the site's re-read detector compares (status alone missed research that moves as evidence)
+             "evidence_n": len(i.get("evidence") or []),
+             "note_sha": hashlib.sha256((i.get("note") or "").encode("utf-8")).hexdigest()[:12]}
             for i in st["items"]]
     return st["verified_utc"], rows
 

@@ -1,0 +1,61 @@
+
+# 2026-10-20T16:50:58Z T_BENCH
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "tests/run_tests.py", "--pattern", "test_ben13*.py", "--out", "jobs/waves/A/out/tests_bench.json"]
+[ben13.stream 16:51:04] synth.h5ad: 14843 cells x 120 genes, X float32
+[ben13.stream 16:51:04] pass 1: 2048 / 14843 rows
+[ben13.stream 16:51:04] pass 2: 2048 / 14843 rows
+[ben13.stream 16:51:04] wrote /tmp/tmp2d08m5nt/dataset_k562_filtered.npz: 12333 cells x 34 genes (0 s)
+....[ben13.stream 16:51:18] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 16:51:18] pass 1: 97 / 4223 rows
+[ben13.stream 16:51:18] pass 1: 2522 / 4223 rows
+[ben13.stream 16:51:18] pass 2: 97 / 4223 rows
+[ben13.stream 16:51:18] pass 2: 2522 / 4223 rows
+[ben13.stream 16:51:18] wrote /tmp/tmplwahvcqd/s0_97.npz: 3106 cells x 7 genes (0 s)
+F
+======================================================================
+FAIL: test_matches_causalbench_digests_at_any_chunk_size (test_ben13_stream.StreamPreprocessTest.test_matches_causalbench_digests_at_any_chunk_size)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/research/tests/test_ben13_stream.py", line 35, in test_matches_causalbench_digests_at_any_chunk_size
+    self.assertEqual(info["expression_sha256"], digest)
+AssertionError: 'c504d8287e4861003f1b91a41efc781a9f83960a71a9606c4d6a74e0a02539dd' != 'e9aa2252bd1971f0099bdddf447dddbee532b07f55b5c30a0c0ff171ce3ffd1b'
+- c504d8287e4861003f1b91a41efc781a9f83960a71a9606c4d6a74e0a02539dd
++ e9aa2252bd1971f0099bdddf447dddbee532b07f55b5c30a0c0ff171ce3ffd1b
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 17.862s
+
+FAILED (failures=1)
+
+# 2026-10-20T17:33:32Z T_BENCH
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "tests/run_tests.py", "--pattern", "test_ben13*.py", "--out", "jobs/waves/A/out/tests_bench.json"]
+[ben13.stream 17:33:36] synth.h5ad: 14843 cells x 120 genes, X float32
+[ben13.stream 17:33:36] pass 1: 2048 / 14843 rows
+[ben13.stream 17:33:36] pass 2: 2048 / 14843 rows
+[ben13.stream 17:33:37] wrote /tmp/tmpszyxk8xc/dataset_k562_filtered.npz: 12333 cells x 34 genes (0 s)
+....[ben13.stream 17:33:51] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 17:33:51] pass 1: 97 / 4223 rows
+[ben13.stream 17:33:51] pass 1: 2522 / 4223 rows
+[ben13.stream 17:33:51] pass 2: 97 / 4223 rows
+[ben13.stream 17:33:51] pass 2: 2522 / 4223 rows
+[ben13.stream 17:33:51] wrote /tmp/tmp51lzaang/s0_97.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 17:33:52] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 17:33:52] pass 1: 4096 / 4223 rows
+[ben13.stream 17:33:52] pass 2: 4096 / 4223 rows
+[ben13.stream 17:33:52] wrote /tmp/tmp51lzaang/s0_4096.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 17:33:53] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 17:33:53] pass 1: 97 / 4080 rows
+[ben13.stream 17:33:53] pass 1: 2522 / 4080 rows
+[ben13.stream 17:33:53] pass 2: 97 / 4080 rows
+[ben13.stream 17:33:53] pass 2: 2522 / 4080 rows
+[ben13.stream 17:33:53] wrote /tmp/tmp51lzaang/s1_97.npz: 3017 cells x 9 genes (0 s)
+[ben13.stream 17:33:53] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 17:33:53] pass 1: 4080 / 4080 rows
+[ben13.stream 17:33:53] pass 2: 4080 / 4080 rows
+[ben13.stream 17:33:53] wrote /tmp/tmp51lzaang/s1_4096.npz: 3017 cells x 9 genes (0 s)
+.
+----------------------------------------------------------------------
+Ran 5 tests in 19.490s
+
+OK

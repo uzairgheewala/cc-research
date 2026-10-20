@@ -1,0 +1,32 @@
+
+# 2026-10-20T17:30:05Z F2_FILL
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "analysis/q2_family2.py", "fill", "--workers", "1", "--part", "2/8"]
+[family2] fill part 2/8: 63 files
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/pool.py", line 856, in next
+    item = self._items.popleft()
+           ^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/research/analysis/q2_family2.py", line 173, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/research/analysis/q2_family2.py", line 169, in main
+    return {"list": cmd_list, "fill": cmd_fill, "read": cmd_read}[a.cmd](a)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/analysis/q2_family2.py", line 102, in cmd_fill
+    rows = list(pool.imap(fill_one, fs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/multiprocessing/pool.py", line 861, in next
+    self._cond.wait(timeout)
+  File "/usr/local/lib/python3.11/threading.py", line 327, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+# 2026-10-20T18:24:07Z F2_FILL
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "analysis/q2_family2.py", "fill", "--workers", "1", "--part", "2/8"]
+[family2] fill part 2/8: 63 files
+JOB-COMPLETE 63 files

@@ -1,0 +1,24 @@
+
+# 2026-10-20T17:39:01Z FETCH_CB
+# argv: ["docker", "run", "--rm", "--init", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONUNBUFFERED=1", "--memory", "1g", "cc-bench:wave-a", "python", "-m", "analysis.ben13.fetch"]
+[fetch] k562.h5ad attempt 1: size 0, expected 10661879995
+[fetch] k562.h5ad attempt 2: size 0, expected 10661879995
+[fetch] k562.h5ad attempt 3: size 0, expected 10661879995
+[fetch] k562.h5ad attempt 4: size 0, expected 10661879995
+[fetch] k562.h5ad attempt 5: size 0, expected 10661879995
+[fetch] k562.h5ad: failed
+[fetch] rpe1.h5ad: ok
+[fetch] summary_stats.xlsx 0.00 / 0.00 GB
+[fetch] summary_stats.xlsx: ok
+[fetch] protein.links.txt.gz 0.00 / 0.12 GB
+[fetch] protein.links.txt.gz: ok
+[fetch] protein.physical.links.txt.gz 0.00 / 0.02 GB
+[fetch] protein.physical.links.txt.gz: ok
+[fetch] protein.info.txt.gz 0.00 / 0.00 GB
+[fetch] protein.info.txt.gz: ok
+[fetch] corum_complexes.txt.zip attempt 1: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>
+[fetch] corum_complexes.txt.zip attempt 2: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>
+[fetch] corum_complexes.txt.zip attempt 3: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>
+[fetch] corum_complexes.txt.zip attempt 4: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>
+[fetch] corum_complexes.txt.zip attempt 5: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>
+[fetch] corum_complexes.txt.zip: failed
