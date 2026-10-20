@@ -1,0 +1,24 @@
+{
+ "producer": "analysis/x5_pretrained.py (run: AVICI predictions *_partNofM.jsonl; score: x5_dev.json)",
+ "score_bearing": true,
+ "tickets": [
+  "REP-07",
+  "BEN-07",
+  "TGT-18"
+ ],
+ "regime": "D",
+ "split": "dev",
+ "controls": {
+  "columns_shuffled": "per-row: files named *_shuffled_* use a seeded shuffle (crc32 of the file name), the primary arm; *_original_* keep the released column order, the audit arm that measures order reliance (plans/x5_prereg.json)",
+  "names": "not applicable",
+  "supplier": "none (data only; AVICI sees the data matrix, no names)"
+ },
+ "orientation_rule": "AVICI: an edge where p(i -> j) > 0.5, the larger direction kept when both pass, so no pair is left undecided; the GES and kernel v3 rows in x5_dev.json use the AB-01 expectation rule (undecided pairs at random, seed crc32(file name))",
+ "metric_defs": {
+  "directed_f1": "directed-edge F1 per file (score/graph.directed_f1), mean over files (x5_dev.json mean_f1)",
+  "paired": "paired difference of per-file directed F1 against GES and kernel v3 on the same files, 95% scenario-cluster bootstrap (B = 2000, seed 20261020)",
+  "order_effect": "|original - shuffled| AVICI mean directed F1",
+  "p": "AVICI's edge-probability matrix per file (a prediction, not a score)"
+ },
+ "note": "Written 20 Oct by the site chat after CI's score-contract test failed: the X5 job (sheet A) wrote results without a contract. Fields follow plans/x5_prereg.json."
+}

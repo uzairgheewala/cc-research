@@ -1,6 +1,6 @@
-# Trace check (2026-10-20T20:00:41Z)
+# Trace check (2026-10-20T21:08:48Z)
 
-status.json verified 2026-10-20T17:37:14Z. Dev tickets 234; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-10-20T21:08:01Z. Dev tickets 237; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -10,10 +10,10 @@ status.json verified 2026-10-20T17:37:14Z. Dev tickets 234; prod rows 67 (7 grou
 | blocks | links.txt | 1 |
 | blocks | plan | 25 |
 | curates | links.txt | 66 |
-| evidences | catalogue | 846 |
+| evidences | catalogue | 869 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 679 |
+| mentions | scan | 683 |
 | mirrors | mirrors.json | 300 |
 | parent_of | links.txt | 23 |
 | published_at | links.txt | 246 |
@@ -101,6 +101,6 @@ status.json verified 2026-10-20T17:37:14Z. Dev tickets 234; prod rows 67 (7 grou
 | EVL-06 | passthrough | done | done | V3 | - | EVL-06 |
 | EVL-07 | passthrough | done | done | V3 | - | EVL-07 |
 
-## Dev tickets in no prod row (108)
+## Dev tickets in no prod row (111)
 
-AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BEN-13, BLD-12, BLD-13, BLD-14, BLD-15, BLD-16, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, INF-10, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TEAM-09, TGT-18, TGT-19, TGT-20
+AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BEN-13, BLD-12, BLD-13, BLD-14, BLD-15, BLD-16, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, INF-10, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TEAM-09, TEAM-10, TEAM-11, TEAM-12, TGT-18, TGT-19, TGT-20

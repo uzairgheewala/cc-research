@@ -20,7 +20,8 @@ Standard library only (Python 3.8+), so it runs on the host interpreter and laun
 
 Conditions (when / if) use: pass(M) fail(M) notrun(M) ok(R) failed(R) skipped(R), and / or / not, parentheses.
 Every run writes its log to jobs/waves/<wave>/logs/<run>.log; state.json and verdict.json are rewritten after every run, so
-a crash or a reboot returns what finished, and running again resumes (a run whose done test passes is not started).
+a crash or a reboot returns what finished, and running again resumes (a run whose done test passes is not started;
+class A0 runs, the tests and kit checks, also need the code identity they ran under, so a changed kit re-runs them).
 """
 import argparse, glob, hashlib, json, os, platform, re, shutil, subprocess, sys, threading, time, zipfile
 from pathlib import Path
@@ -347,6 +348,13 @@ class Wave:
             return d["contains"] in p.read_text(encoding="utf-8", errors="replace")
         return True
 
+    def fresh(self, run):
+        """A static check (class A0: tests, builds, kit checks) counts as done only under the code identity it ran with:
+        a changed kit re-runs its tests, while finished heavy runs keep their results (their done tests decide)."""
+        if run["class"] != "A0":
+            return True
+        return self.state["runs"].get(run["id"], {}).get("code_identity") == self.sheet.get("code_identity")
+
     # ---------------------------------------------------------------- one run
     def run_one(self, run):
         rid = run["id"]
@@ -386,7 +394,7 @@ class Wave:
                 status, rec["exit"] = "failed", rc
         if status == "ok" and not self.dry and not self.done(run):
             status, rec["error"] = "failed", "exit 0 but the done test fails: %s" % json.dumps(run["done"])
-        rec.update(status=status, end=now(), wall_min=round((time.time() - t0) / 60, 2))
+        rec.update(status=status, end=now(), wall_min=round((time.time() - t0) / 60, 2), code_identity=self.sheet.get("code_identity"))
         if run.get("cost_from") and status == "ok":
             try:
                 rec["usd"] = float(m_json(run["cost_from"]))
@@ -455,7 +463,7 @@ class Wave:
             started = False
             for run in list(pending):
                 rid = run["id"]
-                if self.state["runs"].get(rid, {}).get("status") == "ok" and self.done(run):
+                if self.state["runs"].get(rid, {}).get("status") == "ok" and self.done(run) and self.fresh(run):
                     pending.remove(run)
                     continue
                 deps = run.get("depends_on", [])
@@ -476,8 +484,9 @@ class Wave:
                     self.save()
                     print("[wave] %-28s skipped (when: %s)" % (rid, run["when"]), flush=True)
                     continue
-                if not run.get("parts") and self.done(run):
-                    self.state["runs"][rid] = {"id": rid, "status": "ok", "why": "done test already passes", "end": now()}
+                if not run.get("parts") and self.done(run) and self.fresh(run):
+                    self.state["runs"][rid] = {"id": rid, "status": "ok", "why": "done test already passes", "end": now(),
+                                               "code_identity": self.sheet.get("code_identity")}
                     pending.remove(run)
                     self.save()
                     continue

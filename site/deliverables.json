@@ -1,0 +1,49 @@
+{
+ "about": "Site v3 (s24, TEAM-11): what each deliverable needs from the landmarks, and the fallback agreed in advance (decision record docs/decisions/2026-10-14_q2_landmarks.md). Due dates come from the tracker through the registry.",
+ "version": 1,
+ "tickets": [
+  "TEAM-11"
+ ],
+ "deliverables": [
+  {
+   "id": "ta",
+   "plain": "TA check-in",
+   "ticket": "CRS-01",
+   "due": "due.CRS-01",
+   "needs": [],
+   "what": "Quarter 1's work and why, where it stands against the landmarks, what is next."
+  },
+  {
+   "id": "checkpoint",
+   "plain": "Quarter 1 checkpoint",
+   "ticket": "BND-13",
+   "due": "due.BND-13",
+   "needs": [],
+   "what": "The Quarter 1 package, with Causal-Copilot's numbers after the fork's fixes."
+  },
+  {
+   "id": "paper",
+   "plain": "Paper: measurement plus the reliability-first ledger",
+   "needs": [
+    "ER-F",
+    "ER-1",
+    "ER-2",
+    "ER-3",
+    "ER-4a"
+   ],
+   "fallback": "If the accuracy landmark stays open, the paper becomes a datasets-and-benchmarks paper on reliability, stated plainly."
+  },
+  {
+   "id": "product",
+   "plain": "Product: an independent audit of AI agents' root-cause claims",
+   "needs": [
+    "ER-F",
+    "ER-1",
+    "ER-2",
+    "ER-3",
+    "ER-4b"
+   ],
+   "fallback": "If the root-cause landmark fails, the paper still lands and the product moves to the second vertical (marketing measurement)."
+  }
+ ]
+}

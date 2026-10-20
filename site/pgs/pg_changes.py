@@ -18,8 +18,10 @@ def digest(d):
 ch = SNAP.get("changes") or []
 BODY = "\n".join([
     question("What moved since I last looked?", before="nothing: generated from the team's posted digests, newest first."),
-    P("Each block is one digest the team posted, with its summary points and what it finished. Ticket IDs (AUD-45, RQ-10 …) "
-      "match the Slack lists and the status page."),
+    P("Each block is one digest the team posted in its public channel, with its summary points and what it finished. Ticket "
+      "IDs (AUD-45, RQ-10 …) match the Slack lists and the status page. Working notes stay in the team's own channel; "
+      + ("%d of them have been posted since the newest block below." % (SNAP.get("changes_lag") or {}).get("dev_since_last_prod", 0)
+         if (SNAP.get("changes_lag") or {}).get("dev_since_last_prod") else "none are newer than the newest block below.")),
     *[digest(d) for d in ch],
     P("No digests recorded yet.") if not ch else "",
     answer("The newest block says what moved most recently; the status page shows where that leaves the plan.",

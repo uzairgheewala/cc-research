@@ -98,6 +98,24 @@ class WaveRunnerTest(unittest.TestCase):
         self.assertIn("jobs/waves/T/verdict.json", names)
         self.assertIn("out/short.json", names)
 
+    def test_changed_kit_reruns_static_checks_only(self):
+        W = self.wave.Wave(self.sheet_path, workers=1)
+        W.run()
+        self.assertEqual((self.count("T0"), self.count("AFTER")), (1, 1))
+        # a new kit: one file changes, the identity manifest and the sheet's code_identity are re-taken
+        (self.root / "code.py").write_bytes(b"X = 3\n")
+        man = self.root / "identity.sha256"
+        man.write_bytes(("%s  code.py\n" % hashlib.sha256(b"X = 3\n").hexdigest()).encode())
+        self.sheet["code_identity"] = self.wave.sha_file(man)
+        self.sheet_path.write_text(json.dumps(self.sheet))
+        W2 = self.wave.Wave(self.sheet_path, workers=1)
+        self.assertEqual(W2.run(), 0)
+        self.assertEqual(self.count("T0"), 2)                          # the A0 test ran again under the new identity
+        self.assertEqual(self.count("AFTER"), 1)                       # the finished A3 run kept its result
+        W3 = self.wave.Wave(self.sheet_path, workers=1)
+        W3.run()
+        self.assertEqual(self.count("T0"), 2)                          # same identity: not again
+
     def test_refuses_changed_code(self):
         (self.root / "code.py").write_bytes(b"X = 2\n")
         W = self.wave.Wave(self.sheet_path)

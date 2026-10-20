@@ -1,0 +1,824 @@
+{
+ "about": "Site v3 (s24, TEAM-10): the typed gap model the site renders. Values come only from registry keys; a landmark's gap type is derived by site/gapkit.py from its binding value, conservative end, bar and the board's ruler verdict, never written here. Explanation segments come from the explanation ledger (B1, shared schema) when it exists. Design: project doc claude/site-v3-design-2026-10-20.md.",
+ "version": 1,
+ "tickets": [
+  "TEAM-10"
+ ],
+ "rules": {
+  "type_order": [
+   "met",
+   "measurement",
+   "method",
+   "comparability",
+   "reach"
+  ],
+  "measurement_max_factor": 10,
+  "measurement_note": "A gap whose point estimate clears the bar but whose conservative end does not is a measurement gap only if the interval would need to shrink by at most sqrt(10) (about 10 times the test cases, interval width taken as proportional to 1/sqrt(n)); beyond that the estimate is too close to the bar for more cases to settle it, and the gap counts as a method gap.",
+  "states": [
+   "unattributed",
+   "attributed",
+   "mechanism_known",
+   "walled",
+   "lever_disputed",
+   "lever_chosen",
+   "acted_on"
+  ],
+  "understood_from": "mechanism_known",
+  "tackled": [
+   "lever_chosen",
+   "acted_on"
+  ],
+  "explain_ledger": {
+   "key": "q2x.ledger",
+   "path": "analysis/results/q2_v3/explain_ledger_dev.json",
+   "required": false
+  },
+  "power": {
+   "key": "q2p.power",
+   "path": "analysis/results/q2_v3/power_dev.json"
+  }
+ },
+ "plain": {
+  "type": {
+   "met": "met",
+   "measurement": "needs more test cases",
+   "method": "needs a better method",
+   "comparability": "not comparable yet",
+   "reach": "not run yet"
+  },
+  "state": {
+   "unattributed": "not traced yet",
+   "attributed": "traced, cause not known",
+   "mechanism_known": "cause known",
+   "walled": "cause known, cannot be separated with these data",
+   "lever_disputed": "cause known, which fix is disputed",
+   "lever_chosen": "fix chosen",
+   "acted_on": "fixed in the ledger"
+  },
+  "verdict": {
+   "same": "same ruler",
+   "adjusted": "adjusted to the same ruler",
+   "not_comparable_yet": "measured on a different ruler"
+  }
+ },
+ "landmarks": {
+  "ER-F": {
+   "plain": "Never worse than plain PC, its own data-only baseline",
+   "needs": [
+    "paper",
+    "product"
+   ],
+   "combine": "all",
+   "axis": [
+    -0.05,
+    0.2
+   ],
+   "fmt": "{:+.3f}",
+   "parts": [
+    {
+     "label": "semantic, benchmark score gain",
+     "value": "q2.erf.sem.f1",
+     "cons": "q2.erf.sem.f1.lo",
+     "bar": -0.01,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2k.sem.n"
+    },
+    {
+     "label": "formula, benchmark score gain",
+     "value": "q2.erf.for.f1",
+     "cons": "q2.erf.for.f1.lo",
+     "bar": -0.01,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2k.for.n"
+    },
+    {
+     "label": "semantic, committed answers right (gain)",
+     "value": "q2.erf.sem.dv",
+     "cons": "q2.erf.sem.dv.lo",
+     "bar": -0.01,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2k.sem.n"
+    },
+    {
+     "label": "formula, committed answers right (gain)",
+     "value": "q2.erf.for.dv",
+     "cons": "q2.erf.for.dv.lo",
+     "bar": -0.01,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2k.for.n"
+    }
+   ]
+  },
+  "ER-1": {
+   "plain": "Every arrow says where it came from; neutral names change nothing",
+   "needs": [
+    "paper",
+    "product"
+   ],
+   "combine": "all",
+   "fmt": "{:,}",
+   "unit": "files",
+   "parts": [
+    {
+     "label": "semantic, files unchanged under neutral names",
+     "value": "q2.b3.sem.neutral",
+     "bar_key": "q2.b3.sem.files",
+     "dir": "higher",
+     "strict": false
+    },
+    {
+     "label": "formula, files unchanged under neutral names",
+     "value": "q2.b3.for.neutral",
+     "bar_key": "q2.b3.for.files",
+     "dir": "higher",
+     "strict": false
+    },
+    {
+     "label": "semantic, wrong names within the proven bound",
+     "value": "q2.b3.sem.t3",
+     "bar_key": "q2.b3.sem.files",
+     "dir": "higher",
+     "strict": false
+    },
+    {
+     "label": "formula, wrong names within the proven bound",
+     "value": "q2.b3.for.t3",
+     "bar_key": "q2.b3.for.files",
+     "dir": "higher",
+     "strict": false
+    }
+   ]
+  },
+  "ER-2": {
+   "plain": "Answers it commits to are more than 80% right, at half coverage",
+   "needs": [
+    "paper",
+    "product"
+   ],
+   "combine": "all",
+   "axis": [
+    0.7,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "semantic",
+     "value": "q2v3.sem.D.p",
+     "cons": "q2v3.sem.D.lo",
+     "bar": 0.8,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2v3.sem.D.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "formula",
+     "value": "q2v3.for.D.p",
+     "cons": "q2v3.for.D.lo",
+     "bar": 0.8,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2v3.for.D.n",
+     "n_unit": "scenarios"
+    }
+   ],
+   "history": [
+    {
+     "read": "first held-out read (B4, 15 Oct)",
+     "family": "semantic",
+     "value": "q2.b4.sem.prec",
+     "cons": "q2.b4.sem.prec.lo"
+    },
+    {
+     "read": "first held-out read (B4, 15 Oct)",
+     "family": "formula",
+     "value": "q2.b4.for.prec",
+     "cons": "q2.b4.for.prec.lo"
+    },
+    {
+     "read": "second held-out read (kernel v3, 15 Oct)",
+     "family": "semantic",
+     "value": "q2v3.sem.D.p",
+     "cons": "q2v3.sem.D.lo"
+    },
+    {
+     "read": "second held-out read (kernel v3, 15 Oct)",
+     "family": "formula",
+     "value": "q2v3.for.D.p",
+     "cons": "q2v3.for.D.lo"
+    }
+   ]
+  },
+  "ER-3": {
+   "plain": "Stated confidence matches how often it is right",
+   "needs": [
+    "paper",
+    "product"
+   ],
+   "combine": "all",
+   "axis": [
+    0.0,
+    0.1
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "semantic, calibration error",
+     "value": "q2v3.sem.D.ece",
+     "cons": "q2v3.sem.D.ecehi",
+     "bar": 0.05,
+     "dir": "lower",
+     "strict": false,
+     "n": "q2v3.sem.D.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "formula, calibration error",
+     "value": "q2v3.for.D.ece",
+     "cons": "q2v3.for.D.ecehi",
+     "bar": 0.05,
+     "dir": "lower",
+     "strict": false,
+     "n": "q2v3.for.D.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "semantic, realised minus claimed at cost ratio 4",
+     "value": "q2v3.sem.D.rmc4",
+     "cons": "q2v3.sem.D.rmc4.lo",
+     "bar": -0.03,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2v3.sem.D.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "formula, realised minus claimed at cost ratio 4",
+     "value": "q2v3.for.D.rmc4",
+     "cons": "q2v3.for.D.rmc4.lo",
+     "bar": -0.03,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2v3.for.D.n",
+     "n_unit": "scenarios"
+    }
+   ],
+   "history": [
+    {
+     "read": "first held-out read (B4, 15 Oct)",
+     "family": "semantic",
+     "value": "q2.b4.sem.ece",
+     "cons": "q2.b4.sem.ece.hi"
+    },
+    {
+     "read": "first held-out read (B4, 15 Oct)",
+     "family": "formula",
+     "value": "q2.b4.for.ece",
+     "cons": "q2.b4.for.ece.hi"
+    },
+    {
+     "read": "second held-out read (kernel v3, 15 Oct)",
+     "family": "semantic",
+     "value": "q2v3.sem.D.ece",
+     "cons": "q2v3.sem.D.ecehi"
+    },
+    {
+     "read": "second held-out read (kernel v3, 15 Oct)",
+     "family": "formula",
+     "value": "q2v3.for.D.ece",
+     "cons": "q2v3.for.D.ecehi"
+    }
+   ]
+  },
+  "ER-4a": {
+   "plain": "More accurate than the best data-only method (GES), on one family",
+   "needs": [
+    "paper"
+   ],
+   "combine": "any",
+   "axis": [
+    -0.04,
+    0.06
+   ],
+   "fmt": "{:+.3f}",
+   "parts": [
+    {
+     "label": "semantic, benchmark score above GES",
+     "value": "q2.ges.sem.f1",
+     "cons": "q2.ges.sem.f1.lo",
+     "bar": 0.0,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2k.sem.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "formula, benchmark score above GES",
+     "value": "q2.ges.for.f1",
+     "cons": "q2.ges.for.f1.lo",
+     "bar": 0.0,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2k.for.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "semantic, gain from declared knowledge",
+     "value": "q2.b3.sem.gain",
+     "cons": "q2.b3.sem.gain.lo",
+     "bar": 0.03,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2k.sem.n",
+     "n_unit": "scenarios"
+    },
+    {
+     "label": "formula, gain from declared knowledge",
+     "value": "q2.b3.for.gain",
+     "cons": "q2.b3.for.gain.lo",
+     "bar": 0.03,
+     "dir": "higher",
+     "strict": true,
+     "n": "q2k.for.n",
+     "n_unit": "scenarios"
+    }
+   ]
+  },
+  "ER-4b": {
+   "plain": "Names the right incident root cause in its top three, 90% of the time",
+   "needs": [
+    "product"
+   ],
+   "combine": "all",
+   "axis": [
+    0.7,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "PetShop incidents answered",
+     "value": "q2.b5.ac3",
+     "cons": "q2.b5.ac3.lo",
+     "bar": 0.9,
+     "dir": "higher",
+     "strict": false,
+     "n": "q2.b5.answered",
+     "n_unit": "incidents"
+    }
+   ]
+  },
+  "ER-C": {
+   "plain": "On a physical system with known truth, as good as GES",
+   "needs": [],
+   "combine": "all",
+   "axis": [
+    0.8,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "Causal Chambers, committed answers right",
+     "value": "q2.ch.kdi",
+     "bar_key": "q2.ch.ges",
+     "bar_offset": -0.03,
+     "dir": "higher",
+     "strict": false
+    }
+   ]
+  },
+  "CA-SEM-TOP": {
+   "plain": "The top published score on CausalArena's semantic family",
+   "needs": [],
+   "combine": "all",
+   "axis": [
+    0.3,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "benchmark score, ours with the layout leak removed",
+     "value": "q2k.sem.f1",
+     "bar_key": "pub.sem.D.best",
+     "dir": "higher",
+     "strict": false
+    }
+   ]
+  },
+  "CA-FOR-TOP": {
+   "plain": "The top published score on CausalArena's formula family",
+   "needs": [],
+   "combine": "all",
+   "axis": [
+    0.3,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "benchmark score, ours with the layout leak removed",
+     "value": "q2k.for.f1",
+     "bar_key": "pub.for.D.best",
+     "dir": "higher",
+     "strict": false
+    }
+   ]
+  },
+  "CA-REAL": {
+   "plain": "CausalArena's real-data tables",
+   "needs": [],
+   "combine": "all",
+   "axis": [
+    0.0,
+    1.0
+   ],
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "benchmark score on real data",
+     "value": null,
+     "bar_key": "pub.real.D",
+     "dir": "higher",
+     "strict": false
+    }
+   ]
+  },
+  "CB-K562": {
+   "plain": "CausalBench K562 cells: the balanced published point",
+   "needs": [],
+   "combine": "all",
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "mean Wasserstein, at a false omission rate at or under the published one",
+     "value": null,
+     "bar_key": "cb.k562.w",
+     "dir": "higher",
+     "strict": true
+    }
+   ]
+  },
+  "CB-RPE1": {
+   "plain": "CausalBench RPE1 cells: the balanced published point",
+   "needs": [],
+   "combine": "all",
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "mean Wasserstein, at a false omission rate at or under the published one",
+     "value": null,
+     "bar_key": "cb.rpe1.w",
+     "dir": "higher",
+     "strict": true
+    }
+   ]
+  },
+  "FAM2": {
+   "plain": "The same landmarks on a second family (our labelled generator)",
+   "needs": [],
+   "combine": "all",
+   "fmt": "{:.3f}",
+   "parts": [
+    {
+     "label": "committed answers right, at half coverage",
+     "value": null,
+     "bar": 0.8,
+     "dir": "higher",
+     "strict": true
+    }
+   ]
+  }
+ },
+ "boards": [
+  {
+   "id": "prereg",
+   "title": "Our pre-registered landmarks",
+   "plain": "The bars we set on 14 Oct, before the build, for the paper and the product. Scored once per frozen version on held-out CausalArena scenarios, with columns shuffled.",
+   "ruler": {
+    "verdict": "same",
+    "why": "set by us, measured by us, under the controls"
+   },
+   "landmarks": [
+    "ER-F",
+    "ER-1",
+    "ER-2",
+    "ER-3",
+    "ER-4a"
+   ],
+   "gaps": [
+    "sem-missed",
+    "sem-false",
+    "sem-reversed",
+    "for-missed",
+    "for-false",
+    "for-reversed"
+   ],
+   "strip_on": [
+    "status"
+   ]
+  },
+  {
+   "id": "causalarena-semantic",
+   "title": "CausalArena, semantic family",
+   "plain": "Realistic named systems, 1,000 rows each. The public scoreboard most of this work is measured on.",
+   "ruler": {
+    "verdict": "not_comparable_yet",
+    "why": "the published runs kept the causal column order, which a layout-only rule turns into {leak.released}; ours shuffle the columns",
+    "ticket": "REP-07"
+   },
+   "landmarks": [
+    "CA-SEM-TOP"
+   ],
+   "staircase": {
+    "family": "sem",
+    "label": "semantic",
+    "lines": [
+     [
+      "pub.sem.D.PC",
+      "PC, published"
+     ],
+     [
+      "pub.sem.D.GIES",
+      "GIES, published"
+     ],
+     [
+      "pub.sem.D.best",
+      "top, published"
+     ],
+     [
+      "lim.sem.D",
+      "limit"
+     ]
+    ]
+   },
+   "gaps": [
+    "sem-missed",
+    "sem-false",
+    "sem-reversed"
+   ],
+   "strip_on": [
+    "scoreboard"
+   ]
+  },
+  {
+   "id": "causalarena-formula",
+   "title": "CausalArena, formula family",
+   "plain": "Physical laws as formulas, 1,000 rows each.",
+   "ruler": {
+    "verdict": "not_comparable_yet",
+    "why": "as for the semantic family: published runs kept the causal column order",
+    "ticket": "REP-07"
+   },
+   "landmarks": [
+    "CA-FOR-TOP"
+   ],
+   "staircase": {
+    "family": "for",
+    "label": "formula",
+    "lines": [
+     [
+      "pub.for.D.best",
+      "top, published"
+     ],
+     [
+      "lim.for.D",
+      "limit"
+     ]
+    ]
+   },
+   "gaps": [
+    "for-missed",
+    "for-false",
+    "for-reversed"
+   ],
+   "strip_on": [
+    "scoreboard"
+   ]
+  },
+  {
+   "id": "causalarena-real",
+   "title": "CausalArena, real data",
+   "plain": "Real measured tables the benchmark indexes. The ledger has not been run on them.",
+   "ruler": {
+    "verdict": "same",
+    "why": "not run, so nothing to compare yet"
+   },
+   "reach_ticket": "BEN-14",
+   "landmarks": [
+    "CA-REAL"
+   ],
+   "gaps": [],
+   "strip_on": []
+  },
+  {
+   "id": "chambers",
+   "title": "Causal Chambers",
+   "plain": "A physical light tunnel whose true graph was checked by experiments. Report only.",
+   "ruler": {
+    "verdict": "same",
+    "why": "the same scorer on our stated sample"
+   },
+   "landmarks": [
+    "ER-C"
+   ],
+   "gaps": [],
+   "strip_on": []
+  },
+  {
+   "id": "petshop",
+   "title": "PetShop incident root causes",
+   "plain": "Real incidents in a microservice shop, with a declared service map. The product's first test.",
+   "ruler": {
+    "verdict": "same",
+    "why": "the audit's own adapter and scorer"
+   },
+   "landmarks": [
+    "ER-4b"
+   ],
+   "gaps": [],
+   "strip_on": [
+    "rca"
+   ]
+  },
+  {
+   "id": "causalbench",
+   "title": "CausalBench (gene knockdowns)",
+   "plain": "Thousands of genes with real knockdown experiments and no true graph. Its scores may partly reward shortcuts, which BEN-13 measures first.",
+   "ruler": {
+    "verdict": "not_comparable_yet",
+    "why": "how much of each published score its shortcut channels carry is not measured yet",
+    "ticket": "BEN-13"
+   },
+   "reach_ticket": "BEN-13",
+   "landmarks": [
+    "CB-K562",
+    "CB-RPE1"
+   ],
+   "gaps": [],
+   "strip_on": []
+  },
+  {
+   "id": "family2",
+   "title": "Second family (our labelled generator)",
+   "plain": "500 new files in 50 scenarios, to narrow every interval and test that the results transfer.",
+   "ruler": {
+    "verdict": "same",
+    "why": "the same frozen kernel and scorer"
+   },
+   "reach_ticket": "TGT-18",
+   "landmarks": [
+    "FAM2"
+   ],
+   "gaps": [],
+   "strip_on": []
+  }
+ ],
+ "gaps": {
+  "sem-missed": {
+   "plain": "True links the ledger misses",
+   "family": "semantic",
+   "total": "q2a.sem.missed",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "semantic",
+     "causalarena-semantic",
+     "causalarena_semantic"
+    ],
+    "gap": [
+     "missed",
+     "missed_links"
+    ]
+   }
+  },
+  "sem-false": {
+   "plain": "Links it claims that are not there",
+   "family": "semantic",
+   "total": "q2a.sem.false",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "semantic",
+     "causalarena-semantic",
+     "causalarena_semantic"
+    ],
+    "gap": [
+     "false",
+     "false_links"
+    ]
+   }
+  },
+  "sem-reversed": {
+   "plain": "Found links pointing the wrong way",
+   "family": "semantic",
+   "total": "q2a.sem.reversed",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "semantic",
+     "causalarena-semantic",
+     "causalarena_semantic"
+    ],
+    "gap": [
+     "reversed",
+     "reversals"
+    ]
+   }
+  },
+  "for-missed": {
+   "plain": "True links the ledger misses",
+   "family": "formula",
+   "total": "q2a.for.missed",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "formula",
+     "causalarena-formula",
+     "causalarena_formula"
+    ],
+    "gap": [
+     "missed",
+     "missed_links"
+    ]
+   }
+  },
+  "for-false": {
+   "plain": "Links it claims that are not there",
+   "family": "formula",
+   "total": "q2a.for.false",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "formula",
+     "causalarena-formula",
+     "causalarena_formula"
+    ],
+    "gap": [
+     "false",
+     "false_links"
+    ]
+   }
+  },
+  "for-reversed": {
+   "plain": "Found links pointing the wrong way",
+   "family": "formula",
+   "total": "q2a.for.reversed",
+   "unit": "links",
+   "ledger": {
+    "board": [
+     "formula",
+     "causalarena-formula",
+     "causalarena_formula"
+    ],
+    "gap": [
+     "reversed",
+     "reversals"
+    ]
+   }
+  }
+ },
+ "staircase_steps": [
+  [
+   "O0",
+   "The ledger as it is"
+  ],
+  [
+   "O1",
+   "Reversed arrows turned right"
+  ],
+  [
+   "O2",
+   "Open pairs oriented"
+  ],
+  [
+   "O3",
+   "False links removed"
+  ],
+  [
+   "O4",
+   "Missed links added"
+  ]
+ ],
+ "staircase_gap": {
+  "O1": "reversed",
+  "O2": null,
+  "O3": "false",
+  "O4": "missed"
+ },
+ "today_rows": [
+  "ER-F",
+  "ER-1",
+  "ER-2",
+  "ER-3",
+  "ER-4a",
+  "ER-4b",
+  "CA-SEM-TOP"
+ ]
+}

@@ -982,211 +982,130 @@
  ],
  "changes": [
   {
-   "done": [],
-   "points": [
-    "L16 applicability conditions (TGT-18): an observable gate (ledger density or triangle share) clears the pooled bar for the triangle-order filter (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the pre-registered transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so nothing is acted on. A declared domain-structure statement is the route to build: +0.009 DV-1 / +0.017 coverage / +0.011 F1 on formula when right, -0.002 / +0.002 / 0.000 on semantic when wrong",
-    "L5 interventions as link evidence (TGT-18, TGT-19, CAP-03): no licence. The shadow signal is real (given the mediator, the shift disappears for 48% of moved shadows and 7% of moved true links), but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target; adds from interventions are 9-14% precise",
-    "BEN-13 opened: CausalBench (GSK) shortcut audit, the scale-and-interventions leg. CRS-01 (TA check-in 1) moved to Thu 29 Oct, 10:45 am PT"
-   ],
-   "posted_utc": "2026-10-19T21:25:27Z",
-   "tickets": [
-    "BEN-13",
-    "CAP-03",
-    "CRS-01",
-    "TGT-18",
-    "TGT-19"
-   ]
-  },
-  {
-   "done": [
-    "BLD-16 Kernel v3: engine cache, direction view, ledger-feature confidence, pooled-replicates…"
-   ],
-   "points": [
-    "Kernel v3 built (BLD-16): the engine cache rebuilds all 1,250 v2 dev ledgers hash-for-hash, so a dev experiment takes ~10 s per family instead of 30-70 min; cross-machine hashes need OpenBLAS pinned (CAP-11)",
-    "Missed links (TGT-19): every link-recovery lever failed on dev (recovered links 33% precise; GES penalty 0.5 lowers F1). Floor measured: 9.0% / 6.8% of true links carry no usable signal; 14% / 20% are a search gap",
-    "ER-2, second held-out read (TGT-18): met for formula (0.908 [0.876]; pooled 0.911 [0.863]); not met for semantic (0.830 [0.783]; pooled 0.866 [0.799], short by 0.001)",
-    "CAP-07: held-out ECE 0.021 / 0.025 (v2 0.057 / 0.036); ER-3 still not met, upper ends 0.051-0.074 on 25 scenarios",
-    "Open choice for Uzair: more scenarios to narrow every interval, or a v4 on the semantic search gap / direction evidence beyond GES (TGT-19)"
-   ],
-   "posted_utc": "2026-10-15T22:04:14Z",
-   "tickets": [
-    "BLD-16",
-    "CAP-07",
-    "CAP-11",
-    "TGT-18",
-    "TGT-19"
-   ]
-  },
-  {
-   "done": [
-    "BLD-02 B1 data-only claim ledger with invariants I1-I4, I7",
-    "BLD-03 B2 interventions as order evidence",
-    "BLD-04 B3 declared knowledge as tiers",
-    "BLD-05 B4 confidence, calibration, selective output",
-    "BLD-14 Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier…",
-    "BLD-15 Audit adapter: other systems' outputs read as typed claims with violation classes",
-    "CAP-03 Use intervention data",
-    "CAP-04 Declared knowledge as tiers, never edges",
-    "CAP-05 Invariance to column order",
-    "CAP-08 Abstention / selective claims",
-    "CAP-09 Provenance per edge with an independent checker",
-    "CAP-11 Determinism (same inputs, same ledger hash)",
-    "TGT-10 Zero change when columns are shuffled",
-    "TGT-11 Bounded harm when names are wrong",
-    "TGT-12 Calibration better than raw bootstrap frequencies on held-out scenarios"
-   ],
-   "points": [
-    "Q2 build pass 1 (BLD-02, BLD-03, BLD-04, BLD-05, BLD-15): bundles B0-B5 built and each read held out under its freeze; no API credit spent (B3 replays AB-07's recorded replies)",
-    "Landmarks (TGT-18, TGT-19, TGT-20): ER-F floors and ER-1 provenance met; ER-2 met for formula only (semantic lower end 0.756); ER-3, ER-4a, ER-4b not met; ER-C Chambers met (kernel 0.926 vs GES 0.916)",
-    "TGT-12 met: calibrated ECE 0.057 / 0.036 vs raw bootstrap 0.199 / 0.165; B4.1 gate missed on semantic in the under-claiming direction (CAP-07)",
-    "TGT-11 met: moved names within the exact T3 bound on 125/125 held-out files per family; neutral names equal the data-only ledger 125/125 (CAP-04)",
-    "EXT-07 opened for Uzair: causal-learn PC can return directed cycles (Meek stale ancestor matrix); draft note ready"
-   ],
-   "posted_utc": "2026-10-15T14:19:25Z",
-   "tickets": [
-    "BLD-02",
-    "BLD-03",
-    "BLD-04",
-    "BLD-05",
-    "BLD-14",
-    "BLD-15",
-    "CAP-03",
-    "CAP-04",
-    "CAP-05",
-    "CAP-07",
-    "CAP-08",
-    "CAP-09",
-    "CAP-11",
-    "EXT-07",
-    "TGT-06",
-    "TGT-10",
-    "TGT-11",
-    "TGT-12",
-    "TGT-18",
-    "TGT-19",
-    "TGT-20"
-   ]
-  },
-  {
-   "done": [
-    "AUD-13 Second model besides GPT-4o",
-    "AUD-38 AB-06 LIVE: field audit of LLM-using systems under names x layout controls",
-    "AUD-47 AB-17 Paper skeleton and pre-registration manifest",
-    "BND-08 LIVE: Causal-Copilot on CausalArena's named scenarios (old bundle 2)",
-    "BND-10 Refinement v1: held-out test",
-    "DEC-01 Adopt, redirect or enlarge program v2; which of E1-E5 in scope",
-    "DEC-05 AB-16 Wedge decision: paper spine, venue and the Q2 build",
-    "DLV-02 Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully…",
-    "RQ-05 T2 Deployed agents take order from names and layout",
-    "STR-01 E1 Field-wide audit of agents and LLM-assisted methods"
-   ],
-   "points": [
-    "AUD-38: AB-06 tier A scored. P9 supported: Causal-Copilot (gpt-4o), causaliq and MATMCD lose 0.10 or more directed F1 when names are swapped; P10 supported: MATMCD falls below its own data-only graph. Vashishtha is the exception (0.020). $32.11.",
-    "DEC-05: decided B, measurement plus a reliability-first claim ledger, with A as the floor. DEC-01 adopted as amended. AB-17 skeleton and Q2 build pre-registration hashed (AUD-47).",
-    "DLV-02 closed under its restated criterion (every arm reached S3; crashes counted as crashes); BND-08, BND-10, AUD-13 done. The audit chapter is closed; next is B0, then B1."
-   ],
-   "posted_utc": "2026-10-15T04:24:51Z",
-   "tickets": [
-    "AUD-13",
-    "AUD-38",
-    "AUD-47",
-    "BND-08",
-    "BND-10",
-    "DEC-01",
-    "DEC-05",
-    "DLV-02",
-    "RQ-05",
-    "STR-01"
-   ]
-  },
-  {
-   "done": [
-    "DLV-04 Q1 refinement research: a refinement step that never falls below its own algorithm on…",
-    "INF-09 Provider quota exhaustion is an infrastructure stop, not an agent failure",
-    "TGT-09 Never below the system's own data-only output"
-   ],
-   "points": [
-    "AUD-38: tier A resumed; 19 of 80 runs are now ok. Then the OpenAI account ran out of credits, and 61 runs were refused within seconds (HTTP 429 insufficient_quota) and recorded as agent failures. About $33 of tier A is left; $12.21 spent so far.",
-    "INF-09 (amendment 2, operational): a billing refusal now stops a run as aborted_quota, resumable from its recorded answers, and halts the batch at the first one. The 61 runs resume with the same command once credits are added."
-   ],
-   "posted_utc": "2026-10-14T19:11:00Z",
-   "tickets": [
-    "AUD-38",
-    "DLV-04",
-    "INF-09",
-    "TGT-09"
-   ]
-  },
-  {
+   "channel": "prod",
    "done": [
     "BLD-06 Drop-in replacement for Causal-Copilot's refinement stage",
-    "BND-11 LIVE: Refinement v2, names only where the data are silent",
     "CAP-10 Robustness to malformed model output",
-    "RQ-17 Do results hold for a second model?",
-    "TGT-13 Zero crashes from malformed model output"
+    "DLV-02 Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully…",
+    "DLV-04 Q1 refinement research: a refinement step that never falls below its own algorithm on…",
+    "RQ-05 Do deployed agents take edge directions from names and column layout rather than from the…",
+    "RQ-10 With real names, does a model's ordering of variables get at least 70% of true edges…",
+    "RQ-11 With neutral names, does the model supply no order information at all?",
+    "RQ-12 With names moved onto other columns, does the model's ordering follow the labels instead…",
+    "RQ-13 Does regression on the model's ordering reach the best published 0.634 on CausalArena's…",
+    "RQ-14 Does the same reach the best published 0.524 on the formula family?",
+    "RQ-17 Do results hold for a second model?"
    ],
    "points": [
-    "AUD-37 (AB-05): MATMCD and Vashishtha resumed and finished, so all five systems run end to end. On the probe scenario both hybrids end exactly at their own data-only PC graph (F1 0.407).",
-    "AUD-38 / RQ-17 done: the lost Causal-Copilot run was redone; on gpt-4o-mini without names it ends below plain PC in 9 of 10 families; name reliance 0.094 (gpt-4o 0.167).",
-    "AUD-38 amendment 1: tier A was stopped by a machine restart after 14 runs (12 ok). Vashishtha ties 85-93% of pairs on small scenarios, each a gpt-4o call, so its tier-A runs are cut to five scenarios (tier A now 80 runs, about $48; $7.92 spent). Spend is now read from the call logs, and cap hits resume on their own.",
-    "BND-11 / BLD-06 / CAP-10 done: refinement v2 never falls below the algorithm on held-out data (22 of 22 formula files). Names used only where the data are silent: wrong names cost nothing, right names help in 1 of 10 families (R6 refuted). gpt-4o fenced most JSON replies, so the strict contract abstained on a third of the questions; 0 crashes."
+    "RQ-05: three of the four systems entered lose 0.10 or more directed F1 when variable names are swapped; MATMCD scores below its own data-only graph. Vashishtha is the exception.",
+    "DLV-02 done: every Causal-Copilot arm reached the final stage; its crashes are reported as findings. Direction decided: a measurement paper plus a reliability-first claim ledger. The audit chapter is closed."
    ],
-   "posted_utc": "2026-10-14T16:41:35Z",
+   "posted_utc": "2026-10-15T04:26:17Z",
    "tickets": [
-    "AUD-37",
-    "AUD-38",
     "BLD-06",
-    "BND-11",
     "CAP-10",
-    "RQ-17",
-    "TGT-13"
-   ]
-  },
-  {
-   "done": [
-    "AUD-37 AB-05 LIVE (small): agent probes, install and one-run cost per agent ($5 cap)",
-    "INF-08 Transient OSError EIO on the Docker bind mount: harness writes retry"
-   ],
-   "points": [
-    "AUD-37 (AB-05) done: P8 supported. causaliq, PyWhy-LLM (F1 0.329, $1.43) and Causal-Copilot on gpt-4o-mini ran end to end; MATMCD and Vashishtha stopped on our stub-based caps, not on failures (resume about $0.66). Vashishtha loses 91% of its triplet votes to its own 300-token limit and carries on silently (EXT-06).",
-    "AUD-38 / RQ-17: Causal-Copilot on gpt-4o-mini scored. Swapped names cost 0.094 directed F1 (gpt-4o 0.167); without names it ends below plain PC in 8 of 9 families; M2 refuted on both models. Two runs were hit by a disk I/O error (INF-08: harness writes now retry; one rerun planned).",
-    "AUD-38: the agent grid was re-priced from live numbers (full grid about $92 and 100 hours one at a time). Tier A (90 runs, about $52) answers P9 and P10; the batch runner now runs in parallel with reserved caps; pre-registration hashed before any live call.",
-    "DEC-05: the wedge decision pack is ready (analysis/reports/ab16_wedge_decision.md, approach_v1.md). Recommended: measurement + a reliability-first claim ledger built in gated bundles B0-B5, with measurement-only as the floor."
-   ],
-   "posted_utc": "2026-10-14T06:28:57Z",
-   "tickets": [
-    "AUD-37",
-    "AUD-38",
-    "DEC-05",
-    "EXT-06",
-    "INF-08",
+    "DLV-02",
+    "DLV-04",
+    "RQ-05",
+    "RQ-10",
+    "RQ-11",
+    "RQ-12",
+    "RQ-13",
+    "RQ-14",
     "RQ-17"
    ]
   },
   {
+   "channel": "prod",
    "done": [
-    "AUD-34 AB-02 Second scoreboard: layout and conflict channels on other public benchmarks",
-    "DEC-06 Approve the Atlas v2 page sequence (and whether the market page is public)",
-    "TEAM-08 Atlas v2: the site as a guided sequence of pages (four acts, thirteen pages)"
+    "CAP-17 Scoreboard packaging (CPDAG->DAG rule, summary.csv, validator)",
+    "DOM-14 Theoretical baselines",
+    "REP-09 Replicate Causal Chambers baselines"
    ],
    "points": [
-    "AUD-34 (AB-02) done: Bayesys reproduced (16 of 31 published PC-Stable/FCI cells within tolerance at alpha 0.05; PC 10 of 15). Bayesys's half-credit scoring moves at most 0.03 when columns are shuffled, so its table is not inflated by its layout; CausalArena's forced-choice tie-break is what rewards the leak. causal-learn GES shows an engine order effect on PROPERTY (-0.07 to -0.09).",
-    "DEC-06 / TEAM-08: Atlas v2 approved and built on the same GitHub Pages site: Home plus 11 pages in four acts (problem, findings, what we build, where we are) and a glossary, evidence index and about page. The build fails on terms used before they are taught, results shown before their question, missing numbers, broken links and unlabelled market figures.",
-    "DEC-05: reliability before features recorded for the wedge (ledger invariants, never below data-only, bounded harm, held-out calibration before any product).",
-    "EXT-01: the case for shuffled columns or tie-break-invariant scoring now rests on two benchmarks."
+    "Audit program approved 12 Oct (RQ-04, RQ-05, DOM-13): 17 bundles across research, commercial and wedge tracks; 9 are done, with no API spend",
+    "Controlled CausalArena scoreboard (REP-15, CAP-05): with an order-free collider rule (maxP), PC scores 0.463 on the semantic family against the published 0.333; the scoreboard's orientation rule adds about +0.21 to FCI in every family",
+    "Decision value (CAP-15, RQ-08): on CausalArena, learned graphs capture at most about half of what the identifiable ceiling offers, and on the synthetic family PC and GES are worth less than predicting that nothing moves; on Causal Chambers (physical truth) GES comes within 0.08 of the ceiling",
+    "Engines and provenance (CAP-11, CAP-09, CAP-08): a second open-source library (dodiscover) fails the perfect-information test; none of the ten tools we ran stores an evidence-linked reason for each edge direction; in root-cause analysis, declared service topology with abstention beats a learned graph 0.93 to 0.21 top-3 accuracy",
+    "Next (RQ-10, RQ-17): agent probes and the knowledge-elicitation run (live, about $7 together), the Bayesys download for a second scoreboard, then the wedge decision on 14 Nov"
    ],
-   "posted_utc": "2026-10-13T23:07:43Z",
+   "posted_utc": "2026-10-13T13:33:15Z",
    "tickets": [
-    "AUD-34",
-    "DEC-05",
-    "DEC-06",
-    "EXT-01",
-    "TEAM-08"
+    "BLD-06",
+    "CAP-05",
+    "CAP-08",
+    "CAP-09",
+    "CAP-10",
+    "CAP-11",
+    "CAP-15",
+    "CAP-17",
+    "DOM-13",
+    "DOM-14",
+    "REP-09",
+    "REP-15",
+    "RQ-04",
+    "RQ-05",
+    "RQ-08",
+    "RQ-10",
+    "RQ-17"
+   ]
+  },
+  {
+   "channel": "prod",
+   "done": [
+    "CAP-06 Keep 'direction unknown' edges",
+    "DLV-01 Q1 dataset suite: the datasets Causal-Copilot is run on, frozen, with a card per dataset",
+    "EVL-01 Every score states its regime (D / D+I / D+K / D+I+K)",
+    "EVL-02 Controls on every score (columns shuffled; names real/neutral/moved; supplier…",
+    "EVL-03 Metric set: F1, skeleton P/R, direction accuracy, coverage, calibration, interventional…",
+    "EVL-05 Development / held-out split by scenario number before any tuning",
+    "RQ-16 Does PC's error pattern hold for other algorithms?"
+   ],
+   "points": [
+    "DLV-01 is done: the Quarter 1 dataset suite is frozen. 10 CausalArena test scenarios, each with real, neutral and swapped variable names on identical numbers, columns shuffled, a card per dataset; the rebuild is byte-identical",
+    "RQ-16 is answered: GES and FCI orient about 80% of the edges they commit to correctly (0.81 and 0.80), against 0.54 for PC in CausalArena's released column order",
+    "REP-15: the published LiNGAM row reproduces (F1 0.196 vs 0.203). PC's published score depends on column order: causal-learn's PC changes its skeleton in 230 of 250 files when columns are shuffled (F1 0.335 released vs 0.428 shuffled); the released order is topological",
+    "CAP-06 is done: our frozen refinement rule keeps 95% of the algorithm's direction-unknown edges, where Causal-Copilot's bootstrap step keeps 30% (92 development files). First held-out read, 25 files (TGT-17): within 0.02 of the algorithm's own adjacency F1 in 23 of 25; above the pipeline's bootstrap output in 17 of 25, short of the 90% we pre-registered",
+    "AUD-17: a free stub run of the 30-run experiment completed 6 of 6; estimated live cost about $9-12. One scenario's released variable names are numbered in causal order (34 of 38 edges), which we will report separately",
+    "Next: the 30 live runs (AUD-17, DLV-02), then the 2 Nov checkpoint (DLV-05)"
+   ],
+   "posted_utc": "2026-10-11T01:30:07Z",
+   "tickets": [
+    "AUD-17",
+    "CAP-06",
+    "DLV-01",
+    "DLV-02",
+    "DLV-05",
+    "EVL-01",
+    "EVL-02",
+    "EVL-03",
+    "EVL-05",
+    "REP-15",
+    "RQ-16",
+    "TGT-17"
+   ]
+  },
+  {
+   "channel": "prod",
+   "done": [],
+   "points": [
+    "Quarter 1 deliverables are tracked as DLV-01 to DLV-06: the dataset suite, the runs, the stage-by-stage exploration, the refinement research, the 2 Nov checkpoint and the 4 Dec final",
+    "Architecture mapping (AUD-16) is complete: every ticket in it is closed with checked evidence"
+   ],
+   "posted_utc": "2026-10-10T06:21:07Z",
+   "tickets": [
+    "AUD-16",
+    "DLV-01",
+    "DLV-06"
    ]
   }
  ],
- "generated_utc": "2026-10-20T19:59:49Z",
- "hash": "58b16fbbd9d19388a3ff3196826b49d3565e5a0d608520122ecedd61f1795c6c",
+ "changes_lag": {
+  "dev_since_last_prod": 3,
+  "last_prod_utc": "2026-10-15T04:26:17Z"
+ },
+ "generated_utc": "2026-10-20T20:46:21Z",
+ "hash": "493d8513d76fce0516eef0999eee45cc784b5112922fab8f7eabad5238453068",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -3761,6 +3680,39 @@
    "pillar": "spine",
    "status": "done",
    "title": "Site drift detector (S23): Q2 bindings, evidence-aware re-read, superseded reads, guarded literals"
+  },
+  {
+   "category": "12 Team and communication",
+   "evidence_n": 6,
+   "id": "TEAM-10",
+   "kind": "task",
+   "level": "V2",
+   "note_sha": "07cc6d6c4cc8",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Site v3 gap model: typed landmarks, derived gap types, explanation map, gaps page and story strips"
+  },
+  {
+   "category": "12 Team and communication",
+   "evidence_n": 5,
+   "id": "TEAM-11",
+   "kind": "task",
+   "level": "V2",
+   "note_sha": "0f8d94c482d7",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Site v3 Today page and research explorer"
+  },
+  {
+   "category": "12 Team and communication",
+   "evidence_n": 3,
+   "id": "TEAM-12",
+   "kind": "task",
+   "level": "V2",
+   "note_sha": "1c779cfe484e",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Public feed shows posted prod digests only"
   }
  ],
  "lists": {
@@ -4292,6 +4244,22 @@
    "src": "analysis/reports/ab14_market.md",
    "value": "$1.1B"
   },
+  "cb.k562.for": {
+   "src": "plans/ben13_prereg.json",
+   "value": 0.143
+  },
+  "cb.k562.w": {
+   "src": "plans/ben13_prereg.json",
+   "value": 0.442
+  },
+  "cb.rpe1.for": {
+   "src": "plans/ben13_prereg.json",
+   "value": 0.078
+  },
+  "cb.rpe1.w": {
+   "src": "plans/ben13_prereg.json",
+   "value": 0.384
+  },
   "cc.M1.files": {
    "src": "analysis/results/stability_s2/bnd08_summary.json",
    "value": 23
@@ -4672,6 +4640,14 @@
    "src": "analysis/results/chambers/sample/sample_status.json",
    "value": 53
   },
+  "due.BND-13": {
+   "src": "tracker/status.json",
+   "value": "2026-11-01"
+  },
+  "due.CRS-01": {
+   "src": "tracker/status.json",
+   "value": "2026-10-29"
+  },
   "ida.identified": {
    "src": "analysis/results/dom09/ida_timing.json",
    "value": 0.52
@@ -4723,6 +4699,320 @@
   "leak.shuffled": {
    "src": "analysis/results/causalarena_calibration/order_baseline.json",
    "value": 0.269
+  },
+  "lev.dirs": {
+   "src": "docs/design/q2_lever_map.md",
+   "value": [
+    {
+     "#": "D1",
+     "Measured accuracy on dev (semantic / formula)": "0.87 / 0.83",
+     "Source": "Collider patterns (v-structures)",
+     "Status": "USED, licence",
+     "Verdict": "the workhorse; its errors are fake colliders built on missed or false links",
+     "Yield": "2,507 / 2,145 of ~2,500 committed"
+    },
+    {
+     "#": "D2a",
+     "Measured accuracy on dev (semantic / formula)": "0.64 / 0.60",
+     "Source": "Meek rule 1 (propagate past a collider)",
+     "Status": "TRIED (used in v2, withdrawn in v3)",
+     "Verdict": "too weak to act on; shown as open",
+     "Yield": "316 / 257"
+    },
+    {
+     "#": "D2b",
+     "Measured accuracy on dev (semantic / formula)": "0.75 / 0.80",
+     "Source": "Meek rule 2 (acyclicity)",
+     "Status": "USED, licence",
+     "Verdict": "kept",
+     "Yield": "40 / 56"
+    },
+    {
+     "#": "D2c",
+     "Measured accuracy on dev (semantic / formula)": "1 and 4 cases",
+     "Source": "Meek rules 3, 4",
+     "Status": "USED / N/A",
+     "Verdict": "negligible; R4 needs background knowledge",
+     "Yield": "-"
+    },
+    {
+     "#": "D3",
+     "Measured accuracy on dev (semantic / formula)": "same equivalence class as D1-D2",
+     "Source": "Score-based orientation (GES's own)",
+     "Status": "USED",
+     "Verdict": "nothing beyond the class",
+     "Yield": "-"
+    },
+    {
+     "#": "D4",
+     "Measured accuracy on dev (semantic / formula)": "0.52 / 0.50; gated 0.58 / 0.51",
+     "Source": "Non-Gaussian noise asymmetry (LiNGAM-style, entropy likelihood ratio)",
+     "Status": "TRIED (dirsig-1, 2)",
+     "Verdict": "no licence; confidently wrong on children with mass points (0.04 semantic); pooled formula passes the rule on 23 open links (lead, not licence)",
+     "Yield": "all continuous pairs"
+    },
+    {
+     "#": "D5",
+     "Measured accuracy on dev (semantic / formula)": "ANM 0.55 / 0.50, RECI 0.57 / 0.61, IGCI 0.56 / 0.62",
+     "Source": "Nonlinear additive-noise asymmetry (ANM, RECI, IGCI)",
+     "Status": "TRIED (dirsig-1, 2)",
+     "Verdict": "no licence in D; IGCI on pooled formula 0.86 on 153 acted links (lead; needs a fresh family)",
+     "Yield": "all found links"
+    },
+    {
+     "#": "D6",
+     "Measured accuracy on dev (semantic / formula)": "0.57 / 0.60",
+     "Source": "Conditional-variance (heteroscedastic) asymmetry",
+     "Status": "TRIED (dirsig-1, 2)",
+     "Verdict": "no licence",
+     "Yield": "all found links"
+    },
+    {
+     "#": "D7",
+     "Measured accuracy on dev (semantic / formula)": "measured in B2",
+     "Source": "Interventional shifts as order evidence",
+     "Status": "USED, licence (B2)",
+     "Verdict": "strongest source where targets exist; K3-3 false positives on spurious adjacencies",
+     "Yield": "-"
+    },
+    {
+     "#": "D8",
+     "Measured accuracy on dev (semantic / formula)": "gpt-4o tiers capture 43% / 50% of the oracle tier gain",
+     "Source": "Declared knowledge tiers (orient open pairs only)",
+     "Status": "USED, licence (B3)",
+     "Verdict": "route B; ceiling +0.060 / +0.044",
+     "Yield": "+0.026 / +0.022 F1"
+    },
+    {
+     "#": "D9",
+     "Measured accuracy on dev (semantic / formula)": "-",
+     "Source": "Time order",
+     "Status": "N/A",
+     "Verdict": "-",
+     "Yield": "-"
+    },
+    {
+     "#": "D10",
+     "Measured accuracy on dev (semantic / formula)": "0.62 / 0.62; one-parent children 0.77 / 0.76",
+     "Source": "Conditional distribution similarity (any pair; discrete-aware)",
+     "Status": "TRIED (dirsig-1, 2)",
+     "Verdict": "no licence; best single signal; works only where the child has one parent, which the ledger cannot see",
+     "Yield": "all found links"
+    },
+    {
+     "#": "D10b",
+     "Measured accuracy on dev (semantic / formula)": "C5a 0.55 / 0.47, C6 0.51 / 0.42, C5b 0.60 / 0.62",
+     "Source": "Conditional asymmetry: the pair's signal with each end's other ledger neighbours regressed out (C5a, C6, C5b)",
+     "Status": "TRIED (dirsig-2)",
+     "Verdict": "refuted (P2-4): the conditioning sets are ledger links and carry its errors; on formula conditioning on undetected children reverses the signal",
+     "Yield": "all found links"
+    },
+    {
+     "#": "D14",
+     "Measured accuracy on dev (semantic / formula)": "the mass-point end is the child in 0.42 / 0.35",
+     "Source": "Mass-point side (the clamped end is the child)",
+     "Status": "TRIED (dirsig-2)",
+     "Verdict": "refuted and reversed: categorical and Bernoulli roots carry the mass points; too weak either way",
+     "Yield": "pairs with one mass-point end"
+    },
+    {
+     "#": "D11",
+     "Measured accuracy on dev (semantic / formula)": "obs_int files only",
+     "Source": "Invariance across environments (ICP-style)",
+     "Status": "PARTLY",
+     "Verdict": "overlaps D7",
+     "Yield": "-"
+    },
+    {
+     "#": "D12",
+     "Measured accuracy on dev (semantic / formula)": "-",
+     "Source": "Resampling stability of a direction",
+     "Status": "PARTLY (used for confidence in B4; unmeasured as a filter)",
+     "Verdict": "-",
+     "Yield": "-"
+    },
+    {
+     "#": "D13",
+     "Measured accuracy on dev (semantic / formula)": "Meek R2",
+     "Source": "Global acyclicity beyond Meek (reject a direction that closes a cycle with strong evidence)",
+     "Status": "USED implicitly",
+     "Verdict": "nothing beyond",
+     "Yield": "-"
+    }
+   ]
+  },
+  "lev.links": {
+   "src": "docs/design/q2_lever_map.md",
+   "value": [
+    {
+     "#": "L1",
+     "Measured": "implicit",
+     "Source of evidence": "Marginal dependence (correlation)",
+     "Status": "USED",
+     "Verdict / what is wrong": "fine; misses are weak links (median corr 0.06)",
+     "Where": "PC's first pass; GES score"
+    },
+    {
+     "#": "L2a",
+     "Measured": "calibrated (10% on separated pairs) but underpowered",
+     "Source of evidence": "Conditional independence, Gaussian linear (Fisher z)",
+     "Status": "USED",
+     "Verdict / what is wrong": "the search gap: 14% / 20% of true links are found by this test with the right conditioning set, which the search does not find or keep",
+     "Where": "PC audit of GES (rule C3)"
+    },
+    {
+     "#": "L2b",
+     "Measured": "recovered links 33% precise",
+     "Source of evidence": "Conditional independence, rank-based",
+     "Status": "TRIED",
+     "Verdict / what is wrong": "fails the precision gate",
+     "Where": "K1 battery"
+    },
+    {
+     "#": "L2c",
+     "Measured": "81-94% of mediated shadows still called dependent given the true parents",
+     "Source of evidence": "Conditional independence, nonparametric (cell-mean residual, boosting residual)",
+     "Status": "TRIED",
+     "Verdict / what is wrong": "misspecified at 1,000 rows on these mechanisms; adds shadows faster than links",
+     "Where": "K1"
+    },
+    {
+     "#": "L2d",
+     "Measured": "inside the battery; not isolated",
+     "Source of evidence": "Conditional independence, mixed-type / discrete-aware",
+     "Status": "PARTLY (inside the K1 battery, not isolated)",
+     "Verdict / what is wrong": "57% of the semantic floor class touches a discrete column (15% formula): the floor is conditional on the tests used; a discrete-aware test is UNMEASURED on its own",
+     "Where": "K1 E1"
+    },
+    {
+     "#": "L3a",
+     "Measured": "ties GES by construction",
+     "Source of evidence": "Score-based fit, BIC (GES, lambda 1)",
+     "Status": "USED",
+     "Verdict / what is wrong": "the kernel's links are GES's",
+     "Where": "engine"
+    },
+    {
+     "#": "L3b",
+     "Measured": "misses 32 -> 28%, link precision 0.63 -> 0.49, F1 down",
+     "Source of evidence": "Score penalty lowered (lambda 0.5)",
+     "Status": "TRIED",
+     "Verdict / what is wrong": "fails",
+     "Where": "K1"
+    },
+    {
+     "#": "L3c",
+     "Measured": "-",
+     "Source of evidence": "Nonlinear / generalised scores (GAM, kernel)",
+     "Status": "UNMEASURED",
+     "Verdict / what is wrong": "candidate for the nonlinear-only class (5% of true links)",
+     "Where": "-"
+    },
+    {
+     "#": "L4",
+     "Measured": "misses 32 -> 24%, DV-1 0.756 -> 0.816",
+     "Source of evidence": "More rows: a scenario's replicates pooled (D x R)",
+     "Status": "USED (as a regime)",
+     "Verdict / what is wrong": "the one lever that worked; formula 34 -> 28%",
+     "Where": "K1 E4"
+    },
+    {
+     "#": "L5",
+     "Measured": "reach 20% / 13% of false links; shadow cut (S) at most 36 cuts at 0.67; no-effect cut (N) 37 at 0.65 (formula); adds 9-14% true",
+     "Source of evidence": "Interventional data as link evidence (does Y shift under do(X) given Y's other parents)",
+     "Status": "TRIED (l5-1, 19 Oct)",
+     "Verdict / what is wrong": "no licence; the release is too thin (about 3 effective targets x 40 rows per semantic file; formula's interventions mostly ineffective). The signal is real: given the mediator the shift disappears for 48% of moved shadows and 7% of moved true links. Confirmed links 78% true vs 59% base: a candidate confidence feature",
+     "Where": "obs_int dev, 125 files per family"
+    },
+    {
+     "#": "L6",
+     "Measured": "precision 0.33-0.43",
+     "Source of evidence": "Nonlinear conditional residual (additive-noise style) as a \"weak link\" claim",
+     "Status": "TRIED",
+     "Verdict / what is wrong": "fails; not separable from shadows",
+     "Where": "K1 E2"
+    },
+    {
+     "#": "L7",
+     "Measured": "cuts 5% / 38% of false links",
+     "Source of evidence": "Resampling stability of a link (bootstrap the skeleton)",
+     "Status": "TRIED (linkfilt-1, 25 files per family)",
+     "Verdict / what is wrong": "licence on formula (0.81, 38%, 8% of true lost); not on semantic; no observable condition says which family a dataset is like (L16)",
+     "Where": "AUC true vs false 0.76 / 0.74; cut precision 0.75 / 0.81"
+    },
+    {
+     "#": "L8",
+     "Measured": "L8a cuts 25% of formula false links",
+     "Source of evidence": "Shadow detection by strength ordering in ledger triangles (data-processing inequality; Spearman L8a, mutual information L8b)",
+     "Status": "TRIED (linkfilt-1)",
+     "Verdict / what is wrong": "licence on formula (L8a); not on semantic, where 83% of the true links it would cut sit in a real triangle (55% of semantic true links do, 35% of formula's); same condition problem (L16)",
+     "Where": "L8a cut precision 0.63-0.71 / 0.81; L8b 0.64-0.68 / 0.73"
+    },
+    {
+     "#": "L9",
+     "Measured": "cut 111: 74 false, 37 true; F1 unchanged",
+     "Source of evidence": "Link audit: cut a link the battery separates given common neighbours",
+     "Status": "TRIED",
+     "Verdict / what is wrong": "neutral",
+     "Where": "K1 audit"
+    },
+    {
+     "#": "L10",
+     "Measured": "-",
+     "Source of evidence": "In-degree-aware joint test at variables with many causes (CAP-01)",
+     "Status": "UNMEASURED",
+     "Verdict / what is wrong": "many-parent children are where conditioning sets are large and tests weak",
+     "Where": "-"
+    },
+    {
+     "#": "L11",
+     "Measured": "-",
+     "Source of evidence": "Declared knowledge adding or removing links",
+     "Status": "BARRED",
+     "Verdict / what is wrong": "by design (T3); K3 allows demotion only",
+     "Where": "invariant: knowledge orients open pairs only; never adds, removes, reverses"
+    },
+    {
+     "#": "L12",
+     "Measured": "C3 best of five rules",
+     "Source of evidence": "Engine fusion (PC, GES agreement / union / GES-led-PC-audited)",
+     "Status": "USED",
+     "Verdict / what is wrong": "other engines (LiNGAM, NOTEARS, FCI, AVICI) measured as baselines in the audit, not fused",
+     "Where": "rule C3, chosen on dev"
+    },
+    {
+     "#": "L13",
+     "Measured": "-",
+     "Source of evidence": "Hidden common causes (FCI / PAG marks, CAP-14)",
+     "Status": "UNMEASURED",
+     "Verdict / what is wrong": "common-cause false links are 26% of false links, but those have an observed common cause; latent-cause handling is a different problem",
+     "Where": "-"
+    },
+    {
+     "#": "L14",
+     "Measured": "-",
+     "Source of evidence": "Time order",
+     "Status": "N/A",
+     "Verdict / what is wrong": "CausalArena is cross-sectional",
+     "Where": "-"
+    },
+    {
+     "#": "L15",
+     "Measured": "-",
+     "Source of evidence": "Sparsity / degree priors on the skeleton",
+     "Status": "UNMEASURED",
+     "Verdict / what is wrong": "formula clears ER-2 partly because its graphs are sparser; a prior is a tunable and must be pre-registered",
+     "Where": "-"
+    },
+    {
+     "#": "L16",
+     "Measured": "observable: density / triangle-share gates clear the pooled bar (0.800-0.815, 15-20% of false links) at cut-off 0.5, semantic precision 0.72-0.76; every licensed gate fails the transfer guard (within-family rho <= 0.33); G3 real-triangle estimate rho 0.14. Declared: right +0.009 DV-1 / +0.017 coverage / +0.011 F1 (formula); wrong -0.002 / +0.002 / 0.000 with 8.8% of semantic true links withdrawn",
+     "Source of evidence": "Applicability condition for a link filter: observable from data, or declared as typed knowledge about the domain",
+     "Status": "TRIED (l16-1, 19 Oct)",
+     "Verdict / what is wrong": "observable gate: licensed here, not transferable (not acted on). Declared domain-structure statement: the route to build (bounded harm, T3)",
+     "Where": "125 dev files per family; L8a"
+    }
+   ]
   },
   "lim.for.D": {
    "src": "analysis/results/error_budget/error_budget.json",
@@ -4927,6 +5217,14 @@
   "pub.for.D.best": {
    "src": "analysis/results/published/leaderboard.json",
    "value": 0.524
+  },
+  "pub.real.D": {
+   "src": "docs/project_snapshots/2026-10-19/benchmark-targets.md",
+   "value": 0.391
+  },
+  "pub.real.DI": {
+   "src": "docs/project_snapshots/2026-10-19/benchmark-targets.md",
+   "value": 0.462
   },
   "pub.sem.D.GIES": {
    "src": "analysis/results/published/leaderboard.json",
@@ -5292,6 +5590,142 @@
    "src": "analysis/results/q2_landmarks.json",
    "value": 2
   },
+  "q2a.for.false": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 2712
+  },
+  "q2a.for.found": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 2897
+  },
+  "q2a.for.missed": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 1468
+  },
+  "q2a.for.reversed": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 376
+  },
+  "q2a.for.true": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 4365
+  },
+  "q2a.sem.false": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 2033
+  },
+  "q2a.sem.found": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 3473
+  },
+  "q2a.sem.missed": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 1647
+  },
+  "q2a.sem.reversed": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 330
+  },
+  "q2a.sem.true": {
+   "src": "analysis/results/q2_v3/anatomy_dev.json",
+   "value": 5120
+  },
+  "q2h.for.O0.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.435
+  },
+  "q2h.for.O0.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.843
+  },
+  "q2h.for.O1.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.511
+  },
+  "q2h.for.O1.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.867
+  },
+  "q2h.for.O2.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.565
+  },
+  "q2h.for.O2.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.865
+  },
+  "q2h.for.O3.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.771
+  },
+  "q2h.for.O3.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.854
+  },
+  "q2h.for.O4.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.983
+  },
+  "q2h.for.O4.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 1.0
+  },
+  "q2h.sem.O0.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.513
+  },
+  "q2h.sem.O0.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.793
+  },
+  "q2h.sem.O1.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.571
+  },
+  "q2h.sem.O1.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.839
+  },
+  "q2h.sem.O2.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.637
+  },
+  "q2h.sem.O2.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.833
+  },
+  "q2h.sem.O3.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.78
+  },
+  "q2h.sem.O3.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.859
+  },
+  "q2h.sem.O4.f1": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 0.968
+  },
+  "q2h.sem.O4.p": {
+   "src": "analysis/results/q2_v3/headroom_dev.json",
+   "value": 1.0
+  },
+  "q2k.for.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.47022499075902674
+  },
+  "q2k.for.n": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 20
+  },
+  "q2k.sem.f1": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 0.5225955747254688
+  },
+  "q2k.sem.n": {
+   "src": "analysis/results/q2_b1/heldout.json",
+   "value": 25
+  },
   "q2v3.floor.for": {
    "src": "analysis/results/q2_v3/floor_dev_formula.json",
    "value": 0.06804123711340206
@@ -5320,9 +5754,21 @@
    "src": "analysis/results/q2_v3/v3_test.json",
    "value": 0.8761927236041928
   },
+  "q2v3.for.D.n": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 25
+  },
   "q2v3.for.D.p": {
    "src": "analysis/results/q2_v3/v3_test.json",
    "value": 0.9080878631440429
+  },
+  "q2v3.for.D.rmc4": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.02103674839359848
+  },
+  "q2v3.for.D.rmc4.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": -0.01115936581860038
   },
   "q2v3.for.DxR.cov": {
    "src": "analysis/results/q2_v3/v3_test.json",
@@ -5388,9 +5834,21 @@
    "src": "analysis/results/q2_v3/v3_test.json",
    "value": 0.7832741204967787
   },
+  "q2v3.sem.D.n": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 25
+  },
   "q2v3.sem.D.p": {
    "src": "analysis/results/q2_v3/v3_test.json",
    "value": 0.8302629225541048
+  },
+  "q2v3.sem.D.rmc4": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": 0.028281001413276163
+  },
+  "q2v3.sem.D.rmc4.lo": {
+   "src": "analysis/results/q2_v3/v3_test.json",
+   "value": -0.016280371089151535
   },
   "q2v3.sem.DxR.cov": {
    "src": "analysis/results/q2_v3/v3_test.json",
@@ -5624,8 +6082,10 @@
   "analysis/results/q2_b5/adapters.json": "046a3361af1f6d2c0040f89ba924379d35c0cc2cec8d882fa687da435e08be79",
   "analysis/results/q2_b5/rca_test.json": "aa362861c6080e6248a69c3de5416b017cf4dfd8539ae92d65ed91bebc5d6617",
   "analysis/results/q2_landmarks.json": "efd5f0e8bed240a88a4c95e34725334b9734ce9bdad9ffa846e6a355673cbd75",
+  "analysis/results/q2_v3/anatomy_dev.json": "1a7d1e0975afac9bd77bd0538f05b6f690a00d257a5b3e04388fb94d2e9b2df3",
   "analysis/results/q2_v3/floor_dev_formula.json": "8321e328ec16a0d0193ab1345a2c11ddc0eff765361fcb088099f9936137dc22",
   "analysis/results/q2_v3/floor_dev_semantic.json": "5771b792611c428f23b6c677646afc70524a23e56fb1a8525ed62a936776fc21",
+  "analysis/results/q2_v3/headroom_dev.json": "df2fb92a7f372d797e37e9d2df9126a2db72b6a687a14ac46a558a52d4358916",
   "analysis/results/q2_v3/k0_check_v2_semantic.json": "f3e6108e5e936780456fa1c6db32679059079fffbcbdfb8b3fb73036137752d6",
   "analysis/results/q2_v3/v3_test.json": "f70297b4923ac85e88cfbc6213cac40ef54109587af0b0bf1029d995f1197367",
   "analysis/results/refinement_v1/diagnosis_test_live_s2.json": "52fcfe04d07ce97e1991fee1143b99e1323317561e5eb03745b671e7cb7f9ea6",
@@ -5635,7 +6095,11 @@
   "analysis/results/refinement_v2/test_formula.json": "f7ac5b83661b3e000188ec04e9cd4ad1b372c13b53596002c91ab958afb6e9f7",
   "analysis/results/space/space_coords.json": "b1267a4cdd88c450b8cb82fb9a4de3e1e7d3b1705d9902ef09960c90c0e065f2",
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
-  "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8"
+  "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8",
+  "docs/design/q2_lever_map.md": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
+  "docs/project_snapshots/2026-10-19/benchmark-targets.md": "611f98766333c8e740f459c225f1f6e097b342b133112f59bdd2f9de78773029",
+  "plans/ben13_prereg.json": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
+  "tracker/status.json": "6c393c894efd0dd3f10bb291f42c33a5b79ee7221154dfc9a86941ba649180a7"
  },
- "status_verified_utc": "2026-10-20T17:37:14Z"
+ "status_verified_utc": "2026-10-20T20:45:42Z"
 }

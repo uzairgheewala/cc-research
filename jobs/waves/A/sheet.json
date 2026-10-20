@@ -1,8 +1,8 @@
 {
  "wave": "A",
- "written": "2026-10-20",
+ "written": "2026-10-20T21:06:03Z (rerun 2: freeze deviation record, fetch checks and import, image check, A0 re-run on a new kit)",
  "identity_manifest": "jobs/waves/A/identity.sha256",
- "code_identity": "bab2fc0c6a72d0680d5fd86a875b95df3f0331c9bf8cd51f10e0f80c08618f08",
+ "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0",
  "cpu_probe_image": "python:3.11-slim-bookworm",
  "disk_gb": 60,
  "profiles": {
@@ -152,7 +152,7 @@
     "python",
     "tests/run_tests.py",
     "--pattern",
-    "test_wave_runner.py",
+    "test_wave_runner.py,test_ben13_fetch.py",
     "--out",
     "jobs/waves/A/out/tests_host.json"
    ],
@@ -294,6 +294,32 @@
    "class": "A1"
   },
   {
+   "id": "B_CC",
+   "class": "A1",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "ensureimage"
+   ],
+   "est_min": 5,
+   "mem_gb": 2,
+   "depends_on": [
+    "T_HOST"
+   ],
+   "done": {
+    "file": "jobs/waves/images/cc.json"
+   },
+   "decides": [
+    "M_CC_BASE"
+   ],
+   "ticket": "INF-06",
+   "note": "rerun 2: the Causal-Copilot runtime image was missing (STUB_* exit 125). Builds the overlay in minutes if the base exists, else the base too (20-40 min)."
+  },
+  {
    "id": "STUB_06",
    "profile": "host",
    "cmd": [
@@ -310,7 +336,8 @@
    },
    "est_min": 45,
    "depends_on": [
-    "T_HOST"
+    "T_HOST",
+    "B_CC"
    ],
    "done": {
     "glob": "plans/results/*_fork_bld06_stub.result.json"
@@ -358,7 +385,8 @@
    },
    "est_min": 45,
    "depends_on": [
-    "T_HOST"
+    "T_HOST",
+    "B_CC"
    ],
    "done": {
     "glob": "plans/results/*_fork_ext03_stub.result.json"
@@ -391,15 +419,15 @@
   },
   {
    "id": "FETCH_CB",
-   "profile": "bench_net",
+   "profile": "host",
    "cmd": [
     "python",
     "-m",
     "analysis.ben13.fetch"
    ],
-   "est_min": 60,
+   "est_min": 10,
    "depends_on": [
-    "T_BENCH"
+    "T_HOST"
    ],
    "done": {
     "file": "external/causalbench/FETCHED.json",
@@ -407,7 +435,11 @@
    },
    "mem_gb": 0.5,
    "ticket": "BEN-13",
-   "class": "A1"
+   "class": "A1",
+   "decides": [
+    "M_CB_FETCH"
+   ],
+   "note": "rerun 2: on host Python (standard library). figshare refuses programmatic downloads, so the two expression files are imported from Downloads (browser downloads, checked by size and md5); the other files download as before."
   },
   {
    "id": "FETCH_X5",
@@ -868,7 +900,8 @@
     ]
    },
    "ticket": "BLD-06",
-   "class": "L"
+   "class": "L",
+   "mem_gb": 3
   },
   {
    "id": "CHK_06L",
@@ -892,6 +925,42 @@
    ],
    "ticket": "BLD-06",
    "class": "L"
+  },
+  {
+   "id": "LIVE_06M",
+   "class": "L",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "harness/live_capped.py",
+    "--plan",
+    "plans/fork_bld06_live_main.json",
+    "--cap-usd",
+    "25",
+    "--branch",
+    "main"
+   ],
+   "est_min": 420,
+   "est_usd": 14,
+   "cap_usd": 25,
+   "mem_gb": 3,
+   "depends_on": [
+    "LIVE_06",
+    "B_CC"
+   ],
+   "when": "ok(LIVE_06) and fail(M_CC_BASE)",
+   "done": {
+    "file": "plans/results/fork_bld06_live_main.capped.json",
+    "contains": "\"finished\": true"
+   },
+   "cost_from": {
+    "file": "plans/results/fork_bld06_live_main.capped.json",
+    "ptr": [
+     "usd_total"
+    ]
+   },
+   "ticket": "BLD-06",
+   "note": "only if the base image was rebuilt: unmodified main on the same new image as the branch series (decision D-7, default on)"
   }
  ],
  "must_shows": [
@@ -1297,6 +1366,39 @@
     "value": 25
    },
    "gate": false
+  },
+  {
+   "id": "M_CC_BASE",
+   "bundle": "INF-06",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/images/cc.json",
+    "ptr": [
+     "base_id"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": "sha256:33d3832774f6a343a33b3594200df811b76c1e4dd42576fb01d96b7ca6a34c23"
+   },
+   "gate": false,
+   "note": "the Causal-Copilot base image is the one BND-08's runs used (manifests/image_ids.json of 6 Oct)"
+  },
+  {
+   "id": "M_CB_FETCH",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "args": {
+    "file": "external/causalbench/FETCHED.json",
+    "ptr": [
+     "_required_ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
   }
  ],
  "decisions": [
@@ -1359,6 +1461,22 @@
   {
    "if": "skipped(LIVE_06)",
    "then": "the live run waited on the branch stubs (or the fork): after the fork, run the sheet again (finished jobs are not repeated)"
+  },
+  {
+   "if": "pass(M_CC_BASE)",
+   "then": "the stubs and the branch series ran on BND-08's base image: the branch is compared with BND-08's unmodified runs, as planned"
+  },
+  {
+   "if": "fail(M_CC_BASE)",
+   "then": "the base image was rebuilt (packages downloaded again): the branch is compared with LIVE_06M's main control on the same image; BND-08 is history for this comparison"
+  },
+  {
+   "if": "fail(M_CB_FETCH)",
+   "then": "the two figshare files were not in Downloads (or failed size / md5): download them in a browser and run the sheet again; FETCHED.json names each file's reason"
+  },
+  {
+   "if": "pass(M_STUB06_ID) and failed(LIVE_06)",
+   "then": "the branch series stopped (cap, quota or a crash): plans/results/fork_bld06_live.capped.json says which; rerunning resumes it"
   }
  ],
  "return_files": [
@@ -1373,7 +1491,10 @@
   "external/causalbench/FETCHED.json",
   "external/x5/avici_cache/FETCHED.json",
   "plans/results/fork_bld06_live.capped.json",
-  "jobs/waves/images/*.id"
+  "jobs/waves/images/*.id",
+  "jobs/waves/images/cc.json",
+  "plans/results/fork_bld06_live_main.capped.json",
+  "manifests/image_ids.json"
  ],
  "identity_globs": [
   "analysis/a3_make_requests.py",
@@ -1688,6 +1809,11 @@
   "tracker/selftest_trace.py",
   "tracker/snapshot.py",
   "tracker/trace.py",
-  "tracker/verify.py"
+  "tracker/verify.py",
+  "plans/fork_bld06_live_main.json",
+  "plans/v3_freeze_deviation_1.json",
+  "tests/test_family2_guard.py",
+  "tests/test_ben13_fetch.py",
+  "manifests/evidence/family2_freeze_deviation_2026-10-20.sha256"
  ]
 }

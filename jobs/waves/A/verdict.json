@@ -1,6 +1,6 @@
 {
  "wave": "A",
- "written": "2026-10-20T19:28:11Z",
+ "written": "2026-10-20T20:41:20Z",
  "code_identity": "bab2fc0c6a72d0680d5fd86a875b95df3f0331c9bf8cd51f10e0f80c08618f08",
  "identity": {
   "ok": true,
@@ -13,7 +13,8 @@
   "cpus": 16,
   "workers": 2,
   "mem_gb": 0,
-  "started": "2026-10-20T16:49:41Z"
+  "started": "2026-10-20T16:49:41Z",
+  "finished": "2026-10-20T20:41:20Z"
  },
  "preflight": {
   "disk_free_gb": 149.8,
@@ -128,7 +129,8 @@
    "wall_min": 47.84
   },
   "F2_FILL": {
-   "status": "not_run"
+   "status": "ok",
+   "wall_min": 137.18
   },
   "CB_PRE_K": {
    "status": "skipped",
@@ -139,7 +141,9 @@
    "why": "dependency not ok"
   },
   "F2_READ": {
-   "status": "not_run"
+   "status": "failed",
+   "wall_min": 0.02,
+   "exit": 1
   },
   "CB_CELLS_K": {
    "status": "skipped",

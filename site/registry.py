@@ -345,3 +345,50 @@ REG.update(_v3)
 SUPERSEDED = {
     "q2.b4.": {"by": "q2v3.<family>.<regime>.*", "why": "B4 was the first held-out read; kernel v3's second read binds ER-2 / ER-3"},
 }
+
+
+# ---- s24 (site v3 data layer, TEAM-10): numbers for Today, gaps and explore (project doc claude/site-v3-design-2026-10-20.md)
+def MDT(path, heading):
+    """The first markdown table after the line starting with heading (rows as dicts keyed by the header; tracker/snapshot.py)."""
+    return {"src": path, "mdtable": heading}
+
+
+H3D, AN3 = R + "q2_v3/headroom_dev.json", R + "q2_v3/anatomy_dev.json"
+_s24 = {}
+for _f, _k in (("semantic", "sem"), ("formula", "for")):
+    _s24["q2k.%s.f1" % _k] = J(HO, "families", _f, "vs_pc_maxp", "kernel", "f1")
+    _s24["q2k.%s.n" % _k] = J(HO, "families", _f, "vs_ges", "f1_diff", "clusters")
+    for _o in ("O0", "O1", "O2", "O3", "O4"):
+        _s24["q2h.%s.%s.f1" % (_k, _o)] = J(H3D, "families", _f, "v3_D", "ladder", _o, "f1")
+        _s24["q2h.%s.%s.p" % (_k, _o)] = J(H3D, "families", _f, "v3_D", "ladder", _o, "precision")
+    for _g in ("true", "found", "missed", "false"):
+        _s24["q2a.%s.%s" % (_k, _g)] = J(AN3, "families", _f, "v3_D", "links", _g)
+    _s24["q2a.%s.reversed" % _k] = J(AN3, "families", _f, "v3_D", "directions", "reversed")
+    _s24["q2v3.%s.D.n" % _k] = J(V3T, "families", _f, "D", "scenarios")
+    _s24["q2v3.%s.D.rmc4" % _k] = J(V3T, "families", _f, "D", "realised_minus_claimed_intervals", "4", "point")
+    _s24["q2v3.%s.D.rmc4.lo" % _k] = J(V3T, "families", _f, "D", "realised_minus_claimed_intervals", "4", "lo")
+_BT = "docs/project_snapshots/2026-10-19/benchmark-targets.md"
+_s24.update({
+    "pub.real.D": L(_BT, "0.391", "0.391 observational (CDFM, 13 datasets)"),
+    "pub.real.DI": L(_BT, "0.462", "0.462 with interventions (TabCausal, 7 datasets)"),
+    "cb.k562.w": J("plans/ben13_prereg.json", "published", "k562", "md_k5000", "wasserstein"),
+    "cb.k562.for": J("plans/ben13_prereg.json", "published", "k562", "md_k5000", "for"),
+    "cb.rpe1.w": J("plans/ben13_prereg.json", "published", "rpe1", "md_k5000", "wasserstein"),
+    "cb.rpe1.for": J("plans/ben13_prereg.json", "published", "rpe1", "md_k5000", "for"),
+    "due.CRS-01": F("tracker/status.json", lambda d: next(i["due"] for i in d["items"] if i["id"] == "CRS-01")),
+    "due.BND-13": F("tracker/status.json", lambda d: next(i["due"] for i in d["items"] if i["id"] == "BND-13")),
+    "lev.links": MDT("docs/design/q2_lever_map.md", "## 2."),
+    "lev.dirs": MDT("docs/design/q2_lever_map.md", "## 3."),
+})
+# files other parallel chats write (B1 explanation ledger, B4 power table): registered only once they exist, so the
+# snapshot never fails on a file that is not there yet; site/gaps_spec.json says whether the site requires them.
+import os as _os  # noqa: E402
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+for _key, _path in (("q2x.ledger", R + "q2_v3/explain_ledger_dev.json"), ("q2p.power", R + "q2_v3/power_dev.json")):
+    if _os.path.exists(_os.path.join(_ROOT, _path)):
+        _s24[_key] = F(_path, lambda d: d)
+REG.update(_s24)
+
+# visibility (s24; repo split, decision R-1 open): source paths that live in the private repository. A public page may not
+# link them and the explorer export may not contain them (site/build.py fails). Empty until R-1 is decided.
+PRIVATE_PATHS = []

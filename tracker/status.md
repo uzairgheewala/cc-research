@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-20T17:37:14Z)
+# Tracker status (verified 2026-10-20T21:08:01Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -386,3 +386,6 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | TEAM-09 | ✅ | Site drift detector (S23): Q2 bindings, evidence-aware re-read, superseded reads, guarded literals | V2 |  |
+| TEAM-10 | 👀 | Site v3 gap model: typed landmarks, derived gap types, explanation map, gaps page and story strips | V2 |  |
+| TEAM-11 | 👀 | Site v3 Today page and research explorer | V2 |  |
+| TEAM-12 | 👀 | Public feed shows posted prod digests only | V2 |  |

@@ -26,6 +26,10 @@ from registry import SUPERSEDED  # noqa: E402
 
 REVIEWED = HERE / "reviewed.json"
 WORD_BUDGET = 1800
+# s25: pages marked plain=True (Today) may not use ticket ids or metric acronyms in their text
+PLAIN_BANNED = [(r"\b[A-Z]{2,5}-\d+[a-z]?\b", "a ticket or landmark id"), (r"\bDV-1\b", "DV-1"), (r"\bECE\b", "ECE"),
+                (r"\bBIC\b", "BIC"), (r"\bKCI\b", "KCI"), (r"\bCPDAG\b", "CPDAG"), (r"\bAC@3\b", "AC@3"),
+                (r"\bSHD\b", "SHD"), (r"\bF1\b", "F1"), (r"\bMEC\b", "MEC")]
 # registry key prefix -> first page allowed to print it (a result may not appear before its question)
 FIRST_PAGE = {"leak.": "scoreboard", "ab01.": "scoreboard", "ab02.": "scoreboard", "ab03.": "scoreboard", "bnd06.": "scoreboard",
               "ab04.": "decisions", "ab09.": "decisions", "cc.": "names", "ab07.": "names", "ab05.": "names",
@@ -219,6 +223,8 @@ def main():
             errors.append("%s: registry key %s not in snapshot" % (p["slug"], e))
             continue
         body = mod.BODY
+        import gapkit as _gk  # s26 (TEAM-10): the board strips (site/gaps_spec.json strip_on)
+        body += _gk.strip(p["slug"])
         kicker = ("Act %s · %s" % (p["act"], dict(ACTS)[p["act"]])) if p["act"] in dict(ACTS) else ("Reference" if p["act"] == "R" else "Start here")
         page_html = ('<div class="page"><div><div class="kicker">%s</div><h1 class="title">%s</h1></div>\n%s\n%s</div>'
                      % (kicker, html.escape(p["title"]), body, prevnext(p["slug"])))
@@ -230,8 +236,12 @@ def main():
         nums = set(re.findall(r'class="ev"[^>]*title="([^" ]+) ·', body))
         report["pages"][p["slug"]] = {"words": words, "terms": sorted(used_terms), "numbers": sorted(nums)}
         pagekit.PRINTED |= nums
-        if words > WORD_BUDGET:
-            warnings.append("%s: %d words (budget %d)" % (p["slug"], words, WORD_BUDGET))
+        if words > (p.get("words") or WORD_BUDGET):
+            (errors if p.get("words") else warnings).append("%s: %d words (budget %d)" % (p["slug"], words, p.get("words") or WORD_BUDGET))
+        for _pat, _why in (PLAIN_BANNED if p.get("plain") else []):
+            _m = re.search(_pat, txt)
+            if _m:
+                errors.append("%s: plain-language page uses %s: ...%s..." % (p["slug"], _why, txt[max(0, _m.start() - 40): _m.end() + 40]))
         if p["slug"] not in SCAN_EXEMPT:
             for tid in used_terms:
                 if tid not in TERMS:
@@ -261,6 +271,18 @@ def main():
                 errors.append("%s: leftover from the single-page site: %s" % (p["slug"], bad))
     # S23: hand-written text bound to a ticket's or bundle's status (site/literals.json)
     guards = json.load(open(HERE / "literals.json", encoding="utf-8"))["guards"] if (HERE / "literals.json").exists() else []
+    # s24 (TEAM-10): the gap model (site/gaps_spec.json, site/gapkit.py) and the repo split's private paths
+    import gapkit
+    import registry as _reg
+    gapkit.check_spec(common.SNAP["items"])
+    errors += sorted(set(gapkit.PROBLEMS))
+    for _note in sorted(set(gapkit.NOTES)):
+        print("INFO  " + _note)
+    _priv = tuple(getattr(_reg, "PRIVATE_PATHS", []))
+    for slug, h in (rendered.items() if _priv else []):
+        for _src in re.findall(r'class="ev"[^>]*title="[^" ]+ · ([^"]+)"', h):
+            if _src.startswith(_priv):
+                errors.append("%s: links %s, which is private (registry.PRIVATE_PATHS)" % (slug, _src))
     errors += literal_errors(rendered, common.SNAP["items"] + [{"id": b["id"], "status": b["status"]} for b in common.SNAP["bundles"]], guards)
     # every term is defined on its introducing page
     for tid, (_n, _d, intro, _f) in TERMS.items():
@@ -275,6 +297,10 @@ def main():
         for t in re.findall(r'href="glossary\.html#([^"]+)"', h):
             if t not in TERMS:
                 errors.append("%s: glossary anchor %s missing" % (slug, t))
+    # s28 (TEAM-12): the public feed carries posted prod digests only
+    for _c in common.SNAP.get("changes") or []:
+        if _c.get("channel") != "prod":
+            errors.append("changes: a %s digest (%s) is in the public feed; only posted prod digests may be" % (_c.get("channel"), _c.get("posted_utc")))
     if any(k not in common.SNAP["metrics"] for k in common.USED):
         errors.append("numbers not in snapshot: %s" % sorted(k for k in common.USED if k not in common.SNAP["metrics"]))
 
@@ -316,6 +342,16 @@ tracker writes from the committed result files. <a href="about.html">How this si
 """
         (out / href(p["slug"])).write_text(doc, encoding="utf-8", newline="\n")
     shutil.copyfile(a.snapshot, out / "snapshot.json")
+    # s27 (TEAM-11): the explorer's data file, exactly the bytes whose sha256 the page prints
+    if "pg_explore" in sys.modules:
+        import registry as _reg
+        _ex = sys.modules["pg_explore"].EXPORT_TEXT
+        (out / "explore.json").write_text(_ex, encoding="utf-8", newline="\n")
+        if len(_ex.encode("utf-8")) > 300 * 1024:
+            errors.append("explore.json: %d bytes, over the 300 KB budget" % len(_ex.encode("utf-8")))
+        for _pp in getattr(_reg, "PRIVATE_PATHS", []):
+            if _pp in _ex:
+                errors.append("explore.json mentions a private path: %s" % _pp)
     (out / ".nojekyll").write_text("")
     report.update({"errors": errors, "warnings": warnings, "reread": pagekit.REREAD,
                    "numbers_used": len(common.USED), "unused": sorted(set(snap["metrics"]) - common.USED)})

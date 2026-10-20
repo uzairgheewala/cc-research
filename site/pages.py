@@ -14,9 +14,9 @@ ACTS = [
 ]
 
 PAGES = [
-    dict(slug="index", act=None, n=0, short="Home", module="pg_home",
-         title="Causal Atlas", question="What is this project, and where should I start?",
-         tickets=["DEC-05", "AUD-45", "TGT-18", "TGT-19", "BEN-13", "INF-10"]),
+    dict(slug="index", act=None, n=0, short="Today", module="pg_today", words=600, plain=True,
+         title="Causal Atlas", question="Where does the research stand today, against every landmark, and what does it mean for what we deliver?",
+         tickets=["DEC-05", "AUD-45", "TGT-18", "TGT-19", "BEN-13", "INF-10", "TEAM-11"]),
     dict(slug="primer", act="I", n=1, short="What causal discovery is", module="pg_primer",
          title="What causal discovery is", question="What is being discovered, and why is direction the hard part?", tickets=[]),
     dict(slug="scoring", act="I", n=2, short="Scoring and the ceiling", module="pg_scoring",
@@ -43,21 +43,27 @@ PAGES = [
     dict(slug="market", act="III", n=9, short="Who would use it", module="pg_market",
          title="Who would use it: the market", question="Who would pay for an audited causal claim, and where should it start?",
          tickets=["AUD-45", "STR-06", "AUD-41"]),
-    dict(slug="status", act="IV", n=10, short="Plan and status", module="pg_status",
+    dict(slug="gaps", act="IV", n=10, short="How far, and why", module="pg_gaps", words=2600,
+         title="How far, and why", question="How far is each result from the bar set for it, and why?",
+         tickets=["TGT-18", "TGT-19", "CAP-07", "BEN-13", "TEAM-10"]),
+    dict(slug="status", act="IV", n=11, short="Plan and status", module="pg_status",
          title="Plan and status", question="What is done, what is next, and what is waiting on whom?",
          tickets=["TGT-18", "TGT-19", "CAP-07", "BLD-16", "BEN-13", "INF-06", "INF-10"]),
-    dict(slug="changes", act="IV", n=11, short="What changed recently", module="pg_changes",
+    dict(slug="changes", act="IV", n=12, short="What changed recently", module="pg_changes",
          title="What changed recently", question="What moved since I last looked?", tickets=[]),
-    dict(slug="glossary", act="R", n=12, short="Glossary", module="pg_glossary",
+    dict(slug="explore", act="R", n=16, short="Explore", module="pg_explore", words=20000,
+         title="Explore the research", question="What has the research measured so far, and how does it fit together?",
+         tickets=["TEAM-11"]),
+    dict(slug="glossary", act="R", n=13, short="Glossary", module="pg_glossary",
          title="Glossary", question="What does a term mean, and where is it taught?", tickets=[]),
-    dict(slug="evidence", act="R", n=13, short="Evidence index", module="pg_evidence",
+    dict(slug="evidence", act="R", n=14, short="Evidence index", module="pg_evidence", words=4000,
          title="Evidence index", question="Where does each number on this site come from?", tickets=[]),
-    dict(slug="about", act="R", n=14, short="How this site is built", module="pg_about",
+    dict(slug="about", act="R", n=15, short="How this site is built", module="pg_about",
          title="How this site is built", question="How is this site made, and which pages need re-reading?", tickets=[]),
 ]
 
 # pages exempt from the surface-form term scan (they link terms to the glossary instead of teaching them)
-SCAN_EXEMPT = {"index", "status", "changes", "glossary", "evidence", "about"}
+SCAN_EXEMPT = {"index", "status", "changes", "glossary", "evidence", "about", "explore"}
 # the narrative sequence (prev/next run through these; reference pages link back home)
 SEQUENCE = [p["slug"] for p in PAGES if p["act"] != "R"]
 # old single-page anchors -> new pages (index.html#space etc. keep working)

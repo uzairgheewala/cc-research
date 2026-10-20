@@ -1,0 +1,29 @@
+{
+ "version": 1,
+ "tickets": [
+  "TGT-18",
+  "CAP-07"
+ ],
+ "deviates_from": "plans/v3_freeze.json (id 0cda331ea81cf0dd)",
+ "written_utc": "2026-10-20T21:06:03Z",
+ "status": "written and hashed before the family-2 read (wave A, second rerun); no family-2 file had been scored by v3 when this was written (analysis/results/q2_v3/access_log.jsonl has no family-2 entry)",
+ "what": "The freeze's code hash covers every .py file under kernel/, engines/, score/, supplier/, audit/. Three files were added to kernel/ after the freeze (15 Oct) for the explanation and lever rounds; they belong to no v3 code path. No frozen file changed and none was removed, and the data-only core hash equals the freeze's. So the whole-tree hash differs while the frozen code is byte-identical.",
+ "added_files": {
+  "kernel/asym.py": "4a1b4a6e8c2d1a24d36aada5e0d6f68b150bcabbe952e3cda89f770ef6aa7134",
+  "kernel/asym_cond.py": "8d49c1efda50c0e5b4da802ad34cef4c8aa8d44b3d35776e4d7ac6306fa52c13",
+  "kernel/linkfilt.py": "ef0ad59b1358c6861aeba8825f9d475647ab09b3fc3178e62c6ac4c0ddb10ce5"
+ },
+ "added_purpose": {
+  "kernel/asym.py": "pairwise direction signals (lever map D4-D10), 19 Oct",
+  "kernel/asym_cond.py": "conditional direction signals built on asym.py, 19 Oct",
+  "kernel/linkfilt.py": "candidate link filters L7/L8, 19 Oct"
+ },
+ "rule_used_instead": [
+  "every file listed in the freeze has the frozen sha256 (none changed, none missing)",
+  "the data-only core hash equals the freeze's core_sha256",
+  "the files beyond the freeze are exactly added_files, with these sha256",
+  "the read process blocks importing any added file (an import raises), in the parent and in every worker",
+  "the four confidence models have the frozen sha256 (unchanged check)"
+ ],
+ "consequence": "the family-2 read is a read of frozen kernel v3; the read's output records this deviation's sha256"
+}

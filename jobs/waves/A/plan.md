@@ -33,3 +33,10 @@ The decision table is in `sheet.json`, under `decisions`. The verdict marks any 
 - Family 2 transfers: ER-2 and ER-3 are reported per family. If ECE is above 0.05, calibration is stated per family only.
 - BEN-13 reproduces the published counts and rows: wave B writes the shortcut-share table. If it does not: diagnosis first, and no claim.
 - Live BLD-06 passes (at least 25 of 30 runs complete): wave B scores it against BND-08 for the Q1 checkpoint.
+
+## Rerun 2 (20 Oct, after the second run's intake)
+
+Fixed by class: the family-2 guard (plans/v3_freeze_deviation_1.json), the CausalBench fetcher (checks, browser import,
+host Python), the missing Causal-Copilot image (run B_CC, `cc.ps1 ensureimage`). New: must-shows M_CC_BASE (base image
+equals BND-08's) and M_CB_FETCH; run LIVE_06M (main control on the same image, only when M_CC_BASE fails; about $14,
+cap $25; decision D-7, default on). Class A0 runs re-run because the kit changed; finished heavy runs are kept.

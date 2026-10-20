@@ -1,0 +1,24 @@
+Wave A rerun 2: freeze deviation record, checked CausalBench fetch, image check
+
+Tickets: TGT-18, BEN-13, INF-06, INF-10, BLD-06, REP-07, BEN-07
+
+The second run of sheet A failed in three classes; each is fixed at its class, not per run.
+
+- Family-2 read (TGT-18): the v3 freeze hashes every .py file under kernel/, and three files were
+  added there after the freeze. The read now checks the frozen files one by one, the data-only core
+  and the added files against plans/v3_freeze_deviation_1.json (hashed in manifests/evidence before
+  any family-2 file was scored), and blocks importing the added files in the read process.
+  tests/test_family2_guard.py.
+- CausalBench fetch (BEN-13): figshare sends empty bodies to programmatic requests and the old
+  fetcher accepted a 0-byte file. Files are checked (not empty, magic bytes, published size and
+  md5), set aside when they fail, and the two expression files are imported from a browser
+  download. Runs on host Python. tests/test_ben13_fetch.py.
+- Branch stubs (INF-06): cc.ps1 ensureimage builds only the missing Causal-Copilot images and
+  records whether the base is still BND-08's; plans/fork_bld06_live_main.json is the main-control
+  twin used only when it is not.
+- Runner (INF-10): class A0 runs re-run when the kit's code identity changes;
+  tests/run_tests.py takes comma-separated patterns.
+- Tracker: jobs/patches/p30_wave_a_rerun2.py (X5 result recorded; D1 stays).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

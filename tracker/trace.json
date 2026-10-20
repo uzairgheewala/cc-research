@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-20T20:00:41Z",
- "status_verified_utc": "2026-10-20T17:37:14Z",
+ "generated_utc": "2026-10-20T21:08:48Z",
+ "status_verified_utc": "2026-10-20T21:08:01Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -2886,6 +2886,33 @@
    "level": "V2",
    "in_prod": false
   },
+  "TEAM-10": {
+   "kind": "dev",
+   "title": "Site v3 gap model: typed landmarks, derived gap types, explanation map, gaps page and story strips",
+   "category": "12 Team and communication",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
+   "in_prod": false
+  },
+  "TEAM-11": {
+   "kind": "dev",
+   "title": "Site v3 Today page and research explorer",
+   "category": "12 Team and communication",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
+   "in_prod": false
+  },
+  "TEAM-12": {
+   "kind": "dev",
+   "title": "Public feed shows posted prod digests only",
+   "category": "12 Team and communication",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "level": "V2",
+   "in_prod": false
+  },
   "REP-14": {
    "kind": "prod",
    "prod_title": "Replicate Causal-Copilot paper claims and results",
@@ -3256,6 +3283,9 @@
    "kind": "file"
   },
   "file:docker/requirements_x5.txt": {
+   "kind": "file"
+  },
+  "file:analysis/results/x5/x5_dev.json": {
    "kind": "file"
   },
   "file:analysis/results/causalarena_calibration/sortability.json": {
@@ -4467,6 +4497,9 @@
   "file:analysis/fork_check.py": {
    "kind": "file"
   },
+  "file:plans/fork_bld06_live_main.json": {
+   "kind": "file"
+  },
   "project:claude/shared-doc-causal-section-draft.md": {
    "kind": "project"
   },
@@ -4725,6 +4758,15 @@
   "file:analysis/q2_family2.py": {
    "kind": "file"
   },
+  "file:plans/v3_freeze_deviation_1.json": {
+   "kind": "file"
+  },
+  "file:manifests/evidence/family2_freeze_deviation_2026-10-20.sha256": {
+   "kind": "file"
+  },
+  "file:tests/test_family2_guard.py": {
+   "kind": "file"
+  },
   "file:docs/design/q2_kernel_v3_proposals.md": {
    "kind": "file"
   },
@@ -4824,6 +4866,9 @@
   "file:docker/requirements_bench.txt": {
    "kind": "file"
   },
+  "file:tests/test_ben13_fetch.py": {
+   "kind": "file"
+  },
   "file:docs/WAVES.md": {
    "kind": "file"
   },
@@ -4867,6 +4912,42 @@
    "kind": "file"
   },
   "file:tests/test_site_s23.py": {
+   "kind": "file"
+  },
+  "file:site/gaps_spec.json": {
+   "kind": "file"
+  },
+  "file:site/gapkit.py": {
+   "kind": "file"
+  },
+  "file:site/pgs/pg_gaps.py": {
+   "kind": "file"
+  },
+  "file:tests/test_site_v3.py": {
+   "kind": "file"
+  },
+  "file:jobs/patches/s24.py": {
+   "kind": "file"
+  },
+  "file:jobs/patches/s26.py": {
+   "kind": "file"
+  },
+  "file:site/pgs/pg_today.py": {
+   "kind": "file"
+  },
+  "file:site/pgs/pg_explore.py": {
+   "kind": "file"
+  },
+  "file:site/deliverables.json": {
+   "kind": "file"
+  },
+  "file:jobs/patches/s25.py": {
+   "kind": "file"
+  },
+  "file:jobs/patches/s27.py": {
+   "kind": "file"
+  },
+  "file:jobs/patches/s28.py": {
    "kind": "file"
   },
   "slacklist:F0C869P25NE/Rec0C869Y8C9Y": {
@@ -8539,6 +8620,13 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:analysis/results/x5/x5_dev.json",
+   "rel": "evidences",
+   "dst": "REP-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/causalarena_calibration/sortability.json",
    "rel": "evidences",
    "dst": "REP-08",
@@ -10597,6 +10685,13 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:analysis/results/x5/x5_dev.json",
+   "rel": "evidences",
+   "dst": "BEN-07",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/causalarena_calibration/protocol_check.json",
    "rel": "evidences",
    "dst": "BEN-08",
@@ -12291,6 +12386,20 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:cc.ps1",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:plans/fork_bld06_live_main.json",
+   "rel": "evidences",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "project:claude/shared-doc-causal-section-draft.md",
    "rel": "evidences",
    "dst": "TEAM-01",
@@ -13579,6 +13688,27 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:plans/v3_freeze_deviation_1.json",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:manifests/evidence/family2_freeze_deviation_2026-10-20.sha256",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_family2_guard.py",
+   "rel": "evidences",
+   "dst": "TGT-18",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:analysis/results/q2_b1/heldout.json",
    "rel": "evidences",
    "dst": "TGT-19",
@@ -13992,6 +14122,13 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:tests/test_ben13_fetch.py",
+   "rel": "evidences",
+   "dst": "BEN-13",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:docs/WAVES.md",
    "rel": "evidences",
    "dst": "INF-10",
@@ -14069,6 +14206,13 @@
    "origin": "catalogue"
   },
   {
+   "src": "file:tests/run_tests.py",
+   "rel": "evidences",
+   "dst": "INF-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
    "src": "file:site/build.py",
    "rel": "evidences",
    "dst": "TEAM-09",
@@ -14121,6 +14265,104 @@
    "src": "file:tracker/snapshot.py",
    "rel": "evidences",
    "dst": "TEAM-09",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/gaps_spec.json",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/gapkit.py",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/pgs/pg_gaps.py",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tests/test_site_v3.py",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/patches/s24.py",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/patches/s26.py",
+   "rel": "evidences",
+   "dst": "TEAM-10",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/pgs/pg_today.py",
+   "rel": "evidences",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/pgs/pg_explore.py",
+   "rel": "evidences",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/deliverables.json",
+   "rel": "evidences",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/patches/s25.py",
+   "rel": "evidences",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/patches/s27.py",
+   "rel": "evidences",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:tracker/snapshot.py",
+   "rel": "evidences",
+   "dst": "TEAM-12",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:site/pgs/pg_changes.py",
+   "rel": "evidences",
+   "dst": "TEAM-12",
+   "note": "",
+   "origin": "catalogue"
+  },
+  {
+   "src": "file:jobs/patches/s28.py",
+   "rel": "evidences",
+   "dst": "TEAM-12",
    "note": "",
    "origin": "catalogue"
   },
@@ -19760,6 +20002,20 @@
    "origin": "scan"
   },
   {
+   "src": "file:plans/fork_bld06_live_main.json",
+   "rel": "mentions",
+   "dst": "BLD-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/fork_bld06_live_main.json",
+   "rel": "mentions",
+   "dst": "BND-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:plans/fork_bld06_stub.json",
    "rel": "mentions",
    "dst": "BLD-06",
@@ -20687,6 +20943,20 @@
    "src": "file:plans/q2_explain_prereg.json",
    "rel": "mentions",
    "dst": "TGT-19",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/v3_freeze_deviation_1.json",
+   "rel": "mentions",
+   "dst": "CAP-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:plans/v3_freeze_deviation_1.json",
+   "rel": "mentions",
+   "dst": "TGT-18",
    "note": "",
    "origin": "scan"
   },

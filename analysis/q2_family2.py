@@ -13,7 +13,9 @@ disagreement) never reach it; rho only changes the true graph G_D. Scored exactl
 the frozen semantic D confidence model (calibration/v3_semantic_D.pkl, sha256 in plans/v3_freeze.json), DV-1 claims over
 every variable as a target (no interventional files exist here), scenario-cluster bootstrap intervals (B = 2000) with
 the source scenario (slug) as the cluster. ER-2 and ER-3 as in plans/v3_prereg.json.
-The read refuses unless the code and the confidence models match the v3 freeze, and refuses a second read.
+The read refuses unless the frozen code and the confidence models match the v3 freeze, and refuses a second read. Files
+added to the kernel trees after the freeze are allowed only as listed in plans/v3_freeze_deviation_1.json (hashed in
+manifests/evidence/), and are blocked from import during the read.
 """
 import argparse, hashlib, json, multiprocessing as mp, os, sys, time
 from pathlib import Path
@@ -107,13 +109,64 @@ def cmd_fill(a):
     return 0
 
 
+DEVIATION = ROOT / "plans" / "v3_freeze_deviation_1.json"
+DEVIATION_EV = ROOT / "manifests" / "evidence" / "family2_freeze_deviation_2026-10-20.sha256"
+
+
+def freeze_status(rec, listing, core_now, deviation):
+    """Frozen code identity file by file (plans/v3_freeze_deviation_1.json): every frozen file unchanged and present,
+    the data-only core equal, and the files beyond the freeze exactly the deviation record's (same sha256)."""
+    frozen = rec["files"]
+    changed = sorted(k for k in frozen if k in listing and listing[k] != frozen[k])
+    missing = sorted(k for k in frozen if k not in listing)
+    added = {k: listing[k] for k in sorted(listing) if k not in frozen}
+    allowed = (deviation or {}).get("added_files", {})
+    unexpected = sorted(k for k in added if allowed.get(k) != added[k])
+    ok = not changed and not missing and not unexpected and core_now == rec["core_sha256"]
+    return {"ok": ok, "changed": changed, "missing": missing, "added": added, "unexpected_added": unexpected,
+            "core_ok": core_now == rec["core_sha256"]}
+
+
+class _Blocked:
+    """Import blocker for the files added after the freeze: an import of any of them raises inside the read process
+    (forked workers inherit sys.meta_path)."""
+    def __init__(self, mods):
+        self.mods = set(mods)
+
+    def find_spec(self, name, path=None, target=None):
+        if name in self.mods:
+            raise ImportError("%s was added after the v3 freeze and is blocked in the family-2 read" % name)
+        return None
+
+
+def _block(added):
+    mods = [k[:-3].replace("/", ".") for k in added if k.endswith(".py")]
+    loaded = sorted(m for m in mods if m in sys.modules)
+    if loaded:
+        raise SystemExit("files added after the freeze are already imported: %s" % loaded)
+    sys.meta_path.insert(0, _Blocked(mods))
+    return mods
+
+
 def _guard(read_id):
     from kernel import freeze
     fz = ROOT / "plans" / "v3_freeze.json"
     rec = json.loads(fz.read_text())
-    h, _ = freeze.code_sha256()
-    if rec["id"] != read_id or rec["code_sha256"] != h:
-        raise SystemExit("code or freeze id does not match plans/v3_freeze.json")
+    if rec["id"] != read_id:
+        raise SystemExit("freeze id %s does not match plans/v3_freeze.json (%s)" % (read_id, rec["id"]))
+    h, listing = freeze.code_sha256()
+    deviation, dev_sha = None, None
+    if h != rec["code_sha256"]:
+        if not DEVIATION.exists():
+            raise SystemExit("code does not match plans/v3_freeze.json and no deviation record exists")
+        dev_sha = hashlib.sha256(DEVIATION.read_bytes()).hexdigest()
+        if not DEVIATION_EV.exists() or dev_sha not in DEVIATION_EV.read_text():
+            raise SystemExit("the deviation record is not hashed in %s, or changed since" % DEVIATION_EV.relative_to(ROOT))
+        deviation = json.loads(DEVIATION.read_text())
+    st = freeze_status(rec, listing, freeze.core_sha256(), deviation)
+    if not st["ok"]:
+        raise SystemExit("frozen kernel v3 is not intact: %s" % json.dumps({k: st[k] for k in ("changed", "missing", "unexpected_added", "core_ok")}))
+    st["blocked_modules"] = _block(st["added"])
     models = json.loads((ROOT / "calibration" / "v3_models.json").read_text())
     for k, v in models.items():
         if hashlib.sha256((ROOT / v["path"]).read_bytes()).hexdigest() != rec["models"][k]:
@@ -123,7 +176,9 @@ def _guard(read_id):
     ev = ROOT / "manifests" / "evidence" / "family2_prereg_2026-10-20.sha256"
     if not ev.exists() or hashlib.sha256(PREREG.read_bytes()).hexdigest() not in ev.read_text():
         raise SystemExit("the pre-registration is not hashed in %s, or changed since" % ev.relative_to(ROOT))
-    return rec
+    st["code_sha256_now"] = h
+    st["deviation"] = {"path": str(DEVIATION.relative_to(ROOT)), "sha256": dev_sha} if dev_sha else None
+    return dict(rec, _status=st)
 
 
 def cmd_read(a):
@@ -134,6 +189,7 @@ def cmd_read(a):
     with open(ACCESS, "a") as fh:
         fh.write(json.dumps({"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "what": "v3 family2 read",
                              "family": "b2_namereliance", "regime": "D", "freeze": rec["id"],
+                             "freeze_deviation": rec["_status"]["deviation"],
                              "prereg_sha256": hashlib.sha256(PREREG.read_bytes()).hexdigest()}) + "\n")
     fs = b2_files()
     with mp.get_context("fork").Pool(a.workers) as pool:
@@ -143,6 +199,7 @@ def cmd_read(a):
     model = pickle.loads(v3.model_path("semantic", "D").read_bytes())
     probs = {f["file"]: v3.apply_model(model, f["rows"]) for f in files}
     out = {"tickets": ["TGT-18", "CAP-07"], "freeze": rec["id"], "prereg_sha256": hashlib.sha256(PREREG.read_bytes()).hexdigest(),
+           "freeze_status": {k: rec["_status"][k] for k in ("added", "blocked_modules", "code_sha256_now", "deviation", "core_ok")},
            "files_read": len(rows), "failed": failed, "subsets": {}}
     subsets = {"all": files,
                "linear": [f for f in files if f["track"] == "linear"],

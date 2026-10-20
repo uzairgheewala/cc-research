@@ -1,15 +1,16 @@
 # Wave state (read this first; method: docs/WAVES.md)
 
-Updated 2026-10-20 by the agent. Tickets: INF-10
+Updated 2026-10-20 (rerun 2 intake) by the agent. Tickets: INF-10, INF-06, TGT-18, BEN-13, REP-07
 
 ## Current
-- Wave A: **built; sheet handed over 20 Oct, not yet run.** Kit: applied on Uzair's machine 20 Oct (checks there: verify, trace, ci_check, site build all 0 errors).
-  Run: `cc.ps1 wave A 2`, which runs `jobs/waves/A/sheet.json` (33 runs, 24 must-shows, 15 decisions) and returns
-  `jobs/waves/A/return_A.zip`.
-- Waiting commit messages: `docs/commit_msgs/q2_l16_l5_cc-research.txt`, `waves_adopted_cc-research.txt`, `wave_a_cc-research.txt`.
-- Engine cache: `jobs/transfer/cache_engines_2026-10-19.tgz` (500 CausalArena dev entries); family-2 entries are filled on the sheet.
+- Wave A: **second run returned 20 Oct; third run handed over** (`cc.ps1 wave A 2`; finished jobs are not repeated,
+  tests and kit checks re-run because the kit changed). Sheet: 35 runs, 26 must-shows, 19 decisions.
+- Waiting commit messages: `docs/commit_msgs/q2_l16_l5_cc-research.txt`, `waves_adopted_cc-research.txt`,
+  `wave_a_cc-research.txt`, `wave_a_fork_cc-research.txt`, `wave_a_rerun2_cc-research.txt` (and the site chat's).
+- Engine cache: `jobs/transfer/cache_engines_2026-10-19.tgz` (500 CausalArena dev entries); family-2 entries filled on the sheet (done).
 - Defaults taken (20 Oct): D-1 plan yes; D-2 second family = our labelled generator (500 files), Causal Chambers wt
-  report-only; D-3 BEN-13 names-only LLM arm no; D-4 public feed = dev digests; D-5 gaps page = new Act IV page (wave B).
+  report-only; D-3 BEN-13 names-only LLM arm no; D-4 public feed = dev digests; D-5 gaps page = new Act IV page (wave B);
+  D-7 (rerun 2) main-control live arm only if the Causal-Copilot base image was rebuilt: on.
 
 ## Wave A: what was built, what the sheet decides
 | # | Bundle | Built and checked in the sandbox | Sheet |
@@ -41,8 +42,32 @@ X4_LEDGER; F2_FILL was running. Failed, by class, all fixed in the files now on 
 Effect on the rerun: STUB_03/STUB_06, LIVE_06, BEN-13 and X5 were skipped behind T_HOST, T_BENCH and FETCH_X5; they run
 on the rerun. Finished jobs (X4, B2GEN, fill parts) are not repeated.
 
+## Second run of sheet A (returned 20 Oct; intake by the decision table)
+Ran ok: tests, kit checks, canary, X4, X5 (fetch, probe, 4 arms, score), family-2 fill (8 parts, 137 min).
+- Canary: claim structure matches on this host (claims_sha256); full ledger hashes differ, as expected across CPU families.
+  Decision "hosts agree": every number of the sheet is read as produced.
+- X5 (REP-07, BEN-07): AVICI scm-v0 is far below GES on dev (semantic -0.281 [-0.330, -0.232], formula -0.146 [-0.193,
+  -0.095]); its F1 is identical with original and shuffled columns (order effect 0.0, as its permutation-equivariant design
+  implies). Decision: **D1 stays the paper's line; D2-score (a nonlinear score inside GES) is wave B2's design question.**
+  Checked after the read (post hoc, not a result): AVICI is not reading edges backwards (on 60 semantic files, transposing
+  its edges lowers F1 0.24 -> 0.15); it predicts about 13 edges where the truth has about 41, and even the best threshold
+  in hindsight (about 0.1-0.2) gives F1 about 0.30, still far below GES's 0.53.
+Failed, by class, fixed in the files now on disk:
+- F2_READ refused: the freeze's code hash covers every .py file under kernel/, and three files were added there after the
+  freeze (asym.py, asym_cond.py, linkfilt.py). No frozen file changed, none is missing, the core hash is equal. Deviation
+  record written and hashed before the read (plans/v3_freeze_deviation_1.json): the guard checks frozen files one by one,
+  the core, and the added files' sha256, and blocks importing the added files during the read. Nothing was read.
+- FETCH_CB: figshare answers programmatic downloads with an empty body; the old fetcher took a 0-byte rpe1.h5ad as
+  fetched. The fetcher now checks every file (never empty, format magic, published size and md5), runs on host Python, and
+  imports the two expression files from a browser download in Downloads. Manual step: two browser downloads.
+- STUB_03 / STUB_06: Docker had no `cc-research:a31aa7c-1` image. New run B_CC (`cc.ps1 ensureimage`) builds only what is
+  missing and records whether the base image is still the one BND-08 ran on (M_CC_BASE); if not, LIVE_06M runs the same 30
+  tables on unmodified main on the new image after the branch series (about $14, cap $25), so the comparison stays on one image.
+- Runner: class A0 runs (tests, kit checks, image builds) now re-run when the kit's code identity changes.
+
 ## Manual steps before the sheet (Uzair)
-1. Extract the kit over cc-research; commit the three waiting messages when convenient.
+1. Rerun 2: download the two CausalBench files in a browser into Downloads (figshare 35773219 K562, 10.7 GB; 35775606
+   RPE1, 8.7 GB); the sheet imports and checks them. Commit the waiting messages when convenient.
 2. Fork: done 20 Oct (docs/FORK.md): main clone in place, both branch folders verified. Push the two branches and the tag
    when convenient (one git command in docs/FORK.md); the sheet does not need them on GitHub.
 3. Python 3.8+ on Windows for the runner (`py -3 --version`).

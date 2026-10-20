@@ -30,12 +30,41 @@ def load(rel):
     return json.load(open(ROOT / rel, encoding="utf-8"))
 
 
+def _md_table(text, heading):
+    """s24: the first markdown table after the first line that starts with heading, as a list of dicts keyed by the header
+    row (cells stripped; the separator row dropped). Fails when the heading or the table is missing."""
+    lines = text.splitlines()
+    start = next((i for i, l in enumerate(lines) if l.startswith(heading)), None)
+    if start is None:
+        raise ValueError("heading %r not found" % heading)
+    rows, header = [], None
+    for l in lines[start + 1:]:
+        if l.startswith("#"):
+            break
+        if not l.startswith("|"):
+            if header is not None:
+                break
+            continue
+        cells = [c.strip() for c in l.strip().strip("|").split("|")]
+        if header is None:
+            header = cells
+        elif all(set(c) <= set("-: ") for c in cells):
+            continue
+        else:
+            rows.append(dict(zip(header, cells)))
+    if not rows:
+        raise ValueError("no table after %r" % heading)
+    return rows
+
+
 def metrics():
     out, errors, cache = {}, [], {}
     for key, spec in sorted(REG.items()):
         src = spec["src"]
         try:
-            if "literal" in spec:
+            if "mdtable" in spec:
+                val = _md_table((ROOT / src).read_text(encoding="utf-8"), spec["mdtable"])
+            elif "literal" in spec:
                 txt = (ROOT / src).read_text(encoding="utf-8")
                 ctx = spec.get("context") or spec["literal"]
                 if spec["literal"] not in ctx or not re.search(r"(?<![0-9.])" + re.escape(ctx) + r"(?![0-9])", txt):
@@ -98,13 +127,14 @@ def lists():
 
 
 def changes(limit=8):
-    """The newest posted dev digests (tracker/relay_log.jsonl): when, the summary points, and what finished. Drafts and
-    prod digests are left out; the prod channel's drafts are Uzair's to send."""
+    """s28 (TEAM-12): the newest prod digests posted in #causal-discovery (tracker/relay_log.jsonl: channel prod, a Slack
+    ts recorded, not a draft): when, the summary points, and what finished. Dev digests never reach the public site; the
+    count of dev digests posted since the last prod one is changes_lag()."""
     f = ROOT / "tracker" / "relay_log.jsonl"
     if not f.exists():
         return []
     recs = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
-    recs = [r for r in recs if r.get("type") == "digest" and r.get("channel") == "dev" and not r.get("draft_only")]
+    recs = [r for r in recs if r.get("type") == "digest" and r.get("channel") == "prod" and not r.get("draft_only") and r.get("ts")]
     out = []
     for r in sorted(recs, key=lambda r: r.get("posted_utc") or "", reverse=True):
         if len(out) >= limit:
@@ -112,8 +142,8 @@ def changes(limit=8):
         sec, points, done = None, [], []
         for line in (r.get("text") or "").splitlines():
             line = line.strip()
-            if line.startswith("**"):
-                mm = re.match(r"\*\*([^*]+)\*\*", line)
+            if line.startswith("*"):
+                mm = re.match(r"\*{1,2}([^*]+)\*{1,2}", line)
                 sec = mm.group(1).strip().lower() if mm else None
                 continue
             if line.startswith("•"):
@@ -123,8 +153,21 @@ def changes(limit=8):
                 elif sec == "done":
                     done.append(item.replace("✅", "").strip())
         if points:
-            out.append({"posted_utc": r.get("posted_utc"), "points": points, "done": done, "tickets": r.get("tickets", [])})
+            out.append({"posted_utc": r.get("posted_utc"), "points": points, "done": done, "tickets": r.get("tickets", []),
+                        "channel": "prod"})
     return out
+
+
+def changes_lag():
+    """s28: how many dev digests were posted after the newest posted prod digest (a count only; no dev text)."""
+    f = ROOT / "tracker" / "relay_log.jsonl"
+    if not f.exists():
+        return {"dev_since_last_prod": 0, "last_prod_utc": None}
+    recs = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
+    recs = [r for r in recs if r.get("type") == "digest" and not r.get("draft_only") and r.get("ts")]
+    last = max((r.get("posted_utc") or "" for r in recs if r.get("channel") == "prod"), default="")
+    n = sum(1 for r in recs if r.get("channel") == "dev" and (r.get("posted_utc") or "") > last)
+    return {"dev_since_last_prod": n, "last_prod_utc": last or None}
 
 
 def build():
@@ -132,7 +175,7 @@ def build():
     bs, ms = bundles()
     m, srcs, errors = metrics()
     body = {"schema": 1, "status_verified_utc": verified, "items": its, "bundles": bs, "milestones": ms,
-            "lists": lists(), "metrics": m, "sources": srcs, "changes": changes()}
+            "lists": lists(), "metrics": m, "sources": srcs, "changes": changes(), "changes_lag": changes_lag()}
     canon = json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()
     return body, hashlib.sha256(canon).hexdigest(), errors
 

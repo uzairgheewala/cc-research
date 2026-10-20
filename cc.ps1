@@ -1,6 +1,6 @@
 # Causal-Copilot research harness launcher (Windows PowerShell + Docker Desktop).
 # Usage:  powershell -ExecutionPolicy Bypass -File .\cc.ps1 <command>
-# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | probebatch <dir> [stub|live] [agent|all] [workers=N tier=A arm=a+b scenario=s cap=X retry] | compute <job> | kernelbuild | benchbuild | x5build | wave <id> [workers] [memGB] | wavepack <id> | fetch | queue | stop | shell | help
+# Commands: build | preflight [nollm] | dryrun | golden | plan <file> [model] | names <file> [stub] | tiers <file> [stub] | probebuild | probe <plan> [stub] | ensureimage | probebatch <dir> [stub|live] [agent|all] [workers=N tier=A arm=a+b scenario=s cap=X retry] | compute <job> | kernelbuild | benchbuild | x5build | wave <id> [workers] [memGB] | wavepack <id> | fetch | queue | stop | shell | help
 param(
     [Parameter(Position = 0)] [string] $Command = "help",
     [Parameter(Position = 1)] [string] $Arg1 = "",
@@ -241,6 +241,57 @@ switch ($Command.ToLower()) {
         Write-Host "[cc] STOP requested. The queue runner exits after the run in progress. For an immediate stop: docker stop cc-queue"
     }
 
+    "ensureimage" {
+        # INF-06 / INF-10 (wave A, 20 Oct): plan runs need $Image, which was missing on this machine. Build only what is
+        # missing: the thin overlay when the base image exists (minutes), else first the base from the repo's own
+        # Dockerfile.cpu (20-40 minutes, large download). A rebuilt base downloads its packages again, so it may differ
+        # from the base BND-08's runs used: jobs\waves\images\cc.json records whether the ids equal the recorded ones.
+        $imgDir = Join-Path $Research "jobs\waves\images"
+        New-Item -ItemType Directory -Force -Path $imgDir | Out-Null
+        $recPath = Join-Path $Research "manifests\image_ids.json"
+        $prev = $null
+        if (Test-Path $recPath) { $prev = Get-Content -Raw $recPath | ConvertFrom-Json }
+        $built = @()
+        $haveRun = (& docker image ls -q $Image | Out-String).Trim()
+        if (-not $haveRun) {
+            $haveBase = (& docker image ls -q $BaseImage | Out-String).Trim()
+            if (-not $haveBase) {
+                $ctx = Join-Path $env:TEMP "cc-build-context"
+                if (Test-Path $ctx) { Remove-Item -Recurse -Force $ctx }
+                New-Item -ItemType Directory -Path $ctx | Out-Null
+                Copy-Item (Join-Path $Repo "requirements_cpu.txt") $ctx
+                Write-Host "[cc] $BaseImage is missing: building it from the repo's own Dockerfile.cpu (20-40 minutes)"
+                & docker build -f (Join-Path $Repo "Dockerfile.cpu") -t $BaseImage $ctx
+                if ($LASTEXITCODE -ne 0) { Fail "base image build failed" }
+                $built += "base"
+            }
+            Write-Host "[cc] $Image is missing: building the thin runtime layer"
+            & docker build --build-arg "BASE=$BaseImage" -f (Join-Path $Research "docker\Dockerfile.overlay") -t $Image (Join-Path $Research "docker")
+            if ($LASTEXITCODE -ne 0) { Fail "runtime layer build failed" }
+            $built += "overlay"
+        }
+        $baseId = (& docker image inspect $BaseImage --format "{{.Id}}" | Out-String).Trim()
+        $runId  = (& docker image inspect $Image --format "{{.Id}}" | Out-String).Trim()
+        $recBase = ""
+        $recRun = ""
+        if ($prev) { $recBase = "$($prev.base_id)"; $recRun = "$($prev.runtime_id)" }
+        $nowUtc = (Get-Date).ToUniversalTime().ToString("o")
+        $info = [ordered]@{ base_image = $BaseImage; base_id = $baseId; runtime_image = $Image; runtime_id = $runId;
+                            built = ($built -join "+"); base_same = ($baseId -eq $recBase); runtime_same = ($runId -eq $recRun);
+                            recorded_base_id = $recBase; recorded_runtime_id = $recRun; checked_utc = $nowUtc }
+        if (($built.Count -gt 0) -and $prev) {
+            # the runs recorded so far keep their record; new runs (run_traced.py meta) read the new ids
+            $keep = Join-Path $Research ("manifests\image_ids_before_" + (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssZ") + ".json")
+            Copy-Item $recPath $keep
+            $new = [ordered]@{ base_image = $BaseImage; base_id = $baseId; runtime_image = $Image; runtime_id = $runId; built_utc = $nowUtc;
+                               rebuilt = ($built -join "+"); previous_record = (Split-Path -Leaf $keep) }
+            $new | ConvertTo-Json | Out-File -Encoding ascii $recPath
+        }
+        $info | ConvertTo-Json | Out-File -Encoding ascii (Join-Path $imgDir "cc.json")
+        $runId | Out-File -Encoding ascii (Join-Path $imgDir "cc.id")
+        Get-Content (Join-Path $imgDir "cc.json")
+    }
+
     "kernelbuild" {
         # INF-10: the pinned kernel image for wave sheets (docker\Dockerfile.kernel; context = cc-research\docker).
         & docker build -f (Join-Path $Research "docker\Dockerfile.kernel") -t "cc-kernel:wave-a" (Join-Path $Research "docker")
@@ -308,6 +359,7 @@ switch ($Command.ToLower()) {
     default {
         Write-Host "Causal-Copilot research harness"
         Write-Host "  build              build the Docker images (once)"
+        Write-Host "  ensureimage        build only the missing Causal-Copilot images; jobs\waves\images\cc.json says if they changed"
         Write-Host "  preflight          check code identity, environment, imports, tools and one tiny LLM round trip"
         Write-Host "  preflight nollm    same, without the LLM calls"
         Write-Host "  dryrun             full pipeline on Linear_Gaussian with an offline stub instead of the LLM (no cost)"

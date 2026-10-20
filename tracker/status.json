@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-20T17:37:14Z",
+ "verified_utc": "2026-10-20T21:08:01Z",
  "items": [
   {
    "id": "DLV-01",
@@ -497,7 +497,8 @@
     "manifests/evidence/x5_prereg_2026-10-20.sha256",
     "analysis/x5_pretrained.py",
     "docker/Dockerfile.x5",
-    "docker/requirements_x5.txt"
+    "docker/requirements_x5.txt",
+    "analysis/results/x5/x5_dev.json"
    ],
    "pointers": [],
    "checks": [
@@ -514,7 +515,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run. 20 Oct (wave A): X5 pre-registered (plans/x5_prereg.json): AVICI scm-v0 on CausalArena dev, columns shuffled, beside GES and v3. FoundCause / CDFM weights not located.",
+   "note": "Semantic: LiNGAM within; GIES within where GES runs; NOTEARS F1 gap unexplained. Formula: LiNGAM and NOTEARS within; GES within after excluding its 18 singular-matrix scenarios; PC 0.304 vs 0.220 (upstream causal-learn PC raises on 72 formula files; scored empty that gives 0.218, consistent, not proof). Synthetic100: LiNGAM within; PC within under the authors' rule; GES 29 timeouts; NOTEARS 0.177 vs 0.276 unexplained. AVICI blocked: its checkpoint is only on huggingface.co, which the egress allowlist blocks. CDFM not run. 20 Oct (wave A): X5 pre-registered (plans/x5_prereg.json): AVICI scm-v0 on CausalArena dev, columns shuffled, beside GES and v3. FoundCause / CDFM weights not located. 20 Oct (wave A): AVICI scm-v0 on CausalArena dev, 125 files per family, columns shuffled: mean directed F1 semantic 0.251 vs GES 0.532 (paired difference -0.281 [-0.330, -0.232]); formula 0.304 vs 0.450 (-0.146 [-0.193, -0.095]) (analysis/results/x5/x5_dev.json). Pre-registered rule: D1 stays the paper's line.",
    "problems": []
   },
   {
@@ -3137,7 +3138,8 @@
     "analysis/reports/bnd06_interim.md",
     "analysis/reports/bnd06_families.md",
     "plans/bnd06_prereg.json",
-    "plans/x5_prereg.json"
+    "plans/x5_prereg.json",
+    "analysis/results/x5/x5_dev.json"
    ],
    "pointers": [],
    "checks": [
@@ -3162,7 +3164,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. Open: AVICI (pretrained; checkpoint download blocked). 20 Oct: X5 tests AVICI's column-order sensitivity (original vs shuffled) on dev (plans/x5_prereg.json).",
+   "note": "Authors' runners do not shuffle and orient undecided edges by column index. Released vs shuffled measured for PC, GES, FCI, DirectLiNGAM, NOTEARS on semantic, formula and synthetic100: only PC moves (|diff| 0.093 / 0.051 / 0.106). Mechanism located: Causal-Copilot's vendored causal-learn 0.1.3.8 skeleton changes with column order in 21 of 24 files, upstream 0.1.4.8 in 0 of 22. Open: AVICI (pretrained; checkpoint download blocked). 20 Oct: X5 tests AVICI's column-order sensitivity (original vs shuffled) on dev (plans/x5_prereg.json). 20 Oct (wave A): AVICI's F1 is identical with original and shuffled column order (order effect 0.0): as its permutation-equivariant design implies.",
    "problems": []
   },
   {
@@ -5758,7 +5760,9 @@
     "jobs/fork/ext-03-cycle-step-key.patch",
     "jobs/fork/make_branches.ps1",
     "tests/test_fork_patches.py",
-    "analysis/fork_check.py"
+    "analysis/fork_check.py",
+    "cc.ps1",
+    "plans/fork_bld06_live_main.json"
    ],
    "pointers": [],
    "checks": [],
@@ -5766,7 +5770,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": " 20 Oct (wave A): ticket branches of the fork as patch files (jobs/fork/), applied by Uzair with jobs/fork/make_branches.ps1; the harness checks a branch run (CC_BRANCH) against jobs/fork/<branch>.json and records branch, commit and patch in meta.json. The fork itself is a manual step (docs/FORK.md).",
+   "note": " 20 Oct (wave A): ticket branches of the fork as patch files (jobs/fork/), applied by Uzair with jobs/fork/make_branches.ps1; the harness checks a branch run (CC_BRANCH) against jobs/fork/<branch>.json and records branch, commit and patch in meta.json. The fork itself is a manual step (docs/FORK.md). 20 Oct (wave A rerun): the stubs could not start (runtime image missing). cc.ps1 ensureimage builds only the missing images and writes jobs/waves/images/cc.json (is the base image still BND-08's?); manifests/image_ids.json keeps the earlier record when it rebuilds.",
    "problems": []
   },
   {
@@ -7387,7 +7391,10 @@
     "manifests/evidence/explain_x123_results_2026-10-20.sha256",
     "plans/v3_prereg_amendment_1_family2.json",
     "manifests/evidence/family2_prereg_2026-10-20.sha256",
-    "analysis/q2_family2.py"
+    "analysis/q2_family2.py",
+    "plans/v3_freeze_deviation_1.json",
+    "manifests/evidence/family2_freeze_deviation_2026-10-20.sha256",
+    "tests/test_family2_guard.py"
    ],
    "pointers": [],
    "checks": [
@@ -7424,7 +7431,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] (short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3). 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula (cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links sit beside a real mediated path; neither can act until an applicability condition exists (analysis/reports/q2_linkfilt_dev.md). 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong (analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): explanation round X1-X3 (analysis/reports/q2_explain_dev.md). Both semantic gaps come from a linear-Gaussian score on nonlinear / discrete mechanisms: given the true graph the score still wants 78% of shadow links and 76% of the missed search-gap links, while GES's graph outscores the true graph on 117 of 120 files. Pre-registered rule: D2-search; read with the global check, the lever is the score (post-hoc reading, labelled). Floor confirmed real (X3). Second held-out family pre-registered (plans/v3_prereg_amendment_1_family2.json).",
+   "note": "v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] (short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3). 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula (cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links sit beside a real mediated path; neither can act until an applicability condition exists (analysis/reports/q2_linkfilt_dev.md). 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong (analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): explanation round X1-X3 (analysis/reports/q2_explain_dev.md). Both semantic gaps come from a linear-Gaussian score on nonlinear / discrete mechanisms: given the true graph the score still wants 78% of shadow links and 76% of the missed search-gap links, while GES's graph outscores the true graph on 117 of 120 files. Pre-registered rule: D2-search; read with the global check, the lever is the score (post-hoc reading, labelled). Floor confirmed real (X3). Second held-out family pre-registered (plans/v3_prereg_amendment_1_family2.json). 20 Oct (wave A rerun): the family-2 read refused because the freeze's whole-tree hash covers three kernel files added after it (kernel/asym.py, asym_cond.py, linkfilt.py); no frozen file changed and the core hash is equal. Deviation record written and hashed before the read (plans/v3_freeze_deviation_1.json): the read checks the frozen files one by one, the core and the added files' sha256, and blocks importing the added files. No family-2 file has been scored yet.",
    "problems": []
   },
   {
@@ -7660,7 +7667,8 @@
     "analysis/ben13/synth.py",
     "tests/test_ben13_stream.py",
     "docker/Dockerfile.bench",
-    "docker/requirements_bench.txt"
+    "docker/requirements_bench.txt",
+    "tests/test_ben13_fetch.py"
    ],
    "pointers": [],
    "checks": [],
@@ -7668,7 +7676,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5. 20 Oct (wave A): S0-S2 built and pre-registered (plans/ben13_prereg.json). CausalBench's preprocessing is streamed in row chunks (peak about 0.5 GB instead of about 30 GB) and equals causalbench 1.1.2's arrays bit for bit on synthetic files; evaluation through causalbench's own classes (all-path tests skipped, checked equal by a canary cell). Names-only LLM arm not run (decision D-3 = no): the names channel is measured with literature networks and gene-label permutations.",
+   "note": "Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5. 20 Oct (wave A): S0-S2 built and pre-registered (plans/ben13_prereg.json). CausalBench's preprocessing is streamed in row chunks (peak about 0.5 GB instead of about 30 GB) and equals causalbench 1.1.2's arrays bit for bit on synthetic files; evaluation through causalbench's own classes (all-path tests skipped, checked equal by a canary cell). Names-only LLM arm not run (decision D-3 = no): the names channel is measured with literature networks and gene-label permutations. 20 Oct (wave A rerun): figshare answers programmatic downloads with an empty body, and the old fetcher accepted a 0-byte rpe1.h5ad. Every file is now checked (not empty, HDF5/zip/gzip magic, published size and md5); the two expression files come from a browser download, imported from Downloads after the checks.",
    "problems": []
   },
   {
@@ -7693,7 +7701,8 @@
     "jobs/waves/A/plan.md",
     "jobs/waves/A/sheet.json",
     "jobs/waves/A/canary_expected.json",
-    "harness/live_capped.py"
+    "harness/live_capped.py",
+    "tests/run_tests.py"
    ],
    "pointers": [],
    "checks": [],
@@ -7701,7 +7710,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary. 20 Oct (wave A): harness/wave.py built (preflight with code identity, disk, Docker memory and the CPU's BLAS family; canaries; when-gates over must-shows; resume; parts and memory packing; verdict.json and a small return zip); tests/test_wave_runner.py passes. Must-show still open: the demo sheet on Uzair's machine (wave A sheet, run A0).",
+   "note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary. 20 Oct (wave A): harness/wave.py built (preflight with code identity, disk, Docker memory and the CPU's BLAS family; canaries; when-gates over must-shows; resume; parts and memory packing; verdict.json and a small return zip); tests/test_wave_runner.py passes. Must-show still open: the demo sheet on Uzair's machine (wave A sheet, run A0). 20 Oct: class A0 runs (tests, kit checks) re-run when the kit's code identity changes; finished heavy runs keep their results (tests/test_wave_runner.py).",
    "problems": []
   },
   {
@@ -7732,6 +7741,86 @@
    "due": null,
    "blocked_by": null,
    "note": "From the 19 Oct drift audit (project:claude/site-drift-audit-2026-10-19.md, bundle S23). The first build after it lists home, status and theses as pages to re-read: the drift the audit found.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-10",
+   "category": "12 Team and communication",
+   "title": "Site v3 gap model: typed landmarks, derived gap types, explanation map, gaps page and story strips",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "site/gaps_spec.json names every board, landmark and error class; gap types are derived from the binding value, the cautious end, the bar and the ruler (never written); explanation segments come from the shared ledger and sum to the anatomy totals; the gaps page and the strips render from it; unit tests",
+   "evidence": [
+    "site/gaps_spec.json",
+    "site/gapkit.py",
+    "site/pgs/pg_gaps.py",
+    "tests/test_site_v3.py",
+    "jobs/patches/s24.py",
+    "jobs/patches/s26.py"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "From the 19 Oct drift audit and the 20 Oct site v3 design (project:claude/site-v3-design-2026-10-20.md). Built 20 Oct in the site chat (wave B, parallel part; project doc claude/site-v3-wave-b-plan-2026-10-20.md) as patches jobs/patches/s24.py ... s28.py, applied after sheet A's return. Done once the post-apply build shows 0 errors and 0 warnings with the explanation ledger (B1) in place, and Uzair has seen Today and the gaps page.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-11",
+   "category": "12 Team and communication",
+   "title": "Site v3 Today page and research explorer",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "index is the one-page Today (600 words at most, no ticket ids or metric acronyms, every number from the registry); the explorer shows landmarks over time, the error map, the lever map and every tracked item, works without JavaScript, and writes explore.json under 300 KB with no private path",
+   "evidence": [
+    "site/pgs/pg_today.py",
+    "site/pgs/pg_explore.py",
+    "site/deliverables.json",
+    "jobs/patches/s25.py",
+    "jobs/patches/s27.py"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Uzair, 20 Oct: a one-page landing with the latest measured results, gaps to landmarks, what they mean for the deliverables, and an interactive explorer. Built 20 Oct in the site chat (wave B, parallel part; project doc claude/site-v3-wave-b-plan-2026-10-20.md) as patches jobs/patches/s24.py ... s28.py, applied after sheet A's return. Done once the post-apply build shows 0 errors and 0 warnings with the explanation ledger (B1) in place, and Uzair has seen Today and the gaps page.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-12",
+   "category": "12 Team and communication",
+   "title": "Public feed shows posted prod digests only",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "the snapshot's changes are posted prod digests (#causal-discovery, Slack ts recorded); a dev digest in the public feed fails the build; the feed shows how many dev digests were posted since the newest prod one",
+   "evidence": [
+    "tracker/snapshot.py",
+    "site/pgs/pg_changes.py",
+    "jobs/patches/s28.py"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Decision D-4 changed by Uzair, 20 Oct: the public changes feed shows prod digests. Built 20 Oct in the site chat (wave B, parallel part; project doc claude/site-v3-wave-b-plan-2026-10-20.md) as patches jobs/patches/s24.py ... s28.py, applied after sheet A's return. Done once the post-apply build shows 0 errors and 0 warnings with the explanation ledger (B1) in place, and Uzair has seen Today and the gaps page.",
    "problems": []
   }
  ]
