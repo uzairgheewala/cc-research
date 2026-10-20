@@ -15,3 +15,9 @@ $PY tools/secret_scan.py --staged || {
   echo "pre-commit: secret scan failed; unstage the file (git restore --staged <file>) and fix it." >&2
   exit 1
 }
+# The site snapshot must match the tracker and result files being committed (CI's first check). It drifts whenever
+# tracker/verify.py runs after tracker/snapshot.py; the fix is to run snapshot.py last, then stage site/snapshot.json.
+$PY tracker/snapshot.py --check || {
+  echo "pre-commit: site/snapshot.json is stale; run tracker/snapshot.py (after verify.py), then git add site/snapshot.json." >&2
+  exit 1
+}
