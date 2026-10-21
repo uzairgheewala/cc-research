@@ -28,6 +28,7 @@ jobs:
       - run: pip install -r requirements-ci.txt
       - run: python tracker/snapshot.py --check
       - run: python site/build.py
+      - run: python site/copilot/build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

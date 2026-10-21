@@ -1,0 +1,21 @@
+CI: repin INF-10 and BLD-11 after the WAVES.md/AGENTS.md snapshot rule; landing page links to Inside Causal-Copilot (S29)
+
+Tickets: INF-10, BLD-11, TEAM-11, TEAM-13
+
+- CI failed at tools/ci_check.py: docs/WAVES.md (INF-10's evidence) and AGENTS.md (BLD-11's) gained the "run snapshot
+  after any repin" rule in bd7fba1 without a repin. Both changes reviewed (documentation only) and repinned; BLD-11 is
+  done again (it showed as reopened). site/snapshot.json regenerated last.
+- Class fix: tools/hooks/pre-commit now runs tools/ci_check.py before the snapshot check, so an edited pinned file
+  stops the commit on the machine instead of in CI.
+- The hook's check, made portable: on Windows, tracker/verify.py::digest hashes backslash paths in Windows sort order,
+  so every directory item (kernel/, calibration/, plans/results/) looked changed although CI agrees with its pin. The
+  hook now runs tools/hooks/ci_check_portable.py (CI's check with POSIX paths and order; Linux digests unchanged);
+  jobs/patches/s33_verify_posix.py makes the same fix in verify.py (apply after sheet A's return is packed).
+- S29: the Today page links to copilot/ (TEAM-11 repinned for site/pgs/pg_today.py). site/copilot/build.py: a
+  "Causal Atlas" back link in its header, ../ links checked against site/pages.py, and every Atlas link into copilot/
+  checked against the pages it builds (the Atlas build runs first and cannot see them).
+- jobs/patches/s32_atlas_copilot.py (not applied: its files are in sheet A's identity): header link on every Atlas page,
+  a pointer from the names page to the replay, and a line on the about page; apply after sheet A's return is packed.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TX89QtiaGaFvBSN4BAmLxQ

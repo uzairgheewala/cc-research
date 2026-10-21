@@ -217,6 +217,7 @@ a.fn{text-decoration:none}a.fn code{color:#1D5C99}
 code,pre{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px}
 header.top{position:sticky;top:0;z-index:10;background:#FFFFFF;border-bottom:1px solid #C9CEC6}
 header.top .bar{max-width:1360px;margin:0 auto;display:flex;align-items:center;gap:10px 22px;padding:10px 24px;flex-wrap:wrap}
+.up{font-size:13px;color:#4E5751;text-decoration:none;border-right:1px solid #C9CEC6;padding-right:14px}.up:hover{color:#1D5C99}
 .brand{font-family:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;font-size:21px;font-weight:700;color:#17201B;text-decoration:none}
 nav.top{display:flex;gap:4px 6px;flex-wrap:wrap;font-size:13px}
 nav.top a{padding:3px 10px;border:1px solid #C9CEC6;border-radius:14px;text-decoration:none;color:#17201B}
@@ -296,7 +297,7 @@ def frame(slug, title, kicker, body, depth=""):
 </head>
 <body>
 <input type="checkbox" id="ff" style="position: absolute; left: -9999px">
-<header class="top"><div class="bar"><a class="brand" href="{depth}index.html">Inside Causal-Copilot</a>
+<header class="top"><div class="bar"><a class="up" href="{depth}../index.html">← Causal Atlas</a><a class="brand" href="{depth}index.html">Inside Causal-Copilot</a>
 <nav class="top" aria-label="Sections">{nav}</nav>
 <label class="fswitch" for="ff"><span class="knob" aria-hidden="true"></span> Show what our audits found</label></div></header>
 <main><div class="page"><div><div class="kicker">{esc(kicker)}</div><h1>{esc(title)}</h1></div>
@@ -717,14 +718,39 @@ def page_about(rr):
 
 
 # ------------------------------------------------------------------ main
+def atlas_pages():
+    """File names of the Atlas pages (site/pages.py), the targets of this site's ../ links."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("atlas_pages", ROOT / "site" / "pages.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return {"%s.html" % p["slug"] for p in m.PAGES}
+
+
 def links_ok(pages):
-    names = set(pages)
+    names, atlas = set(pages), atlas_pages()
     for name, h in pages.items():
         for t in re.findall(r'href="([^"#:]+\.html)(?:#[^"]*)?"', h):
             if t.startswith("../"):
-                continue
-            if t not in names:
+                if t[3:] not in atlas:
+                    ERRORS.append("%s: link %s is not an Atlas page" % (name, t))
+            elif t not in names:
                 ERRORS.append("%s: broken link %s" % (name, t))
+
+
+def inbound_ok(pages, out):
+    """Links from the Atlas into this site. The Atlas build runs first and cannot see these pages, so this build checks
+    them: every href="copilot/..." in the Atlas pages next to out must name a page built here ("copilot/" is the index)."""
+    atlas_dir = out.parent
+    if not (atlas_dir / "index.html").exists():
+        return None
+    n = 0
+    for f in sorted(atlas_dir.glob("*.html")):
+        for t in re.findall(r'href="copilot/([^"#]*)(?:#[^"]*)?"', f.read_text(encoding="utf-8")):
+            n += 1
+            if (t or "index.html") not in pages:
+                ERRORS.append("Atlas %s: link copilot/%s is not a page of this site" % (f.name, t))
+    return n
 
 
 def main():
@@ -759,6 +785,8 @@ def main():
         print("WARN  " + w)
     for s, why in rr:
         print("REREAD step %s (%s)" % (s, why))
+    inbound = inbound_ok(pages, out)
+    print("links from the Atlas: " + ("%d checked" % inbound if inbound is not None else "not checked (no Atlas build in %s)" % out.parent))
     for e in ERRORS:
         print("ERROR " + e)
     print("built %d pages in %s; %d errors, %d warnings, %d step pages to re-read" % (len(pages), out, len(ERRORS), len(WARN), len(rr)))

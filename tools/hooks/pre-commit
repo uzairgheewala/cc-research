@@ -15,6 +15,12 @@ $PY tools/secret_scan.py --staged || {
   echo "pre-commit: secret scan failed; unstage the file (git restore --staged <file>) and fix it." >&2
   exit 1
 }
+# Every pinned evidence file must still match its pin (CI's ci_check). Editing a pinned doc (docs/WAVES.md, AGENTS.md...)
+# fails CI unless the item is repinned after review; the repin moves the status, so the snapshot check below comes after.
+$PY tools/hooks/ci_check_portable.py || {   # CI's check, with digests computed as on Linux (see that file)
+  echo "pre-commit: an evidence file changed since its pin; review it, run tracker/verify.py --repin ID, then tracker/snapshot.py, and stage tracker/ and site/snapshot.json." >&2
+  exit 1
+}
 # The site snapshot must match the tracker and result files being committed (CI's first check). It drifts whenever
 # tracker/verify.py runs after tracker/snapshot.py; the fix is to run snapshot.py last, then stage site/snapshot.json.
 $PY tracker/snapshot.py --check || {

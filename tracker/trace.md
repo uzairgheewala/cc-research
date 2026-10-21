@@ -1,6 +1,6 @@
-# Trace check (2026-10-20T22:34:06Z)
+# Trace check (2026-10-21T01:28:35Z)
 
-status.json verified 2026-10-20T22:33:14Z. Dev tickets 237; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -13,20 +13,19 @@ status.json verified 2026-10-20T22:33:14Z. Dev tickets 237; prod rows 67 (7 grou
 | evidences | catalogue | 869 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 683 |
+| mentions | scan | 685 |
 | mirrors | mirrors.json | 300 |
 | parent_of | links.txt | 23 |
 | published_at | links.txt | 246 |
 | relates | links.txt | 1 |
 
-## Findings: 1 errors, 8 warnings
+## Findings: 0 errors, 8 warnings
 
-- **ERROR T6** BLD-11 is published ✅ but its dev tickets say reopened (BLD-11 reopened)
-- **WARN W3** TEAM-07 is done while blocked by unfinished ['BLD-11']
 - **WARN W1** REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-20T04:51)
+- **WARN W5** file:analysis/reports/copilot_code_notes.md mentions TEAM-13, which is not a ticket (typo, or never issued)
 - **WARN R3** tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
@@ -94,7 +93,7 @@ status.json verified 2026-10-20T22:33:14Z. Dev tickets 237; prod rows 67 (7 grou
 | BLD-08 | passthrough | todo | todo | V0 | - | BLD-08 |
 | BLD-09 | passthrough | todo | todo | V0 | - | BLD-09 |
 | BLD-10 | passthrough | done | done | V3 | - | BLD-10 |
-| BLD-11 | passthrough | done | reopened | V1 | BLD-11 | BLD-11 |
+| BLD-11 | passthrough | done | done | V3 | BLD-11 | BLD-11 |
 | EVL-01 | passthrough | done | done | V3 | - | EVL-01 |
 | EVL-02 | passthrough | done | done | V3 | - | EVL-02 |
 | EVL-03 | passthrough | done | done | V3 | - | EVL-03 |
