@@ -1,0 +1,12 @@
+Agent rule: snapshot after the last verify or catalogue patch
+
+Tickets: INF-10
+
+AGENTS.md (Repository, CI and the site) and docs/WAVES.md (Pack): tracker/snapshot.py copies
+tracker/status.json, so it runs after the last verify.py (including --repin) and the last catalogue
+patch, and site/snapshot.json is committed with the change that moved the status. Cause: p30 and a
+repin after the 20:45 UTC snapshot left it stale, and CI failed on commit 1a2c631. The pre-commit
+hook's new snapshot --check (site chat) stops this locally.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

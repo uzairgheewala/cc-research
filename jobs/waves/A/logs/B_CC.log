@@ -1,0 +1,72 @@
+
+# 2026-10-20T22:36:41Z B_CC
+# argv: ["powershell", "-ExecutionPolicy", "Bypass", "-File", "cc.ps1", "ensureimage"]
+[cc] causal-copilot-cpu:a31aa7c is missing: building it from the repo's own Dockerfile.cpu (20-40 minutes)
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.cpu
+#1 transferring dockerfile: 1.28kB 0.0s done
+#1 WARN: FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/amd64" (line 1)
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime
+#2 ...
+
+#3 [auth] pytorch/pytorch:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime
+#2 DONE 2.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [ 1/11] FROM docker.io/pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime@sha256:870ac2e0c9e9ad7765bab41634983729cad2f4982b2f2fb2c45683288ac9fcb3
+#5 resolve docker.io/pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime@sha256:870ac2e0c9e9ad7765bab41634983729cad2f4982b2f2fb2c45683288ac9fcb3 0.1s done
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 2.25kB 0.0s done
+#6 DONE 0.2s
+
+#5 [ 1/11] FROM docker.io/pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime@sha256:870ac2e0c9e9ad7765bab41634983729cad2f4982b2f2fb2c45683288ac9fcb3
+#5 sha256:870ac2e0c9e9ad7765bab41634983729cad2f4982b2f2fb2c45683288ac9fcb3 1.37kB / 1.37kB done
+#5 sha256:36f259a9d3e05e9df37e394163dec12bdb539e46545817bde6794e4cdbd58b01 4.37kB / 4.37kB done
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 0B / 30.45MB 0.1s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 0B / 7.21MB 0.1s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 0B / 3.96GB 0.1s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 3.15MB / 30.45MB 0.4s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 7.34MB / 30.45MB 0.6s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 12.58MB / 30.45MB 0.8s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 1.05MB / 7.21MB 0.9s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 14.68MB / 30.45MB 1.0s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 16.78MB / 30.45MB 1.2s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 3.15MB / 7.21MB 1.2s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 4.19MB / 7.21MB 1.3s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 18.87MB / 30.45MB 1.5s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 5.24MB / 7.21MB 1.5s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 6.29MB / 7.21MB 1.6s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 20.97MB / 30.45MB 1.7s
+#5 sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 7.21MB / 7.21MB 1.7s done
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 23.07MB / 30.45MB 1.9s
+#5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 1.9s done
+#5 sha256:93699b7a46554c363d4fde0534b67ee9e402053f93642697f0c6e45252cea844 0B / 99B 1.9s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 25.17MB / 30.45MB 2.1s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 27.26MB / 30.45MB 2.3s
+#5 sha256:93699b7a46554c363d4fde0534b67ee9e402053f93642697f0c6e45252cea844 99B / 99B 2.3s done
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 29.36MB / 30.45MB 2.5s
+#5 sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 30.45MB / 30.45MB 2.7s done
+#5 extracting sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 0.1s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 67.11MB / 3.96GB 5.2s
+#5 extracting sha256:23828d760c7b04df02891af556c40ca44c2dd79d6837ea6f18fac24f4108448c 4.3s done
+#5 extracting sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3
+#5 extracting sha256:6a568e242e63e54c910f3144502ebcd562b6ddecfdf3cfb947069baa5e7f35a3 2.3s done
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 173.02MB / 3.96GB 10.2s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 294.65MB / 3.96GB 15.3s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 413.14MB / 3.96GB 20.5s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 515.90MB / 3.96GB 25.5s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 611.32MB / 3.96GB 30.6s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 708.84MB / 3.96GB 35.8s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 830.47MB / 3.96GB 40.8s
+#5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 963.64MB / 3.96GB 45.9s

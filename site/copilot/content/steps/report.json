@@ -1,0 +1,414 @@
+{
+ "slug": "report",
+ "title": "Writing the report",
+ "question": "How is the PDF report put together, which parts does the LLM write, and what does the follow-up chat see?",
+ "plain_summary": "Report work starts before refinement: main.py builds a Report_generation object and asks the LLM to describe the algorithm's graph in prose, and after refinement it asks again with that same, original graph. A second Report_generation object then fills a LaTeX template section by section. Some parts come straight from code (data preview, property table, EDA figures, the procedure text, the bootstrap heatmaps); most of the prose comes from separate LLM calls (title, introduction, graph analysis, reliability analysis, abstract, conclusion). On the CLI the report always uses the 'simulated' template, because the flag that selects the 'real' one is only set by the web demo, so the background section, the LLM's edge edits and the revised graph never appear in it. latexmk turns report.tex into report.pdf; if no PDF appears, the whole report is generated again, up to two more times. Last, a chat loop reads questions from the terminal and answers each one with a fresh LLM call that does not include the report.",
+ "inputs": [
+  {
+   "field": "results.converted_graph",
+   "what": "S0. The graph described in the 'result analysis' prose and shown as the report's only causal-graph figure."
+  },
+  {
+   "field": "results.raw_edges",
+   "what": "S0 as named edge lists; the reliability prompt describes these edges."
+  },
+  {
+   "field": "results.bootstrap_probability",
+   "what": "The 20-resample frequencies; given to the reliability prompt and used to pick which heatmaps to include."
+  },
+  {
+   "field": "user_data.meaningful_feature",
+   "what": "Chooses the 'real' or 'simulated' template. Never set on the CLI path, so always 'simulated'."
+  },
+  {
+   "field": "user_data.knowledge_docs_for_user",
+   "what": "The domain-knowledge prose; the introduction is written from it."
+  },
+  {
+   "field": "results.eda",
+   "what": "EDA summaries and plot paths, turned into LaTeX tables and figures by code."
+  },
+  {
+   "field": "statistics",
+   "what": "Data properties (shape, data type, missingness, linearity, Gaussian errors, heterogeneity) for the property table."
+  },
+  {
+   "field": "algorithm.algorithm_candidates",
+   "what": "Shortlisted algorithms with description and justification, listed in the procedure section."
+  },
+  {
+   "field": "algorithm.algorithm_arguments_json",
+   "what": "Chosen hyperparameters with explanations, listed in the procedure section."
+  },
+  {
+   "field": "logging.graph_conversion",
+   "what": "Holds 'initial_graph_analysis', the LLM's prose about S0."
+  },
+  {
+   "field": "results.refutation_analysis",
+   "what": "Refutation text. None on the CLI, because the call at main.py:320 is commented out."
+  },
+  {
+   "field": "user_data.output_graph_dir",
+   "what": "Folder of the figures the template includes; also the path the LLM guesses the dataset name from."
+  },
+  {
+   "field": "user_data.output_report_dir",
+   "what": "Where report.txt, report.tex and report.pdf are written."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "logging.graph_conversion",
+   "what": "'initial_graph_analysis' set at main.py:287, then overwritten at :338 by a second call on the same graph."
+  },
+  {
+   "field": "logging.global_state_logging",
+   "what": "Set to [selected algorithm] when no earlier runs are loaded (the CLI case)."
+  },
+  {
+   "field": "logging.final_discuss",
+   "what": "One {'input', 'output'} entry per question in the follow-up chat."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "postprocess/visualization.py::convert_to_edges",
+   "what": "main.py:286 turns S0 into named edge lists and stores them as results.raw_edges; main.py:337 does the same again after refinement.",
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.__init__",
+   "what": "First built at main.py:285, before refinement. With no earlier runs to load (report_selected_index is None), the list of states holds just this one. data_mode is 'real' only if user_data.meaningful_feature is truthy; nothing on the CLI sets it, so it is 'simulated'. Column names get underscores replaced by spaces.",
+   "excerpt": {
+    "start": 97,
+    "end": 121
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.graph_effect_prompts",
+   "what": "Asks the LLM for a paragraph with bullet points describing the graph, using sentences such as 'X causes Y' built from S0 (no frequencies) and the variable names. Called at main.py:287 and again at main.py:338 on the first object, so both calls describe S0, not the refined graph. An empty graph gets a fixed warning instead.",
+   "excerpt": {
+    "start": 560,
+    "end": 583
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.generation",
+   "what": "A new object is built at main.py:347, after refinement, and generation() is called. With more than 20 columns the preview shows 10 randomly chosen columns. Then it fills the sections in order; the background section and the graph-revision section run only in 'real' mode, so on the CLI they are empty strings.",
+   "excerpt": {
+    "start": 948,
+    "end": 972
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.get_title",
+   "what": "Asks the LLM for the dataset's name given only the output folder path (for example 'Sachs.csv' -> 'Sachs'). The title becomes 'Causal Discovery Report on <name>'.",
+   "excerpt": {
+    "start": 131,
+    "end": 140
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.intro_prompt",
+   "what": "Asks the LLM for an introduction paragraph from the domain-knowledge prose, with Greek letters in math mode.",
+   "excerpt": {
+    "start": 142,
+    "end": 159
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.data_prop_prompt",
+   "what": "Code only: a LaTeX table of data properties from statistics. The 'Time-Series' column is True when data_type is 'Time-series'.",
+   "excerpt": {
+    "start": 292,
+    "end": 311
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.eda_prompt",
+   "what": "Code only (tabular data): distribution and correlation figures plus tables from eda_summary_to_latex. Time-series data use ts_eda_prompt instead.",
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.procedure_prompt",
+   "what": "Code only: fixed text, the shortlisted algorithms with their justifications and the hyperparameters with their explanations. The extra 'Graph Tuning with Bootstrap and LLM Suggestion' paragraph is appended only in 'real' mode, so the CLI report does not describe refinement at all.",
+   "excerpt": {
+    "start": 466,
+    "end": 485
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.graph_generate_prompts",
+   "what": "Code only: includes <ALGO>_initial_graph.pdf, the S0 drawing. This is the only causal-graph figure in the 'simulated' template.",
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.confidence_analysis_prompts",
+   "what": "Gives the LLM sentences for the S0 edges with their bootstrap frequencies and asks it to sort them into high (>= 0.9), moderate and low (<= 0.1) confidence, 'Do Not include Numerical Numbers'.",
+   "excerpt": {
+    "start": 744,
+    "end": 764
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.confidence_graph_prompts",
+   "what": "Code only: a figure with every heatmap file that exists (three per row) and a sentence naming the layers that were all zero.",
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.refutation_analysis_prompts",
+   "what": "Code only: refutation_analysis is None on the CLI, so the section reads 'You have skipped the refutation analysis step.'",
+   "excerpt": {
+    "start": 791,
+    "end": 804
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.comparision_prompt",
+   "what": "Returns two empty strings when only one state is loaded, which is always the case on the CLI; no LLM call.",
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.abstract_prompt",
+   "what": "Asks the LLM to 'Summarize the dataset, methodology, and key findings in 3-5 sentences' with nothing else in the prompt: no data, results or earlier sections.",
+   "excerpt": {
+    "start": 857,
+    "end": 867
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.conclusion_prompt",
+   "what": "Asks for a 1-2 paragraph conclusion from the title, introduction, procedure text, graph analysis, revision text (empty on the CLI), reliability text, comparison (empty) and inference report (empty).",
+   "excerpt": {
+    "start": 880,
+    "end": 890
+   },
+   "llm": true
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.generation",
+   "what": "Loads report/context/template_simulated_notruth.tex on the CLI and replaces each [PLACEHOLDER] with its section, escaping '&' in prose. Then replace_unicode_with_latex swaps Unicode symbols for LaTeX commands.",
+   "excerpt": {
+    "start": 993,
+    "end": 1017
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.save_report",
+   "what": "Writes the same LaTeX to report.txt and report.tex, then compiles. The LLM-based LaTeX repair (latex_bug_checking) is commented out at lines 1074-1076.",
+   "excerpt": {
+    "start": 1065,
+    "end": 1079
+   },
+   "llm": false
+  },
+  {
+   "function": "report/report_generation.py::compile_tex_to_pdf_with_refs",
+   "what": "Runs latexmk -pdf -interaction=nonstopmode -halt-on-error -f -bibtex into the report folder. Any error is logged and returns False; nothing is raised. main.py:352-357 then checks for report.pdf and, if it is missing, builds a new object and regenerates the whole report, up to 3 attempts in all.",
+   "excerpt": {
+    "start": 39,
+    "end": 58
+   },
+   "llm": false
+  },
+  {
+   "function": "user/discuss.py::Discussion.__init__",
+   "what": "Sends the whole LaTeX report to the LLM as the user message, with the system prompt 'You are a helpful assistant for extracting text from Latex.', and keeps the reply as report_content.",
+   "excerpt": {
+    "start": 5,
+    "end": 15
+   },
+   "llm": true
+  },
+  {
+   "function": "user/discuss.py::Discussion.forward",
+   "what": "Puts report_content into a system message at the top of a conversation history, then loops: reads a question with input('User: ') until the user types 'no', answers it, and logs each pair in logging.final_discuss.",
+   "excerpt": {
+    "start": 46,
+    "end": 65
+   },
+   "llm": true
+  },
+  {
+   "function": "user/discuss.py::Discussion.interaction",
+   "what": "Appends the question to the history but calls the LLM with only the question and the system prompt 'You are a helpful assistant for user interaction.' The history, and with it the report text, is never sent, so each answer is given without the report or earlier turns.",
+   "excerpt": {
+    "start": 17,
+    "end": 26
+   },
+   "llm": true
+  }
+ ],
+ "llm_calls": [
+  {
+   "function": "report/report_generation.py::Report_generation.graph_effect_prompts",
+   "prompt": null,
+   "asks": "Describe and summarise the causal relationships in one paragraph with bullet points, adding background knowledge if the variable names mean something.",
+   "answer_used": "Stored in logging.graph_conversion['initial_graph_analysis'], converted to LaTeX lists and bold, and placed in the 'result analysis' section.",
+   "checked": "none (only markdown-to-LaTeX clean-up)"
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.get_title",
+   "prompt": null,
+   "asks": "Name the dataset from its storage path; return only the name.",
+   "answer_used": "Report title and the [DATASET] placeholder.",
+   "checked": "none"
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.intro_prompt",
+   "prompt": null,
+   "asks": "Write a brief introduction paragraph from the background knowledge.",
+   "answer_used": "Introduction section; underscores escaped.",
+   "checked": "none"
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.confidence_analysis_prompts",
+   "prompt": null,
+   "asks": "Explain in 1-2 sentences how the probabilities were obtained, then list the S0 edges as high, moderate or low confidence, without numbers, in a given LaTeX itemize template.",
+   "answer_used": "Reliability analysis section.",
+   "checked": "none: there is no code check that the LLM's tiers match the frequencies"
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.abstract_prompt",
+   "prompt": null,
+   "asks": "Write a 3-5 sentence abstract summarising dataset, method and findings; no other input is given.",
+   "answer_used": "Abstract.",
+   "checked": "none"
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.conclusion_prompt",
+   "prompt": null,
+   "asks": "Write a 1-2 paragraph conclusion covering data, method, results and contribution, from the earlier sections' text.",
+   "answer_used": "Conclusion section.",
+   "checked": "none"
+  },
+  {
+   "function": "user/discuss.py::Discussion.__init__",
+   "prompt": null,
+   "asks": "The LaTeX report itself is the message; the system prompt asks for text extracted from LaTeX.",
+   "answer_used": "Kept as report_content in the chat history, which is never sent.",
+   "checked": "none"
+  },
+  {
+   "function": "user/discuss.py::Discussion.interaction",
+   "prompt": null,
+   "asks": "The user's typed question, alone.",
+   "answer_used": "Printed to the terminal and logged in logging.final_discuss.",
+   "checked": "Exceptions are caught and a fixed apology is printed instead."
+  }
+ ],
+ "failure_paths": [
+  {
+   "function": "report/report_generation.py::compile_tex_to_pdf_with_refs",
+   "what": "A LaTeX error (for example from unescaped LLM text) returns False silently. main.py regenerates the whole report, repeating every LLM call, up to 3 attempts; after the third it logs 'Report generation failed after 3 attempts' and carries on to the discussion."
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.generation",
+   "what": "An exception in any section (not a LaTeX error) is re-raised at main.py:373-375, and the run ends without a report or a discussion."
+  },
+  {
+   "function": "user/discuss.py::Discussion.forward",
+   "what": "input() waits for a person at a terminal. With no terminal attached it raises EOFError, which is not caught, after the report has already been written."
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.__init__",
+   "what": "The module imports plumbum's latexmk command at import time (line 9), so without latexmk installed the CLI cannot even import the report code."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "report/report_generation.py::Report_generation.__init__",
+   "what": "Choose the template from something the CLI sets (for example args.data_mode or a computed flag), so CLI reports can include the revised graph and the edit record."
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.graph_effect_prompts",
+   "what": "Describe the graph that the run actually ends with (results.revised_graph), or both, and label which is which."
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.abstract_prompt",
+   "what": "Pass the sections already written (title, results, reliability) so the abstract is grounded in this run."
+  },
+  {
+   "function": "report/report_generation.py::Report_generation.confidence_analysis_prompts",
+   "what": "Compute the confidence tiers in code from the frequencies and let the LLM only phrase them."
+  },
+  {
+   "function": "user/discuss.py::Discussion.interaction",
+   "what": "Send conversation_history as messages, so the model sees the report and earlier turns."
+  }
+ ],
+ "findings": [
+  {
+   "text": "The abstract is generated from a prompt with no data or results, so any dataset name, method or finding in it comes from the model alone.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "The report title and dataset name are LLM guesses from the output folder path.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "The 'result analysis' prose describes the initial graph (converted_graph), not the refined one.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "The procedure text hard-codes claims the code does not perform: 'top three' algorithms while the filter keeps two, and (in the real-data template) voting and no override of bootstrap decisions, while the CLI calls the review with one vote.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "Edge-confidence tiers in the report are assigned by the LLM, not by code, and the LLM is told to leave out the numbers.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "A failed LaTeX compile makes main.py regenerate the whole report up to 2 more times, repeating every LLM call; the LLM LaTeX repair exists but its call is commented out.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "With more than 20 columns the data preview picks 10 columns with unseeded randomness.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "In two golden runs the report and discussion made 16 LLM calls over 7 call sites (15,596 prompt and 5,668 completion tokens).",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The follow-up discussion was never exercised by the recorded runs; its behaviour is known from reading the code only.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "Runs that crash in the cycle step (15 of 15 live entries so far) end before this stage, so they produce no report at all.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd08_s2_results.md"
+  },
+  {
+   "text": "The report always uses the 'simulated' template on the command-line path, which leaves out the background, the model's edits and the revised graph.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  },
+  {
+   "text": "The follow-up discussion sends no history, so the model answers without the report.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

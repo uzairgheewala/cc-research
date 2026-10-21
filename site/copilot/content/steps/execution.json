@@ -1,0 +1,247 @@
+{
+ "slug": "execution",
+ "title": "Running the algorithm",
+ "question": "Once an algorithm and its settings are chosen, how is it actually run, and what comes back?",
+ "plain_summary": "This step makes no model calls: it runs the algorithm the earlier steps picked. First it looks for groups of columns that are almost copies of each other (absolute correlation of 0.99 or more by default), keeps one column per group and sets the others aside. It then looks up the chosen algorithm by name in the wrappers package and calls its fit method on the remaining data. Every wrapper translates its library's own graph format into one shared integer matrix, where M[i, j] = 1 means column j causes column i, and other numbers mean other edge types. After the run, the set-aside columns are put back: each one copies its representative's edges and gets a special 'associated' link (code 7) to it. The matrix, the library's raw output, extra details and, for time series, a per-lag matrix are written into the shared state for the evaluation, refinement and report steps.",
+ "inputs": [
+  {
+   "field": "algorithm.selected_algorithm",
+   "what": "The wrapper class name to run, for example \"PC\". It must match a name exported by causal_discovery/wrappers/__init__.py."
+  },
+  {
+   "field": "algorithm.algorithm_arguments",
+   "what": "The settings dictionary from hyperparameter selection. It is passed straight to the wrapper's constructor and overrides the wrapper's defaults."
+  },
+  {
+   "field": "algorithm.handle_correlated_features",
+   "what": "Whether to remove near-duplicate columns before the run. It defaults to True, with a threshold read from algorithm.correlation_threshold (0.99 by default, set in global_setting/state.py)."
+  },
+  {
+   "field": "user_data.processed_data",
+   "what": "The cleaned table (a pandas DataFrame) the algorithm runs on."
+  },
+  {
+   "field": "statistics.time_series",
+   "what": "Whether the data is a time series. If so, the per-lag graph is also stored."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "results.converted_graph",
+   "what": "The discovered graph in Causal-Copilot's matrix encoding, expanded back to all original columns. Every later step reads this."
+  },
+  {
+   "field": "results.raw_result",
+   "what": "The library's own result object, untouched (for PC on the CPU path, causal-learn's CausalGraph)."
+  },
+  {
+   "field": "results.raw_info",
+   "what": "A dictionary of extras from the wrapper (for PC: separating sets and the unshielded colliders it found). When columns were removed it also holds the graph before they were put back."
+  },
+  {
+   "field": "results.lagged_graph",
+   "what": "Time series only: a stack of matrices, one per time lag, or None if the wrapper does not return one."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "causal_discovery/program.py::Programming.forward",
+   "what": "The entry point for this step. If handle_correlated_features is on (the default), it first asks tab_utils to drop near-duplicate columns. Then it finds the wrapper class by name with getattr(wrappers, selected_algorithm), builds it with the chosen settings and calls fit. The call is the same for all 25 wrappers.",
+   "excerpt": {
+    "start": 9,
+    "end": 23
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::remove_highly_correlated_features",
+   "what": "Groups columns that are near duplicates, keeps the first column of each group and removes the rest. It returns the reduced table, a map from each kept representative to the columns it stands for, and the list of original column positions that were kept.",
+   "excerpt": {
+    "start": 399,
+    "end": 416
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::find_correlated_components",
+   "what": "Builds a graph linking every pair of columns whose absolute Pearson correlation is at or above the threshold, and returns its connected groups of two or more. Because it uses connected groups, a chain of near-duplicates A~B, B~C lands in one group even if A and C are less correlated.",
+   "excerpt": {
+    "start": 309,
+    "end": 325
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::select_representatives",
+   "what": "Picks the lowest-numbered column in each group as its representative. All other members of the group are removed before the run.",
+   "excerpt": {
+    "start": 341,
+    "end": 349
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.__init__",
+   "what": "Worked example: the PC wrapper. It sets its own defaults (alpha 0.05, indep_test 'fisherz_cpu', depth 4, stable PC and others), then lays the chosen settings over them. Every wrapper follows this pattern: a defaults dictionary updated by algorithm_arguments.",
+   "excerpt": {
+    "start": 53,
+    "end": 68
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/base.py::CausalDiscoveryAlgorithm.__init__",
+   "what": "The shared base class. It declares the interface every wrapper fills in: get_params, get_primary_params (the few settings the model is allowed to choose), get_secondary_params (fixed settings), fit, and a name. The base methods only raise NotImplementedError. Its fit signature promises two return values, but program.py unpacks three (graph, info, raw_result).",
+   "excerpt": {
+    "start": 6,
+    "end": 8
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.get_primary_params",
+   "what": "Returns only alpha, indep_test and depth. Hyperparameter selection uses the same list, so only these three ever come from the model. Everything else, including background knowledge, keeps the wrapper default on the CLI path.",
+   "excerpt": {
+    "start": 123,
+    "end": 125
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.fit",
+   "what": "Drops a domain_index column if there is one. It uses the GPU code (externals/acceleration) only if CUDA is present and the test name contains 'gpu'; otherwise it strips '_cpu' from the test name. On the CPU path it runs pc() from the causal-learn copy kept inside the repo (externals/causal-learn, put first on sys.path at import), converts the result's G.graph, and returns (matrix, info, CausalGraph). On the GPU path the matrix itself is returned as raw_result and background knowledge is ignored.",
+   "excerpt": {
+    "start": 157,
+    "end": 180
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.convert_to_adjacency_matrix",
+   "what": "causal-learn stores each edge as two end marks: G[j, i] = 1 with G[i, j] = -1 means i -> j; -1 at both ends means undirected; 1 at both ends means bidirected. This function rewrites that as Causal-Copilot's one-number-per-pair code: M[i, j] = 1 means j -> i (the row is the effect, the column the cause), 2 means undirected and 3 means bidirected. Codes 2 and 3 are written in only one cell of the pair: the first one met when scanning row by row, which is the cell above the diagonal (i < j). The other cell stays 0, and the matrix holds no weights, p-values or record of where an edge came from.",
+   "excerpt": {
+    "start": 182,
+    "end": 202
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::restore_original_node_indices",
+   "what": "Runs only if some columns were removed. Despite its name, it returns the graph unchanged and only renumbers the representative map, and program.py does not use that map afterwards.",
+   "excerpt": {
+    "start": 579,
+    "end": 592
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::add_correlated_nodes_to_graph",
+   "what": "Builds a full-size matrix and places the reduced graph at the kept columns' original positions. It recomputes the near-duplicate groups from the full data and gives each removed column a copy of its representative's edges in both directions, with the same codes. It then writes code 7 ('associated') at M[representative, removed column]. A 3-D version does the same for each lag of a time-series graph.",
+   "excerpt": {
+    "start": 532,
+    "end": 556
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/program.py::Programming.forward",
+   "what": "Back in forward: it stores raw_result and converted_graph, and keeps the pre-expansion graph in info['original_graph']. The list stored as info['high_corr_features_removed'] is actually the list of kept columns. For time series it copies info['lag_matrix'] (expanded the same way) into results.lagged_graph, or sets None if the wrapper gave none. Finally it stores info as results.raw_info. There is no try/except, timeout or retry around fit.",
+   "excerpt": {
+    "start": 58,
+    "end": 82
+   },
+   "llm": false
+  }
+ ],
+ "llm_calls": [],
+ "failure_paths": [
+  {
+   "function": "causal_discovery/program.py::Programming.forward",
+   "what": "If fit raises, takes too long, or returns the wrong number of values, nothing here catches it. main.py logs the error and raises it again, so the whole run stops. CORL.fit returns two values instead of three, so choosing CORL ends in a ValueError at the unpacking line."
+  },
+  {
+   "function": "causal_discovery/program.py::Programming.forward",
+   "what": "getattr(wrappers, name) raises AttributeError if the name is not imported by the package. CALM and AcceleratedPC appear in the package's name lists, but neither is imported."
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::<module>",
+   "what": "When CUDA is available but the acceleration package is missing, the import fallback calls logger without having imported it, which raises NameError. Because wrappers/__init__.py imports pc.py first, the whole wrappers package then fails to import."
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.fit",
+   "what": "On a machine without CUDA, a GPU test name such as 'fisherz_gpu' keeps its suffix (only '_cpu' is stripped) and is passed on to causal-learn as an unknown test name. Nothing checks this except the prompt text that tells the model not to pick GPU tests."
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC._create_background_knowledge",
+   "what": "If background knowledge is given as a string it is silently ignored (returns None), and a pair naming an unknown variable is silently skipped. On the CLI path it is never reached anyway, because background_knowledge is not a primary parameter."
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::add_correlated_nodes_to_graph",
+   "what": "A removed column is never tested itself: its edges are copied from its representative, and its link to the representative is code 7, which later steps treat differently from real edges."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "causal_discovery/program.py::Programming.forward",
+   "what": "Put a guard around fit: check that three values come back and that the matrix shape matches the data, add a timeout, and fall back to another candidate algorithm instead of stopping the run."
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.fit",
+   "what": "Run PC from the published causal-learn package instead of the in-repo copy. The audit's perfect-information test shows the published version recovers the right answer every time and the in-repo copy does not."
+  },
+  {
+   "function": "causal_discovery/wrappers/pc.py::PC.convert_to_adjacency_matrix",
+   "what": "Make every wrapper store two-ended marks (2, 3, 6) in the same cell, or in both cells, and record where each mark came from. Today the cell depends on the wrapper, and a step that reads only one side of the diagonal misses edges stored on the other."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.select_hyperparameters",
+   "what": "Only primary parameters survive into algorithm_arguments, so domain knowledge the prompt asks the model to write as background_knowledge never reaches PC. A fork that wants knowledge-guided runs has to let that key through."
+  },
+  {
+   "function": "causal_discovery/wrappers/utils/tab_utils.py::add_correlated_nodes_to_graph",
+   "what": "Label put-back columns explicitly in the output (rename info['high_corr_features_removed'] to what it holds, and list the removed columns) so later steps and the report can tell copied edges from discovered ones."
+  }
+ ],
+ "findings": [
+  {
+   "text": "Given a perfect independence test, Causal-Copilot's in-repo copy of causal-learn's PC returned the exact right answer in 460 of 720 runs, and gave the same output in every column order for only 56 of 120 graphs. Published causal-learn (0.1.3.8 and 0.1.4.8) was right in all 720. Every error was an extra edge.",
+   "label": "code verified",
+   "source": "analysis/reports/aud27_31_free_steps.md"
+  },
+  {
+   "text": "A wider re-run confirmed it: the in-repo PC copy and gCastle's default PC fail the perfect-oracle test, while published causal-learn, pgmpy, gCastle's 'parallel' variant (the one PCParallel uses) and tigramite's PCMCI+ pass.",
+   "label": "code verified",
+   "source": "analysis/reports/ab03_engine_forensics.md"
+  },
+  {
+   "text": "On 22 benchmark files, the in-repo PC's skeleton changed with column order in 20; the published build's changed in none. The suggested cause is that the copy only tries separating sets drawn from one endpoint's neighbours. That mechanism comes from reading the code and was not tested on its own.",
+   "label": "partial",
+   "source": "analysis/reports/bnd06_families.md"
+  },
+  {
+   "text": "The encoding was checked against the code: M[i, j] = 1 means j -> i; 2 to 7 are other mark types, and a two-ended mark is stored in one cell only. PC, GES, GRaSP and FCI mostly store it above the diagonal, FGES and XGES mostly below.",
+   "label": "code verified",
+   "source": "analysis/reports/pass5_identifiability_vs_encoding.md"
+  },
+  {
+   "text": "In two recorded runs, the graph the refinement stage starts from is exactly the state's converted_graph. Micro-tests show the later KCI pruning reads only cells above the diagonal, so an edge stored below it is never tested there.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4a_edge_lineage.md"
+  },
+  {
+   "text": "Reading the wrappers found: CORL returns two values and crashes program.py; pc.py can fail at import on CUDA machines without the acceleration package; and code 7 in outputs comes from the correlated-column put-back step.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "Restoring the original column indices returns the graph unchanged, and the field named for removed columns holds the kept ones.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  },
+  {
+   "text": "Only primary parameters reach the wrapper, so PC's background knowledge never does; NOTEARSLinear's settings file names a parameter the code does not read.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

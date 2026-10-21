@@ -1,0 +1,198 @@
+{
+ "slug": "eda",
+ "title": "Exploratory analysis",
+ "question": "What does it look at in the data before choosing an algorithm, and does any of it change what happens next?",
+ "plain_summary": "After the statistics step, the pipeline draws pictures of the data and computes a few simple summaries. It first narrows the columns to the ones chosen for display, and to at most 10 of them. For ordinary tables it draws histograms, a correlation heatmap and scatter or violin plots of the most correlated pairs, and it lists means, medians and the correlations above 0.1. For time series it instead draws a heatmap of correlations at several time lags and one diagnostic page per variable (trend, autocorrelation and a stationarity test, which checks whether the series' average and spread stay stable over time). Everything is saved as JPG images in the output folder and as a dictionary in results.eda. No model is called here, and nothing in algorithm selection, execution or graph refinement reads these results: they only feed the final report.",
+ "inputs": [
+  {
+   "field": "user_data.processed_data",
+   "what": "the cleaned data table from the preprocessing step"
+  },
+  {
+   "field": "user_data.visual_selected_features",
+   "what": "the columns picked for display; EDA only looks at columns that are in both this list and the data"
+  },
+  {
+   "field": "user_data.important_features",
+   "what": "columns the user marked as important (set only by the web demo); these are shown first when there are too many columns"
+  },
+  {
+   "field": "user_data.output_graph_dir",
+   "what": "the folder where the images are saved"
+  },
+  {
+   "field": "statistics.time_series",
+   "what": "whether the data is a time series; this picks which set of analyses runs"
+  },
+  {
+   "field": "statistics.time_lag",
+   "what": "the lag estimated in the statistics step; it caps how many lags the time-series plots show"
+  }
+ ],
+ "outputs": [
+  {
+   "field": "results.eda",
+   "what": "a dictionary of image paths and summaries (distribution numbers and correlations for tables; lag correlations and stationarity lists for time series), plus how many columns there were and how many were shown"
+  }
+ ],
+ "sequence": [
+  {
+   "function": "preprocess/eda_generation.py::EDA.__init__",
+   "what": "Keeps only the columns that are both in the data and in the display list, remembers the output folder, and notes which columns are text or categories and whether the data is a time series. Because the overlap is built with a Python set, the column order is not fixed from run to run.",
+   "excerpt": {
+    "start": 38,
+    "end": 54
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA._select_visualization_features",
+   "what": "If more than 10 columns remain, it keeps 10: important columns first, then the columns that vary most. Numeric columns are scored by their spread relative to their mean; category columns by how evenly their values are spread.",
+   "excerpt": {
+    "start": 93,
+    "end": 106
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_eda",
+   "what": "Picks the branch. For tables it runs four analyses at the same time in separate worker processes (joblib with all CPU cores), then summarises the correlations. For time series it runs the two time-series analyses instead; the table analyses are commented out on that branch.",
+   "excerpt": {
+    "start": 1124,
+    "end": 1143
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.plot_dist",
+   "what": "Tables only. Draws one histogram per column, five per row, with dashed and solid lines for the mean and median of numeric columns, and saves eda_dist.jpg.",
+   "excerpt": {
+    "start": 153,
+    "end": 165
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.plot_corr",
+   "what": "Tables only. Turns category columns into integer codes, computes the Pearson correlation matrix (how strongly each pair moves together in a straight line), and saves it as the heatmap eda_corr.jpg.",
+   "excerpt": {
+    "start": 213,
+    "end": 232
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.desc_dist",
+   "what": "Tables only. Records mean, median, standard deviation, minimum and maximum for each numeric column, and value counts for each category column.",
+   "excerpt": {
+    "start": 190,
+    "end": 208
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.additional_analysis",
+   "what": "Tables only. Treats columns holding only 0 and 1 as categories, finds the six most correlated pairs, and draws a scatter plot (two numbers), violin plot (number and category) or count plot (two categories) for each. Saves eda_additional.jpg.",
+   "excerpt": {
+    "start": 281,
+    "end": 299
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.desc_corr",
+   "what": "Tables only. Keeps every pair of columns whose correlation is above 0.1 in absolute value; this list becomes corr_analysis.",
+   "excerpt": {
+    "start": 240,
+    "end": 248
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.lag_correlation_heatmap",
+   "what": "Time series only. For every pair of variables and every lag from 0 to min(time_lag, 5), it correlates one variable now with the other variable that many steps later. Draws the result as eda_lag_correlation.jpg.",
+   "excerpt": {
+    "start": 472,
+    "end": 495
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_lag_correlation_summary",
+   "what": "Time series only. Lists the strongest self-correlations over time, the average correlation at each lag, and the ten pairs with the strongest lagged correlation. It labels those ten 'potential_granger_causality' with a cause and an effect, although they are only lagged correlations, not a causal test.",
+   "excerpt": {
+    "start": 604,
+    "end": 626
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.time_series_diagnostics",
+   "what": "Time series only. For up to 4 variables, draws a page with the series, its moving average and first difference, autocorrelation plots, and the result of an Augmented Dickey-Fuller test (a standard test of whether a series is stationary, here at p < 0.05). Saves one image per variable plus an overview, and lists which variables were stationary. The lag interval comes from statistics.time_lag_interval, which nothing on the CLI path sets, so it is always the default 2.",
+   "excerpt": {
+    "start": 728,
+    "end": 739
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_eda",
+   "what": "Adds how many columns there were and how many were shown, then stores the whole dictionary in results.eda.",
+   "excerpt": {
+    "start": 1155,
+    "end": 1161
+   },
+   "llm": false
+  }
+ ],
+ "llm_calls": [],
+ "failure_paths": [
+  {
+   "function": "preprocess/eda_generation.py::EDA.time_series_diagnostics",
+   "what": "The stationarity test on each variable's page is not inside a try block (the try around it is commented out). A series the test cannot handle, for example a constant or very short one, raises an error. main.py has no handler around the EDA step, so the whole run stops there."
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_eda",
+   "what": "The four table analyses run in worker processes. An error in any one of them (for example a plotting error on an unusual column) is raised back in the main process and, with no handler in main.py, ends the run before algorithm selection."
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.additional_analysis",
+   "what": "Pairs are de-duplicated by their correlation value, not by name, so two different pairs that happen to share a value collapse to one. A constant column gives an undefined (NaN) correlation. Neither stops the run; the plot just shows fewer or odd panels."
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.__init__",
+   "what": "If no column is in both the data and the display list, the EDA works on an empty table; the plotting functions are not written for that case."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_eda",
+   "what": "This step is safe to switch off or replace for experiments: nothing downstream except the report reads results.eda. Skipping it saves the time spent saving every image at 1000 dpi."
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.time_series_diagnostics",
+   "what": "Wrap the stationarity test in a try block (as the code once did) so one unusual series cannot end the whole run."
+  },
+  {
+   "function": "preprocess/eda_generation.py::EDA.generate_lag_correlation_summary",
+   "what": "A fork that wants EDA to inform algorithm choice would have to pass these summaries into the selection prompts on purpose; today the selection prompts use only the text from the statistics step."
+  }
+ ],
+ "findings": [
+  {
+   "text": "In six stub runs on 20 and 21 variables, the EDA stage took 23 to 40 seconds, more than the algorithm itself (11 to 20 seconds).",
+   "label": "code verified",
+   "source": "analysis/reports/bnd08_stub_measurement.md"
+  },
+  {
+   "text": "Our inventory of every model call found none in this step; the model calls on the discovery path start with the algorithm shortlist that follows.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "Nothing after this step reads the EDA results except fixed report text; the stationarity test has no error handling, so an unusual series ends the run.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

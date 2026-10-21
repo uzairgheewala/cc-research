@@ -1,0 +1,144 @@
+{
+ "slug": "data-and-query",
+ "title": "Loading the data and reading the question",
+ "question": "How does the dataset get into the run, and what does the code do with the user's question?",
+ "plain_summary": "Step 2 reads the file named by --data-file into a pandas table and stores it as user_data.raw_data. If the path is a folder, it also loads a reference graph when the folder holds a .npy file. In the default real-data mode, main then reads the same file a second time with load_real_world_data and replaces raw_data with that copy. If the table has a column literally named domain_index, the code marks the data as mixing several domains, which overrides the LLM's earlier guess. Step 3, process_user_query, makes no model call: the question was already sent to the LLM in step 1, during setup. This function only looks for 'key: value; key: value' text in the query. 'filter: continuous' keeps the numeric columns, and a 'selected_algorithm' key is only printed. Finally main copies the remaining column names into selected_features and visual_selected_features, the feature lists every later step uses.",
+ "inputs": [
+  {
+   "field": "user_data.initial_query",
+   "what": "The query text stored during setup. process_user_query receives it as args.initial_query."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "user_data.raw_data",
+   "what": "The dataset as a pandas DataFrame, column names taken from the file's header line."
+  },
+  {
+   "field": "user_data.ground_truth",
+   "what": "A reference graph from a .npy file when --data-file is a folder; otherwise None."
+  },
+  {
+   "field": "statistics.heterogeneous",
+   "what": "Set from the data only if a column named domain_index exists: True when it has more than one distinct value."
+  },
+  {
+   "field": "statistics.domain_index",
+   "what": "Set to 'domain_index' when that column exists."
+  },
+  {
+   "field": "user_data.processed_data",
+   "what": "At this point raw_data, or only its numeric columns if the query said 'filter: continuous'. It is replaced in the next step."
+  },
+  {
+   "field": "user_data.selected_features",
+   "what": "The list of column names the statistics step will analyse."
+  },
+  {
+   "field": "user_data.visual_selected_features",
+   "what": "The same list, used for plots and for the pairwise tests."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "global_setting/Initialize_state.py::load_data",
+   "what": "In offline mode (the default) it reads --data-file with pd.read_csv, or calls load_local_data when the path is a folder. Online mode generates a synthetic dataset instead. It stores the table and any reference graph, then sets the heterogeneity flags when a domain_index column exists.",
+   "excerpt": {
+    "start": 22,
+    "end": 46
+   },
+   "llm": false
+  },
+  {
+   "function": "global_setting/Initialize_state.py::load_local_data",
+   "what": "Only when --data-file is a folder. It looks for config.json, base_data.csv and base_graph.npy. If one is missing, it takes the last .json, .csv or .npy file the folder listing returns. Only a missing CSV is an error.",
+   "excerpt": {
+    "start": 64,
+    "end": 88
+   },
+   "llm": false
+  },
+  {
+   "function": "main.py::load_real_world_data",
+   "what": "Runs when --data_mode is real (the default). It reads the file again, as CSV or as a JSON list of records, and prints its shape, first five column names, memory use and column types. main stores the result over the raw_data that load_data just set.",
+   "excerpt": {
+    "start": 104,
+    "end": 123
+   },
+   "llm": false
+  },
+  {
+   "function": "main.py::process_user_query",
+   "what": "A plain text parser, not an LLM call. If the query contains ';' or ':', it splits it into key: value pairs. 'filter: continuous' keeps only float64 and int64 columns. 'selected_algorithm' is logged but not stored anywhere. With the default query nothing matches, and the table comes back unchanged.",
+   "excerpt": {
+    "start": 129,
+    "end": 145
+   },
+   "llm": false
+  },
+  {
+   "function": "main.py::main",
+   "what": "Wires the two steps into state: raw_data comes from load_real_world_data, processed_data from process_user_query. Both feature lists are set to processed_data's column names.",
+   "excerpt": {
+    "start": 164,
+    "end": 174
+   },
+   "llm": false
+  }
+ ],
+ "llm_calls": [],
+ "failure_paths": [
+  {
+   "function": "main.py::load_real_world_data",
+   "what": "When --data-file is a folder and --data_mode is left at real, load_data reads the folder, but this function then gets the folder path and raises ValueError (\"Unsupported file format\"). A folder works only with --data_mode simulated."
+  },
+  {
+   "function": "global_setting/Initialize_state.py::load_data",
+   "what": "Any path that is not a folder is read with pd.read_csv first. A JSON file therefore reaches load_real_world_data's JSON branch only if that CSV read did not fail. An unknown --simulation_mode or --data_mode raises ValueError."
+  },
+  {
+   "function": "main.py::process_user_query",
+   "what": "A ';'-separated part with more than one ':' (for example \"ratio: 3:1\") makes the unpack on line 135 raise ValueError, which stops the run. Ordinary prose with one colon becomes a key that nothing reads."
+  },
+  {
+   "function": "main.py::process_user_query",
+   "what": "'filter: continuous' keeps only float64 and int64 columns, so other numeric types such as int32 or bool are dropped silently."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "main.py::load_real_world_data",
+   "what": "Read the file once and accept folders in real mode. Today the second read silently wins over load_data's."
+  },
+  {
+   "function": "main.py::process_user_query",
+   "what": "The natural place for typed user input (forbidden or required edges, variables to drop, a time index). The CLI currently has no way to pass these, and the 'selected_algorithm' key here has no effect."
+  },
+  {
+   "function": "global_setting/Initialize_state.py::load_data",
+   "what": "The only data-driven heterogeneity check on the CLI depends on the exact column name domain_index. A fork would let the user name the column, or check the column the LLM proposed."
+  }
+ ],
+ "findings": [
+  {
+   "text": "The paper says users can impose constraints such as \"Variable 'age' cannot be an effect\". The CLI's query handling has no field for constraints.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/rep04_paper_vs_code.md"
+  },
+  {
+   "text": "On the CLI the time-series flag comes from the LLM's reading of the query in setup. The web demo uses a separate LLM parse of the user message.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "The file path the user passes is not only a location: it is pasted into the domain-knowledge prompt in the next step. Path and column names are two separate cues to the dataset's identity.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The output-folder arguments are parsed but never used, and in real-data mode the file is read twice.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

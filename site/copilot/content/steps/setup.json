@@ -1,0 +1,228 @@
+{
+ "slug": "setup",
+ "title": "Setting up the run",
+ "question": "What happens before any data is touched, and what is the global_state object that every later step reads and writes?",
+ "plain_summary": "Running python main.py first quiets the logs of outside libraries, creates one shared console logger, and loads API keys from a .env file. It then reads the command-line options (data file, query, modes) and calls main(), which runs eight numbered steps in a fixed order. Step 1 builds global_state: one object with six parts. user_data holds the tables, the user's query, output folders, feature lists and the domain-knowledge text; statistics holds facts about the data (sample size, data type, linearity, Gaussian errors, missingness, time-series flags, alpha) plus the text summary of them; algorithm holds the chosen method, its settings and the time budget; results holds every graph the run produces; logging holds the saved LLM conversations; inference holds effect-estimation state that the discovery path does not use. Before any data is loaded, step 1 also sends the user's query to an LLM, which turns it into nine settings, and copies those settings straight into global_state. Whatever the model fills in there can switch off later statistical tests or skip algorithm selection.",
+ "inputs": [
+  {
+   "field": "user_data.raw_data",
+   "what": "Read at Initialize_state.py line 182 to check the LLM's domain_index against the column names. Nothing has been loaded yet, so it is still None at that point."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "user_data.initial_query",
+   "what": "The query text from --initial_query, unchanged."
+  },
+  {
+   "field": "user_data.output_report_dir",
+   "what": "Where the report goes: output/<file name>/<date_time>/output_report, or next to the data file in demo mode."
+  },
+  {
+   "field": "user_data.output_graph_dir",
+   "what": "Where the plots go, built the same way."
+  },
+  {
+   "field": "statistics.linearity",
+   "what": "The LLM's reading of the query: True, False or None. Anything other than None skips the linearity test later (for continuous data)."
+  },
+  {
+   "field": "statistics.gaussian_error",
+   "what": "The LLM's reading of the query: True, False or None. Anything other than None skips the Gaussian-error test later (for continuous data)."
+  },
+  {
+   "field": "statistics.heterogeneous",
+   "what": "Whether the LLM thinks the query says the data mixes several domains."
+  },
+  {
+   "field": "statistics.domain_index",
+   "what": "The column the LLM names as the domain label, if any."
+  },
+  {
+   "field": "statistics.time_series",
+   "what": "The LLM's yes/no on time-series data. This is the only place the CLI sets it."
+  },
+  {
+   "field": "statistics.alpha",
+   "what": "Significance level for later tests. Default 0.1; replaced only if the LLM returns a value."
+  },
+  {
+   "field": "statistics.gpu_available",
+   "what": "Whether PyTorch sees a CUDA GPU."
+  },
+  {
+   "field": "algorithm.selected_algorithm",
+   "what": "An algorithm the user asked for by name, as the LLM read it. If set, the later filter and rerank steps are skipped."
+  },
+  {
+   "field": "algorithm.waiting_minutes",
+   "what": "Time budget. Default 1440 minutes; replaced only if the LLM returns a value."
+  },
+  {
+   "field": "user_data.accept_CPDAG",
+   "what": "Whether the user accepts graphs with undirected edges. Default True; replaced only if the LLM returns a value."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "main.py::<module>",
+   "what": "Running main.py imports utils.suppress_logs first, then the logger, then every pipeline module. It calls load_dotenv(), which copies the .env file into environment variables (this is where the API key and model name come from). The last lines read the options and call main().",
+   "excerpt": {
+    "start": 388,
+    "end": 390
+   },
+   "llm": false
+  },
+  {
+   "function": "utils/suppress_logs.py::<module>",
+   "what": "Turns off Python warnings, adds a filter to the root logger, and disables the loggers of libraries such as castle, sklearn, torch and openai, so the console shows only the pipeline's own messages.",
+   "llm": false
+  },
+  {
+   "function": "utils/logger.py::<module>",
+   "what": "Creates the single shared logger object at import time, set to INFO level. It only prints coloured lines to the console. It writes no log file, and its debug lines (such as the parsed query) are hidden at this level.",
+   "excerpt": {
+    "start": 427,
+    "end": 431
+   },
+   "llm": false
+  },
+  {
+   "function": "main.py::parse_args",
+   "what": "Defines the command-line options: --data-file (default the Abalone CSV), --output-report-dir, --output-graph-dir, --simulation_mode (offline), --data_mode (real), --debug, --initial_query (default \"Do causal discovery on this dataset\"), --parallel and --demo_mode. The two output-folder options are parsed but never used on this path.",
+   "excerpt": {
+    "start": 80,
+    "end": 102
+   },
+   "llm": false
+  },
+  {
+   "function": "main.py::main",
+   "what": "The whole pipeline in one function: eight logged steps, run in order, each passing global_state on to the next. Step 1 is a single call to global_state_initialization.",
+   "excerpt": {
+    "start": 157,
+    "end": 175
+   },
+   "llm": true
+  },
+  {
+   "function": "global_setting/Initialize_state.py::global_state_initialization",
+   "what": "Creates an empty GlobalState (the six dataclasses in global_setting/state.py, every field None or a default) and stores the query. It lists the algorithm names from causal_discovery/context/algos, asks the LLM to turn the query into nine JSON fields, builds the output folder paths, and copies the answer into statistics, algorithm and user_data. The lines shown are where the answer enters state.",
+   "excerpt": {
+    "start": 177,
+    "end": 198
+   },
+   "llm": true
+  },
+  {
+   "function": "llm/llm_client.py::LLMClient.__init__",
+   "what": "Chooses the provider and model from environment variables only: LLM_PROVIDER (default openai) and LLM_MODEL (default gpt-4o-mini). It builds an OpenAI, OpenRouter or Ollama client. The args it is given are not used. Every later step creates its own client the same way.",
+   "excerpt": {
+    "start": 77,
+    "end": 99
+   },
+   "llm": false
+  },
+  {
+   "function": "llm/llm_client.py::LLMClient.chat_completion",
+   "what": "Sends one system message and one user message at temperature 0.0, in JSON mode when asked. In JSON mode it parses the reply. If that fails, it tries a ```json code block, and if that fails too it raises ValueError. There is no retry.",
+   "excerpt": {
+    "start": 183,
+    "end": 205
+   },
+   "llm": true
+  }
+ ],
+ "llm_calls": [
+  {
+   "function": "global_setting/Initialize_state.py::global_state_initialization",
+   "prompt": null,
+   "asks": "Read the user's query and return a JSON object with nine keys: linearity, gaussian_error, alpha, heterogeneous, domain_index, selected_algorithm (from the listed algorithm names), waiting_minutes, accept_CPDAG (default True) and time_series (default False), with None for anything the query does not say. The prompt is written inline in the function, not in a prompt file.",
+   "answer_used": "linearity, gaussian_error, heterogeneous, domain_index, selected_algorithm and time_series are always copied into state. waiting_minutes, alpha and accept_CPDAG are copied only when they are not None. A True/False for linearity or Gaussian errors stops the statistical test from running later (for continuous data). A selected_algorithm skips the filter and rerank steps. time_series decides whether the data is treated as a time series at all.",
+   "checked": "JSON mode only: the reply must parse as JSON. Keys are read with [] and no check that they exist. Values are not type-checked, and selected_algorithm is not checked against the list here. The only content check is domain_index against raw_data's columns, which runs before any data is loaded. The prompt and raw answer are not saved (logging.query_conversation exists but stays empty)."
+  }
+ ],
+ "failure_paths": [
+  {
+   "function": "global_setting/Initialize_state.py::global_state_initialization",
+   "what": "If the model's JSON lacks a key (for example an empty {}), line 178 raises KeyError and the run stops before any data is read."
+  },
+  {
+   "function": "global_setting/Initialize_state.py::global_state_initialization",
+   "what": "If the model returns any domain_index other than None, line 182 reads raw_data.columns while raw_data is still None (data loads in step 2). That raises AttributeError and stops the run."
+  },
+  {
+   "function": "llm/llm_client.py::LLMClient.chat_completion",
+   "what": "A reply that is not JSON raises ValueError. API errors (no key, network, rate limit) pass straight up. Neither is caught, so the run stops."
+  },
+  {
+   "function": "llm/llm_client.py::LLMClient.__init__",
+   "what": "An LLM_PROVIDER other than openai, openrouter or ollama raises ValueError."
+  },
+  {
+   "function": "main.py::parse_args",
+   "what": "--parallel and --demo_mode use type=bool, so any non-empty value, including \"False\", turns them on."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "global_setting/Initialize_state.py::global_state_initialization",
+   "what": "Read the nine keys with a default and check their types, give the request a schema (chat_completion already accepts response_format), save the prompt and answer, and check domain_index only after load_data. Each of these closes a crash path or makes the run auditable. Recording that a value came from the query, not from a test, would also make later prompts honest about it."
+  },
+  {
+   "function": "llm/llm_client.py::LLMClient.__init__",
+   "what": "This is the one place to make the model a per-run setting (from args) rather than an environment variable, and to log which model served each call."
+  },
+  {
+   "function": "main.py::main",
+   "what": "The step order lives here. It is also where a fork would seed random number generators and use --output-report-dir and --output-graph-dir, which are currently ignored."
+  }
+ ],
+ "findings": [
+  {
+   "text": "In 28 live runs the identical query-parse request got three different answers at temperature 0: the full JSON 24 times, two fields null twice, and {} twice. The two {} answers crashed at Initialize_state.py:178 with KeyError: 'linearity'.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "The line-178 crash (C2) is unguarded on all 19 upstream branches and dates from October 2024.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud15_upstream.md"
+  },
+  {
+   "text": "The query-parse prompt and its answer are not kept; only the parsed fields survive in state.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "When the query parse supplies linearity or Gaussianity, the data tests for them do not run; the paper describes these diagnostics as data-driven.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/rep04_paper_vs_code.md"
+  },
+  {
+   "text": "The paper says users may impose constraints such as \"age cannot be an effect\", but the query parse has no constraint field.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/rep04_paper_vs_code.md"
+  },
+  {
+   "text": "LLMClient reads provider, model and keys only from environment variables; its args parameter is documented but ignored.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "Time-series mode is set only by the LLM's reading of the query; there is no detection from the data.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/dom12_scope_code_facts.md"
+  },
+  {
+   "text": "The question is parsed by the model inside the state initialiser, not in step 3; the parsed selected_algorithm key is printed but never stored.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  },
+  {
+   "text": "If the question parse returns a domain index, the initialiser reads the data's columns before the data are loaded: a crash on that path.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

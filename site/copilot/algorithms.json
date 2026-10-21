@@ -1,0 +1,367 @@
+[
+  {
+    "class": "PC",
+    "file": "causal_discovery/wrappers/pc.py",
+    "family": "constraint-based",
+    "library": "causal-learn, in-repo copy (externals/causal-learn); GPU path: externals/acceleration/pc (accelerated_pc)",
+    "primary_params": [
+      "alpha",
+      "indep_test",
+      "depth"
+    ],
+    "assumptions": "Causal sufficiency (no unmeasured common causes), faithfulness, acyclicity, i.i.d. samples, Markov property.",
+    "output": "CPDAG (codes 1 directed, 2 undirected, 3 bidirected; 2/3 stored above the diagonal)",
+    "notes": "GPU code is used only if CUDA is present and indep_test contains 'gpu'; on CPU only '_cpu' is stripped, so a '_gpu' name reaches causal-learn unchanged. The GPU path ignores background knowledge and returns the matrix as raw_result. If CUDA is present but the acceleration package is missing, the import fallback calls an unimported logger (NameError at import). Puts externals/causal-learn first on sys.path. The hyperparameter file also describes background_knowledge, but only primary parameters reach the wrapper.",
+    "fit_function": "causal_discovery/wrappers/pc.py::PC.fit"
+  },
+  {
+    "class": "FCI",
+    "file": "causal_discovery/wrappers/fci.py",
+    "family": "constraint-based",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (appended to sys.path; pc.py, imported first, has already put it first)",
+    "primary_params": [
+      "alpha",
+      "indep_test",
+      "depth"
+    ],
+    "assumptions": "Acyclicity, Markov condition, faithfulness; does not assume causal sufficiency (hidden common causes allowed).",
+    "output": "PAG (codes 1 directed, 3 bidirected, 4 circle-arrow, 6 circle-circle)",
+    "notes": "CPU only, no acceleration branch. raw_result is the tuple (graph, edges). Background knowledge supported in code but not a primary parameter.",
+    "fit_function": "causal_discovery/wrappers/fci.py::FCI.fit"
+  },
+  {
+    "class": "CDNOD",
+    "file": "causal_discovery/wrappers/cdnod.py",
+    "family": "constraint-based",
+    "library": "causal-learn, in-repo copy (externals/causal-learn); GPU path: externals/acceleration/cdnod (accelerated_cdnod)",
+    "primary_params": [
+      "alpha",
+      "indep_test",
+      "depth"
+    ],
+    "assumptions": "Markov and faithfulness; distribution shifts across domains come from changes in causal mechanisms, not system-wide confounding; no fixed functional form.",
+    "output": "CPDAG over the data columns (codes 1, 2, 3); the domain node's row and column are cut off",
+    "notes": "Needs a 'domain_index' column; if missing it prints a message and adds a column of ones. Same _gpu/_cpu suffix handling as PC. Prints the converted matrix to stdout.",
+    "fit_function": "causal_discovery/wrappers/cdnod.py::CDNOD.fit"
+  },
+  {
+    "class": "PCParallel",
+    "file": "causal_discovery/wrappers/pc_parallel.py",
+    "family": "constraint-based",
+    "library": "gCastle (castle.algorithms.PC, variant='parallel')",
+    "primary_params": [
+      "alpha",
+      "indep_test",
+      "cores"
+    ],
+    "assumptions": "unclear (no profile in context/algos, no tag entry, no hyperparameter file)",
+    "output": "CPDAG (codes 1 and 2; undirected stored above the diagonal)",
+    "notes": "gCastle's matrix is transposed into the repo convention and self-loops are cleared. cores of 16 or more is replaced by min(cpu_count, 14). With no profile or hyperparameter file it cannot be chosen through normal selection.",
+    "fit_function": "causal_discovery/wrappers/pc_parallel.py::PCParallel.fit"
+  },
+  {
+    "class": "InterIAMB",
+    "file": "causal_discovery/wrappers/inter_iamb.py",
+    "family": "Markov blanket",
+    "library": "pyCausalFS, in-repo (externals/pyCausalFS, CBD.MBs.inter_IAMB); then causal-learn, in-repo copy (externals/causal-learn) via MB2CPDAG",
+    "primary_params": [
+      "alpha",
+      "indep_test"
+    ],
+    "assumptions": "Causal sufficiency, Markov condition, faithfulness.",
+    "output": "CPDAG-like merge of local PC graphs (codes 1 and 2)",
+    "notes": "Runs the per-variable Markov-blanket search in parallel with joblib (n_jobs 4 by default), then MB2CPDAG (wrappers/utils/tab_utils.py) runs the in-repo causal-learn PC on each variable plus its blanket and merges the local graphs into one matrix (codes 1 and 2). The number of variables is counted before domain_index is dropped, so a domain_index column adds one target index that does not exist.",
+    "fit_function": "causal_discovery/wrappers/inter_iamb.py::InterIAMB.fit"
+  },
+  {
+    "class": "BAMB",
+    "file": "causal_discovery/wrappers/bamb.py",
+    "family": "Markov blanket",
+    "library": "pyCausalFS, in-repo (externals/pyCausalFS, CBD.MBs.BAMB); then causal-learn, in-repo copy (externals/causal-learn) via MB2CPDAG",
+    "primary_params": [
+      "alpha",
+      "indep_test"
+    ],
+    "assumptions": "Causal Markov condition, faithfulness, causal sufficiency, reliable conditional independence tests.",
+    "output": "CPDAG-like merge of local PC graphs (codes 1 and 2)",
+    "notes": "Runs the per-variable Markov-blanket search in parallel with joblib (n_jobs 4 by default), then MB2CPDAG (wrappers/utils/tab_utils.py) runs the in-repo causal-learn PC on each variable plus its blanket and merges the local graphs into one matrix (codes 1 and 2).",
+    "fit_function": "causal_discovery/wrappers/bamb.py::BAMB.fit"
+  },
+  {
+    "class": "HITONMB",
+    "file": "causal_discovery/wrappers/hiton_mb.py",
+    "family": "Markov blanket",
+    "library": "pyCausalFS, in-repo (externals/pyCausalFS, CBD.MBs.HITON.HITON_MB); then causal-learn, in-repo copy (externals/causal-learn) via MB2CPDAG",
+    "primary_params": [
+      "alpha",
+      "indep_test"
+    ],
+    "assumptions": "Markov and faithfulness; causal sufficiency.",
+    "output": "CPDAG-like merge of local PC graphs (codes 1 and 2)",
+    "notes": "Runs the per-variable Markov-blanket search in parallel with joblib (n_jobs 4 by default), then MB2CPDAG (wrappers/utils/tab_utils.py) runs the in-repo causal-learn PC on each variable plus its blanket and merges the local graphs into one matrix (codes 1 and 2). Tagged 'Availability: Unavailable' in tab_tagging.txt. Counts variables before dropping domain_index (same as InterIAMB). Passes n_jobs, not n_subjobs, to each HITON_MB call.",
+    "fit_function": "causal_discovery/wrappers/hiton_mb.py::HITONMB.fit"
+  },
+  {
+    "class": "IAMBnPC",
+    "file": "causal_discovery/wrappers/iambnpc.py",
+    "family": "Markov blanket",
+    "library": "pyCausalFS, in-repo (externals/pyCausalFS, CBD.MBs.IAMBnPC); then causal-learn, in-repo copy (externals/causal-learn) via MB2CPDAG",
+    "primary_params": [
+      "alpha",
+      "indep_test"
+    ],
+    "assumptions": "Causal sufficiency, faithfulness, Markov condition.",
+    "output": "CPDAG-like merge of local PC graphs (codes 1 and 2)",
+    "notes": "Runs the per-variable Markov-blanket search in parallel with joblib (n_jobs 4 by default), then MB2CPDAG (wrappers/utils/tab_utils.py) runs the in-repo causal-learn PC on each variable plus its blanket and merges the local graphs into one matrix (codes 1 and 2).",
+    "fit_function": "causal_discovery/wrappers/iambnpc.py::IAMBnPC.fit"
+  },
+  {
+    "class": "MBOR",
+    "file": "causal_discovery/wrappers/mbor.py",
+    "family": "Markov blanket",
+    "library": "pyCausalFS, in-repo (externals/pyCausalFS, CBD.MBs.MBOR); then causal-learn, in-repo copy (externals/causal-learn) via MB2CPDAG",
+    "primary_params": [
+      "alpha",
+      "indep_test"
+    ],
+    "assumptions": "Causal Markov condition, faithfulness, causal sufficiency.",
+    "output": "CPDAG-like merge of local PC graphs (codes 1 and 2)",
+    "notes": "Runs the per-variable Markov-blanket search in parallel with joblib (n_jobs 4 by default), then MB2CPDAG (wrappers/utils/tab_utils.py) runs the in-repo causal-learn PC on each variable plus its blanket and merges the local graphs into one matrix (codes 1 and 2). Passes n_jobs, not n_subjobs, to each MBOR call.",
+    "fit_function": "causal_discovery/wrappers/mbor.py::MBOR.fit"
+  },
+  {
+    "class": "GES",
+    "file": "causal_discovery/wrappers/ges.py",
+    "family": "score-based",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (ScoreBased.GES)",
+    "primary_params": [
+      "score_func",
+      "maxP"
+    ],
+    "assumptions": "Causal sufficiency, acyclicity, faithfulness, i.i.d. samples.",
+    "output": "CPDAG (codes 1 and 2; undirected stored above the diagonal)",
+    "notes": "A negative maxP is turned into None (no limit on parents). Default score is BIC.",
+    "fit_function": "causal_discovery/wrappers/ges.py::GES.fit"
+  },
+  {
+    "class": "FGES",
+    "file": "causal_discovery/wrappers/fges.py",
+    "family": "score-based",
+    "library": "in-repo FGES with SEM-BIC score (externals/acceleration/fges)",
+    "primary_params": [
+      "sparsity"
+    ],
+    "assumptions": "Causal sufficiency, acyclicity, faithfulness; linear-Gaussian by default for continuous data.",
+    "output": "CPDAG (codes 1 and 2; undirected stored below the diagonal)",
+    "notes": "Imports externals.acceleration unconditionally, so the module needs that folder even without a GPU.",
+    "fit_function": "causal_discovery/wrappers/fges.py::FGES.fit"
+  },
+  {
+    "class": "XGES",
+    "file": "causal_discovery/wrappers/x_ges.py",
+    "family": "score-based",
+    "library": "xges (pip package)",
+    "primary_params": [
+      "alpha"
+    ],
+    "assumptions": "Causal sufficiency, Markov property, faithfulness, linearity (default), acyclicity.",
+    "output": "CPDAG (codes 1 and 2; undirected stored below the diagonal)",
+    "notes": "alpha here is a score penalty (default 2.0), not a significance level. Does not define get_secondary_params, so calling it would raise NotImplementedError from the base class. info is empty.",
+    "fit_function": "causal_discovery/wrappers/x_ges.py::XGES.fit"
+  },
+  {
+    "class": "NOTEARSLinear",
+    "file": "causal_discovery/wrappers/notears_linear.py",
+    "family": "continuous optimisation",
+    "library": "gCastle (castle.algorithms.Notears)",
+    "primary_params": [
+      "lambda1",
+      "loss_type",
+      "max_iter",
+      "w_threshold"
+    ],
+    "assumptions": "DAG, causal sufficiency, linear relationships, independent noise, continuous variables.",
+    "output": "DAG (0/1, gCastle matrix transposed into the repo convention)",
+    "notes": "The hyperparameter file names the penalty 'lambda_1' while the wrapper's key is 'lambda1'. Only keys in the wrapper's primary list are kept, so a value returned as 'lambda_1' is dropped. The name property returns 'NOTEARS'. Edge weights are kept in info['weight_causal_matrix'].",
+    "fit_function": "causal_discovery/wrappers/notears_linear.py::NOTEARSLinear.fit"
+  },
+  {
+    "class": "NOTEARSNonlinear",
+    "file": "causal_discovery/wrappers/notears_nolinear.py",
+    "family": "continuous optimisation",
+    "library": "gCastle (castle.algorithms.NotearsNonlinear, PyTorch)",
+    "primary_params": [
+      "lambda1",
+      "lambda2",
+      "max_iter",
+      "w_threshold"
+    ],
+    "assumptions": "No profile in context/algos; tab_tagging.txt tags it nonlinear, flexible noise, homogeneous data. Otherwise unclear.",
+    "output": "DAG (0/1, transposed into the repo convention)",
+    "notes": "Uses the GPU if CUDA is present (device_type 'auto'). Tagged Unavailable. The hyperparameter file is named NOTEARSNolinear.json, which does not match the class name the selector opens.",
+    "fit_function": "causal_discovery/wrappers/notears_nolinear.py::NOTEARSNonlinear.fit"
+  },
+  {
+    "class": "CORL",
+    "file": "causal_discovery/wrappers/corl.py",
+    "family": "continuous optimisation",
+    "library": "gCastle (castle.algorithms.gradient.corl.torch.CORL, PyTorch)",
+    "primary_params": [
+      "iteration"
+    ],
+    "assumptions": "No profile in context/algos; tab_tagging.txt tags it linear, flexible noise, homogeneous data. Otherwise unclear.",
+    "output": "DAG (transposed into the repo convention)",
+    "notes": "Reinforcement-learning search over variable orderings. fit returns 2 values, but program.py unpacks 3, so running it raises ValueError. Uses the GPU if CUDA is present. Tagged Unavailable.",
+    "fit_function": "causal_discovery/wrappers/corl.py::CORL.fit"
+  },
+  {
+    "class": "GOLEM",
+    "file": "causal_discovery/wrappers/golem.py",
+    "family": "continuous optimisation",
+    "library": "gCastle (castle.algorithms.GOLEM, PyTorch)",
+    "primary_params": [
+      "lambda_1",
+      "num_iter",
+      "graph_thres"
+    ],
+    "assumptions": "DAG, linear relationships, causal sufficiency, independent noise.",
+    "output": "DAG (0/1 after thresholding, transposed into the repo convention)",
+    "notes": "Uses the GPU if CUDA is present. Returns the same matrix as both graph and raw_result. num_iter default is 1e4 (the code comment says the library default is 1e5).",
+    "fit_function": "causal_discovery/wrappers/golem.py::GOLEM.fit"
+  },
+  {
+    "class": "GRaSP",
+    "file": "causal_discovery/wrappers/grasp.py",
+    "family": "score-based",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (PermutationBased.GRaSP)",
+    "primary_params": [
+      "score_func",
+      "depth"
+    ],
+    "assumptions": "Markov property, faithfulness, causal sufficiency.",
+    "output": "CPDAG (codes 1, 2, 3); its profile says DAG but the conversion keeps undirected marks",
+    "notes": "Permutation-based search: it searches over variable orderings and scores each one (listed as permutation-based in wrappers/__init__.py).",
+    "fit_function": "causal_discovery/wrappers/grasp.py::GRaSP.fit"
+  },
+  {
+    "class": "DirectLiNGAM",
+    "file": "causal_discovery/wrappers/direct_lingam.py",
+    "family": "functional",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (FCMBased.lingam); GPU path: culingam",
+    "primary_params": [
+      "measure",
+      "gpu"
+    ],
+    "assumptions": "Linear relationships, non-Gaussian errors (at most one Gaussian), acyclicity, causal sufficiency, independent errors.",
+    "output": "DAG (0/1; LiNGAM's B[i, j] already means j -> i, so no transpose)",
+    "notes": "Uses culingam only if CUDA is present and gpu=True (default False). If CUDA is present, gpu=True and culingam is missing, fit hits an undefined name. Weights are thrown away (any nonzero becomes 1). The causal order goes into info.",
+    "fit_function": "causal_discovery/wrappers/direct_lingam.py::DirectLiNGAM.fit"
+  },
+  {
+    "class": "ICALiNGAM",
+    "file": "causal_discovery/wrappers/ica_lingam.py",
+    "family": "functional",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (FCMBased.lingam.ica_lingam)",
+    "primary_params": [
+      "max_iter"
+    ],
+    "assumptions": "No profile in context/algos; tab_tagging.txt tags it linear with non-Gaussian noise. Standard LiNGAM assumptions otherwise unclear from the repo.",
+    "output": "DAG (0/1)",
+    "notes": "Tagged Unavailable. Weights are thrown away. Its hyperparameter file also lists random_state, which is not primary and is dropped.",
+    "fit_function": "causal_discovery/wrappers/ica_lingam.py::ICALiNGAM.fit"
+  },
+  {
+    "class": "Hybrid",
+    "file": "causal_discovery/wrappers/hybrid.py",
+    "family": "hybrid",
+    "library": "PC or GES wrapper (in-repo causal-learn), then causal-learn ANM or PNL and Meek rules",
+    "primary_params": [
+      "first_stage_algo",
+      "second_stage_method",
+      "alpha",
+      "m_max"
+    ],
+    "assumptions": "No profile in context/algos; tab_tagging.txt tags it flexible functional form, Gaussian noise, sparse graphs. Otherwise unclear.",
+    "output": "Partly oriented CPDAG (codes 1, 2, 3); tagged DAG",
+    "notes": "Stage 1 is PC or GES. For each undirected edge, stage 2 tries ANM/PNL direction tests with up to m_max candidate confounders, then applies Meek's rules, and repeats until nothing changes. GES ignores the alpha it is given. Prints each orientation. Tagged Unavailable.",
+    "fit_function": "causal_discovery/wrappers/hybrid.py::Hybrid.fit"
+  },
+  {
+    "class": "DYNOTEARS",
+    "file": "causal_discovery/wrappers/dynotears.py",
+    "family": "time series",
+    "library": "causalnex (structure.dynotears.from_pandas_dynamic)",
+    "primary_params": [
+      "p",
+      "lambda_w",
+      "lambda_a",
+      "max_iter",
+      "w_threshold"
+    ],
+    "assumptions": "Linear relationships, Gaussian noise (somewhat robust), acyclicity within a time slice, causal sufficiency, stationarity.",
+    "output": "Lagged graph: lag_matrix[lag, effect, cause] plus a summary matrix",
+    "notes": "Maps causalnex node names back to columns assuming causalnex lists nodes variable by variable with exactly p+1 entries each; this ordering assumption is not checked. Also listed under score-based algorithms in wrappers/__init__.py.",
+    "fit_function": "causal_discovery/wrappers/dynotears.py::DYNOTEARS.fit"
+  },
+  {
+    "class": "PCMCI",
+    "file": "causal_discovery/wrappers/pcmci.py",
+    "family": "time series",
+    "library": "tigramite (PCMCI.run_pcmciplus; ParCorr, RobustParCorr, GPDC, Gsquared, RegressionCI, CMIknn tests)",
+    "primary_params": [
+      "indep_test",
+      "tau_min",
+      "tau_max",
+      "pc_alpha"
+    ],
+    "assumptions": "Causal Markov condition, faithfulness, stationarity.",
+    "output": "Lagged graph: lag_matrix[lag] with effect rows and cause columns, plus a summary matrix (any lag)",
+    "notes": "Builds the graph only from p-values (p or FDR-corrected q <= pc_alpha) and ignores PCMCI+'s own oriented graph, so a same-time link sets both cells. GPDC runs on PyTorch if CUDA is present. An unknown indep_test leaves the test unset (UnboundLocalError). The hyperparameter file also offers link_assumptions, which is not primary.",
+    "fit_function": "causal_discovery/wrappers/pcmci.py::PCMCI.fit"
+  },
+  {
+    "class": "VARLiNGAM",
+    "file": "causal_discovery/wrappers/var_lingam.py",
+    "family": "time series",
+    "library": "causal-learn, in-repo copy (externals/causal-learn) (FCMBased.lingam.VARLiNGAM); GPU path: culingam.varlingam",
+    "primary_params": [
+      "lags",
+      "criterion",
+      "prune",
+      "gpu"
+    ],
+    "assumptions": "Non-Gaussian noise, linear relationships, stationarity, causal sufficiency.",
+    "output": "Lagged graph of weights (lag_matrix not binarised) plus a 0/1 summary matrix",
+    "notes": "gpu defaults to True. A compatibility subclass AcVarLiNGAMWrapper is defined but never used. If CUDA is present and culingam is not installed, the module fails at import.",
+    "fit_function": "causal_discovery/wrappers/var_lingam.py::VARLiNGAM.fit"
+  },
+  {
+    "class": "GrangerCausality",
+    "file": "causal_discovery/wrappers/granger_causality.py",
+    "family": "time series",
+    "library": "statsmodels (VAR, grangercausalitytests) and scipy F-test",
+    "primary_params": [
+      "p",
+      "gc_type"
+    ],
+    "assumptions": "Linearity, Gaussian errors, stationarity, no same-time effects.",
+    "output": "Summary matrix only (no lag_matrix, so results.lagged_graph is None)",
+    "notes": "Pairwise ('pw', default) or multivariate ('mv') tests. Converts column names with int(), so it works only when columns are named '0', '1', ... Both modes put 1s on the diagonal.",
+    "fit_function": "causal_discovery/wrappers/granger_causality.py::GrangerCausality.fit"
+  },
+  {
+    "class": "NTSNOTEARS",
+    "file": "causal_discovery/wrappers/nts_notears.py",
+    "family": "time series",
+    "library": "in-repo NTS-NOTEARS model (externals/notears/model, PyTorch)",
+    "primary_params": [
+      "lambda1",
+      "lambda2",
+      "w_threshold"
+    ],
+    "assumptions": "Nonlinear relationships through neural networks; acyclicity within a time slice, causal sufficiency, stationarity.",
+    "output": "Lagged graph: lag_matrix[lag, effect, cause] (0/1) plus a summary matrix",
+    "notes": "Standardises the data first. Uses CUDA if available. The number of lags p is not a primary parameter, so it stays at 10. Prints p to stdout.",
+    "fit_function": "causal_discovery/wrappers/nts_notears.py::NTSNOTEARS.fit"
+  }
+]

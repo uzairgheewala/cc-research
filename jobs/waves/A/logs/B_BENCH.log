@@ -343,3 +343,44 @@ sha256:ea922e8cc4d45e355b04a159e111b604411e92a954b40517e9658f69878e0e78
 
 View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/zepopz27mnl58pdsfq91ht7yq
 sha256:81af820b9e5f1e646472cf57028146d171019f08632b858bbfd8a834ba2ddec2
+
+# 2026-10-20T22:31:59Z B_BENCH
+# argv: ["powershell", "-ExecutionPolicy", "Bypass", "-File", "cc.ps1", "benchbuild"]
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.bench
+#1 transferring dockerfile: 1.08kB 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.1s
+
+#4 [1/4] FROM docker.io/library/python:3.11-slim-bookworm
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.29kB done
+#5 DONE 0.0s
+
+#6 [2/4] COPY requirements_bench.txt /opt/req/requirements_bench.txt
+#6 CACHED
+
+#7 [3/4] RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_bench.txt  && python -m pip install --no-cache-dir --no-compile --no-deps causalbench==1.1.2  && python -c "import types, sys; sys.modules['gdown'] = types.ModuleType('gdown'); from causalscbench.evaluation import statistical_evaluation, biological_evaluation; from causalscbench.data_access.utils import splitting; import anndata, h5py, openpyxl; print('bench image ok')"
+#7 CACHED
+
+#8 [4/4] WORKDIR /research
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:81af820b9e5f1e646472cf57028146d171019f08632b858bbfd8a834ba2ddec2 0.0s done
+#9 naming to docker.io/library/cc-bench:wave-a
+#9 naming to docker.io/library/cc-bench:wave-a 0.0s done
+#9 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/9m47opohfqiizs159ac5ifkvy
+sha256:81af820b9e5f1e646472cf57028146d171019f08632b858bbfd8a834ba2ddec2

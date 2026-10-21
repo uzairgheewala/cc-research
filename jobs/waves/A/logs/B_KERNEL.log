@@ -173,3 +173,46 @@
 
 View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/r0sprbavwciwsvkpo5f90nkl9
 sha256:3c53aa3c80d1af9b8adbf11c99a1d86b29852e9d759b1584242101a25ad85a1a
+
+# 2026-10-20T22:32:04Z B_KERNEL
+# argv: ["powershell", "-ExecutionPolicy", "Bypass", "-File", "cc.ps1", "kernelbuild"]
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.kernel
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile.kernel
+#1 transferring dockerfile: 970B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/python:3.11-slim-bookworm
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 969B done
+#5 DONE 0.0s
+
+#6 [2/4] COPY requirements_kernel.txt /opt/req/requirements_kernel.txt
+#6 CACHED
+
+#7 [3/4] RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_kernel.txt  && python -c "import causallearn, ges, gies, numpy, scipy, networkx; print('kernel image ok', numpy.__version__, scipy.__version__)"
+#7 CACHED
+
+#8 [4/4] WORKDIR /research
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:3c53aa3c80d1af9b8adbf11c99a1d86b29852e9d759b1584242101a25ad85a1a done
+#9 naming to docker.io/library/cc-kernel:wave-a done
+#9 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/pdle5roz3g3chsj5ri0qp7xz6
+sha256:3c53aa3c80d1af9b8adbf11c99a1d86b29852e9d759b1584242101a25ad85a1a

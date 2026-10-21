@@ -1,0 +1,324 @@
+{
+ "slug": "statistics-and-knowledge",
+ "title": "Statistics and domain knowledge",
+ "question": "What does the run measure about the data, what does it ask the LLM about the domain, and how do both reach later decisions?",
+ "plain_summary": "Step 4 has three parts. First, stat_info_collection labels each column as continuous or category and the whole table as Continuous, Category, Mixture or Time-series. It fills in missing values and rescales every column to mean 0 and standard deviation 1. Then it tests linearity and Gaussian errors on random pairs of columns, plus lag and stationarity when the data is a time series. Second, knowledge_info sends the file path and column names to the LLM twice and asks for domain knowledge in plain prose. The answer is stored as text and later pasted into the algorithm-filter, ranking, hyperparameter and edge-review prompts. Third, convert_stat_info_to_text turns the statistics into a short fixed paragraph, statistics.description, which the same later prompts and the report also read. Two things set what later steps see. Tests run only when the query parse in setup left a value empty. And the knowledge text can name the dataset outright, so its identity travels into every later decision prompt.",
+ "inputs": [
+  {
+   "field": "user_data.raw_data",
+   "what": "The loaded table."
+  },
+  {
+   "field": "user_data.selected_features",
+   "what": "Which columns to analyse (all columns unless the query filtered them)."
+  },
+  {
+   "field": "user_data.visual_selected_features",
+   "what": "Columns used for the pairwise tests when there are 10 or more features; on the CLI it is the same list."
+  },
+  {
+   "field": "statistics.linearity",
+   "what": "If the query parse already set it, the linearity test is skipped (continuous data)."
+  },
+  {
+   "field": "statistics.gaussian_error",
+   "what": "If the query parse already set it, the Gaussian-error test is skipped (continuous data)."
+  },
+  {
+   "field": "statistics.time_series",
+   "what": "From the query parse; the only switch into the time-series branch."
+  },
+  {
+   "field": "statistics.heterogeneous",
+   "what": "With domain_index: whether to set the domain column aside during the tests."
+  },
+  {
+   "field": "statistics.domain_index",
+   "what": "The domain column to set aside and re-attach afterwards."
+  },
+  {
+   "field": "statistics.missingness",
+   "what": "None on the CLI at this point, which makes imputation always run."
+  },
+  {
+   "field": "statistics.alpha",
+   "what": "Significance level for every test (default 0.1)."
+  },
+  {
+   "field": "statistics.num_test",
+   "what": "Maximum number of column pairs (or variables) tested (default 100)."
+  },
+  {
+   "field": "statistics.time_index",
+   "what": "A time column to drop before analysis; never set on the CLI."
+  },
+  {
+   "field": "user_data.output_graph_dir",
+   "what": "Where the residual and Q-Q plots are saved."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "statistics.sample_size",
+   "what": "Number of rows analysed."
+  },
+  {
+   "field": "statistics.feature_number",
+   "what": "Number of columns analysed."
+  },
+  {
+   "field": "statistics.data_type",
+   "what": "Continuous, Category, Mixture or Time-series."
+  },
+  {
+   "field": "statistics.data_type_column",
+   "what": "The Continuous/Category label of each column."
+  },
+  {
+   "field": "statistics.missingness",
+   "what": "Whether missing values were found (see failure paths: on tabular data this check runs after the gaps are filled)."
+  },
+  {
+   "field": "statistics.linearity",
+   "what": "Linear or not, from the test, from the query, or False by default for non-continuous data."
+  },
+  {
+   "field": "statistics.gaussian_error",
+   "what": "Gaussian errors or not, from the same three possible sources."
+  },
+  {
+   "field": "statistics.time_lag",
+   "what": "Estimated maximum lag (time series only)."
+  },
+  {
+   "field": "statistics.stationary",
+   "what": "Stationary or not (time series only)."
+  },
+  {
+   "field": "user_data.processed_data",
+   "what": "The imputed, rescaled table that every later step uses, with the domain column re-attached."
+  },
+  {
+   "field": "user_data.visual_selected_features",
+   "what": "Domain and time columns removed from the plotting list."
+  },
+  {
+   "field": "user_data.selected_features",
+   "what": "Time-index column removed, when one is set."
+  },
+  {
+   "field": "user_data.knowledge_docs",
+   "what": "A one-item list holding the LLM's long domain-knowledge answer, as prose."
+  },
+  {
+   "field": "user_data.knowledge_docs_for_user",
+   "what": "A one-item list holding a shorter knowledge answer, used by the report."
+  },
+  {
+   "field": "statistics.description",
+   "what": "The statistics as a fixed-template paragraph of English."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "preprocess/stat_info_functions.py::stat_info_collection",
+   "what": "The driver. It takes raw_data restricted to selected_features, sets a domain column aside, and records the row and column counts. Then it calls the type, imputation and test functions below and stores the result as processed_data. The lines shown are where imputation always runs on the CLI and where each test is skipped if a value is already set.",
+   "excerpt": {
+    "start": 869,
+    "end": 893
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::data_preprocess",
+   "what": "A numeric column whose values are all whole numbers with fewer than 6 distinct values is a Category. Any other numeric column is Continuous, and any non-numeric column is a Category. One type throughout gives that type, a mix gives Mixture, and time-series mode always gives Time-series. Category columns are then replaced, in place, by integer codes.",
+   "excerpt": {
+    "start": 397,
+    "end": 417
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::imputation",
+   "what": "Fills gaps: an iterative regression imputer for continuous columns and the most frequent value for category columns, or time interpolation for a time series. It then rescales every column, category codes included, to mean 0 and standard deviation 1.",
+   "excerpt": {
+    "start": 450,
+    "end": 470
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::linearity_check",
+   "what": "Continuous data, only if linearity is still None. It draws up to num_test random column pairs, regresses one on the other, and runs Ramsey's RESET test (squared fitted values), which asks whether a curve fits better than a line. The p-values are corrected with the Benjamini-Yekutieli method at alpha. If any pair is rejected, the data is called non-linear. A residual plot is saved.",
+   "excerpt": {
+    "start": 503,
+    "end": 527
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::gaussian_check",
+   "what": "Only if gaussian_error is still None (continuous data), and always for a time series. On random pairs it takes residuals from a straight-line fit if the data was judged linear, or from a LOWESS smooth if not. A Shapiro-Wilk test then checks whether those residuals look normal. After the same Benjamini-Yekutieli correction, one rejected pair means non-Gaussian errors. A Q-Q plot is saved.",
+   "excerpt": {
+    "start": 701,
+    "end": 725
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::time_series_lag_est",
+   "what": "Time series only, if time_lag is unset. It estimates a lag for up to 50 randomly chosen variables, in parallel, and keeps the median.",
+   "excerpt": {
+    "start": 356,
+    "end": 368
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::series_lag_est",
+   "what": "For one variable (up to 10 lags here), the candidate lags come from three sources: autocorrelation peaks above 0.6 times the confidence bound, partial autocorrelations in the top 40% by size, and the autoregressive order with the best AIC and BIC. The candidate with the highest combined score wins.",
+   "excerpt": {
+    "start": 298,
+    "end": 322
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::linearity_check_ts",
+   "what": "Time series only, and it runs even if the query set linearity. It fits a vector autoregression with time_lag lags and runs a RESET test and a BDS test on each variable's residuals. Any p-value below alpha, with no multiple-testing correction, means non-linear.",
+   "excerpt": {
+    "start": 651,
+    "end": 656
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::stationary_check",
+   "what": "Time series only. It runs an augmented Dickey-Fuller test (whether a series wanders without a fixed mean) on up to num_test variables, with Bonferroni correction at alpha. The data counts as stationary if at least 80% of the tested variables reject a unit root.",
+   "excerpt": {
+    "start": 793,
+    "end": 809
+   },
+   "llm": false
+  },
+  {
+   "function": "preprocess/dataset.py::knowledge_info",
+   "what": "Two free-text LLM calls. Both prompts begin \"I will conduct causal discovery on the Dataset <--data-file path> containing the following Columns:\", followed by processed_data's column names separated by tabs. The first asks for 20 numbered sections of domain knowledge. The second asks for the first 3. Each answer is stored as a one-item list, with no checks.",
+   "excerpt": {
+    "start": 91,
+    "end": 100
+   },
+   "llm": true
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::convert_stat_info_to_text",
+   "what": "Back in main, this fills a fixed English template with data type, size, missing values, linearity, Gaussian errors, and lag and stationarity or heterogeneity. Each value is stated as a fact, whether it came from a test, from the query parse or from a default.",
+   "excerpt": {
+    "start": 940,
+    "end": 961
+   },
+   "llm": false
+  }
+ ],
+ "llm_calls": [
+  {
+   "function": "preprocess/dataset.py::knowledge_info",
+   "prompt": null,
+   "asks": "First call (line 121): given the dataset's file path and its column names, write comprehensive domain knowledge in 20 numbered sections. The sections cover variable meanings, likely causal links, linear or non-linear relations, distributions, confounders, time aspects, subgroups, graph density, constraints, relevant literature, data quality, interactions, feedback loops, instruments and interventions, plus five time-series sections. If the names are only symbols, answer 'No Knowledge'. Second call (line 138): the same opening and only the first three sections, under a 'domain expert' system prompt. The prompts are inline, not in a prompt file.",
+   "answer_used": "The first answer becomes user_data.knowledge_docs. It is pasted as free text into the algorithm filter (joined with newlines into [DOMAIN_KNOWLEDGE]), the reranker (as the Python repr of the list into [KNOWLEDGE_INFO]), the hyperparameter selector, and the LLM edge review, under the heading 'Domain Knowledge (use this to inform your causal reasoning)'. The second answer becomes user_data.knowledge_docs_for_user, which is the 'Background about this dataset' in the report prompts.",
+   "checked": "none. The reply is plain text (not JSON mode). Nothing checks or structures it, and nothing removes the dataset's name before reuse."
+  }
+ ],
+ "failure_paths": [
+  {
+   "function": "preprocess/stat_info_functions.py::stat_info_collection",
+   "what": "missingness starts as None on the CLI, so imputation always runs. Line 880 then checks the table imputation has just filled in place, so for tabular data missingness ends False even when the file had gaps. statistics.description then says there are no missing values. This follows from the code: we reproduced the in-place fill with a minimal pandas example, and it has not been checked in a recorded run."
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::stat_info_collection",
+   "what": "For Category or Mixture data (not time series), linearity and gaussian_error are set to False with no test. This replaces any value the query parse set."
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::gaussian_check",
+   "what": "With a single column there are no pairs to test, selected_results is never assigned, and the plotting code raises an error."
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::linearity_check",
+   "what": "Pairs are drawn with Python's random module, which this code never seeds. So which pairs are tested, and with many columns the verdict, depend on the generator's state at that moment."
+  },
+  {
+   "function": "preprocess/dataset.py::knowledge_info",
+   "what": "An API error is not caught and stops the run. An unhelpful or wrong answer is never detected: it flows into every later prompt as it is."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "preprocess/stat_info_functions.py::stat_info_collection",
+   "what": "Check missingness on the raw table before imputing. Record for each statistic whether it came from a test, the query or a default, so later prompts do not present guesses as measurements. Seed the random pair sampling."
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::imputation",
+   "what": "Rescale only continuous columns. Category codes and 0/1 variables lose their meaning once rescaled to mean 0 and standard deviation 1."
+  },
+  {
+   "function": "preprocess/dataset.py::knowledge_info",
+   "what": "Leave the file path out of the prompt, ask for a typed answer (for example a list of claimed edges with sources) instead of prose, and save the prompt and answer. This is where a fork controls how much the dataset's identity leaks into later decisions."
+  },
+  {
+   "function": "preprocess/stat_info_functions.py::convert_stat_info_to_text",
+   "what": "Mark each sentence as tested, user-stated or assumed. Every later prompt receives this paragraph."
+  }
+ ],
+ "findings": [
+  {
+   "text": "The domain-knowledge prose from dataset.py:121 and :138 is pasted into the filter, rerank, hyperparameter and edge-review prompts. In the sachs run it named the \"Sachs dataset\" and \"Sachs et al. (2005)\", so every later decision prompt carried the dataset's identity.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The knowledge prompt contains the dataset file path, so path and column names are two separate cues to which dataset this is.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The knowledge text named the Sachs dataset in every run whose file path contained \"sachs\" (4 of 4) and in none without it (0 of 5, 0 of 4). The LLM's edges still followed the protein names when the names were moved onto other columns (27 label-only, 0 data-only).",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "With neutral column names (V01..V11) the LLM answered 'No Knowledge' in all 5 runs, and the later edge review changed nothing.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "The knowledge prose differed in every repeated run. Because it is pasted into every later prompt, no two named-arm runs sent the same request after this step.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "The knowledge prose is the system's main hidden channel. It is elicited once, never typed, and reused as free text in four later prompts.",
+   "label": "partial",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The linearity and Gaussian tests run only if the query parse left them None, and the time-series branch needs the LLM to have flagged time series. The paper presents these as data diagnostics.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/rep04_paper_vs_code.md"
+  },
+  {
+   "text": "On the CLI every column, category codes included, is z-scored, because missingness defaults to None. In the web demo this happens only when the data has missing values.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/aud14_wrappers_webdemo_report.md"
+  },
+  {
+   "text": "Lag estimation uses at most 50 randomly sampled variables. The random generator is the standard library's, which the semopy package seeds when imported.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd03/dom12_scope_code_facts.md"
+  },
+  {
+   "text": "For tables, missing values are filled in place before the missing-value check, so the statistics say there are none even when there were.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

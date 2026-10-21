@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-20T21:08:01Z",
+ "verified_utc": "2026-10-20T22:33:14Z",
  "items": [
   {
    "id": "DLV-01",
@@ -5173,9 +5173,9 @@
    "title": "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract",
    "kind": "task",
    "status": "done",
-   "effective_status": "done",
-   "emoji": "✅",
-   "level": "V3",
+   "effective_status": "reopened",
+   "emoji": "👀",
+   "level": "V1",
    "required_level": "V3",
    "criterion": "Typed link registry with prod namespace, immutable IDs, derived prod status, suspect-link reviews and Slack mirror check; every failure mode in LINKS.md section 6 caught by the self-test; AGENTS.md read by CLAUDE.md",
    "evidence": [
@@ -5212,7 +5212,10 @@
    "due": null,
    "blocked_by": null,
    "note": "",
-   "problems": []
+   "problems": [
+    "done but evidence level V1 < required V3",
+    "evidence changed since pinned: AGENTS.md"
+   ]
   },
   {
    "id": "BLD-12",
@@ -7687,7 +7690,7 @@
    "status": "in_progress",
    "effective_status": "in_progress",
    "emoji": "👀",
-   "level": "V2",
+   "level": "V1",
    "required_level": "",
    "criterion": "cc.ps1 wave <id> runs a sheet on Uzair's machine: preflight checks code identity, disk, RAM and files; one canary per job runs first; gated jobs are skipped when their gate fails; a failing job stops only itself; RETURN.json is written incrementally with status, exit, code identity, output hashes, cost and wall time; the kit builder ships code, the engine cache and needed data to the agent's sandbox; unit tests",
    "evidence": [
@@ -7711,7 +7714,9 @@
    "due": null,
    "blocked_by": null,
    "note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary. 20 Oct (wave A): harness/wave.py built (preflight with code identity, disk, Docker memory and the CPU's BLAS family; canaries; when-gates over must-shows; resume; parts and memory packing; verdict.json and a small return zip); tests/test_wave_runner.py passes. Must-show still open: the demo sheet on Uzair's machine (wave A sheet, run A0). 20 Oct: class A0 runs (tests, kit checks) re-run when the kit's code identity changes; finished heavy runs keep their results (tests/test_wave_runner.py).",
-   "problems": []
+   "problems": [
+    "evidence changed since pinned: docs/WAVES.md"
+   ]
   },
   {
    "id": "TEAM-09",

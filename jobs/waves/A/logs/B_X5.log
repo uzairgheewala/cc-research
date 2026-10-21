@@ -559,3 +559,43 @@ sha256:e0f3bc3cf3193e4201b1722c7a01574148ed1c7946bb42610d7bb9344ebf1247
 
 View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/otuvkj1yytv472eypip4jw9k8
 sha256:aa705b1013ae24afc0c17679d846d18fcf7dc1205f2aea8a7755c92799551c64
+
+# 2026-10-20T22:32:26Z B_X5
+# argv: ["powershell", "-ExecutionPolicy", "Bypass", "-File", "cc.ps1", "x5build"]
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.x5
+#1 transferring dockerfile: 1.01kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/python:3.11-slim-bookworm
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.59kB done
+#5 DONE 0.0s
+
+#6 [3/4] RUN python -m pip install --no-cache-dir --no-compile -r /opt/req/requirements_x5.txt  && python -m pip install --no-cache-dir --no-compile --no-deps avici==1.0.7  && python -c "import avici, jax; from avici import load_pretrained; print('x5 image ok', jax.__version__)"
+#6 CACHED
+
+#7 [2/4] COPY requirements_x5.txt /opt/req/requirements_x5.txt
+#7 CACHED
+
+#8 [4/4] WORKDIR /research
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:aa705b1013ae24afc0c17679d846d18fcf7dc1205f2aea8a7755c92799551c64 done
+#9 naming to docker.io/library/cc-x5:wave-a 0.0s done
+#9 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/zom2rkaqvwut86emq5wnkmkhm
+sha256:aa705b1013ae24afc0c17679d846d18fcf7dc1205f2aea8a7755c92799551c64

@@ -43,3 +43,64 @@ OK
 [wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
 [wave] decisions matched: canary-mismatch: compare hosts
 [wave] packed C:\Users\uzair\AppData\Local\Temp\tmp9_d3whqw\cc-research\jobs\waves\T\return_T.zip (5.1 KB); 0 files over 5 MB left on this machine
+
+# 2026-10-20T22:31:59Z T_HOST
+# argv: ["C:\\Users\\uzair\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "tests/run_tests.py", "--pattern", "test_wave_runner.py,test_ben13_fetch.py", "--out", "jobs/waves/A/out/tests_host.json"]
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.0 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+...[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] REFUSED: code identity does not match the sheet (['code.py'])
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.0 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+..[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed C:\Users\uzair\AppData\Local\Temp\tmp3nomhe6g\cc-research\jobs\waves\T\return_T.zip (5.1 KB); 0 files over 5 MB left on this machine
+[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmp4n_qug2n\Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmpwkpmcjoc\Downloads)
+[fetch] b.h5ad: failed (C:\Users\uzair\AppData\Local\Temp\tmpwkpmcjoc\Downloads\B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..
+----------------------------------------------------------------------
+Ran 9 tests in 4.864s
+
+OK

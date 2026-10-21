@@ -1,0 +1,24 @@
+Inside Causal-Copilot: a site explaining how every part of Causal-Copilot works (TEAM-13)
+
+Tickets: TEAM-13
+
+- site/copilot/extract.py: a typed model of Causal-Copilot's first-party code at upstream a31aa7c, from the AST, after
+  checking 265 first-party files against manifests/baseline_a31aa7c.sha256: 131 modules, 1,053 functions, 32,760 lines;
+  calls resolved with how (local, import, self, typed, class, reference, unique method; the wrapper dispatch declared as
+  dynamic), global_state reads and writes, prompt files, and the 88 model call points joined from llm_inventory.csv.
+  Output: site/copilot/model.json. snip.py copies the source lines the site prints (excerpts.json), since CI has no
+  Causal-Copilot checkout.
+- site/copilot/content/steps/*.json: nine step pages written by reading the code (setup, data and the question,
+  statistics and domain knowledge, EDA, choosing the algorithm, running it, refinement S1-S4, evaluation, the report),
+  bound to the hashes of the functions they describe (bindings.json); algorithms.json, the 25 wrappers.
+- site/copilot/export_replay.py -> replay.json: one BND-08 scenario (q02) under real, neutral and moved names.
+- site/copilot/build.py: 150 pages at site/_build/copilot/ (run map, steps, state, model calls, algorithms, prompts,
+  every module and function, off-path code, replay, about), a findings switch (works without JavaScript); fails on any
+  function, excerpt, prompt or source that does not match. jobs/patches/s31_workflows.py adds the build to pages.yml
+  and ci.yml after the Atlas build.
+- analysis/reports/copilot_code_notes.md: 16 things the code reading found that earlier passes had not recorded (label
+  partial). tests/test_copilot_site.py. jobs/patches/s30.py adds TEAM-13 to the catalogue (apply when sheet A's identity
+  is next refreshed).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TX89QtiaGaFvBSN4BAmLxQ

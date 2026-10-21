@@ -1,0 +1,428 @@
+{
+ "slug": "selection",
+ "title": "Choosing the algorithm",
+ "question": "How does it decide which algorithm to run, and with what settings?",
+ "plain_summary": "Choosing happens in three model calls, each with a long prompt built from text files shipped in causal_discovery/context. First the model reads a tag sheet describing every algorithm (algos/tab_tagging.txt for tables, algos/ts_tagging.txt for time series) together with the data statistics and the domain-knowledge text, and returns a shortlist of up to two names. Second, the model gets each shortlisted algorithm's profile (algos/<name>.txt), its hyperparameter sheet (hyperparameters/<name>.json), simulation benchmark tables (benchmarking/*.json) and a predicted runtime, scores the candidates itself and names one winner. Third, the model proposes settings for the winner, and the code keeps only the settings the algorithm's wrapper calls primary, such as alpha, the independence test and the search depth for FCI. If the user already named an algorithm or settings in their query, the matching calls are skipped. The code checks the answers' shape very little and their content almost not at all, so the model's choices pass straight to execution.",
+ "inputs": [
+  {
+   "field": "user_data.initial_query",
+   "what": "the user's request, pasted into all three prompts as the top priority"
+  },
+  {
+   "field": "statistics.description",
+   "what": "the text summary of the data from the statistics step (types, linearity, Gaussian noise and so on)"
+  },
+  {
+   "field": "user_data.knowledge_docs",
+   "what": "the domain-knowledge prose the model wrote earlier; pasted into all three prompts"
+  },
+  {
+   "field": "user_data.processed_data",
+   "what": "used for column names and the number of rows and columns"
+  },
+  {
+   "field": "statistics.time_series",
+   "what": "picks the time-series tag sheet and benchmark file instead of the tabular ones"
+  },
+  {
+   "field": "statistics.data_type",
+   "what": "a value of 'Time-series' also selects the time-series benchmark file"
+  },
+  {
+   "field": "statistics.sample_size",
+   "what": "number of rows, given to the runtime estimator"
+  },
+  {
+   "field": "statistics.feature_number",
+   "what": "number of variables, given to the runtime estimator"
+  },
+  {
+   "field": "algorithm.waiting_minutes",
+   "what": "how long the user is willing to wait, stated in each prompt"
+  },
+  {
+   "field": "user_data.accept_CPDAG",
+   "what": "whether the user accepts graphs with undirected edges; turned into a sentence in the first two prompts"
+  },
+  {
+   "field": "algorithm.selected_algorithm",
+   "what": "set when the user's query already named an algorithm; then the shortlist and ranking calls are skipped"
+  },
+  {
+   "field": "algorithm.algorithm_arguments",
+   "what": "set when the user's query already gave settings; then the hyperparameter call is skipped"
+  }
+ ],
+ "outputs": [
+  {
+   "field": "algorithm.algorithm_candidates",
+   "what": "the shortlist: each name with the model's description and justification"
+  },
+  {
+   "field": "algorithm.algorithm_optimum",
+   "what": "the model's whole ranking answer: scores, reason and the chosen name"
+  },
+  {
+   "field": "algorithm.selected_algorithm",
+   "what": "the name of the algorithm that will run"
+  },
+  {
+   "field": "algorithm.algorithm_arguments_json",
+   "what": "the model's full hyperparameter answer, including anything later dropped"
+  },
+  {
+   "field": "algorithm.algorithm_arguments",
+   "what": "the settings actually passed to the algorithm: only the primary ones"
+  },
+  {
+   "field": "logging.select_conversation",
+   "what": "the shortlist and ranking prompts and answers, kept for the report"
+  },
+  {
+   "field": "logging.argument_conversation",
+   "what": "the hyperparameter prompt and answer, kept for the report"
+  }
+ ],
+ "sequence": [
+  {
+   "function": "causal_discovery/filter.py::Filter.__init__",
+   "what": "Stores the command-line arguments and creates a model client.",
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.forward",
+   "what": "If the user already named an algorithm, it makes that the only candidate and returns. Otherwise it builds the prompt, sends it as the system message with a short request for 'up to top 2' algorithms (JSON mode, temperature 0), turns the answer into the candidate dictionary and logs prompt and answer.",
+   "excerpt": {
+    "start": 31,
+    "end": 47
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.load_prompt_context",
+   "what": "Reads the tag sheet that matches the data (tabular or time series) and the template algo_select_prompt.txt. The sheet gives each algorithm tags such as method type, linear or nonlinear, noise, latent-variable tolerance, scalability, benchmark accuracy band, output format and whether it accepts domain knowledge; several tabular entries are tagged Unavailable. The longer algos/guidelines.txt in the same folder is not read on this path.",
+   "excerpt": {
+    "start": 51,
+    "end": 64
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.create_prompt",
+   "what": "Fills the template's placeholders: query, wait time, column names, statistics text, domain knowledge, the whole tag sheet, a GPU sentence, the top-2 limit and the graph-type sentence. The [TABLE_NAME] placeholder has its replacement commented out, so the model sees the literal text '[TABLE_NAME]'.",
+   "excerpt": {
+    "start": 67,
+    "end": 90
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.parse_response",
+   "what": "Turns the answer's 'algorithms' list into a dictionary keyed by name with description and justification. Names are copied as written.",
+   "excerpt": {
+    "start": 92,
+    "end": 96
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.__init__",
+   "what": "Creates a model client and also a HyperparameterSelector, which the reranker never uses.",
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.forward",
+   "what": "Filters the shortlist, formats it as text, asks select_algorithm for one name and writes it to algorithm.selected_algorithm.",
+   "excerpt": {
+    "start": 15,
+    "end": 21
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.filter_algo_candidates",
+   "what": "Drops names that are not in the wrappers package's list of algorithm names. This filtered copy is local; the shortlist in state is not changed.",
+   "excerpt": {
+    "start": 78,
+    "end": 87
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.algo_can2string",
+   "what": "Formats each candidate's description and justification as text. The result is passed on but create_prompt never uses it, so the shortlist call's reasoning does not reach the ranking prompt.",
+   "excerpt": {
+    "start": 144,
+    "end": 156
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.select_algorithm",
+   "what": "If the user named an algorithm, it records that as the optimum and returns it. Otherwise it estimates runtimes, builds the ranking prompt, asks the model (JSON mode, temperature 0), takes the name in the answer's 'algorithm' field as the choice, and logs prompt and answer.",
+   "excerpt": {
+    "start": 100,
+    "end": 119
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.runtime_estimate",
+   "what": "For each filtered candidate, asks a RuntimeEstimator for a predicted runtime from the number of rows and variables, and formats it in minutes. Any error gives 'inf minutes' for that algorithm.",
+   "excerpt": {
+    "start": 121,
+    "end": 142
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator.__init__",
+   "what": "Looks the algorithm up in runtime_estimators/complexity_terms.json, which lists terms such as log(N) and log(p) (N rows, p variables) for a small regression. An algorithm missing from that file goes to _handle_new_algorithm.",
+   "excerpt": {
+    "start": 24,
+    "end": 38
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator._initialize_model",
+   "what": "Loads saved regression coefficients from context/benchmarking/acceleration_fit.json. If the algorithm is not there, it tries to refit from merged_results.json, which is not shipped in the repository, so that path raises an error (and the runtime becomes 'inf').",
+   "excerpt": {
+    "start": 40,
+    "end": 51
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator.predict_runtime",
+   "what": "Computes the terms for the given rows and variables, applies the regression, undoes the log if needed, and returns at least the algorithm's minimum runtime (60 seconds in the shipped file).",
+   "excerpt": {
+    "start": 221,
+    "end": 240
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator._handle_new_algorithm",
+   "what": "Only for an algorithm with no complexity terms: reads its source code from algorithm_mappings.json, asks the model for complexity terms, and writes the answer into complexity_terms.json. In the shipped files every algorithm in the mapping table already has terms, and names outside the table raise an error first, so this call does not fire.",
+   "excerpt": {
+    "start": 347,
+    "end": 369
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator._query_llm",
+   "what": "Sends the time-complexity prompt in JSON mode with a client built without the command-line arguments (so default provider settings).",
+   "excerpt": {
+    "start": 371,
+    "end": 385
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.create_prompt",
+   "what": "Loads the benchmark file for the data type and keeps only rows for the candidates, then appends each candidate's profile text and hyperparameter sheet, and fills algo_rerank_prompt.txt. It loops over the shortlist in state, not the filtered copy. The template asks the model to give each candidate a theoretical score and an empirical score (1-5) and combine them as 0.7 and 0.3; the model does that arithmetic itself.",
+   "excerpt": {
+    "start": 43,
+    "end": 65
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/context/algos/utils/json2txt.py::create_filtered_benchmarking_results",
+   "what": "Keeps benchmark rows whose key starts with a candidate's name (keys look like 'PC_indep_test=fisherz_gpu', so each row is one algorithm with one setting) and writes them as text tables of performance (from F1 score), stability and efficiency per simulated scenario. Its table for mapping missing algorithms to similar ones is empty, all entries commented out.",
+   "excerpt": {
+    "start": 514,
+    "end": 525
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.__init__",
+   "what": "Stores the arguments and creates a model client.",
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.forward",
+   "what": "Loads the chosen algorithm's hyperparameter sheet, builds a reason text from the shortlist description and the ranking reason (falling back to 'User specifies this algorithm.'), asks select_hyperparameters for settings and stores them in algorithm.algorithm_arguments. The reason text is passed on but its placeholder replacement is commented out, so it never reaches the prompt.",
+   "excerpt": {
+    "start": 13,
+    "end": 26
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.load_hp_context",
+   "what": "Reads hyperparameters/<name>.json, where each setting has a meaning, a list of allowed values and an expert suggestion (for example rules for alpha by sample size), and turns it into readable text.",
+   "excerpt": {
+    "start": 29,
+    "end": 50
+   },
+   "llm": false
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.select_hyperparameters",
+   "what": "Skips the call if the user already gave settings. Otherwise it asks the model (JSON mode, temperature 0), keeps the full answer in algorithm.algorithm_arguments_json, then keeps only the 'value' of each proposed setting whose name is in the wrapper's primary list. Everything else, including background_knowledge, is dropped without a note in state.",
+   "excerpt": {
+    "start": 94,
+    "end": 115
+   },
+   "llm": true
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.create_prompt",
+   "what": "Loads benchmark rows for this one algorithm, asks the wrapper class for its primary parameter names, and fills hyperparameter_select_prompt.txt. The sheet text is passed through json.dumps, so the model sees it as one quoted string with escaped line breaks. The filled prompt is also written to context/hp_rerank_prompt_test.txt inside the repository on every run.",
+   "excerpt": {
+    "start": 66,
+    "end": 87
+   },
+   "llm": false
+  }
+ ],
+ "llm_calls": [
+  {
+   "function": "causal_discovery/filter.py::Filter.forward",
+   "prompt": "causal_discovery/context/algo_select_prompt.txt",
+   "asks": "Given the user's query, columns, statistics text, domain knowledge, GPU availability, graph-type preference and the full tag sheet, pick up to 2 algorithms, preferring higher performance ratings when properties match and algorithms from different families, and return reasoning plus a name, description and justification for each.",
+   "answer_used": "The names become the keys of algorithm.algorithm_candidates, the only candidates the ranking call sees. The reasoning is logged; the descriptions are later read by the hyperparameter step but do not reach its prompt.",
+   "checked": "JSON parsing only. The number of names is not limited to 2, and names are not checked against the tag sheet or the wrapper list here. A missing 'algorithms' or 'reasoning' key raises an error."
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.select_algorithm",
+   "prompt": "causal_discovery/context/algo_rerank_prompt.txt",
+   "asks": "For the shortlisted candidates, with their profiles, hyperparameter sheets, filtered benchmark tables and predicted runtimes, score each one theoretically and empirically on 1-5, compute 0.7 x theoretical + 0.3 x empirical, and return the scores, a reason and the name with the highest weighted score.",
+   "answer_used": "The 'algorithm' field becomes algorithm.selected_algorithm, which decides which wrapper runs; the whole answer is kept in algorithm.algorithm_optimum and the log.",
+   "checked": "None on content. The code does not recompute the weighted scores, does not check that the named algorithm has the highest score, and does not check that it is one of the candidates. A missing 'algorithm' key raises an error; scores and reason are read leniently for the log line."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.select_hyperparameters",
+   "prompt": "causal_discovery/context/hyperparameter_select_prompt.txt",
+   "asks": "For the chosen algorithm, with the dataset's columns, statistics, domain knowledge, GPU note, the list of primary hyperparameters, the hyperparameter sheet and this algorithm's benchmark rows, return a value with reasoning for each setting. The prompt tells the model to choose only from the allowed values and to fill background_knowledge with forbidden or required edges when it sees domain constraints.",
+   "answer_used": "Values for primary settings become algorithm.algorithm_arguments and are handed to the algorithm at execution. The full answer, including dropped settings, is kept in algorithm.algorithm_arguments_json and the log.",
+   "checked": "Partly. Setting names are filtered to the wrapper's primary list. Values are not checked against the allowed lists. A missing 'hyperparameters' key or a setting without 'value', 'full_name' or 'reasoning' raises an error."
+  },
+  {
+   "function": "causal_discovery/runtime_estimators/runtime_estimator.py::RuntimeEstimator._query_llm",
+   "prompt": "causal_discovery/runtime_estimators/time_complexity_prompt.txt",
+   "asks": "Read this algorithm's source code and return complexity terms (Python expressions in N, p and similar) and whether to use a log scale, in the same JSON format as the existing entries.",
+   "answer_used": "Would be written into complexity_terms.json and used for that algorithm's runtime regression. With the shipped files the call is not reached.",
+   "checked": "None; the expressions are later evaluated with Python eval in a restricted namespace."
+  }
+ ],
+ "failure_paths": [
+  {
+   "function": "causal_discovery/rerank.py::Reranker.create_prompt",
+   "what": "If the shortlist contains a name with no profile file, for example a typo or one of the algorithms tagged Unavailable such as CORL or ICALiNGAM, opening causal_discovery/context/algos/<name>.txt raises FileNotFoundError. filter_algo_candidates removed unknown names only from its local copy, not from the list this function reads, and main.py has no handler here, so the run stops."
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.select_algorithm",
+   "what": "The model may name an algorithm that was not shortlisted. Nothing stops it; the next step then loads that name's hyperparameter sheet and fails if none exists."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.load_hp_context",
+   "what": "A name with no hyperparameters/<name>.json raises FileNotFoundError. One file name does not match its wrapper: the sheet is NOTEARSNolinear.json but the wrapper is NOTEARSNonlinear."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.select_hyperparameters",
+   "what": "A primary setting the model leaves out is simply absent; a value outside the allowed list is passed on as given. If knowledge_docs is a plain string (the debug path in main.py sets one), the prompt builder's newline join puts a line break between every character."
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.runtime_estimate",
+   "what": "When an estimate fails (an algorithm with no saved fit, such as NTSNOTEARS, falls back to a training file that is not shipped), the prompt shows 'inf minutes' for that algorithm instead of stopping the run."
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.forward",
+   "what": "When the user already named an algorithm, the name is not checked against the wrapper list in any of the three steps; an unknown name fails when its hyperparameter sheet is loaded."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "causal_discovery/rerank.py::Reranker.select_algorithm",
+   "what": "Check the chosen name against the candidates and recompute the 0.7/0.3 score in code. Today a fork cannot tell whether the model's arithmetic or its final name decided the choice."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.select_hyperparameters",
+   "what": "Record which proposed settings were dropped, check values against the sheet's allowed lists, and decide on purpose whether background_knowledge should pass: the prompt asks for it, the PC, FCI and CDNOD sheets offer it and the wrappers accept it as a secondary setting, but this filter removes it."
+  },
+  {
+   "function": "causal_discovery/rerank.py::Reranker.filter_algo_candidates",
+   "what": "Write the filtered list back to state (or filter in Filter.parse_response) so an unknown or unavailable name is dropped everywhere rather than crashing the prompt builder."
+  },
+  {
+   "function": "causal_discovery/filter.py::Filter.create_prompt",
+   "what": "This is where the domain-knowledge prose and column names enter the choice. A fork that wants a data-only choice, or wants to study how names steer it, would replace or blank [DOMAIN_KNOWLEDGE] and [COLUMNS] here and in the two later prompts."
+  },
+  {
+   "function": "causal_discovery/hyperparameter_selector.py::HyperparameterSelector.create_prompt",
+   "what": "Stop writing hp_rerank_prompt_test.txt into the repository on each run; it changes a tracked file."
+  }
+ ],
+ "findings": [
+  {
+   "text": "Live, the choice barely varied: FCI in all 40 completed bundle-1 runs, with the independence test and depth varying within only two arms.",
+   "label": "code verified",
+   "source": "analysis/reports/bundle1_results.md"
+  },
+  {
+   "text": "In the S2 study the live model picked FCI in 29 of 30 runs, while the stub model picked PC, so stub runs do not reproduce the live algorithm.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd08_s2_results.md"
+  },
+  {
+   "text": "With a second model (gpt-4o-mini), FCI with the rcit test was chosen in 29 of 29 recorded runs.",
+   "label": "code verified",
+   "source": "analysis/reports/ab06_cc_second_model.md"
+  },
+  {
+   "text": "On Sachs-derived data the settings were the same every time: FCI with alpha 0.05, the rcit test and depth 4 in all 17 completed runs; synthetic runs got XGES with alpha 2 in all 8.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "In the Sachs golden run the model proposed background_knowledge with five required edges. None reached the algorithm, and the state keeps no note that it was dropped.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The model proposed background_knowledge on every arm with real names and did not propose it on the neutral-name arm, so names decide whether the dropped constraint is even offered.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "The domain-knowledge prose is pasted into the shortlist, ranking and hyperparameter prompts. In the Sachs run it named the 'Sachs dataset' and 'Sachs et al. (2005)', so every selection prompt carried the dataset's identity.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The shortlist answer is applied with no content check; the inventory records unknown names as dropped one step later in the reranker. The hyperparameter selector filters keys to the primary parameters but does not check values.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "Token use over two golden runs: ranking 2 calls and 23,347 prompt tokens, hyperparameters 2 calls and 11,990, shortlist 2 calls and 9,303. The ranking prompt is the second-largest consumer after the edge review.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The runtime estimator's model call was never exercised in the recorded runs; its behaviour is known from reading only.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "The chosen rcit test is not repeatable: FCI with rcit gave 2 or 3 different graphs across 3 to 5 runs on byte-identical Sachs data, because rcit draws random features from numpy's unseeded generator.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "Unknown algorithm names from the model are filtered on a local copy only; the next prompt still opens a profile file for each name, so an unknown name stops the run.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  },
+  {
+   "text": "Hyperparameter selection writes its prompt into the repository on every run.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

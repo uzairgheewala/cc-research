@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-20T21:08:01Z)
+# Tracker status (verified 2026-10-20T22:33:14Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -203,7 +203,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BLD-08 | ⏳ | C2 next-experiment choice from recorded pool | V0 |  |
 | BLD-09 | ⏳ | Scoreboard-format export | V0 |  |
 | BLD-10 | ✅ | Evidence tracker for this list (catalogue, verify, Slack List mirror) | V3 |  |
-| BLD-11 | ✅ | Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract | V3 |  |
+| BLD-11 | 👀 | Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract | V1 | done but evidence level V1 < required V3; evidence changed since pinned: AGENTS.md |
 | BLD-12 | ✅ | Prod list in the dev encoding (groups and pass-through rows) and the Slack relay for milestones, summaries and artifacts | V3 |  |
 | BLD-13 | ✅ | Claim-ledger record format, JSON Schema and verifier (V1-V8) | V3 |  |
 | BLD-14 | ✅ | Claim ledger v0.2: plan and deviations, assumptions, lineage, reviews, question; verifier reports every check | V3 |  |
@@ -379,7 +379,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| INF-10 | 👀 | Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json) | V2 |  |
+| INF-10 | 👀 | Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json) | V1 | evidence changed since pinned: docs/WAVES.md |
 
 ## 12 Team and communication
 

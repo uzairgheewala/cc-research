@@ -1,10 +1,10 @@
 {
  "wave": "A",
- "written": "2026-10-20T20:41:20Z",
- "code_identity": "bab2fc0c6a72d0680d5fd86a875b95df3f0331c9bf8cd51f10e0f80c08618f08",
+ "written": "2026-10-20T22:39:44Z",
+ "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0",
  "identity": {
   "ok": true,
-  "checked": 314,
+  "checked": 319,
   "changed_or_missing": []
  },
  "host": {
@@ -13,11 +13,10 @@
   "cpus": 16,
   "workers": 2,
   "mem_gb": 0,
-  "started": "2026-10-20T16:49:41Z",
-  "finished": "2026-10-20T20:41:20Z"
+  "started": "2026-10-20T16:49:41Z"
  },
  "preflight": {
-  "disk_free_gb": 149.8,
+  "disk_free_gb": 129.0,
   "docker_mem_gb": 6.2,
   "images_missing": [],
   "avx512f": false,
@@ -31,31 +30,31 @@
  "runs": {
   "B_KERNEL": {
    "status": "ok",
-   "wall_min": 0.9
+   "wall_min": 0.2
   },
   "B_BENCH": {
    "status": "ok",
-   "wall_min": 1.09
+   "wall_min": 0.2
   },
   "B_X5": {
    "status": "ok",
-   "wall_min": 2.06
+   "wall_min": 0.21
   },
   "T_HOST": {
    "status": "ok",
-   "wall_min": 0.04
+   "wall_min": 0.09
   },
   "T_KERNEL": {
    "status": "ok",
-   "wall_min": 1.5
+   "wall_min": 0.91
   },
   "T_BENCH": {
    "status": "ok",
-   "wall_min": 0.39
+   "wall_min": 0.25
   },
   "CHECKS": {
    "status": "ok",
-   "wall_min": 5.61
+   "wall_min": 3.5
   },
   "B2GEN": {
    "status": "ok",
@@ -64,6 +63,9 @@
   "CANARY": {
    "status": "ok",
    "wall_min": 2.22
+  },
+  "B_CC": {
+   "status": "not_run"
   },
   "STUB_06": {
    "status": "failed",
@@ -85,7 +87,7 @@
   },
   "FETCH_CB": {
    "status": "failed",
-   "wall_min": 4.97,
+   "wall_min": 2.34,
    "exit": 1
   },
   "FETCH_X5": {
@@ -142,7 +144,7 @@
   },
   "F2_READ": {
    "status": "failed",
-   "wall_min": 0.02,
+   "wall_min": 0.7,
    "exit": 1
   },
   "CB_CELLS_K": {
@@ -164,6 +166,9 @@
   "CHK_06L": {
    "status": "skipped",
    "why": "dependency not ok"
+  },
+  "LIVE_06M": {
+   "status": "not_run"
   }
  },
  "must_shows": {
@@ -201,8 +206,8 @@
    "gate": true
   },
   "M_TRACE": {
-   "status": "pass",
-   "value": 0,
+   "status": "fail",
+   "value": 1,
    "bundle": "A1",
    "metric": "json",
    "bar": {
@@ -443,12 +448,39 @@
     "value": 25
    },
    "gate": false
+  },
+  "M_CC_BASE": {
+   "status": "not_run",
+   "value": null,
+   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\jobs\\\\waves\\\\images\\\\cc.json'",
+   "bundle": "INF-06",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": "sha256:33d3832774f6a343a33b3594200df811b76c1e4dd42576fb01d96b7ca6a34c23"
+   },
+   "gate": false
+  },
+  "M_CB_FETCH": {
+   "status": "fail",
+   "value": false,
+   "bundle": "BEN-13",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
   }
  },
  "decisions_matched": [
   {
    "if": "pass(M_T_KERNEL) and pass(M_CANARY)",
    "then": "hosts agree: every number of this sheet is read as produced"
+  },
+  {
+   "if": "fail(M_TRACE)",
+   "then": "tracker errors on Uzair's machine: wave B fixes them first (the sandbox cannot see runs/ and external/, so its own check was not authoritative)"
   },
   {
    "if": "pass(M_X4)",
@@ -461,6 +493,10 @@
   {
    "if": "skipped(LIVE_06)",
    "then": "the live run waited on the branch stubs (or the fork): after the fork, run the sheet again (finished jobs are not repeated)"
+  },
+  {
+   "if": "fail(M_CB_FETCH)",
+   "then": "the two figshare files were not in Downloads (or failed size / md5): download them in a browser and run the sheet again; FETCHED.json names each file's reason"
   }
  ],
  "no_rule_matched": false,

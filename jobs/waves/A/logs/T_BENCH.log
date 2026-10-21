@@ -59,3 +59,47 @@ FAILED (failures=1)
 Ran 5 tests in 19.490s
 
 OK
+
+# 2026-10-20T22:32:11Z T_BENCH
+# argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "tests/run_tests.py", "--pattern", "test_ben13*.py", "--out", "jobs/waves/A/out/tests_bench.json"]
+[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmp51qj7uro/Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmph72dz76y/Downloads)
+[fetch] b.h5ad: failed (/tmp/tmph72dz76y/Downloads/B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..[ben13.stream 22:32:16] synth.h5ad: 14843 cells x 120 genes, X float32
+[ben13.stream 22:32:16] pass 1: 2048 / 14843 rows
+[ben13.stream 22:32:16] pass 2: 2048 / 14843 rows
+[ben13.stream 22:32:16] wrote /tmp/tmpkrftlc49/dataset_k562_filtered.npz: 12333 cells x 34 genes (0 s)
+....[ben13.stream 22:32:25] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 22:32:25] pass 1: 97 / 4223 rows
+[ben13.stream 22:32:25] pass 1: 2522 / 4223 rows
+[ben13.stream 22:32:25] pass 2: 97 / 4223 rows
+[ben13.stream 22:32:25] pass 2: 2522 / 4223 rows
+[ben13.stream 22:32:25] wrote /tmp/tmp1b79ym_2/s0_97.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 22:32:25] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 22:32:25] pass 1: 4096 / 4223 rows
+[ben13.stream 22:32:25] pass 2: 4096 / 4223 rows
+[ben13.stream 22:32:25] wrote /tmp/tmp1b79ym_2/s0_4096.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 22:32:25] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 22:32:25] pass 1: 97 / 4080 rows
+[ben13.stream 22:32:25] pass 1: 2522 / 4080 rows
+[ben13.stream 22:32:25] pass 2: 97 / 4080 rows
+[ben13.stream 22:32:25] pass 2: 2522 / 4080 rows
+[ben13.stream 22:32:25] wrote /tmp/tmp1b79ym_2/s1_97.npz: 3017 cells x 9 genes (0 s)
+[ben13.stream 22:32:25] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 22:32:25] pass 1: 4080 / 4080 rows
+[ben13.stream 22:32:25] pass 2: 4080 / 4080 rows
+[ben13.stream 22:32:25] wrote /tmp/tmp1b79ym_2/s1_4096.npz: 3017 cells x 9 genes (0 s)
+.
+----------------------------------------------------------------------
+Ran 9 tests in 12.685s
+
+OK

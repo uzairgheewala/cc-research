@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-20T21:08:48Z",
- "status_verified_utc": "2026-10-20T21:08:01Z",
+ "generated_utc": "2026-10-20T22:34:06Z",
+ "status_verified_utc": "2026-10-20T22:33:14Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -2046,8 +2046,8 @@
    "title": "Correlation layer: typed links between dev tickets, prod items, evidence, runs, docs and Slack; agent contract",
    "category": "8 Build",
    "status": "done",
-   "effective_status": "done",
-   "level": "V3",
+   "effective_status": "reopened",
+   "level": "V1",
    "in_prod": true,
    "prod_title": "",
    "prod": {
@@ -2055,9 +2055,9 @@
     "curates": [
      "BLD-11"
     ],
-    "derived_status": "done",
+    "derived_status": "reopened",
     "published_status": "done",
-    "min_level": "V3",
+    "min_level": "V1",
     "suspect": [
      "BLD-11"
     ],
@@ -2874,7 +2874,7 @@
    "category": "10 Infrastructure",
    "status": "in_progress",
    "effective_status": "in_progress",
-   "level": "V2",
+   "level": "V1",
    "in_prod": false
   },
   "TEAM-09": {
@@ -21790,6 +21790,11 @@
  "findings": [
   {
    "severity": "WARN",
+   "code": "W3",
+   "message": "TEAM-07 is done while blocked by unfinished ['BLD-11']"
+  },
+  {
+   "severity": "WARN",
    "code": "W1",
    "message": "REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)"
   },
@@ -21802,6 +21807,11 @@
    "severity": "WARN",
    "code": "W1",
    "message": "BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)"
+  },
+  {
+   "severity": "ERROR",
+   "code": "T6",
+   "message": "BLD-11 is published ✅ but its dev tickets say reopened (BLD-11 reopened)"
   },
   {
    "severity": "WARN",

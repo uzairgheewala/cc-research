@@ -5,18 +5,21 @@
  "steps": {
   "verify": {
    "exit": 0,
-   "seconds": 99.3,
+   "seconds": 51.9,
    "tail": [
-    "items 234; done 147 (V4 0, V3 144, V2 3, V1 0); reopened 0; items with problems 0",
-    "done but below required evidence level: []"
+    "items 237; done 147 (V4 0, V3 143, V2 3, V1 1); reopened 1; items with problems 2",
+    "done but below required evidence level: []",
+    "   BLD-11 V1 | done but evidence level V1 < required V3; evidence changed since pinned: AGENTS.md"
    ]
   },
   "trace": {
-   "exit": 0,
-   "seconds": 4.0,
+   "exit": 1,
+   "seconds": 2.5,
    "tail": [
-    "links: blocks 27, curates 66, evidences 846, implements 54, mentions 679, mirrors 300, parent_of 23, published_at 246, relates 1",
-    "dev 234, prod rows 67 (groups 7), not in prod 108, newly locked IDs 0; 0 errors, 7 warnings (trace.md)",
+    "links: blocks 27, curates 66, evidences 869, implements 54, mentions 683, mirrors 300, parent_of 23, published_at 246, relates 1",
+    "dev 237, prod rows 67 (groups 7), not in prod 111, newly locked IDs 0; 1 errors, 8 warnings (trace.md)",
+    "  ERROR T6 BLD-11 is published \u2705 but its dev tickets say reopened (BLD-11 reopened)",
+    "  WARN W3 TEAM-07 is done while blocked by unfinished ['BLD-11']",
     "  WARN W1 REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
     "  WARN W1 AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
     "  WARN W1 BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)",
@@ -25,44 +28,48 @@
     "  WARN R3 tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)",
     "  WARN R3 tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)"
    ],
-   "errors": 0,
-   "warnings": 7
+   "errors": 1,
+   "warnings": 8
   },
   "snapshot": {
    "exit": 0,
-   "seconds": 2.2,
+   "seconds": 1.4,
    "tail": [
-    "snapshot 08ec807968ea: 234 items (P1 87/110, P2 25/38, P3 2/11, spine 33/75), 37 bundles, 423 metrics, 49 sources, 0 errors"
+    "snapshot f789d37a8865: 237 items (P1 87/110, P2 25/38, P3 2/11, spine 32/78), 37 bundles, 473 metrics, 55 sources, 0 errors"
    ]
   },
   "secret_scan": {
    "exit": 0,
-   "seconds": 201.0,
+   "seconds": 114.9,
    "tail": [
-    "secret scan: 7648 files, 0 findings"
+    "secret scan: 8408 files, 0 findings"
    ]
   },
   "ci_check": {
    "exit": 1,
-   "seconds": 26.6,
+   "seconds": 37.1,
    "tail": [
-    "ERROR INF-10: WAVE_STATE.md changed since it was pinned 2026-10-20T17:25:36Z (repin with tracker/verify.py --repin INF-10 after review)",
-    "ci_check: in_repo_ok 817, drift_known 0, excluded_listed 13, upstream 2, pointer 0, stale_pin 37; 1 errors"
+    "NOTE  BLD-11: AGENTS.md changed since its pin; the tracker already shows the item as reopened",
+    "ERROR INF-10: docs/WAVES.md changed since it was pinned 2026-10-20T21:08:01Z (repin with tracker/verify.py --repin INF-10 after review)",
+    "ci_check: in_repo_ok 839, drift_known 1, excluded_listed 13, upstream 2, pointer 0, stale_pin 37; 1 errors"
    ]
   },
   "site": {
    "exit": 0,
-   "seconds": 1.7,
+   "seconds": 1.3,
    "tail": [
-    "REREAD index (TGT-18: not bound at review -> in_progress|43|7bec3c0a145b; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; BEN-13: not bound at review -> in_progress|13|01a5d9604162; INF-10: not bound at review -> in_progress|11|5588a1562f09)",
-    "REREAD theses (TGT-18: not bound at review -> in_progress|43|7bec3c0a145b; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; CAP-07: not bound at review -> in_progress|5|32f53b6df385)",
-    "REREAD status (TGT-18: not bound at review -> in_progress|43|7bec3c0a145b; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; CAP-07: not bound at review -> in_progress|5|32f53b6df385; BLD-16: not bound at review -> done|21|26d923987203; BEN-13: not bound at review -> in_progress|13|01a5d9604162; INF-06: not bound at review -> in_progress|9|7e6a97516bed; INF-10: not bound at review -> in_progress|11|5588a1562f09)",
-    "built 15 pages in /tree/cc-research/site/_build; 343 numbers used, 80 registry numbers not printed; 0 errors, 0 warnings, 3 pages to re-read"
+    "INFO  board causalarena-real names BEN-14, which the tracker does not have yet",
+    "REREAD index (TGT-18: not bound at review -> in_progress|46|078599122fea; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; BEN-13: not bound at review -> in_progress|14|06efd50129c3; INF-10: not bound at review -> in_progress|12|25735c798971; TEAM-11: not bound at review -> in_progress|5|0f8d94c482d7)",
+    "REREAD theses (TGT-18: not bound at review -> in_progress|46|078599122fea; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; CAP-07: not bound at review -> in_progress|5|32f53b6df385)",
+    "REREAD gaps (never reviewed)",
+    "REREAD status (TGT-18: not bound at review -> in_progress|46|078599122fea; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; CAP-07: not bound at review -> in_progress|5|32f53b6df385; BLD-16: not bound at review -> done|21|26d923987203; BEN-13: not bound at review -> in_progress|14|06efd50129c3; INF-06: not bound at review -> in_progress|11|b92119d47e80; INF-10: not bound at review -> in_progress|12|25735c798971)",
+    "REREAD explore (never reviewed)",
+    "built 17 pages in /tree/cc-research/site/_build; 385 numbers used, 88 registry numbers not printed; 0 errors, 0 warnings, 5 pages to re-read"
    ],
    "errors": 0,
-   "reread": 3
+   "reread": 5
   }
  },
- "trace_errors": 0,
+ "trace_errors": 1,
  "site_errors": 0
 }

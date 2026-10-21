@@ -1,0 +1,381 @@
+{
+ "slug": "refinement",
+ "title": "Refining the graph",
+ "question": "After the algorithm returns its graph, what edits does the pipeline make, in what order, and what decides each one?",
+ "plain_summary": "Judge.forward takes the algorithm's graph (call it S0) and edits it in four fixed stages. S1, bootstrap: the same algorithm is re-run on 20 resampled copies of the data, and each pair of variables is kept, deleted, added or queued according to how often it came back as a directed edge. S2, LLM review: the model is asked about the queued pairs one variable at a time and answers A, B, C or D per pair; A and B write a directed edge, C deletes the pair, D changes nothing. S3, KCI pruning: an edge is removed if a kernel independence test with no conditioning variables finds its two ends independent (p > 0.05). S4, cycle step: if the graph has a directed cycle, the LLM is asked which edge of each cycle to drop. The output, results.revised_graph, is what the revised-graph plot shows; the CLI report itself shows the algorithm's original graph (see 'Writing the report').",
+ "inputs": [
+  {
+   "field": "results.converted_graph",
+   "what": "S0: the algorithm's graph as one integer matrix. M[i, j] = 1 means column j causes column i; 2 = undirected, 3 = bidirected, 4 = circle-arrow, 5 = circle-tail, 6 = circle-circle, 7 = 'associated'."
+  },
+  {
+   "field": "user_data.processed_data",
+   "what": "The cleaned data table. Resampled for S1, tested for S3, and its column names are what the LLM sees in S2 and S4."
+  },
+  {
+   "field": "algorithm.selected_algorithm",
+   "what": "Which wrapper to re-run on every resample."
+  },
+  {
+   "field": "algorithm.algorithm_arguments",
+   "what": "The hyperparameters, reused unchanged on every resample."
+  },
+  {
+   "field": "statistics.boot_num",
+   "what": "Number of resamples. Default 20 (global_setting/state.py:43); nothing on the CLI path changes it."
+  },
+  {
+   "field": "user_data.knowledge_docs",
+   "what": "The domain-knowledge prose written by the LLM earlier; pasted into every S2 review prompt."
+  },
+  {
+   "field": "results.bootstrap_probability",
+   "what": "Read during S2 to annotate the edge sentences. On the CLI it is still None at that moment, so no frequencies reach the prompt (see the quality_judge S2 step)."
+  }
+ ],
+ "outputs": [
+  {
+   "field": "results.revised_graph",
+   "what": "S4: the refined matrix, same encoding as S0."
+  },
+  {
+   "field": "results.bootstrap_probability",
+   "what": "Dict of 7 matrices: for each edge type, the share of the 20 resamples in which each cell had that type."
+  },
+  {
+   "field": "results.bootstrap_check_dict",
+   "what": "The S1 buckets: high / low / middle, each split into exist / non-exist in S0."
+  },
+  {
+   "field": "results.llm_errors",
+   "what": "{'direct_record', 'forbid_record'}: the A/B answers (as cause, effect) and C answers, each with the model's explanation. D answers are not stored."
+  },
+  {
+   "field": "results.prior_knowledge",
+   "what": "A causal-learn BackgroundKnowledge object listing required and forbidden edges from S1 and S2. Nothing on the CLI path reads it afterwards."
+  },
+  {
+   "field": "logging.knowledge_conversation",
+   "what": "Gets an empty dict appended; quality_judge always returns {} in that slot."
+  }
+ ],
+ "sequence": [
+  {
+   "function": "postprocess/judge.py::Judge.forward",
+   "what": "Called once, at main.py:298, as judge.forward(global_state, 'cot_all_relation', 1): prompt type 'cot_all_relation' and one vote. It passes S0 and the settings to quality_judge and unpacks the six return values into global_state.",
+   "excerpt": {
+    "start": 133,
+    "end": 151
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "Runs S1 to S4 in order. S1 begins with bootstrap(), called with ts=False (the time-series block resampling is never used here) and the CLI's --parallel flag, which defaults to False.",
+   "excerpt": {
+    "start": 56,
+    "end": 60
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::bootstrap",
+   "what": "Calls bootstrap_iteration boot_num times (20) one after another, or in 4 joblib workers with --parallel, stacks the 20 resampled graphs and turns them into frequencies. It also builds its own suggestion table using 0.05 / 0.95 cut-offs (lines 158-206), but quality_judge discards that table (it is the unused first return value at judge.py:59).",
+   "excerpt": {
+    "start": 121,
+    "end": 144
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge_functions.py::bootstrap_iteration",
+   "what": "One resample: draws n rows with replacement using Python's random.choices, fits the same wrapper with the same hyperparameters, and returns its integer matrix. The pipeline never seeds the generator itself.",
+   "excerpt": {
+    "start": 28,
+    "end": 51
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge_functions.py::bootstrap_probability",
+   "what": "For every ordered pair (i, j) it counts the share of resamples in which cell [i, j] held each type: directed j -> i (1 at [i, j] and 0 at [j, i]), undirected, bidirected, circle-arrow, circle-tail, circle-circle, or no edge at all. Code 7 ('associated') has no layer and is not counted.",
+   "excerpt": {
+    "start": 69,
+    "end": 92
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge_functions.py::bootstrap_recommend",
+   "what": "Buckets every cell using only the directed layer: frequency >= 0.9 is 'high', <= 0.1 is 'low', anything in between is 'middle'. An undirected frequency >= 0.9, or between 0.1 and 0.9, also puts the cell in 'middle'. Line 236 adds every 'low' cell to 'middle' as well, so nearly every pair, including each variable paired with itself, is queued for the LLM. Each bucket is then split by whether S0 has a nonzero cell there ('exist') or not ('non-exist').",
+   "excerpt": {
+    "start": 221,
+    "end": 237
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "S1 edits. A 'high' cell with no S0 mark becomes a directed edge j -> i (mirror cell cleared): an addition. A 'low' cell where S0 has any mark is deleted in both cells. Everything else is left alone. Because only the directed layer is consulted, an undirected or circle mark is deleted even if it appeared in all 20 resamples.",
+   "excerpt": {
+    "start": 66,
+    "end": 86
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "S2 setup. Turns the S1 matrix into named edge lists (convert_to_edges) and calls llm_evaluation_new. The frequencies it passes are self.global_state.results.bootstrap_probability, which is still None here: the fresh table sits in the local variable boot_probability and is only stored after quality_judge returns (judge.py:136-142).",
+   "excerpt": {
+    "start": 91,
+    "end": 101
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::llm_evaluation_new",
+   "what": "Collects the 'middle' cells, sorts each pair so the lower column index comes first, removes duplicates, and groups the pairs under the name of their lower-index variable. Each group becomes one prompt, so a run makes roughly one review call per variable.",
+   "excerpt": {
+    "start": 321,
+    "end": 338
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::edges_to_relationship",
+   "what": "Writes the context sentences the LLM reads, one per edge in the current lists: 'X causes Y', 'X has undirected relationship with Y', 'X has hidden confounder with Y', 'X has no D-seperation set with Y' for circle-circle. With frequencies set to None (the CLI case) the sentences carry no numbers. There is no sentence type for code 7.",
+   "excerpt": {
+    "start": 521,
+    "end": 537
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge_functions.py::llm_evaluation_new",
+   "what": "Builds the prompt from postprocess/context/pruning_prompt.txt: [COLUMNS] is every column name, [RELATIONSHIP] is the sentences for the whole graph plus the knowledge prose, [TASK] lists the pairs, and [FORMAT] asks for one line '(left, right): A or B or C or D: explanations ;' per pair. With one vote it makes a single call; the majority-vote branch is not used on the CLI.",
+   "excerpt": {
+    "start": 395,
+    "end": 419
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::call_llm_new",
+   "what": "Sends the prompt with postprocess/context/COT_prompt.txt as the system prompt (because the prompt type contains 'cot'). Keeps only reply lines starting with '(' and splits each at the first two colons into pair, letter and explanation. If any line fails to split, the whole prompt is sent again, with no limit on retries.",
+   "excerpt": {
+    "start": 288,
+    "end": 308
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::llm_evaluation_new",
+   "what": "Reads the letters. The pair text is split at the comma and matched to column names ignoring case; a pair that does not match is skipped silently. A records 'left causes right', B records 'right causes left', C records 'no edge', D or any other letter records nothing. A and B are also added to the shared edge list, so the next variable's prompt presents them as found by 'the statistical causal discovery algorithm'.",
+   "excerpt": {
+    "start": 444,
+    "end": 463
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "S2 edits. Every A/B record becomes a directed edge, replacing whatever mark the cell had, including pairs S1 deleted or the algorithm never connected. Every C record deletes the pair. The guard list fixed_pairs is created empty at line 88 and never filled, so no bootstrap decision is protected.",
+   "excerpt": {
+    "start": 104,
+    "end": 118
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge_functions.py::kci_pruning",
+   "what": "S3. Runs causal-learn's KCI test (a kernel-based independence test) on every pair of columns, edge or not, with no conditioning variables. If p > 0.05 and the cell [lower index, higher index] is nonzero, the pair is marked for removal. Only that cell above the diagonal is checked, so an edge stored below the diagonal is never tested.",
+   "excerpt": {
+    "start": 473,
+    "end": 483
+   },
+   "llm": false
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "Deletes both cells of every pair KCI marked, then passes the matrix to check_cycle and returns.",
+   "excerpt": {
+    "start": 121,
+    "end": 130
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::check_cycle",
+   "what": "S4, always run. Clears the mirror cell of every code-1 edge, builds a networkx directed graph from every remaining nonzero cell whatever its code, and checks for cycles. networkx reads cell [i, j] as i -> j while the matrix means j -> i, so the cycles are found correctly but printed against the causal direction. For each simple cycle it sends the text 'A -> B -> C -> A' to the LLM and deletes both cells between the two names that come back.",
+   "excerpt": {
+    "start": 568,
+    "end": 592
+   },
+   "llm": true
+  },
+  {
+   "function": "postprocess/judge_functions.py::LLM_remove_cycles",
+   "what": "JSON-mode call. The system prompt asks the model to 'choose an egde to remove this cycle, and save nodes of this edge in a list' but names no key. The code then reads response['nodes']. The VarList schema defined at lines 553-554 would fix the key, but it is never passed to the client.",
+   "excerpt": {
+    "start": 551,
+    "end": 562
+   },
+   "llm": true
+  }
+ ],
+ "llm_calls": [
+  {
+   "function": "postprocess/judge_functions.py::call_llm_new",
+   "prompt": "postprocess/context/pruning_prompt.txt",
+   "asks": "For each listed pair (left, right): A if intervening on left directly changes right, B if the reverse, C if it is 'pretty sure there is no relationship', D if it does not know established evidence; plus a one-to-two-sentence explanation. System prompt: postprocess/context/COT_prompt.txt, a six-step think-aloud template. Context given: all column names, sentences describing the S1 graph plus earlier A/B answers, and the domain-knowledge prose. One call per variable group, one vote.",
+   "answer_used": "A or B writes a directed edge into results.revised_graph (effect row, cause column = 1; mirror = 0). C sets both cells to 0. D does nothing. A/B/C answers and explanations are kept in results.llm_errors; D answers are not kept.",
+   "checked": "Format only: lines must start with '(' and split into three parts at ':' (otherwise the whole prompt is re-sent). Names must match columns (otherwise the pair is dropped silently). Only exactly 'A', 'B' or 'C' acts. No check against the bootstrap frequencies, and no check that the pair was one the code asked about."
+  },
+  {
+   "function": "postprocess/judge_functions.py::LLM_remove_cycles",
+   "prompt": null,
+   "asks": "Given one cycle written as 'A -> B -> ... -> A' (system prompt: pick an edge to remove and 'save nodes of this edge in a list'), return JSON. No key name is given.",
+   "answer_used": "check_cycle looks up the first two names and sets both cells between them to 0.",
+   "checked": "none. response['nodes'] is read without a guard; the names are looked up with get_loc (KeyError if unknown); there is no check that the two nodes form an edge of the cycle. The answer is not stored."
+  }
+ ],
+ "failure_paths": [
+  {
+   "function": "postprocess/judge_functions.py::LLM_remove_cycles",
+   "what": "If the model's JSON uses any key other than 'nodes', line 562 raises KeyError. Nothing catches it: main.py:298 is not inside a try block, so the run stops before the revised graph is drawn and before any report is written."
+  },
+  {
+   "function": "postprocess/judge_functions.py::check_cycle",
+   "what": "All simple cycles are listed once, up front, and each gets its own LLM call, even if an earlier removal already broke it. A returned name that is not a column raises KeyError at line 590 or 591."
+  },
+  {
+   "function": "postprocess/judge_functions.py::call_llm_new",
+   "what": "A reply line that does not split into three parts makes the function call itself again with the same prompt. There is no retry limit, so a model that keeps answering in the wrong format loops until Python's recursion limit."
+  },
+  {
+   "function": "postprocess/judge_functions.py::llm_evaluation_new",
+   "what": "Pairs whose names do not match a column, or that do not split into exactly two names, are skipped by a bare 'except: continue' with no log. The filter at lines 348 and 352 matches names as substrings, so 'X1' also picks up sentences about 'X10'."
+  },
+  {
+   "function": "postprocess/judge_functions.py::bootstrap_iteration",
+   "what": "There is no try block around the resample fit. If the algorithm fails on one resample, the error ends the run."
+  },
+  {
+   "function": "postprocess/judge_functions.py::kci_pruning",
+   "what": "One KCI test is run for every pair of columns, whether or not the pair has an edge, with no time limit. KCI gets slow as the number of rows grows."
+  }
+ ],
+ "change_here": [
+  {
+   "function": "postprocess/judge_functions.py::bootstrap_recommend",
+   "what": "Bucket pairs by how often they are adjacent at all, whatever the mark, instead of by the directed layer alone. That stops S1 deleting stable undirected and circle edges. Our refinement v2 keeps every algorithm adjacency and adds only pairs seen in at least 90% of resamples."
+  },
+  {
+   "function": "postprocess/judge.py::Judge.quality_judge",
+   "what": "Fill fixed_pairs from the 'high' and clear-'low' buckets before applying LLM answers, so the model cannot override confident bootstrap results. Also pass the local boot_probability into llm_evaluation_new instead of the empty state field."
+  },
+  {
+   "function": "postprocess/judge_functions.py::llm_evaluation_new",
+   "what": "Ask only about pairs the data leave open (adjacent but undirected), drop self-pairs, and store D answers so abstentions can be audited."
+  },
+  {
+   "function": "postprocess/judge_functions.py::LLM_remove_cycles",
+   "what": "Pass the VarList schema as response_format, or name the key in the prompt, and guard the lookup. Then the step can return instead of ending the run."
+  },
+  {
+   "function": "postprocess/judge_functions.py::kci_pruning",
+   "what": "Test a pair if either cell is nonzero, not only the cell above the diagonal."
+  },
+  {
+   "function": "postprocess/judge_functions.py::check_cycle",
+   "what": "Build the cycle graph from code-1 cells only, and transpose it so the printed cycle follows the causal direction."
+  }
+ ],
+ "findings": [
+  {
+   "text": "S1 removes most non-directed marks. Offline, 96% of directed edges survived it but only 16% of undirected and 12% of circle-circle edges; PC's mean adjacency F1 fell from 0.86 to 0.44 and GES's from 0.88 to 0.35.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4a_edge_lineage.md"
+  },
+  {
+   "text": "Over 92 dev files the mean adjacency F1 went from 0.557 for the algorithm's graph to 0.302 after S1, before any variable name was read.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd09_bnd10_refinement.md"
+  },
+  {
+   "text": "The paper says only moderate-confidence edges go to the LLM. In every completed offline cell the review list held every pair and every self-pair, such as (X1, X1).",
+   "label": "code verified",
+   "source": "analysis/reports/pass4a_edge_lineage.md"
+  },
+  {
+   "text": "The paper says LLM edits may not override confident bootstrap decisions. In live runs with named variables the LLM added 2.2 to 6.2 edges per run between pairs that showed no edge in at least 90% of resamples.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "S2 follows the column names, not the numbers. With protein names moved onto other proteins' columns, 27 LLM-set edges followed the labels and 0 followed the data; with neutral names the model answered D to all 275 questions and changed nothing.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "In 10 named CausalArena scenarios, 81 of 101 distinct LLM-set edges in the swapped-name arms followed the labels.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd08_s2_results.md"
+  },
+  {
+   "text": "In all 25 completed pass-4b runs, the final graph had lower adjacency F1 than the algorithm's own graph.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "Every live run that reached the cycle step crashed there (15 of 15) with KeyError 'nodes' at judge_functions.py:562. The model answered with keys such as 'edge_to_remove' and 'nodes_to_remove'.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd08_s2_results.md"
+  },
+  {
+   "text": "The cycle check reads non-directed marks as arrows. In 4 of 7 bundle-1 crashes the 'cycle' existed only under that reading.",
+   "label": "code verified",
+   "source": "analysis/reports/bundle1_results.md"
+  },
+  {
+   "text": "D answers of the edge review and the cycle-step answer are not kept anywhere in the state.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "KCI pruning rarely acts: it removed 8 edges across all offline seed-0 cells, and a micro-test confirmed that an edge stored below the diagonal is never tested.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4a_edge_lineage.md"
+  },
+  {
+   "text": "Live, KCI removed one LLM-added edge (PIP3 -> PIP2) in 3 swapped-name runs. That was the only place the data overruled the LLM.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4b_results.md"
+  },
+  {
+   "text": "The bootstrap gives the same answer every run. An imported library (semopy) seeds Python's random generator at import time, so the 20 resamples are identical from run to run when the algorithm itself is deterministic.",
+   "label": "code verified",
+   "source": "analysis/reports/pass4a_edge_lineage.md"
+  },
+  {
+   "text": "The edge review is the largest LLM consumer: 16 calls and 36,296 prompt tokens over two golden runs.",
+   "label": "code verified",
+   "source": "analysis/reports/pass3_llm_dependency_map.md"
+  },
+  {
+   "text": "A replacement data rule that keeps every algorithm adjacency (refinement v2) was never below the algorithm on 22 held-out files, while the pipeline's S1 averaged 0.432 against 0.539.",
+   "label": "code verified",
+   "source": "analysis/reports/bnd11_results.md"
+  },
+  {
+   "text": "At the model review the bootstrap frequencies are not yet in the state, so the prompt carries none.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  },
+  {
+   "text": "The model's A/B edges join the shared edge list, so later prompts present them as findings of the algorithm.",
+   "label": "partial",
+   "source": "analysis/reports/copilot_code_notes.md"
+  }
+ ]
+}

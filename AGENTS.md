@@ -73,6 +73,11 @@ commit message to `docs/commit_msgs/<execution>_cc-research.txt`. Before handing
     python tools/secret_scan.py && python tools/ci_check.py
     python site/build.py
 
+`tracker/snapshot.py` copies `tracker/status.json`, so it runs after the last `verify.py` (including `--repin`) and the
+last catalogue patch, and `site/snapshot.json` goes in the same commit as the change that moved the status. A repin or
+patch after the snapshot leaves it stale: CI fails (20 Oct, commit 1a2c631, after p30). The pre-commit hook runs
+`tracker/snapshot.py --check` and stops a stale snapshot on disk; it cannot see a regenerated snapshot that was not staged.
+
 The site (`site/`) may print a number only through `site/registry.py` (file + JSON pointer, or a literal checked in the
 cited report). Never type a result into a level's text. New data kept outside git (`external/`, `runs/`) must be hashed
 into `manifests/excluded/` with `python tools/data_manifest.py`.

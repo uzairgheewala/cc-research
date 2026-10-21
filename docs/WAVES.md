@@ -34,6 +34,8 @@ points here; every agent working in this folder follows it.
 3. Build: design note, pre-registration hashed in `manifests/evidence/`, code, tests, smoke on a slice, the sheet.
 4. Pack: one sheet; one kit applied on device by one patch script; tests, `verify.py`, `trace.py check`, `snapshot.py`,
    `secret_scan.py`, `ci_check.py`, `site/build.py` once, at the end; one commit message in `docs/commit_msgs/`.
+   Any `verify.py --repin` or catalogue patch made after that (e.g. during intake) is followed by `snapshot.py` again, and
+   the commit message lists `site/snapshot.json` (AGENTS.md, Repository).
 5. Hand over: one message; Slack dev digest once per wave.
 6. Stop.
 
