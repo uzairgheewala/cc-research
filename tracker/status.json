@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-21T01:24:33Z",
+ "verified_utc": "2026-10-27T19:32:19Z",
  "items": [
   {
    "id": "DLV-01",
@@ -165,7 +165,9 @@
     "analysis/results/refinement_v2/exploratory_s2_live.json",
     "analysis/results/refinement_v2/names_s2.json",
     "plans/results/bnd11_names_requests.answers.jsonl",
-    "analysis/reports/bnd11_results.md"
+    "analysis/reports/bnd11_results.md",
+    "analysis/results/fork/bld06_live_compare.json",
+    "plans/bld06_live_prereg.json"
    ],
    "pointers": [],
    "checks": [
@@ -186,28 +188,28 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Refinement v2 (BND-11), frozen 12 Oct, evaluated 14 Oct: adjacency F1 not below the algorithm's (within 0.02) in 22 of 22 held-out formula files; 0 crashes in 1,571 live model calls; every edge labelled with its source (data / names). Under the same controls as BND-08 (columns shuffled, three name arms).",
+   "note": "Refinement v2 (BND-11), frozen 12 Oct, evaluated 14 Oct: adjacency F1 not below the algorithm's (within 0.02) in 22 of 22 held-out formula files; 0 crashes in 1,571 live model calls; every edge labelled with its source (data / names). Under the same controls as BND-08 (columns shuffled, three name arms). 22 Oct, live inside the real pipeline on S2 (BLD-06 branch, 30 runs): final adjacency F1 below the run's own algorithm output in 1 of 30 runs (by 0.006), against 22 of 22 completed unmodified runs; no crash; every v2 edge carries a source. The one 0.006 drop is reported, not rounded away; S1 has no live run of the branch yet.",
    "problems": []
   },
   {
    "id": "DLV-05",
    "category": "0 Quarter 1 deliverables",
-   "title": "Q1 checkpoint (Mon 2 Nov)",
+   "title": "Q1 checkpoint (Fri 6 Nov)",
    "kind": "deadline",
    "status": "todo",
    "effective_status": "todo",
    "emoji": "⏳",
    "level": "V0",
    "required_level": "",
-   "criterion": "Checkpoint submitted, covering the frozen suite (DLV-01), the runs (DLV-02) and the exploration so far (DLV-03)",
+   "criterion": "Title, abstract and introduction (intro paragraph, prior work, data description) submitted in the course LaTeX template, with a link to the public Q1 repository (DLV-07)",
    "evidence": [],
    "pointers": [],
    "checks": [],
    "reproduce": "",
    "reopen_if": [],
-   "due": "2026-11-02",
+   "due": "2026-11-06",
    "blocked_by": null,
-   "note": "",
+   "note": "27 Oct: the course page sets Fri 6 Nov; the checkpoint is the title, abstract and introduction (intro paragraph, prior work, data) in the course LaTeX template, plus the public code link (DLV-07).",
    "problems": []
   },
   {
@@ -4021,7 +4023,8 @@
     "analysis/results/q2_b4/raw_vs_calibrated_test.json",
     "analysis/reports/q2_b4_confidence.md",
     "analysis/results/q2_v3/v3_test.json",
-    "analysis/reports/q2_v3_heldout.md"
+    "analysis/reports/q2_v3_heldout.md",
+    "analysis/results/q2_v3/family2_read.json"
    ],
    "pointers": [],
    "checks": [
@@ -4034,7 +4037,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "v3 confidence model (ledger features, isotonic on cross-fitted scores): held-out ECE 0.021 semantic / 0.025 formula (v2 0.057 / 0.036); realised >= claimed at every threshold in D; ER-3 not met because the ECE upper ends (0.063 / 0.051) exceed 0.05 on 25 scenario clusters.",
+   "note": "v3 confidence model (ledger features, isotonic on cross-fitted scores): held-out ECE 0.021 semantic / 0.025 formula (v2 0.057 / 0.036); realised >= claimed at every threshold in D; ER-3 not met because the ECE upper ends (0.063 / 0.051) exceed 0.05 on 25 scenario clusters. 22 Oct, family 2: ECE 0.042 [0.030, 0.053]: the frozen semantic confidence model transfers within its calibration error (F3), but ER-3 is not met (upper end above 0.05). Under-confident on the linear track (realised minus claimed +0.064), over-confident on the nonlinear track (-0.046).",
    "problems": []
   },
   {
@@ -4142,12 +4145,13 @@
    "emoji": "✅",
    "level": "V3",
    "required_level": "V3",
-   "criterion": "Same inputs, same ledger hash",
+   "criterion": "Same inputs, same ledger hash (on one CPU family; across families: the same claim structure)",
    "evidence": [
     "analysis/results/q2_b1/invariance_dev.json",
     "analysis/reports/q2_b1_data_only_ledger.md",
     "analysis/reports/q2_v3_k0_engine_cache.md",
-    "kernel/cache.py"
+    "kernel/cache.py",
+    "jobs/waves/A/out/canary.json"
    ],
    "pointers": [],
    "checks": [
@@ -4160,7 +4164,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "50/50 repeat builds give the same ledger hash (B1 R3) within one host. Across hosts the hash needs the OpenBLAS kernel family pinned (OPENBLAS_CORETYPE=SKYLAKEX, threads 1): without it every p-value moves in the 14th digit (found by K0, 15 Oct); kernel/cache.py keys on both.",
+   "note": "50/50 repeat builds give the same ledger hash (B1 R3) within one host. Across hosts the hash needs the OpenBLAS kernel family pinned (OPENBLAS_CORETYPE=SKYLAKEX, threads 1): without it every p-value moves in the 14th digit (found by K0, 15 Oct); kernel/cache.py keys on both. 22 Oct: qualified. The ledger hash is the same for the same inputs on one CPU family (BLAS kernel); between an AVX-512 and an AVX2 host the test statistics differ in the last digits and the full hash differs, while the claim structure is identical (wave canary, claims_sha256).",
    "problems": []
   },
   {
@@ -5047,7 +5051,14 @@
     "analysis/results/refinement_v2/test_formula.json",
     "analysis/results/refinement_v2/names_s2.json",
     "analysis/reports/bnd11_prep.md",
-    "analysis/reports/bnd11_results.md"
+    "analysis/reports/bnd11_results.md",
+    "analysis/results/fork/fork_bld06_live.json",
+    "plans/results/fork_bld06_live.capped.json",
+    "plans/results/fork_bld06_live_main.capped.json",
+    "plans/bld06_live_prereg.json",
+    "manifests/evidence/bld06_live_prereg_2026-10-22.sha256",
+    "analysis/bld06_live_compare.py",
+    "analysis/results/fork/bld06_live_compare.json"
    ],
    "pointers": [],
    "checks": [
@@ -5062,13 +5073,25 @@
     {
      "ok": true,
      "detail": "summary/R2/verdict = \"SUPPORTED\" (eq \"SUPPORTED\")"
+    },
+    {
+     "ok": true,
+     "detail": "rule = \"drop_in\" (eq \"drop_in\")"
+    },
+    {
+     "ok": true,
+     "detail": "completed/branch = 30 (eq 30)"
+    },
+    {
+     "ok": true,
+     "detail": "completed/main = 22 (eq 22)"
     }
    ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "v2 is the drop-in replacement: it never falls below the algorithm on held-out data (formula test 22/22) and sources every edge; names add little (R6 refuted) and wrong names cost nothing measurable (R5).",
+   "note": "v2 is the drop-in replacement: it never falls below the algorithm on held-out data (formula test 22/22) and sources every edge; names add little (R6 refuted) and wrong names cost nothing measurable (R5). 22 Oct, live on the fork (branch bld-06-refinement-v2, 30 BND-08 tables, gpt-4o): 30 of 30 runs completed against 22 of 30 for unmodified main on the same rebuilt image (8 crashes in the cycle step; BND-08 had 6 of 30 on the old image); $4.84 against $12.57; refinement v2 ran in all 30. Graph quality against the data reference is scored on sheet B. 22 Oct, pre-registered comparison (plans/bld06_live_prereg.json; analysis/results/fork/bld06_live_compare.json): rule 'drop_in'. Delivered directed F1 +0.071 [0.035, 0.111] over main; on the 22 tables both completed, final adjacency F1 0.596 vs 0.321 (+0.276 [0.206, 0.335]) and directed F1 +0.014 [-0.017, 0.039]; S0 adjacency F1 within 0.01 (the two series ran comparable algorithms).",
    "problems": []
   },
   {
@@ -5762,7 +5785,10 @@
     "tests/test_fork_patches.py",
     "analysis/fork_check.py",
     "cc.ps1",
-    "plans/fork_bld06_live_main.json"
+    "plans/fork_bld06_live_main.json",
+    "analysis/results/fork/fork_bld06_stub.json",
+    "analysis/results/fork/fork_ext03_stub.json",
+    "jobs/waves/images/cc.json"
    ],
    "pointers": [],
    "checks": [],
@@ -5770,7 +5796,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": " 20 Oct (wave A): ticket branches of the fork as patch files (jobs/fork/), applied by Uzair with jobs/fork/make_branches.ps1; the harness checks a branch run (CC_BRANCH) against jobs/fork/<branch>.json and records branch, commit and patch in meta.json. The fork itself is a manual step (docs/FORK.md). 20 Oct (wave A rerun): the stubs could not start (runtime image missing). cc.ps1 ensureimage builds only the missing images and writes jobs/waves/images/cc.json (is the base image still BND-08's?); manifests/image_ids.json keeps the earlier record when it rebuilds.",
+   "note": " 20 Oct (wave A): ticket branches of the fork as patch files (jobs/fork/), applied by Uzair with jobs/fork/make_branches.ps1; the harness checks a branch run (CC_BRANCH) against jobs/fork/<branch>.json and records branch, commit and patch in meta.json. The fork itself is a manual step (docs/FORK.md). 20 Oct (wave A rerun): the stubs could not start (runtime image missing). cc.ps1 ensureimage builds only the missing images and writes jobs/waves/images/cc.json (is the base image still BND-08's?); manifests/image_ids.json keeps the earlier record when it rebuilds. 22 Oct: both branch stubs pass identity and their checks; the Causal-Copilot base image was rebuilt (new id, jobs/waves/images/cc.json), so live comparisons use LIVE_06M's main control on the same image.",
    "problems": []
   },
   {
@@ -5802,17 +5828,19 @@
    "status": "todo",
    "effective_status": "todo",
    "emoji": "⏳",
-   "level": "V0",
+   "level": "V2",
    "required_level": "",
    "criterion": "",
-   "evidence": [],
+   "evidence": [
+    "docs/meetings/2026-10-29_ta_checkin_agenda.md"
+   ],
    "pointers": [],
    "checks": [],
    "reproduce": "",
    "reopen_if": [],
    "due": "2026-10-29",
    "blocked_by": null,
-   "note": "Rescheduled: Thursday 29 Oct 2026, 10:45 am PT (Uzair, 19 Oct).",
+   "note": "Rescheduled: Thursday 29 Oct 2026, 10:45 am PT (Uzair, 19 Oct). 22 Oct: agenda written (docs/meetings/2026-10-29_ta_checkin_agenda.md); sheet B numbers marked as pending.",
    "problems": []
   },
   {
@@ -5831,9 +5859,9 @@
    "checks": [],
    "reproduce": "",
    "reopen_if": [],
-   "due": "2026-11-02",
+   "due": "2026-11-06",
    "blocked_by": null,
-   "note": "",
+   "note": "27 Oct: the course page sets Fri 6 Nov; the checkpoint is the title, abstract and introduction (intro paragraph, prior work, data) in the course LaTeX template, plus the public code link (DLV-07).",
    "problems": []
   },
   {
@@ -6205,7 +6233,10 @@
    "required_level": "",
    "criterion": "",
    "evidence": [
-    "jobs/fork/ext-03-cycle-step-key.patch"
+    "jobs/fork/ext-03-cycle-step-key.patch",
+    "analysis/results/fork/fork_ext03_stub.json",
+    "plans/results/fork_bld06_live_main.capped.json",
+    "docs/drafts/bug_reports/causal_copilot_cycle_step_keyerror.md"
    ],
    "pointers": [],
    "checks": [],
@@ -6213,7 +6244,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Evidence grows: 18 of 19 live entries into the cycle step crashed at judge_functions.py:562 (15 gpt-4o, 3 of 4 gpt-4o-mini; the one survivor returned both 'nodes' and 'removed_edge'). 20 Oct: fix written as branch ext-03-cycle-step-key (jobs/fork/ext-03-cycle-step-key.patch); stub run on the wave A sheet.",
+   "note": "Evidence grows: 18 of 19 live entries into the cycle step crashed at judge_functions.py:562 (15 gpt-4o, 3 of 4 gpt-4o-mini; the one survivor returned both 'nodes' and 'removed_edge'). 20 Oct: fix written as branch ext-03-cycle-step-key (jobs/fork/ext-03-cycle-step-key.patch); stub run on the wave A sheet. 22 Oct: the cycle-step KeyError recurs on unmodified main on the rebuilt image (8 of 30, LIVE_06M) and never on the branch stubs (fork_ext03_stub: 0). 22 Oct: upstream report drafted (docs/drafts/bug_reports/causal_copilot_cycle_step_keyerror.md); Uzair decides whether to send.",
    "problems": []
   },
   {
@@ -7112,17 +7143,19 @@
    "status": "todo",
    "effective_status": "todo",
    "emoji": "⏳",
-   "level": "V0",
+   "level": "V2",
    "required_level": "",
    "criterion": "Must show: the checkpoint document; number-to-ticket table; trace.py check 0 errors",
-   "evidence": [],
+   "evidence": [
+    "docs/q1/checkpoint_skeleton.md"
+   ],
    "pointers": [],
    "checks": [],
    "reproduce": "",
    "reopen_if": [],
    "due": "2026-11-01",
    "blocked_by": null,
-   "note": "Runner: claude; Uzair submits. API spend: none.",
+   "note": "Runner: claude; Uzair submits. API spend: none. 22 Oct: outline with typed placeholders (docs/q1/checkpoint_skeleton.md); the TA's format answer on 29 Oct shapes the final document.",
    "problems": []
   },
   {
@@ -7394,7 +7427,11 @@
     "analysis/q2_family2.py",
     "plans/v3_freeze_deviation_1.json",
     "manifests/evidence/family2_freeze_deviation_2026-10-20.sha256",
-    "tests/test_family2_guard.py"
+    "tests/test_family2_guard.py",
+    "analysis/results/q2_v3/family2_read.json",
+    "analysis/explanation_ledger.py",
+    "analysis/results/q2_v3/explanation_ledger.json",
+    "analysis/results/v4/decision.json"
    ],
    "pointers": [],
    "checks": [
@@ -7425,13 +7462,21 @@
     {
      "ok": true,
      "detail": "licences = [] (len_eq 0)"
+    },
+    {
+     "ok": true,
+     "detail": "subsets/all/ER-2_met = false (false )"
+    },
+    {
+     "ok": true,
+     "detail": "subsets/all/precision_half = 0.7947640337084351 (approx 0.795)"
     }
    ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] (short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3). 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula (cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links sit beside a real mediated path; neither can act until an applicability condition exists (analysis/reports/q2_linkfilt_dev.md). 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong (analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): explanation round X1-X3 (analysis/reports/q2_explain_dev.md). Both semantic gaps come from a linear-Gaussian score on nonlinear / discrete mechanisms: given the true graph the score still wants 78% of shadow links and 76% of the missed search-gap links, while GES's graph outscores the true graph on 117 of 120 files. Pre-registered rule: D2-search; read with the global check, the lever is the score (post-hoc reading, labelled). Floor confirmed real (X3). Second held-out family pre-registered (plans/v3_prereg_amendment_1_family2.json). 20 Oct (wave A rerun): the family-2 read refused because the freeze's whole-tree hash covers three kernel files added after it (kernel/asym.py, asym_cond.py, linkfilt.py); no frozen file changed and the core hash is equal. Deviation record written and hashed before the read (plans/v3_freeze_deviation_1.json): the read checks the frozen files one by one, the core and the added files' sha256, and blocks importing the added files. No family-2 file has been scored yet.",
+   "note": "v2 (B4, first read): semantic 0.812 [0.756], formula 0.899 [0.854]. v3 (second read, 125 files per family): semantic 0.830 [0.783], formula 0.908 [0.876] (met for formula); pooled 5,000 rows: semantic 0.866 [0.799] (short by 0.001), formula 0.911 [0.863]. Not met: semantic's lower end is below 0.80 in both regimes. Semantic is capped by missed links (analysis/reports/q2_v3_k1_k2_dev.md section 3). 16 Oct (dev): two link filters (triangle order, resampling stability) earn a licence on formula (cut precision 0.81; 25% / 38% of false links cut) and not on semantic, where 55% of true links sit beside a real mediated path; neither can act until an applicability condition exists (analysis/reports/q2_linkfilt_dev.md). 19 Oct (dev): L16, an observable gate (ledger density or triangle share) clears the pooled bar (0.803, 20% of false links) only by acting at a stricter cut-off on denser files; it fails the transfer guard (within-family rho <= 0.33) and its semantic cuts are right 0.735, so it is not acted on. A declared domain-structure statement licensing L8a costs -0.002 DV-1 precision when wrong (analysis/reports/q2_l16_dev.md). L5, interventions as link evidence: no licence; the shadow signal is real (48% vs 7%) but CausalArena's release reaches 20% / 13% of false links with about 40 rows per target (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): explanation round X1-X3 (analysis/reports/q2_explain_dev.md). Both semantic gaps come from a linear-Gaussian score on nonlinear / discrete mechanisms: given the true graph the score still wants 78% of shadow links and 76% of the missed search-gap links, while GES's graph outscores the true graph on 117 of 120 files. Pre-registered rule: D2-search; read with the global check, the lever is the score (post-hoc reading, labelled). Floor confirmed real (X3). Second held-out family pre-registered (plans/v3_prereg_amendment_1_family2.json). 20 Oct (wave A rerun): the family-2 read refused because the freeze's whole-tree hash covers three kernel files added after it (kernel/asym.py, asym_cond.py, linkfilt.py); no frozen file changed and the core hash is equal. Deviation record written and hashed before the read (plans/v3_freeze_deviation_1.json): the read checks the frozen files one by one, the core and the added files' sha256, and blocks importing the added files. No family-2 file has been scored yet. 22 Oct, family-2 held-out read (one read, 500 files, 50 source scenarios, regime D; analysis/results/q2_v3/family2_read.json): precision at half coverage 0.795 [0.777, 0.811] at coverage 0.545: ER-2 not met (the bar 0.80 lies inside the interval). Linear track 0.851 [0.826, 0.872] (meets the precision bar), nonlinear 0.742 [0.726, 0.758]. Pre-registered F1-F4 all hold; rule 'transfer'. 22 Oct: explanation ledger (analysis/results/q2_v3/explanation_ledger.json): every dev gap of v3 split into typed segments that sum to the anatomy totals (semantic missed 1,647 = floor 459 walled + sample size 194 + nonlinear-only 268 + search gap 726). 22 Oct: the score lever (BLD-18) moved semantic dev precision in the predicted direction for all three nonlinear scores, but no gain's interval excludes zero on 25 dev scenarios; ER-2 stays not met.",
    "problems": []
   },
   {
@@ -7460,7 +7505,9 @@
     "analysis/reports/q2_l5_dev.md",
     "analysis/results/q2_v3/l5_dev.json",
     "analysis/reports/q2_explain_dev.md",
-    "analysis/results/q2_v3/explain_dev.json"
+    "analysis/results/q2_v3/explain_dev.json",
+    "analysis/explanation_ledger.py",
+    "analysis/results/q2_v3/explanation_ledger.json"
    ],
    "pointers": [],
    "checks": [
@@ -7477,7 +7524,7 @@
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Measured, not met (v2). v3 dev: route A still ties GES even with 5,000 rows (C3 0.551 vs GES 0.559, semantic pooled); a lower GES penalty lowers F1 (0.522 -> 0.466). Route B: Meek propagation from knowledge adds +0.001; the oracle ceiling of the orient-only rule is +0.060 / +0.044. Needs direction evidence beyond the equivalence class (v4). 16 Oct: route A through pairwise asymmetry is closed at 1,000 rows on CausalArena (analysis/reports/q2_dirsig_dev.md); open direction sources are interventions and knowledge. 19 Oct: adding missed links from interventions (L5 rule A) is 9-14% precise on dev; no licence (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): X2, semantic reversals are 49% skeleton-caused, 38% rule-caused, 13% left open on the true skeleton (formula 62 / 29 / 9) (analysis/reports/q2_explain_dev.md).",
+   "note": "Measured, not met (v2). v3 dev: route A still ties GES even with 5,000 rows (C3 0.551 vs GES 0.559, semantic pooled); a lower GES penalty lowers F1 (0.522 -> 0.466). Route B: Meek propagation from knowledge adds +0.001; the oracle ceiling of the orient-only rule is +0.060 / +0.044. Needs direction evidence beyond the equivalence class (v4). 16 Oct: route A through pairwise asymmetry is closed at 1,000 rows on CausalArena (analysis/reports/q2_dirsig_dev.md); open direction sources are interventions and knowledge. 19 Oct: adding missed links from interventions (L5 rule A) is 9-14% precise on dev; no licence (analysis/reports/q2_l5_dev.md). 20 Oct (wave A, dev): X2, semantic reversals are 49% skeleton-caused, 38% rule-caused, 13% left open on the true skeleton (formula 62 / 29 / 9) (analysis/reports/q2_explain_dev.md). 22 Oct: X4 on sheet A: KCI detects the nonlinear-only missed links far above its null (semantic +0.40, formula +0.52): those links carry signal a nonlinear test can use. 22 Oct: reversed directions in the explanation ledger: skeleton-caused, rule-caused, open on the true skeleton.",
    "problems": []
   },
   {
@@ -7651,7 +7698,7 @@
    "status": "in_progress",
    "effective_status": "in_progress",
    "emoji": "👀",
-   "level": "V2",
+   "level": "V3",
    "required_level": "",
    "criterion": "Two published rows per cell line (K562, RPE1) reproduced within tolerance before any re-score claim; then per published method: (a) edge-placement control on mean Wasserstein and FOR; (b) names-only baseline on the biological and statistical evaluations under a gene-label permutation; the share of each published score each channel accounts for, with intervals; predictions and thresholds hashed before the first re-score",
    "evidence": [
@@ -7668,15 +7715,33 @@
     "tests/test_ben13_stream.py",
     "docker/Dockerfile.bench",
     "docker/requirements_bench.txt",
-    "tests/test_ben13_fetch.py"
+    "tests/test_ben13_fetch.py",
+    "analysis/results/ben13/summary.json",
+    "analysis/ben13/report.py",
+    "tests/test_ben13_summary.py",
+    "analysis/reports/ben13_s1_s2.md",
+    "analysis/results/ben13/CONTRACT.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "reproduction_all = true (true )"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/P1/verdict = \"fails\" (eq \"fails\")"
+    },
+    {
+     "ok": true,
+     "detail": "predictions/P4/verdict = \"holds\" (eq \"holds\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5. 20 Oct (wave A): S0-S2 built and pre-registered (plans/ben13_prereg.json). CausalBench's preprocessing is streamed in row chunks (peak about 0.5 GB instead of about 30 GB) and equals causalbench 1.1.2's arrays bit for bit on synthetic files; evaluation through causalbench's own classes (all-path tests skipped, checked equal by a canary cell). Names-only LLM arm not run (decision D-3 = no): the names channel is measured with literature networks and gene-label permutations. 20 Oct (wave A rerun): figshare answers programmatic downloads with an empty body, and the old fetcher accepted a 0-byte rpe1.h5ad. Every file is now checked (not empty, HDF5/zip/gzip magic, published size and md5); the two expression files come from a browser download, imported from Downloads after the checks.",
+   "note": "Opened 19 Oct from the CausalBench deep-dive (project:claude/benchmark-targets.md, update 2026-10-19). Data download and long runs on Uzair's machine; the names-only arm needs a small approved model spend. First step toward Rung 3 (evidence-typed, calibrated pairs) and the large real testbed for lever L5. 20 Oct (wave A): S0-S2 built and pre-registered (plans/ben13_prereg.json). CausalBench's preprocessing is streamed in row chunks (peak about 0.5 GB instead of about 30 GB) and equals causalbench 1.1.2's arrays bit for bit on synthetic files; evaluation through causalbench's own classes (all-path tests skipped, checked equal by a canary cell). Names-only LLM arm not run (decision D-3 = no): the names channel is measured with literature networks and gene-label permutations. 20 Oct (wave A rerun): figshare answers programmatic downloads with an empty body, and the old fetcher accepted a 0-byte rpe1.h5ad. Every file is now checked (not empty, HDF5/zip/gzip magic, published size and md5); the two expression files come from a browser download, imported from Downloads after the checks. 22 Oct, sheet A: S0 shapes exact (K562 162,751 x 622; RPE1 162,733 x 383); S1 all four published MeanDifference rows within tolerance (Wasserstein to the third decimal). P1 refuted: edge placement carries 0.13 (K562) and 0.07 (RPE1) of MeanDifference's above-random Wasserstein at k = 1000, so the score rests on the specific pairs. P3 holds: MeanDifference reaches 0.90 / 0.95 of the test-split total-effect ceiling. P2 holds in the 3 cells computed. Not computed: random networks at k = 5000 and of literature size, because CausalBench's false omission rate takes negatives outside the path closure and a dense network leaves none; the cells also dropped their Wasserstein. Fixed on sheet B. CORUM not reachable. 22 Oct (wave B): the fast evaluator now keeps a dense network's Wasserstein and marks its FOR undefined; failed cells are re-run; P1-P4 are scored in summary.json and analysis/reports/ben13_s1_s2.md is generated from it. 22 Oct, sheet B: S2 complete for MeanDifference (analysis/reports/ben13_s1_s2.md). P1 fails (placement shares 0.07-0.14), P2 holds in all 4 cells, P3 holds (0.90 / 0.95), P4 holds (STRING links 0.132 vs at most 0.113 for same-size random networks in K562, 0.118 vs 0.099 in RPE1). MeanDifference's false omission rate is within the tolerance of random networks' in all three computable cells, so the FOR metric does not separate it from random. Other published methods not yet audited (criterion: per published method).",
    "problems": []
   },
   {
@@ -7684,11 +7749,11 @@
    "category": "10 Infrastructure",
    "title": "Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json)",
    "kind": "task",
-   "status": "in_progress",
-   "effective_status": "in_progress",
-   "emoji": "👀",
-   "level": "V2",
-   "required_level": "",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
    "criterion": "cc.ps1 wave <id> runs a sheet on Uzair's machine: preflight checks code identity, disk, RAM and files; one canary per job runs first; gated jobs are skipped when their gate fails; a failing job stops only itself; RETURN.json is written incrementally with status, exit, code identity, output hashes, cost and wall time; the kit builder ships code, the engine cache and needed data to the agent's sandbox; unit tests",
    "evidence": [
     "docs/WAVES.md",
@@ -7702,15 +7767,27 @@
     "jobs/waves/A/sheet.json",
     "jobs/waves/A/canary_expected.json",
     "harness/live_capped.py",
-    "tests/run_tests.py"
+    "tests/run_tests.py",
+    "jobs/waves/A/verdict.json",
+    "jobs/waves/A/state.json",
+    "jobs/waves/B/sheet.json"
    ],
    "pointers": [],
-   "checks": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "must_shows/M_T_HOST/status = \"pass\" (eq \"pass\")"
+    },
+    {
+     "ok": true,
+     "detail": "must_shows/M_CANARY/status = \"pass\" (eq \"pass\")"
+    }
+   ],
    "reproduce": "",
    "reopen_if": [],
    "due": null,
    "blocked_by": null,
-   "note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary. 20 Oct (wave A): harness/wave.py built (preflight with code identity, disk, Docker memory and the CPU's BLAS family; canaries; when-gates over must-shows; resume; parts and memory packing; verdict.json and a small return zip); tests/test_wave_runner.py passes. Must-show still open: the demo sheet on Uzair's machine (wave A sheet, run A0). 20 Oct: class A0 runs (tests, kit checks) re-run when the kit's code identity changes; finished heavy runs keep their results (tests/test_wave_runner.py).",
+   "note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary. 20 Oct (wave A): harness/wave.py built (preflight with code identity, disk, Docker memory and the CPU's BLAS family; canaries; when-gates over must-shows; resume; parts and memory packing; verdict.json and a small return zip); tests/test_wave_runner.py passes. Must-show still open: the demo sheet on Uzair's machine (wave A sheet, run A0). 20 Oct: class A0 runs (tests, kit checks) re-run when the kit's code identity changes; finished heavy runs keep their results (tests/test_wave_runner.py). 22 Oct: sheet A ran in full on Uzair's machine (fourth run: 35 runs, 26 must-shows scored, decisions matched; jobs/waves/A/verdict.json). Earlier runs found and fixed by class: CRLF fixtures, CPU-dependent digests, the freeze guard, empty downloads, a missing image, a hung build (time limits, Docker check).",
    "problems": []
   },
   {
@@ -7821,6 +7898,181 @@
    "due": null,
    "blocked_by": null,
    "note": "Decision D-4 changed by Uzair, 20 Oct: the public changes feed shows prod digests. Built 20 Oct in the site chat (wave B, parallel part; project doc claude/site-v3-wave-b-plan-2026-10-20.md) as patches jobs/patches/s24.py ... s28.py, applied after sheet A's return. Done once the post-apply build shows 0 errors and 0 warnings with the explanation ledger (B1) in place, and Uzair has seen Today and the gaps page.",
+   "problems": []
+  },
+  {
+   "id": "BLD-18",
+   "category": "8 Build",
+   "title": "Kernel v4 candidates: a GES score that fits nonlinear and discrete mechanisms (pre-registered knobs on dev)",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "Knobs, metrics, predictions and the decision rule hashed before any ledger-level dev number (plans/v4_prereg.json); dev evaluation and the rule's outcome (analysis/results/v4/dev.json, decision.json); if a knob is adopted: frozen and read once on the sealed held-out family (family 2, replicate 1)",
+   "evidence": [
+    "plans/v4_prereg.json",
+    "manifests/evidence/v4_prereg_2026-10-22.sha256",
+    "v4/scores.py",
+    "v4/dev.py",
+    "v4/heldout_gen.py",
+    "tests/test_v4_scores.py",
+    "jobs/waves/B/sheet.json",
+    "analysis/results/v4/dev.json",
+    "analysis/results/v4/decision.json",
+    "analysis/results/v4/heldout_seal.json",
+    "analysis/results/v4/CONTRACT.json",
+    "jobs/waves/B/verdict.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "winner = null (eq )"
+    },
+    {
+     "ok": true,
+     "detail": "files = 500 (eq 500)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "22 Oct: from X1-X4 and the family-2 read (linear track 0.851, nonlinear 0.742). Knobs: G0 (v3), G1 (gauss, no turning), A1 / A2 (additive hinge + discrete-indicator design, lam 1 / 2), R1 (random Fourier features, ridge). Turning is dropped for the new scores, which are not score-equivalent (first smoke file: turning did not finish in 8 min; forward + backward 13 s). Sheet B runs the dev grid; no held-out file is read on sheet B. 22 Oct, sheet B (analysis/results/v4/decision.json): no knob clears the pre-registered rule, so v3 stays and no held-out file is read. Semantic dev precision at half coverage, paired gain over G0 (0.808): A1 +0.040 [-0.011, 0.094], R1 +0.030 [-0.020, 0.076], A2 +0.015 [-0.031, 0.065]; A1 is also ineligible on formula (0.866 against G0's 0.881). The new scores cut GES's false adjacencies by 38-60 % per file (Q3 holds) and raise skeleton F1 (Q1 holds), but under every new score the true DAG still never scores as high as GES's output on a semantic file (Q2 fails: 0 of 125 for A1, A2 and R1). The G0 canary reproduces v3's dev number (0.8077 against 0.8078). Dropping the turning phase is neutral (Q4). Held-out family 2 replicate 1: 500 files written and sealed, scored by no kernel.",
+   "problems": []
+  },
+  {
+   "id": "BLD-17",
+   "category": "8 Build",
+   "title": "Pretrained engine beside GES in the ledger (D2-engine)",
+   "kind": "decision",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "X5's pre-registered rule (plans/x5_prereg.json): adopt only if AVICI's paired F1 over GES has a lower end above 0",
+   "evidence": [
+    "plans/x5_prereg.json",
+    "analysis/results/x5/x5_dev.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "families/semantic/paired/avici_shuffled_minus_ges/hi = -0.23172508549123066 (le 0.0)"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Decided against 20 Oct (X5): AVICI scm-v0 is below GES on both families (semantic -0.281 [-0.330, -0.232]).",
+   "problems": []
+  },
+  {
+   "id": "CAP-19",
+   "category": "6 Required capabilities",
+   "title": "Cross-host determinism: the same claims on every machine, the same hash on one CPU family",
+   "kind": "task",
+   "status": "done",
+   "effective_status": "done",
+   "emoji": "✅",
+   "level": "V3",
+   "required_level": "V3",
+   "criterion": "The wave canary recomputes ledgers from scratch on Uzair's machine and matches the agent's claim structure (claims_sha256) on every file; full ledger hashes are compared per CPU family only",
+   "evidence": [
+    "analysis/wave_canary.py",
+    "jobs/waves/A/out/canary.json",
+    "jobs/waves/A/canary_expected.json"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "match = true (true )"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Sheet A: an AVX2 host (HASWELL kernel) and the AVX-512 sandbox give different test statistics in the last digits, so different full ledger hashes, and identical claims on all three canary files. Qualifies CAP-11.",
+   "problems": []
+  },
+  {
+   "id": "TEAM-13",
+   "category": "12 Team and communication",
+   "title": "Inside Causal-Copilot: a site explaining how every part of Causal-Copilot works",
+   "kind": "task",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V2",
+   "required_level": "",
+   "criterion": "A typed model of the first-party code at a31aa7c extracted from the AST and checked against the baseline manifest; nine step pages written by reading the code and bound to the hashes of the functions they describe; reference pages (state, model calls, algorithms, prompts, every module and function); a findings layer with evidence labels; one recorded scenario replayed under three name arms; the build fails on any function, excerpt, prompt or source that does not match; unit tests",
+   "evidence": [
+    "site/copilot/extract.py",
+    "site/copilot/model.json",
+    "site/copilot/snip.py",
+    "site/copilot/excerpts.json",
+    "site/copilot/build.py",
+    "site/copilot/bindings.json",
+    "site/copilot/replay.json",
+    "site/copilot/export_replay.py",
+    "site/copilot/algorithms.json",
+    "tests/test_copilot_site.py",
+    "analysis/reports/copilot_code_notes.md"
+   ],
+   "pointers": [],
+   "checks": [],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": null,
+   "blocked_by": null,
+   "note": "Uzair, 20 Oct: wants to understand Causal-Copilot's code, with a full site on its architecture (project:claude/copilot-explorer-design-2026-10-20.md). Built 20 Oct; done once he has read it on the deployed site.",
+   "problems": []
+  },
+  {
+   "id": "DLV-07",
+   "category": "0 Quarter 1 deliverables",
+   "title": "Public Q1 code repository: a curated, reproducible export of cc-research",
+   "kind": "deadline",
+   "status": "in_progress",
+   "effective_status": "in_progress",
+   "emoji": "👀",
+   "level": "V3",
+   "required_level": "",
+   "criterion": "A public GitHub repository, linked from the checkpoint, produced by tools/export_q1.py from an allowlist: README with data, dependencies and commands; the comparison script run verbatim on reduced run states checked against a manifest of the full files; python run.py reproduce recomputes analysis/results/fork/bld06_live_compare.json exactly with no API key; CI runs it on every push",
+   "evidence": [
+    "tools/export_q1.py",
+    "docs/q1_repo/README.md",
+    "docs/q1_repo/run.py",
+    "docs/q1_repo/tests/test_reproduce.py",
+    "docs/q1_repo/docs/method.md",
+    "docs/q1_repo/docs/code_tour.md",
+    "analysis/trace_q011.py",
+    "analysis/results/run_trace/q011_gas_void.json",
+    "analysis/reports/run_trace/q011_gas_void.md"
+   ],
+   "pointers": [],
+   "checks": [
+    {
+     "ok": true,
+     "detail": "arms/branch (refinement v2)/delivered_graph = \"void -> gas\" (eq \"void -> gas\")"
+    },
+    {
+     "ok": true,
+     "detail": "arms/main (unmodified)/delivered_graph = \"no link\" (eq \"no link\")"
+    }
+   ],
+   "reproduce": "",
+   "reopen_if": [],
+   "due": "2026-11-06",
+   "blocked_by": null,
+   "note": "Uzair, 27 Oct: route (b) of claude/reorg-2026-10-27.md, a curated public Q1 repo (cc-research is public too). Export checked on the device 27 Oct: 165 files, 9.1 MB, reproduction exact, 4 tests pass. Done when the repository is public, CI is green and the checkpoint links it.",
    "problems": []
   }
  ]

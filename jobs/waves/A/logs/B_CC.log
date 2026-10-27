@@ -70,3 +70,7 @@
 #5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 708.84MB / 3.96GB 35.8s
 #5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 830.47MB / 3.96GB 40.8s
 #5 sha256:3e67298cbe476135ff9dcff5e7304f082118e02ba3fd161ca045ce508c672d31 963.64MB / 3.96GB 45.9s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/amd64" (line 1)
+ERROR: failed to build: failed to solve: Canceled: context canceled

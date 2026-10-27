@@ -8,9 +8,19 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "site" / "copilot"))
 
-import extract  # noqa: E402
+
+def _load_extract():
+    """site/copilot/extract.py by file path. Putting site/copilot on sys.path would shadow the Atlas's site/build.py for
+    every test module that later runs `import build` in the same process (tests/run_tests.py runs them all in one)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("copilot_extract", ROOT / "site" / "copilot" / "extract.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+extract = _load_extract()
 
 SRC = {
     "pkg/__init__.py": "",

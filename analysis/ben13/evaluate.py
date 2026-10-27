@@ -8,7 +8,9 @@ omission_estimation_size)` computes them, but skips the per-depth tests of the p
 (`all_path_results`), which no published table reports and which cost most of the time on large networks (up to every
 ordered gene pair). The closure itself, which decides which pairs count as negatives for the false omission rate, is
 computed by the same loop as the original. `full=True` calls the original method unchanged; one canary run per sheet
-checks that both give the same numbers (must-show B13-EVAL).
+checks that both give the same numbers (must-show B13-EVAL). When the closure leaves fewer negatives than the sample
+needs, the fast path returns the Wasserstein score with "for": None and the reason in "for_undefined" (the original
+cannot evaluate such a network at all).
 """
 import random
 
@@ -58,8 +60,14 @@ def statistical(ev, network, max_path_length=-1, omission_estimation_size=500, f
     if omission_estimation_size > 0:
         names = ev.gene_names
         free = len(names) * (len(names) - 1) - sum(len(v - {k}) for k, v in allc.items())
-        if free < omission_estimation_size:      # the original would loop for ever here
-            raise ValueError("only %d negative pairs for %d samples" % (free, omission_estimation_size))
+        if free < omission_estimation_size:
+            # The false omission rate draws its negatives outside the network's path closure. A dense network (a random
+            # one with thousands of edges, a literature network) closes over almost every pair, so the rate is undefined
+            # for it; the original would loop for ever. The Wasserstein score above does not depend on it and is kept
+            # (wave A, 22 Oct: 111 cells had dropped it with the rate).
+            out["for"] = None
+            out["for_undefined"] = "only %d negative pairs outside the path closure; %d needed" % (free, omission_estimation_size)
+            return out
         edges = set()
         random.seed(0)
         while len(edges) < omission_estimation_size:

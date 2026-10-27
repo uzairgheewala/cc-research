@@ -91,19 +91,27 @@ def sha(path):
     return d
 
 
+DIGEST_POSIX = True   # s33: digests use POSIX relative paths and POSIX order on every OS
+
+
+def _posix_rel(f, base):
+    return Path(os.path.relpath(f, base)).as_posix()
+
+
 def digest(ev):
     """Hash of one evidence entry: a file, or every file under a directory / glob (sorted names + hashes)."""
     target = resolve(ev)
     raw = ev.split(" (")[0].strip()
     if any(ch in raw for ch in "*?["):
-        files = sorted(glob.glob(str(target)))
+        files = sorted(glob.glob(str(target)), key=lambda f: Path(f).as_posix())
     elif target.is_dir():
         # generated caches are not evidence and are not in git: a pin taken on a machine with __pycache__ must equal CI's
-        files = sorted(str(p) for p in target.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
+        files = sorted((str(p) for p in target.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"),
+                       key=lambda f: Path(f).as_posix())
         if len(files) > 2000:                      # large trees: hash names and sizes only
             h = hashlib.sha256()
             for f in files:
-                h.update(("%s:%d\n" % (os.path.relpath(f, target), os.path.getsize(f))).encode())
+                h.update(("%s:%d\n" % (_posix_rel(f, target), os.path.getsize(f))).encode())
             return "tree:" + h.hexdigest(), len(files)
     elif target.is_file():
         return sha(target), 1
@@ -113,7 +121,7 @@ def digest(ev):
         return None, 0
     h = hashlib.sha256()
     for f in files:
-        h.update(("%s:%s\n" % (os.path.relpath(f, RESEARCH.parent), sha(f))).encode())
+        h.update(("%s:%s\n" % (_posix_rel(f, RESEARCH.parent), sha(f))).encode())
     return "set:" + h.hexdigest(), len(files)
 
 

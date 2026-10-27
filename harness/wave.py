@@ -13,8 +13,10 @@ Standard library only (Python 3.8+), so it runs on the host interpreter and laun
   cpu_probe_image (an image whose shell reads /proc/cpuinfo; default: the first profile image), disk_gb,
   runs [{id, class (A0 static | A1 instrument | A2 probe | A3 full gate | L live), profile ("host" or a profile name),
          cmd [argv; "python" means the interpreter of the profile], est_min, mem_gb, parts, merge [argv], depends_on [ids],
-         when (condition), done {file, contains}, decides [must-show ids], cost_from {file, ptr}, cap_usd}],
-  must_shows [{id, bundle, metric, args, bar {op, value}, gate}],
+         when (condition), done {file, contains}, decides [must-show ids], cost_from {file, ptr}, cap_usd,
+         timeout_min (wall limit per part; default max(60, 6 x est_min)), stall_min (stop after this long without new log
+         output; off unless set), exclusive (runs alone), uses_docker (a host run that drives Docker itself)}],
+  must_shows [{id, bundle, metric, args, bar {op, value}, gate}]; ops >= <= > < == != in true false between ([lo, hi]),
   decisions [{if, then}],
   return_files [relative paths or globs, each packed if under 5 MB].
 
@@ -22,8 +24,15 @@ Conditions (when / if) use: pass(M) fail(M) notrun(M) ok(R) failed(R) skipped(R)
 Every run writes its log to jobs/waves/<wave>/logs/<run>.log; state.json and verdict.json are rewritten after every run, so
 a crash or a reboot returns what finished, and running again resumes (a run whose done test passes is not started;
 class A0 runs, the tests and kit checks, also need the code identity they ran under, so a changed kit re-runs them).
+
+Limits (rerun 3, 21 Oct: an image build hung for 15 hours after the Docker engine stopped answering): a run past its wall
+or stall limit is stopped with everything it started (and its named container removed) and recorded as timeout / stalled;
+a Docker run that fails while the engine does not answer is recorded as infra. None of these is a result: the next call
+starts them again. Runs that need Docker wait while the engine is down; after 10 minutes with nothing else to do the
+runner stops with exit code 3. Ctrl-C stops the running jobs and their containers and saves the state. A heartbeat line
+every 10 minutes names what is running and for how long.
 """
-import argparse, glob, hashlib, json, os, platform, re, shutil, subprocess, sys, threading, time, zipfile
+import argparse, glob, hashlib, json, os, platform, re, shutil, signal, subprocess, sys, threading, time, zipfile
 from pathlib import Path
 
 RESEARCH = Path(os.environ.get("WAVE_RESEARCH_ROOT") or Path(__file__).resolve().parent.parent)
@@ -31,6 +40,43 @@ ROOT = RESEARCH.parent
 CLASS_ORDER = {"A0": 0, "A1": 1, "A2": 2, "A3": 3, "L": 4}
 TOKEN = re.compile(r"\s*(pass|fail|notrun|ok|failed|skipped)\(([A-Za-z0-9_.\-]+)\)|\s*(and|or|not|\(|\))")
 MAX_RETURN_FILE = 5 * 1024 * 1024
+TIMEOUT_FACTOR, TIMEOUT_MIN = 6, 60          # default wall limit per run (per part): max(60, 6 x est_min) minutes
+DOCKER_WAIT_S = 600                          # how long the runner waits for a Docker engine that stopped answering
+NOT_DONE = ("timeout", "stalled", "infra", "interrupted")   # statuses that are not results: a rerun starts them again
+
+
+def docker_alive(timeout=30):
+    """True when the Docker engine answers (docker version reaches the server)."""
+    try:
+        return subprocess.run(["docker", "version", "--format", "{{.Server.Version}}"], stdout=subprocess.DEVNULL,
+                              stderr=subprocess.DEVNULL, timeout=timeout).returncode == 0
+    except Exception:
+        return False
+
+
+def docker_rm(name):
+    """Remove a named container if it exists (a run the runner stopped; a leftover of an earlier stop)."""
+    try:
+        subprocess.call(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=120)
+    except Exception:
+        pass
+
+
+def kill_tree(proc):
+    """Stop a run and everything it started (a PowerShell script and its docker client, a python and its workers)."""
+    if proc.poll() is not None:
+        return
+    if os.name == "nt":
+        subprocess.call(["taskkill", "/T", "/F", "/PID", str(proc.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except Exception:
+            proc.kill()
+    try:
+        proc.wait(timeout=30)
+    except Exception:
+        pass
 
 
 def now():
@@ -191,7 +237,7 @@ def m_contains(a):
 METRICS = {"json": m_json, "json_len": m_json_len, "exists": m_exists, "digest": m_digest, "contains": m_contains}
 OPS = {">=": lambda x, y: x >= y, "<=": lambda x, y: x <= y, ">": lambda x, y: x > y, "<": lambda x, y: x < y,
        "==": lambda x, y: x == y, "!=": lambda x, y: x != y, "in": lambda x, y: x in y, "true": lambda x, y: bool(x),
-       "false": lambda x, y: not x}
+       "false": lambda x, y: not x, "between": lambda x, y: y[0] <= x <= y[1]}
 
 
 def score_must_show(m):
@@ -224,6 +270,9 @@ class Wave:
         self.lock = threading.Lock()
         self.t0 = time.time()
         self.cls = {r["id"]: r["class"] for r in self.sheet["runs"]}
+        self.procs = {}                       # run id -> (Popen, container name or None), for timeouts and Ctrl-C
+        self.docker_ok, self.docker_checked, self.docker_down_since = None, 0.0, None
+        self.stop = threading.Event()
 
     # ---------------------------------------------------------------- identity
     def identity(self):
@@ -268,6 +317,11 @@ class Wave:
                     missing.append(img)
             pf["images_missing"] = missing
             try:
+                pf["docker_df"] = subprocess.check_output(["docker", "system", "df", "--format", "{{.Type}}: {{.Size}} ({{.Reclaimable}} reclaimable)"],
+                                                          timeout=120).decode(errors="replace").strip().splitlines()[:4]
+            except Exception as e:
+                pf["docker_df_error"] = str(e)[:200]
+            try:
                 probe = self.sheet.get("cpu_probe_image", images[0])
                 flags = subprocess.check_output(["docker", "run", "--rm", "--network", "none", probe, "sh", "-c",
                                                  "grep -m1 '^flags' /proc/cpuinfo"], timeout=600).decode()
@@ -296,10 +350,64 @@ class Wave:
         return problems
 
     # ---------------------------------------------------------------- commands
-    def host_env(self, run):
+    def host_env(self, run, part=None):
         env = dict(os.environ)
         env.update({k: str(v) for k, v in run.get("env", {}).items()})
+        if self.uses_docker(run):
+            env["CC_CONTAINER_NAME"] = self.cname(run, part)      # cc.ps1 names its container, so a stopped run can remove it
         return env
+
+    def uses_docker(self, run):
+        return run["profile"] != "host" or bool(run.get("uses_docker"))
+
+    def cname(self, run, part=None):
+        n = "wave-%s-%s%s" % (self.sheet["wave"], run["id"], "" if part is None else "-p%d" % part[0])
+        return re.sub(r"[^a-z0-9_.-]", "-", n.lower())
+
+    def limits(self, run):
+        """(wall limit, stall limit) in seconds for one run or part; stall only where the sheet sets stall_min."""
+        t = run.get("timeout_min") or max(TIMEOUT_MIN, TIMEOUT_FACTOR * float(run.get("est_min", 10) or 10))
+        s = run.get("stall_min")
+        return 60.0 * float(t), (60.0 * float(s) if s else None)
+
+    def call(self, run, part, argv, cwd, fh, log):
+        """Run one command with a wall limit and an optional stall limit (no new log output). Returns (exit, why)."""
+        name = self.cname(run, part) if self.uses_docker(run) else None
+        if name and not self.dry:
+            docker_rm(name)
+        kw = {"start_new_session": True} if os.name != "nt" else {}
+        proc = subprocess.Popen(argv, cwd=cwd, stdout=fh, stderr=subprocess.STDOUT,
+                                env=self.host_env(run, part) if run["profile"] == "host" else None, **kw)
+        key = run["id"] if part is None else "%s/%d" % (run["id"], part[0])
+        self.procs[key] = (proc, name)
+        wall, stall = self.limits(run)
+        t0 = last_t = time.time()
+        last_n = -1
+        why = None
+        try:
+            while proc.poll() is None:
+                time.sleep(2)
+                t = time.time()
+                if self.stop.is_set():
+                    why = "interrupted"
+                elif t - t0 > wall:
+                    why = "timeout"
+                elif stall:
+                    n = os.path.getsize(log) if os.path.exists(log) else 0
+                    if n != last_n:
+                        last_n, last_t = n, t
+                    elif t - last_t > stall:
+                        why = "stalled"
+                if why:
+                    kill_tree(proc)
+                    if name:
+                        docker_rm(name)
+                    fh.write("\n# %s %s: stopped by the runner (%s; wall limit %.0f min%s)\n" % (
+                        now(), key, why, wall / 60, "" if not stall else ", stall limit %.0f min" % (stall / 60)))
+                    break
+        finally:
+            self.procs.pop(key, None)
+        return proc.wait(), why
 
     def argv(self, run, part=None):
         cmd = list(run["cmd"])
@@ -314,7 +422,7 @@ class Wave:
         env = dict(P.get("env", {}))
         env.update(self.state.get("env_overrides", {}))
         env.update(run.get("env", {}))
-        out = ["docker", "run", "--rm", "--init"]
+        out = ["docker", "run", "--rm", "--init", "--name", self.cname(run, part)]
         if P.get("network", "none") == "none":
             out += ["--network", "none"]
         out += ["-v", "%s:/research" % RESEARCH, "-w", P.get("workdir", "/research")]
@@ -377,14 +485,19 @@ class Wave:
                 fh.write("\n# %s %s\n# argv: %s\n" % (now(), rid, json.dumps(argv)))
                 fh.flush()
                 if self.dry:
-                    rc = 0
+                    rc, why = 0, None
                 else:
-                    rc = subprocess.call(argv, cwd=cwd, stdout=fh, stderr=subprocess.STDOUT,
-                                         env=self.host_env(run) if run["profile"] == "host" else None)
+                    rc, why = self.call(run, part, argv, cwd, fh, log)
             rec["parts"].append({"part": None if part is None else part[0], "exit": rc})
+            if why:
+                status, rec["exit"], rec["why"] = why, rc, "stopped by the runner: %s" % why
+                break
             if rc != 0:
                 status = "failed"
                 rec["exit"] = rc
+                if self.uses_docker(run) and not docker_alive():
+                    status, rec["why"] = "infra", "the Docker engine stopped answering during this run (not a result)"
+                    self.docker_ok, self.docker_checked = False, time.time()
                 break
         if status == "ok" and run.get("merge"):
             argv, cwd = self.argv(dict(run, cmd=run["merge"]))
@@ -449,7 +562,55 @@ class Wave:
         pending = self.order()
         running = {}
         mem_in_use = 0.0
+        halted = None
+        try:
+            return self._loop(pending, running, mem_in_use, halted)
+        except KeyboardInterrupt:
+            print("\n[wave] interrupted: stopping %d running job(s) and their containers" % len(running), flush=True)
+            self.stop.set()
+            for key, (proc, name) in list(self.procs.items()):
+                kill_tree(proc)
+                if name:
+                    docker_rm(name)
+            for rid, (th, res, memgb) in running.items():
+                th.join(timeout=60)
+                self.state["runs"][rid] = res[0] or {"id": rid, "status": "interrupted", "end": now()}
+            self.state["host"]["interrupted"] = now()
+            self.save()
+            self.write_verdict()
+            print("[wave] state saved; run the same command again to resume", flush=True)
+            return 130
+
+    def run_by_id(self, rid):
+        return next(r for r in self.sheet["runs"] if r["id"] == rid)
+
+    def excl(self, rid):
+        return any(r["id"] == rid and r.get("exclusive") for r in self.sheet["runs"])
+
+    def engine(self):
+        """Cached Docker engine check (every 30 s while down, every 5 min while up)."""
+        t = time.time()
+        if self.docker_ok is None or t - self.docker_checked > (300 if self.docker_ok else 30):
+            ok = docker_alive()
+            if not ok and self.docker_ok is not False:
+                print("[wave] the Docker engine is not answering: runs that need it wait (up to %d min)" % (DOCKER_WAIT_S // 60), flush=True)
+            if ok and self.docker_ok is False:
+                print("[wave] the Docker engine answers again", flush=True)
+            self.docker_ok, self.docker_checked = ok, t
+        if self.docker_ok:
+            self.docker_down_since = None
+        elif self.docker_down_since is None:
+            self.docker_down_since = t
+        return self.docker_ok
+
+    def _loop(self, pending, running, mem_in_use, halted):
+        started_at, beat = {}, time.time()
         while pending or running:
+            if running and time.time() - beat > 600:            # heartbeat: what is running and for how long
+                beat = time.time()
+                print("[wave] %s still running: %s" % (now(), ", ".join(
+                    "%s %.0f/%.0f min" % (r, (beat - started_at.get(r, beat)) / 60, self.limits(self.run_by_id(r))[0] / 60)
+                    for r in running)), flush=True)
             # reap
             for rid, (th, res, memgb) in list(running.items()):
                 if not th.is_alive():
@@ -492,6 +653,10 @@ class Wave:
                     continue
                 if self.budget and time.time() - self.t0 > self.budget:
                     break
+                if any(self.excl(x) for x in running) or (self.excl(rid) and running):
+                    continue                                   # an exclusive run (a large image build) runs alone
+                if self.uses_docker(run) and not self.dry and not self.engine():
+                    continue                                   # Docker is not answering: start only runs without it
                 need = float(run.get("mem_gb", 0) or 0)
                 if len(running) >= self.workers or (self.mem and running and mem_in_use + need > self.mem):
                     break
@@ -499,6 +664,7 @@ class Wave:
                 th = threading.Thread(target=lambda r=run, out=res: out.__setitem__(0, self.run_one(r)), daemon=True)
                 th.start()
                 running[rid] = (th, res, need)
+                started_at[rid] = time.time()
                 mem_in_use += need
                 pending.remove(run)
                 started = True
@@ -506,14 +672,22 @@ class Wave:
             if self.budget and time.time() - self.t0 > self.budget and not running:
                 print("[wave] budget used; run the same command again to resume")
                 break
+            if (not running and pending and self.docker_down_since is not None
+                    and time.time() - self.docker_down_since > DOCKER_WAIT_S):
+                halted = "docker"
+                print("[wave] STOPPED: the Docker engine has not answered for %d min. Restart Docker Desktop, check "
+                      "`docker version`, then run the same command again (finished runs are kept)." % (DOCKER_WAIT_S // 60), flush=True)
+                break
             if not started:
                 time.sleep(0.2)
         self.state["host"]["finished"] = now()
+        if halted:
+            self.state["host"]["halted"] = halted
         self.save()
         v = self.write_verdict()
         print("[wave] must-shows: %s" % ", ".join("%s=%s" % (k, x["status"]) for k, x in v["must_shows"].items()))
         print("[wave] decisions matched: %s" % ("; ".join(d["then"] for d in v["decisions_matched"]) or "no rule matched"))
-        return 0
+        return 3 if halted else 0
 
     # ---------------------------------------------------------------- verdict
     def write_verdict(self):

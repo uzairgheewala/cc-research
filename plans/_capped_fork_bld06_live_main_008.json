@@ -1,0 +1,15 @@
+{
+ "plan_id": "fork_bld06_live_main_008",
+ "note": "Wave A, second rerun (BLD-06): the main-control twin of plans/fork_bld06_live.json, used only if the Causal-Copilot base image had to be rebuilt (jobs/waves/images/cc.json base_id differs from the one BND-08 ran on). The same 30 tables run on unmodified main (CC_BRANCH=main) on the new image, so the branch is compared with a control on the same image; BND-08's runs are then history for this comparison. About $14, run by harness/live_capped.py with a $25 cap, after the branch series.",
+ "interleave": true,
+ "run_timeout_s": 7200,
+ "runs": [
+  {
+   "label": "m06",
+   "dataset": "research:datasets/suite_q1s2/q033/q033.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ]
+}

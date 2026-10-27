@@ -1,0 +1,15 @@
+
+# 2026-10-21T19:12:22Z CB_PRE_R
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-a-cb_pre_r", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "-m", "analysis.ben13.stream_preprocess", "--h5ad", "external/causalbench/rpe1.h5ad", "--summary", "external/causalbench/summary_stats.xlsx", "--sheet", "TabC_RPE1_summary_statistic", "--out", "external/causalbench/dataset_rpe1_filtered.npz"]
+[ben13.stream 19:12:27] rpe1.h5ad: 247914 cells x 8749 genes, X float32
+[ben13.stream 19:12:28] pass 1: 2048 / 247914 rows
+[ben13.stream 19:12:47] pass 1: 53248 / 247914 rows
+[ben13.stream 19:13:05] pass 1: 104448 / 247914 rows
+[ben13.stream 19:13:24] pass 1: 155648 / 247914 rows
+[ben13.stream 19:13:42] pass 1: 206848 / 247914 rows
+[ben13.stream 19:14:03] pass 2: 2048 / 247914 rows
+[ben13.stream 19:14:29] pass 2: 53248 / 247914 rows
+[ben13.stream 19:14:55] pass 2: 104448 / 247914 rows
+[ben13.stream 19:15:23] pass 2: 155648 / 247914 rows
+[ben13.stream 19:15:51] pass 2: 206848 / 247914 rows
+[ben13.stream 19:16:17] wrote external/causalbench/dataset_rpe1_filtered.npz: 162733 cells x 383 genes (227 s)

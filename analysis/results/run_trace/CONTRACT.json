@@ -1,0 +1,23 @@
+{
+ "producer": "analysis/trace_q011.py",
+ "score_bearing": false,
+ "tickets": [
+  "BLD-06",
+  "DLV-04",
+  "DLV-07"
+ ],
+ "regime": "D+K",
+ "split": "test",
+ "controls": {
+  "columns_shuffled": true,
+  "names": "real",
+  "supplier": "CausalArena semantic test scenario q011 (datasets/suite_q1s2), the two live runs of the BLD-06 comparison",
+  "knowledge_source": "variable names read by GPT-4o inside Causal-Copilot (branch bld-06-refinement-v2 or unmodified main)"
+ },
+ "metric_defs": {
+  "bootstrap_out_of_20": "resamples (of 20) giving the pair each typed mark, from the run's bootstrap capture",
+  "connected_out_of_20": "resamples linking the pair with any mark"
+ },
+ "orientation_rule": "n/a (one pair traced; marks are reported as recorded)",
+ "note": "Not a score: one true link followed through both arms. A regression case for the next direction rule; it sets no threshold."
+}

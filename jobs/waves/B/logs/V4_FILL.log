@@ -1,0 +1,4 @@
+
+# 2026-10-22T20:31:07Z V4_FILL
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-v4_fill", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "-m", "v4.dev", "fill", "--workers", "2"]
+JOB-COMPLETE fill 250 files, 0 computed

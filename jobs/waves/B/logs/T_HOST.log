@@ -1,0 +1,182 @@
+
+# 2026-10-22T13:31:17Z T_HOST
+# argv: ["C:\\Users\\uzair\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "tests/run_tests.py", "--pattern", "test_wave_runner.py,test_ben13_fetch.py", "--out", "jobs/waves/B/out/tests_host.json"]
+[wave] the Docker engine is not answering: runs that need it wait (up to 0 min)
+[wave] PLAIN                        started (A1, est 0.01 min)
+[wave] PLAIN                        ok         0.0 min
+[wave] STOPPED: the Docker engine has not answered for 0 min. Restart Docker Desktop, check `docker version`, then run the same command again (finished runs are kept).
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] BIG                          started (A1, est 0.01 min)
+[wave] BIG                          ok         0.0 min
+[wave] S1                           started (A1, est 0.02 min)
+[wave] S2                           started (A1, est 0.03 min)
+[wave] S1                           ok         0.0 min
+[wave] S2                           ok         0.0 min
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] B                            started (A1, est 0.01 min)
+[wave] B                            infra      0.0 min
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] QUIET                        started (A1, est 0.01 min)
+[wave] HANG                         timeout    0.1 min
+[wave] QUIET                        stalled    0.1 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] HANG                         ok         0.0 min
+[wave] NEXT                         started (A2, est 0.01 min)
+[wave] NEXT                         ok         0.0 min
+..[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+...[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] REFUSED: code identity does not match the sheet (['code.py'])
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+..[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed C:\Users\uzair\AppData\Local\Temp\tmp8hl002f7\cc-research\jobs\waves\T\return_T.zip (5.2 KB); 0 files over 5 MB left on this machine
+[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmp0vs5nlfa\Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmpul9fwwze\Downloads)
+[fetch] b.h5ad: failed (C:\Users\uzair\AppData\Local\Temp\tmpul9fwwze\Downloads\B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..
+----------------------------------------------------------------------
+Ran 14 tests in 50.627s
+
+OK
+
+# 2026-10-22T20:15:34Z T_HOST
+# argv: ["C:\\Users\\uzair\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "tests/run_tests.py", "--pattern", "test_wave_runner.py,test_ben13_fetch.py", "--out", "jobs/waves/B/out/tests_host.json"]
+[wave] the Docker engine is not answering: runs that need it wait (up to 0 min)
+[wave] PLAIN                        started (A1, est 0.01 min)
+[wave] PLAIN                        ok         0.0 min
+[wave] STOPPED: the Docker engine has not answered for 0 min. Restart Docker Desktop, check `docker version`, then run the same command again (finished runs are kept).
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] BIG                          started (A1, est 0.01 min)
+[wave] BIG                          ok         0.0 min
+[wave] S1                           started (A1, est 0.02 min)
+[wave] S2                           started (A1, est 0.03 min)
+[wave] S1                           ok         0.0 min
+[wave] S2                           ok         0.0 min
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] B                            started (A1, est 0.01 min)
+[wave] B                            infra      0.0 min
+.[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] QUIET                        started (A1, est 0.01 min)
+[wave] HANG                         timeout    0.1 min
+[wave] QUIET                        stalled    0.1 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] HANG                         ok         0.0 min
+[wave] NEXT                         started (A2, est 0.01 min)
+[wave] NEXT                         ok         0.0 min
+..[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+...[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] REFUSED: code identity does not match the sheet (['code.py'])
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+..[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed C:\Users\uzair\AppData\Local\Temp\tmpv8ic19vo\cc-research\jobs\waves\T\return_T.zip (5.2 KB); 0 files over 5 MB left on this machine
+[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmpfvy2o76a\Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in C:\Users\uzair\AppData\Local\Temp\tmpl3nwsm8l\Downloads)
+[fetch] b.h5ad: failed (C:\Users\uzair\AppData\Local\Temp\tmpl3nwsm8l\Downloads\B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..
+----------------------------------------------------------------------
+Ran 14 tests in 50.949s
+
+OK

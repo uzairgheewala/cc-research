@@ -1,0 +1,1215 @@
+{
+ "wave": "B",
+ "written": "2026-10-22T13:17:46Z",
+ "identity_manifest": "jobs/waves/B/identity.sha256",
+ "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6",
+ "cpu_probe_image": "python:3.11-slim-bookworm",
+ "disk_gb": 30,
+ "profiles": {
+  "kernel": {
+   "image": "cc-kernel:wave-a",
+   "network": "none",
+   "env": {
+    "OPENBLAS_CORETYPE": "SKYLAKEX",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_KERNEL"
+  },
+  "bench": {
+   "image": "cc-bench:wave-a",
+   "network": "none",
+   "env": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "OMP_NUM_THREADS": "1"
+   },
+   "built_by": "B_BENCH"
+  },
+  "kernel_tree": {
+   "image": "cc-kernel:wave-a",
+   "network": "none",
+   "env": {
+    "OPENBLAS_CORETYPE": "SKYLAKEX",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+   },
+   "built_by": "B_KERNEL",
+   "workdir": "/tree/cc-research",
+   "mounts": [
+    {
+     "src": "cc-research",
+     "dst": "/tree/cc-research"
+    },
+    {
+     "src": "Causal-Copilot",
+     "dst": "/tree/Causal-Copilot",
+     "ro": true
+    },
+    {
+     "src": "cc-research/jobs/empty.env",
+     "dst": "/tree/Causal-Copilot/.env",
+     "ro": true
+    }
+   ],
+   "note": "the folder layout the tracker checks expect (cc-research next to Causal-Copilot); the key file is masked by an empty file"
+  }
+ },
+ "runs": [
+  {
+   "id": "B_KERNEL",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "kernelbuild"
+   ],
+   "est_min": 6,
+   "done": {
+    "file": "jobs/waves/images/kernel.id"
+   },
+   "ticket": "INF-10",
+   "depends_on": [],
+   "class": "A0",
+   "uses_docker": true
+  },
+  {
+   "id": "B_BENCH",
+   "profile": "host",
+   "cmd": [
+    "powershell",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "cc.ps1",
+    "benchbuild"
+   ],
+   "est_min": 4,
+   "done": {
+    "file": "jobs/waves/images/bench.id"
+   },
+   "ticket": "BEN-13",
+   "depends_on": [],
+   "class": "A0",
+   "uses_docker": true
+  },
+  {
+   "id": "T_HOST",
+   "class": "A0",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--pattern",
+    "test_wave_runner.py,test_ben13_fetch.py",
+    "--out",
+    "jobs/waves/B/out/tests_host.json"
+   ],
+   "est_min": 1,
+   "done": {
+    "file": "jobs/waves/B/out/tests_host.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_HOST"
+   ],
+   "ticket": "INF-10",
+   "depends_on": []
+  },
+  {
+   "id": "T_KERNEL",
+   "class": "A0",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--out",
+    "jobs/waves/B/out/tests_kernel.json"
+   ],
+   "est_min": 4,
+   "depends_on": [
+    "B_KERNEL"
+   ],
+   "done": {
+    "file": "jobs/waves/B/out/tests_kernel.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_KERNEL"
+   ],
+   "mem_gb": 2,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "T_BENCH",
+   "class": "A0",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "tests/run_tests.py",
+    "--pattern",
+    "test_ben13*.py",
+    "--out",
+    "jobs/waves/B/out/tests_bench.json"
+   ],
+   "est_min": 2,
+   "depends_on": [
+    "B_BENCH"
+   ],
+   "done": {
+    "file": "jobs/waves/B/out/tests_bench.json",
+    "contains": "\"ok\": true"
+   },
+   "decides": [
+    "M_T_BENCH"
+   ],
+   "mem_gb": 1,
+   "ticket": "BEN-13"
+  },
+  {
+   "id": "CHECKS",
+   "class": "A0",
+   "profile": "kernel_tree",
+   "cmd": [
+    "python",
+    "tools/kit_checks.py",
+    "--out",
+    "jobs/waves/B/out/checks.json"
+   ],
+   "est_min": 4,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "jobs/waves/B/out/checks.json"
+   },
+   "decides": [
+    "M_TRACE",
+    "M_SITE"
+   ],
+   "mem_gb": 1,
+   "ticket": "INF-10"
+  },
+  {
+   "id": "ELEDGER",
+   "class": "A1",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "analysis/explanation_ledger.py"
+   ],
+   "est_min": 0.2,
+   "depends_on": [
+    "T_HOST"
+   ],
+   "done": {
+    "file": "analysis/results/q2_v3/explanation_ledger.json"
+   },
+   "decides": [
+    "M_ELEDGER"
+   ],
+   "ticket": "TGT-18"
+  },
+  {
+   "id": "V4_HELDOUT",
+   "class": "A1",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.heldout_gen"
+   ],
+   "est_min": 4,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/heldout_seal.json"
+   },
+   "decides": [
+    "M_V4_SEAL"
+   ],
+   "mem_gb": 1,
+   "ticket": "BLD-18",
+   "note": "writes external/b2_heldout_v4 (replicate 1 of family 2), sealed until the v4 freeze; nothing on this sheet reads it"
+  },
+  {
+   "id": "CB_REFILL_K",
+   "class": "A1",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "cells",
+    "--line",
+    "k562",
+    "--part",
+    "1/1"
+   ],
+   "est_min": 30,
+   "depends_on": [
+    "T_BENCH"
+   ],
+   "done": {
+    "file": "analysis/results/ben13/k562/.part1of1.done"
+   },
+   "mem_gb": 2.5,
+   "ticket": "BEN-13",
+   "note": "re-runs only the cells that failed on sheet A (51: FOR undefined for dense networks), now keeping their Wasserstein"
+  },
+  {
+   "id": "CB_REFILL_R",
+   "class": "A1",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "cells",
+    "--line",
+    "rpe1",
+    "--part",
+    "1/1"
+   ],
+   "est_min": 25,
+   "depends_on": [
+    "T_BENCH"
+   ],
+   "done": {
+    "file": "analysis/results/ben13/rpe1/.part1of1.done"
+   },
+   "mem_gb": 2.5,
+   "ticket": "BEN-13"
+  },
+  {
+   "id": "CB_MERGE2",
+   "class": "A1",
+   "profile": "bench",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.run",
+    "merge"
+   ],
+   "est_min": 1,
+   "depends_on": [
+    "CB_REFILL_K",
+    "CB_REFILL_R"
+   ],
+   "done": {
+    "file": "analysis/results/ben13/summary.json",
+    "contains": "\"predictions\""
+   },
+   "decides": [
+    "M_CB_P2",
+    "M_CB_P4",
+    "M_CB_S1"
+   ],
+   "ticket": "BEN-13"
+  },
+  {
+   "id": "CB_REPORT",
+   "class": "A1",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "-m",
+    "analysis.ben13.report"
+   ],
+   "est_min": 0.2,
+   "depends_on": [
+    "CB_MERGE2"
+   ],
+   "done": {
+    "file": "analysis/reports/ben13_s1_s2.md"
+   },
+   "ticket": "BEN-13"
+  },
+  {
+   "id": "V4_FILL",
+   "class": "A2",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "fill",
+    "--workers",
+    "2"
+   ],
+   "est_min": 5,
+   "depends_on": [
+    "T_KERNEL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/engines/v3_fill.json"
+   },
+   "mem_gb": 1.5,
+   "ticket": "BLD-18",
+   "note": "v3 engine records for the 250 dev files under this machine's BLAS kernel (most exist from sheet A's X4/X5 runs)"
+  },
+  {
+   "id": "V4_ENG_G1",
+   "class": "A2",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "engines",
+    "--knob",
+    "G1",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 17,
+   "depends_on": [
+    "V4_FILL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/engines/G1_part{k}of{n}.json"
+   },
+   "mem_gb": 0.8,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "V4_ENG_A1",
+   "class": "A2",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "engines",
+    "--knob",
+    "A1",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 20,
+   "depends_on": [
+    "V4_FILL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/engines/A1_part{k}of{n}.json"
+   },
+   "mem_gb": 0.8,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "V4_ENG_A2",
+   "class": "A2",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "engines",
+    "--knob",
+    "A2",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 17,
+   "depends_on": [
+    "V4_FILL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/engines/A2_part{k}of{n}.json"
+   },
+   "mem_gb": 0.8,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "V4_ENG_R1",
+   "class": "A2",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "engines",
+    "--knob",
+    "R1",
+    "--workers",
+    "1"
+   ],
+   "parts": 4,
+   "est_min": 32,
+   "depends_on": [
+    "V4_FILL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/engines/R1_part{k}of{n}.json"
+   },
+   "mem_gb": 0.8,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "V4_EVAL",
+   "class": "A3",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "evaluate",
+    "--workers",
+    "2"
+   ],
+   "est_min": 40,
+   "depends_on": [
+    "V4_ENG_G1",
+    "V4_ENG_A1",
+    "V4_ENG_A2",
+    "V4_ENG_R1"
+   ],
+   "when": "pass(M_T_KERNEL)",
+   "done": {
+    "file": "analysis/results/v4/dev.json"
+   },
+   "decides": [
+    "M_V4_G0"
+   ],
+   "mem_gb": 3,
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "V4_DECIDE",
+   "class": "A3",
+   "profile": "kernel",
+   "cmd": [
+    "python",
+    "-m",
+    "v4.dev",
+    "decide"
+   ],
+   "est_min": 0.2,
+   "depends_on": [
+    "V4_EVAL"
+   ],
+   "done": {
+    "file": "analysis/results/v4/decision.json"
+   },
+   "decides": [
+    "M_V4_ADOPT",
+    "M_V4_Q1",
+    "M_V4_Q2",
+    "M_V4_Q3",
+    "M_V4_Q4",
+    "M_V4_Q5"
+   ],
+   "ticket": "BLD-18"
+  },
+  {
+   "id": "DATA_MAN",
+   "class": "A3",
+   "profile": "host",
+   "cmd": [
+    "python",
+    "tools/data_manifest.py"
+   ],
+   "est_min": 20,
+   "depends_on": [
+    "V4_HELDOUT",
+    "CB_REFILL_K",
+    "CB_REFILL_R"
+   ],
+   "done": {
+    "file": "manifests/excluded/external.sha256",
+    "contains": "external/b2_heldout_v4/"
+   },
+   "ticket": "BEN-13",
+   "note": "AGENTS.md: data outside git is hashed into manifests/excluded/ (CausalBench files, the v4 held-out family)"
+  }
+ ],
+ "must_shows": [
+  {
+   "id": "M_T_HOST",
+   "bundle": "INF-10",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/B/out/tests_host.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_T_KERNEL",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/B/out/tests_kernel.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_T_BENCH",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/B/out/tests_bench.json",
+    "ptr": [
+     "ok"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  {
+   "id": "M_TRACE",
+   "bundle": "INF-10",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/B/out/checks.json",
+    "ptr": [
+     "trace_errors"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_SITE",
+   "bundle": "TEAM",
+   "metric": "json",
+   "args": {
+    "file": "jobs/waves/B/out/checks.json",
+    "ptr": [
+     "site_errors"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  {
+   "id": "M_ELEDGER",
+   "bundle": "TGT-18",
+   "metric": "json_len",
+   "args": {
+    "file": "analysis/results/q2_v3/explanation_ledger.json",
+    "ptr": [
+     "records"
+    ]
+   },
+   "bar": {
+    "op": ">=",
+    "value": 22
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_SEAL",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/heldout_seal.json",
+    "ptr": [
+     "files"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": 500
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_G0",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/dev.json",
+    "ptr": [
+     "families",
+     "semantic",
+     "knobs",
+     "G0",
+     "landmark",
+     "precision_half"
+    ]
+   },
+   "bar": {
+    "op": "between",
+    "value": [
+     0.8028,
+     0.8128
+    ]
+   },
+   "gate": false,
+   "note": "canary: G0 through the v4 plumbing equals v3's own dev evaluation (analysis/results/q2_v3/v3_dev.json semantic D 0.8078) within 0.005"
+  },
+  {
+   "id": "M_V4_ADOPT",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "winner"
+    ]
+   },
+   "bar": {
+    "op": "!=",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_Q1",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "predictions",
+     "Q1",
+     "holds"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_Q2",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "predictions",
+     "Q2",
+     "holds"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_Q3",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "predictions",
+     "Q3",
+     "holds"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_Q4",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "predictions",
+     "Q4",
+     "holds"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_V4_Q5",
+   "bundle": "BLD-18",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/v4/decision.json",
+    "ptr": [
+     "predictions",
+     "Q5",
+     "holds"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_S1",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/ben13/summary.json",
+    "ptr": [
+     "reproduction_all"
+    ]
+   },
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_P2",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/ben13/summary.json",
+    "ptr": [
+     "predictions",
+     "P2",
+     "verdict"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": "holds"
+   },
+   "gate": false
+  },
+  {
+   "id": "M_CB_P4",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "args": {
+    "file": "analysis/results/ben13/summary.json",
+    "ptr": [
+     "predictions",
+     "P4",
+     "verdict"
+    ]
+   },
+   "bar": {
+    "op": "==",
+    "value": "holds"
+   },
+   "gate": false
+  }
+ ],
+ "decisions": [
+  {
+   "if": "pass(M_V4_G0)",
+   "then": "the v4 plumbing reproduces v3's dev number: every v4 dev number is read as produced"
+  },
+  {
+   "if": "fail(M_V4_G0)",
+   "then": "the v4 plumbing does not reproduce v3's dev number: no v4 decision is read; wave C finds the difference first"
+  },
+  {
+   "if": "pass(M_V4_G0) and pass(M_V4_ADOPT)",
+   "then": "a v4 score clears the pre-registered rule: wave C freezes it (plans/v4_freeze.json) and reads it once on the sealed held-out family (sheet C)"
+  },
+  {
+   "if": "pass(M_V4_G0) and fail(M_V4_ADOPT)",
+   "then": "no v4 score clears the rule: v3 stays the kernel; the score lever alone is not enough (TGT-18, BLD-18); wave C turns to the next lever and reads no held-out file"
+  },
+  {
+   "if": "fail(M_V4_Q2)",
+   "then": "even the additive score prefers GES's graph to the true one on most files: the remaining gap is not only the score's functional form (discrete children, interactions or search)"
+  },
+  {
+   "if": "fail(M_V4_Q4)",
+   "then": "dropping GES's turning phase alone moves dev precision by more than 0.01: candidate gains are read against G1 as well as G0"
+  },
+  {
+   "if": "pass(M_CB_P2) and pass(M_CB_P4)",
+   "then": "BEN-13 S2 complete: the score needs the specific genes (P2) and literature networks carry knockdown signal on the statistical metric (P4)"
+  },
+  {
+   "if": "fail(M_CB_P4)",
+   "then": "literature networks score no better than random networks of their size: the names channel is weak on the statistical metric"
+  },
+  {
+   "if": "pass(M_V4_SEAL)",
+   "then": "the fresh held-out family exists (500 files) and is sealed; its manifest hash is recorded in heldout_seal.json"
+  }
+ ],
+ "return_files": [
+  "jobs/waves/B/out/*.json",
+  "analysis/results/v4/*.json",
+  "analysis/results/v4/engines/*.json",
+  "analysis/results/ben13/summary.json",
+  "analysis/reports/ben13_s1_s2.md",
+  "analysis/results/q2_v3/explanation_ledger.json",
+  "jobs/waves/images/*.id"
+ ],
+ "identity_globs": [
+  "analysis/a3_make_requests.py",
+  "analysis/a3_orient_only.py",
+  "analysis/a3_score.py",
+  "analysis/ab02_alarm_order.py",
+  "analysis/ab02_bayesys.py",
+  "analysis/ab02_bayesys_repro.py",
+  "analysis/ab04_figures.py",
+  "analysis/ab05_live_calibration.py",
+  "analysis/ab06_figure.py",
+  "analysis/ab06_score.py",
+  "analysis/ab11_ledger_adapters.py",
+  "analysis/ab11_teardown_run.py",
+  "analysis/ab12_rca_probe.py",
+  "analysis/authors_rule_layout_check.py",
+  "analysis/b2_generator.py",
+  "analysis/b2_reference_methods.py",
+  "analysis/b2_score.py",
+  "analysis/baseline_variants_run.py",
+  "analysis/ben13/__init__.py",
+  "analysis/ben13/evaluate.py",
+  "analysis/ben13/fetch.py",
+  "analysis/ben13/literature.py",
+  "analysis/ben13/methods.py",
+  "analysis/ben13/report.py",
+  "analysis/ben13/run.py",
+  "analysis/ben13/stream_preprocess.py",
+  "analysis/ben13/synth.py",
+  "analysis/bld06_live_compare.py",
+  "analysis/bnd04_summary.py",
+  "analysis/bnd06_summary.py",
+  "analysis/bnd06_summary_families.py",
+  "analysis/bnd08_summary.py",
+  "analysis/bnd11_lenient_parse.py",
+  "analysis/bootstrap_replay_ca.py",
+  "analysis/bootstrap_replay_family.py",
+  "analysis/causalarena_io.py",
+  "analysis/causalarena_load.py",
+  "analysis/causalarena_methods.py",
+  "analysis/causalarena_order_baseline.py",
+  "analysis/causalarena_pc_calibration.py",
+  "analysis/causalarena_protocol_check.py",
+  "analysis/causalarena_sortability.py",
+  "analysis/cc_graph.py",
+  "analysis/chambers_fetch.py",
+  "analysis/chambers_io.py",
+  "analysis/chambers_map.py",
+  "analysis/chambers_sample.py",
+  "analysis/chambers_validate.py",
+  "analysis/check_citations.py",
+  "analysis/check_scores.py",
+  "analysis/column_order_check.py",
+  "analysis/dataset_match_check.py",
+  "analysis/decision_value.py",
+  "analysis/decision_value_v2.py",
+  "analysis/dom09_ida_timing.py",
+  "analysis/dv_chambers_sachs.py",
+  "analysis/encoding_consumers.py",
+  "analysis/engine_forensics.py",
+  "analysis/engine_oracle_check.py",
+  "analysis/engine_shims.py",
+  "analysis/error_budget.py",
+  "analysis/explanation_ledger.py",
+  "analysis/fork_check.py",
+  "analysis/intervention_audit.py",
+  "analysis/interview_synthesis.py",
+  "analysis/job_gates.py",
+  "analysis/jobkit.py",
+  "analysis/lineage.py",
+  "analysis/llm_inventory_build.py",
+  "analysis/llm_inventory_scan.py",
+  "analysis/make_dataset_cards.py",
+  "analysis/make_datasets.py",
+  "analysis/make_splits.py",
+  "analysis/make_suite.py",
+  "analysis/make_suite_ca.py",
+  "analysis/merge_shards.py",
+  "analysis/method_error_budget.py",
+  "analysis/name_prefix_check.py",
+  "analysis/neutral_leak_scan.py",
+  "analysis/notears_linear.py",
+  "analysis/order_value.py",
+  "analysis/package_submission.py",
+  "analysis/partial_stages.py",
+  "analysis/pc_orientation_order.py",
+  "analysis/pc_skeleton_order_check.py",
+  "analysis/pc_upstream_failure_check.py",
+  "analysis/pc_upstream_run.py",
+  "analysis/published_extract.py",
+  "analysis/q2_anatomy.py",
+  "analysis/q2_b2_orientation_diag.py",
+  "analysis/q2_b3_ceiling_dev.py",
+  "analysis/q2_b4_raw_vs_calibrated.py",
+  "analysis/q2_dirsig.py",
+  "analysis/q2_dirsig2.py",
+  "analysis/q2_dirsig_diag.py",
+  "analysis/q2_explain.py",
+  "analysis/q2_family2.py",
+  "analysis/q2_floor.py",
+  "analysis/q2_half_anatomy.py",
+  "analysis/q2_headroom.py",
+  "analysis/q2_l16.py",
+  "analysis/q2_l5.py",
+  "analysis/q2_l5_diag.py",
+  "analysis/q2_linkfilt.py",
+  "analysis/q2_linkfilt_diag.py",
+  "analysis/q2_missed_links_study.py",
+  "analysis/reference_reliability.py",
+  "analysis/refinement_offline.py",
+  "analysis/refinement_offline_report.py",
+  "analysis/refinement_offline_seeds.py",
+  "analysis/refinement_v1.py",
+  "analysis/refinement_v1_diagnose.py",
+  "analysis/refinement_v1_test_live.py",
+  "analysis/refinement_v2.py",
+  "analysis/rep09_ges.py",
+  "analysis/rep11_sachs_data.py",
+  "analysis/rescore_controls.py",
+  "analysis/rescore_controls_v2.py",
+  "analysis/s2_analysis.py",
+  "analysis/s2_baselines.py",
+  "analysis/score_record.py",
+  "analysis/shd_variants.py",
+  "analysis/smoke_job.py",
+  "analysis/sortability_audit.py",
+  "analysis/space_coords.py",
+  "analysis/stability.py",
+  "analysis/stub_cost.py",
+  "analysis/theory_checks.py",
+  "analysis/ts_wrapper_check.py",
+  "analysis/upstream_check.py",
+  "analysis/wave_canary.py",
+  "analysis/x5_pretrained.py",
+  "calibration/v3_formula_D.pkl",
+  "calibration/v3_formula_DxR.pkl",
+  "calibration/v3_models.json",
+  "calibration/v3_semantic_D.pkl",
+  "calibration/v3_semantic_DxR.pkl",
+  "cc.ps1",
+  "docker/Dockerfile.bench",
+  "docker/Dockerfile.kernel",
+  "docker/Dockerfile.overlay",
+  "docker/Dockerfile.probes",
+  "docker/Dockerfile.x5",
+  "docker/requirements_bench.txt",
+  "docker/requirements_kernel.txt",
+  "docker/requirements_x5.txt",
+  "engines/__init__.py",
+  "engines/core.py",
+  "engines/manifest.py",
+  "engines/oracle_check.py",
+  "engines/variants.py",
+  "harness/agent_batch.py",
+  "harness/agent_probe.py",
+  "harness/cc_common.py",
+  "harness/cc_trace.py",
+  "harness/compute_job.py",
+  "harness/fetch_external.py",
+  "harness/fork_branch.py",
+  "harness/live_capped.py",
+  "harness/names_runner.py",
+  "harness/preflight.py",
+  "harness/probe_io.py",
+  "harness/probe_llm.py",
+  "harness/run_plan.py",
+  "harness/run_traced.py",
+  "harness/stub_llm.py",
+  "harness/tiers_runner.py",
+  "harness/wave.py",
+  "jobs/fork/bld-06",
+  "jobs/fork/bld-06-refinement-v2.json",
+  "jobs/fork/bld-06-refinement-v2.patch",
+  "jobs/fork/bld-06-refinement-v2.sha256",
+  "jobs/fork/bld-06/__pycache__",
+  "jobs/fork/bld-06/refinement_v2_dropin.py",
+  "jobs/fork/ext-03-cycle-step-key.json",
+  "jobs/fork/ext-03-cycle-step-key.patch",
+  "jobs/fork/ext-03-cycle-step-key.sha256",
+  "jobs/fork/make_branches.ps1",
+  "jobs/waves/A/canary_expected.json",
+  "kernel/__init__.py",
+  "kernel/asym.py",
+  "kernel/asym_cond.py",
+  "kernel/build.py",
+  "kernel/cache.py",
+  "kernel/checker.py",
+  "kernel/claim_features.py",
+  "kernel/confidence.py",
+  "kernel/derive.py",
+  "kernel/experiment.py",
+  "kernel/freeze.py",
+  "kernel/harness.py",
+  "kernel/interventions.py",
+  "kernel/invariance.py",
+  "kernel/k2_eval.py",
+  "kernel/k4_eval.py",
+  "kernel/knowledge.py",
+  "kernel/landmarks.py",
+  "kernel/ledger_hash.py",
+  "kernel/linkfilt.py",
+  "kernel/policy.py",
+  "kernel/recover.py",
+  "kernel/report_b1.py",
+  "kernel/report_b23.py",
+  "kernel/run_b1.py",
+  "kernel/run_b2.py",
+  "kernel/run_b3.py",
+  "kernel/run_b4.py",
+  "kernel/v3.py",
+  "kernel/views.py",
+  "kernel/weights.py",
+  "ledger/**/*.py",
+  "manifests/evidence/family2_freeze_deviation_2026-10-20.sha256",
+  "manifests/evidence/v4_prereg_2026-10-22.sha256",
+  "plans/a3_prereg.json",
+  "plans/ab06_prereg.json",
+  "plans/ab06_prereg_amendment_1.json",
+  "plans/ab06_prereg_amendment_2.json",
+  "plans/ab06_prereg_amendment_3.json",
+  "plans/b1_prereg.json",
+  "plans/b1_prereg_amendment_1.json",
+  "plans/b2_prereg.json",
+  "plans/b3_prereg.json",
+  "plans/b4_prereg.json",
+  "plans/b5_prereg.json",
+  "plans/ben13_prereg.json",
+  "plans/bld06_live_prereg.json",
+  "plans/bnd06_prereg.json",
+  "plans/dirsig2_prereg.json",
+  "plans/dirsig_prereg.json",
+  "plans/fork_bld06_live.json",
+  "plans/fork_bld06_live_main.json",
+  "plans/fork_bld06_stub.json",
+  "plans/fork_ext03_stub.json",
+  "plans/l16_prereg.json",
+  "plans/l5_prereg.json",
+  "plans/linkfilt_prereg.json",
+  "plans/q2_build_prereg.json",
+  "plans/q2_explain_prereg.json",
+  "plans/splits.json",
+  "plans/v3_freeze.json",
+  "plans/v3_freeze_deviation_1.json",
+  "plans/v3_prereg.json",
+  "plans/v3_prereg_amendment_1_family2.json",
+  "plans/v4_prereg.json",
+  "plans/x5_prereg.json",
+  "score/__init__.py",
+  "score/baselines.py",
+  "score/bench.py",
+  "score/calib.py",
+  "score/dv.py",
+  "score/graph.py",
+  "score/paired.py",
+  "score/rca.py",
+  "score/repro.py",
+  "site/build.py",
+  "site/levels/bounds.py",
+  "site/levels/bundles.py",
+  "site/levels/common.py",
+  "site/levels/main.py",
+  "site/levels/plots.py",
+  "site/levels/stages.py",
+  "site/levels/theses.py",
+  "site/levels/theses_map.py",
+  "site/pagekit.py",
+  "site/pages.py",
+  "site/pgs/pg_about.py",
+  "site/pgs/pg_changes.py",
+  "site/pgs/pg_decisions.py",
+  "site/pgs/pg_evidence.py",
+  "site/pgs/pg_glossary.py",
+  "site/pgs/pg_home.py",
+  "site/pgs/pg_market.py",
+  "site/pgs/pg_names.py",
+  "site/pgs/pg_primer.py",
+  "site/pgs/pg_rca.py",
+  "site/pgs/pg_scoreboard.py",
+  "site/pgs/pg_scoring.py",
+  "site/pgs/pg_space.py",
+  "site/pgs/pg_status.py",
+  "site/pgs/pg_theses.py",
+  "site/pillars.py",
+  "site/registry.py",
+  "site/terms.py",
+  "tests/q2_oracle.py",
+  "tests/run_tests.py",
+  "tests/test_ab06_batch.py",
+  "tests/test_ab11_adapters.py",
+  "tests/test_agent_probe.py",
+  "tests/test_b2_generator.py",
+  "tests/test_ben13_fetch.py",
+  "tests/test_ben13_stream.py",
+  "tests/test_ben13_summary.py",
+  "tests/test_core.py",
+  "tests/test_family2_guard.py",
+  "tests/test_fork_patches.py",
+  "tests/test_interview_synthesis.py",
+  "tests/test_ledger_verify.py",
+  "tests/test_probe_gate.py",
+  "tests/test_q2_asym.py",
+  "tests/test_q2_asym_cond.py",
+  "tests/test_q2_cache.py",
+  "tests/test_q2_confidence.py",
+  "tests/test_q2_interventions.py",
+  "tests/test_q2_kernel.py",
+  "tests/test_q2_l16_l5.py",
+  "tests/test_q2_linkfilt.py",
+  "tests/test_q2_score.py",
+  "tests/test_q2_supplier.py",
+  "tests/test_q2_v3.py",
+  "tests/test_refinement_v2.py",
+  "tests/test_site_s23.py",
+  "tests/test_theory.py",
+  "tests/test_tiers_runner.py",
+  "tests/test_v4_scores.py",
+  "tests/test_wave_runner.py",
+  "tools/ci_check.py",
+  "tools/data_manifest.py",
+  "tools/kit_checks.py",
+  "tools/secret_scan.py",
+  "tracker/catalogue.py",
+  "tracker/plan_check.py",
+  "tracker/relay.py",
+  "tracker/selftest_trace.py",
+  "tracker/snapshot.py",
+  "tracker/trace.py",
+  "tracker/verify.py",
+  "v4/__init__.py",
+  "v4/dev.py",
+  "v4/heldout_gen.py",
+  "v4/scores.py"
+ ]
+}

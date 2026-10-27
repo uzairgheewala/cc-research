@@ -1,8 +1,8 @@
 {
  "wave": "A",
- "written": "2026-10-20T21:06:03Z (rerun 2: freeze deviation record, fetch checks and import, image check, A0 re-run on a new kit)",
+ "written": "2026-10-21T17:32:20Z (rerun 3: run limits, Docker engine check, exclusive image build)",
  "identity_manifest": "jobs/waves/A/identity.sha256",
- "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0",
+ "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0",
  "cpu_probe_image": "python:3.11-slim-bookworm",
  "disk_gb": 60,
  "profiles": {
@@ -105,7 +105,8 @@
    },
    "ticket": "INF-10",
    "depends_on": [],
-   "class": "A0"
+   "class": "A0",
+   "uses_docker": true
   },
   {
    "id": "B_BENCH",
@@ -124,7 +125,8 @@
    },
    "ticket": "BEN-13",
    "depends_on": [],
-   "class": "A0"
+   "class": "A0",
+   "uses_docker": true
   },
   {
    "id": "B_X5",
@@ -143,7 +145,8 @@
    },
    "ticket": "REP-07",
    "depends_on": [],
-   "class": "A0"
+   "class": "A0",
+   "uses_docker": true
   },
   {
    "id": "T_HOST",
@@ -305,7 +308,7 @@
     "cc.ps1",
     "ensureimage"
    ],
-   "est_min": 5,
+   "est_min": 40,
    "mem_gb": 2,
    "depends_on": [
     "T_HOST"
@@ -317,7 +320,11 @@
     "M_CC_BASE"
    ],
    "ticket": "INF-06",
-   "note": "rerun 2: the Causal-Copilot runtime image was missing (STUB_* exit 125). Builds the overlay in minutes if the base exists, else the base too (20-40 min)."
+   "note": "rerun 3: builds the missing Causal-Copilot images (base from pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime, a 3.96 GB layer, when the base is missing). Runs alone, stopped after 20 min without build output or 120 min in all. Rerun 2 hung here 15 hours: the Docker engine stopped answering 2 minutes into the base image download.",
+   "uses_docker": true,
+   "timeout_min": 120,
+   "stall_min": 20,
+   "exclusive": true
   },
   {
    "id": "STUB_06",
@@ -343,7 +350,8 @@
     "glob": "plans/results/*_fork_bld06_stub.result.json"
    },
    "ticket": "BLD-06",
-   "class": "A1"
+   "class": "A1",
+   "uses_docker": true
   },
   {
    "id": "CHK_06",
@@ -392,7 +400,8 @@
     "glob": "plans/results/*_fork_ext03_stub.result.json"
    },
    "ticket": "EXT-03",
-   "class": "A1"
+   "class": "A1",
+   "uses_docker": true
   },
   {
    "id": "CHK_03",
@@ -901,7 +910,9 @@
    },
    "ticket": "BLD-06",
    "class": "L",
-   "mem_gb": 3
+   "mem_gb": 3,
+   "uses_docker": true,
+   "stall_min": 150
   },
   {
    "id": "CHK_06L",
@@ -960,7 +971,9 @@
     ]
    },
    "ticket": "BLD-06",
-   "note": "only if the base image was rebuilt: unmodified main on the same new image as the branch series (decision D-7, default on)"
+   "note": "only if the base image was rebuilt: unmodified main on the same new image as the branch series (decision D-7, default on)",
+   "uses_docker": true,
+   "stall_min": 150
   }
  ],
  "must_shows": [

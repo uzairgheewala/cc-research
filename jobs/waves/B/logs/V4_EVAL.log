@@ -1,0 +1,13 @@
+
+# 2026-10-22T22:08:12Z V4_EVAL
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-v4_eval", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "4g", "cc-kernel:wave-a", "python", "-m", "v4.dev", "evaluate", "--workers", "2"]
+semantic G0  P@half 0.808 [0.743, 0.865] cov 0.507 ECE 0.021 | GES dirF1 0.532 skelF1 0.662 falseAdj 16.2 | true>=found None
+semantic G1  P@half 0.807 [0.740, 0.866] cov 0.517 ECE 0.042 | GES dirF1 0.529 skelF1 0.662 falseAdj 16.2 | true>=found 0.024
+semantic A1  P@half 0.847 [0.808, 0.882] cov 0.505 ECE 0.007 | GES dirF1 0.556 skelF1 0.699 falseAdj 8.8 | true>=found 0.0
+semantic A2  P@half 0.823 [0.786, 0.857] cov 0.586 ECE 0.019 | GES dirF1 0.532 skelF1 0.666 falseAdj 6.5 | true>=found 0.0
+semantic R1  P@half 0.837 [0.794, 0.870] cov 0.500 ECE 0.010 | GES dirF1 0.560 skelF1 0.678 falseAdj 10.1 | true>=found 0.0
+formula  G0  P@half 0.881 [0.852, 0.918] cov 0.518 ECE 0.021 | GES dirF1 0.450 skelF1 0.583 falseAdj 21.7 | true>=found None
+formula  G1  P@half 0.886 [0.866, 0.918] cov 0.526 ECE 0.013 | GES dirF1 0.459 skelF1 0.593 falseAdj 20.7 | true>=found 0.008
+formula  A1  P@half 0.866 [0.828, 0.896] cov 0.517 ECE 0.028 | GES dirF1 0.437 skelF1 0.613 falseAdj 15.7 | true>=found 0.016
+formula  A2  P@half 0.865 [0.834, 0.887] cov 0.508 ECE 0.021 | GES dirF1 0.437 skelF1 0.611 falseAdj 13.0 | true>=found 0.008
+formula  R1  P@half 0.888 [0.859, 0.916] cov 0.507 ECE 0.023 | GES dirF1 0.454 skelF1 0.592 falseAdj 17.2 | true>=found 0.032

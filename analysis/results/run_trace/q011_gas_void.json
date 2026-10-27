@@ -1,0 +1,106 @@
+{
+ "arms": {
+  "branch (refinement v2)": {
+   "algorithm_graph": "linked, direction open (o-o)",
+   "bootstrap_out_of_20": {
+    "bidirected": 1,
+    "gas -> void": 1,
+    "gas o-> void": 4,
+    "o-o": 6,
+    "void -> gas": 8
+   },
+   "connected_out_of_20": 20,
+   "delivered_graph": "void -> gas",
+   "model_calls": 35,
+   "model_calls_naming_both": [
+    "04b_knowledge",
+    "06a_filter",
+    "06b_rerank",
+    "06c_hyperparameters",
+    "08b_report"
+   ],
+   "refinement_v2_asked_model": false,
+   "refinement_v2_source": {
+    "connected": 1.0,
+    "pair": [
+     14,
+     15
+    ],
+    "source": "algorithm; type from bootstrap",
+    "type": "b->a"
+   },
+   "rule": "postprocess/refinement_v2_dropin.py v2d on branch bld-06-refinement-v2 (55a490a): the pair keeps the commonest typed bootstrap outcome; ties go to the algorithm's own type; only pairs left non-directed are asked",
+   "run_id": "20261021T214822Z_f06_q011_r01_dadc44"
+  },
+  "main (unmodified)": {
+   "algorithm_graph": "linked, direction open (o-o)",
+   "bootstrap_out_of_20": {
+    "bidirected": 2,
+    "gas -> void": 1,
+    "gas o-> void": 4,
+    "o-o": 6,
+    "void -> gas": 5,
+    "void o-> gas": 2
+   },
+   "bootstrap_recommend": {
+    "directed_frequency_read": 0.05,
+    "pair_cell_in_low_prob_exist": [
+     15,
+     14
+    ],
+    "reverse_cell_in_middle_non_exist": [
+     14,
+     15
+    ],
+    "rule": "at a31aa7c, postprocess/judge_functions.py:221-262 (bootstrap_recommend) puts every cell M[i, j] != 0 whose directed (certain_edges) frequency is <= 0.1 in low_prob_edges.exist, and postprocess/judge.py:80-81 deletes every cell in that list"
+   },
+   "connected_out_of_20": 20,
+   "delivered_graph": "no link",
+   "graph_entering_kci_pruning": "no link",
+   "model_calls": 37,
+   "model_calls_naming_both": [
+    "04b_knowledge",
+    "06a_filter",
+    "06b_rerank",
+    "06c_hyperparameters",
+    "07b_refinement",
+    "08b_report"
+   ],
+   "model_review_of_pair": [
+    {
+     "answer_for_pair": "(residual_entrained_gas_mg, true_void_fraction): D: While both variables relate to material properties, the direct causal relationship between residual entrained gas and true void fraction is not clearly established without further context",
+     "caller": "postprocess/judge_functions.py:288:call_llm_new",
+     "seq": 62
+    }
+   ],
+   "run_id": "20261022T021911Z_m06_q011_r01_e82c08"
+  }
+ },
+ "pair": {
+  "gas": [
+   14,
+   "residual_entrained_gas_mg"
+  ],
+  "void": [
+   15,
+   "true_void_fraction"
+  ]
+ },
+ "scenario": "q011 (solder_reflow_profile_joint_voids)",
+ "sources": {
+  "datasets/suite_q1s2/MAPPING.json": "30d1617c9ac868d40a26a7b7d06aa7906fd0288f51ac6edb2d859e3ba82eb092",
+  "runs/20261021T214822Z_f06_q011_r01_dadc44/artifacts/00018_bootstrap.pkl": "ed2fa42a308b8e5828553c10a1d5eb9e85c17c81691473bd797e0acf6062a63c",
+  "runs/20261021T214822Z_f06_q011_r01_dadc44/llm_calls.jsonl": "59f07a7182438157bb9c2cab09ed113bd22b42bd58a28dd4025757a9afe2389c",
+  "runs/20261021T214822Z_f06_q011_r01_dadc44/state/11_99_final.json": "c6d7e0a0b299b6699c929455e4e08a35aeb923dfbd7ecddd9f3d1975ca21e7a9",
+  "runs/20261022T021911Z_m06_q011_r01_e82c08/artifacts/00018_bootstrap.pkl": "9fa611f692830dc0ac36a01ddab6207d98ef6488537db99814d118e35f500de2",
+  "runs/20261022T021911Z_m06_q011_r01_e82c08/artifacts/00039_bootstrap_recommend.pkl": "6825514eec7a7b92e99d2ff729467072369d77f1ec5046c7b37c36e1e5fa1a39",
+  "runs/20261022T021911Z_m06_q011_r01_e82c08/artifacts/00087_kci_pruning.pkl": "f33de8def45f894d5a2869eb7dd5ceb2b8b08a6d88036f5739c28f8b57123ab2",
+  "runs/20261022T021911Z_m06_q011_r01_e82c08/llm_calls.jsonl": "4e1b17aeab710da2dfa0f142f4be1dd40751ea5bbd0dbc7205d47a345811899a",
+  "runs/20261022T021911Z_m06_q011_r01_e82c08/state/11_99_final.json": "e7aedb9036233743f751a72737e884f478ccd1c1a0cb6e364e9034e38a16e808"
+ },
+ "tickets": [
+  "BLD-06",
+  "DLV-04"
+ ],
+ "truth": "gas -> void"
+}

@@ -1,0 +1,4 @@
+
+# 2026-10-21T21:48:09Z CB_MERGE
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-a-cb_merge", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "cc-bench:wave-a", "python", "-m", "analysis.ben13.run", "merge"]
+{"reproduced_rows": 4, "reproduction_all": true, "fast_equals_full_all": true}

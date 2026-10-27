@@ -131,7 +131,10 @@ def cmd_cells(a):
     ids = [c for i, c in enumerate(ids) if i % n == k - 1]
     out = OUT / a.line
     out.mkdir(parents=True, exist_ok=True)
-    todo = [c for c in ids if not (out / ("%s.json" % c)).exists()]
+    def redo(c):
+        f = out / ("%s.json" % c)
+        return not f.exists() or json.loads(f.read_text()).get("status") == "failed"   # a failed cell is run again
+    todo = [c for c in ids if redo(c)]
     marker = out / (".part%dof%d.done" % (k, n))
     print("[ben13] %s part %s: %d cells, %d to do" % (a.line, a.part, len(ids), len(todo)), flush=True)
     if not todo:
@@ -146,10 +149,14 @@ def cmd_cells(a):
         if t_end and time.time() > t_end:
             print("[ben13] budget used; run again to resume")
             return 3
+        prev = out / ("%s.json" % c)
+        before = json.loads(prev.read_text()).get("error") if prev.exists() else None
         try:
             rec = L.score(c, proto)
         except Exception as e:
             rec = {"status": "failed", "error": "%s: %s" % (type(e).__name__, str(e)[:300])}
+        if before:
+            rec["earlier_error"] = before
         rec.update({"tickets": ["BEN-13"], "line": a.line, "cell": c, "npz_sha256": L.npz_sha,
                     "prereg_sha256": hashlib.sha256(PREREG.read_bytes()).hexdigest()})
         tmp = out / ("%s.json.partial" % c)
@@ -157,13 +164,13 @@ def cmd_cells(a):
         os.replace(tmp, out / ("%s.json" % c))
         st = rec.get("statistical", {})
         print("[ben13] %-28s W %.3f FOR %s (%.1f s)" % (c, st.get("wasserstein", float("nan")),
-                                                       "%.3f" % st["for"] if "for" in st else "-", rec.get("seconds", 0)), flush=True)
+                                                       "%.3f" % st["for"] if st.get("for") is not None else ("undefined" if "for_undefined" in st else "-"), rec.get("seconds", 0)), flush=True)
     marker.write_text("JOB-COMPLETE %d cells\n" % len(ids))
     return 0
 
 
 def _q(v):
-    v = [x for x in v if x == x]
+    v = [x for x in v if x is not None and x == x]
     if not v:
         return None
     return {"mean": float(np.mean(v)), "lo": float(np.percentile(v, 2.5)), "hi": float(np.percentile(v, 97.5)), "n": len(v)}
@@ -181,7 +188,7 @@ def summarise_line(line, pre):
 
     def draws(prefix, key):
         return [r["statistical"][key] for c, r in R.items() if c.startswith(prefix) and r.get("status") == "ok"
-                and key in r["statistical"]]
+                and r["statistical"].get(key) is not None]
 
     s = {"cells": len(R), "reproduction": {}, "controls": {}, "literature": {}}
     tol = pre["tolerance"]
@@ -201,8 +208,13 @@ def summarise_line(line, pre):
         if w is not None and wr and rw and w != wr["mean"]:
             c["placement_share_wasserstein"] = (rw["mean"] - wr["mean"]) / (w - wr["mean"])
             c["placement_share_wasserstein_range"] = [(rw["lo"] - wr["mean"]) / (w - wr["mean"]), (rw["hi"] - wr["mean"]) / (w - wr["mean"])]
-        if f is not None and fr and rf and f != fr["mean"]:
+        if f is not None and fr and rf and abs(f - fr["mean"]) > tol["for"]:
             c["placement_share_for"] = (rf["mean"] - fr["mean"]) / (f - fr["mean"])
+        elif f is not None and fr:
+            # reporting guard added 22 Oct after the first read (affects no prediction): MeanDifference's FOR is within the
+            # FOR tolerance of random networks', so a share of the difference is a ratio of noise
+            c["placement_share_for"] = None
+            c["placement_share_for_note"] = "MeanDifference FOR %.3f is within %.3f of random networks' %.3f: no FOR share" % (f, tol["for"], fr["mean"])
         if w is not None and ow:
             c["echo_ratio"] = w / ow
         s["controls"]["k%d" % k] = c
@@ -224,6 +236,42 @@ def summarise_line(line, pre):
     return s
 
 
+def predictions(lines):
+    """P1-P4 of plans/ben13_prereg.json, scored from the line summaries. A prediction any of whose cells is missing is
+    'not computed' (never pass or fail)."""
+    def get(L, *ks):
+        x = lines.get(L) or {}
+        for k in ks:
+            x = x.get(k) if isinstance(x, dict) else None
+        return x
+    P = {}
+    v = {L: get(L, "controls", "k1000", "placement_share_wasserstein") for L in ("k562", "rpe1")}
+    P["P1"] = {"values": v, "bar": ">= 0.5 in both lines",
+               "verdict": "not computed" if None in v.values() else ("holds" if all(x >= 0.5 for x in v.values()) else "fails")}
+    cells, ok = {}, []
+    for L in ("k562", "rpe1"):
+        for k in ("k1000", "k5000"):
+            pm, rd = get(L, "controls", k, "permute_labels", "wasserstein"), get(L, "controls", k, "random", "wasserstein")
+            if not pm or not rd:
+                cells["%s_%s" % (L, k)] = None
+                continue
+            inside = rd["lo"] <= pm["mean"] <= rd["hi"]
+            cells["%s_%s" % (L, k)] = {"permuted_mean": pm["mean"], "random_range": [rd["lo"], rd["hi"]], "inside": inside}
+            ok.append(inside)
+    P["P2"] = {"cells": cells, "bar": "permuted mean inside the random 2.5-97.5 % range, both k, both lines",
+               "verdict": "not computed" if None in cells.values() else ("holds" if all(ok) else "fails")}
+    v = {L: get(L, "controls", "k1000", "echo_ratio") for L in ("k562", "rpe1")}
+    P["P3"] = {"values": v, "bar": ">= 0.9 in both lines",
+               "verdict": "not computed" if None in v.values() else ("holds" if all(x >= 0.9 for x in v.values()) else "fails")}
+    cells = {}
+    for L in ("k562", "rpe1"):
+        w, rd = get(L, "literature", "string_network", "wasserstein"), get(L, "literature", "string_network", "random_same_size", "wasserstein")
+        cells[L] = None if w is None or not rd else {"string_w": w, "random_hi": rd["hi"], "above": w > rd["hi"]}
+    P["P4"] = {"cells": cells, "bar": "STRING-links W above the 97.5 % point of same-size random networks, both lines",
+               "verdict": "not computed" if None in cells.values() else ("holds" if all(x["above"] for x in cells.values()) else "fails")}
+    return P
+
+
 def cmd_merge(a):
     pre = json.loads(PREREG.read_text())
     out = {"tickets": ["BEN-13"], "prereg_sha256": hashlib.sha256(PREREG.read_bytes()).hexdigest(),
@@ -232,6 +280,7 @@ def cmd_merge(a):
     out["reproduced_rows"] = sum(1 for x in reps if x)
     out["reproduction_all"] = bool(reps) and len(reps) == 4 and all(reps)
     out["fast_equals_full_all"] = all(L.get("fast_equals_full") for L in out["lines"].values() if L.get("cells"))
+    out["predictions"] = predictions(out["lines"])
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "summary.json").write_text(json.dumps(out, indent=1, default=float))
     print(json.dumps({"reproduced_rows": out["reproduced_rows"], "reproduction_all": out["reproduction_all"],

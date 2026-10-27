@@ -1,0 +1,72 @@
+{
+ "version": 1,
+ "tickets": [
+  "BLD-18",
+  "TGT-18",
+  "TGT-19",
+  "CAP-07"
+ ],
+ "written_utc": "2026-10-22T13:03:56Z",
+ "status": "pre-registered before any v4 candidate was scored on any dev file at the ledger level; the engine step (GES under each score) was smoke-run on 6 dev files per family only to time it and to check the plumbing (gauss re-implementation equals ges 1.1.0 GaussObsL0Pen's CPDAG on the first file)",
+ "why": "X1-X4 (analysis/reports/q2_explain_dev.md, sheet A) and the family-2 read (analysis/results/q2_v3/family2_read.json) point to one lever: the engines score with a linear-Gaussian model while the mechanisms are nonlinear or discrete. Family 2: precision at half coverage 0.851 on its linear track against 0.742 on its nonlinear track. X5: a pretrained engine (AVICI) does not help. So the candidate change is the score inside GES.",
+ "question": "Does a GES score that fits nonlinear additive and discrete mechanisms raise the ledger's DV-1 precision at half coverage on CausalArena dev, semantic family, without losing the formula family or calibration?",
+ "data": {
+  "dev": "CausalArena dev split (plans/splits.json), regime D (one file, 1,000 rows), 125 files per family, semantic and formula",
+  "held_out": "family 2 replicate 1 (v4/heldout_gen.py: 500 files, same 50 source scenarios and graphs G_D as replicate 0, new draws), generated on sheet B and sealed: no kernel may score it before plans/v4_freeze.json exists. Read once, by the winner only. CausalArena's test split is not read again (read by v2 and v3)."
+ },
+ "knobs": {
+  "G0": "v3's GES (ges.fit_bic: forward, backward, turning) from the v3 engine cache: baseline",
+  "G1": "gauss score, forward + backward (no turning): search control, never adoptable",
+  "A1": "additive score (hinge basis z, (z-q25)+, (z-q50)+, (z-q75)+ per continuous parent; indicators for parents with <= 10 levels), lam 1, forward + backward",
+  "A2": "additive score, lam 2, forward + backward",
+  "R1": "rff score (linear terms + min(80, 20|pa|) random Fourier features, Gaussian kernel bandwidth sqrt(|pa|), ridge alpha 1, df = trace of the hat matrix), lam 1, forward + backward"
+ },
+ "fixed": "PC (with its recorded tests), jitter, rule C3, the v3 direction view (meek_r1 and meek_r3 not acted on), DV-1 claims, claim features and the confidence recipe (gradient boosting + isotonic map) are v3's. The confidence model is refitted per knob out of fold by scenario (5 folds), as kernel/v3.py evaluate --split dev. GES timeout 900 s per file: a timeout is a typed failure and that file's ledger is PC-only for that knob (counted).",
+ "code": [
+  "v4/scores.py",
+  "v4/dev.py",
+  "v4/heldout_gen.py"
+ ],
+ "metrics": {
+  "landmark": "precision at half coverage, coverage, ECE, with scenario-cluster bootstrap intervals (B = 2000, seed 20261014), kernel/v3.scored",
+  "paired": "precision_half(knob) - precision_half(G0) on the same resampled scenarios (v4/dev.paired_half)",
+  "engine": "GES output alone: directed F1 (undecided pairs oriented at random, per-file seed), skeleton F1, false and missed adjacencies per file; share of files where the knob's score of the true DAG is at least the score GES reports for its output"
+ },
+ "predictions": {
+  "Q1": "semantic: the better additive knob (A1 or A2) raises GES skeleton F1 over G1 by at least 0.03 (paired mean)",
+  "Q2": "semantic: under A1 the true DAG scores at least as high as GES's output on at least 0.30 of files (G0: 0.025, X1)",
+  "Q3": "semantic: A1 reduces GES false adjacencies per file by at least 20 % against G1",
+  "Q4": "dropping the turning phase alone is neutral: |precision_half(G1) - precision_half(G0)| <= 0.01, semantic",
+  "Q5": "formula: the best eligible knob's precision_half is not below G0's by more than 0.01"
+ },
+ "rule": {
+  "candidates": [
+   "A1",
+   "A2",
+   "R1"
+  ],
+  "min_coverage": 0.5,
+  "max_ece": 0.05,
+  "formula_tolerance": 0.01,
+  "min_gain": 0.02,
+  "eligible": "semantic coverage_half >= 0.5, semantic ECE <= 0.05, formula precision_half >= G0's - 0.01",
+  "adoptable": "eligible, and the paired semantic gain over G0 has point >= 0.02 and lower end > 0",
+  "winner": "the adoptable knob with the highest semantic precision_half; none adoptable -> v3 stays the kernel",
+  "then_adopt": "freeze v4 (plans/v4_freeze.json: the v3 trees plus v4/, the knob, the confidence models refitted on all dev files) and read it once on the held-out family; ER-2 / ER-3 reported for family 2 beside v3's replicate-0 read, never pooled",
+  "then_none": "the score lever alone is not enough: wave C records it (TGT-18, BLD-18) and turns to the next lever in the lever map; no held-out file is read"
+ },
+ "failure_modes_named_in_advance": [
+  "non-score-equivalent scores inside a CPDAG search: the turning phase is dropped for every new knob and G1 measures the effect of dropping it",
+  "overfitting from basis columns: penalty counts every basis column; A2 doubles it",
+  "discrete children are modelled as Gaussian residuals (the X3 floor stays a floor)",
+  "the ledger's engine label still reads 'ges.fit_bic' for the knobs: provenance text only, claims unaffected; a v4 freeze must relabel",
+  "GES's reported score drifts from a fresh rescoring by up to about 0.03 (X1): Q2 uses the package's final score, so ties within 0.1 count as 'at least'",
+  "CPU family: hashes differ across hosts, claim structure does not (wave canary); dev numbers are computed on Uzair's machine"
+ ],
+ "compute": "engine step 15-30 s per file per knob (sandbox smoke on 12 files: G1 16, A1 18, A2 15, R1 29 s mean; no failures): 4 knobs x 250 files, about 5.4 core-hours; evaluate about 20-30 min",
+ "outputs": [
+  "analysis/results/v4/dev.json",
+  "analysis/results/v4/decision.json",
+  "analysis/results/v4/heldout_seal.json"
+ ]
+}

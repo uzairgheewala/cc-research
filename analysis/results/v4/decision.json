@@ -1,0 +1,79 @@
+{
+ "rows": {
+  "A1": {
+   "semantic_precision_half": 0.8472589792060492,
+   "formula_precision_half": 0.8658180544201799,
+   "semantic_gain_vs_G0": {
+    "point": 0.03955221228875594,
+    "lo": -0.011270285593619641,
+    "hi": 0.09352016862613066,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014
+   },
+   "eligible": false,
+   "adoptable": false
+  },
+  "A2": {
+   "semantic_precision_half": 0.8227065712426805,
+   "formula_precision_half": 0.8648745093374569,
+   "semantic_gain_vs_G0": {
+    "point": 0.014999804325387278,
+    "lo": -0.03117187553321778,
+    "hi": 0.06478064520620472,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014
+   },
+   "eligible": false,
+   "adoptable": false
+  },
+  "R1": {
+   "semantic_precision_half": 0.8374309129026111,
+   "formula_precision_half": 0.8880543633762518,
+   "semantic_gain_vs_G0": {
+    "point": 0.029724145985317807,
+    "lo": -0.019899852607539736,
+    "hi": 0.07643576852120863,
+    "clusters": 25,
+    "B": 2000,
+    "seed": 20261014
+   },
+   "eligible": true,
+   "adoptable": false
+  }
+ },
+ "winner": null,
+ "predictions": {
+  "Q1": {
+   "knob": "A1",
+   "value": 0.03646659882224645,
+   "bar": ">= 0.03",
+   "holds": true
+  },
+  "Q2": {
+   "value": 0.0,
+   "bar": ">= 0.30",
+   "holds": false
+  },
+  "Q3": {
+   "value": 0.45956607495069035,
+   "bar": ">= 0.20 reduction",
+   "holds": true
+  },
+  "Q4": {
+   "value": -0.0005889354586909867,
+   "bar": "|.| <= 0.01",
+   "holds": true
+  },
+  "Q5": {
+   "knob": "R1",
+   "value": 0.00726043459633352,
+   "bar": ">= -0.01",
+   "holds": true
+  }
+ },
+ "base_semantic_precision_half": 0.8077067669172933,
+ "outcome": "no candidate clears the rule: the score lever alone does not move dev precision enough; v3 stays the kernel",
+ "prereg_sha256": "15d4bdb6b3ea1c29a6dd1fc0d8fa2cda39bbd6d6280bfee2851b8213124dce29"
+}

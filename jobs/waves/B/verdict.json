@@ -1,0 +1,335 @@
+{
+ "wave": "B",
+ "written": "2026-10-22T22:18:15Z",
+ "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6",
+ "identity": {
+  "ok": true,
+  "checked": 331,
+  "changed_or_missing": []
+ },
+ "host": {
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.0",
+  "cpus": 16,
+  "workers": 4,
+  "mem_gb": 0,
+  "started": "2026-10-22T13:30:58Z",
+  "finished": "2026-10-22T22:18:15Z"
+ },
+ "preflight": {
+  "disk_free_gb": 120.9,
+  "docker_mem_gb": 6.2,
+  "images_missing": [],
+  "docker_df": [
+   "Images: 43.18GB (12.26GB (28%) reclaimable)",
+   "Containers: 632.8MB (632.8MB (100%) reclaimable)",
+   "Local Volumes: 795.1MB (351.2MB (44%) reclaimable)",
+   "Build Cache: 44.26GB (19.02GB reclaimable)"
+  ],
+  "avx512f": false,
+  "avx2": true,
+  "note": "this CPU has no AVX-512: BLAS runs with HASWELL; engine results can differ in the last digits from the agent's cache, which the canary digest checks",
+  "mem_budget_gb": 4.3
+ },
+ "env_overrides": {
+  "OPENBLAS_CORETYPE": "HASWELL"
+ },
+ "runs": {
+  "B_KERNEL": {
+   "status": "ok",
+   "wall_min": 0.24
+  },
+  "B_BENCH": {
+   "status": "ok",
+   "wall_min": 0.24
+  },
+  "T_HOST": {
+   "status": "ok",
+   "wall_min": 0.87
+  },
+  "T_KERNEL": {
+   "status": "ok",
+   "wall_min": 1.6
+  },
+  "T_BENCH": {
+   "status": "ok",
+   "wall_min": 0.27
+  },
+  "CHECKS": {
+   "status": "ok",
+   "wall_min": 3.44
+  },
+  "ELEDGER": {
+   "status": "ok",
+   "why": "done test already passes"
+  },
+  "V4_HELDOUT": {
+   "status": "ok",
+   "wall_min": 0.7
+  },
+  "CB_REFILL_K": {
+   "status": "ok",
+   "wall_min": 59.38
+  },
+  "CB_REFILL_R": {
+   "status": "ok",
+   "wall_min": 10.27
+  },
+  "CB_MERGE2": {
+   "status": "ok",
+   "wall_min": 0.14
+  },
+  "CB_REPORT": {
+   "status": "ok",
+   "wall_min": 0.03
+  },
+  "V4_FILL": {
+   "status": "ok",
+   "wall_min": 0.24
+  },
+  "V4_ENG_G1": {
+   "status": "ok",
+   "wall_min": 43.38
+  },
+  "V4_ENG_A1": {
+   "status": "ok",
+   "wall_min": 40.95
+  },
+  "V4_ENG_A2": {
+   "status": "ok",
+   "wall_min": 34.45
+  },
+  "V4_ENG_R1": {
+   "status": "ok",
+   "wall_min": 53.45
+  },
+  "V4_EVAL": {
+   "status": "ok",
+   "wall_min": 10.0
+  },
+  "V4_DECIDE": {
+   "status": "ok",
+   "wall_min": 0.04
+  },
+  "DATA_MAN": {
+   "status": "ok",
+   "wall_min": 5.27
+  }
+ },
+ "must_shows": {
+  "M_T_HOST": {
+   "status": "pass",
+   "value": true,
+   "bundle": "INF-10",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  "M_T_KERNEL": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  "M_T_BENCH": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BEN-13",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": true
+  },
+  "M_TRACE": {
+   "status": "pass",
+   "value": 0,
+   "bundle": "INF-10",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  "M_SITE": {
+   "status": "pass",
+   "value": 0,
+   "bundle": "TEAM",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": 0
+   },
+   "gate": false
+  },
+  "M_ELEDGER": {
+   "status": "pass",
+   "value": 22,
+   "bundle": "TGT-18",
+   "metric": "json_len",
+   "bar": {
+    "op": ">=",
+    "value": 22
+   },
+   "gate": false
+  },
+  "M_V4_SEAL": {
+   "status": "pass",
+   "value": 500,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": 500
+   },
+   "gate": false
+  },
+  "M_V4_G0": {
+   "status": "pass",
+   "value": 0.8077067669172933,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "between",
+    "value": [
+     0.8028,
+     0.8128
+    ]
+   },
+   "gate": false
+  },
+  "M_V4_ADOPT": {
+   "status": "fail",
+   "value": null,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "!=",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_V4_Q1": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_V4_Q2": {
+   "status": "fail",
+   "value": false,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_V4_Q3": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_V4_Q4": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_V4_Q5": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BLD-18",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_CB_S1": {
+   "status": "pass",
+   "value": true,
+   "bundle": "BEN-13",
+   "metric": "json",
+   "bar": {
+    "op": "true",
+    "value": null
+   },
+   "gate": false
+  },
+  "M_CB_P2": {
+   "status": "pass",
+   "value": "holds",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": "holds"
+   },
+   "gate": false
+  },
+  "M_CB_P4": {
+   "status": "pass",
+   "value": "holds",
+   "bundle": "BEN-13",
+   "metric": "json",
+   "bar": {
+    "op": "==",
+    "value": "holds"
+   },
+   "gate": false
+  }
+ },
+ "decisions_matched": [
+  {
+   "if": "pass(M_V4_G0)",
+   "then": "the v4 plumbing reproduces v3's dev number: every v4 dev number is read as produced"
+  },
+  {
+   "if": "pass(M_V4_G0) and fail(M_V4_ADOPT)",
+   "then": "no v4 score clears the rule: v3 stays the kernel; the score lever alone is not enough (TGT-18, BLD-18); wave C turns to the next lever and reads no held-out file"
+  },
+  {
+   "if": "fail(M_V4_Q2)",
+   "then": "even the additive score prefers GES's graph to the true one on most files: the remaining gap is not only the score's functional form (discrete children, interactions or search)"
+  },
+  {
+   "if": "pass(M_CB_P2) and pass(M_CB_P4)",
+   "then": "BEN-13 S2 complete: the score needs the specific genes (P2) and literature networks carry knockdown signal on the statistical metric (P4)"
+  },
+  {
+   "if": "pass(M_V4_SEAL)",
+   "then": "the fresh held-out family exists (500 files) and is sealed; its manifest hash is recorded in heldout_seal.json"
+  }
+ ],
+ "no_rule_matched": false,
+ "usd_total": 0
+}

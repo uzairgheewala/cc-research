@@ -1,0 +1,287 @@
+
+# 2026-10-22T13:31:27Z T_KERNEL
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-t_kernel", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "tests/run_tests.py", "--out", "jobs/waves/B/out/tests_kernel.json"]
+.......................s...sssss.ssss.....{
+ "files": 2,
+ "hash_mismatch_or_missing": [],
+ "n_bad": 0,
+ "unlisted": [],
+ "generator_sha256_matches": true
+}
+...[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmpc8ej8zcc/Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmp8ydfapis/Downloads)
+[fetch] b.h5ad: failed (/tmp/tmp8ydfapis/Downloads/B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..sssss.................F...........s....wrote 1 blind copies to /tmp/tmpxlx3bfuc/blind
+.wrote /tmp/tmpk4r9txws/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+wrote /tmp/tmpk4r9txws/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmppwwum78v/out/synthesis.json (provisional, n=8)
+  H1: 2 supports / 0 refutes / 6 silent of 8 -> inconclusive
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 4 supports / 0 refutes / 4 silent of 8 -> supported
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+..no notes found in /tmp/tmpa01ir7t2/notes; nothing written
+.wrote /tmp/tmpkv_pulqc/out/synthesis.json (final, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 2 supports / 0 refutes / 3 silent of 5 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmp1rdvo2oe/out/synthesis.json (provisional, n=8)
+  H1: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 3 supports / 0 refutes / 5 silent of 8 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+........REFUSED: 1 problem(s); nothing written. Fix the notes and rerun.
+  P01.json: when_wrong: contains what looks like an email address (b**********); paraphrase or remove it
+....................ssssss........................................................................................................................[wave] the Docker engine is not answering: runs that need it wait (up to 0 min)
+[wave] PLAIN                        started (A1, est 0.01 min)
+[wave] PLAIN                        ok         0.0 min
+[wave] STOPPED: the Docker engine has not answered for 0 min. Restart Docker Desktop, check `docker version`, then run the same command again (finished runs are kept).
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] BIG                          started (A1, est 0.01 min)
+[wave] BIG                          ok         0.0 min
+[wave] S1                           started (A1, est 0.02 min)
+[wave] S2                           started (A1, est 0.03 min)
+[wave] S1                           ok         0.0 min
+[wave] S2                           ok         0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] B                            started (A1, est 0.01 min)
+[wave] B                            infra      0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] HANG                         started (A1, est 0.01 min)
+[wave] QUIET                        started (A1, est 0.01 min)
+[wave] HANG                         timeout    0.1 min
+[wave] QUIET                        stalled    0.1 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] HANG                         ok         0.0 min
+[wave] NEXT                         started (A2, est 0.01 min)
+[wave] NEXT                         ok         0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+..[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+..[wave] REFUSED: code identity does not match the sheet (['code.py'])
+.[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed /tmp/tmpe1njvswh/cc-research/jobs/waves/T/return_T.zip (5.0 KB); 0 files over 5 MB left on this machine
+..
+======================================================================
+FAIL: test_every_results_directory_conforms (test_core.ScoreContract.test_every_results_directory_conforms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/research/tests/test_core.py", line 111, in test_every_results_directory_conforms
+    self.assertEqual(p.returncode, 0, p.stdout[-500:])
+AssertionError: 1 != 0 : s2_baselines                 ok
+shd_variants                 ok
+sortability                  ok
+space                        ok
+stability_b1                 ok
+stability_p4b                ok
+stability_s2                 ok
+stability_selftest_stub      ok
+stub_cost                    ok
+submission                   ok
+teardown                     ok
+theory                       ok
+upstream                     ok
+x5                           ok
+nonconforming: ['ben13', 'fork']; rows checked 3750
+
+
+----------------------------------------------------------------------
+Ran 258 tests in 81.702s
+
+FAILED (failures=1, skipped=22)
+
+# 2026-10-22T20:15:49Z T_KERNEL
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-t_kernel", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "tests/run_tests.py", "--out", "jobs/waves/B/out/tests_kernel.json"]
+.......................s...sssss.ssss.....{
+ "files": 2,
+ "hash_mismatch_or_missing": [],
+ "n_bad": 0,
+ "unlisted": [],
+ "generator_sha256_matches": true
+}
+...[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmpzu6lu2lc/Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmpxipdg7ve/Downloads)
+[fetch] b.h5ad: failed (/tmp/tmpxipdg7ve/Downloads/B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..ssssss.............................s....wrote 1 blind copies to /tmp/tmp8t_46uvx/blind
+.wrote /tmp/tmpulzantqf/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+wrote /tmp/tmpulzantqf/out/synthesis.json (provisional, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmpj4xgte6g/out/synthesis.json (provisional, n=8)
+  H1: 2 supports / 0 refutes / 6 silent of 8 -> inconclusive
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 4 supports / 0 refutes / 4 silent of 8 -> supported
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+..no notes found in /tmp/tmpjcn_tyhk/notes; nothing written
+.wrote /tmp/tmplizbboav/out/synthesis.json (final, n=5)
+  H1: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H2: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  H3: 0 supports / 0 refutes / 5 silent of 5 -> refuted
+  P13: 2 supports / 0 refutes / 3 silent of 5 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+.wrote /tmp/tmp5xbvi9t7/out/synthesis.json (provisional, n=8)
+  H1: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H2: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  H3: 0 supports / 0 refutes / 8 silent of 8 -> refuted
+  P13: 3 supports / 0 refutes / 5 silent of 8 -> inconclusive
+  warning: path (a) records present: their content must not appear in a paper (human_subjects_check.md)
+........REFUSED: 1 problem(s); nothing written. Fix the notes and rerun.
+  P01.json: when_wrong: contains what looks like an email address (b**********); paraphrase or remove it
+....................ssssss........................................................................................................................[wave] the Docker engine is not answering: runs that need it wait (up to 0 min)
+[wave] PLAIN                        started (A1, est 0.01 min)
+[wave] PLAIN                        ok         0.0 min
+[wave] STOPPED: the Docker engine has not answered for 0 min. Restart Docker Desktop, check `docker version`, then run the same command again (finished runs are kept).
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] BIG                          started (A1, est 0.01 min)
+[wave] BIG                          ok         0.0 min
+[wave] S1                           started (A1, est 0.02 min)
+[wave] S2                           started (A1, est 0.03 min)
+[wave] S1                           ok         0.0 min
+[wave] S2                           ok         0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] B                            started (A1, est 0.01 min)
+[wave] B                            infra      0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+.[wave] HANG                         started (A1, est 0.01 min)
+[wave] QUIET                        started (A1, est 0.01 min)
+[wave] HANG                         timeout    0.1 min
+[wave] QUIET                        stalled    0.1 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+[wave] HANG                         started (A1, est 0.01 min)
+[wave] HANG                         ok         0.0 min
+[wave] NEXT                         started (A2, est 0.01 min)
+[wave] NEXT                         ok         0.0 min
+[wave] must-shows: 
+[wave] decisions matched: no rule matched
+..[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+..[wave] REFUSED: code identity does not match the sheet (['code.py'])
+.[wave] T0                           started (A0, est 0.01 min)
+[wave] T0                           ok         0.0 min
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] SHORT                        started (A2, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] SHORT                        ok         0.1 min
+[wave] AFTER                        started (A3, est 1 min)
+[wave] AFTER                        ok         0.0 min
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] CAN                          started (A1, est 0.01 min)
+[wave] CAN                          failed     0.0 min
+[wave] HEAVY                        skipped (when: pass(M_canary))
+[wave] must-shows: M_tests=pass, M_canary=fail, M_short=pass
+[wave] decisions matched: canary-mismatch: compare hosts
+[wave] packed /tmp/tmp0522bqf5/cc-research/jobs/waves/T/return_T.zip (5.0 KB); 0 files over 5 MB left on this machine
+..
+----------------------------------------------------------------------
+Ran 259 tests in 87.482s
+
+OK (skipped=23)

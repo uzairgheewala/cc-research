@@ -1,0 +1,31 @@
+Waves A-B results, s30-s34, the public Q1 repository export, TA brief and checkpoint outline re-cut to the course pages
+
+Tickets: DLV-07, DLV-05, CRS-01, CRS-02, BND-13, TEAM-13, BLD-06, DLV-04
+
+This commit also carries the work since 20 Oct whose messages wait in docs/commit_msgs/ (wave_a_rerun3, wave_a_readback,
+wave_b_build, wave_b_readback, and any older ones not yet in git): sheet A's third and fourth runs and readback, all of
+wave B (v4/, analysis/results/{fork,ben13,q2_v3,v4}, plans, p31-p33).
+
+- s30: TEAM-13 (Inside Causal-Copilot) in the catalogue.
+- s32: every Atlas page's header links to copilot/; the names page points to the replay.
+- s33: verify.py digests use POSIX paths and order on every OS (Linux digests unchanged; checked against all pins).
+- s34: DLV-07 (public Q1 repository, due 6 Nov); DLV-05 / CRS-02 moved to Fri 6 Nov with the course's content (title,
+  abstract, introduction, public code link).
+- analysis/trace_q011.py: the gas/void case traced from the two recorded runs (JSON + walkthrough).
+  - The unmodified bootstrap rule (judge_functions.py:221-262, judge.py:80-81) deletes a pair linked in 20 of 20 resamples.
+  - Refinement v2 keeps it with the backward arrow (8 of 20, a plurality), and the model is never asked.
+- tools/export_q1.py + docs/q1_repo/: the curated public Q1 repository.
+  - Verbatim analysis code at the same paths, reduced run states with a manifest of the full files.
+  - `python run.py reproduce` recomputes the BLD-06 table exactly with no API key; CI runs it.
+  - Checked: 167 files, 9.1 MB, exact reproduction, 4 tests.
+- TA brief (docs/meetings/2026-10-29_ta_checkin_agenda.md) re-cut to the check-in page's questions.
+- Checkpoint outline (docs/q1/checkpoint_skeleton.md) re-cut to title / abstract / introduction; results moved to the final
+  outline. The directed-F1 interval's upper end is 0.038 (the file has 0.03847; earlier notes said 0.039).
+- tests/test_copilot_site.py loads extract.py by path, so site/copilot no longer shadows site/build.py in one test process.
+- analysis/results/run_trace/CONTRACT.json (score contract).
+- Repins after review: INF-10, BLD-11 (earlier), BLD-10, TEAM-08, TEAM-09, CRS-01, BND-13, TEAM-13, DLV-07.
+- Checks on the device: verify 0 problems, trace 0 errors, ci_check 0 errors, both site builds 0 errors, 252 tests OK
+  (run with --out outside the repo, so tests/last_run.json is unchanged). Snapshot last: a7072612847e.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TX89QtiaGaFvBSN4BAmLxQ

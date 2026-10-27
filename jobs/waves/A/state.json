@@ -3,7 +3,7 @@
   "T_HOST": {
    "id": "T_HOST",
    "class": "A0",
-   "start": "2026-10-20T22:31:59Z",
+   "start": "2026-10-21T18:49:15Z",
    "parts": [
     {
      "part": null,
@@ -11,14 +11,14 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:32:04Z",
-   "wall_min": 0.09,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:50:07Z",
+   "wall_min": 0.87,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "B_BENCH": {
    "id": "B_BENCH",
    "class": "A0",
-   "start": "2026-10-20T22:31:59Z",
+   "start": "2026-10-21T18:49:15Z",
    "parts": [
     {
      "part": null,
@@ -26,14 +26,14 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:32:11Z",
-   "wall_min": 0.2,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:49:31Z",
+   "wall_min": 0.27,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "B_KERNEL": {
    "id": "B_KERNEL",
    "class": "A0",
-   "start": "2026-10-20T22:32:04Z",
+   "start": "2026-10-21T18:49:46Z",
    "parts": [
     {
      "part": null,
@@ -41,14 +41,14 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:32:16Z",
+   "end": "2026-10-21T18:49:58Z",
    "wall_min": 0.2,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "T_BENCH": {
    "id": "T_BENCH",
    "class": "A0",
-   "start": "2026-10-20T22:32:11Z",
+   "start": "2026-10-21T18:49:32Z",
    "parts": [
     {
      "part": null,
@@ -56,114 +56,211 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:32:26Z",
-   "wall_min": 0.25,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:49:46Z",
+   "wall_min": 0.24,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "STUB_03": {
    "id": "STUB_03",
    "class": "A1",
-   "start": "2026-10-20T17:38:27Z",
+   "start": "2026-10-21T18:54:33Z",
    "parts": [
     {
      "part": null,
-     "exit": 125
+     "exit": 0
     }
    ],
-   "exit": 125,
-   "status": "failed",
-   "end": "2026-10-20T17:38:43Z",
-   "wall_min": 0.27
+   "status": "ok",
+   "end": "2026-10-21T19:11:35Z",
+   "wall_min": 17.04,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "STUB_06": {
    "id": "STUB_06",
    "class": "A1",
-   "start": "2026-10-20T17:38:43Z",
+   "start": "2026-10-21T18:58:35Z",
    "parts": [
     {
      "part": null,
-     "exit": 125
+     "exit": 0
     }
    ],
-   "exit": 125,
-   "status": "failed",
-   "end": "2026-10-20T17:39:01Z",
-   "wall_min": 0.29
+   "status": "ok",
+   "end": "2026-10-21T19:12:20Z",
+   "wall_min": 13.75,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "FETCH_CB": {
    "id": "FETCH_CB",
    "class": "A1",
-   "start": "2026-10-20T22:36:41Z",
+   "start": "2026-10-21T18:54:33Z",
    "parts": [
     {
      "part": null,
-     "exit": 1
+     "exit": 0
     }
    ],
-   "exit": 1,
-   "status": "failed",
-   "end": "2026-10-20T22:39:01Z",
-   "wall_min": 2.34,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "status": "ok",
+   "end": "2026-10-21T18:58:35Z",
+   "wall_min": 4.03,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CB_PRE_K": {
    "id": "CB_PRE_K",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T22:39:01Z"
+   "class": "A2",
+   "start": "2026-10-21T19:11:38Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T19:15:58Z",
+   "wall_min": 4.34,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CB_PRE_R": {
    "id": "CB_PRE_R",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T22:39:01Z"
+   "class": "A2",
+   "start": "2026-10-21T19:12:22Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T19:16:18Z",
+   "wall_min": 3.94,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CB_CELLS_K": {
    "id": "CB_CELLS_K",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T22:39:02Z"
+   "class": "A3",
+   "start": "2026-10-21T19:33:12Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T21:19:48Z",
+   "wall_min": 106.59,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CB_CELLS_R": {
    "id": "CB_CELLS_R",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T22:39:02Z"
+   "class": "A3",
+   "start": "2026-10-21T21:19:48Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T21:48:09Z",
+   "wall_min": 28.35,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CHK_03": {
    "id": "CHK_03",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T17:38:43Z"
+   "class": "A1",
+   "start": "2026-10-21T19:11:36Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T19:11:38Z",
+   "wall_min": 0.03,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CHK_06": {
    "id": "CHK_06",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T17:39:01Z"
+   "class": "A1",
+   "start": "2026-10-21T19:12:20Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T19:12:22Z",
+   "wall_min": 0.03,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CB_MERGE": {
    "id": "CB_MERGE",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T22:39:02Z"
+   "class": "A3",
+   "start": "2026-10-21T21:48:09Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-21T21:48:15Z",
+   "wall_min": 0.1,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "LIVE_06": {
    "id": "LIVE_06",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T18:24:07Z"
+   "class": "L",
+   "start": "2026-10-21T21:48:09Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T02:19:02Z",
+   "wall_min": 270.88,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0",
+   "usd": 4.8437
   },
   "CHK_06L": {
    "id": "CHK_06L",
-   "status": "skipped",
-   "why": "dependency not ok",
-   "end": "2026-10-20T18:24:07Z"
+   "class": "L",
+   "start": "2026-10-22T02:19:02Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T02:19:04Z",
+   "wall_min": 0.03,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "T_KERNEL": {
    "id": "T_KERNEL",
    "class": "A0",
-   "start": "2026-10-20T22:32:16Z",
+   "start": "2026-10-21T18:49:58Z",
    "parts": [
     {
      "part": null,
@@ -171,14 +268,14 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:33:11Z",
-   "wall_min": 0.91,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:51:34Z",
+   "wall_min": 1.6,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "B_X5": {
    "id": "B_X5",
    "class": "A0",
-   "start": "2026-10-20T22:32:26Z",
+   "start": "2026-10-21T18:50:07Z",
    "parts": [
     {
      "part": null,
@@ -186,14 +283,14 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:32:38Z",
-   "wall_min": 0.21,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:50:18Z",
+   "wall_min": 0.17,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "CHECKS": {
    "id": "CHECKS",
    "class": "A0",
-   "start": "2026-10-20T22:33:11Z",
+   "start": "2026-10-21T18:51:34Z",
    "parts": [
     {
      "part": null,
@@ -201,9 +298,9 @@
     }
    ],
    "status": "ok",
-   "end": "2026-10-20T22:36:41Z",
-   "wall_min": 3.5,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "end": "2026-10-21T18:54:33Z",
+   "wall_min": 2.97,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
   },
   "FETCH_X5": {
    "id": "FETCH_X5",
@@ -458,18 +555,40 @@
   "F2_READ": {
    "id": "F2_READ",
    "class": "A3",
-   "start": "2026-10-20T22:39:02Z",
+   "start": "2026-10-21T19:15:58Z",
    "parts": [
     {
      "part": null,
-     "exit": 1
+     "exit": 0
     }
    ],
-   "exit": 1,
-   "status": "failed",
-   "end": "2026-10-20T22:39:44Z",
-   "wall_min": 0.7,
-   "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0"
+   "status": "ok",
+   "end": "2026-10-21T19:33:12Z",
+   "wall_min": 17.24,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
+  },
+  "B_CC": {
+   "id": "B_CC",
+   "status": "ok",
+   "why": "done test already passes",
+   "end": "2026-10-21T18:54:33Z",
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0"
+  },
+  "LIVE_06M": {
+   "id": "LIVE_06M",
+   "class": "L",
+   "start": "2026-10-22T02:19:02Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T06:50:48Z",
+   "wall_min": 271.76,
+   "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0",
+   "usd": 12.5735
   }
  },
  "identity": {
@@ -483,15 +602,22 @@
   "cpus": 16,
   "workers": 2,
   "mem_gb": 0,
-  "started": "2026-10-20T16:49:41Z"
+  "started": "2026-10-20T16:49:41Z",
+  "finished": "2026-10-22T06:50:48Z"
  },
  "env_overrides": {
   "OPENBLAS_CORETYPE": "HASWELL"
  },
  "preflight": {
-  "disk_free_gb": 129.0,
+  "disk_free_gb": 130.6,
   "docker_mem_gb": 6.2,
   "images_missing": [],
+  "docker_df": [
+   "Images: 43.18GB (12.26GB (28%) reclaimable)",
+   "Containers: 632.8MB (632.8MB (100%) reclaimable)",
+   "Local Volumes: 795.1MB (351.2MB (44%) reclaimable)",
+   "Build Cache: 44.44GB (19.2GB reclaimable)"
+  ],
   "avx512f": false,
   "avx2": true,
   "note": "this CPU has no AVX-512: BLAS runs with HASWELL; engine results can differ in the last digits from the agent's cache, which the canary digest checks",

@@ -1,0 +1,30 @@
+Wave B build: v4 score candidates, BEN-13 fix, fork comparison, explanation ledger, deliverables
+
+Tickets: BLD-18, BLD-17, BEN-13, BLD-06, DLV-04, EXT-03, TGT-18, TGT-19, CAP-19, CRS-01, BND-13, INF-10
+
+- v4/ (new, outside the v3-frozen trees): GES with scores that fit nonlinear and discrete mechanisms
+  (gauss, additive hinge + discrete indicators, random Fourier features), the dev grid (fill,
+  engines, evaluate, decide) and the sealed held-out generator (family 2, replicate 1).
+  Pre-registration plans/v4_prereg.json, hashed in manifests/evidence/v4_prereg_2026-10-22.sha256.
+  tests/test_v4_scores.py.
+- BEN-13: dense networks keep their Wasserstein with FOR marked undefined; failed cells re-run;
+  P1-P4 scored in summary.json; analysis/ben13/report.py writes analysis/reports/ben13_s1_s2.md.
+  tests/test_ben13_summary.py; tests/test_ben13_stream.py updated.
+- BLD-06: pre-registered live comparison (plans/bld06_live_prereg.json,
+  analysis/bld06_live_compare.py, analysis/results/fork/bld06_live_compare.json): rule drop_in.
+- analysis/explanation_ledger.py: typed gap segments that sum to the anatomy totals.
+- docs/drafts/bug_reports/causal_copilot_cycle_step_keyerror.md (EXT-03, not sent).
+- docs/meetings/2026-10-29_ta_checkin_agenda.md; docs/q1/checkpoint_skeleton.md.
+- harness/wave.py: 'between' bar op.
+- jobs/waves/B/ (sheet, plan); jobs/patches/p32_wave_b_build.py; WAVE_STATE.md.
+- tracker: p32 applied, deliberate repins, snapshot regenerated last; include site/snapshot.json.
+
+
+Rerun fix (22 Oct, sheet B first run; two failure classes):
+- every results directory needs a CONTRACT.json (tests/test_core score contract): added for
+  analysis/results/ben13, fork and v4 (the last before any v4 result exists);
+- the BEN-13 cell loop's progress line formatted an undefined FOR as a number: it now prints
+  "undefined"; tests/test_ben13_stream.py CellLoopTest runs the loop end to end on synthetic data.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

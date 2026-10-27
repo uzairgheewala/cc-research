@@ -1,0 +1,23 @@
+{
+ "producer": "analysis/fork_check.py (branch identity and run checks), analysis/bld06_live_compare.py (graph quality, plans/bld06_live_prereg.json)",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-06",
+  "EXT-03",
+  "INF-06"
+ ],
+ "regime": "D+K",
+ "split": "test",
+ "controls": {
+  "columns_shuffled": true,
+  "names": "per-row",
+  "supplier": "CausalArena semantic test scenarios (datasets/suite_q1s2), real / neutral / swapped arms per datasets/suite_q1s2/MAPPING.json",
+  "knowledge_source": "variable names read by GPT-4o inside Causal-Copilot (branch bld-06-refinement-v2 or unmodified main)"
+ },
+ "metric_defs": {
+  "adj_f1": "F1 over unordered adjacencies against the data's reference (analysis/cc_graph.score)",
+  "dir_f1": "F1 over directed edges, committed directions only",
+  "delivered_dir_f1": "final dir_f1, a run that delivered no final graph scores 0"
+ },
+ "orientation_rule": "only committed directions count; an undirected pair is no prediction; a two-way conflict predicts both (analysis/cc_graph.py score())"
+}

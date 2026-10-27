@@ -1,6 +1,6 @@
-# Trace check (2026-10-21T01:28:35Z)
+# Trace check (2026-10-27T19:33:50Z)
 
-status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-10-27T19:32:19Z. Dev tickets 242; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 2.
 
 ## Links
 
@@ -10,35 +10,42 @@ status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 grou
 | blocks | links.txt | 1 |
 | blocks | plan | 25 |
 | curates | links.txt | 66 |
-| evidences | catalogue | 869 |
+| evidences | catalogue | 939 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 685 |
+| mentions | scan | 836 |
 | mirrors | mirrors.json | 300 |
 | parent_of | links.txt | 23 |
 | published_at | links.txt | 246 |
 | relates | links.txt | 1 |
 
-## Findings: 0 errors, 8 warnings
+## Findings: 0 errors, 15 warnings
 
+- **WARN W1** DLV-02 is suspect: ['DLV-02'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** DLV-04 is suspect: ['DLV-04'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** DLV-05 is suspect: ['DLV-05'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** CAP-07 is suspect: ['CAP-07'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** CAP-11 is suspect: ['CAP-11'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** BLD-06 is suspect: ['BLD-06'] changed since it was last published or reviewed (2026-10-16T02:14)
+- **WARN W1** BLD-10 is suspect: ['BLD-10'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-20T04:51)
-- **WARN W5** file:analysis/reports/copilot_code_notes.md mentions TEAM-13, which is not a ticket (typo, or never issued)
 - **WARN R3** tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
+- **WARN R5** last prod digest was 2026-10-15; one is due
 
 ## Prod rows
 
 | ID | type | published | derived | min level | suspect | curates |
 |---|---|---|---|---|---|---|
 | DLV-01 | passthrough | done | done | V3 | - | DLV-01 |
-| DLV-02 | passthrough | done | done | V3 | - | DLV-02 |
+| DLV-02 | passthrough | done | done | V3 | DLV-02 | DLV-02 |
 | DLV-03 | passthrough | in_progress | in_progress | V2 | - | DLV-03 |
-| DLV-04 | passthrough | done | done | V3 | - | DLV-04 |
-| DLV-05 | passthrough | todo | todo | V0 | - | DLV-05 |
+| DLV-04 | passthrough | done | done | V3 | DLV-04 | DLV-04 |
+| DLV-05 | passthrough | todo | todo | V0 | DLV-05 | DLV-05 |
 | DLV-06 | passthrough | todo | todo | V0 | - | DLV-06 |
 | REP-09 | passthrough | done | done | V3 | - | REP-09 |
 | REP-14 | group | in_progress | in_progress | V2 | - | REP-01, REP-02, REP-03, REP-04, REP-11, REP-12, REP-13 |
@@ -54,11 +61,11 @@ status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 grou
 | CAP-04 | passthrough | done | done | V3 | - | CAP-04 |
 | CAP-05 | passthrough | done | done | V3 | - | CAP-05 |
 | CAP-06 | passthrough | done | done | V3 | - | CAP-06 |
-| CAP-07 | passthrough | in_progress | in_progress | V3 | - | CAP-07 |
+| CAP-07 | passthrough | in_progress | in_progress | V3 | CAP-07 | CAP-07 |
 | CAP-08 | passthrough | done | done | V3 | - | CAP-08 |
 | CAP-09 | passthrough | done | done | V3 | - | CAP-09 |
 | CAP-10 | passthrough | done | done | V3 | - | CAP-10 |
-| CAP-11 | passthrough | done | done | V3 | - | CAP-11 |
+| CAP-11 | passthrough | done | done | V3 | CAP-11 | CAP-11 |
 | CAP-12 | passthrough | todo | todo | V0 | - | CAP-12 |
 | CAP-13 | passthrough | todo | todo | V0 | - | CAP-13 |
 | CAP-14 | passthrough | todo | todo | V0 | - | CAP-14 |
@@ -88,11 +95,11 @@ status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 grou
 | BLD-03 | passthrough | done | done | V3 | - | BLD-03 |
 | BLD-04 | passthrough | done | done | V3 | - | BLD-04 |
 | BLD-05 | passthrough | done | done | V3 | - | BLD-05 |
-| BLD-06 | passthrough | done | done | V3 | - | BLD-06 |
+| BLD-06 | passthrough | done | done | V3 | BLD-06 | BLD-06 |
 | BLD-07 | passthrough | todo | todo | V0 | - | BLD-07 |
 | BLD-08 | passthrough | todo | todo | V0 | - | BLD-08 |
 | BLD-09 | passthrough | todo | todo | V0 | - | BLD-09 |
-| BLD-10 | passthrough | done | done | V3 | - | BLD-10 |
+| BLD-10 | passthrough | done | done | V3 | BLD-10 | BLD-10 |
 | BLD-11 | passthrough | done | done | V3 | BLD-11 | BLD-11 |
 | EVL-01 | passthrough | done | done | V3 | - | EVL-01 |
 | EVL-02 | passthrough | done | done | V3 | - | EVL-02 |
@@ -102,6 +109,6 @@ status.json verified 2026-10-21T01:24:33Z. Dev tickets 237; prod rows 67 (7 grou
 | EVL-06 | passthrough | done | done | V3 | - | EVL-06 |
 | EVL-07 | passthrough | done | done | V3 | - | EVL-07 |
 
-## Dev tickets in no prod row (111)
+## Dev tickets in no prod row (116)
 
-AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BEN-13, BLD-12, BLD-13, BLD-14, BLD-15, BLD-16, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, INF-10, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TEAM-09, TEAM-10, TEAM-11, TEAM-12, TGT-18, TGT-19, TGT-20
+AUD-18, AUD-19, AUD-20, AUD-21, AUD-22, AUD-23, AUD-24, AUD-25, AUD-26, AUD-27, AUD-28, AUD-29, AUD-30, AUD-31, AUD-32, AUD-33, AUD-34, AUD-35, AUD-36, AUD-37, AUD-38, AUD-39, AUD-40, AUD-41, AUD-42, AUD-43, AUD-44, AUD-45, AUD-46, AUD-47, AUD-48, BEN-13, BLD-12, BLD-13, BLD-14, BLD-15, BLD-16, BLD-17, BLD-18, BND-01, BND-02, BND-03, BND-04, BND-05, BND-06, BND-07, BND-08, BND-09, BND-10, BND-11, BND-12, BND-13, BND-14, CAP-19, CRS-01, CRS-02, CRS-03, CRS-04, CRS-05, CRS-06, CRS-07, DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, DLV-07, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08, INF-09, INF-10, REP-10, RSK-01, RSK-02, RSK-03, RSK-04, RSK-05, RSK-06, RSK-07, RSK-08, STR-01, STR-02, STR-03, STR-04, STR-05, STR-06, TEAM-01, TEAM-02, TEAM-03, TEAM-04, TEAM-05, TEAM-06, TEAM-07, TEAM-08, TEAM-09, TEAM-10, TEAM-11, TEAM-12, TEAM-13, TGT-18, TGT-19, TGT-20

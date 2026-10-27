@@ -1,0 +1,16 @@
+Wave B readback: no v4 score adopted, BEN-13 S2 complete, held-out family sealed
+
+Tickets: BLD-18, TGT-18, BEN-13, CRS-01, BND-13
+
+Sheet B's second run finished all 20 runs. Recorded by the pre-written rules
+(jobs/patches/p33_wave_b_readback.py; WAVE_STATE.md):
+- v4: no knob clears the rule (best semantic dev gains +0.030 / +0.040, intervals include zero);
+  v3 stays; the sealed held-out family (family 2, replicate 1, 500 files) is unread.
+- BEN-13: P1 fails, P2-P4 hold; analysis/reports/ben13_s1_s2.md generated from the summary.
+- TA agenda and Q1 checkpoint outline filled with sheet B's numbers.
+
+Add with this commit: analysis/results/v4/, analysis/reports/ben13_s1_s2.md, analysis/results/ben13/,
+manifests/excluded/, jobs/waves/B/, site/snapshot.json and the tracker files.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

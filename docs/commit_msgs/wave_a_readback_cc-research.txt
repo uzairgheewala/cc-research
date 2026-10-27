@@ -1,0 +1,19 @@
+Wave A readback: family-2 read, CausalBench reproduced, fork live run recorded
+
+Tickets: INF-10, TGT-18, CAP-07, BEN-13, BLD-06, EXT-03, INF-06, CAP-11, TGT-19
+
+Sheet A's fourth run finished all 35 runs. Recorded by the pre-written decision table and the
+pre-registrations (tracker patch jobs/patches/p31_wave_a_readback.py; WAVE_STATE.md):
+- family 2 (one held-out read): precision 0.795 [0.777, 0.811], ECE 0.042 [0.030, 0.053]; ER-2
+  and ER-3 not met; transfer rule holds.
+- BEN-13: preprocessing shapes exact; all four published MeanDifference rows reproduced; P1
+  refuted, P3 holds; 111 dense-network cells to recompute.
+- BLD-06 on the fork: 30/30 completed vs 22/30 for main on the same image; $4.84 vs $12.57.
+- INF-10 done; CAP-11 qualified to one CPU family.
+
+Add the new result files with this commit: analysis/results/q2_v3/family2_read.json,
+analysis/results/ben13/, analysis/results/fork/, plans/results/fork_bld06_live*.capped.json,
+jobs/waves/images/cc.json, and site/snapshot.json plus the tracker files.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

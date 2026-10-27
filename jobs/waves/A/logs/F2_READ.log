@@ -6,3 +6,10 @@ code or freeze id does not match plans/v3_freeze.json
 # 2026-10-20T22:39:02Z F2_READ
 # argv: ["docker", "run", "--rm", "--init", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "analysis/q2_family2.py", "read", "--held-out-read", "0cda331ea81cf0dd", "--workers", "2"]
 request returned 500 Internal Server Error for API route and version http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping, check if the server supports the requested API version
+
+# 2026-10-21T19:15:58Z F2_READ
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-a-f2_read", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-kernel:wave-a", "python", "analysis/q2_family2.py", "read", "--held-out-read", "0cda331ea81cf0dd", "--workers", "2"]
+all                    tables  500 scen 50 | P@half 0.795 [0.777, 0.811] cov 0.545 | ECE 0.042 [0.030, 0.053] | ER-2 False ER-3 False
+linear                 tables  250 scen 50 | P@half 0.851 [0.826, 0.872] cov 0.527 | ECE 0.064 [0.043, 0.085] | ER-2 True ER-3 False
+nonlinear              tables  250 scen 50 | P@half 0.742 [0.726, 0.758] cov 0.563 | ECE 0.053 [0.047, 0.062] | ER-2 False ER-3 False
+source_test_scenarios  tables  250 scen 25 | P@half 0.796 [0.774, 0.817] cov 0.552 | ECE 0.041 [0.026, 0.056] | ER-2 False ER-3 False

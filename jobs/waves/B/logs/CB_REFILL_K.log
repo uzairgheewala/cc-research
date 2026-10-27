@@ -1,0 +1,73 @@
+
+# 2026-10-22T13:33:34Z CB_REFILL_K
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-cb_refill_k", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "3g", "cc-bench:wave-a", "python", "-m", "analysis.ben13.run", "cells", "--line", "k562", "--part", "1/1"]
+[ben13] k562 part 1/1: 293 cells, 51 to do
+[ben13] loaded k562 in 25 s: train (130200, 622), test (32551, 622), 622 genes; literature {'string_network': 92886, 'string_physical': 27634, 'chipseq': 2947}, missing ['corum']
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/analysis/ben13/run.py", line 309, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/research/analysis/ben13/run.py", line 305, in main
+    return cmd_cells(a) if a.cmd == "cells" else cmd_merge(a)
+           ^^^^^^^^^^^^
+  File "/research/analysis/ben13/run.py", line 167, in cmd_cells
+    "%.3f" % st["for"] if "for" in st else "-", rec.get("seconds", 0)), flush=True)
+    ~~~~~~~^~~~~~~~~~~
+TypeError: must be real number, not NoneType
+
+# 2026-10-22T20:31:07Z CB_REFILL_K
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-cb_refill_k", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "3g", "cc-bench:wave-a", "python", "-m", "analysis.ben13.run", "cells", "--line", "k562", "--part", "1/1"]
+[ben13] k562 part 1/1: 293 cells, 50 to do
+[ben13] loaded k562 in 40 s: train (130200, 622), test (32551, 622), 622 genes; literature {'string_network': 92886, 'string_physical': 27634, 'chipseq': 2947}, missing ['corum']
+[ben13] random_k5000_s3              W 0.111 FOR undefined (11.4 s)
+[ben13] random_k5000_s4              W 0.113 FOR undefined (11.4 s)
+[ben13] random_k5000_s8              W 0.111 FOR undefined (12.0 s)
+[ben13] random_k5000_s9              W 0.113 FOR undefined (12.5 s)
+[ben13] random_k5000_s10             W 0.115 FOR undefined (12.2 s)
+[ben13] random_k5000_s11             W 0.113 FOR undefined (12.0 s)
+[ben13] random_k5000_s14             W 0.115 FOR undefined (12.1 s)
+[ben13] random_k5000_s15             W 0.113 FOR undefined (12.0 s)
+[ben13] random_k5000_s17             W 0.113 FOR undefined (12.2 s)
+[ben13] random_k5000_s18             W 0.113 FOR undefined (12.2 s)
+[ben13] random_lit_string_network_s0 W 0.113 FOR undefined (130.5 s)
+[ben13] random_lit_string_network_s1 W 0.113 FOR undefined (123.1 s)
+[ben13] random_lit_string_network_s2 W 0.113 FOR undefined (123.7 s)
+[ben13] random_lit_string_network_s3 W 0.113 FOR undefined (123.0 s)
+[ben13] random_lit_string_network_s4 W 0.113 FOR undefined (125.7 s)
+[ben13] random_lit_string_network_s5 W 0.113 FOR undefined (124.3 s)
+[ben13] random_lit_string_network_s6 W 0.113 FOR undefined (124.6 s)
+[ben13] random_lit_string_network_s7 W 0.113 FOR undefined (125.2 s)
+[ben13] random_lit_string_network_s8 W 0.112 FOR undefined (125.9 s)
+[ben13] random_lit_string_network_s9 W 0.113 FOR undefined (124.8 s)
+[ben13] random_lit_string_network_s10 W 0.113 FOR undefined (124.6 s)
+[ben13] random_lit_string_network_s11 W 0.113 FOR undefined (124.2 s)
+[ben13] random_lit_string_network_s12 W 0.113 FOR undefined (126.3 s)
+[ben13] random_lit_string_network_s13 W 0.113 FOR undefined (129.1 s)
+[ben13] random_lit_string_network_s14 W 0.113 FOR undefined (125.8 s)
+[ben13] random_lit_string_network_s15 W 0.113 FOR undefined (126.6 s)
+[ben13] random_lit_string_network_s16 W 0.113 FOR undefined (126.0 s)
+[ben13] random_lit_string_network_s17 W 0.113 FOR undefined (124.4 s)
+[ben13] random_lit_string_network_s18 W 0.113 FOR undefined (126.3 s)
+[ben13] random_lit_string_network_s19 W 0.113 FOR undefined (126.0 s)
+[ben13] random_lit_string_physical_s0 W 0.113 FOR undefined (42.8 s)
+[ben13] random_lit_string_physical_s1 W 0.113 FOR undefined (42.3 s)
+[ben13] random_lit_string_physical_s2 W 0.113 FOR undefined (44.3 s)
+[ben13] random_lit_string_physical_s3 W 0.113 FOR undefined (45.4 s)
+[ben13] random_lit_string_physical_s4 W 0.113 FOR undefined (42.5 s)
+[ben13] random_lit_string_physical_s5 W 0.114 FOR undefined (41.6 s)
+[ben13] random_lit_string_physical_s6 W 0.113 FOR undefined (42.0 s)
+[ben13] random_lit_string_physical_s7 W 0.113 FOR undefined (44.0 s)
+[ben13] random_lit_string_physical_s8 W 0.112 FOR undefined (42.5 s)
+[ben13] random_lit_string_physical_s9 W 0.114 FOR undefined (42.2 s)
+[ben13] random_lit_string_physical_s10 W 0.113 FOR undefined (41.9 s)
+[ben13] random_lit_string_physical_s11 W 0.113 FOR undefined (43.5 s)
+[ben13] random_lit_string_physical_s12 W 0.113 FOR undefined (43.2 s)
+[ben13] random_lit_string_physical_s13 W 0.113 FOR undefined (42.4 s)
+[ben13] random_lit_string_physical_s14 W 0.113 FOR undefined (42.2 s)
+[ben13] random_lit_string_physical_s15 W 0.114 FOR undefined (42.7 s)
+[ben13] random_lit_string_physical_s16 W 0.113 FOR undefined (42.8 s)
+[ben13] random_lit_string_physical_s17 W 0.113 FOR undefined (42.5 s)
+[ben13] random_lit_string_physical_s18 W 0.113 FOR undefined (42.1 s)
+[ben13] random_lit_string_physical_s19 W 0.113 FOR undefined (42.4 s)

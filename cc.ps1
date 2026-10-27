@@ -35,6 +35,11 @@ function Invoke-InContainer {
         $mainEnv = Join-Path $MainRepo ".env"
         if (Test-Path $mainEnv) { $Extra += @("-v", "${mainEnv}:/app/.env:ro") }
     }
+    # INF-10: a wave run names its container (CC_CONTAINER_NAME), so the runner can remove it when it stops the run
+    if ($env:CC_CONTAINER_NAME) {
+        & docker rm -f $env:CC_CONTAINER_NAME *> $null
+        $Extra += @("--name", $env:CC_CONTAINER_NAME)
+    }
     $dockerArgs = @("run", "--rm", "-i", "--init") + $Extra + @(
         "-v", "${Repo}:/app",
         "-v", "${Research}:/research",

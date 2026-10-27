@@ -1,0 +1,580 @@
+{
+ "tickets": [
+  "BEN-13"
+ ],
+ "prereg_sha256": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
+ "lines": {
+  "k562": {
+   "cells": 293,
+   "reproduction": {
+    "md_k1000": {
+     "ours": {
+      "wasserstein": 0.5898651278515121,
+      "for": 0.176
+     },
+     "published": {
+      "wasserstein": 0.59,
+      "for": 0.17
+     },
+     "within_tolerance": true
+    },
+    "md_k5000": {
+     "ours": {
+      "wasserstein": 0.442401384551515,
+      "for": 0.128
+     },
+     "published": {
+      "wasserstein": 0.442,
+      "for": 0.143
+     },
+     "within_tolerance": true
+    }
+   },
+   "controls": {
+    "k1000": {
+     "random": {
+      "wasserstein": {
+       "mean": 0.11277925372377655,
+       "lo": 0.1099376594626761,
+       "hi": 0.11743062237321422,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1732,
+       "lo": 0.16190000000000002,
+       "hi": 0.19219999999999998,
+       "n": 20
+      }
+     },
+     "rewire_children": {
+      "wasserstein": {
+       "mean": 0.17579037400749745,
+       "lo": 0.16936626632839036,
+       "hi": 0.1824316804571645,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1676,
+       "lo": 0.15,
+       "hi": 0.18505,
+       "n": 20
+      }
+     },
+     "permute_labels": {
+      "wasserstein": {
+       "mean": 0.11121557893388742,
+       "lo": 0.09983872152201324,
+       "hi": 0.12307069035007111,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.19,
+       "lo": 0.184,
+       "hi": 0.196,
+       "n": 20
+      }
+     },
+     "test_oracle_wasserstein": 0.6527400159209509,
+     "placement_share_wasserstein": 0.13207500724880028,
+     "placement_share_wasserstein_range": [
+      0.1186097004193906,
+      0.14599557545218608
+     ],
+     "placement_share_for": null,
+     "placement_share_for_note": "MeanDifference FOR 0.176 is within 0.035 of random networks' 0.173: no FOR share",
+     "echo_ratio": 0.9036754503541068
+    },
+    "k5000": {
+     "random": {
+      "wasserstein": {
+       "mean": 0.1129119881023705,
+       "lo": 0.11106723275654573,
+       "hi": 0.11547679708385529,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.14244444444444446,
+       "lo": 0.0608,
+       "hi": 0.2952,
+       "n": 9
+      }
+     },
+     "rewire_children": {
+      "wasserstein": {
+       "mean": 0.1600631692043083,
+       "lo": 0.15830535468373852,
+       "hi": 0.16243192838038822,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.10260000000000002,
+       "lo": 0.09495,
+       "hi": 0.11105,
+       "n": 20
+      }
+     },
+     "permute_labels": {
+      "wasserstein": {
+       "mean": 0.11188942053952274,
+       "lo": 0.1049637971644882,
+       "hi": 0.11859500924054064,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1852,
+       "lo": 0.1698,
+       "hi": 0.19905,
+       "n": 20
+      }
+     },
+     "test_oracle_wasserstein": 0.49202839671324566,
+     "placement_share_wasserstein": 0.14310378910544214,
+     "placement_share_wasserstein_range": [
+      0.13776882373322238,
+      0.1502929709170806
+     ],
+     "placement_share_for": null,
+     "placement_share_for_note": "MeanDifference FOR 0.128 is within 0.035 of random networks' 0.142: no FOR share",
+     "echo_ratio": 0.8991379105489855
+    }
+   },
+   "literature": {
+    "string_network": {
+     "edges": 92886,
+     "wasserstein": 0.1320247135427597,
+     "for": 0.214,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.11302119278105757,
+       "lo": 0.11256109665700176,
+       "hi": 0.11338077533855602,
+       "n": 20
+      },
+      "for": null
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.11307650308358871,
+       "lo": 0.11103692455008478,
+       "hi": 0.11532858117350044,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.11986090476498072,
+       "lo": 0.11464537174601125,
+       "hi": 0.1232761126542213,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.487
+    },
+    "string_physical": {
+     "edges": 27634,
+     "wasserstein": 0.14080990830710105,
+     "for": 0.122,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.11312397212221534,
+       "lo": 0.11214777443780641,
+       "hi": 0.1141300917859204,
+       "n": 20
+      },
+      "for": null
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.11319235805350865,
+       "lo": 0.11077162020824484,
+       "hi": 0.11571603275308595,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.03554317145545342,
+       "lo": 0.03232340594919302,
+       "hi": 0.03949844394586379,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.224
+    },
+    "corum": {
+     "status": "not_run",
+     "why": "literature source missing: {'corum': \"FileNotFoundError: [Errno 2] No such file or directory: '/research/external/causalbench/corum_complexes.txt.zip'\"}"
+    },
+    "chipseq": {
+     "edges": 2947,
+     "wasserstein": 0.11774280052229637,
+     "for": 0.19,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.11346626374972861,
+       "lo": 0.1118745595623905,
+       "hi": 0.1163235751852622,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1912,
+       "lo": 0.1376,
+       "hi": 0.2561,
+       "n": 20
+      }
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.11234867385863448,
+       "lo": 0.09817561527406035,
+       "hi": 0.1314493931338296,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.004216152019002375,
+       "lo": 0.002795215473362742,
+       "hi": 0.00585765184933831,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.004
+    }
+   },
+   "fast_equals_full": true,
+   "sensitivity": {
+    "md_k1000_for1000": {
+     "wasserstein": 0.5898651278515121,
+     "for": 0.157
+    },
+    "md_k1000_path3": {
+     "wasserstein": 0.5898651278515121,
+     "for": 0.176
+    },
+    "md_k5000_for1000": {
+     "wasserstein": 0.442401384551515,
+     "for": 0.12
+    },
+    "md_k5000_path3": {
+     "wasserstein": 0.442401384551515,
+     "for": 0.132
+    }
+   }
+  },
+  "rpe1": {
+   "cells": 293,
+   "reproduction": {
+    "md_k1000": {
+     "ours": {
+      "wasserstein": 0.7115836155270772,
+      "for": 0.136
+     },
+     "published": {
+      "wasserstein": 0.712,
+      "for": 0.122
+     },
+     "within_tolerance": true
+    },
+    "md_k5000": {
+     "ours": {
+      "wasserstein": 0.38398282649101617,
+      "for": 0.076
+     },
+     "published": {
+      "wasserstein": 0.384,
+      "for": 0.078
+     },
+     "within_tolerance": true
+    }
+   },
+   "controls": {
+    "k1000": {
+     "random": {
+      "wasserstein": {
+       "mean": 0.09823241190307205,
+       "lo": 0.09180000218511908,
+       "hi": 0.10488191270321892,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1196,
+       "lo": 0.0939,
+       "hi": 0.146,
+       "n": 20
+      }
+     },
+     "rewire_children": {
+      "wasserstein": {
+       "mean": 0.14249505462604456,
+       "lo": 0.13702747565618012,
+       "hi": 0.14771992331864905,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.10810000000000002,
+       "lo": 0.09695000000000001,
+       "hi": 0.1181,
+       "n": 20
+      }
+     },
+     "permute_labels": {
+      "wasserstein": {
+       "mean": 0.09686555189941223,
+       "lo": 0.0852621835236635,
+       "hi": 0.10861073922879975,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1528,
+       "lo": 0.14895,
+       "hi": 0.154,
+       "n": 20
+      }
+     },
+     "test_oracle_wasserstein": 0.7516940399909839,
+     "placement_share_wasserstein": 0.0721652496342149,
+     "placement_share_wasserstein_range": [
+      0.06325097843435572,
+      0.08068380908552632
+     ],
+     "placement_share_for": null,
+     "placement_share_for_note": "MeanDifference FOR 0.136 is within 0.035 of random networks' 0.120: no FOR share",
+     "echo_ratio": 0.9466399594383004
+    },
+    "k5000": {
+     "random": {
+      "wasserstein": {
+       "mean": 0.09774802358942611,
+       "lo": 0.09430214500923283,
+       "hi": 0.09982605279641915,
+       "n": 20
+      },
+      "for": null
+     },
+     "rewire_children": {
+      "wasserstein": {
+       "mean": 0.1340652388125175,
+       "lo": 0.13164255006150363,
+       "hi": 0.13732101879608494,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.07210000000000003,
+       "lo": 0.0659,
+       "hi": 0.08009999999999999,
+       "n": 20
+      }
+     },
+     "permute_labels": {
+      "wasserstein": {
+       "mean": 0.09794114984765832,
+       "lo": 0.09121193254395774,
+       "hi": 0.10402103012121462,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.12769999999999998,
+       "lo": 0.114,
+       "hi": 0.14409999999999998,
+       "n": 20
+      }
+     },
+     "test_oracle_wasserstein": 0.4316259776751801,
+     "placement_share_wasserstein": 0.12687910364127716,
+     "placement_share_wasserstein_range": [
+      0.11841511279720497,
+      0.13825361139003195
+     ],
+     "echo_ratio": 0.8896193610941143
+    }
+   },
+   "literature": {
+    "string_network": {
+     "edges": 17006,
+     "wasserstein": 0.11831138448387714,
+     "for": 0.12,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.09806968185863979,
+       "lo": 0.09671590617272041,
+       "hi": 0.09923560556957269,
+       "n": 20
+      },
+      "for": null
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.09801009209683445,
+       "lo": 0.09556247556423163,
+       "hi": 0.1015398975463907,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.05833235328707513,
+       "lo": 0.0523359402563801,
+       "hi": 0.06398624015053511,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.273
+    },
+    "string_physical": {
+     "edges": 4040,
+     "wasserstein": 0.11905333797422357,
+     "for": 0.096,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.09818078599679582,
+       "lo": 0.09540328948695469,
+       "hi": 0.10009313001832529,
+       "n": 20
+      },
+      "for": null
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.09814718389153061,
+       "lo": 0.0925258594538641,
+       "hi": 0.10316705151954746,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.014740099009900993,
+       "lo": 0.010123762376237624,
+       "hi": 0.01985148514851485,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.065
+    },
+    "corum": {
+     "status": "not_run",
+     "why": "literature source missing: {'corum': \"FileNotFoundError: [Errno 2] No such file or directory: '/research/external/causalbench/corum_complexes.txt.zip'\"}"
+    },
+    "chipseq": {
+     "edges": 1786,
+     "wasserstein": 0.08669993811845988,
+     "for": 0.152,
+     "random_same_size": {
+      "wasserstein": {
+       "mean": 0.09772594743001448,
+       "lo": 0.09537584653683465,
+       "hi": 0.1012703873804011,
+       "n": 20
+      },
+      "for": {
+       "mean": 0.1232,
+       "lo": 0.0719,
+       "hi": 0.16649999999999995,
+       "n": 20
+      }
+     },
+     "permuted": {
+      "wasserstein": {
+       "mean": 0.1002451224168388,
+       "lo": 0.08304753686270402,
+       "hi": 0.12001397859492421,
+       "n": 20
+      },
+      "own_precision": {
+       "mean": 0.017903135498320268,
+       "lo": 0.004290313549832027,
+       "hi": 0.06011338185890257,
+       "n": 20
+      }
+     },
+     "md_precision_here": 0.008
+    }
+   },
+   "fast_equals_full": true,
+   "sensitivity": {
+    "md_k1000_for1000": {
+     "wasserstein": 0.7115836155270772,
+     "for": 0.115
+    },
+    "md_k1000_path3": {
+     "wasserstein": 0.7115836155270772,
+     "for": 0.136
+    },
+    "md_k5000_for1000": {
+     "wasserstein": 0.38398282649101617,
+     "for": 0.067
+    },
+    "md_k5000_path3": {
+     "wasserstein": 0.3839828264910161,
+     "for": 0.082
+    }
+   }
+  }
+ },
+ "reproduced_rows": 4,
+ "reproduction_all": true,
+ "fast_equals_full_all": true,
+ "predictions": {
+  "P1": {
+   "values": {
+    "k562": 0.13207500724880028,
+    "rpe1": 0.0721652496342149
+   },
+   "bar": ">= 0.5 in both lines",
+   "verdict": "fails"
+  },
+  "P2": {
+   "cells": {
+    "k562_k1000": {
+     "permuted_mean": 0.11121557893388742,
+     "random_range": [
+      0.1099376594626761,
+      0.11743062237321422
+     ],
+     "inside": true
+    },
+    "k562_k5000": {
+     "permuted_mean": 0.11188942053952274,
+     "random_range": [
+      0.11106723275654573,
+      0.11547679708385529
+     ],
+     "inside": true
+    },
+    "rpe1_k1000": {
+     "permuted_mean": 0.09686555189941223,
+     "random_range": [
+      0.09180000218511908,
+      0.10488191270321892
+     ],
+     "inside": true
+    },
+    "rpe1_k5000": {
+     "permuted_mean": 0.09794114984765832,
+     "random_range": [
+      0.09430214500923283,
+      0.09982605279641915
+     ],
+     "inside": true
+    }
+   },
+   "bar": "permuted mean inside the random 2.5-97.5 % range, both k, both lines",
+   "verdict": "holds"
+  },
+  "P3": {
+   "values": {
+    "k562": 0.9036754503541068,
+    "rpe1": 0.9466399594383004
+   },
+   "bar": ">= 0.9 in both lines",
+   "verdict": "holds"
+  },
+  "P4": {
+   "cells": {
+    "k562": {
+     "string_w": 0.1320247135427597,
+     "random_hi": 0.11338077533855602,
+     "above": true
+    },
+    "rpe1": {
+     "string_w": 0.11831138448387714,
+     "random_hi": 0.09923560556957269,
+     "above": true
+    }
+   },
+   "bar": "STRING-links W above the 97.5 % point of same-size random networks, both lines",
+   "verdict": "holds"
+  }
+ }
+}

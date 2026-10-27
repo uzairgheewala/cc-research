@@ -1,0 +1,21 @@
+{
+ "producer": "analysis/ben13/run.py (cells, merge), analysis/ben13/evaluate.py (causalbench 1.1.2 evaluators)",
+ "score_bearing": true,
+ "tickets": [
+  "BEN-13"
+ ],
+ "regime": "D+I",
+ "split": "test",
+ "controls": {
+  "columns_shuffled": "not applicable (genes are identified by id; causalbench's own split and preprocessing)",
+  "names": "per-row",
+  "supplier": "CausalBench (GSK) K562 and RPE1 single-cell knockdown data, preprocessed bit-identically to causalbench 1.1.2 (analysis/ben13/stream_preprocess.py)",
+  "names_note": "data-only methods (MeanDifference, random, rewired, permuted) never read gene names; the literature networks are names-only predictions"
+ },
+ "metric_defs": {
+  "wasserstein": "causalbench statistical Evaluator: mean Wasserstein distance over the output network's edges, on the 20 % test split",
+  "for": "false omission rate over 500 sampled negative pairs outside the network's path closure (random.seed(0)); None when fewer than 500 exist",
+  "biological_precision": "causalbench biological Evaluator per literature set (undirected true positives)"
+ },
+ "orientation_rule": "causalbench's: a predicted edge (parent, child) is scored by the child's shift under the parent's knockdown; no undirected predictions exist"
+}

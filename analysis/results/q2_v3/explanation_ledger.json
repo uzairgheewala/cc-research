@@ -1,0 +1,328 @@
+{
+ "tickets": [
+  "TGT-18",
+  "TGT-19"
+ ],
+ "split": "dev",
+ "regime": "D",
+ "kernel": "v3",
+ "states": [
+  "unattributed",
+  "attributed",
+  "mechanism_known",
+  "walled",
+  "lever_disputed",
+  "lever_chosen",
+  "acted_on"
+ ],
+ "records": [
+  {
+   "board": "semantic",
+   "gap": "missed_links",
+   "segment": "floor",
+   "size": 459,
+   "unit": "true links (dev, regime D)",
+   "state": "walled",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "a discrete-aware nested test detects them no more often than it rejects true nulls (X3)",
+   "evidence": "explain_dev.json x123.x3"
+  },
+  {
+   "board": "semantic",
+   "gap": "missed_links",
+   "segment": "sample_size",
+   "size": 194,
+   "unit": "true links (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "signal too weak for 1,000 rows; the score never wants them (X1); the DxR regime (5,000 rows) is the reported remedy",
+   "evidence": "explain_dev.json x123.missed.sample_size"
+  },
+  {
+   "board": "semantic",
+   "gap": "missed_links",
+   "segment": "nonlinear_only",
+   "size": 268,
+   "unit": "true links (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "invisible to the linear score (X1) but a kernel test detects them 40 points above its null (X4); lever: the v4 score",
+   "evidence": "explain_dev.json x4; plans/v4_prereg.json"
+  },
+  {
+   "board": "semantic",
+   "gap": "missed_links",
+   "segment": "search_gap",
+   "size": 726,
+   "unit": "true links (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the score wants 76 % of them given the true parents but GES's graph, which the score prefers to the true one, holds stand-in links instead (X1); lever: a score that fits the mechanisms (v4)",
+   "evidence": "explain_dev.json x123.missed.method_linear, x123.global"
+  },
+  {
+   "board": "semantic",
+   "gap": "false_links",
+   "segment": "shadow",
+   "size": 1106,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the linear score wants 78 % of them even added to the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.shadow"
+  },
+  {
+   "board": "semantic",
+   "gap": "false_links",
+   "segment": "common_cause",
+   "size": 538,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the linear score wants 67 % of them given the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.common_cause"
+  },
+  {
+   "board": "semantic",
+   "gap": "false_links",
+   "segment": "unrelated_wanted_by_score",
+   "size": 135,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "wanted by the linear score given the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.unrelated"
+  },
+  {
+   "board": "semantic",
+   "gap": "false_links",
+   "segment": "unrelated_neighbourhood",
+   "size": 254,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "attributed",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "not wanted given the true graph: added because of the wrong neighbourhood GES built (follows the segments above)",
+   "evidence": "explain_dev.json x123.false.unrelated"
+  },
+  {
+   "board": "semantic",
+   "gap": "reversed_directions",
+   "segment": "skeleton_caused",
+   "size": 162,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the same orientation rules get them right on the true skeleton (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  },
+  {
+   "board": "semantic",
+   "gap": "reversed_directions",
+   "segment": "rule_caused",
+   "size": 125,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "still reversed on the true skeleton: Fisher-z collider tests on nonlinear data (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  },
+  {
+   "board": "semantic",
+   "gap": "reversed_directions",
+   "segment": "open_on_true_skeleton",
+   "size": 43,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "attributed",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "left open by the rules on the true skeleton (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  },
+  {
+   "board": "formula",
+   "gap": "missed_links",
+   "segment": "floor",
+   "size": 297,
+   "unit": "true links (dev, regime D)",
+   "state": "walled",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "a discrete-aware nested test detects them no more often than it rejects true nulls (X3)",
+   "evidence": "explain_dev.json x123.x3"
+  },
+  {
+   "board": "formula",
+   "gap": "missed_links",
+   "segment": "sample_size",
+   "size": 80,
+   "unit": "true links (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "signal too weak for 1,000 rows; the score never wants them (X1); the DxR regime (5,000 rows) is the reported remedy",
+   "evidence": "explain_dev.json x123.missed.sample_size"
+  },
+  {
+   "board": "formula",
+   "gap": "missed_links",
+   "segment": "nonlinear_only",
+   "size": 212,
+   "unit": "true links (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "invisible to the linear score (X1) but a kernel test detects them 52 points above its null (X4); lever: the v4 score",
+   "evidence": "explain_dev.json x4; plans/v4_prereg.json"
+  },
+  {
+   "board": "formula",
+   "gap": "missed_links",
+   "segment": "search_gap",
+   "size": 879,
+   "unit": "true links (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the score wants 92 % of them given the true parents but GES's graph, which the score prefers to the true one, holds stand-in links instead (X1); lever: a score that fits the mechanisms (v4)",
+   "evidence": "explain_dev.json x123.missed.method_linear, x123.global"
+  },
+  {
+   "board": "formula",
+   "gap": "false_links",
+   "segment": "shadow",
+   "size": 1468,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the linear score wants 80 % of them even added to the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.shadow"
+  },
+  {
+   "board": "formula",
+   "gap": "false_links",
+   "segment": "common_cause",
+   "size": 621,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "lever_chosen",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the linear score wants 68 % of them given the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.common_cause"
+  },
+  {
+   "board": "formula",
+   "gap": "false_links",
+   "segment": "unrelated_wanted_by_score",
+   "size": 186,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "BLD-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "wanted by the linear score given the true graph (X1)",
+   "evidence": "explain_dev.json x123.false.unrelated"
+  },
+  {
+   "board": "formula",
+   "gap": "false_links",
+   "segment": "unrelated_neighbourhood",
+   "size": 437,
+   "unit": "claimed links that are false (dev, regime D)",
+   "state": "attributed",
+   "ticket": "TGT-18",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "not wanted given the true graph: added because of the wrong neighbourhood GES built (follows the segments above)",
+   "evidence": "explain_dev.json x123.false.unrelated"
+  },
+  {
+   "board": "formula",
+   "gap": "reversed_directions",
+   "segment": "skeleton_caused",
+   "size": 234,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "the same orientation rules get them right on the true skeleton (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  },
+  {
+   "board": "formula",
+   "gap": "reversed_directions",
+   "segment": "rule_caused",
+   "size": 108,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "mechanism_known",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "still reversed on the true skeleton: Fisher-z collider tests on nonlinear data (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  },
+  {
+   "board": "formula",
+   "gap": "reversed_directions",
+   "segment": "open_on_true_skeleton",
+   "size": 34,
+   "unit": "found true links whose committed direction is wrong (dev, regime D)",
+   "state": "attributed",
+   "ticket": "TGT-19",
+   "report": "analysis/reports/q2_explain_dev.md",
+   "why": "left open by the rules on the true skeleton (X2)",
+   "evidence": "explain_dev.json x123.x2"
+  }
+ ],
+ "totals": {
+  "semantic": {
+   "missed_links": 1647,
+   "false_links": 2033,
+   "reversed_directions": 330
+  },
+  "formula": {
+   "missed_links": 1468,
+   "false_links": 2712,
+   "reversed_directions": 376
+  }
+ },
+ "checks": {
+  "semantic/missed_links": {
+   "segments": 1647,
+   "total": 1647,
+   "equal": true
+  },
+  "semantic/false_links": {
+   "segments": 2033,
+   "total": 2033,
+   "equal": true
+  },
+  "semantic/reversed_directions": {
+   "segments": 330,
+   "total": 330,
+   "equal": true
+  },
+  "formula/missed_links": {
+   "segments": 1468,
+   "total": 1468,
+   "equal": true
+  },
+  "formula/false_links": {
+   "segments": 2712,
+   "total": 2712,
+   "equal": true
+  },
+  "formula/reversed_directions": {
+   "segments": 376,
+   "total": 376,
+   "equal": true
+  }
+ }
+}

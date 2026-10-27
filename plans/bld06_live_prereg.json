@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "tickets": ["BLD-06", "EXT-03", "INF-06"],
+ "written_utc": "2026-10-22T13:05:21Z",
+ "status": "pre-registered before any graph of the 60 fork-series runs (labels f06, m06) was scored. Known when written: run status (f06 30 of 30 completed; m06 22 of 30, 8 crashes in the cycle step), LLM tokens and cost, and the algorithm chosen; no graph metric.",
+ "question": "Does refinement v2 inside Causal-Copilot (branch bld-06-refinement-v2) deliver graphs at least as good as the unmodified pipeline on the same 30 BND-08 tables, run on the same image?",
+ "runs": {"branch": "plans/results/fork_bld06_live.capped.json (label f06)", "main": "plans/results/fork_bld06_live_main.capped.json (label m06)",
+          "history": "BND-08 (label s2, analysis/results/stability_s2/bnd08_summary.json), old image: reported beside, not compared by a rule"},
+ "graphs": {"S0": "results.converted_graph of the run's last state snapshot (the algorithm's output handed to refinement)",
+            "final": "results.revised_graph of state/*99_final.json (completed runs only)"},
+ "reference": "datasets/suite_q1s2/MAPPING.json reference_by_data per arm; scores by analysis/cc_graph.score (adjacency F1; directed F1 counting committed directions only)",
+ "metrics": {
+  "delivered_dir_f1": "final directed F1, a run that delivered no final graph (crash) scores 0: what a user of the run receives",
+  "both_completed": "final adjacency and directed F1 on the arms where both arms' runs completed, paired by arm",
+  "S0": "adjacency F1 of S0, all 30 arms paired: the algorithm stage is the same code in both arms, so this checks the two series ran comparable algorithms",
+  "intervals": "cluster bootstrap over the 10 scenario families (score/paired.cluster_bootstrap, B = 2000, seed 20261014)"
+ },
+ "predictions": {
+  "L1": "delivered directed F1: branch minus main >= 0.02 (paired mean over 30 arms)",
+  "L2": "both completed: branch final adjacency F1 not below main by more than 0.02 (paired mean)",
+  "L3": "S0 adjacency F1: |branch minus main| <= 0.03 (paired mean)"
+ },
+ "rule": {
+  "drop_in": "L2 holds and L3 holds: refinement v2 removes the crash and cuts cost without losing graph quality on these tables; the Q1 checkpoint (BND-13) shows the changed pipeline as the improved Causal-Copilot",
+  "trade_off": "L2 fails with L3 holding: v2 costs graph quality; reported as a trade-off; wave C diagnoses with v2's R4-R6 on these runs",
+  "incomparable": "L3 fails: the two series ran materially different algorithms; quality differences are not attributed to v2"
+ },
+ "failure_modes_named_in_advance": [
+  "LLM nondeterminism: one run per arm per series, so per-arm differences include run-to-run noise (BND-08's design); the family bootstrap is the only interval",
+  "selection: crashed main runs have no final graph; L2 uses arms where both completed and L1 scores a crash as 0, both stated",
+  "S3 (the graph handed to the cycle step) needs the pipeline's pickles and is not used here"
+ ],
+ "code": "analysis/bld06_live_compare.py",
+ "outputs": ["analysis/results/fork/bld06_live_compare.json"]
+}

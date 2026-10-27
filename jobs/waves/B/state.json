@@ -1,0 +1,376 @@
+{
+ "runs": {
+  "B_BENCH": {
+   "id": "B_BENCH",
+   "class": "A0",
+   "start": "2026-10-22T20:15:34Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:15:48Z",
+   "wall_min": 0.24,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "B_KERNEL": {
+   "id": "B_KERNEL",
+   "class": "A0",
+   "start": "2026-10-22T20:15:34Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:15:48Z",
+   "wall_min": 0.24,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "T_BENCH": {
+   "id": "T_BENCH",
+   "class": "A0",
+   "start": "2026-10-22T20:15:49Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:16:05Z",
+   "wall_min": 0.27,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "T_HOST": {
+   "id": "T_HOST",
+   "class": "A0",
+   "start": "2026-10-22T20:15:34Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:16:26Z",
+   "wall_min": 0.87,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "T_KERNEL": {
+   "id": "T_KERNEL",
+   "class": "A0",
+   "start": "2026-10-22T20:15:49Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:17:25Z",
+   "wall_min": 1.6,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "CHECKS": {
+   "id": "CHECKS",
+   "class": "A0",
+   "start": "2026-10-22T20:17:25Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:20:51Z",
+   "wall_min": 3.44,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "ELEDGER": {
+   "id": "ELEDGER",
+   "status": "ok",
+   "why": "done test already passes",
+   "end": "2026-10-22T13:32:55Z",
+   "code_identity": "f1071a71df8335b0b01a9607327506b4cf59c4388972845b5bbd971cd9ff4192"
+  },
+  "V4_HELDOUT": {
+   "id": "V4_HELDOUT",
+   "class": "A1",
+   "start": "2026-10-22T20:20:51Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:21:33Z",
+   "wall_min": 0.7,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "CB_REFILL_R": {
+   "id": "CB_REFILL_R",
+   "class": "A1",
+   "start": "2026-10-22T20:20:51Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:31:07Z",
+   "wall_min": 10.27,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_FILL": {
+   "id": "V4_FILL",
+   "class": "A2",
+   "start": "2026-10-22T20:31:07Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T20:31:22Z",
+   "wall_min": 0.24,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_ENG_A2": {
+   "id": "V4_ENG_A2",
+   "class": "A2",
+   "start": "2026-10-22T20:31:22Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:05:49Z",
+   "wall_min": 34.45,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_ENG_G1": {
+   "id": "V4_ENG_G1",
+   "class": "A2",
+   "start": "2026-10-22T20:31:22Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:14:45Z",
+   "wall_min": 43.38,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_ENG_A1": {
+   "id": "V4_ENG_A1",
+   "class": "A2",
+   "start": "2026-10-22T21:05:49Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:46:46Z",
+   "wall_min": 40.95,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_ENG_R1": {
+   "id": "V4_ENG_R1",
+   "class": "A2",
+   "start": "2026-10-22T21:14:45Z",
+   "parts": [
+    {
+     "part": 1,
+     "exit": 0
+    },
+    {
+     "part": 2,
+     "exit": 0
+    },
+    {
+     "part": 3,
+     "exit": 0
+    },
+    {
+     "part": 4,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T22:08:12Z",
+   "wall_min": 53.45,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_EVAL": {
+   "id": "V4_EVAL",
+   "class": "A3",
+   "start": "2026-10-22T22:08:12Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T22:18:12Z",
+   "wall_min": 10.0,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "V4_DECIDE": {
+   "id": "V4_DECIDE",
+   "class": "A3",
+   "start": "2026-10-22T22:18:12Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T22:18:15Z",
+   "wall_min": 0.04,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "CB_REFILL_K": {
+   "id": "CB_REFILL_K",
+   "class": "A1",
+   "start": "2026-10-22T20:31:07Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:30:30Z",
+   "wall_min": 59.38,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "CB_MERGE2": {
+   "id": "CB_MERGE2",
+   "class": "A1",
+   "start": "2026-10-22T21:30:30Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:30:39Z",
+   "wall_min": 0.14,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "DATA_MAN": {
+   "id": "DATA_MAN",
+   "class": "A3",
+   "start": "2026-10-22T21:30:30Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:35:47Z",
+   "wall_min": 5.27,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  },
+  "CB_REPORT": {
+   "id": "CB_REPORT",
+   "class": "A1",
+   "start": "2026-10-22T21:30:39Z",
+   "parts": [
+    {
+     "part": null,
+     "exit": 0
+    }
+   ],
+   "status": "ok",
+   "end": "2026-10-22T21:30:41Z",
+   "wall_min": 0.03,
+   "code_identity": "7303f09d71d28b26664a5338ee1ed7654bd87ce2bb7ff7a895a15d01f4b17fd6"
+  }
+ },
+ "identity": {
+  "ok": true,
+  "checked": 331,
+  "changed_or_missing": []
+ },
+ "host": {
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.0",
+  "cpus": 16,
+  "workers": 4,
+  "mem_gb": 0,
+  "started": "2026-10-22T13:30:58Z",
+  "finished": "2026-10-22T22:18:15Z"
+ },
+ "env_overrides": {
+  "OPENBLAS_CORETYPE": "HASWELL"
+ },
+ "preflight": {
+  "disk_free_gb": 120.9,
+  "docker_mem_gb": 6.2,
+  "images_missing": [],
+  "docker_df": [
+   "Images: 43.18GB (12.26GB (28%) reclaimable)",
+   "Containers: 632.8MB (632.8MB (100%) reclaimable)",
+   "Local Volumes: 795.1MB (351.2MB (44%) reclaimable)",
+   "Build Cache: 44.26GB (19.02GB reclaimable)"
+  ],
+  "avx512f": false,
+  "avx2": true,
+  "note": "this CPU has no AVX-512: BLAS runs with HASWELL; engine results can differ in the last digits from the agent's cache, which the canary digest checks",
+  "mem_budget_gb": 4.3
+ }
+}

@@ -1,0 +1,4 @@
+
+# 2026-10-22T22:18:12Z V4_DECIDE
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-v4_decide", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "cc-kernel:wave-a", "python", "-m", "v4.dev", "decide"]
+{"winner": null, "outcome": "no candidate clears the rule: the score lever alone does not move dev precision enough; v3 stays the kernel"}

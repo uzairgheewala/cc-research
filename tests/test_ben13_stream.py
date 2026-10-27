@@ -94,10 +94,40 @@ class EvaluatorAndMethodsTest(unittest.TestCase):
         self.assertEqual(len(set(rw)), len(net))
         self.assertTrue(all(a != b for a, b in rw + pm))
 
-    def test_negative_sampling_guard(self):
+    def test_dense_network_keeps_wasserstein_and_marks_for_undefined(self):
+        # wave A (22 Oct): a dense network's path closure leaves no negatives; the cell must keep its Wasserstein score
         from analysis.ben13 import evaluate
-        with self.assertRaises(ValueError):
-            evaluate.statistical(self.L.ev, self.L.md(2000), -1, 500)
+        r = evaluate.statistical(self.L.ev, self.L.md(2000), -1, 500)
+        self.assertIsNone(r["for"])
+        self.assertIn("negative pairs", r["for_undefined"])
+        self.assertTrue(r["wasserstein"] == r["wasserstein"])                # a number, not NaN
+        with self.assertRaises(ValueError):                                   # the original evaluator cannot run it at all
+            evaluate.statistical(self.L.ev, self.L.md(2000), -1, 500, full=True)
+
+
+@unittest.skipUnless(HAVE_CB, "causalbench not installed (bench image only)")
+class CellLoopTest(unittest.TestCase):
+    def test_failed_cell_is_redone_and_undefined_for_is_printed(self):
+        # sheet B (22 Oct): the cell loop's progress line formatted FOR as a number and crashed on a dense network
+        sys.modules.setdefault("gdown", types.ModuleType("gdown"))
+        from analysis.ben13 import synth, stream_preprocess as sp, run
+        with tempfile.TemporaryDirectory() as t:
+            d = Path(t)
+            h5, xl = synth.make(d / "raw", cells=6000, genes=40, seed=3, n_perturbed=20)
+            sp.main(["--h5ad", str(h5), "--summary", str(xl), "--sheet", synth.SHEET, "--out", str(d / "dataset_k562_filtered.npz")])
+            old = run.OUT
+            run.OUT = d / "out"
+            try:
+                (run.OUT / "k562").mkdir(parents=True)
+                (run.OUT / "k562" / "random_k50.json").write_text(json.dumps({"status": "failed", "error": "ValueError: x"}))
+                rc = run.main(["cells", "--line", "k562", "--smoke", "--data-dir", str(d), "--only", "random_k50", "--draws", "2"])
+                rec = json.loads((run.OUT / "k562" / "random_k50.json").read_text())
+            finally:
+                run.OUT = old
+            self.assertEqual(rc, 0)
+            self.assertEqual(rec["status"], "ok")
+            self.assertEqual(rec["earlier_error"], "ValueError: x")
+            self.assertIn("wasserstein", rec["statistical"])
 
 
 if __name__ == "__main__":

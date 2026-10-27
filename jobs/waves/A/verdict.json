@@ -1,7 +1,7 @@
 {
  "wave": "A",
- "written": "2026-10-20T22:39:44Z",
- "code_identity": "1ed364e73fa60647425903137d742de95c8d1dbf98eab9d57e8b92490eacbca0",
+ "written": "2026-10-22T06:50:48Z",
+ "code_identity": "873f34749f6609076c89ca40af4c8d83b7a72b76bf4c6c85ab24bf317cfcbcd0",
  "identity": {
   "ok": true,
   "checked": 319,
@@ -13,12 +13,19 @@
   "cpus": 16,
   "workers": 2,
   "mem_gb": 0,
-  "started": "2026-10-20T16:49:41Z"
+  "started": "2026-10-20T16:49:41Z",
+  "finished": "2026-10-22T06:50:48Z"
  },
  "preflight": {
-  "disk_free_gb": 129.0,
+  "disk_free_gb": 130.6,
   "docker_mem_gb": 6.2,
   "images_missing": [],
+  "docker_df": [
+   "Images: 43.18GB (12.26GB (28%) reclaimable)",
+   "Containers: 632.8MB (632.8MB (100%) reclaimable)",
+   "Local Volumes: 795.1MB (351.2MB (44%) reclaimable)",
+   "Build Cache: 44.44GB (19.2GB reclaimable)"
+  ],
   "avx512f": false,
   "avx2": true,
   "note": "this CPU has no AVX-512: BLAS runs with HASWELL; engine results can differ in the last digits from the agent's cache, which the canary digest checks",
@@ -34,27 +41,27 @@
   },
   "B_BENCH": {
    "status": "ok",
-   "wall_min": 0.2
+   "wall_min": 0.27
   },
   "B_X5": {
    "status": "ok",
-   "wall_min": 0.21
+   "wall_min": 0.17
   },
   "T_HOST": {
    "status": "ok",
-   "wall_min": 0.09
+   "wall_min": 0.87
   },
   "T_KERNEL": {
    "status": "ok",
-   "wall_min": 0.91
+   "wall_min": 1.6
   },
   "T_BENCH": {
    "status": "ok",
-   "wall_min": 0.25
+   "wall_min": 0.24
   },
   "CHECKS": {
    "status": "ok",
-   "wall_min": 3.5
+   "wall_min": 2.97
   },
   "B2GEN": {
    "status": "ok",
@@ -65,30 +72,28 @@
    "wall_min": 2.22
   },
   "B_CC": {
-   "status": "not_run"
+   "status": "ok",
+   "why": "done test already passes"
   },
   "STUB_06": {
-   "status": "failed",
-   "wall_min": 0.29,
-   "exit": 125
+   "status": "ok",
+   "wall_min": 13.75
   },
   "CHK_06": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 0.03
   },
   "STUB_03": {
-   "status": "failed",
-   "wall_min": 0.27,
-   "exit": 125
+   "status": "ok",
+   "wall_min": 17.04
   },
   "CHK_03": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 0.03
   },
   "FETCH_CB": {
-   "status": "failed",
-   "wall_min": 2.34,
-   "exit": 1
+   "status": "ok",
+   "wall_min": 4.03
   },
   "FETCH_X5": {
    "status": "ok",
@@ -135,40 +140,42 @@
    "wall_min": 137.18
   },
   "CB_PRE_K": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 4.34
   },
   "CB_PRE_R": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 3.94
   },
   "F2_READ": {
-   "status": "failed",
-   "wall_min": 0.7,
-   "exit": 1
+   "status": "ok",
+   "wall_min": 17.24
   },
   "CB_CELLS_K": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 106.59
   },
   "CB_CELLS_R": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 28.35
   },
   "CB_MERGE": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 0.1
   },
   "LIVE_06": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 270.88,
+   "usd": 4.8437
   },
   "CHK_06L": {
-   "status": "skipped",
-   "why": "dependency not ok"
+   "status": "ok",
+   "wall_min": 0.03
   },
   "LIVE_06M": {
-   "status": "not_run"
+   "status": "ok",
+   "wall_min": 271.76,
+   "usd": 12.5735
   }
  },
  "must_shows": {
@@ -206,8 +213,8 @@
    "gate": true
   },
   "M_TRACE": {
-   "status": "fail",
-   "value": 1,
+   "status": "pass",
+   "value": 0,
    "bundle": "A1",
    "metric": "json",
    "bar": {
@@ -239,9 +246,8 @@
    "gate": false
   },
   "M_STUB06_ID": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\fork\\\\fork_bld06_stub.json'",
+   "status": "pass",
+   "value": true,
    "bundle": "A2",
    "metric": "json",
    "bar": {
@@ -251,9 +257,8 @@
    "gate": true
   },
   "M_STUB06_RUN": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\fork\\\\fork_bld06_stub.json'",
+   "status": "pass",
+   "value": 6,
    "bundle": "A2",
    "metric": "json",
    "bar": {
@@ -263,9 +268,8 @@
    "gate": true
   },
   "M_STUB03_ID": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\fork\\\\fork_ext03_stub.json'",
+   "status": "pass",
+   "value": true,
    "bundle": "A2",
    "metric": "json",
    "bar": {
@@ -275,9 +279,8 @@
    "gate": false
   },
   "M_STUB03_RUN": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\fork\\\\fork_ext03_stub.json'",
+   "status": "pass",
+   "value": 0,
    "bundle": "A2",
    "metric": "json",
    "bar": {
@@ -342,9 +345,8 @@
    "gate": false
   },
   "M_F2_ER2": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\q2_v3\\\\family2_read.json'",
+   "status": "fail",
+   "value": false,
    "bundle": "A4",
    "metric": "json",
    "bar": {
@@ -354,9 +356,8 @@
    "gate": false
   },
   "M_F2_ECE": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\q2_v3\\\\family2_read.json'",
+   "status": "pass",
+   "value": 0.04220026845269466,
    "bundle": "A4",
    "metric": "json",
    "bar": {
@@ -366,9 +367,8 @@
    "gate": false
   },
   "M_CB_K_CELLS": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\external\\\\causalbench\\\\dataset_k562_filtered.npz.json'",
+   "status": "pass",
+   "value": 162751,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -378,9 +378,8 @@
    "gate": true
   },
   "M_CB_K_GENES": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\external\\\\causalbench\\\\dataset_k562_filtered.npz.json'",
+   "status": "pass",
+   "value": 622,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -390,9 +389,8 @@
    "gate": false
   },
   "M_CB_R_CELLS": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\external\\\\causalbench\\\\dataset_rpe1_filtered.npz.json'",
+   "status": "pass",
+   "value": 162733,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -402,9 +400,8 @@
    "gate": true
   },
   "M_CB_R_GENES": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\external\\\\causalbench\\\\dataset_rpe1_filtered.npz.json'",
+   "status": "pass",
+   "value": 383,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -414,9 +411,8 @@
    "gate": false
   },
   "M_CB_S1": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\ben13\\\\summary.json'",
+   "status": "pass",
+   "value": true,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -426,9 +422,8 @@
    "gate": false
   },
   "M_CB_EVAL": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\ben13\\\\summary.json'",
+   "status": "pass",
+   "value": true,
    "bundle": "A6",
    "metric": "json",
    "bar": {
@@ -438,9 +433,8 @@
    "gate": false
   },
   "M_LIVE06": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\analysis\\\\results\\\\fork\\\\fork_bld06_live.json'",
+   "status": "pass",
+   "value": 30,
    "bundle": "A2",
    "metric": "json",
    "bar": {
@@ -450,9 +444,8 @@
    "gate": false
   },
   "M_CC_BASE": {
-   "status": "not_run",
-   "value": null,
-   "why": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\uzair\\\\Documents\\\\UCSD\\\\Fall 2026\\\\DSC 180A\\\\cc-research\\\\jobs\\\\waves\\\\images\\\\cc.json'",
+   "status": "fail",
+   "value": "sha256:92c6b284ffc3d0680ed212dea69ae0576bd1e889fef81b8608efffc6d82c787e",
    "bundle": "INF-06",
    "metric": "json",
    "bar": {
@@ -462,8 +455,8 @@
    "gate": false
   },
   "M_CB_FETCH": {
-   "status": "fail",
-   "value": false,
+   "status": "pass",
+   "value": true,
    "bundle": "BEN-13",
    "metric": "json",
    "bar": {
@@ -479,10 +472,6 @@
    "then": "hosts agree: every number of this sheet is read as produced"
   },
   {
-   "if": "fail(M_TRACE)",
-   "then": "tracker errors on Uzair's machine: wave B fixes them first (the sandbox cannot see runs/ and external/, so its own check was not authoritative)"
-  },
-  {
    "if": "pass(M_X4)",
    "then": "X4: the nonlinear-only class is kernel-detectable; with X1, missed links are explained except the floor; wave B writes the explanation ledger"
   },
@@ -491,14 +480,18 @@
    "then": "D1 stays the paper's line; the D2-score route (a nonlinear score inside GES) is a wave-B design question only"
   },
   {
-   "if": "skipped(LIVE_06)",
-   "then": "the live run waited on the branch stubs (or the fork): after the fork, run the sheet again (finished jobs are not repeated)"
+   "if": "pass(M_CB_K_CELLS) and pass(M_CB_R_CELLS) and pass(M_CB_S1)",
+   "then": "BEN-13 S1 passes: wave B writes the shortcut-share table (placement, permutation, echo, literature)"
   },
   {
-   "if": "fail(M_CB_FETCH)",
-   "then": "the two figshare files were not in Downloads (or failed size / md5): download them in a browser and run the sheet again; FETCHED.json names each file's reason"
+   "if": "pass(M_LIVE06)",
+   "then": "refinement v2 runs inside Causal-Copilot on the fork: wave B scores it against BND-08's unmodified runs and the Q1 checkpoint (BND-13) shows the changed pipeline"
+  },
+  {
+   "if": "fail(M_CC_BASE)",
+   "then": "the base image was rebuilt (packages downloaded again): the branch is compared with LIVE_06M's main control on the same image; BND-08 is history for this comparison"
   }
  ],
  "no_rule_matched": false,
- "usd_total": 0
+ "usd_total": 17.4172
 }

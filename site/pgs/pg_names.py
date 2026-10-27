@@ -158,6 +158,8 @@ BODY = "\n".join([
       f"names its F1 drops from {n('ab06.matmcd.floor', '{:.3f}')} to {n('ab06.matmcd.neutral', '{:.3f}')} and "
       f"{n('ab06.matmcd.swapped', '{:.3f}')}, below its own PC graph in {n('ab06.matmcd.below.neutral')} and "
       f"{n('ab06.matmcd.below.swapped')} of 10 scenarios."),
+    P('To see where the names enter Causal-Copilot\'s code, and one scenario run with real, neutral and moved names side '
+      'by side, open <a href="copilot/replay.html">the replay</a> in Inside Causal-Copilot.'),  # S29 (TEAM-13)
     answer(f"From the names, in every system that lets the model decide a connection. Swapped names cost three of the five "
            f"systems 0.10 or more in directed F1 (a fourth, PyWhy-LLM, loses as much on fewer pairs than the rule needs), and "
            f"one hybrid falls below its own data-only graph. The system that "

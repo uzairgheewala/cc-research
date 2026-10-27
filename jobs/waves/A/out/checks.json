@@ -5,58 +5,54 @@
  "steps": {
   "verify": {
    "exit": 0,
-   "seconds": 51.9,
+   "seconds": 45.0,
    "tail": [
-    "items 237; done 147 (V4 0, V3 143, V2 3, V1 1); reopened 1; items with problems 2",
-    "done but below required evidence level: []",
-    "   BLD-11 V1 | done but evidence level V1 < required V3; evidence changed since pinned: AGENTS.md"
+    "items 237; done 147 (V4 0, V3 144, V2 3, V1 0); reopened 0; items with problems 0",
+    "done but below required evidence level: []"
    ]
   },
   "trace": {
-   "exit": 1,
-   "seconds": 2.5,
+   "exit": 0,
+   "seconds": 2.2,
    "tail": [
-    "links: blocks 27, curates 66, evidences 869, implements 54, mentions 683, mirrors 300, parent_of 23, published_at 246, relates 1",
-    "dev 237, prod rows 67 (groups 7), not in prod 111, newly locked IDs 0; 1 errors, 8 warnings (trace.md)",
-    "  ERROR T6 BLD-11 is published \u2705 but its dev tickets say reopened (BLD-11 reopened)",
-    "  WARN W3 TEAM-07 is done while blocked by unfinished ['BLD-11']",
+    "links: blocks 27, curates 66, evidences 869, implements 54, mentions 685, mirrors 300, parent_of 23, published_at 246, relates 1",
+    "dev 237, prod rows 67 (groups 7), not in prod 111, newly locked IDs 0; 0 errors, 8 warnings (trace.md)",
     "  WARN W1 REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
     "  WARN W1 AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
     "  WARN W1 BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)",
     "  WARN W1 BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-20T04:51)",
+    "  WARN W5 file:analysis/reports/copilot_code_notes.md mentions TEAM-13, which is not a ticket (typo, or never issued)",
     "  WARN R3 tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)",
     "  WARN R3 tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)",
     "  WARN R3 tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)"
    ],
-   "errors": 1,
+   "errors": 0,
    "warnings": 8
   },
   "snapshot": {
    "exit": 0,
-   "seconds": 1.4,
+   "seconds": 1.2,
    "tail": [
-    "snapshot f789d37a8865: 237 items (P1 87/110, P2 25/38, P3 2/11, spine 32/78), 37 bundles, 473 metrics, 55 sources, 0 errors"
+    "snapshot 31999c0646bb: 237 items (P1 87/110, P2 25/38, P3 2/11, spine 33/78), 37 bundles, 473 metrics, 55 sources, 0 errors"
    ]
   },
   "secret_scan": {
    "exit": 0,
-   "seconds": 114.9,
+   "seconds": 112.4,
    "tail": [
-    "secret scan: 8408 files, 0 findings"
+    "secret scan: 8591 files, 0 findings"
    ]
   },
   "ci_check": {
-   "exit": 1,
-   "seconds": 37.1,
+   "exit": 0,
+   "seconds": 13.7,
    "tail": [
-    "NOTE  BLD-11: AGENTS.md changed since its pin; the tracker already shows the item as reopened",
-    "ERROR INF-10: docs/WAVES.md changed since it was pinned 2026-10-20T21:08:01Z (repin with tracker/verify.py --repin INF-10 after review)",
-    "ci_check: in_repo_ok 839, drift_known 1, excluded_listed 13, upstream 2, pointer 0, stale_pin 37; 1 errors"
+    "ci_check: in_repo_ok 841, drift_known 0, excluded_listed 13, upstream 2, pointer 0, stale_pin 37; 0 errors"
    ]
   },
   "site": {
    "exit": 0,
-   "seconds": 1.3,
+   "seconds": 0.9,
    "tail": [
     "INFO  board causalarena-real names BEN-14, which the tracker does not have yet",
     "REREAD index (TGT-18: not bound at review -> in_progress|46|078599122fea; TGT-19: not bound at review -> in_progress|15|743b4d7abb7d; BEN-13: not bound at review -> in_progress|14|06efd50129c3; INF-10: not bound at review -> in_progress|12|25735c798971; TEAM-11: not bound at review -> in_progress|5|0f8d94c482d7)",
@@ -70,6 +66,6 @@
    "reread": 5
   }
  },
- "trace_errors": 1,
+ "trace_errors": 0,
  "site_errors": 0
 }

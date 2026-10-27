@@ -1,0 +1,73 @@
+{
+ "tickets": [
+  "INF-10"
+ ],
+ "steps": {
+  "verify": {
+   "exit": 0,
+   "seconds": 51.3,
+   "tail": [
+    "items 240; done 150 (V4 0, V3 147, V2 3, V1 0); reopened 0; items with problems 0",
+    "done but below required evidence level: []"
+   ]
+  },
+  "trace": {
+   "exit": 0,
+   "seconds": 2.6,
+   "tail": [
+    "  WARN W1 DLV-04 is suspect: ['DLV-04'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 REP-15 is suspect: ['REP-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 AUD-17 is suspect: ['BEN-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 CAP-07 is suspect: ['CAP-07'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 CAP-11 is suspect: ['CAP-11'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 BLD-01 is suspect: ['BLD-01'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 BLD-06 is suspect: ['BLD-06'] changed since it was last published or reviewed (2026-10-16T02:14)",
+    "  WARN W1 BLD-11 is suspect: ['BLD-11'] changed since it was last published or reviewed (2026-10-20T04:51)",
+    "  WARN W5 file:analysis/reports/copilot_code_notes.md mentions TEAM-13, which is not a ticket (typo, or never issued)",
+    "  WARN R3 tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)",
+    "  WARN R3 tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)",
+    "  WARN R3 tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)"
+   ],
+   "errors": 0,
+   "warnings": 13
+  },
+  "snapshot": {
+   "exit": 0,
+   "seconds": 1.2,
+   "tail": [
+    "snapshot d3e9516cdf44: 240 items (P1 87/110, P2 25/38, P3 2/11, spine 36/81), 37 bundles, 473 metrics, 55 sources, 0 errors"
+   ]
+  },
+  "secret_scan": {
+   "exit": 0,
+   "seconds": 134.6,
+   "tail": [
+    "secret scan: 9368 files, 0 findings"
+   ]
+  },
+  "ci_check": {
+   "exit": 0,
+   "seconds": 14.4,
+   "tail": [
+    "ci_check: in_repo_ok 883, drift_known 0, excluded_listed 13, upstream 2, pointer 0, stale_pin 37; 0 errors"
+   ]
+  },
+  "site": {
+   "exit": 0,
+   "seconds": 1.0,
+   "tail": [
+    "INFO  board causalarena-real names BEN-14, which the tracker does not have yet",
+    "REREAD index (TGT-18: not bound at review -> in_progress|49|df8d270f2800; TGT-19: not bound at review -> in_progress|17|675966b2136c; BEN-13: not bound at review -> in_progress|17|5739d7060ee0; INF-10: not bound at review -> done|15|c529a54ed2be; TEAM-11: not bound at review -> in_progress|5|0f8d94c482d7)",
+    "REREAD theses (TGT-18: not bound at review -> in_progress|49|df8d270f2800; TGT-19: not bound at review -> in_progress|17|675966b2136c; CAP-07: not bound at review -> in_progress|6|fac2582748d2)",
+    "REREAD gaps (never reviewed)",
+    "REREAD status (TGT-18: not bound at review -> in_progress|49|df8d270f2800; TGT-19: not bound at review -> in_progress|17|675966b2136c; CAP-07: not bound at review -> in_progress|6|fac2582748d2; BLD-16: not bound at review -> done|21|26d923987203; BEN-13: not bound at review -> in_progress|17|5739d7060ee0; INF-06: not bound at review -> in_progress|14|5e0e06a1c744; INF-10: not bound at review -> done|15|c529a54ed2be)",
+    "REREAD explore (never reviewed)",
+    "built 17 pages in /tree/cc-research/site/_build; 385 numbers used, 88 registry numbers not printed; 0 errors, 0 warnings, 5 pages to re-read"
+   ],
+   "errors": 0,
+   "reread": 5
+  }
+ },
+ "trace_errors": 0,
+ "site_errors": 0
+}

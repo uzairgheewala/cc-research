@@ -1,0 +1,11 @@
+
+# 2026-10-22T20:31:22Z V4_ENG_A2
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-v4_eng_a2-p1", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "MKL_NUM_THREADS=1", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "OPENBLAS_NUM_THREADS=1", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "1g", "cc-kernel:wave-a", "python", "-m", "v4.dev", "engines", "--knob", "A2", "--workers", "1", "--part", "1/4"]
+[v4] engines A2 part 1/4: 63 files
+[v4] A2 10 / 63 files (78 s)
+[v4] A2 20 / 63 files (158 s)
+[v4] A2 30 / 63 files (237 s)
+[v4] A2 40 / 63 files (321 s)
+[v4] A2 50 / 63 files (428 s)
+[v4] A2 60 / 63 files (516 s)
+JOB-COMPLETE A2 63 files

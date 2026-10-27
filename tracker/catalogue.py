@@ -1849,3 +1849,213 @@ for _i in ITEMS:
     if _i["id"] in _N30:
         _i["note"] = (_i.get("note") or "") + _N30[_i["id"]]
 
+# ---- overrides p31 (2026-10-22): wave A readback (sheet A, fourth run)
+_W31 = {
+    "INF-10": ["jobs/waves/A/sheet.json", "jobs/waves/A/verdict.json", "jobs/waves/A/state.json"],
+    "TGT-18": ["analysis/results/q2_v3/family2_read.json"],
+    "CAP-07": ["analysis/results/q2_v3/family2_read.json"],
+    "BEN-13": ["analysis/results/ben13/summary.json"],
+    "BLD-06": ["analysis/results/fork/fork_bld06_live.json", "plans/results/fork_bld06_live.capped.json",
+               "plans/results/fork_bld06_live_main.capped.json"],
+    "EXT-03": ["analysis/results/fork/fork_ext03_stub.json", "plans/results/fork_bld06_live_main.capped.json"],
+    "INF-06": ["analysis/results/fork/fork_bld06_stub.json", "analysis/results/fork/fork_ext03_stub.json",
+               "jobs/waves/images/cc.json"],
+    "CAP-11": ["jobs/waves/A/out/canary.json"],
+    "TGT-19": ["analysis/results/q2_v3/explain_dev.json"],
+}
+_N31 = {
+    "INF-10": (" 22 Oct: sheet A ran in full on Uzair's machine (fourth run: 35 runs, 26 must-shows scored, decisions "
+               "matched; jobs/waves/A/verdict.json). Earlier runs found and fixed by class: CRLF fixtures, CPU-dependent "
+               "digests, the freeze guard, empty downloads, a missing image, a hung build (time limits, Docker check)."),
+    "TGT-18": (" 22 Oct, family-2 held-out read (one read, 500 files, 50 source scenarios, regime D; "
+               "analysis/results/q2_v3/family2_read.json): precision at half coverage 0.795 [0.777, 0.811] at coverage "
+               "0.545: ER-2 not met (the bar 0.80 lies inside the interval). Linear track 0.851 [0.826, 0.872] (meets the "
+               "precision bar), nonlinear 0.742 [0.726, 0.758]. Pre-registered F1-F4 all hold; rule 'transfer'."),
+    "CAP-07": (" 22 Oct, family 2: ECE 0.042 [0.030, 0.053]: the frozen semantic confidence model transfers within its "
+               "calibration error (F3), but ER-3 is not met (upper end above 0.05). Under-confident on the linear track "
+               "(realised minus claimed +0.064), over-confident on the nonlinear track (-0.046)."),
+    "BEN-13": (" 22 Oct, sheet A: S0 shapes exact (K562 162,751 x 622; RPE1 162,733 x 383); S1 all four published "
+               "MeanDifference rows within tolerance (Wasserstein to the third decimal). P1 refuted: edge placement "
+               "carries 0.13 (K562) and 0.07 (RPE1) of MeanDifference's above-random Wasserstein at k = 1000, so the score "
+               "rests on the specific pairs. P3 holds: MeanDifference reaches 0.90 / 0.95 of the test-split total-effect "
+               "ceiling. P2 holds in the 3 cells computed. Not computed: random networks at k = 5000 and of literature "
+               "size, because CausalBench's false omission rate takes negatives outside the path closure and a dense "
+               "network leaves none; the cells also dropped their Wasserstein. Fixed on sheet B. CORUM not reachable."),
+    "BLD-06": (" 22 Oct, live on the fork (branch bld-06-refinement-v2, 30 BND-08 tables, gpt-4o): 30 of 30 runs completed "
+               "against 22 of 30 for unmodified main on the same rebuilt image (8 crashes in the cycle step; BND-08 had 6 of "
+               "30 on the old image); $4.84 against $12.57; refinement v2 ran in all 30. Graph quality against the data "
+               "reference is scored on sheet B."),
+    "EXT-03": (" 22 Oct: the cycle-step KeyError recurs on unmodified main on the rebuilt image (8 of 30, LIVE_06M) and "
+               "never on the branch stubs (fork_ext03_stub: 0)."),
+    "INF-06": (" 22 Oct: both branch stubs pass identity and their checks; the Causal-Copilot base image was rebuilt "
+               "(new id, jobs/waves/images/cc.json), so live comparisons use LIVE_06M's main control on the same image."),
+    "CAP-11": (" 22 Oct: qualified. The ledger hash is the same for the same inputs on one CPU family (BLAS kernel); "
+               "between an AVX-512 and an AVX2 host the test statistics differ in the last digits and the full hash "
+               "differs, while the claim structure is identical (wave canary, claims_sha256)."),
+    "TGT-19": (" 22 Oct: X4 on sheet A: KCI detects the nonlinear-only missed links far above its null "
+               "(semantic +0.40, formula +0.52): those links carry signal a nonlinear test can use."),
+}
+for _i in ITEMS:
+    if _i["id"] in _W31:
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _W31[_i["id"]] if e not in _i["evidence"]]
+    if _i["id"] in _N31:
+        _i["note"] = (_i.get("note") or "") + _N31[_i["id"]]
+    if _i["id"] == "INF-10":
+        _i["status"] = "done"
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "jobs/waves/A/verdict.json", "ptr": ["must_shows", "M_T_HOST", "status"], "op": "eq", "v": "pass", "tol": None},
+            {"t": "json", "path": "jobs/waves/A/verdict.json", "ptr": ["must_shows", "M_CANARY", "status"], "op": "eq", "v": "pass", "tol": None}]
+    if _i["id"] == "TGT-18":
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "analysis/results/q2_v3/family2_read.json", "ptr": ["subsets", "all", "ER-2_met"], "op": "false", "v": None, "tol": None},
+            {"t": "json", "path": "analysis/results/q2_v3/family2_read.json", "ptr": ["subsets", "all", "precision_half"], "op": "approx", "v": 0.795, "tol": 0.001}]
+    if _i["id"] == "BEN-13":
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "analysis/results/ben13/summary.json", "ptr": ["reproduction_all"], "op": "true", "v": None, "tol": None}]
+    if _i["id"] == "CAP-11":
+        _i["criterion"] = (_i.get("criterion") or "") + " (on one CPU family; across families: the same claim structure)"
+
+# ---- overrides p32 (2026-10-22): wave B build
+ITEMS.append(item("BLD-18", "BLD", "Kernel v4 candidates: a GES score that fits nonlinear and discrete mechanisms (pre-registered knobs on dev)",
+                  "in_progress", kind="task",
+                  criterion=("Knobs, metrics, predictions and the decision rule hashed before any ledger-level dev number "
+                             "(plans/v4_prereg.json); dev evaluation and the rule's outcome (analysis/results/v4/dev.json, decision.json); "
+                             "if a knob is adopted: frozen and read once on the sealed held-out family (family 2, replicate 1)"),
+                  evidence=["plans/v4_prereg.json", "manifests/evidence/v4_prereg_2026-10-22.sha256", "v4/scores.py", "v4/dev.py",
+                            "v4/heldout_gen.py", "tests/test_v4_scores.py", "jobs/waves/B/sheet.json"],
+                  note=("22 Oct: from X1-X4 and the family-2 read (linear track 0.851, nonlinear 0.742). Knobs: G0 (v3), G1 (gauss, no "
+                        "turning), A1 / A2 (additive hinge + discrete-indicator design, lam 1 / 2), R1 (random Fourier features, ridge). "
+                        "Turning is dropped for the new scores, which are not score-equivalent (first smoke file: turning did not finish "
+                        "in 8 min; forward + backward 13 s). Sheet B runs the dev grid; no held-out file is read on sheet B.")))
+ITEMS.append(item("BLD-17", "BLD", "Pretrained engine beside GES in the ledger (D2-engine)", "done", kind="decision",
+                  criterion="X5's pre-registered rule (plans/x5_prereg.json): adopt only if AVICI's paired F1 over GES has a lower end above 0",
+                  evidence=["plans/x5_prereg.json", "analysis/results/x5/x5_dev.json"],
+                  checks=[{"t": "json", "path": "analysis/results/x5/x5_dev.json", "ptr": ["families", "semantic", "paired", "avici_shuffled_minus_ges", "hi"],
+                           "op": "le", "v": 0.0, "tol": None}],
+                  note="Decided against 20 Oct (X5): AVICI scm-v0 is below GES on both families (semantic -0.281 [-0.330, -0.232])."))
+ITEMS.append(item("CAP-19", "CAP", "Cross-host determinism: the same claims on every machine, the same hash on one CPU family", "done", kind="task",
+                  criterion=("The wave canary recomputes ledgers from scratch on Uzair's machine and matches the agent's claim structure "
+                             "(claims_sha256) on every file; full ledger hashes are compared per CPU family only"),
+                  evidence=["analysis/wave_canary.py", "jobs/waves/A/out/canary.json", "jobs/waves/A/canary_expected.json"],
+                  checks=[{"t": "json", "path": "jobs/waves/A/out/canary.json", "ptr": ["match"], "op": "true", "v": None, "tol": None}],
+                  note=("Sheet A: an AVX2 host (HASWELL kernel) and the AVX-512 sandbox give different test statistics in the last digits, so "
+                        "different full ledger hashes, and identical claims on all three canary files. Qualifies CAP-11.")))
+_W32 = {
+    "BLD-06": ["plans/bld06_live_prereg.json", "manifests/evidence/bld06_live_prereg_2026-10-22.sha256", "analysis/bld06_live_compare.py",
+               "analysis/results/fork/bld06_live_compare.json"],
+    "DLV-04": ["analysis/results/fork/bld06_live_compare.json", "plans/bld06_live_prereg.json"],
+    "EXT-03": ["docs/drafts/bug_reports/causal_copilot_cycle_step_keyerror.md"],
+    "BEN-13": ["analysis/ben13/report.py", "tests/test_ben13_summary.py", "tests/test_ben13_stream.py"],
+    "TGT-18": ["analysis/explanation_ledger.py", "analysis/results/q2_v3/explanation_ledger.json"],
+    "TGT-19": ["analysis/explanation_ledger.py", "analysis/results/q2_v3/explanation_ledger.json"],
+    "CRS-01": ["docs/meetings/2026-10-29_ta_checkin_agenda.md"],
+    "BND-13": ["docs/q1/checkpoint_skeleton.md"],
+    "INF-10": ["jobs/waves/B/sheet.json"],
+}
+_N32 = {
+    "BLD-06": (" 22 Oct, pre-registered comparison (plans/bld06_live_prereg.json; analysis/results/fork/bld06_live_compare.json): "
+               "rule 'drop_in'. Delivered directed F1 +0.071 [0.035, 0.111] over main; on the 22 tables both completed, final "
+               "adjacency F1 0.596 vs 0.321 (+0.276 [0.206, 0.335]) and directed F1 +0.014 [-0.017, 0.039]; S0 adjacency F1 "
+               "within 0.01 (the two series ran comparable algorithms)."),
+    "DLV-04": (" 22 Oct, live inside the real pipeline on S2 (BLD-06 branch, 30 runs): final adjacency F1 below the run's own "
+               "algorithm output in 1 of 30 runs (by 0.006), against 22 of 22 completed unmodified runs; no crash; every v2 edge "
+               "carries a source. The one 0.006 drop is reported, not rounded away; S1 has no live run of the branch yet."),
+    "EXT-03": " 22 Oct: upstream report drafted (docs/drafts/bug_reports/causal_copilot_cycle_step_keyerror.md); Uzair decides whether to send.",
+    "BEN-13": (" 22 Oct (wave B): the fast evaluator now keeps a dense network's Wasserstein and marks its FOR undefined; failed "
+               "cells are re-run; P1-P4 are scored in summary.json and analysis/reports/ben13_s1_s2.md is generated from it."),
+    "TGT-18": (" 22 Oct: explanation ledger (analysis/results/q2_v3/explanation_ledger.json): every dev gap of v3 split into typed "
+               "segments that sum to the anatomy totals (semantic missed 1,647 = floor 459 walled + sample size 194 + nonlinear-only "
+               "268 + search gap 726)."),
+    "TGT-19": " 22 Oct: reversed directions in the explanation ledger: skeleton-caused, rule-caused, open on the true skeleton.",
+    "CRS-01": " 22 Oct: agenda written (docs/meetings/2026-10-29_ta_checkin_agenda.md); sheet B numbers marked as pending.",
+    "BND-13": " 22 Oct: outline with typed placeholders (docs/q1/checkpoint_skeleton.md); the TA's format answer on 29 Oct shapes the final document.",
+}
+for _i in ITEMS:
+    if _i["id"] in _W32:
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _W32[_i["id"]] if e not in _i["evidence"]]
+    if _i["id"] in _N32:
+        _i["note"] = (_i.get("note") or "") + _N32[_i["id"]]
+    if _i["id"] == "BLD-06":
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "analysis/results/fork/bld06_live_compare.json", "ptr": ["rule"], "op": "eq", "v": "drop_in", "tol": None},
+            {"t": "json", "path": "analysis/results/fork/bld06_live_compare.json", "ptr": ["completed", "branch"], "op": "eq", "v": 30, "tol": None},
+            {"t": "json", "path": "analysis/results/fork/bld06_live_compare.json", "ptr": ["completed", "main"], "op": "eq", "v": 22, "tol": None}]
+
+# ---- overrides p33 (2026-10-22): wave B readback
+_W33 = {
+    "BLD-18": ["analysis/results/v4/dev.json", "analysis/results/v4/decision.json", "analysis/results/v4/heldout_seal.json",
+               "analysis/results/v4/CONTRACT.json", "jobs/waves/B/verdict.json"],
+    "TGT-18": ["analysis/results/v4/decision.json"],
+    "BEN-13": ["analysis/reports/ben13_s1_s2.md", "analysis/results/ben13/CONTRACT.json"],
+}
+_N33 = {
+    "BLD-18": (" 22 Oct, sheet B (analysis/results/v4/decision.json): no knob clears the pre-registered rule, so v3 stays and no "
+               "held-out file is read. Semantic dev precision at half coverage, paired gain over G0 (0.808): A1 +0.040 "
+               "[-0.011, 0.094], R1 +0.030 [-0.020, 0.076], A2 +0.015 [-0.031, 0.065]; A1 is also ineligible on formula (0.866 "
+               "against G0's 0.881). The new scores cut GES's false adjacencies by 38-60 % per file (Q3 holds) and raise "
+               "skeleton F1 (Q1 holds), but under every new score the true DAG still never scores as high as GES's output on a "
+               "semantic file (Q2 fails: 0 of 125 for A1, A2 and R1). The G0 canary reproduces v3's dev number (0.8077 against 0.8078). Dropping the turning phase "
+               "is neutral (Q4). Held-out family 2 replicate 1: 500 files written and sealed, scored by no kernel."),
+    "TGT-18": (" 22 Oct: the score lever (BLD-18) moved semantic dev precision in the predicted direction for all three nonlinear "
+               "scores, but no gain's interval excludes zero on 25 dev scenarios; ER-2 stays not met."),
+    "BEN-13": (" 22 Oct, sheet B: S2 complete for MeanDifference (analysis/reports/ben13_s1_s2.md). P1 fails (placement shares "
+               "0.07-0.14), P2 holds in all 4 cells, P3 holds (0.90 / 0.95), P4 holds (STRING links 0.132 vs at most 0.113 for "
+               "same-size random networks in K562, 0.118 vs 0.099 in RPE1). MeanDifference's false omission rate is within the "
+               "tolerance of random networks' in all three computable cells, so the FOR metric does not separate it from "
+               "random. Other published methods not yet audited (criterion: per published method)."),
+}
+for _i in ITEMS:
+    if _i["id"] in _W33:
+        _i["evidence"] = list(_i["evidence"]) + [e for e in _W33[_i["id"]] if e not in _i["evidence"]]
+    if _i["id"] in _N33:
+        _i["note"] = (_i.get("note") or "") + _N33[_i["id"]]
+    if _i["id"] == "BLD-18":
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "analysis/results/v4/decision.json", "ptr": ["winner"], "op": "eq", "v": None, "tol": None},
+            {"t": "json", "path": "analysis/results/v4/heldout_seal.json", "ptr": ["files"], "op": "eq", "v": 500, "tol": None}]
+    if _i["id"] == "BEN-13":
+        _i["checks"] = list(_i["checks"]) + [
+            {"t": "json", "path": "analysis/results/ben13/summary.json", "ptr": ["predictions", "P1", "verdict"], "op": "eq", "v": "fails", "tol": None},
+            {"t": "json", "path": "analysis/results/ben13/summary.json", "ptr": ["predictions", "P4", "verdict"], "op": "eq", "v": "holds", "tol": None}]
+
+# ---- overrides s30 (2026-10-20): Inside Causal-Copilot, the code-explorer site (TEAM-13)
+ITEMS.append(item("TEAM-13", "TEAM", "Inside Causal-Copilot: a site explaining how every part of Causal-Copilot works",
+                  "in_progress", kind="task",
+                  criterion=("A typed model of the first-party code at a31aa7c extracted from the AST and checked against the baseline "
+                             "manifest; nine step pages written by reading the code and bound to the hashes of the functions they "
+                             "describe; reference pages (state, model calls, algorithms, prompts, every module and function); a "
+                             "findings layer with evidence labels; one recorded scenario replayed under three name arms; the build "
+                             "fails on any function, excerpt, prompt or source that does not match; unit tests"),
+                  evidence=["site/copilot/extract.py", "site/copilot/model.json", "site/copilot/snip.py", "site/copilot/excerpts.json",
+                            "site/copilot/build.py", "site/copilot/bindings.json", "site/copilot/replay.json",
+                            "site/copilot/export_replay.py", "site/copilot/algorithms.json", "tests/test_copilot_site.py",
+                            "analysis/reports/copilot_code_notes.md"],
+                  note=("Uzair, 20 Oct: wants to understand Causal-Copilot's code, with a full site on its architecture "
+                        "(project:claude/copilot-explorer-design-2026-10-20.md). Built 20 Oct; done once he has read it on the deployed site.")))
+
+# ---- overrides s34 (2026-10-27): public Q1 repository (DLV-07); checkpoint date and content per the course page
+ITEMS.append(item("DLV-07", "DLV", "Public Q1 code repository: a curated, reproducible export of cc-research", "in_progress",
+                  kind="deadline", due="2026-11-06",
+                  criterion=("A public GitHub repository, linked from the checkpoint, produced by tools/export_q1.py from an allowlist: "
+                             "README with data, dependencies and commands; the comparison script run verbatim on reduced run states "
+                             "checked against a manifest of the full files; python run.py reproduce recomputes "
+                             "analysis/results/fork/bld06_live_compare.json exactly with no API key; CI runs it on every push"),
+                  evidence=["tools/export_q1.py", "docs/q1_repo/README.md", "docs/q1_repo/run.py", "docs/q1_repo/tests/test_reproduce.py",
+                            "docs/q1_repo/docs/method.md", "docs/q1_repo/docs/code_tour.md", "analysis/trace_q011.py",
+                            "analysis/results/run_trace/q011_gas_void.json", "analysis/reports/run_trace/q011_gas_void.md"],
+                  checks=[{"t": "json", "path": "analysis/results/run_trace/q011_gas_void.json",
+                           "ptr": ["arms", "branch (refinement v2)", "delivered_graph"], "op": "eq", "v": "void -> gas", "tol": None},
+                          {"t": "json", "path": "analysis/results/run_trace/q011_gas_void.json",
+                           "ptr": ["arms", "main (unmodified)", "delivered_graph"], "op": "eq", "v": "no link", "tol": None}],
+                  note=("Uzair, 27 Oct: route (b) of claude/reorg-2026-10-27.md, a curated public Q1 repo (cc-research is public too). "
+                        "Export checked on the device 27 Oct: 165 files, 9.1 MB, reproduction exact, 4 tests pass. Done when the "
+                        "repository is public, CI is green and the checkpoint links it.")))
+for _i in ITEMS:
+    if _i["id"] in ("DLV-05", "CRS-02"):
+        _i["due"] = "2026-11-06"
+        _i["title"] = _i["title"].replace("(Mon 2 Nov)", "(Fri 6 Nov)")
+        _i["note"] = ((_i.get("note") or "") + " 27 Oct: the course page sets Fri 6 Nov; the checkpoint is the title, abstract and "
+                      "introduction (intro paragraph, prior work, data) in the course LaTeX template, plus the public code link (DLV-07).").strip()
+    if _i["id"] == "DLV-05":
+        _i["criterion"] = ("Title, abstract and introduction (intro paragraph, prior work, data description) submitted in the course "
+                           "LaTeX template, with a link to the public Q1 repository (DLV-07)")

@@ -1,0 +1,23 @@
+Wave runner: time limits, Docker engine check, exclusive image build
+
+Tickets: INF-10, INF-06
+
+Sheet A's third run hung for 15 hours: B_CC's base image build stopped making progress when the
+Docker engine stopped answering (F2_READ failed on the engine's _ping two minutes in, before its
+container existed; nothing was read), and the runner had no time limit, so everything waited.
+
+- harness/wave.py: wall limit per run (default max(60, 6 x est_min) minutes) and optional stall
+  limit (no new log output); a stopped run's process tree and named container are removed;
+  timeout / stalled / infra / interrupted are not results and re-run on the next call; runs that
+  need Docker wait while the engine does not answer, and the runner exits 3 after 10 minutes;
+  exclusive runs run alone; Ctrl-C stops jobs and containers and saves the state; heartbeat every
+  10 minutes; preflight records `docker system df`.
+- cc.ps1: Invoke-InContainer names its container from CC_CONTAINER_NAME (set by the runner).
+- jobs/waves/A/sheet.json: uses_docker on host runs that drive Docker; B_CC exclusive, 20-min
+  stall and 120-min wall limits; stall limit 150 min on the live series.
+- tests/test_wave_runner.py: timeout, stall, Docker-down wait and stop, infra, exclusive.
+- WAVE_STATE.md: third run recorded.
+- tracker: repins for the changed evidence (cc.ps1, harness/wave.py, tests), then snapshot.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01GTMgjH69o779xsptiUAyCM

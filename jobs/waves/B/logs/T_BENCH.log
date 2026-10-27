@@ -1,0 +1,95 @@
+
+# 2026-10-22T13:31:27Z T_BENCH
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-t_bench", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "tests/run_tests.py", "--pattern", "test_ben13*.py", "--out", "jobs/waves/B/out/tests_bench.json"]
+[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmpvuzkt9gz/Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmp7av1kebs/Downloads)
+[fetch] b.h5ad: failed (/tmp/tmp7av1kebs/Downloads/B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..[ben13.stream 13:31:31] synth.h5ad: 14843 cells x 120 genes, X float32
+[ben13.stream 13:31:31] pass 1: 2048 / 14843 rows
+[ben13.stream 13:31:31] pass 2: 2048 / 14843 rows
+[ben13.stream 13:31:31] wrote /tmp/tmpo8expaqd/dataset_k562_filtered.npz: 12333 cells x 34 genes (0 s)
+....[ben13.stream 13:31:37] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 13:31:37] pass 1: 97 / 4223 rows
+[ben13.stream 13:31:37] pass 1: 2522 / 4223 rows
+[ben13.stream 13:31:37] pass 2: 97 / 4223 rows
+[ben13.stream 13:31:37] pass 2: 2522 / 4223 rows
+[ben13.stream 13:31:37] wrote /tmp/tmp7feqhq8u/s0_97.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 13:31:37] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 13:31:37] pass 1: 4096 / 4223 rows
+[ben13.stream 13:31:37] pass 2: 4096 / 4223 rows
+[ben13.stream 13:31:37] wrote /tmp/tmp7feqhq8u/s0_4096.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 13:31:37] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 13:31:37] pass 1: 97 / 4080 rows
+[ben13.stream 13:31:37] pass 1: 2522 / 4080 rows
+[ben13.stream 13:31:37] pass 2: 97 / 4080 rows
+[ben13.stream 13:31:37] pass 2: 2522 / 4080 rows
+[ben13.stream 13:31:37] wrote /tmp/tmp7feqhq8u/s1_97.npz: 3017 cells x 9 genes (0 s)
+[ben13.stream 13:31:37] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 13:31:37] pass 1: 4080 / 4080 rows
+[ben13.stream 13:31:37] pass 2: 4080 / 4080 rows
+[ben13.stream 13:31:37] wrote /tmp/tmp7feqhq8u/s1_4096.npz: 3017 cells x 9 genes (0 s)
+....
+----------------------------------------------------------------------
+Ran 12 tests in 8.794s
+
+OK
+
+# 2026-10-22T20:15:49Z T_BENCH
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-b-t_bench", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "tests/run_tests.py", "--pattern", "test_ben13*.py", "--out", "jobs/waves/B/out/tests_bench.json"]
+[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmp7ah0qdvj/Downloads)
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+[fetch] a.h5ad: ok
+[fetch] b.h5ad: ok
+[fetch] opt.gz: failed (no browser file name)
+.[fetch] a.h5ad: failed (A_raw.h5ad not found in /tmp/tmptic1aapr/Downloads)
+[fetch] b.h5ad: failed (/tmp/tmptic1aapr/Downloads/B_raw.h5ad: not the expected format (first bytes b'<html>xx'))
+[fetch] opt.gz: failed (no browser file name)
+..[ben13.stream 20:15:53] synth.h5ad: 5843 cells x 40 genes, X float32
+[ben13.stream 20:15:53] pass 1: 2048 / 5843 rows
+[ben13.stream 20:15:53] pass 2: 2048 / 5843 rows
+[ben13.stream 20:15:53] wrote /tmp/tmpzrdzpyb3/dataset_k562_filtered.npz: 4841 cells x 6 genes (0 s)
+[ben13] k562 part 1/1: 1 cells, 1 to do
+[ben13] loaded k562 in 1 s: train (3872, 6), test (969, 6), 6 genes; literature {'chipseq': 0}, missing ['corum', 'string']
+[ben13] random_k50                   W 0.134 FOR undefined (0.0 s)
+.[ben13.stream 20:15:57] synth.h5ad: 14843 cells x 120 genes, X float32
+[ben13.stream 20:15:57] pass 1: 2048 / 14843 rows
+[ben13.stream 20:15:57] pass 2: 2048 / 14843 rows
+[ben13.stream 20:15:57] wrote /tmp/tmp5w9c042c/dataset_k562_filtered.npz: 12333 cells x 34 genes (0 s)
+....[ben13.stream 20:16:02] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 20:16:02] pass 1: 97 / 4223 rows
+[ben13.stream 20:16:02] pass 1: 2522 / 4223 rows
+[ben13.stream 20:16:02] pass 2: 97 / 4223 rows
+[ben13.stream 20:16:02] pass 2: 2522 / 4223 rows
+[ben13.stream 20:16:02] wrote /tmp/tmp41t08g6m/s0_97.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 20:16:02] synth.h5ad: 4223 cells x 80 genes, X float32
+[ben13.stream 20:16:02] pass 1: 4096 / 4223 rows
+[ben13.stream 20:16:02] pass 2: 4096 / 4223 rows
+[ben13.stream 20:16:02] wrote /tmp/tmp41t08g6m/s0_4096.npz: 3106 cells x 7 genes (0 s)
+[ben13.stream 20:16:03] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 20:16:03] pass 1: 97 / 4080 rows
+[ben13.stream 20:16:03] pass 1: 2522 / 4080 rows
+[ben13.stream 20:16:03] pass 2: 97 / 4080 rows
+[ben13.stream 20:16:03] pass 2: 2522 / 4080 rows
+[ben13.stream 20:16:03] wrote /tmp/tmp41t08g6m/s1_97.npz: 3017 cells x 9 genes (0 s)
+[ben13.stream 20:16:03] synth.h5ad: 4080 cells x 80 genes, X float32
+[ben13.stream 20:16:03] pass 1: 4080 / 4080 rows
+[ben13.stream 20:16:03] pass 2: 4080 / 4080 rows
+[ben13.stream 20:16:03] wrote /tmp/tmp41t08g6m/s1_4096.npz: 3017 cells x 9 genes (0 s)
+....
+----------------------------------------------------------------------
+Ran 13 tests in 12.553s
+
+OK

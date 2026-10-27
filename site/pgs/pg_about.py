@@ -20,6 +20,7 @@ BODY = "\n".join([
         "A term is used only on or after the page that teaches it (site/terms.py), and every term is taught where the glossary says.",
         "A result is printed only on or after the page that asks its question.",
         "Every link between pages and every glossary anchor resolves.",
+        "Links into <a href=\"copilot/\">Inside Causal-Copilot</a> are checked by its own build (site/copilot/build.py), which runs next.",  # S29 (TEAM-13)
         "Every dollar figure on the market page carries an evidence label.",
         "Pages warn when they grow past about 1,800 words."]),
     H2("Pages to re-read"),

@@ -1,0 +1,15 @@
+{
+ "plan_id": "fork_bld06_live_013",
+ "note": "Wave A (BLD-06) LIVE: the fork branch bld-06-refinement-v2 (refinement v2 inside Causal-Copilot) on BND-08's grid: 10 S2 scenarios x real/neutral/swapped names, columns shuffled, one run each (30 runs), interleaved. About $0.46 per run measured (gpt-4o, BND-08), about $14 in all; run by harness/live_capped.py with a $25 cap. Compared with BND-08's unmodified runs (the same 30 tables): crash rate, final-graph directed F1 against the data reference, and v2's R4-R6 inside the real pipeline. Gated in the wave sheet on both stub runs.",
+ "interleave": true,
+ "run_timeout_s": 7200,
+ "runs": [
+  {
+   "label": "f06",
+   "dataset": "research:datasets/suite_q1s2/q052/q052.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ]
+}

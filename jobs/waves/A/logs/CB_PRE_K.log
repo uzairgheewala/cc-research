@@ -1,0 +1,19 @@
+
+# 2026-10-21T19:11:38Z CB_PRE_K
+# argv: ["docker", "run", "--rm", "--init", "--name", "wave-a-cb_pre_k", "--network", "none", "-v", "C:\\Users\\uzair\\Documents\\UCSD\\Fall 2026\\DSC 180A\\cc-research:/research", "-w", "/research", "-e", "OMP_NUM_THREADS=1", "-e", "OPENBLAS_CORETYPE=HASWELL", "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "PYTHONUNBUFFERED=1", "--memory", "2g", "cc-bench:wave-a", "python", "-m", "analysis.ben13.stream_preprocess", "--h5ad", "external/causalbench/k562.h5ad", "--summary", "external/causalbench/summary_stats.xlsx", "--sheet", "TabB_K562_day6_summary_stat", "--out", "external/causalbench/dataset_k562_filtered.npz"]
+[ben13.stream 19:11:44] k562.h5ad: 310385 cells x 8563 genes, X float32
+[ben13.stream 19:11:45] pass 1: 2048 / 310385 rows
+[ben13.stream 19:12:02] pass 1: 53248 / 310385 rows
+[ben13.stream 19:12:19] pass 1: 104448 / 310385 rows
+[ben13.stream 19:12:38] pass 1: 155648 / 310385 rows
+[ben13.stream 19:12:56] pass 1: 206848 / 310385 rows
+[ben13.stream 19:13:14] pass 1: 258048 / 310385 rows
+[ben13.stream 19:13:32] pass 1: 309248 / 310385 rows
+[ben13.stream 19:13:39] pass 2: 2048 / 310385 rows
+[ben13.stream 19:14:01] pass 2: 53248 / 310385 rows
+[ben13.stream 19:14:23] pass 2: 104448 / 310385 rows
+[ben13.stream 19:14:45] pass 2: 155648 / 310385 rows
+[ben13.stream 19:15:07] pass 2: 206848 / 310385 rows
+[ben13.stream 19:15:29] pass 2: 258048 / 310385 rows
+[ben13.stream 19:15:50] pass 2: 309248 / 310385 rows
+[ben13.stream 19:15:54] wrote external/causalbench/dataset_k562_filtered.npz: 162751 cells x 622 genes (248 s)

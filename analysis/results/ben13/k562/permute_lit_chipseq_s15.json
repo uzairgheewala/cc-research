@@ -1,0 +1,39 @@
+{
+ "status": "ok",
+ "statistical": {
+  "tp": 452,
+  "fp": 2495,
+  "wasserstein": 0.10794017538822442,
+  "edges": 2947,
+  "evaluator": "causalbench-fast",
+  "for": 0.19,
+  "negative_wasserstein": 0.11779453644417476
+ },
+ "biological": {
+  "chipseq": {
+   "tp": 12.5,
+   "precision": 0.004241601628775025
+  },
+  "string_network": {
+   "tp": 787.0,
+   "precision": 0.2670512385476756
+  },
+  "string_physical": {
+   "tp": 197.0,
+   "precision": 0.0668476416694944
+  }
+ },
+ "protocol": {
+  "max_path_length": -1,
+  "omission_estimation_size": 500
+ },
+ "network_sha256": "81a3717bcca51614a004bf070984efb145128058cf0fcfb2c1c5d6ac0bfda8ad",
+ "seconds": 3.5,
+ "tickets": [
+  "BEN-13"
+ ],
+ "line": "k562",
+ "cell": "permute_lit_chipseq_s15",
+ "npz_sha256": "661a6acb1edbde221ab904bf0556f84bcf91c122e7553772b695b17bb45b6c98",
+ "prereg_sha256": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73"
+}

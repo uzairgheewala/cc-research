@@ -1,0 +1,23 @@
+{
+ "producer": "v4/dev.py (engines, evaluate, decide), v4/heldout_gen.py (seal only; no score)",
+ "score_bearing": true,
+ "tickets": [
+  "BLD-18",
+  "TGT-18",
+  "TGT-19"
+ ],
+ "regime": "D",
+ "split": "dev",
+ "controls": {
+  "columns_shuffled": "not applicable: the kernel orders columns by content hash, so the released order cannot reach the engines",
+  "names": "not applicable",
+  "supplier": "CausalArena dev split (semantic, formula), plans/splits.json"
+ },
+ "metric_defs": {
+  "precision_half": "DV-1 precision of the half-coverage view, out-of-fold confidence (kernel/v3.scored)",
+  "ece": "expected calibration error of the DV-1 answers (score/calib.ece)",
+  "ges_directed_f1": "directed F1 of the knob's GES output alone (score/graph.directed_f1)",
+  "ges_skeleton_f1": "adjacency F1 of the knob's GES output (score/graph.coords S)"
+ },
+ "orientation_rule": "AB-01 expectation rule: undecided pairs oriented at random, seed crc32(file name) (score/graph.py)"
+}

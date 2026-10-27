@@ -1,0 +1,40 @@
+{
+ "status": "ok",
+ "statistical": {
+  "tp": 630,
+  "fp": 4370,
+  "wasserstein": 0.0974917776317859,
+  "edges": 5000,
+  "evaluator": "causalbench-fast",
+  "for": null,
+  "for_undefined": "only 0 negative pairs outside the path closure; 500 needed"
+ },
+ "biological": {
+  "chipseq": {
+   "tp": 65.5,
+   "precision": 0.0131
+  },
+  "string_network": {
+   "tp": 593.0,
+   "precision": 0.1186
+  },
+  "string_physical": {
+   "tp": 122.0,
+   "precision": 0.0244
+  }
+ },
+ "protocol": {
+  "max_path_length": -1,
+  "omission_estimation_size": 500
+ },
+ "network_sha256": "e0f95c6b6047bb238b1e195d57b7177fce1ff7bba2a4bc5a57c6e41636fb53c2",
+ "seconds": 6.0,
+ "earlier_error": "ValueError: only 0 negative pairs for 500 samples",
+ "tickets": [
+  "BEN-13"
+ ],
+ "line": "rpe1",
+ "cell": "random_k5000_s2",
+ "npz_sha256": "20832f1d2990db07ea259175ea1e63d7e111f0fa539a61ebdcd5c7ac497e847f",
+ "prereg_sha256": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73"
+}

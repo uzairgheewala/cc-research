@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-21T01:24:33Z)
+# Tracker status (verified 2026-10-27T19:32:19Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -11,7 +11,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | DLV-02 | ✅ | Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded | V3 |  |
 | DLV-03 | 👀 | Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage | V2 |  |
 | DLV-04 | ✅ | Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets | V3 |  |
-| DLV-05 | ⏳ | Q1 checkpoint (Mon 2 Nov) | V0 |  |
+| DLV-05 | ⏳ | Q1 checkpoint (Fri 6 Nov) | V0 |  |
 | DLV-06 | ⏳ | Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec) | V0 |  |
 
 ## 1 Replication
@@ -236,7 +236,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| CRS-01 | ⏳ | TA check-in 1 (TA: Nate) | V0 |  |
+| CRS-01 | ⏳ | TA check-in 1 (TA: Nate) | V2 |  |
 | CRS-02 | ⏳ | Quarter 1 checkpoint | V0 |  |
 | CRS-03 | ⏳ | TA check-in 2 | V0 |  |
 | CRS-04 | ⏳ | Quarter 1 final (50%) | V0 |  |
@@ -315,7 +315,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | BND-10 | ✅ | Refinement v1: held-out test | V3 |  |
 | BND-11 | ✅ | LIVE: Refinement v2, names only where the data are silent | V3 |  |
 | BND-12 | 👀 | LIVE: second model and external replications | V2 |  |
-| BND-13 | ⏳ | Quarter 1 checkpoint package (2 Nov) | V0 |  |
+| BND-13 | ⏳ | Quarter 1 checkpoint package (2 Nov) | V2 |  |
 | BND-14 | ⏳ | Quarter 1 final: report, package, one-command reproduction (4 Dec) | V0 |  |
 
 ## 12 Team and communication
@@ -373,13 +373,13 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| BEN-13 | 👀 | CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall | V2 |  |
+| BEN-13 | 👀 | CausalBench (GSK) shortcut audit: how much of each published score is metric echo, edge placement or name recall | V3 |  |
 
 ## 10 Infrastructure
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| INF-10 | 👀 | Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json) | V2 |  |
+| INF-10 | ✅ | Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json) | V3 |  |
 
 ## 12 Team and communication
 
@@ -389,3 +389,28 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | TEAM-10 | 👀 | Site v3 gap model: typed landmarks, derived gap types, explanation map, gaps page and story strips | V2 |  |
 | TEAM-11 | 👀 | Site v3 Today page and research explorer | V2 |  |
 | TEAM-12 | 👀 | Public feed shows posted prod digests only | V2 |  |
+
+## 8 Build
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| BLD-18 | 👀 | Kernel v4 candidates: a GES score that fits nonlinear and discrete mechanisms (pre-registered knobs on dev) | V3 |  |
+| BLD-17 | ✅ | Pretrained engine beside GES in the ledger (D2-engine) | V3 |  |
+
+## 6 Required capabilities
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| CAP-19 | ✅ | Cross-host determinism: the same claims on every machine, the same hash on one CPU family | V3 |  |
+
+## 12 Team and communication
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| TEAM-13 | 👀 | Inside Causal-Copilot: a site explaining how every part of Causal-Copilot works | V2 |  |
+
+## 0 Quarter 1 deliverables
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| DLV-07 | 👀 | Public Q1 code repository: a curated, reproducible export of cc-research | V3 |  |

@@ -100,9 +100,11 @@ def header(cur):
         groups.append('<div class="act"><span class="actlabel">%s · %s</span>%s</div>' % (act, name, links))
     ref = "".join('<a class="ref" href="%s"%s>%s</a>' % (href(p["slug"]), ' aria-current="page"' if p["slug"] == cur else "", p["short"])
                   for p in PAGES if p["act"] == "R")
+    ref += '<a class="ref" href="copilot/" title="How Causal-Copilot works, read from its code">Inside Causal-Copilot</a>'  # S29 (TEAM-13)
     groups.append('<div class="act"><span class="actlabel">Reference</span>%s</div>' % ref)
     toc = "".join('<li>%s</li>' % ('<b>%s</b>' % html.escape(p["title"]) if p["slug"] == cur else
                                    '<a href="%s">%s</a>' % (href(p["slug"]), html.escape(p["title"]))) for p in PAGES)
+    toc += '<li><a href="copilot/">Inside Causal-Copilot</a></li>'  # S29 (TEAM-13)
     curp = next(p for p in PAGES if p["slug"] == cur)
     where = ("Act %s · page %d of %d" % (curp["act"], curp["n"], len(SEQUENCE) - 1)) if curp["act"] in ("I", "II", "III", "IV") else curp["short"]
     return ('<header class="top"><div class="bar"><a class="brand" href="index.html">Causal Atlas</a>'
@@ -292,7 +294,7 @@ def main():
     names = {href(p["slug"]) for p in PAGES}
     for slug, h in rendered.items():
         for target in re.findall(r'href="([^"#:]+\.html)(?:#[^"]*)?"', h):
-            if target not in names:
+            if target not in names and not target.startswith("copilot/"):  # S29 (TEAM-13): checked by site/copilot/build.py
                 errors.append("%s: broken link %s" % (slug, target))
         for t in re.findall(r'href="glossary\.html#([^"]+)"', h):
             if t not in TERMS:
