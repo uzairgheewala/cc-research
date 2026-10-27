@@ -392,3 +392,33 @@ REG.update(_s24)
 # visibility (s24; repo split, decision R-1 open): source paths that live in the private repository. A public page may not
 # link them and the explorer export may not contain them (site/build.py fails). Empty until R-1 is decided.
 PRIVATE_PATHS = []
+
+# ---- S35 (q1 page, 27 Oct): the Quarter 1 review-step comparison (BLD-06 live), its cycles check, the gas/void case
+F06 = R + "fork/bld06_live_compare.json"
+CYC = R + "fork/bld06_cycles.json"
+X03 = R + "fork/fork_ext03_stub.json"
+Q11 = R + "run_trace/q011_gas_void.json"
+_q1 = {
+    "q1.arms": J(F06, "arms"), "q1.both": J(F06, "both_completed"),
+    "q1.done.branch": J(F06, "completed", "branch"), "q1.done.main": J(F06, "completed", "main"),
+    "q1.usd.branch": J(F06, "usd", "branch"), "q1.usd.main": J(F06, "usd", "main"),
+    "q1.rule": J(F06, "rule"), "q1.prereg": F(F06, lambda d: d["prereg_sha256"][:12]),
+    "q1.cyc.main.entered": J(CYC, "arms", "main", "runs_entering_cycle_step"),
+    "q1.cyc.main.keyerr": J(CYC, "arms", "main", "cycle_step_keyerrors"),
+    "q1.cyc.branch.entered": J(CYC, "arms", "branch", "runs_entering_cycle_step"),
+    "q1.cyc.branch.cyclic": J(CYC, "arms", "branch", "final_graphs_with_directed_cycle"),
+    "q1.cyc.branch.done": J(CYC, "arms", "branch", "completed"),
+    "q1.x03.runs": J(X03, "runs"), "q1.x03.keyerr": J(X03, "cycle_step_keyerrors"),
+    "q1.q011.conn": J(Q11, "arms", "main (unmodified)", "connected_out_of_20"),
+    "q1.q011.main.true": J(Q11, "arms", "main (unmodified)", "bootstrap_out_of_20", "gas -> void"),
+    "q1.q011.br.back": J(Q11, "arms", "branch (refinement v2)", "bootstrap_out_of_20", "void -> gas"),
+    "q1.q011.br.oo": J(Q11, "arms", "branch (refinement v2)", "bootstrap_out_of_20", "o-o"),
+    "due.DLV-05": F("tracker/status.json", lambda d: next(i["due"] for i in d["items"] if i["id"] == "DLV-05")),
+}
+for _s in ("branch", "main"):
+    for _m in ("S0_adj_f1", "final_adj_f1", "final_dir_f1", "delivered_dir_f1"):
+        _q1["q1.%s.%s" % (_m, _s)] = J(F06, "means", _s, _m)
+for _l in ("L1", "L2", "L2_dir", "L3"):
+    for _p in ("point", "lo", "hi"):
+        _q1["q1.%s.%s" % (_l, _p)] = J(F06, "paired_branch_minus_main", _l, _p)
+REG.update(_q1)  # S35 (q1 page)

@@ -1104,8 +1104,8 @@
   "dev_since_last_prod": 3,
   "last_prod_utc": "2026-10-15T04:26:17Z"
  },
- "generated_utc": "2026-10-27T19:37:06Z",
- "hash": "a7072612847e05f7265dd874486be7d773b9a781cf343b2321b0ed453889a051",
+ "generated_utc": "2026-10-27T23:11:33Z",
+ "hash": "226c2969ab7a58d30bcdeb459c4d7e25c9cd16069bd574a7eaa5ee0d2d4d6410",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -4703,6 +4703,10 @@
    "src": "tracker/status.json",
    "value": "2026-10-29"
   },
+  "due.DLV-05": {
+   "src": "tracker/status.json",
+   "value": "2026-11-06"
+  },
   "ida.identified": {
    "src": "analysis/results/dom09/ida_timing.json",
    "value": 0.52
@@ -5320,6 +5324,162 @@
   "pub.sem.DI.best.method": {
    "src": "analysis/results/published/leaderboard.json",
    "value": "GIES"
+  },
+  "q1.L1.hi": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.11048331668704613
+  },
+  "q1.L1.lo": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.0350837180315549
+  },
+  "q1.L1.point": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.07052722447603706
+  },
+  "q1.L2.hi": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.3347078685766042
+  },
+  "q1.L2.lo": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.20564385597561555
+  },
+  "q1.L2.point": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.2759181973023715
+  },
+  "q1.L2_dir.hi": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.038469565432835674
+  },
+  "q1.L2_dir.lo": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": -0.017270051997024503
+  },
+  "q1.L2_dir.point": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.014191228323612798
+  },
+  "q1.L3.hi": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.022832167084685537
+  },
+  "q1.L3.lo": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": -0.004580277018813341
+  },
+  "q1.L3.point": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.009575743400040656
+  },
+  "q1.S0_adj_f1.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.5939091860075323
+  },
+  "q1.S0_adj_f1.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.5843334426074915
+  },
+  "q1.arms": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 30
+  },
+  "q1.both": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 22
+  },
+  "q1.cyc.branch.cyclic": {
+   "src": "analysis/results/fork/bld06_cycles.json",
+   "value": 0
+  },
+  "q1.cyc.branch.done": {
+   "src": "analysis/results/fork/bld06_cycles.json",
+   "value": 30
+  },
+  "q1.cyc.branch.entered": {
+   "src": "analysis/results/fork/bld06_cycles.json",
+   "value": 0
+  },
+  "q1.cyc.main.entered": {
+   "src": "analysis/results/fork/bld06_cycles.json",
+   "value": 8
+  },
+  "q1.cyc.main.keyerr": {
+   "src": "analysis/results/fork/bld06_cycles.json",
+   "value": 8
+  },
+  "q1.delivered_dir_f1.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.20453253055187517
+  },
+  "q1.delivered_dir_f1.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.13400530607583813
+  },
+  "q1.done.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 30
+  },
+  "q1.done.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 22
+  },
+  "q1.final_adj_f1.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.5964520764041473
+  },
+  "q1.final_adj_f1.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.3205338791017758
+  },
+  "q1.final_dir_f1.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.1969257366088466
+  },
+  "q1.final_dir_f1.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 0.18273450828523383
+  },
+  "q1.prereg": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": "7caa7ec71933"
+  },
+  "q1.q011.br.back": {
+   "src": "analysis/results/run_trace/q011_gas_void.json",
+   "value": 8
+  },
+  "q1.q011.br.oo": {
+   "src": "analysis/results/run_trace/q011_gas_void.json",
+   "value": 6
+  },
+  "q1.q011.conn": {
+   "src": "analysis/results/run_trace/q011_gas_void.json",
+   "value": 20
+  },
+  "q1.q011.main.true": {
+   "src": "analysis/results/run_trace/q011_gas_void.json",
+   "value": 1
+  },
+  "q1.rule": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": "drop_in"
+  },
+  "q1.usd.branch": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 4.8437
+  },
+  "q1.usd.main": {
+   "src": "analysis/results/fork/bld06_live_compare.json",
+   "value": 12.5735
+  },
+  "q1.x03.keyerr": {
+   "src": "analysis/results/fork/fork_ext03_stub.json",
+   "value": 0
+  },
+  "q1.x03.runs": {
+   "src": "analysis/results/fork/fork_ext03_stub.json",
+   "value": 6
   },
   "q2.b2.for.dv": {
    "src": "analysis/results/q2_b2/summary_test.json",
@@ -6125,6 +6285,9 @@
   "analysis/results/dom09/ida_timing.json": "8f4db9546a5ffe21dfa6e4721221b1e65ef3d760b7a2cbffc62b4f8b59131826",
   "analysis/results/error_budget/error_budget.json": "db36efbda4109c03dbdf689ad4774b3362f0dcf8ef08c94c5509cb2043057e87",
   "analysis/results/error_budget/order_value.json": "725b98027a933d112a97399b08ebc87e297b346a5d45ea945a6035b0777ed193",
+  "analysis/results/fork/bld06_cycles.json": "b686794ce6ca87d925cca2b6d2f7cd86cef1fbd719ef73da46e7b77e50cc57b9",
+  "analysis/results/fork/bld06_live_compare.json": "2016c56048e5a5fd1c6c5050a71c2e3a01e6be2b68474b9fb3ea464c5ebaab19",
+  "analysis/results/fork/fork_ext03_stub.json": "446628757208ff7333049b2d2e9da355ddf5d1809d0f531c5c9a740accaefc81",
   "analysis/results/intervention_audit/intervention_audit.json": "081386a7fea1487c375b3a27c408bc7c360106eaae3ac6624b1a9570efa84430",
   "analysis/results/methods/pc_skeleton_order_upstream.json": "68e72903d97fc67523dee9abf9633ee672b9fc7e23c0905bb4e4fd47ca000936",
   "analysis/results/methods/pc_skeleton_order_vendored.json": "e9cf0c1f19679b5faf291e332da13a7764122709c5dacf1ffcb8e6628042f433",
@@ -6148,13 +6311,14 @@
   "analysis/results/refinement_v2/exploratory_s2_live.json": "debb94c4d3a3e415a1517d721b08b9d7486c5dca8c45d7d8c98afec2320cbae4",
   "analysis/results/refinement_v2/names_s2.json": "b60b3d67e73e888f2a899b3cb17e84b90cad0a401adb77f218e48852b95a8092",
   "analysis/results/refinement_v2/test_formula.json": "f7ac5b83661b3e000188ec04e9cd4ad1b372c13b53596002c91ab958afb6e9f7",
+  "analysis/results/run_trace/q011_gas_void.json": "e5ebae4c8a17f540e33ed52ef10eb361999a05e5cf500bbd48f03ccd96b0c995",
   "analysis/results/space/space_coords.json": "b1267a4cdd88c450b8cb82fb9a4de3e1e7d3b1705d9902ef09960c90c0e065f2",
   "analysis/results/stability_s2/bnd08_summary.json": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b",
   "analysis/results/stability_s2/partial_stages.json": "5b69af5b700260ac561c303594e11e03d31677177e6abd55aac4fcd6ed885fa8",
   "docs/design/q2_lever_map.md": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "docs/project_snapshots/2026-10-19/benchmark-targets.md": "611f98766333c8e740f459c225f1f6e097b342b133112f59bdd2f9de78773029",
   "plans/ben13_prereg.json": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
-  "tracker/status.json": "17c0e5eb512a3a4cf05180cf119a75c730f86e033b31227ca21ee066c2330752"
+  "tracker/status.json": "ada576b963fdeca11897eb1e39606b2a1c1ff50abcd93d98c95e51cfcdee39ac"
  },
- "status_verified_utc": "2026-10-27T19:32:19Z"
+ "status_verified_utc": "2026-10-27T23:10:53Z"
 }

@@ -497,7 +497,8 @@ def names_strip():
     return (f'<p style="margin: 0; font-size: 14px; line-height: 21px">The page above measures Causal-Copilot as shipped. Its fixes '
             f'live on separate branches of a fork: refinement that stays above its own data (BLD-06, {w("BLD-06")}), the cycle step '
             f'that reads the key it asks for (EXT-03, {w("EXT-03")}), and the fork that runs them (INF-06, {w("INF-06")}). The '
-            f'changed pipeline is scored live once the fork exists; until then every number on this page is the unchanged one.</p>')
+            f'numbers on this page are the unchanged pipeline\'s. Refinement v2 has since been scored live against it on the '
+            f'Quarter 1 tables: <a href="q1.html">Quarter 1: fixing the review step</a>.</p>')  # S35 (q1 page)
 
 
 def board_summary(bid):

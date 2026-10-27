@@ -100,6 +100,7 @@ BODY = "\n".join([
                                 key=G.STATES.index)),
     H2("What moved"),
     P(moved + f' {link("changes", "What changed")}.', 15),
-    P(f'{link("gaps", "Every gap in detail")} · {link("explore", "the research explorer")} · {link("primer", "the story from the start")}'
+    P(f'<b>{link("q1", "Quarter 1: fixing the review step")}</b> · '  # S35 (q1 page)
+      f'{link("gaps", "Every gap in detail")} · {link("explore", "the research explorer")} · {link("primer", "the story from the start")}'
       ' · <a href="copilot/">how Causal-Copilot works, read from its code</a>', 15),  # S29 (TEAM-13); site/copilot/build.py checks it
 ])

@@ -1,0 +1,29 @@
+{
+ "arms": {
+  "branch": {
+   "completed": 30,
+   "crash_sites": {},
+   "crashed": 0,
+   "cycle_step_keyerrors": 0,
+   "final_graphs_with_directed_cycle": 0,
+   "runs": 30,
+   "runs_entering_cycle_step": 0
+  },
+  "main": {
+   "completed": 22,
+   "crash_sites": {
+    "KeyError postprocess/judge_functions.py:562:LLM_remove_cycles": 8
+   },
+   "crashed": 8,
+   "cycle_step_keyerrors": 8,
+   "final_graphs_with_directed_cycle": 0,
+   "runs": 30,
+   "runs_entering_cycle_step": 8
+  }
+ },
+ "note": "ad hoc (27 Oct), not pre-registered",
+ "tickets": [
+  "BLD-06",
+  "EXT-03"
+ ]
+}

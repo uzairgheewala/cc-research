@@ -1,0 +1,23 @@
+Atlas: "Quarter 1: fixing Causal-Copilot's review step" (q1.html); names strip and checkpoint card brought up to date
+
+Tickets: BLD-06, EXT-03, DLV-04, DLV-05, DLV-07
+
+- s35: site/pgs/pg_q1.py, listed under Reference and linked first from Today.
+  - The live comparison table: links and arrows recovered, completion, cost, paired intervals, the pre-registered outcome.
+  - Why the original loses links and crashes.
+  - What the two fork branches change, with their diffs, and how cycles are handled now.
+  - The gas/void case, what is not established yet, the next rule, and the reproduction link.
+  - Every number comes through the registry (q1.*).
+- analysis/bld06_cycles.py -> analysis/results/fork/bld06_cycles.json (ad hoc, not pre-registered).
+  - Unmodified: 8 runs reached the cycle step and all 8 crashed with KeyError 'nodes' (judge_functions.py:562).
+  - Refinement v2: no run entered the cycle step; 0 of 30 delivered graphs contain a directed cycle.
+- The names page strip no longer says the fork is unscored; it links the q1 page.
+- Today's checkpoint card reads DLV-05 (Fri 6 Nov: title, abstract, introduction, public code link) instead of BND-13's old date.
+- Repins after review: TEAM-08, TEAM-09, TEAM-10, TEAM-11.
+- Checks on the device:
+  - verify 0 problems, trace 0 errors, ci_check 0 errors, score contract ok;
+  - site 18 pages and copilot 150 pages, 0 errors; site tests OK;
+  - no overflow at 390 px. Snapshot last: 226c2969ab7a.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TX89QtiaGaFvBSN4BAmLxQ

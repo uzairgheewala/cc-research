@@ -1,6 +1,6 @@
-# Trace check (2026-10-27T19:33:50Z)
+# Trace check (2026-10-27T23:11:25Z)
 
-status.json verified 2026-10-27T19:32:19Z. Dev tickets 242; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 2.
+status.json verified 2026-10-27T23:10:53Z. Dev tickets 242; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -19,7 +19,7 @@ status.json verified 2026-10-27T19:32:19Z. Dev tickets 242; prod rows 67 (7 grou
 | published_at | links.txt | 246 |
 | relates | links.txt | 1 |
 
-## Findings: 0 errors, 15 warnings
+## Findings: 0 errors, 16 warnings
 
 - **WARN W1** DLV-02 is suspect: ['DLV-02'] changed since it was last published or reviewed (2026-10-16T02:14)
 - **WARN W1** DLV-04 is suspect: ['DLV-04'] changed since it was last published or reviewed (2026-10-16T02:14)
@@ -35,6 +35,7 @@ status.json verified 2026-10-27T19:32:19Z. Dev tickets 242; prod rows 67 (7 grou
 - **WARN R3** tracker/relay_out/20261014T062911Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T141942Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
 - **WARN R3** tracker/relay_out/20261015T220451Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
+- **WARN R5** last dev digest was 2026-10-19; one is due
 - **WARN R5** last prod digest was 2026-10-15; one is due
 
 ## Prod rows
