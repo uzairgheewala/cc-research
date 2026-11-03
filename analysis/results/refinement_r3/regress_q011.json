@@ -1,0 +1,34 @@
+{
+ "tickets": [
+  "BLD-22",
+  "BLD-06"
+ ],
+ "run": "20261021T214822Z_f06_q011_r01_dadc44",
+ "pair": [
+  14,
+  15
+ ],
+ "names": [
+  "residual_entrained_gas_mg",
+  "true_void_fraction"
+ ],
+ "truth": "gas -> void",
+ "v2d": "b->a",
+ "r3s": "o-o",
+ "gate": {
+  "pair": [
+   14,
+   15
+  ],
+  "v2d": "b->a",
+  "k": 8,
+  "n": 20,
+  "k_min": 15,
+  "integral": true,
+  "r3s": "o-o",
+  "source": "data: direction open (8 of 20 below 15)"
+ },
+ "check": "linked, and no arrow against the truth",
+ "pass": true,
+ "role": "regression check only (program v3 section 4 rule 5): never a tuning target or a threshold"
+}

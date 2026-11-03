@@ -1,0 +1,51 @@
+{
+ "plan_id": "r3_stub",
+ "note": "BLD-22 stub (free): branch bld-22-direction-sufficiency with the stub model on 6 tables, as fork_bld06_stub; checks tree identity, completion and the new record fields (direction_rule, v2d_graph, direction_gates).",
+ "interleave": true,
+ "run_timeout_s": 7200,
+ "runs": [
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q051/q051.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q052/q052.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q053/q053.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q021/q021.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q022/q022.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  },
+  {
+   "label": "r22stub",
+   "dataset": "research:datasets/suite_q1s2/q023/q023.csv",
+   "data_mode": "real",
+   "query": null,
+   "repeats": 1
+  }
+ ],
+ "stub_llm": true
+}

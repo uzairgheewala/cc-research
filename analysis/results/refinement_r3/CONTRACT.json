@@ -1,0 +1,12 @@
+{
+ "producer": "analysis/refinement_r3.py",
+ "score_bearing": true,
+ "regime": "D",
+ "regime_detail": "bootstrap tables only; no names, no model",
+ "split": "per-row",
+ "split_field": "dev.json: CausalArena dev replays (exact references, pooled) plus live dev runs (contested references, agreement only); heldout_H1/H2/H3.json: the batteries of plans/r3_prereg.json; regress_q011.json: one pair, a regression check",
+ "controls": {"columns_shuffled": "per-group (formula replays permuted per file; semantic replays in released order; live as recorded)", "names": "not applicable", "names_detail": "variable labels are not read by the numeric bootstrap direction rule", "supplier": "per-row", "supplier_field": "CausalArena replay data or recorded live-run input, as identified by the dev.json groups; no knowledge supplier is used"},
+ "orientation_rule": "committed arrows only: an open direction is no prediction (cc_graph.score convention); right / wrong / open / partial counted on true links found, arrows on false links counted apart",
+ "metric_defs": {"right": "true link found, arrow as in the reference", "wrong": "true link found, arrow reversed", "open": "true link found, no arrow", "direction_precision": "right / (right + wrong)", "arrows_on_false_links": "arrows on linked pairs the reference does not link"},
+ "tickets": ["BLD-22", "BLD-06", "ADV-01"]
+}

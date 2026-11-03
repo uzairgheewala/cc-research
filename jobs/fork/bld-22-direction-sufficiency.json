@@ -1,0 +1,21 @@
+{
+ "branch": "bld-22-direction-sufficiency",
+ "ticket": "BLD-22",
+ "base_commit": "55a490a16776bbae1d81694bfe54525f11658be3",
+ "base_branch": "bld-06-refinement-v2",
+ "base_tag": "baseline-a31aa7c",
+ "root_commit": "a31aa7cab277d7e19478bc326dbec154525969cc",
+ "patch": "jobs/fork/bld-22-direction-sufficiency.patch",
+ "patch_sha256": "c163160e02e8e1b0137d6df0f6c8f34d08330ee13e84d0bf2459246ad546feca",
+ "manifest": "jobs/fork/bld-22-direction-sufficiency.sha256",
+ "manifest_sha256": "bacce0660876e86105a0e3fb89c4cb47ce15376cf00b12f58ed06c859f71d870",
+ "files": {
+  "postprocess/judge.py": "modified",
+  "postprocess/refinement_v2_dropin.py": "modified"
+ },
+ "env": {
+  "CC_DIRECTION": "sufficiency (default) | plurality (restores bld-06)",
+  "CC_REFINEMENT": "as on bld-06"
+ },
+ "note": "stacked on bld-06-refinement-v2 (one branch per ticket); the patch applies to 55a490a, not to a31aa7c; built by jobs/fork/make_bld22.ps1"
+}

@@ -1,0 +1,124 @@
+diff --git a/postprocess/judge.py b/postprocess/judge.py
+--- a/postprocess/judge.py
++++ b/postprocess/judge.py
+@@ -64,7 +64,7 @@ class Judge(object):
+         # CC_REFINEMENT=v2d runs v2's data part only (no model call).
+         mode = os.environ.get("CC_REFINEMENT", "v2")
+         if mode in ("v2", "v2d"):
+-            return self._refine_v2(data, full_graph, boot_probability, mode)
++            return self._refine_v2(data, full_graph, boot_probability, mode, boot_num)
+         #print("Edge Recommendations from Bootstrap method: ", edge_recom)
+         #print("Bootstrap Probability: ", boot_probability)
+ 
+@@ -137,7 +137,7 @@ class Judge(object):
+         return {}, bootstrap_check_dict, boot_probability, llm_pruning_record, revised_graph, bk
+ 
+ 
+-    def _refine_v2(self, data, full_graph, boot_probability, mode):
++    def _refine_v2(self, data, full_graph, boot_probability, mode, boot_num=20):
+         from postprocess.judge_functions import bootstrap_recommend
+         from postprocess.refinement_v2_dropin import refine
+         import numpy as np
+@@ -150,7 +150,8 @@ class Judge(object):
+             def ask(prompt):
+                 return client.chat_completion(prompt=prompt, system_prompt="You are a helpful assistant.", json_response=True)
+         logger.process("Refinement v2 (%s): data part, then names only where the data leave a pair undirected" % mode)
+-        revised_graph, record = refine(np.asarray(full_graph), boot_probability, names, ask)
++        # BLD-22 (cc-research R3): arrows the data part commits on too few resamples are left open (CC_DIRECTION=plurality: off)
++        revised_graph, record = refine(np.asarray(full_graph), boot_probability, names, ask, n_resamples=boot_num)
+         bk = BackgroundKnowledge()
+         direct = {}
+         for rec in record["names"]:
+diff --git a/postprocess/refinement_v2_dropin.py b/postprocess/refinement_v2_dropin.py
+--- a/postprocess/refinement_v2_dropin.py
++++ b/postprocess/refinement_v2_dropin.py
+@@ -8,10 +8,19 @@ mark the data set, and it creates no directed cycle. Every edge gets a source.
+ 
+ Identical in logic to cc-research analysis/refinement_v2.py (v2d, apply_names) and analysis/refinement_v1.py (typed_freqs,
+ put, ORDER); cc-research tests/test_fork_patches.py checks the two give the same graphs.
++
++BLD-22 (cc-research R3, branch bld-22-direction-sufficiency): between the data part and the names part, a direction the data
++part commits is kept only on sufficient evidence: the exact arrow in at least K_MIN of the N resamples, K_MIN the smallest
++count whose two-sided 95% Wilson lower bound is above 1/2 (N = 20 gives 15). Otherwise the pair stays linked with its
++direction open (o-o if a PAG mark was ever seen for the pair, else undirected), and so becomes askable by the names part.
++CC_DIRECTION=plurality restores bld-06's rule. Identical in logic to cc-research analysis/refinement_r3.py (r3s);
++cc-research analysis/refinement_r3_test.py checks the two give the same graphs.
+ Matrix convention as the repo: M[i, j] = 1 means j -> i; codes 2-6 for non-directed marks.
+ """
+ import itertools
+ import json
++import math
++import os
+ 
+ import numpy as np
+ 
+@@ -223,10 +232,65 @@ def ask_names(ask, names, M):
+     return answers
+ 
+ 
+-def refine(S0, boot, names, ask=None):
+-    """-> (graph, record). ask=None runs the data part only."""
++Z95 = 1.959963984540054
++DIRECTED = ("a->b", "b->a")
++PAG_MARKS = ("o-o", "bidirected", "a o-> b", "b o-> a", "a o- b", "b o- a")
++
++
++def wilson_lb(k, n, z=Z95):
++    if n == 0:
++        return 0.0
++    ph = k / n
++    return (ph + z * z / (2 * n) - z * math.sqrt(ph * (1 - ph) / n + z * z / (4 * n * n))) / (1 + z * z / n)
++
++
++def k_min(n, z=Z95):
++    return next(k for k in range(n + 1) if wilson_lb(k, n, z) > 0.5)
++
++
++def gate_directions(S0, M, boot, n, kmin=None):
++    """BLD-22: open every arrow of the data part's graph M that fewer than kmin of the n resamples give exactly."""
++    kmin = k_min(n) if kmin is None else kmin
++    S0 = np.asarray(S0)
++    R = np.array(M, dtype=int)
++    gates = []
++    for a, b in pairs(R.shape[0]):
++        d = pair_type(M, a, b)
++        if d not in DIRECTED:
++            continue
++        fr = {t: float(v) for t, v in typed_freqs(boot, a, b).items()}
++        k = int(round(fr[d] * n))
++        rec = {"pair": [a, b], "v2d": d, "k": k, "n": n, "k_min": kmin}
++        if k >= kmin:
++            rec["kept"] = True
++        else:
++            t = "o-o" if (any(fr[x] > 0 for x in PAG_MARKS) or pair_type(S0, a, b) in PAG_MARKS) else "undirected"
++            R[a, b], R[b, a] = 0, 0
++            put(R, a, b, t)
++            rec.update({"kept": False, "open_as": t, "source": "data: direction open (%d of %d below %d)" % (k, n, kmin)})
++        gates.append(rec)
++    return R, gates
++
++
++def refine(S0, boot, names, ask=None, n_resamples=20, direction=None):
++    """-> (graph, record). ask=None runs the data part only. direction: "sufficiency" (BLD-22, default) or "plurality" (bld-06);
++    the environment variable CC_DIRECTION sets it when the argument is None."""
++    direction = direction or os.environ.get("CC_DIRECTION", "sufficiency")
++    if direction not in ("sufficiency", "plurality"):
++        raise ValueError("CC_DIRECTION must be sufficiency or plurality, not %r" % direction)
+     M, sources = v2d(S0, boot)
++    rec = {"direction_rule": direction, "n_resamples": int(n_resamples), "v2d_graph": np.asarray(M).tolist(), "direction_gates": []}
++    if direction == "sufficiency":
++        M, gates = gate_directions(S0, M, boot, int(n_resamples))
++        rec.update({"k_min": k_min(int(n_resamples)), "direction_gates": gates})
++        opened = {tuple(g["pair"]): g for g in gates if not g["kept"]}
++        for s in sources:
++            g = opened.get(tuple(s["pair"]))
++            if g:
++                s["type"], s["source"] = g["open_as"], s["source"] + "; " + g["source"]
+     if ask is None:
+-        return M, {"refinement": "v2d", "sources": sources, "names": []}
++        rec.update({"refinement": "v2d" if direction == "plurality" else "r3s", "sources": sources, "names": []})
++        return M, rec
+     V, recs = apply_names(M, ask_names(ask, names, M))
+-    return V, {"refinement": "v2", "sources": sources, "names": recs}
++    rec.update({"refinement": "v2" if direction == "plurality" else "r3", "sources": sources, "names": recs})
++    return V, rec

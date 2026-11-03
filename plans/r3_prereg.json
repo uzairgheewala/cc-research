@@ -1,0 +1,172 @@
+{
+ "tickets": [
+  "BLD-22",
+  "ADV-01",
+  "BLD-06"
+ ],
+ "title": "R3 v1: the direction-sufficiency rule r3s against the current rule v2d",
+ "written_utc": "2026-10-31T04:37:17Z",
+ "held_out_reads_before_this_file": "none for r3s: analysis/results/refinement_r3/access_log.jsonl does not exist yet",
+ "rule": {
+  "name": "r3s",
+  "file": "analysis/refinement_r3.py",
+  "function": "r3s",
+  "statement": "for every pair the current rule (v2d) leaves fully directed d, keep d iff at least K_MIN of the N resamples give exactly d; else the pair stays linked with its direction open (o-o if any PAG mark was seen for the pair, else undirected). Links never change.",
+  "N": 20,
+  "K_MIN": 15,
+  "K_MIN_from": "smallest k with two-sided 95% Wilson lower bound of k/N above 1/2; fixed by the confidence level, not fitted",
+  "fork": {
+   "branch": "bld-22-direction-sufficiency",
+   "patch": "jobs/fork/bld-22-direction-sufficiency.patch",
+   "patch_sha256": "c163160e02e8e1b0137d6df0f6c8f34d08330ee13e84d0bf2459246ad546feca",
+   "equality_test": "analysis/refinement_r3_test.py OnDevItems.test_fork_dropin_equals_analysis"
+  }
+ },
+ "current_rule": {
+  "name": "v2d",
+  "file": "analysis/refinement_v2.py",
+  "file_sha256": "443354d8391aea24e7c32e5086b8557a54cbc78c767ede3aaf76f0cfc58906dc",
+  "fork": "bld-06-refinement-v2 @ 55a490a, postprocess/refinement_v2_dropin.py"
+ },
+ "development": {
+  "file": "analysis/results/refinement_r3/dev.json",
+  "sha256": "929a7c6996668ffcc1dde7f9301f3dee87d0bf700419625d0701215cc0bba9d7",
+  "battery": "CausalArena dev split, replicate 0: semantic (23 files, released column order) and formula (12 files, columns permuted); PC, 20 resamples (jobs/bootstrap_replay_ca_dev, jobs/bootstrap_replay_ca_formula_dev). Live dev runs (suite_b1, pass 4b) have contested references: agreement only, not pooled.",
+  "seen_while_designing": "the sweep of K over 8..20 on this battery (a diagnostic of the plurality rule's arrows by resample count came first); K_MIN = 15 was not chosen from it",
+  "pooled_exact": {
+   "v2d": {
+    "right": 443,
+    "wrong": 116,
+    "open": 108,
+    "arrows_on_false_links": 250,
+    "adj_tp": 667,
+    "adj_fp": 275,
+    "adj_fn": 686,
+    "direction_precision": 0.7925
+   },
+   "r3s": {
+    "right": 295,
+    "wrong": 38,
+    "open": 334,
+    "arrows_on_false_links": 58,
+    "adj_tp": 667,
+    "adj_fp": 275,
+    "adj_fn": 686,
+    "direction_precision": 0.8859
+   },
+   "d_prec": {
+    "point": 0.0934,
+    "lo": 0.0633,
+    "hi": 0.1251
+   },
+   "d_wrong": {
+    "point": -78.0,
+    "lo": -96.0,
+    "hi": -59.0
+   },
+   "d_right": {
+    "point": -148.0,
+    "lo": -176.0,
+    "hi": -123.0
+   }
+  }
+ },
+ "metrics": {
+  "wrong_share_removed": "1 - wrong(r3s) / wrong(v2d), pooled over the battery's files",
+  "right_share_kept": "right(r3s) / right(v2d)",
+  "precision_r3s": "right / (right + wrong) of r3s, on true links found",
+  "d_prec_lo": "lower end of the 95% cluster-bootstrap interval (2000 resamples, seed 20261031, clusters = files) of precision(r3s) - precision(v2d)",
+  "links_identical": "1 if every file has the same linked pairs under r3s and v2d",
+  "false_link_arrow_share_removed": "1 - arrows on false links(r3s) / arrows on false links(v2d)"
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "metric": "wrong_share_removed",
+   "supported_if_at_least": 0.5,
+   "refuted_if_at_most": 0.3,
+   "dev": 0.6724
+  },
+  {
+   "id": "P2",
+   "metric": "right_share_kept",
+   "supported_if_at_least": 0.5,
+   "refuted_if_at_most": 0.35,
+   "dev": 0.6659,
+   "note": "the cost side, stated so it cannot be hidden"
+  },
+  {
+   "id": "P3",
+   "metric": "precision_r3s",
+   "supported_if_at_least": 0.85,
+   "refuted_if_at_most": 0.8,
+   "dev": 0.8859,
+   "primary": true
+  },
+  {
+   "id": "P4",
+   "metric": "d_prec_lo",
+   "supported_if_at_least": 0.001,
+   "refuted_if_at_most": -0.05,
+   "dev": 0.0633,
+   "primary": true
+  },
+  {
+   "id": "P5",
+   "metric": "links_identical",
+   "supported_if_at_least": 1.0,
+   "refuted_if_at_most": 0.0,
+   "dev": 1.0,
+   "primary": true
+  },
+  {
+   "id": "P6",
+   "metric": "false_link_arrow_share_removed",
+   "supported_if_at_least": 0.5,
+   "refuted_if_at_most": 0.25,
+   "dev": 0.768
+  }
+ ],
+ "batteries": {
+  "H3": {
+   "role": "primary held-out; never looked at by anyone",
+   "what": "CausalArena test split, replicate 1, both families (25 + 25 files); PC wrapper defaults, 20 resamples, seed 0; formula columns permuted with seed 20261012 + crc32(file name)",
+   "jobs": [
+    "jobs/r3_heldout_semantic_rep1.json",
+    "jobs/r3_heldout_formula_rep1.json"
+   ],
+   "script": "analysis/refinement_r3_replay.py",
+   "script_sha256": "7ca4914b750a8d52d20f854c791539b185cdb0c5214fc8763c6284e19ef0807e",
+   "read": "python analysis/refinement_r3.py heldout --battery H3 --replay jobs/r3_heldout_semantic_rep1/out/replay_semantic_test_rep1.json jobs/r3_heldout_formula_rep1/out/replay_formula_test_rep1.json"
+  },
+  "H1": {
+   "role": "secondary; opened before for other rules (BND-10 read replicate 0 of the test split for v1; BLD-06's data part for v2d on the formula family)",
+   "what": "jobs/bootstrap_replay_ca_test (semantic) and jobs/bootstrap_replay_ca_formula_test (formula), replicate 0",
+   "sha256": {
+    "jobs/bootstrap_replay_ca_test/out/replay_test.json": "07fe15869f87e57a472c63f5b487faf94615c3bc7db0a67c3c6e1175d234b6fc",
+    "jobs/bootstrap_replay_ca_formula_test/out/replay_formula_test.json": "24f5b774ce5669752e7c839784aa72939d491237385ee5169ddcf24ec19b29f6"
+   }
+  },
+  "H2": {
+   "role": "secondary; opened before (BND-10, BLD-06); the live bootstrap tables of the 30 S2 tables (labels s2 and f06), the tables the live run reuses",
+   "what": "runs with label s2 or f06 whose dataset is in datasets/suite_q1s2"
+  }
+ },
+ "decision": {
+  "adopt_on_branch_if": "P3, P4 and P5 SUPPORTED on H3",
+  "not_adopted_if": "P3 or P4 REFUTED on H3, or P5 not SUPPORTED",
+  "otherwise": "inconclusive: r3s stays on its branch, unmerged, and a larger battery is proposed",
+  "H1_H2": "reported beside H3; they cannot overturn it (both were opened before)",
+  "one_read": "each battery is read once with this rule's composite hash (RULE.json); every read is appended to analysis/results/refinement_r3/access_log.jsonl"
+ },
+ "regression": {
+  "case": "gas/void, scenario q011, run 20261021T214822Z_f06_q011_r01_dadc44 (BLD-06 branch), pair (14, 15)",
+  "check": "r3s keeps the pair linked and does not commit void -> gas",
+  "role": "a regression check only (program v3 section 4 rule 5): never a tuning target, never a threshold"
+ },
+ "not_claimed": [
+  "that open directions are right: an open direction is a non-claim, scored as neither right nor wrong",
+  "anything about the names part: the data rule is name-blind; the names part on opened pairs is the live run's question (plans/r3_live_proposal.json)",
+  "semi-directed marks: passed through unchanged (typed gap)"
+ ]
+}

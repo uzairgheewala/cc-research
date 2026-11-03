@@ -1,0 +1,105 @@
+{
+ "tickets": [
+  "BLD-22",
+  "ADV-01"
+ ],
+ "status": "PROPOSED, NOT RUN. No API credit is spent until Uzair says go. This file is hashed into a live pre-registration (plans/r3_live_prereg.json) at that go, before any run.",
+ "question": "Inside the real pipeline, does the frozen direction rule (r3s) cut wrong arrows the way it did offline, and what does the names part do with the directions r3s leaves open?",
+ "rule": {
+  "composite_sha256": "80c2ee4ec73a39fb6df64d0ead73a5f61cb801727e269af35abdcd9baa403daf",
+  "branch": "bld-22-direction-sufficiency",
+  "patch": "jobs/fork/bld-22-direction-sufficiency.patch"
+ },
+ "image": "the Causal-Copilot image rebuilt on the second laptop (base 4f9ba5..., manifests/image_ids.json of 31 Oct). A new base, so the series carries its own unmodified-main control (D-7).",
+ "tables": "the 30 S2 tables of BLD-06 (datasets/suite_q1s2: 10 CausalArena test scenarios x real / neutral / swapped names on identical numbers, columns shuffled), one run each, interleaved",
+ "arms": [
+  {
+   "id": "R",
+   "plan": "plans/r3_live.json",
+   "label": "r22",
+   "branch": "bld-22-direction-sufficiency",
+   "env": {
+    "CC_BRANCH": "bld-22-direction-sufficiency"
+   },
+   "runs": 30,
+   "what_each_run_records": "the r3 graph delivered; v2d's graph (record.v2d_graph); every gate (record.direction_gates: k of 20 per arrow); every names answer (three per askable pair). From these, the current rule end to end (v2 = v2d + names on v2d's askable pairs) is rebuilt on the SAME bootstrap tables and the SAME answers: a paired comparison with no resampling noise between arms.",
+   "est_usd": 5.3,
+   "cost_derivation": "BLD-06's branch series cost $4.84 for 30 runs ($0.161 a run, plans/results/fork_bld06_live.capped.json). Extra names calls: on the dev replays r3s opened 12.9 directions per semantic file (296 in 23 files, analysis/results/refinement_r3/dev.json), so about 39 more calls a run, 1,170 for the series; at the measured 57 prompt tokens a call (analysis/results/refinement_v2/requests_summary.json: 44,485 tokens / 786 calls) plus about 10 output tokens, and gpt-4o list prices of $2.50 / $10 per million tokens (an estimate, not checked today), that is about $0.30. Total about $5.1-5.5."
+  },
+  {
+   "id": "M",
+   "plan": "plans/r3_live_main.json",
+   "label": "m22",
+   "branch": "main",
+   "env": {},
+   "runs": 30,
+   "why": "unmodified-main control on the same image (the rule for a rebuilt base); it also re-checks BLD-06's drop_in result on the new image",
+   "est_usd": 13.0,
+   "cost_derivation": "BLD-06's main series cost $12.57 for 30 runs on the old image (plans/results/fork_bld06_live_main.capped.json); 8 of those runs crashed in the cycle step and so made fewer calls, so a series with fewer crashes would cost more: $12-15."
+  },
+  {
+   "id": "B",
+   "optional": true,
+   "default": "off",
+   "plan": "(copy of plans/fork_bld06_live.json with label b22)",
+   "branch": "bld-06-refinement-v2",
+   "est_usd": 4.84,
+   "why": "only to re-measure bld-06 itself on the new image; not needed for the rule comparison, which arm R carries inside each run"
+  }
+ ],
+ "cost": {
+  "estimate_usd": "18-21 (R + M)",
+  "cap_usd": 30,
+  "runner": "harness/live_capped.py (one run at a time; stops at the cap)"
+ },
+ "wall_time": {
+  "estimate_h": "6-7 per series on the second laptop, 12-14 for both, run back to back",
+  "derivation": "BLD-06's branch series took 4 h 31 min for 30 runs on the first laptop (jobs/waves/A/logs/LIVE_06.log: started 21:48:09 UTC; the last run started 02:08:27 and took 632 s); the second laptop's 15 W cores sustain less (docs/hosts.md), so 1.3-1.5x is assumed, to be replaced by the stub's measured time"
+ },
+ "gates_before_live": [
+  "make_bld22.ps1 has built the branch clone and its preflight nollm passed (tree identity ok against jobs/fork/bld-22-direction-sufficiency.sha256)",
+  "STUB_22: cc.ps1 plan r3_stub.json with CC_BRANCH=bld-22-direction-sufficiency (stub model, 6 tables, free): 6 of 6 complete; every run's refinement record has direction_rule = sufficiency, v2d_graph and direction_gates; the delivered graph equals refinement_r3.r3s rebuilt from that run's own bootstrap pickle (offline check, free)",
+  "analysis/refinement_r3_test.py passes on the host (py -3) as in the VM"
+ ],
+ "predictions_draft": [
+  {
+   "id": "L1",
+   "text": "R completes 30 of 30 runs"
+  },
+  {
+   "id": "L2",
+   "text": "in every R run, the delivered links equal the links of the rebuilt v2 (the rule and the names part never connect or disconnect a pair)"
+  },
+  {
+   "id": "L3",
+   "text": "data part alone (r3s from each run's record against v2d from the same record), pooled over 30 tables: at least half of v2d's wrong arrows removed (P1's bar), direction precision at least 0.85 (P3's bar)"
+  },
+  {
+   "id": "L4",
+   "text": "neutral names: the names part sets no direction on an opened pair in at least 9 of the 10 neutral tables"
+  },
+  {
+   "id": "L5",
+   "text": "swapped names: of the directions the names part sets on opened pairs, at most half are right (the model follows the labels, as in BND-08: 81 of 101). If it holds, opened directions must not be handed to names without R3 part 2 (knowledge as audited, order-only tiers) and r3 ships with the names part off on opened pairs"
+  },
+  {
+   "id": "L6",
+   "text": "real names: direction precision of the delivered graph (r3) at least that of the rebuilt v2"
+  },
+  {
+   "id": "L7",
+   "text": "R against M on the same image: delivered adjacency F1 of R at least M's minus 0.02 on the tables both complete (BLD-06's drop_in bar)"
+  }
+ ],
+ "must_show": [
+  "the four graphs per table (S0, v2d, r3s, v2, r3) with right / wrong / open / partial / arrows on false links and links, as in the dev table",
+  "L1-L7 verdicts",
+  "cost at most the cap",
+  "tree identity and the composite hash in every run's meta"
+ ],
+ "not_in_this_run": [
+  "R3 part 2 (knowledge tiers)",
+  "held-out reads H1-H3 (offline, separate, free)",
+  "R0 ledger writer, R1 fixes"
+ ]
+}
