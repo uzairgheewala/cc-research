@@ -1,0 +1,1298 @@
+{
+ "audit": "causal_copilot@bld06",
+ "battery": {
+  "about": "datasets/suite_q1s2 (frozen 10 Oct): 10 CausalArena semantic scenarios x real/neutral/swapped names, byte-identical numbers, shuffled columns, opaque paths; T1 by data, T4 label-implied",
+  "clusters": 10,
+  "hash": "540a0d89b2a44eb388f176cf57d141532d9aa4388411e97d6ebd2e92c990dac9",
+  "id": "q1s2",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.11351339317396876,
+    "infrastructure": 0,
+    "k": 0,
+    "kind": "crash",
+    "lo": 0.0,
+    "n": 30,
+    "point": 0.0,
+    "where": []
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": null,
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "no released intervention targets in this battery",
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": null,
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "needs a round of at least 3 LLM systems on the same battery",
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.08867637189927276,
+    "kind": "name_reliance",
+    "lo": 0.007906183731180443,
+    "metric": "dir_f1@committed",
+    "point": 0.04852659152716553,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.03947811409772306,
+    "kind": "wrong_knowledge_harm",
+    "lo": -0.01683360928158239,
+    "metric": "dir_f1@committed",
+    "point": 0.010841064494399763,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": null,
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": "no ok run exposes the data-only variant with DV-1 targets",
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": {
+    "B": 2000,
+    "clusters": 10,
+    "hi": 0.006716417910447764,
+    "lo": 0.0,
+    "point": 0.0022388059701492547,
+    "seed": 20261014,
+    "units": 10
+   },
+   "id": "K10",
+   "judged_on": "real",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": 0.006075074391451618,
+      "right_to_wrong": 0,
+      "stage": "S0 -> final",
+      "wrong_to_right": 2
+     }
+    ],
+    "real": [
+     {
+      "adj_point": 0.0022388059701492547,
+      "right_to_wrong": 1,
+      "stage": "S0 -> final",
+      "wrong_to_right": 2
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": 0.006994376076407555,
+      "right_to_wrong": 1,
+      "stage": "S0 -> final",
+      "wrong_to_right": 1
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.006716417910447764,
+      "lo": 0.0,
+      "point": 0.0022388059701492547,
+      "seed": 20261014,
+      "units": 10
+     },
+     "stage": "S0 -> final"
+    }
+   ],
+   "reason": null,
+   "stage": "S0 -> final",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": null,
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "needs stage traces and a T4 label reference for the swapped arm",
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": {
+    "net": -1,
+    "right_to_wrong": 1,
+    "sign_p": 0.875,
+    "units": 3,
+    "wrong_to_right": 2
+   },
+   "id": "K12",
+   "judged_on": "real",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": 0.006075074391451618,
+      "right_to_wrong": 0,
+      "stage": "S0 -> final",
+      "wrong_to_right": 2
+     }
+    ],
+    "real": [
+     {
+      "adj_point": 0.0022388059701492547,
+      "right_to_wrong": 1,
+      "stage": "S0 -> final",
+      "wrong_to_right": 2
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": 0.006994376076407555,
+      "right_to_wrong": 1,
+      "stage": "S0 -> final",
+      "wrong_to_right": 1
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "right_to_wrong": 1,
+     "stage": "S0 -> final",
+     "wrong_to_right": 2
+    }
+   ],
+   "reason": null,
+   "stage": "S0 -> final",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "inconclusive"
+  },
+  {
+   "control": "none",
+   "effect": null,
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": "the system exposes no per-edge source (L2 attribution is K10-K12)",
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states no confidence",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": null,
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "no DV-1 targets in this battery",
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "not_checkable"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": 0.5929691718723821,
+   "a": 0.611794963423379,
+   "adj_f1": 0.5929691718723821,
+   "c": 0.2422046454614768,
+   "completion": 1.0,
+   "dir_f1@committed": 0.19558437637241982,
+   "dir_f1@expect": 0.34475842187680306,
+   "dir_f1@expect_delivered": 0.34475842187680306,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.93,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 1.2838999999999998,
+   "word": "accuracy"
+  },
+  "real": {
+   "S": 0.5970145590842847,
+   "a": 0.6205585623750922,
+   "adj_f1": 0.5970145590842847,
+   "c": 0.33224648267184276,
+   "completion": 1.0,
+   "dir_f1@committed": 0.23326990340518564,
+   "dir_f1@expect": 0.400053713261266,
+   "dir_f1@expect_delivered": 0.400053713261266,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.8858333333333335,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 1.7888000000000002,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.6070520835039381,
+   "a": 0.5989794087491457,
+   "adj_f1": 0.6070520835039381,
+   "c": 0.23805906812485755,
+   "completion": 1.0,
+   "dir_f1@committed": 0.1847433118780201,
+   "dir_f1@expect": 0.3470138776531005,
+   "dir_f1@expect_delivered": 0.3470138776531005,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.919047619047619,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 1.771,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "data_only": {
+   "checkable": false,
+   "kind": "knowledge_degrades_data",
+   "point": null,
+   "units": 0
+  },
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.08867637189927276,
+    "kind": "name_reliance",
+    "lo": 0.007906183731180443,
+    "metric": "dir_f1@committed",
+    "point": 0.04852659152716553,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "K05": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.03947811409772306,
+    "kind": "wrong_knowledge_harm",
+    "lo": -0.01683360928158239,
+    "metric": "dir_f1@committed",
+    "point": 0.010841064494399763,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "real_minus_neutral": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 10,
+    "hi": 0.08768368058644266,
+    "lo": -0.008419851320015787,
+    "metric": "dir_f1@committed",
+    "point": 0.037685527032765766,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   }
+  }
+ },
+ "l2": {
+  "stages": [
+   "S0",
+   "final"
+  ],
+  "transitions": {
+   "neutral": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.013096905413333346,
+      "lo": -0.0005617977528089901,
+      "point": 0.006075074391451618,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 2
+     },
+     "stage": "S0 -> final"
+    }
+   ],
+   "real": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.006716417910447764,
+      "lo": 0.0,
+      "point": 0.0022388059701492547,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 1,
+      "wrong_to_right": 2
+     },
+     "stage": "S0 -> final"
+    }
+   ],
+   "swapped": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.01398875215281511,
+      "lo": 0.0,
+      "point": 0.006994376076407555,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 1,
+      "wrong_to_right": 1
+     },
+     "stage": "S0 -> final"
+    }
+   ]
+  }
+ },
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "D"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "D+K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "D+K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 629.7,
+    "usd": 0.1811
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T214822Z_f06_q011_r01_dadc44/meta.json",
+     "sha256": "5aad1882e2975b2b1e264f5bde5f4f5ee42dcd0fbc1da851a74f404fe3967b97"
+    },
+    "state": {
+     "path": "runs/20261021T214822Z_f06_q011_r01_dadc44/state/11_99_final.json",
+     "sha256": "c6d7e0a0b299b6699c929455e4e08a35aeb923dfbd7ecddd9f3d1975ca21e7a9"
+    }
+   },
+   "graph_sha256": "bc7ae474a1b64fdea74ac1972e05e5cb916e3a563a23a22c0a230e1bc20c6c86",
+   "item": "s2_01",
+   "run_id": "20261021T214822Z_f06_q011_r01_dadc44",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 592.9,
+    "usd": 0.1229
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T215907Z_f06_q012_r01_3d2916/meta.json",
+     "sha256": "f414a3f0020dfcb8b84f22dc46b382c13490329683db0a2c4566a9967059384b"
+    },
+    "state": {
+     "path": "runs/20261021T215907Z_f06_q012_r01_3d2916/state/11_99_final.json",
+     "sha256": "3970c83fd4ba66ff3fb87a1e7ae5ed96aff7262fde5fc035b37057f61492645e"
+    }
+   },
+   "graph_sha256": "4d0ac7e314a09b923979713b06a6da7137459460e3da96482ed67b1539369273",
+   "item": "s2_01",
+   "run_id": "20261021T215907Z_f06_q012_r01_3d2916",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 600.1,
+    "usd": 0.1883
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T220912Z_f06_q013_r01_033a51/meta.json",
+     "sha256": "a2f62d901623d411bc355bafc6993c35dca8a3e26da12af037b0a3b8df26ce66"
+    },
+    "state": {
+     "path": "runs/20261021T220912Z_f06_q013_r01_033a51/state/11_99_final.json",
+     "sha256": "bb7d48dd39145f328db2c9a164a1c5fb151673b4c79d8376f1fc526c2f978a31"
+    }
+   },
+   "graph_sha256": "eab461694c9afd50b20bfaa811d05a1d0b0744ebef06c4f4c994adbd3954fa4f",
+   "item": "s2_01",
+   "run_id": "20261021T220912Z_f06_q013_r01_033a51",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 360.8,
+    "usd": 0.1739
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T221926Z_f06_q021_r01_549547/meta.json",
+     "sha256": "2eacae0378a138dbd4c54e8cd4c461139822db1e67de10fbff51606293e60096"
+    },
+    "state": {
+     "path": "runs/20261021T221926Z_f06_q021_r01_549547/state/11_99_final.json",
+     "sha256": "e6f9bc48231abe24a0099162388b0e28cffb67b232e19603a8c28f0871d81bab"
+    }
+   },
+   "graph_sha256": "e4ccbd375ec6b32f549d462c269edcf996c0c7ce293d1c625b5f96b7fdd902d6",
+   "item": "s2_02",
+   "run_id": "20261021T221926Z_f06_q021_r01_549547",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 350.2,
+    "usd": 0.1297
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T222551Z_f06_q022_r01_8b3f55/meta.json",
+     "sha256": "83045a046f70f95f47da6d522f8cb90fd855340d8eaab11ec30512e10aad85c1"
+    },
+    "state": {
+     "path": "runs/20261021T222551Z_f06_q022_r01_8b3f55/state/11_99_final.json",
+     "sha256": "eb6af36df1e2721fde1b2abcbf3e03c997da6964fe66e7d89f0837caaedee74e"
+    }
+   },
+   "graph_sha256": "1880b79aa3c8f0ddfd6b7728315a2786529f8eef95d1cbf5adf52fad3e0fd226",
+   "item": "s2_02",
+   "run_id": "20261021T222551Z_f06_q022_r01_8b3f55",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 339.8,
+    "usd": 0.1822
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T223202Z_f06_q023_r01_5fa28f/meta.json",
+     "sha256": "9e9fbc742d4a8139e4d60c0398d980e3ff70bf97d68befda3191f7ba1e9926ec"
+    },
+    "state": {
+     "path": "runs/20261021T223202Z_f06_q023_r01_5fa28f/state/11_99_final.json",
+     "sha256": "f083a93a1805563ebc7a94ab7fdb80278deeec95da7db5fd5db41fd324d48fcf"
+    }
+   },
+   "graph_sha256": "4c1971a6cfebdc2bf367b4704270cd19edbabc621fe0434affbdc85549258ae3",
+   "item": "s2_02",
+   "run_id": "20261021T223202Z_f06_q023_r01_5fa28f",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 678.8,
+    "usd": 0.1842
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T223758Z_f06_q031_r01_0e921a/meta.json",
+     "sha256": "822cf93adb712741e50b1deca556ec65f5cadcd7ea9e3c2d748f0083dcc07663"
+    },
+    "state": {
+     "path": "runs/20261021T223758Z_f06_q031_r01_0e921a/state/11_99_final.json",
+     "sha256": "f84ff478465da565721e65a3b93b6623a38b65c612031a63bea2b7e06a48f836"
+    }
+   },
+   "graph_sha256": "56095fdea845c014ea82bb83ae79763cef2b9652a4f633b5e419dfbab9d12ace",
+   "item": "s2_03",
+   "run_id": "20261021T223758Z_f06_q031_r01_0e921a",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 726.7,
+    "usd": 0.1275
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T224939Z_f06_q032_r01_d102c1/meta.json",
+     "sha256": "9f6fd1cf5bb266efa1aa824e351183f83f2ba58984f38ec9525eeb70db25e961"
+    },
+    "state": {
+     "path": "runs/20261021T224939Z_f06_q032_r01_d102c1/state/11_99_final.json",
+     "sha256": "c3a68e7fe48187c314bce732c5b3db5c50e7012d3769c596b8d71b52c571c0b5"
+    }
+   },
+   "graph_sha256": "8c479a902c7f08db52334309c12569de8cf12dcc0c6cb7a6f7daaf359a34d7a0",
+   "item": "s2_03",
+   "run_id": "20261021T224939Z_f06_q032_r01_d102c1",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 636.0,
+    "usd": 0.18
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T230203Z_f06_q033_r01_54ad90/meta.json",
+     "sha256": "d085599ae1ecb07ee61477f44ae0f007ed907233641b637357d524fca10ae6b8"
+    },
+    "state": {
+     "path": "runs/20261021T230203Z_f06_q033_r01_54ad90/state/11_99_final.json",
+     "sha256": "5004fe2e5a77f75edd1870506855882700d2b64de7018c36ace0d7d405dfbe87"
+    }
+   },
+   "graph_sha256": "36da8eebf5319850c10936b7fa5cb6c219b69cc02c3936438a0cfc7f53682524",
+   "item": "s2_03",
+   "run_id": "20261021T230203Z_f06_q033_r01_54ad90",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 478.2,
+    "usd": 0.1861
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T231252Z_f06_q041_r01_19973e/meta.json",
+     "sha256": "4f548fb9a04f6bebc15b3682451899a68c2660e10682f863409d4a6ee893158c"
+    },
+    "state": {
+     "path": "runs/20261021T231252Z_f06_q041_r01_19973e/state/11_99_final.json",
+     "sha256": "94cb929390d24535a055321450ff2240a30da22fab9f2eb82f0d8d541cca9ed9"
+    }
+   },
+   "graph_sha256": "94469e76d728866064e471a436b3ea316cab347bb25efb583cbd2029449a7f2b",
+   "item": "s2_04",
+   "run_id": "20261021T231252Z_f06_q041_r01_19973e",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 494.4,
+    "usd": 0.1289
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T232104Z_f06_q042_r01_ea82e1/meta.json",
+     "sha256": "26dc911cc006199b5050f7707f418609e5900488c24b581a75cc0b4273158e07"
+    },
+    "state": {
+     "path": "runs/20261021T232104Z_f06_q042_r01_ea82e1/state/11_99_final.json",
+     "sha256": "c921f0deaf46245e345284f50a7d0b6509f18df6219196adf4efb2685ec26f9f"
+    }
+   },
+   "graph_sha256": "571070cf6c2427d1ac4417610e58d60972434aedd6a84a97203f4f22b5f3ffd4",
+   "item": "s2_04",
+   "run_id": "20261021T232104Z_f06_q042_r01_ea82e1",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 499.0,
+    "usd": 0.1858
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T232932Z_f06_q043_r01_00e97f/meta.json",
+     "sha256": "b1805e5d0422bd096e1d371708223a1d7b3cf619a931f98a66fa62d404ea0e5d"
+    },
+    "state": {
+     "path": "runs/20261021T232932Z_f06_q043_r01_00e97f/state/11_99_final.json",
+     "sha256": "ea99cefee22e2ee896155855c41827e00f706a4d85754e010b65a1e877a0f6ee"
+    }
+   },
+   "graph_sha256": "8d9d82694a34039d1d2d7aff1154982a413fbb5c0ae7d0bbcb60d63d757a6cf9",
+   "item": "s2_04",
+   "run_id": "20261021T232932Z_f06_q043_r01_00e97f",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 321.2,
+    "usd": 0.1833
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T233806Z_f06_q051_r01_23cea5/meta.json",
+     "sha256": "c2c0c9268d98233d52b5d6a84f0a6eb07d0ee82f4d1ff1ce0415c55ce17a3774"
+    },
+    "state": {
+     "path": "runs/20261021T233806Z_f06_q051_r01_23cea5/state/11_99_final.json",
+     "sha256": "a94a7c9467af44f51e8be99af5ab65565f4e60a825d67258ab7fd36e4d3dfd15"
+    }
+   },
+   "graph_sha256": "7e68394dd386c6ed45bd3e1d8390b73fa50fb23ef56825b0791c2acee21fcdc1",
+   "item": "s2_05",
+   "run_id": "20261021T233806Z_f06_q051_r01_23cea5",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 302.5,
+    "usd": 0.1222
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T234344Z_f06_q052_r01_bf2e17/meta.json",
+     "sha256": "57644b11f4f248a6ca862c521ea135f4744faa307c8ee5bfa74907bb8e964a3a"
+    },
+    "state": {
+     "path": "runs/20261021T234344Z_f06_q052_r01_bf2e17/state/11_99_final.json",
+     "sha256": "6270495751950a09f6b5d5081fbb012ee5b8fddb5e05e1a7b41499dfda099382"
+    }
+   },
+   "graph_sha256": "5898f6b721c279fe011694d604a4a0dad19b8a857b0b8a41a56f007f9e7a88b3",
+   "item": "s2_05",
+   "run_id": "20261021T234344Z_f06_q052_r01_bf2e17",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 325.3,
+    "usd": 0.1723
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T234900Z_f06_q053_r01_49f1bf/meta.json",
+     "sha256": "d9830313c6b6f6f095798a85a4ad955e3cd46ef7be9049187e3bfb3386d0dd18"
+    },
+    "state": {
+     "path": "runs/20261021T234900Z_f06_q053_r01_49f1bf/state/11_99_final.json",
+     "sha256": "94208bf04369784e4f97185e506429d9d6a0e72e907690c11063e7e0e2cebdf4"
+    }
+   },
+   "graph_sha256": "c4f51709ad3f20bfd4c381e1bf5c2b265af08ee33e8a20bf0167de9a22ec62a2",
+   "item": "s2_05",
+   "run_id": "20261021T234900Z_f06_q053_r01_49f1bf",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 572.2,
+    "usd": 0.1721
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261021T235443Z_f06_q061_r01_c9a249/meta.json",
+     "sha256": "fb9cab161a4863ac813c699034110ca12d49bcb937fa1a02bb29eea5eb77e0e8"
+    },
+    "state": {
+     "path": "runs/20261021T235443Z_f06_q061_r01_c9a249/state/11_99_final.json",
+     "sha256": "ccc04cfc16cc0331c303ef03226af9efa1855a557b99b40978459198dfb313cd"
+    }
+   },
+   "graph_sha256": "e6b21d6dece84714aee23bc5b32bed09a8c22be2233098815440e55da88d5463",
+   "item": "s2_06",
+   "run_id": "20261021T235443Z_f06_q061_r01_c9a249",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 542.8,
+    "usd": 0.122
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T000428Z_f06_q062_r01_6407ef/meta.json",
+     "sha256": "281c656c0293faaf7d64dc5d7a3c1025d76482fe9ff46aadc6fcf602eadc9f85"
+    },
+    "state": {
+     "path": "runs/20261022T000428Z_f06_q062_r01_6407ef/state/11_99_final.json",
+     "sha256": "56e51dffb9ab44b955ac55af2ec3a5328b48c59988b2c89878a51973278f52fb"
+    }
+   },
+   "graph_sha256": "5703a61343296a4f63302e47b147d642b77c28200353a9525d296d035b962bf9",
+   "item": "s2_06",
+   "run_id": "20261022T000428Z_f06_q062_r01_6407ef",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 543.5,
+    "usd": 0.1633
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T001345Z_f06_q063_r01_f1e113/meta.json",
+     "sha256": "e4914fd80f1d57e72b26d2bd3b3aaedd43e3583e953597acab0b3f06bd785567"
+    },
+    "state": {
+     "path": "runs/20261022T001345Z_f06_q063_r01_f1e113/state/11_99_final.json",
+     "sha256": "9037bd6ce7db029c5fed44acbce3036fc435dc0b83233e518283834cca28ed5b"
+    }
+   },
+   "graph_sha256": "8489f5f73437edce6d81268a2a589a0e64f8158bdd73e5327843b768540f1c54",
+   "item": "s2_06",
+   "run_id": "20261022T001345Z_f06_q063_r01_f1e113",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 478.0,
+    "usd": 0.1643
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T002300Z_f06_q071_r01_a1eda5/meta.json",
+     "sha256": "70c3b2074b292af38d9721ec9b314303343dae7922488596b2bd754965aa61dc"
+    },
+    "state": {
+     "path": "runs/20261022T002300Z_f06_q071_r01_a1eda5/state/11_99_final.json",
+     "sha256": "138c8acc75adbb1e8058b50a936309f243b627abdda36c35f8ac118cc085a7f6"
+    }
+   },
+   "graph_sha256": "b0aa6bfe2f31bd2cb6dc95dca7f43547f13cb6801d0efbc1a9536f2fb4924dc0",
+   "item": "s2_07",
+   "run_id": "20261022T002300Z_f06_q071_r01_a1eda5",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 519.2,
+    "usd": 0.1293
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T003118Z_f06_q072_r01_9f73c1/meta.json",
+     "sha256": "a17e68c0a480574e497ba3a0f9976751ec1434e916d6bc6fa961754449a043c5"
+    },
+    "state": {
+     "path": "runs/20261022T003118Z_f06_q072_r01_9f73c1/state/11_99_final.json",
+     "sha256": "9c056e7c06ccef33dfb22354f6af961f0bbe79574885572144eac2ee17d55203"
+    }
+   },
+   "graph_sha256": "a82cb03521170e04fe821e1e93e6d3c85896331457386baadcba6be6596e3be4",
+   "item": "s2_07",
+   "run_id": "20261022T003118Z_f06_q072_r01_9f73c1",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 515.1,
+    "usd": 0.1788
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T004014Z_f06_q073_r01_c5475e/meta.json",
+     "sha256": "dd1782b0250cd4bed299651bcda728df6d1d9c793483e0279a7c41c99193864d"
+    },
+    "state": {
+     "path": "runs/20261022T004014Z_f06_q073_r01_c5475e/state/11_99_final.json",
+     "sha256": "0228c3e483b21258fa9ab86d0d4fd9ba82d826f379bb18c4e64dc75c21281182"
+    }
+   },
+   "graph_sha256": "996897705a6c83746abc43c894bd7e24c791ba4bfda5b996ef20892c53826728",
+   "item": "s2_07",
+   "run_id": "20261022T004014Z_f06_q073_r01_c5475e",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 672.9,
+    "usd": 0.1811
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T004906Z_f06_q081_r01_b6fb72/meta.json",
+     "sha256": "e9234ccc98703a285c5ec10fd9ec0ae3979d68f52e1b2f376713dbe3431fad07"
+    },
+    "state": {
+     "path": "runs/20261022T004906Z_f06_q081_r01_b6fb72/state/11_99_final.json",
+     "sha256": "29266069922aaaac070676e98b8146bdee1d704a2c1e2997553721ed68833a76"
+    }
+   },
+   "graph_sha256": "45a2a05400b14cbe760d525da82d0e2ee58e5e233fe703df723630ba3d9346e6",
+   "item": "s2_08",
+   "run_id": "20261022T004906Z_f06_q081_r01_b6fb72",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 653.8,
+    "usd": 0.1238
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T010037Z_f06_q082_r01_e4b5a2/meta.json",
+     "sha256": "d3ac772a0f3ba4f52f41d388aa35cb31610903a94e629d7aea1d0a4e081ff0db"
+    },
+    "state": {
+     "path": "runs/20261022T010037Z_f06_q082_r01_e4b5a2/state/11_99_final.json",
+     "sha256": "08d2b4502b31d521c4da8d531b0cd3d640e4b5ff38577706aa0da18aa52a20e5"
+    }
+   },
+   "graph_sha256": "34b88c0ea244946b8714a4906a3792fac7e11b2ef4f1c00c142fad37b0730755",
+   "item": "s2_08",
+   "run_id": "20261022T010037Z_f06_q082_r01_e4b5a2",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 617.2,
+    "usd": 0.1706
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T011149Z_f06_q083_r01_bef66c/meta.json",
+     "sha256": "4ae1da73a9acec5709a9be2cc11d9d63fec81572617c4a58ea7a859d52497677"
+    },
+    "state": {
+     "path": "runs/20261022T011149Z_f06_q083_r01_bef66c/state/11_99_final.json",
+     "sha256": "11f2d767603e84b299c9fc4eb2b28ff9ebb099365fc78a6c7cb4033b323562b7"
+    }
+   },
+   "graph_sha256": "9bd6f039a6a83763b377799e67d30ab92e0a098fdee0b776abade2085b6316e1",
+   "item": "s2_08",
+   "run_id": "20261022T011149Z_f06_q083_r01_bef66c",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 537.9,
+    "usd": 0.1805
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T012220Z_f06_q091_r01_c0ac7b/meta.json",
+     "sha256": "5a63c9cb782778e748c8601af1286aa1f5c95719a88c41930c179a272bbaf27d"
+    },
+    "state": {
+     "path": "runs/20261022T012220Z_f06_q091_r01_c0ac7b/state/11_99_final.json",
+     "sha256": "a4d51e6c3cf5e1ad31c2686e1eafb07a344c970c0f5fcdbc1ee6409ffab1d6d1"
+    }
+   },
+   "graph_sha256": "1f823a9ffaf8969e4a26642acb5e3eec53950e892b55e4116a85e76e27536a68",
+   "item": "s2_09",
+   "run_id": "20261022T012220Z_f06_q091_r01_c0ac7b",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 464.3,
+    "usd": 0.1316
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T013132Z_f06_q092_r01_dcad13/meta.json",
+     "sha256": "cd4eca904cedaeea991d4c194694dcf56f6c9ea4fa4389524504d993b79e0d9f"
+    },
+    "state": {
+     "path": "runs/20261022T013132Z_f06_q092_r01_dcad13/state/11_99_final.json",
+     "sha256": "847219df3be3e7c4d90ccd181df030cc5c7d77ce4250fa51eb1828e37b9a3355"
+    }
+   },
+   "graph_sha256": "1ffb334dc8cc22703775df3face06b0d5f1e298a8366e37410bfb4bcd38285b0",
+   "item": "s2_09",
+   "run_id": "20261022T013132Z_f06_q092_r01_dcad13",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 513.1,
+    "usd": 0.17
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T013929Z_f06_q093_r01_aeb5c5/meta.json",
+     "sha256": "2af22bab6d5f46f2a3adfc31465040776af842b951596545c6901c4b4f44976b"
+    },
+    "state": {
+     "path": "runs/20261022T013929Z_f06_q093_r01_aeb5c5/state/11_99_final.json",
+     "sha256": "9c6489d6e5bbdd3c4b8c4eb89e35bef58c8cc070027bc547d4b3ee2ee4d0044a"
+    }
+   },
+   "graph_sha256": "62a4efdfaf016f56f8fc6fb4a3f623a9fe67ced5b60280c271d70e064bbbcbd1",
+   "item": "s2_09",
+   "run_id": "20261022T013929Z_f06_q093_r01_aeb5c5",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 563.5,
+    "usd": 0.1822
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T014813Z_f06_q101_r01_511c82/meta.json",
+     "sha256": "445d0c8897bc38d49a65cca453424e8a6005492773bb838d7b1409102b56de1c"
+    },
+    "state": {
+     "path": "runs/20261022T014813Z_f06_q101_r01_511c82/state/11_99_final.json",
+     "sha256": "ff949037e572ae0ff25afbfd750c7aa9e8674b0bb1ac0c8c38d2067a482e3aa5"
+    }
+   },
+   "graph_sha256": "42cd60ca970191e9aab07883b94e16cb5a582b48d311754ac31fff7413576233",
+   "item": "s2_10",
+   "run_id": "20261022T014813Z_f06_q101_r01_511c82",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 627.8,
+    "usd": 0.146
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T015748Z_f06_q102_r01_bbcb66/meta.json",
+     "sha256": "d0bda8f04cc96b2c3c51cfe6093a98d05780201c79409a518a96fec5aa091fb6"
+    },
+    "state": {
+     "path": "runs/20261022T015748Z_f06_q102_r01_bbcb66/state/11_99_final.json",
+     "sha256": "496239ca3f4679cb07d7d259b9d1c756d4a85f013f32d74327e07044e0a9fc88"
+    }
+   },
+   "graph_sha256": "4d10238f66cafdd37d23e8b174e31e347a32ce162fd3c9fd2ee9c0052d8b2728",
+   "item": "s2_10",
+   "run_id": "20261022T015748Z_f06_q102_r01_bbcb66",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 628.4,
+    "usd": 0.1797
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T020827Z_f06_q103_r01_1e6904/meta.json",
+     "sha256": "8ed40887c6f592b63c7bcfcc66fe442b1a556833883f24c6052d1aa18ee6af09"
+    },
+    "state": {
+     "path": "runs/20261022T020827Z_f06_q103_r01_1e6904/state/11_99_final.json",
+     "sha256": "c5e8156e8aa207274c64a9c66e1ac487bcf260dbd69f3d0a056b56f43979da65"
+    }
+   },
+   "graph_sha256": "0f25c3149da8c819f67fd2c046cebd88e85ab5eb65b16e3dff22316e350c35ad",
+   "item": "s2_10",
+   "run_id": "20261022T020827Z_f06_q103_r01_1e6904",
+   "status": "ok"
+  }
+ ],
+ "runs_manifest_sha256": "cf7c920087389a1bd16e1c34499d3ea6a045e9a29b78627e9daa24bf08c6cbbd",
+ "spec": {
+  "adapter_kw": {
+   "source": "bld06"
+  },
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "q1s2",
+  "extra": {
+   "name_metric": "dir_f1@committed"
+  },
+  "round": null,
+  "runs_date": "2026-10-21",
+  "system": "causal_copilot"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": false,
+   "cost": "llm",
+   "edge_source": false,
+   "glass_box": {
+    "entry": "main:main (harness/run_traced.py, harness/cc_trace.py hooks)",
+    "stages": [
+     "S0",
+     "S1",
+     "S2",
+     "S3",
+     "S4"
+    ]
+   },
+   "marks": [
+    "--",
+    "->",
+    "<->",
+    "mixed",
+    "o-",
+    "o->",
+    "o-o",
+    "~"
+   ],
+   "modes": [
+    "live",
+    "recorded"
+   ],
+   "takes": [
+    "context",
+    "data",
+    "names"
+   ],
+   "variants": {
+    "data_only": "S0"
+   }
+  },
+  "id": "causal_copilot@bld06",
+  "identity": {
+   "adapter": "causal_copilot",
+   "adapter_file_sha256": "878db870ba98a42eae5054aa3419de0d83bd81613de57784ab052cc553fcf5e0",
+   "adapter_version": "1",
+   "image": "rebuilt image (21 Oct)",
+   "model": "gpt-4o",
+   "source": "bld06",
+   "source_file": "plans/results/fork_bld06_live.capped.json",
+   "source_sha256": "17e2c5290c3bb47bbb42a8f534257d6887a69123834bb5d0d3b632801a000b5e",
+   "system_commit": "55a490a (bld-06-refinement-v2)",
+   "system_repo": "https://github.com/uzairgheewala/Causal-Copilot"
+  }
+ }
+}

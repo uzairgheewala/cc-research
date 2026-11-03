@@ -1,0 +1,1143 @@
+{
+ "audit": "vashishtha",
+ "battery": {
+  "about": "AB-06 grid: 10 CausalArena semantic scenarios, rep000, obs_only (+ obs_int for released targets)",
+  "clusters": 10,
+  "hash": "561af73ae72f0d5282b7e85fa7cf60249f6d18b861b0aea0274bf6636b73f285",
+  "id": "ca-ab06",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.2775327998628892,
+    "infrastructure": 0,
+    "k": 0,
+    "kind": "crash",
+    "lo": 0.0,
+    "n": 10,
+    "point": 0.0,
+    "where": []
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": {
+    "B": 2000,
+    "arm": "real",
+    "clusters": 5,
+    "hi": 0.08141799766264113,
+    "lo": 0.024922118380062308,
+    "point": 0.05344995140913511,
+    "seed": 20261014,
+    "units": 5
+   },
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": {
+    "ratio": 1.9237232254583208,
+    "round_median": 0.6544626499999999,
+    "systems": 4,
+    "usd_per_run": 1.259005
+   },
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 5,
+    "hi": 0.04606619187264346,
+    "kind": "name_reliance",
+    "lo": -0.006753246753246722,
+    "metric": "dir_f1@expect",
+    "point": 0.019829632732858538,
+    "seed": 20261014,
+    "source": "final",
+    "units": 5
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": {
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 0,
+    "hi": null,
+    "kind": "wrong_knowledge_harm",
+    "lo": null,
+    "metric": "dir_f1@expect",
+    "point": null,
+    "source": "final",
+    "units": 0
+   },
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "inconclusive"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": {
+    "B": 2000,
+    "checkable": true,
+    "clusters": 5,
+    "dv1_precision_data_only": 0.7181008902077152,
+    "dv1_precision_final": 0.7201166180758017,
+    "f1_data_only": 0.4249526203443254,
+    "f1_final": 0.42581842121012625,
+    "hi": 0.012899896800825594,
+    "kind": "knowledge_degrades_data",
+    "lo": -0.006264161002265678,
+    "metric": "dv1_precision",
+    "point": 0.00201572786808657,
+    "seed": 20261014,
+    "units": 5,
+    "variant": "pc_only"
+   },
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": null,
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": {
+    "B": 2000,
+    "clusters": 5,
+    "hi": 0.0,
+    "lo": 0.0,
+    "point": 0.0,
+    "seed": 20261014,
+    "units": 5
+   },
+   "id": "K10",
+   "judged_on": "real",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": null,
+      "right_to_wrong": 0,
+      "stage": "pc_only -> final",
+      "wrong_to_right": 0
+     }
+    ],
+    "real": [
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "pc_only -> final",
+      "wrong_to_right": 0
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "pc_only -> final",
+      "wrong_to_right": 0
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 5,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 5
+     },
+     "stage": "pc_only -> final"
+    }
+   ],
+   "reason": null,
+   "stage": "pc_only -> final",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": null,
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "needs stage traces and a T4 label reference for the swapped arm",
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": null,
+   "id": "K12",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "no direction flips on true adjacencies",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "inconclusive"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "committed": 200,
+    "share": 0.0,
+    "units": 200,
+    "unsourced": 0
+   },
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": null,
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states no confidence",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "arm": "real",
+    "committed": 343,
+    "correct": 247,
+    "coverage": 0.9942028985507246,
+    "pairs": 345,
+    "precision": 0.7201166180758017,
+    "units": 5
+   },
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "fires"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": null,
+   "a": null,
+   "adj_f1": null,
+   "c": null,
+   "completion": null,
+   "dir_f1@committed": null,
+   "dir_f1@expect": null,
+   "dir_f1@expect_delivered": null,
+   "direction_sources": {},
+   "executed": 0,
+   "infrastructure": 0,
+   "not_run": 10,
+   "ok": 0,
+   "q": null,
+   "runs": 10,
+   "statuses": {
+    "not_run": 10
+   },
+   "usd": 0.0,
+   "word": null
+  },
+  "real": {
+   "S": 0.6031743371835538,
+   "a": 0.7345660531419046,
+   "adj_f1": 0.6031743371835538,
+   "c": 0.8889781013620022,
+   "completion": 1.0,
+   "dir_f1@committed": 0.4236716194235795,
+   "dir_f1@expect": 0.42581842121012625,
+   "dir_f1@expect_delivered": 0.42581842121012625,
+   "direction_sources": {
+    "data": 89,
+    "llm_order": 11
+   },
+   "dv1": {
+    "committed": 343,
+    "correct": 247,
+    "coverage": 0.9942028985507246,
+    "pairs": 345,
+    "precision": 0.7201166180758017
+   },
+   "executed": 5,
+   "infrastructure": 0,
+   "not_run": 5,
+   "ok": 5,
+   "q": 0.766031746031746,
+   "runs": 10,
+   "statuses": {
+    "not_run": 5,
+    "ok": 5
+   },
+   "usd": 6.085573,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.6031743371835538,
+   "a": 0.699938760929473,
+   "adj_f1": 0.6031743371835538,
+   "c": 0.88535819185974,
+   "completion": 1.0,
+   "dir_f1@committed": 0.40224195663919404,
+   "dir_f1@expect": 0.4059887884772677,
+   "dir_f1@expect_delivered": 0.4059887884772677,
+   "direction_sources": {
+    "data": 89,
+    "llm_order": 11
+   },
+   "dv1": {
+    "committed": 341,
+    "correct": 245,
+    "coverage": 0.9884057971014493,
+    "pairs": 345,
+    "precision": 0.718475073313783
+   },
+   "executed": 5,
+   "infrastructure": 0,
+   "not_run": 5,
+   "ok": 5,
+   "q": 0.7288888888888889,
+   "runs": 10,
+   "statuses": {
+    "not_run": 5,
+    "ok": 5
+   },
+   "usd": 6.504476999999999,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "data_only": {
+   "B": 2000,
+   "checkable": true,
+   "clusters": 5,
+   "dv1_precision_data_only": 0.7181008902077152,
+   "dv1_precision_final": 0.7201166180758017,
+   "f1_data_only": 0.4249526203443254,
+   "f1_final": 0.42581842121012625,
+   "hi": 0.012899896800825594,
+   "kind": "knowledge_degrades_data",
+   "lo": -0.006264161002265678,
+   "metric": "dv1_precision",
+   "point": 0.00201572786808657,
+   "seed": 20261014,
+   "units": 5,
+   "variant": "pc_only"
+  },
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 5,
+    "hi": 0.04606619187264346,
+    "kind": "name_reliance",
+    "lo": -0.006753246753246722,
+    "metric": "dir_f1@expect",
+    "point": 0.019829632732858538,
+    "seed": 20261014,
+    "source": "final",
+    "units": 5
+   },
+   "K05": {
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 0,
+    "hi": null,
+    "kind": "wrong_knowledge_harm",
+    "lo": null,
+    "metric": "dir_f1@expect",
+    "point": null,
+    "source": "final",
+    "units": 0
+   },
+   "real_minus_neutral": {
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 0,
+    "hi": null,
+    "lo": null,
+    "metric": "dir_f1@expect",
+    "point": null,
+    "source": "final",
+    "units": 0
+   }
+  }
+ },
+ "l2": {
+  "stages": [
+   "pc_only",
+   "final"
+  ],
+  "transitions": {
+   "neutral": [
+    {
+     "adj": {
+      "clusters": 0,
+      "hi": null,
+      "lo": null,
+      "point": null,
+      "units": 0
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "pc_only -> final"
+    }
+   ],
+   "real": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 5,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 5
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "pc_only -> final"
+    }
+   ],
+   "swapped": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 5,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 5
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "pc_only -> final"
+    }
+   ]
+  }
+ },
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "D"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "D+K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "D+K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 796,
+    "models": {
+     "gpt-4o-2024-08-06": 116,
+     "gpt-4o-mini-2024-07-18": 680
+    },
+    "new_api_calls": 17,
+    "seconds": 58.17,
+    "usd": 1.562297
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/apartment_heat_exposure_shading_ac/real/result.json",
+     "sha256": "d07c18c6578509be240e10f69bacb4f516f71d9e775dec63a7535f36b3b2d93f"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/apartment_heat_exposure_shading_ac/real/summary.json",
+     "sha256": "ce9a999b7976767eb24ecdfb69a4841a52f699dff6e1bc7a6f08aca385d88a2d"
+    }
+   },
+   "graph_sha256": "a1e003b58bc0ee60e9acf85448851da816d04ed29c17266ef0e4ac11af31a414",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 807,
+    "models": {
+     "gpt-4o-2024-08-06": 127,
+     "gpt-4o-mini-2024-07-18": 680
+    },
+    "new_api_calls": 28,
+    "seconds": 84.29,
+    "usd": 1.692806
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/apartment_heat_exposure_shading_ac/swapped/result.json",
+     "sha256": "fc2ac4f325bc380eb645207813eeab304bdf544be404d09f633969457d779dc1"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/apartment_heat_exposure_shading_ac/swapped/summary.json",
+     "sha256": "6de3a492621ddc7ebf75b57b49ad2ec5965585c8e06fac4793af94e671a6cf78"
+    }
+   },
+   "graph_sha256": "ba5f2c856966105ac764d37cd3f9f425ed6d9e7f1b55d23981263a16a291a7f1",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 2363,
+    "models": {
+     "gpt-4o-2024-08-06": 63,
+     "gpt-4o-mini-2024-07-18": 2300
+    },
+    "new_api_calls": 1150,
+    "seconds": 3560.8,
+    "usd": 1.285463
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/backup_frequency_ransomware_loss/real/result.json",
+     "sha256": "e078a252395996d3209444e5095a001c1f94f26390f150413a95b6b563b609a2"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/backup_frequency_ransomware_loss/real/summary.json",
+     "sha256": "4fda49414c7c871724d1bea8cbbda54bf90d2d6a8bda1d7a09653cb1a619e171"
+    }
+   },
+   "graph_sha256": "e9d8f94e8aeccd7cbfbe321670adad0fda844f2fff3fe3e80e843da4ae99643f",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 2370,
+    "models": {
+     "gpt-4o-2024-08-06": 70,
+     "gpt-4o-mini-2024-07-18": 2300
+    },
+    "new_api_calls": 453,
+    "seconds": 1305.84,
+    "usd": 1.368588
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/backup_frequency_ransomware_loss/swapped/result.json",
+     "sha256": "52236d50ffe201eba30c572e5c34950095eaba6c0578fa4d8f8200cfa67397be"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/backup_frequency_ransomware_loss/swapped/summary.json",
+     "sha256": "c8902b15b8cd236631dc6ddc1af8a91763d97bf7891ab96c7e32765e381c1da0"
+    }
+   },
+   "graph_sha256": "62b99ab4adccd7f9a5ddf1957a29d043389d3c4f957684099e995380392a514a",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1818,
+    "models": {
+     "gpt-4o-2024-08-06": 47,
+     "gpt-4o-mini-2024-07-18": 1771
+    },
+    "new_api_calls": 1055,
+    "seconds": 2864.69,
+    "usd": 0.959753
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/bike_share_rebalancing_spatial_demand/real/result.json",
+     "sha256": "9838356f7aa86f4e50b18d57db372a1ad5b12e713fab5e7908f254a93468d9ed"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/bike_share_rebalancing_spatial_demand/real/summary.json",
+     "sha256": "475c2768690772ed20d08530cfc83fe376381e29e79677018dc86a087baedab4"
+    }
+   },
+   "graph_sha256": "682016334d08f69604d287adbf8ed5de821db22bbdbba794d7309047b5540389",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1840,
+    "models": {
+     "gpt-4o-2024-08-06": 69,
+     "gpt-4o-mini-2024-07-18": 1771
+    },
+    "new_api_calls": 1840,
+    "seconds": 4984.59,
+    "usd": 1.220094
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/bike_share_rebalancing_spatial_demand/swapped/result.json",
+     "sha256": "1a0224ce5acc2132bef716569772e8b9fca400b01b0ad0b7509417c7872ddb45"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/bike_share_rebalancing_spatial_demand/swapped/summary.json",
+     "sha256": "60a182940578bdb4a63df6ad16da2574e6bd04d4d9cd3852ad97a86dd0cce424"
+    }
+   },
+   "graph_sha256": "18a3515a89942323e679935433b2ee62f2ff49852c4cae593f92dc1edbd95dea",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 2137,
+    "models": {
+     "gpt-4o-2024-08-06": 113,
+     "gpt-4o-mini-2024-07-18": 2024
+    },
+    "new_api_calls": 2137,
+    "seconds": 6001.09,
+    "usd": 1.816189
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/conveyor_vibration_package_damage/real/result.json",
+     "sha256": "d3e9ba10b28caa67fe1adbdc7631db5806d854fa308afb6bfdacd524b605d292"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/conveyor_vibration_package_damage/real/summary.json",
+     "sha256": "cbd0782f81f163cf105e81f9cfb42bf07bc39216d8900dd9005da285286801ab"
+    }
+   },
+   "graph_sha256": "dab624f21bc2f13feb11e68de15c40ea8920a35d1c404b665da8b3c0010066ed",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 2122,
+    "models": {
+     "gpt-4o-2024-08-06": 98,
+     "gpt-4o-mini-2024-07-18": 2024
+    },
+    "new_api_calls": 2122,
+    "seconds": 5817.56,
+    "usd": 1.638969
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/conveyor_vibration_package_damage/swapped/result.json",
+     "sha256": "9e14f2eacde0271fa590d0107d44c69a08f5d7567fded36a3eb4aa438f0c465c"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/conveyor_vibration_package_damage/swapped/summary.json",
+     "sha256": "08400a305ffca9594e1f35e21f0a6dee2b17fdfb75ade69b7d80969252835eaa"
+    }
+   },
+   "graph_sha256": "e7704ec38ecc95fa05fd57b96c0536782da85f01afcac74a8ec67e6d3e581858",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 990,
+    "models": {
+     "gpt-4o-2024-08-06": 21,
+     "gpt-4o-mini-2024-07-18": 969
+    },
+    "new_api_calls": 990,
+    "seconds": 2544.01,
+    "usd": 0.461871
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/curb_pricing_delivery_dwell/real/result.json",
+     "sha256": "53e5a6b517744c9f76882c639509d4535ff8cfe2ac8e2fdf39eb0ae5a3667ae6"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/curb_pricing_delivery_dwell/real/summary.json",
+     "sha256": "e4063841e5bbd1b16ae3e49c7014bdec950068d8a9602945be8b128a0f5042c3"
+    }
+   },
+   "graph_sha256": "a945ed7c7474a9b353a852c9d25bceb44ac8e5096ea746ef8fb589cc1228b3da",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1000,
+    "models": {
+     "gpt-4o-2024-08-06": 31,
+     "gpt-4o-mini-2024-07-18": 969
+    },
+    "new_api_calls": 1000,
+    "seconds": 2496.84,
+    "usd": 0.58402
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/vashishtha/curb_pricing_delivery_dwell/swapped/result.json",
+     "sha256": "5de5582868fbdbe3c4a8c4440ded5f0cae6cea29883b254987dc712cca87dfaf"
+    },
+    "summary": {
+     "path": "runs/ab06/vashishtha/curb_pricing_delivery_dwell/swapped/summary.json",
+     "sha256": "70758769c4ebac86c432b106b1bd700e58a100b3170eab4ce4ac69e59396ec5a"
+    }
+   },
+   "graph_sha256": "5a09ffb0a1918551293c7a00dffb8e514eb5ed6105578b618534a190a5638da8",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  }
+ ],
+ "runs_manifest_sha256": "691b6bcff18608630adec0d2f8402bad1b47e74e1c5a0defdef385a60095081e",
+ "spec": {
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "ca-ab06",
+  "round": {
+   "battery": "ca-ab06",
+   "usd_per_run": {
+    "causaliq": 0.0052418000000000005,
+    "matmcd": 0.3137755,
+    "pywhyllm": 0.9951497999999999,
+    "vashishtha": 1.259005
+   }
+  },
+  "runs_date": "2026-10-14",
+  "system": "vashishtha"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": false,
+   "cost": "llm",
+   "edge_source": true,
+   "glass_box": {
+    "entry": "causal_discovery.strategies.triplet:run_triplet_experiment",
+    "stages": [
+     "pc_only",
+     "llm_only_triplet_dag",
+     "final"
+    ]
+   },
+   "marks": [
+    "--",
+    "->"
+   ],
+   "modes": [
+    "live",
+    "recorded",
+    "replay"
+   ],
+   "takes": [
+    "context",
+    "data",
+    "names"
+   ],
+   "variants": {
+    "data_only": "pc_only",
+    "knowledge_only": "llm_only_triplet_dag"
+   }
+  },
+  "id": "vashishtha",
+  "identity": {
+   "adapter": "vashishtha",
+   "adapter_file_sha256": "b0784c782199e95f68a85093c710b3b22adb590ad974dbb5d2c75683431222f1",
+   "adapter_version": "1",
+   "licence": "none shown in the repository: evaluation use only, never redistribute (not copied into any image or this kit; cloned at build time)",
+   "runner_sha256": {
+    "agent_probe.py": "cd858501f784319047f1e71e342706d064b5917fa8b76b93833be6abd06552dc",
+    "agents/vashishtha.py": "3b533967fc280ffa88bbaed3721af21bf378e557f0c0ac1b6fb9ae71b9cb4865",
+    "probe_io.py": "45559af04b84455dc81519823642c2c540fe5c334a5e61389354aebbbb7facd0",
+    "probe_llm.py": "57710006d9d8b093e70ffa90e409c57f2b62e06f69b4dfa22ba4e2c95f31f87b"
+   },
+   "system_commit_pinned": "ad609dbd3d93e50d890c9967eb746945546515d1",
+   "system_repo": "https://github.com/AniketVashishtha/Causal_Order_Imperfect_Experts"
+  }
+ }
+}

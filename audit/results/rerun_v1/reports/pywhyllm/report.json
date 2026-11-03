@@ -1,0 +1,972 @@
+{
+ "audit": "pywhyllm",
+ "battery": {
+  "about": "AB-06 grid: 10 CausalArena semantic scenarios, rep000, obs_only (+ obs_int for released targets)",
+  "clusters": 10,
+  "hash": "561af73ae72f0d5282b7e85fa7cf60249f6d18b861b0aea0274bf6636b73f285",
+  "id": "ca-ab06",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.4041500267952385,
+    "infrastructure": 0,
+    "k": 1,
+    "kind": "crash",
+    "lo": 0.017876213095072896,
+    "n": 10,
+    "point": 0.1,
+    "where": [
+     "/opt/probes/src/pywhy-llm/pywhyllm/suggesters/model_suggester.py:446 (suggest_pairwise_relationship): ValidationError 1 validation error for TokenUsage\nttft_ms\n  Input should be greater than or equal to 0 [type=greater_tha"
+    ]
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": {
+    "B": 2000,
+    "arm": "real",
+    "clusters": 5,
+    "hi": 0.06028368794326244,
+    "lo": -0.2609819121447029,
+    "point": -0.12173913043478257,
+    "seed": 20261014,
+    "units": 5
+   },
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": {
+    "ratio": 1.520560111413539,
+    "round_median": 0.6544626499999999,
+    "systems": 4,
+    "usd_per_run": 0.9951497999999999
+   },
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 4,
+    "hi": 0.2487948194184884,
+    "kind": "name_reliance",
+    "lo": 0.15300029964124037,
+    "metric": "dir_f1@expect",
+    "point": 0.20235855627416555,
+    "seed": 20261014,
+    "source": "final",
+    "units": 4
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "inconclusive"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": null,
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "names-only system: neutral names offer it nothing (regime none)",
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": null,
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": "no data-only variant exposed, or not a hybrid of data and names",
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": null,
+   "id": "K10",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "no stage graphs (black box with no intermediate graph)",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": null,
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "needs stage traces and a T4 label reference for the swapped arm",
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": null,
+   "id": "K12",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "no stage graphs",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "committed": 1165,
+    "share": 0.0,
+    "units": 1165,
+    "unsourced": 0
+   },
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": null,
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states no confidence",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "arm": "real",
+    "committed": 345,
+    "correct": 188,
+    "coverage": 1.0,
+    "pairs": 345,
+    "precision": 0.5449275362318841,
+    "units": 5
+   },
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "fires"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": null,
+   "a": null,
+   "adj_f1": null,
+   "c": null,
+   "completion": null,
+   "dir_f1@committed": null,
+   "dir_f1@expect": null,
+   "dir_f1@expect_delivered": null,
+   "direction_sources": {},
+   "executed": 0,
+   "infrastructure": 0,
+   "not_run": 10,
+   "ok": 0,
+   "q": null,
+   "runs": 10,
+   "statuses": {
+    "not_run": 10
+   },
+   "usd": 0.0,
+   "word": null
+  },
+  "real": {
+   "S": 0.3687294375818551,
+   "a": 0.8509934318555008,
+   "adj_f1": 0.3687294375818551,
+   "c": 1.0,
+   "completion": 1.0,
+   "dir_f1@committed": 0.3139492193870036,
+   "dir_f1@expect": 0.3139492193870036,
+   "dir_f1@expect_delivered": 0.3139492193870036,
+   "direction_sources": {
+    "llm": 676
+   },
+   "dv1": {
+    "committed": 345,
+    "correct": 188,
+    "coverage": 1.0,
+    "pairs": 345,
+    "precision": 0.5449275362318841
+   },
+   "executed": 5,
+   "infrastructure": 0,
+   "not_run": 5,
+   "ok": 5,
+   "q": 0.8509934318555008,
+   "runs": 10,
+   "statuses": {
+    "not_run": 5,
+    "ok": 5
+   },
+   "usd": 5.000349,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.24377853013076062,
+   "a": 0.4632184681652982,
+   "adj_f1": 0.24377853013076062,
+   "c": 1.0,
+   "completion": 0.8,
+   "dir_f1@committed": 0.11384478410308672,
+   "dir_f1@expect": 0.11384478410308672,
+   "dir_f1@expect_delivered": 0.09107582728246938,
+   "direction_sources": {
+    "llm": 489
+   },
+   "dv1": {
+    "committed": 276,
+    "correct": 120,
+    "coverage": 1.0,
+    "pairs": 276,
+    "precision": 0.43478260869565216
+   },
+   "executed": 5,
+   "infrastructure": 0,
+   "not_run": 5,
+   "ok": 4,
+   "q": 0.4632184681652982,
+   "runs": 10,
+   "statuses": {
+    "failed": 1,
+    "not_run": 5,
+    "ok": 4
+   },
+   "usd": 4.951149,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 4,
+    "hi": 0.2487948194184884,
+    "kind": "name_reliance",
+    "lo": 0.15300029964124037,
+    "metric": "dir_f1@expect",
+    "point": 0.20235855627416555,
+    "seed": 20261014,
+    "source": "final",
+    "units": 4
+   },
+   "K05": {
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 0,
+    "hi": null,
+    "kind": "wrong_knowledge_harm",
+    "lo": null,
+    "metric": "dir_f1@expect",
+    "point": null,
+    "source": "final",
+    "units": 0
+   },
+   "real_minus_neutral": {
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 0,
+    "hi": null,
+    "lo": null,
+    "metric": "dir_f1@expect",
+    "point": null,
+    "source": "final",
+    "units": 0
+   }
+  }
+ },
+ "l2": null,
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "none"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 137,
+    "models": {
+     "gpt-4o-2024-08-06": 137
+    },
+    "new_api_calls": 137,
+    "seconds": 483.3,
+    "usd": 0.616873
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/apartment_heat_exposure_shading_ac/real/result.json",
+     "sha256": "d773311a77cb2120ee2e9eaf33b080d5b58befe4fbcc0caf9275239d15b271bc"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/apartment_heat_exposure_shading_ac/real/summary.json",
+     "sha256": "c3320a0ce8134b29340fa678a43341fd08d62a52c791b7951084ac1adaef67dd"
+    }
+   },
+   "graph_sha256": "831e03adcba0097de600534cb91c290762116ff9763315cae53e5fb1012f7568",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 137,
+    "models": {
+     "gpt-4o-2024-08-06": 137
+    },
+    "new_api_calls": 137,
+    "seconds": 553.8,
+    "usd": 0.614703
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/apartment_heat_exposure_shading_ac/swapped/result.json",
+     "sha256": "e8d77650de85282eb0e4fac93f5e96b95b3924240a43e913b4213b26de515b16"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/apartment_heat_exposure_shading_ac/swapped/summary.json",
+     "sha256": "d5b8b94ef4fdabaea8e0254db81b0ee6d8fe2cff2469fea61557190f6ff67ee8"
+    }
+   },
+   "graph_sha256": "f94d0447f2921e4825f27ba3ec38163c0a3fdee72acb8afebb180cc5d963ea6e",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 301,
+    "models": {
+     "gpt-4o-2024-08-06": 301
+    },
+    "new_api_calls": 301,
+    "seconds": 1171.93,
+    "usd": 1.321113
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/backup_frequency_ransomware_loss/real/result.json",
+     "sha256": "ce14f924f6102e41b1a657139f4dead70d4f23abe149dbf4e49df77a5a16fdf5"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/backup_frequency_ransomware_loss/real/summary.json",
+     "sha256": "1b34771f03557ab9ec40812a57853f5290acf0678dff899c65e4d9ffdfe4cf84"
+    }
+   },
+   "graph_sha256": "44868b0588f6ec52cfa1623c505f0d7af4cb84e3b2dd556db92a1c43a2aca93d",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 301,
+    "models": {
+     "gpt-4o-2024-08-06": 301
+    },
+    "new_api_calls": 301,
+    "seconds": 1073.24,
+    "usd": 1.324735
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/backup_frequency_ransomware_loss/swapped/result.json",
+     "sha256": "9fedb6061a3889b65d9135b84f2cbbb82ca206bfb37b20f0a645a4e21fd1ba8f"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/backup_frequency_ransomware_loss/swapped/summary.json",
+     "sha256": "1ac2d224bd100db458aa4d5189648cd6ff449f894b1330aa23dcf5ce1876508b"
+    }
+   },
+   "graph_sha256": "19cb0a5d0a617e2c95d10e68009338a40d15eb419dcc9c41dee367ba8ad75373",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 254,
+    "models": {
+     "gpt-4o-2024-08-06": 254
+    },
+    "new_api_calls": 254,
+    "seconds": 976.88,
+    "usd": 1.09255
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/bike_share_rebalancing_spatial_demand/real/result.json",
+     "sha256": "d82cb5ff0ae32b4c939f088af0c2535c90f7c59bd696518e653fed623de4cd26"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/bike_share_rebalancing_spatial_demand/real/summary.json",
+     "sha256": "428acae6b9d9056e618e4fb32aaed5860de1120625936e5ebbe3e14248e2c61b"
+    }
+   },
+   "graph_sha256": "59d1058de299e04511805d0051691dbe6aeeb2b3dae7cbeee59b9b751d0ecc1b",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 254,
+    "models": {
+     "gpt-4o-2024-08-06": 254
+    },
+    "new_api_calls": 103,
+    "seconds": 412.27,
+    "usd": 1.109535
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/bike_share_rebalancing_spatial_demand/swapped/result.json",
+     "sha256": "cde74c906c3ef9bea79cbb094bfeae914fa2acbc7e5ac44b2b012dbbd8388630"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/bike_share_rebalancing_spatial_demand/swapped/summary.json",
+     "sha256": "04b3fbd747ec1a503178e2e8424f52d269baa2facb767e8311629b5d3dafa501"
+    }
+   },
+   "graph_sha256": "931d29fdae7584cde9a4eaeb72f2edfbb4a58e914b3ae1855f6fcccaf1046554",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 277,
+    "models": {
+     "gpt-4o-2024-08-06": 277
+    },
+    "new_api_calls": 277,
+    "seconds": 1085.58,
+    "usd": 1.224133
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/conveyor_vibration_package_damage/real/result.json",
+     "sha256": "c7db02d36157dbf39da54d72b837e406780586fa906d2991e320b03f42d5a3d1"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/conveyor_vibration_package_damage/real/summary.json",
+     "sha256": "d5ecf7c28de0da29871a498e42ef6361d5789c392f636ac71e55f976bfb90857"
+    }
+   },
+   "graph_sha256": "e57f00efdaad8a86f214f6f776664ca8cfa80af1375e27b6cd7a32b5a29e5d65",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 263,
+    "models": {
+     "gpt-4o-2024-08-06": 263
+    },
+    "new_api_calls": 263,
+    "seconds": 997.16,
+    "usd": 1.150623
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/conveyor_vibration_package_damage/swapped/result.json",
+     "sha256": "2aa99063e35000c9b57d13eac73449379f6c7477fb8ec67558713be45b411b31"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/conveyor_vibration_package_damage/swapped/summary.json",
+     "sha256": "87edb17f43fd3bc9f742a4289ff4ca88a9d377c7504df82024e77017a8c7a9eb"
+    }
+   },
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "failed"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 172,
+    "models": {
+     "gpt-4o-2024-08-06": 172
+    },
+    "new_api_calls": 172,
+    "seconds": 716.49,
+    "usd": 0.74568
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/curb_pricing_delivery_dwell/real/result.json",
+     "sha256": "9b51112a5f93b9ffa44be3e75473c7d86172cc16d68547618bcb7a136b87dca0"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/curb_pricing_delivery_dwell/real/summary.json",
+     "sha256": "5fc44e35a61056869dc6a4dde5257e8e8d531b6610d4c191dc82dfcc9826daeb"
+    }
+   },
+   "graph_sha256": "cb70a956d36135a891627f31b53e9bb8b03f799bb2c6e7543cd4299bd6c70d05",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 172,
+    "models": {
+     "gpt-4o-2024-08-06": 172
+    },
+    "new_api_calls": 172,
+    "seconds": 662.57,
+    "usd": 0.751553
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/pywhyllm/curb_pricing_delivery_dwell/swapped/result.json",
+     "sha256": "6f46d8ef6cc22020d4808d4faf7b07586e8095364a824a3789bf5298784ee369"
+    },
+    "summary": {
+     "path": "runs/ab06/pywhyllm/curb_pricing_delivery_dwell/swapped/summary.json",
+     "sha256": "1a7f3a75c4a051f3e63b8d679bfe1fa9aba2d7499fe5a6059ce0ea1671d01a3e"
+    }
+   },
+   "graph_sha256": "2a3c54ee6cdc6cb3590d8115dd38f49a71fea5062969f25c1f2c1a6622356ad8",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "real",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "neutral",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  },
+  {
+   "arm": "swapped",
+   "cost": {},
+   "files": {},
+   "graph_sha256": null,
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "not_run"
+  }
+ ],
+ "runs_manifest_sha256": "828779ac615a45b9679d72891767949c54c42edbf7db536004d25b06fa73c0ec",
+ "spec": {
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "ca-ab06",
+  "round": {
+   "battery": "ca-ab06",
+   "usd_per_run": {
+    "causaliq": 0.0052418000000000005,
+    "matmcd": 0.3137755,
+    "pywhyllm": 0.9951497999999999,
+    "vashishtha": 1.259005
+   }
+  },
+  "runs_date": "2026-10-14",
+  "system": "pywhyllm"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": false,
+   "cost": "llm",
+   "edge_source": true,
+   "glass_box": {
+    "entry": "pywhyllm.suggesters.model_suggester:ModelSuggester.suggest_relationships",
+    "stages": [
+     "domain_expertises",
+     "pairwise"
+    ]
+   },
+   "marks": [
+    "->"
+   ],
+   "modes": [
+    "live",
+    "recorded",
+    "replay"
+   ],
+   "takes": [
+    "context",
+    "names"
+   ],
+   "variants": {}
+  },
+  "id": "pywhyllm",
+  "identity": {
+   "adapter": "pywhyllm",
+   "adapter_file_sha256": "a2a4c378d1cd6f02aac95738959763b64e838f9acb2897d083d0ecd9a328ceb5",
+   "adapter_version": "1",
+   "licence": "MIT",
+   "runner_sha256": {
+    "agent_probe.py": "cd858501f784319047f1e71e342706d064b5917fa8b76b93833be6abd06552dc",
+    "agents/pywhyllm.py": "de295a5b7fb8a7dfe174d0704cebae7ca6af4a9da3b11fd333e5a180fed65424",
+    "probe_io.py": "45559af04b84455dc81519823642c2c540fe5c334a5e61389354aebbbb7facd0",
+    "probe_llm.py": "57710006d9d8b093e70ffa90e409c57f2b62e06f69b4dfa22ba4e2c95f31f87b"
+   },
+   "system_commit_pinned": "66f2d59b0cf74dfabf0a83704bd1de708f8520ac",
+   "system_repo": "https://github.com/py-why/pywhy-llm"
+  }
+ }
+}

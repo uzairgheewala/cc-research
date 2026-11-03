@@ -1,0 +1,1323 @@
+{
+ "audit": "causaliq",
+ "battery": {
+  "about": "AB-06 grid: 10 CausalArena semantic scenarios, rep000, obs_only (+ obs_int for released targets)",
+  "clusters": 10,
+  "hash": "561af73ae72f0d5282b7e85fa7cf60249f6d18b861b0aea0274bf6636b73f285",
+  "id": "ca-ab06",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.11351339317396876,
+    "infrastructure": 0,
+    "k": 0,
+    "kind": "crash",
+    "lo": 0.0,
+    "n": 30,
+    "point": 0.0,
+    "where": []
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": {
+    "B": 2000,
+    "arm": "real",
+    "clusters": 10,
+    "hi": 0.052303956317654936,
+    "lo": 0.030926244113529337,
+    "point": 0.0423620025673942,
+    "seed": 20261014,
+    "units": 10
+   },
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": {
+    "ratio": 0.008009318790002763,
+    "round_median": 0.6544626499999999,
+    "systems": 4,
+    "usd_per_run": 0.0052418000000000005
+   },
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.31346679527541504,
+    "kind": "name_reliance",
+    "lo": 0.1951725664618996,
+    "metric": "dir_f1@expect",
+    "point": 0.2510328134588786,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": null,
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "names-only system: neutral names offer it nothing (regime none)",
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": null,
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": "no data-only variant exposed, or not a hybrid of data and names",
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": null,
+   "id": "K10",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "no stage graphs (black box with no intermediate graph)",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": null,
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "needs stage traces and a T4 label reference for the swapped arm",
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": null,
+   "id": "K12",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "no stage graphs",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "committed": 414,
+    "share": 0.0,
+    "units": 414,
+    "unsourced": 0
+   },
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": null,
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states probabilities, but the recorded runs keep only the decided graph (the probabilities are in calls.jsonl, not parsed in v1)",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "arm": "real",
+    "committed": 779,
+    "correct": 555,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.7124518613607189,
+    "units": 10
+   },
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "fires"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": 0.09502624302223349,
+   "a": 0.425,
+   "adj_f1": 0.09502624302223349,
+   "c": 0.9,
+   "completion": 1.0,
+   "dir_f1@committed": 0.03968357876284335,
+   "dir_f1@expect": 0.03968357876284335,
+   "dir_f1@expect_delivered": 0.03968357876284335,
+   "direction_sources": {
+    "llm": 137
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 512,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6572528883183568
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.4722222222222222,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 0.044619,
+   "word": "accuracy"
+  },
+  "real": {
+   "S": 0.3069587359791539,
+   "a": 0.9259848484848485,
+   "adj_f1": 0.3069587359791539,
+   "c": 1.0,
+   "completion": 1.0,
+   "dir_f1@committed": 0.28333567971852647,
+   "dir_f1@expect": 0.28333567971852647,
+   "dir_f1@expect_delivered": 0.28333567971852647,
+   "direction_sources": {
+    "llm": 137
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 555,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.7124518613607189
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.9259848484848485,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 0.056777999999999995,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.07534197357811734,
+   "a": 0.3678571428571429,
+   "adj_f1": 0.07534197357811734,
+   "c": 0.9,
+   "completion": 1.0,
+   "dir_f1@committed": 0.032302866259647824,
+   "dir_f1@expect": 0.032302866259647824,
+   "dir_f1@expect_delivered": 0.032302866259647824,
+   "direction_sources": {
+    "llm": 140
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 509,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6534017971758665
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.4087301587301588,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 0.055857000000000004,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.31346679527541504,
+    "kind": "name_reliance",
+    "lo": 0.1951725664618996,
+    "metric": "dir_f1@expect",
+    "point": 0.2510328134588786,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "K05": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.02864113767175098,
+    "kind": "wrong_knowledge_harm",
+    "lo": -0.015211570896488573,
+    "metric": "dir_f1@expect",
+    "point": 0.0073807125031955245,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "real_minus_neutral": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 10,
+    "hi": 0.29122027173598497,
+    "lo": 0.1963251146997276,
+    "metric": "dir_f1@expect",
+    "point": 0.24365210095568307,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   }
+  }
+ },
+ "l2": null,
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "none"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 6.51,
+    "usd": 0.005995
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/real/result.json",
+     "sha256": "580a7b2d16a44aa50a322461f96ba6b48e41d9116facb793cc6f5ada49b4ba7e"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/real/summary.json",
+     "sha256": "74013c35360468f9306eb707c9fe8012ccf753875295f314fb48d1dd062bf959"
+    }
+   },
+   "graph_sha256": "171677509b9c1fb3c3a8945ff7c26854c86f185216322cd2ff5d4750b49ac4b9",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 6.71,
+    "usd": 0.00298
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/neutral/result.json",
+     "sha256": "0ff4eb065028c7b6ba011b4e4fd586d65c19d6cacc95ff210336a2c1acf6bf69"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/neutral/summary.json",
+     "sha256": "097ef690d7dbe69a2018b4f0db16fc7dbece52f3205241933eb715521e7be1f7"
+    }
+   },
+   "graph_sha256": "179ad42b6b3e4b62806b5de50eba15324ba77fcb7b0a48c80b4ac79f82380f09",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 13.62,
+    "usd": 0.005815
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/swapped/result.json",
+     "sha256": "f5ed084e0187d708765eaf1620bfa40f445052db6fb9ab3d8f8edcb99f2e0c90"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/apartment_heat_exposure_shading_ac/swapped/summary.json",
+     "sha256": "def6d27b3ed3605432344b53fa18382df5aed6c32f85a996668163bdd96dca8b"
+    }
+   },
+   "graph_sha256": "782e90f4bf2f35124bb20ba5ce42b8b534612a2daec7558ed05c14a99bb098ff",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.12,
+    "usd": 0.005723
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/real/result.json",
+     "sha256": "837dfe7ba2e81b084a7e72ece4039c09cd424dd65c4a9ad2f980e64a26d4d714"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/real/summary.json",
+     "sha256": "0f9abdfb9c204547f5e7f00ddd516c0bdd9f961cca1da69ce7818d94570586c3"
+    }
+   },
+   "graph_sha256": "6cb7820b533ee3def699084a90f98f29e7c1ac0c9a1e9550b8a015878cb4f11b",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 8.12,
+    "usd": 0.00408
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/neutral/result.json",
+     "sha256": "48b8f77a9238613ef352286cd834fcdd239e188081018e36bbb6e8905a628833"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/neutral/summary.json",
+     "sha256": "5ceb16ecf4a877a337f4ef2b22e4cf3f86a4157830c24c5ba36555cf53561453"
+    }
+   },
+   "graph_sha256": "f24074ed56d42c4c0fe9f5843b1e60c46c828f4cd8421d167a123d06978a9e7c",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.72,
+    "usd": 0.005292
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/swapped/result.json",
+     "sha256": "263ec2fb3a738c30b7c368afa0ce4bd1140f806fa20ad66cf4b76054dc29fd61"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/backup_frequency_ransomware_loss/swapped/summary.json",
+     "sha256": "cdb7532f8aa08a319a4917ebb4e7fab9f6c205e3a92b417b937a54b212bffc5e"
+    }
+   },
+   "graph_sha256": "e1ff6fbf4bd8f4d3c6259db1529313a698a431eb4e0cf6c3ed584a0e4f5cea6f",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.6,
+    "usd": 0.006765
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/real/result.json",
+     "sha256": "297c2cc5e5867ac677c1a6657b0ec968efaa9698cde7fd3e8cd7fbd44e3a7e29"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/real/summary.json",
+     "sha256": "27c7abf62e5eab6dab14b45b541d7b98d10182b3ba642de705991f8e33727001"
+    }
+   },
+   "graph_sha256": "9fd8a41ca93be4edba5bc7a4b5f34fe29db3fa72b4a0ff1c59e9d0df639aa4e4",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 3.9,
+    "usd": 0.0038
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/neutral/result.json",
+     "sha256": "f90ee653be5641f498b76b1b32362cf97738a0e19fd7cce072257aa221df27c8"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/neutral/summary.json",
+     "sha256": "605983be96ded0d50a982fc91dfd79dbdfd692e5098482c0d5400ef7fee6200b"
+    }
+   },
+   "graph_sha256": "80aecd84a3ccd74b44f8b19776c106853147a1d69e46b62c6795af8e502ee869",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.38,
+    "usd": 0.005345
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/swapped/result.json",
+     "sha256": "32231c7662b7067031e27691c76c1ce428aafd7b4eb0d3a1a6277dd37abbde49"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/bike_share_rebalancing_spatial_demand/swapped/summary.json",
+     "sha256": "e098e5e8b240b80f79bfad33288992c6b610c8691f43c2df3179f7b40a8a0182"
+    }
+   },
+   "graph_sha256": "3c465badb5bb4dec4dfd888cfe60329dd9bf0dae55e02be89335eaae63ae10f4",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.99,
+    "usd": 0.005595
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/real/result.json",
+     "sha256": "2d5bb5ebe8827962c7eebd6dfd670495f09170c29c531a8e94835b5669dcea54"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/real/summary.json",
+     "sha256": "3452beb46b5201b5eb3cb6b23f8817cfe2fb88136e02fa8650e1f3da064a724e"
+    }
+   },
+   "graph_sha256": "e65040e325ad9ec67cb4276406d5c0224f7bb6a83cfae94461e72aa0de08321b",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 3.91,
+    "usd": 0.00382
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/neutral/result.json",
+     "sha256": "f4d969f32a13b6aefcdc68a5510977ca1591c0d0b9a5da6c4c4bac5c62c0f550"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/neutral/summary.json",
+     "sha256": "2d013996e6d9d20b852357fbffeff0b3ccfb93971437560e67d345c8d61a48d1"
+    }
+   },
+   "graph_sha256": "a24fafa03e7a282f914aa0c840079d3440f7e7228f23d95d38a20ecca4882acc",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 6.29,
+    "usd": 0.007415
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/swapped/result.json",
+     "sha256": "cd6c350e4aa4b0069a304e4897e278ae3cee0313dc26690d533a051a38e58666"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/conveyor_vibration_package_damage/swapped/summary.json",
+     "sha256": "6486179062cb38394d531b775f6905dae91fff9223f3d7a634c08e7bb95e17d7"
+    }
+   },
+   "graph_sha256": "ce89859929af77463313d1ea019737444a98344c821b154b8ea0997852047964",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.63,
+    "usd": 0.004762
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/real/result.json",
+     "sha256": "d98f41081042f69b73d3ff57785604d8f256124c1ec051f552024958fa5f5063"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/real/summary.json",
+     "sha256": "86b2310c87ecb6dd593b0c1968cd70870431be4dbe957c72ceaec1d6feda4ce0"
+    }
+   },
+   "graph_sha256": "3ad70e535f04eb61b5cc5f51a8c28fdd4d41a0b378532a8a6dd78717422d1f3c",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.76,
+    "usd": 0.00509
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/neutral/result.json",
+     "sha256": "e90d1ab67f19690ff0baae2d7f953007c7178cccefc9469084aad30995ff8f49"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/neutral/summary.json",
+     "sha256": "2b253e75afc180a2cf8cd9a78b575c487db9f99e467685f26af499b7785da6d3"
+    }
+   },
+   "graph_sha256": "a2cf27cb2593fb399376b8e599688c100e99e6d2aa11cb1ac732d8d8f97aa38e",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.43,
+    "usd": 0.003882
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/swapped/result.json",
+     "sha256": "a08879ac4cbbdf309b29b487ca3648eef8559dcc9874259c27ee20755a9b372b"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/curb_pricing_delivery_dwell/swapped/summary.json",
+     "sha256": "b6b61128fee6a72f7430a6654e2cc588e596369a33ea010ad6bbdfcd10eb8aa0"
+    }
+   },
+   "graph_sha256": "33efcf728f5928be64cfd4e2f0d8622eece04a8aa720a949fd1df081502b7688",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 6.12,
+    "usd": 0.008238
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/real/result.json",
+     "sha256": "d23f153c67882bf30ab00290cad0fabe88cb986d13a762d18d587154a4f6aae6"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/real/summary.json",
+     "sha256": "b2dc868bfd43c54ee00d65740af581e797612ff638974f402f52591952cd671f"
+    }
+   },
+   "graph_sha256": "ff8b358593bff62e48a5d370abbc4aa918a0e2b560357fefeaff92d04c3cceb5",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.85,
+    "usd": 0.005665
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/neutral/result.json",
+     "sha256": "bee6bae5f9325855d69e3caf2355547d8bf14bd09ca79b3bb255643c61b00b57"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/neutral/summary.json",
+     "sha256": "d4efd7599943af8f39b72c70847b60ec51842bef95e6c99d73ccd736d655c257"
+    }
+   },
+   "graph_sha256": "e5c0851d26adc4c3dec1736b6a00762116548a3e2524d34dc1cdd25cc3102b3e",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.94,
+    "usd": 0.007137
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/swapped/result.json",
+     "sha256": "7afc2a04e83fb084c9c43aed07b02399c96263f2d5f79c6898ec281fecc48d2e"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/green_roof_runoff_retention/swapped/summary.json",
+     "sha256": "b7acc77318721a550668d6c55e6da12bbbcc3adbe55955d0e114be486d494d56"
+    }
+   },
+   "graph_sha256": "54919fa5a8aa308d4013421b9b40d31f4fcc975ae5fc12c3296ca30983fded41",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.5,
+    "usd": 0.00428
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/real/result.json",
+     "sha256": "8905cc4266f6dbbb99f1f690214a13adc667b1ad1df0fdb98d0f2ed31a151c09"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/real/summary.json",
+     "sha256": "c6414fba5e610fcc81f5785b44baccc8261342633b501798a2ed623a5848f748"
+    }
+   },
+   "graph_sha256": "2b833ca9928b6ed4a11cf1f9adc904d67573254ce94ec53329aa5b838d9b7c4c",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.97,
+    "usd": 0.00566
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/neutral/result.json",
+     "sha256": "39156ff243fc2ee6c19b26fcb8353dca2e9f2fd9ab0ce53667a7019a02f57da4"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/neutral/summary.json",
+     "sha256": "aef49940349fff46884244bbe511f17754ab48563a070b9453064e54b974d990"
+    }
+   },
+   "graph_sha256": "a7758ee9a213635a912dc6071cb84e6f0c16ae550fbd5e1c4d7e4023e46c7d56",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.52,
+    "usd": 0.00494
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/swapped/result.json",
+     "sha256": "4710bccece02aa7c57df702e214709f4afc026a71ef678c1c429036cd8ef524b"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/injection_molding_cooling_warp/swapped/summary.json",
+     "sha256": "a763e530e86ab92b573611c0e3edcad2a4f602ce6ce86e968495caa71d120c94"
+    }
+   },
+   "graph_sha256": "6f3ab35db16ae031fdcd8a7207e70c27c05cea94c250257e26138b0c0e05586b",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.71,
+    "usd": 0.00496
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/real/result.json",
+     "sha256": "ff2cb75caf3f98e669fb5c93e60d4ebb6d06b17d429f84c92e4c87c3b5da3077"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/real/summary.json",
+     "sha256": "91b92fe8aed290abdb9a3da456f013623dc84325c9dea91ba3790a59cba95659"
+    }
+   },
+   "graph_sha256": "44eef458422d9bccded1fcfcc72ecefd037e09a9c1292c410fcbede9cdb2a196",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.03,
+    "usd": 0.004307
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/neutral/result.json",
+     "sha256": "cfd3565c81b7bf543b08daab5ead28512a0251bdc5fb6440ca93649d2c7f69b3"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/neutral/summary.json",
+     "sha256": "6acf0a7827a611ed095e0f8f0c42f0942d1bc22c03e0ef98c511b8994efe421b"
+    }
+   },
+   "graph_sha256": "45daa2b159c81162a6902e7934fe32969b93bd56216203a68c63204baa33c9f7",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.42,
+    "usd": 0.00674
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/swapped/result.json",
+     "sha256": "3c407282260da463636be191890245595988613f76765b7e48d57afcc09681f2"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/insurance_deductible_claim_reporting/swapped/summary.json",
+     "sha256": "4b9f7ca5e39217d67c9bfd25538e2864fdc61c63dd9a3937b819e29017e8b405"
+    }
+   },
+   "graph_sha256": "0ca2804cb77e26f86c132e999265a8e9ab5d7816ab1d238def9a0001b0a43fc2",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.09,
+    "usd": 0.003938
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/real/result.json",
+     "sha256": "75e51fe557049561166a5f5f6b83e6b88981e420721fd3f0368158da5caefa05"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/real/summary.json",
+     "sha256": "3410021fb6774a99808c8f66da872901a96c246a777ec7a801eb1a5f9271acf1"
+    }
+   },
+   "graph_sha256": "90756e5f8b6dd62c7d50ebafd2ab019b9385cbbf4de8491b504df171863f6b58",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.59,
+    "usd": 0.00567
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/neutral/result.json",
+     "sha256": "96b325279e73227c33891f5dfd19597d4f0a8970e51f99efdc609496cab90b6c"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/neutral/summary.json",
+     "sha256": "8a5f6b227ed4f5a01c19a78bde2876d63d1287819b70a2a44ad8140f27160715"
+    }
+   },
+   "graph_sha256": "9ab0eea601ecaa295ac180f14965653aca2ac5253d51149d2abdb29ed2810737",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 8.14,
+    "usd": 0.003998
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/swapped/result.json",
+     "sha256": "c21282f7f6e0c26d554cb221a14a8b84843e22c3e9d3638e5fb9861e5b8bd301"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/library_fine_elimination_returns/swapped/summary.json",
+     "sha256": "066a510bfe7d5ebf980b77d92a67a097f4cba3e79b014ab1bc48f884a29ada99"
+    }
+   },
+   "graph_sha256": "e1660f3ea049d90af9441aefce073891aeafa3395798d1d3f07e4edba9cd3956",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.95,
+    "usd": 0.006522
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/real/result.json",
+     "sha256": "be7c8ef4fc7ee534d84686ec92cdcd406f41fdf033ed710ca5a5b9ed7636eb5d"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/real/summary.json",
+     "sha256": "3f971b54390dead19ece3a2d7ecd6abdb4dd311dd235134ccd7e035f6f0ea5ca"
+    }
+   },
+   "graph_sha256": "1194035387043cc9c6a627d06b3339d555f7b833fbd710d578cbd9fac10bf54b",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 5.52,
+    "usd": 0.003547
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/neutral/result.json",
+     "sha256": "6eb1bd3f5e796ca0dd01848685cb74e57744cf28df734df0b4ccf5e87d8498d6"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/neutral/summary.json",
+     "sha256": "b0caec00aec280d9bd3a5a756a4f806d536cb8ba870a54441c8f26ba1ba68b2f"
+    }
+   },
+   "graph_sha256": "78ea92ce6bd13ca5c9609d19b89c770998229f9c066d403324e4b8be195e9c7e",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1,
+    "models": {
+     "gpt-4o-2024-08-06": 1
+    },
+    "new_api_calls": 1,
+    "seconds": 4.92,
+    "usd": 0.005293
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/swapped/result.json",
+     "sha256": "81387b85d5334cf461e2b4cf587e8f42adbaa5425aa636cb55b25685334cc6a8"
+    },
+    "summary": {
+     "path": "runs/ab06/causaliq/medication_titration_cgm_meal_timing/swapped/summary.json",
+     "sha256": "34e1ce166f73ac261a466728561d07fab5446b0e47bca383b95384624485bae0"
+    }
+   },
+   "graph_sha256": "746e890caec650dd00f6daeb54e6112a87ef835cc96584ab01b468ef7cef066b",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  }
+ ],
+ "runs_manifest_sha256": "7995addcdf19d5c504ee41c2fca7a563cac4dc64bae33b97a33c25ac45d34f2f",
+ "spec": {
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "ca-ab06",
+  "round": {
+   "battery": "ca-ab06",
+   "usd_per_run": {
+    "causaliq": 0.0052418000000000005,
+    "matmcd": 0.3137755,
+    "pywhyllm": 0.9951497999999999,
+    "vashishtha": 1.259005
+   }
+  },
+  "runs_date": "2026-10-14",
+  "system": "causaliq"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": true,
+   "cost": "llm",
+   "edge_source": true,
+   "glass_box": {
+    "entry": "causaliq_knowledge.graph.generator:GraphGenerator.generate_pdg_from_context",
+    "stages": [
+     "pdg",
+     "most_likely_state"
+    ]
+   },
+   "marks": [
+    "--",
+    "->"
+   ],
+   "modes": [
+    "live",
+    "recorded",
+    "replay"
+   ],
+   "takes": [
+    "context",
+    "names"
+   ],
+   "variants": {
+    "knowledge_only": "library_greedy_dag"
+   }
+  },
+  "id": "causaliq",
+  "identity": {
+   "adapter": "causaliq",
+   "adapter_file_sha256": "7d506149abe03bee7284ddfcbde0f2be48575ae402230e08059d78556e6bdac8",
+   "adapter_version": "1",
+   "licence": "MIT",
+   "runner_sha256": {
+    "agent_probe.py": "cd858501f784319047f1e71e342706d064b5917fa8b76b93833be6abd06552dc",
+    "agents/causaliq.py": "ba8da01de8905f4f2bc3a4e3e537820fd61128f371c84fb17cb365c53d211e4c",
+    "probe_io.py": "45559af04b84455dc81519823642c2c540fe5c334a5e61389354aebbbb7facd0",
+    "probe_llm.py": "57710006d9d8b093e70ffa90e409c57f2b62e06f69b4dfa22ba4e2c95f31f87b"
+   },
+   "system_commit_pinned": "d7917efe1f3d5ef514d3dfe49b7ab4ef1e757659",
+   "system_repo": "https://github.com/causaliq/causaliq-knowledge"
+  }
+ }
+}

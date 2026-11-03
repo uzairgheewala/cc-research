@@ -1,0 +1,1626 @@
+{
+ "audit": "causal_copilot@main",
+ "battery": {
+  "about": "datasets/suite_q1s2 (frozen 10 Oct): 10 CausalArena semantic scenarios x real/neutral/swapped names, byte-identical numbers, shuffled columns, opaque paths; T1 by data, T4 label-implied",
+  "clusters": 10,
+  "hash": "540a0d89b2a44eb388f176cf57d141532d9aa4388411e97d6ebd2e92c990dac9",
+  "id": "q1s2",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.4444796169518888,
+    "infrastructure": 0,
+    "k": 8,
+    "kind": "crash",
+    "lo": 0.14182663319596317,
+    "n": 30,
+    "point": 0.26666666666666666,
+    "where": [
+     "stage 07b_refinement at postprocess/judge_functions.py:562:LLM_remove_cycles: KeyError 'nodes'"
+    ]
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": null,
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "no released intervention targets in this battery",
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": null,
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "needs a round of at least 3 LLM systems on the same battery",
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.20500246367194827,
+    "kind": "name_reliance",
+    "lo": 0.11212279774624159,
+    "metric": "dir_f1@committed",
+    "point": 0.16126655733565282,
+    "seed": 20261014,
+    "source": "S3",
+    "units": 10
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "S3",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.18406104484760022,
+    "kind": "wrong_knowledge_harm",
+    "lo": 0.07180055629521764,
+    "metric": "dir_f1@committed",
+    "point": 0.1292213134630243,
+    "seed": 20261014,
+    "source": "S3",
+    "units": 10
+   },
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "measured_on": "S3",
+   "reason": null,
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": null,
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": "no ok run exposes the data-only variant with DV-1 targets",
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": {
+    "B": 2000,
+    "clusters": 10,
+    "hi": -0.2590215293735161,
+    "lo": -0.3642909778726454,
+    "point": -0.31470064576055884,
+    "seed": 20261014,
+    "units": 10
+   },
+   "id": "K10",
+   "judged_on": "real",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": -0.21060954632484333,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ],
+    "real": [
+     {
+      "adj_point": -0.31470064576055884,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.13711484407663171,
+      "right_to_wrong": 6,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 2
+     },
+     {
+      "adj_point": -0.0019224528545861651,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": -0.2830251758417122,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": -0.08418705091474728,
+      "right_to_wrong": 7,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.007708951519368576,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.2590215293735161,
+      "lo": -0.3642909778726454,
+      "point": -0.31470064576055884,
+      "seed": 20261014,
+      "units": 10
+     },
+     "stage": "S0 -> S1"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.19317367396672408,
+      "lo": 0.08493266846074114,
+      "point": 0.13711484407663171,
+      "seed": 20261014,
+      "units": 10
+     },
+     "stage": "S1 -> S2"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.008900911272735656,
+      "lo": -0.013052082938803115,
+      "point": -0.0019224528545861651,
+      "seed": 20261014,
+      "units": 10
+     },
+     "stage": "S2 -> S3"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 5,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 5
+     },
+     "stage": "S3 -> S4"
+    }
+   ],
+   "reason": null,
+   "stage": "S0 -> S1",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": {
+    "binom_q05": 27,
+    "both": 0,
+    "data_only": 12,
+    "labels_only": 57,
+    "n": 69,
+    "neither": 56,
+    "share_following_labels": 0.8260869565217391,
+    "stage": "S2",
+    "units": 69
+   },
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": null,
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": {
+    "net": 4,
+    "right_to_wrong": 6,
+    "sign_p": 0.14453125,
+    "units": 8,
+    "wrong_to_right": 2
+   },
+   "id": "K12",
+   "judged_on": "real",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": -0.21060954632484333,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ],
+    "real": [
+     {
+      "adj_point": -0.31470064576055884,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.13711484407663171,
+      "right_to_wrong": 6,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 2
+     },
+     {
+      "adj_point": -0.0019224528545861651,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": -0.2830251758417122,
+      "right_to_wrong": 0,
+      "stage": "S0 -> S1",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": -0.08418705091474728,
+      "right_to_wrong": 7,
+      "stage": "S1 -> S2",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.007708951519368576,
+      "right_to_wrong": 0,
+      "stage": "S2 -> S3",
+      "wrong_to_right": 0
+     },
+     {
+      "adj_point": 0.0,
+      "right_to_wrong": 0,
+      "stage": "S3 -> S4",
+      "wrong_to_right": 0
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "right_to_wrong": 0,
+     "stage": "S0 -> S1",
+     "wrong_to_right": 0
+    },
+    {
+     "right_to_wrong": 6,
+     "stage": "S1 -> S2",
+     "wrong_to_right": 2
+    },
+    {
+     "right_to_wrong": 0,
+     "stage": "S2 -> S3",
+     "wrong_to_right": 0
+    },
+    {
+     "right_to_wrong": 0,
+     "stage": "S3 -> S4",
+     "wrong_to_right": 0
+    }
+   ],
+   "reason": null,
+   "stage": "S1 -> S2",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "inconclusive"
+  },
+  {
+   "control": "none",
+   "effect": null,
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": "the system exposes no per-edge source (L2 attribution is K10-K12)",
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states no confidence",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": null,
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": "no DV-1 targets in this battery",
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "not_checkable"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": 0.36687026287385194,
+   "a": 0.7643269230769231,
+   "adj_f1": 0.36687026287385194,
+   "c": 0.6511813186813186,
+   "completion": 1.0,
+   "dir_f1@committed": 0.22807425553068347,
+   "dir_f1@expect": 0.2677571799246234,
+   "dir_f1@expect_delivered": 0.2677571799246234,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.9128968253968253,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 3.1622000000000003,
+   "word": "accuracy"
+  },
+  "real": {
+   "S": 0.4012570775544127,
+   "a": 0.6106876456876457,
+   "adj_f1": 0.4012570775544127,
+   "c": 0.8546153846153846,
+   "completion": 0.5,
+   "dir_f1@committed": 0.23168908865234372,
+   "dir_f1@expect": 0.25105189340813466,
+   "dir_f1@expect_delivered": 0.12552594670406733,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 5,
+   "q": 0.61998556998557,
+   "runs": 10,
+   "statuses": {
+    "failed": 5,
+    "ok": 5
+   },
+   "usd": 4.6476999999999995,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.1966796176754979,
+   "a": 0.5489486703772418,
+   "adj_f1": 0.1966796176754979,
+   "c": 0.7341991341991342,
+   "completion": 0.7,
+   "dir_f1@committed": 0.08299588338665576,
+   "dir_f1@expect": 0.1151837546262728,
+   "dir_f1@expect_delivered": 0.08062862823839095,
+   "direction_sources": {},
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 7,
+   "q": 0.5578231292517006,
+   "runs": 10,
+   "statuses": {
+    "failed": 3,
+    "ok": 7
+   },
+   "usd": 4.7636,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "data_only": {
+   "checkable": false,
+   "kind": "knowledge_degrades_data",
+   "point": null,
+   "units": 0
+  },
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.20500246367194827,
+    "kind": "name_reliance",
+    "lo": 0.11212279774624159,
+    "metric": "dir_f1@committed",
+    "point": 0.16126655733565282,
+    "seed": 20261014,
+    "source": "S3",
+    "units": 10
+   },
+   "K05": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.18406104484760022,
+    "kind": "wrong_knowledge_harm",
+    "lo": 0.07180055629521764,
+    "metric": "dir_f1@committed",
+    "point": 0.1292213134630243,
+    "seed": 20261014,
+    "source": "S3",
+    "units": 10
+   },
+   "real_minus_neutral": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 10,
+    "hi": 0.09422009352002583,
+    "lo": -0.03171278377474184,
+    "metric": "dir_f1@committed",
+    "point": 0.032045243872628526,
+    "seed": 20261014,
+    "source": "S3",
+    "units": 10
+   }
+  }
+ },
+ "l2": {
+  "stages": [
+   "S0",
+   "S1",
+   "S2",
+   "S3",
+   "S4"
+  ],
+  "transitions": {
+   "neutral": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.13431647982332826,
+      "lo": -0.29154546134159326,
+      "point": -0.21060954632484333,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S0 -> S1"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S1 -> S2"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S2 -> S3"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S3 -> S4"
+    }
+   ],
+   "real": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.2590215293735161,
+      "lo": -0.3642909778726454,
+      "point": -0.31470064576055884,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S0 -> S1"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.19317367396672408,
+      "lo": 0.08493266846074114,
+      "point": 0.13711484407663171,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 6,
+      "wrong_to_right": 2
+     },
+     "stage": "S1 -> S2"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.008900911272735656,
+      "lo": -0.013052082938803115,
+      "point": -0.0019224528545861651,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S2 -> S3"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 5,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 5
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S3 -> S4"
+    }
+   ],
+   "swapped": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.2250313771396587,
+      "lo": -0.33752927431407215,
+      "point": -0.2830251758417122,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S0 -> S1"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.047889987846567485,
+      "lo": -0.12048432142725188,
+      "point": -0.08418705091474728,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 7,
+      "wrong_to_right": 0
+     },
+     "stage": "S1 -> S2"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.009813492115157032,
+      "lo": 0.005131535147015706,
+      "point": 0.007708951519368576,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S2 -> S3"
+    },
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 7,
+      "hi": 0.0,
+      "lo": 0.0,
+      "point": 0.0,
+      "seed": 20261014,
+      "units": 7
+     },
+     "flips": {
+      "right_to_wrong": 0,
+      "wrong_to_right": 0
+     },
+     "stage": "S3 -> S4"
+    }
+   ]
+  }
+ },
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "D"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "D+K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "D+K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 701.1,
+    "usd": 0.482
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T021911Z_m06_q011_r01_e82c08/meta.json",
+     "sha256": "57b721969834632e115cf1aa513f1b5266804c249cd6040baa7fa67e400920c4"
+    },
+    "state": {
+     "path": "runs/20261022T021911Z_m06_q011_r01_e82c08/state/11_99_final.json",
+     "sha256": "e7aedb9036233743f751a72737e884f478ccd1c1a0cb6e364e9034e38a16e808"
+    }
+   },
+   "graph_sha256": "06a0183f4e9b54485237d4c9beeca01cfce320e95572f93ef2f3303f38057330",
+   "item": "s2_01",
+   "run_id": "20261022T021911Z_m06_q011_r01_e82c08",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 659.8,
+    "usd": 0.3169
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T023104Z_m06_q012_r01_c541a5/meta.json",
+     "sha256": "800d7ef8f024eb85b9928cf70d0d9a59fe031848e5643e4b8e56d7c4139096ce"
+    },
+    "state": {
+     "path": "runs/20261022T023104Z_m06_q012_r01_c541a5/state/11_99_final.json",
+     "sha256": "f2c6fd123403a8de5606320356a273596f55e69a14f97128402919be74211b4f"
+    }
+   },
+   "graph_sha256": "c1088112027e505c96a16feed6fe59a48c6b00c1eb6ca78e9e697bd81d25b695",
+   "item": "s2_01",
+   "run_id": "20261022T023104Z_m06_q012_r01_c541a5",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 665.8,
+    "usd": 0.4887
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T024216Z_m06_q013_r01_186895/meta.json",
+     "sha256": "593044e17972785e786e743129e76503dd338a7acac1263b41cd9d0cc5e6dcca"
+    },
+    "state": {
+     "path": "runs/20261022T024216Z_m06_q013_r01_186895/state/11_99_final.json",
+     "sha256": "9d0263a2e65a14ce51295eeae9675eab8f9a87a3afe8d4ef833665e391d8f9dd"
+    }
+   },
+   "graph_sha256": "a953fb9a4b7cd89f2c2b118a8be3ddb85864fa6288538976846e9f55df761813",
+   "item": "s2_01",
+   "run_id": "20261022T024216Z_m06_q013_r01_186895",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 364.3,
+    "usd": 0.4663
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T025333Z_m06_q021_r01_827206/meta.json",
+     "sha256": "3a663515818c16e7dc6a8585cab71e5c28cf6701f5433bbc237d92a5ed3984ee"
+    },
+    "state": {
+     "path": "runs/20261022T025333Z_m06_q021_r01_827206/state/11_99_final.json",
+     "sha256": "1cb1a88fa400e613ad42c40818fa5b0a91d6319d0f6ae85c39662b8c4dccafd7"
+    }
+   },
+   "graph_sha256": "e5c77ef841a6bfcdb2cc578858c85d52777e6812ad2fa4205ac07fbecaae89a8",
+   "item": "s2_02",
+   "run_id": "20261022T025333Z_m06_q021_r01_827206",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 329.0,
+    "usd": 0.2812
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T025948Z_m06_q022_r01_6e1ea4/meta.json",
+     "sha256": "6bdfdd1c1de048b3aafbd871face383324c546579977b273996189e3dea8fdee"
+    },
+    "state": {
+     "path": "runs/20261022T025948Z_m06_q022_r01_6e1ea4/state/11_99_final.json",
+     "sha256": "cf35be639aa801a87853082bf7827c7b158e68817a8f6c14d28ca66c50ab2f9c"
+    }
+   },
+   "graph_sha256": "700d82e881f2b19e257eddde9448b4f06330efdee79acc24a63a637c1e2ce787",
+   "item": "s2_02",
+   "run_id": "20261022T025948Z_m06_q022_r01_6e1ea4",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 392.7,
+    "usd": 0.4857
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T030527Z_m06_q023_r01_5d6681/meta.json",
+     "sha256": "9c152c12f2cdb509071f65a38dc0755091fc7418bb6a389c81eb304859da58eb"
+    },
+    "state": {
+     "path": "runs/20261022T030527Z_m06_q023_r01_5d6681/state/11_99_final.json",
+     "sha256": "1405a5b3f277cc0e62d9a291c1eefe894517dd2017455c182fd35f26e2f08c88"
+    }
+   },
+   "graph_sha256": "50e1ae2a1c64a9ac895eff79a4cc1120b8289d6a870d524fe620651cc586c257",
+   "item": "s2_02",
+   "run_id": "20261022T030527Z_m06_q023_r01_5d6681",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 762.7,
+    "usd": 0.5079
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T031211Z_m06_q031_r01_0ffc99/meta.json",
+     "sha256": "ea19ef58b6e27598ae1148e23d72fff3294f8f5c05d9f30c5107d0e29d8df0e1"
+    },
+    "state": {
+     "path": "runs/20261022T031211Z_m06_q031_r01_0ffc99/state/11_99_final.json",
+     "sha256": "630fbcf055f06f36e397bf70d778ea10ae40a407cf076f8235d4fd28f63d3978"
+    }
+   },
+   "graph_sha256": "d61d7187745ac5bc16141785616c842c18b02b92c58876ea69502ad9ef28c2f5",
+   "item": "s2_03",
+   "run_id": "20261022T031211Z_m06_q031_r01_0ffc99",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 671.1,
+    "usd": 0.3389
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T032505Z_m06_q032_r01_6c8f9e/meta.json",
+     "sha256": "ed9f33f2acab7daaea9aa61d46d859fdd2ce9fd33066ba7291fbf2f5e1561762"
+    },
+    "state": {
+     "path": "runs/20261022T032505Z_m06_q032_r01_6c8f9e/state/11_99_final.json",
+     "sha256": "e2373bd092ced5da136f8834c16cc112ef960e6daa2ef75ac738c0ffce9536df"
+    }
+   },
+   "graph_sha256": "8978faae077123f54d776776e485f8169ae330eeaf496d48ed36fc91996b6a5c",
+   "item": "s2_03",
+   "run_id": "20261022T032505Z_m06_q032_r01_6c8f9e",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 650.5,
+    "usd": 0.5385
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T033626Z_m06_q033_r01_bcf69b/meta.json",
+     "sha256": "19e9ed7ee23666970b8d5acb88c18c057f9f8e78469f6d6368426e0e3ee1910b"
+    },
+    "state": {
+     "path": "runs/20261022T033626Z_m06_q033_r01_bcf69b/state/11_99_final.json",
+     "sha256": "5ce4d4dffcb0725087da68a93b0588759d33ba8f841713bb3eb6d2cdf26113a8"
+    }
+   },
+   "graph_sha256": "e9502b43e1780ab6d34df8afc0ee939be974d3c5bba1e50d5f91dae4c8f33391",
+   "item": "s2_03",
+   "run_id": "20261022T033626Z_m06_q033_r01_bcf69b",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 465.0,
+    "usd": 0.5076
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T034726Z_m06_q041_r01_85dc2e/meta.json",
+     "sha256": "a8ce2df93c41c35d92e2f4c1dcb468b481bd34c98ed891d95e07b343114d71aa"
+    },
+    "state": {
+     "path": "runs/20261022T034726Z_m06_q041_r01_85dc2e/state/11_99_at_failure.json",
+     "sha256": "d3ea9b6da0c26467ac3aa1bed6cd2a60a2b822ea9a87b1e2db6e7b59713979a6"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_04",
+   "run_id": "20261022T034726Z_m06_q041_r01_85dc2e",
+   "status": "failed"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 469.9,
+    "usd": 0.3396
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T035521Z_m06_q042_r01_0b1938/meta.json",
+     "sha256": "9876290e38bc2c629cec2580c67df909ee54b9828d73d006204c8c0fd2b2e07f"
+    },
+    "state": {
+     "path": "runs/20261022T035521Z_m06_q042_r01_0b1938/state/11_99_final.json",
+     "sha256": "e8ab642ba03ffff5863691aaa5b9e20b08837a537e1f63145fe82c4829a37ff8"
+    }
+   },
+   "graph_sha256": "e2ef7dd56aaa188150e931b3915371a4b57916ce4f3ca3485f3cb9901d70f214",
+   "item": "s2_04",
+   "run_id": "20261022T035521Z_m06_q042_r01_0b1938",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 536.0,
+    "usd": 0.5684
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T040321Z_m06_q043_r01_6cee65/meta.json",
+     "sha256": "fbbe08f753e0ee16071791caac46a6c90a39445728eadc196eb165d75689e474"
+    },
+    "state": {
+     "path": "runs/20261022T040321Z_m06_q043_r01_6cee65/state/11_99_final.json",
+     "sha256": "4d5968c914880c0e5616fd6e4c14cbed43c6157c3e14c09d9ef22d207da40d65"
+    }
+   },
+   "graph_sha256": "630e8d31dcd283767e6ce9c7267bff476e09e2f63eade407a64fd2f5e27b3139",
+   "item": "s2_04",
+   "run_id": "20261022T040321Z_m06_q043_r01_6cee65",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 328.4,
+    "usd": 0.4182
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T041228Z_m06_q051_r01_105d44/meta.json",
+     "sha256": "8fa4451bf6b40e2ffb085a2252ee6dc8baa4daa8e7da08b57976180ebd0ddaa0"
+    },
+    "state": {
+     "path": "runs/20261022T041228Z_m06_q051_r01_105d44/state/11_99_final.json",
+     "sha256": "7d5d550215276a12101a209df51f2fff53657720762b1cc9d1fb8bfdc5d12d38"
+    }
+   },
+   "graph_sha256": "a000a4a02a346b23d76e9851ba09b2fbb4e7b32348c42bba1ea1687272616905",
+   "item": "s2_05",
+   "run_id": "20261022T041228Z_m06_q051_r01_105d44",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 293.7,
+    "usd": 0.2718
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T041808Z_m06_q052_r01_6621a4/meta.json",
+     "sha256": "284c7ea62e2a48550a44bd8bbc0919ddb449c837f4b1115f1112948c76a2b772"
+    },
+    "state": {
+     "path": "runs/20261022T041808Z_m06_q052_r01_6621a4/state/11_99_final.json",
+     "sha256": "dfb842e47d448120f6d67431278f1096182fed6e29abbe0f9d961da90c596cbf"
+    }
+   },
+   "graph_sha256": "c8502f88b06f86b571e02bed104f683ab18adbabac81503ff1a84ca70d86d9cb",
+   "item": "s2_05",
+   "run_id": "20261022T041808Z_m06_q052_r01_6621a4",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 342.5,
+    "usd": 0.4222
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T042311Z_m06_q053_r01_92f48b/meta.json",
+     "sha256": "288e89ec392b3319a61b34eda4c3f98dffa3d3724f66c25d357059ebaed1aa7c"
+    },
+    "state": {
+     "path": "runs/20261022T042311Z_m06_q053_r01_92f48b/state/11_99_final.json",
+     "sha256": "5b856e9af2717429b4899e3221795a08ad43cc5a361c9518353e35687da91194"
+    }
+   },
+   "graph_sha256": "bd4c1f479be8cab0e944c1fa62a908603bbfb33e27576ad52ee5e748bfd39784",
+   "item": "s2_05",
+   "run_id": "20261022T042311Z_m06_q053_r01_92f48b",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 556.1,
+    "usd": 0.4673
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T042906Z_m06_q061_r01_b7526b/meta.json",
+     "sha256": "33c068558bb153fc9d844d61f90e44ed6bf0da5125af62432dd17f296d56c4d4"
+    },
+    "state": {
+     "path": "runs/20261022T042906Z_m06_q061_r01_b7526b/state/11_99_at_failure.json",
+     "sha256": "d9c3a8736db6d796f113dc4d46ff8df92be846d54793855552e2b63d1eb0455f"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_06",
+   "run_id": "20261022T042906Z_m06_q061_r01_b7526b",
+   "status": "failed"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 551.9,
+    "usd": 0.3301
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T043833Z_m06_q062_r01_e3506b/meta.json",
+     "sha256": "e81e33f61d8d6d90e6578f9b5a79a30821f69c19f31521e55ba30cb2b7d0d77d"
+    },
+    "state": {
+     "path": "runs/20261022T043833Z_m06_q062_r01_e3506b/state/11_99_final.json",
+     "sha256": "8e1c8247e7216c4b8615007ee0aea017f9efb3331caa2dde1bee78f40dcf1b65"
+    }
+   },
+   "graph_sha256": "37c5f477620a8fc9cb3994eb7aabb53c2d389a987c4993c8daf8ef9ffb39b4c8",
+   "item": "s2_06",
+   "run_id": "20261022T043833Z_m06_q062_r01_e3506b",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 563.1,
+    "usd": 0.4872
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T044755Z_m06_q063_r01_dd8e4b/meta.json",
+     "sha256": "0e12f37204b7e12113070685dd6977d6c1a97c9dc8655b14db75efeffd8eee27"
+    },
+    "state": {
+     "path": "runs/20261022T044755Z_m06_q063_r01_dd8e4b/state/11_99_final.json",
+     "sha256": "c706cbe3dec84ede0148c731d31d4e2c763197b6203ffd724f0224e43f60af25"
+    }
+   },
+   "graph_sha256": "8b04b1d9505e3408d50efcd3b1c72fba15950ef0a1ffbf0a33ddf23be47609a7",
+   "item": "s2_06",
+   "run_id": "20261022T044755Z_m06_q063_r01_dd8e4b",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 453.5,
+    "usd": 0.4136
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T045728Z_m06_q071_r01_72f3f7/meta.json",
+     "sha256": "4494ac5ca8e79feb2a652b360b52ec7ff903c5e5bc39af2c616c90ec572a09fc"
+    },
+    "state": {
+     "path": "runs/20261022T045728Z_m06_q071_r01_72f3f7/state/11_99_at_failure.json",
+     "sha256": "e588ccc9a1f400fb73e97843fea8592af777e8e9932bbe33660829895016b315"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_07",
+   "run_id": "20261022T045728Z_m06_q071_r01_72f3f7",
+   "status": "failed"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 469.4,
+    "usd": 0.3005
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T050511Z_m06_q072_r01_032c23/meta.json",
+     "sha256": "9488c50632a051837fd290e61551017d83a7ce9726516ad06622d8155c106223"
+    },
+    "state": {
+     "path": "runs/20261022T050511Z_m06_q072_r01_032c23/state/11_99_final.json",
+     "sha256": "17a97edb4e1a2fd8e54eeabcdc36a44129ddafa7431606e78c7a91c29b0bdede"
+    }
+   },
+   "graph_sha256": "c651107cf54be2462f9d7987f6656354df6b16936546b20d047fb427c5a7ce92",
+   "item": "s2_07",
+   "run_id": "20261022T050511Z_m06_q072_r01_032c23",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 467.6,
+    "usd": 0.4106
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T051312Z_m06_q073_r01_71638b/meta.json",
+     "sha256": "56446003360c0fab6b6196e5faf8bd56de2062dbb6782cfe06eacbcb84aa82b7"
+    },
+    "state": {
+     "path": "runs/20261022T051312Z_m06_q073_r01_71638b/state/11_99_at_failure.json",
+     "sha256": "59c6d985f1dc79490dc2e90d56909cdeb2617ee6bd9b15f712c41238789836fe"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_07",
+   "run_id": "20261022T051312Z_m06_q073_r01_71638b",
+   "status": "failed"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 583.7,
+    "usd": 0.4386
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T052110Z_m06_q081_r01_e409eb/meta.json",
+     "sha256": "17bd8c07573df238f8359a6f50ee5cb98349517a21881ce418c83d170718fce8"
+    },
+    "state": {
+     "path": "runs/20261022T052110Z_m06_q081_r01_e409eb/state/11_99_at_failure.json",
+     "sha256": "407c627f73f734f18762c28e2bebec02f1cfd6d37f2e291ab536b06fda2b3d03"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_08",
+   "run_id": "20261022T052110Z_m06_q081_r01_e409eb",
+   "status": "failed"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 614.2,
+    "usd": 0.3079
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T053104Z_m06_q082_r01_a2ea80/meta.json",
+     "sha256": "ffdaa69a301d8509a40301bdc434719dcf6fef173a2dfcf2d6e0c785440de2a6"
+    },
+    "state": {
+     "path": "runs/20261022T053104Z_m06_q082_r01_a2ea80/state/11_99_final.json",
+     "sha256": "d30fad2ce9d9ac7fa9dfe8932121c64b283f99a61ca8bf97d3b54f6702c1634d"
+    }
+   },
+   "graph_sha256": "7d5a05604789965550b122930e774ecb2227ec957e1406951922b57c022035bc",
+   "item": "s2_08",
+   "run_id": "20261022T053104Z_m06_q082_r01_a2ea80",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 577.9,
+    "usd": 0.4228
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T054129Z_m06_q083_r01_ed56ae/meta.json",
+     "sha256": "4fb3a51bdd2008f76a2d2f5e3805c412c1193f0b2e2545b9e7d81ae81cd7dc38"
+    },
+    "state": {
+     "path": "runs/20261022T054129Z_m06_q083_r01_ed56ae/state/11_99_at_failure.json",
+     "sha256": "f26d73762dd0e72929c36e3244007088da0d6a7a985f758bcb7f7df06f345ee7"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_08",
+   "run_id": "20261022T054129Z_m06_q083_r01_ed56ae",
+   "status": "failed"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 494.7,
+    "usd": 0.4788
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T055117Z_m06_q091_r01_4acaf4/meta.json",
+     "sha256": "dd8f08876d22f5f7115a6c5f9a0922250fe08c85b81132fa360940ceb2a56430"
+    },
+    "state": {
+     "path": "runs/20261022T055117Z_m06_q091_r01_4acaf4/state/11_99_final.json",
+     "sha256": "4d44299647acbf1677e732f6a8cd3f05ad7d7fbec838297d0652bd8ae8830e01"
+    }
+   },
+   "graph_sha256": "4f50d55a89d1e05b3ebe6fe6246c68fa0b2e22ece5a2041ff00be6cd178995b2",
+   "item": "s2_09",
+   "run_id": "20261022T055117Z_m06_q091_r01_4acaf4",
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 491.7,
+    "usd": 0.3009
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T055944Z_m06_q092_r01_180c4a/meta.json",
+     "sha256": "e33749f4f2aa240e08ce4c9a3a4c57c4be4e9c0887ca0e2461ee85e3eb5713ef"
+    },
+    "state": {
+     "path": "runs/20261022T055944Z_m06_q092_r01_180c4a/state/11_99_final.json",
+     "sha256": "61b86883836d2a1ed55934b4c3cf18639a0fb061e0ae8764f8a1f81e8b046ee2"
+    }
+   },
+   "graph_sha256": "5482818c319e52682ecb29c8853f47933fb1c511cca9655b531aca4b4810dedd",
+   "item": "s2_09",
+   "run_id": "20261022T055944Z_m06_q092_r01_180c4a",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 540.0,
+    "usd": 0.451
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T060806Z_m06_q093_r01_0672ad/meta.json",
+     "sha256": "7050d1562479051815c86957993f665e0628092c47fd1869f0c336afca1ddbca"
+    },
+    "state": {
+     "path": "runs/20261022T060806Z_m06_q093_r01_0672ad/state/11_99_final.json",
+     "sha256": "104928769e556e9901dc6523f40b97e4212aa942c3b0965edd46744d372a1935"
+    }
+   },
+   "graph_sha256": "c09535e107587f923dcf9eb8eab941151c549e54fa46e22aaed049820ea594f7",
+   "item": "s2_09",
+   "run_id": "20261022T060806Z_m06_q093_r01_0672ad",
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "seconds": 679.4,
+    "usd": 0.4674
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T061720Z_m06_q101_r01_39e9bc/meta.json",
+     "sha256": "ccc9553427df1872d5156c12c575c578a851f69538fa43d3c1620169240c40bc"
+    },
+    "state": {
+     "path": "runs/20261022T061720Z_m06_q101_r01_39e9bc/state/11_99_at_failure.json",
+     "sha256": "ab13253faeda1783dd5d10cc2c5a8d07cd69cc9c949c0b0267b5ae74f5f05b4f"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_10",
+   "run_id": "20261022T061720Z_m06_q101_r01_39e9bc",
+   "status": "failed"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "seconds": 660.7,
+    "usd": 0.3744
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T062850Z_m06_q102_r01_e59984/meta.json",
+     "sha256": "8b8dd595f18391781afd61be585258e19234078ba95fe3d94c01cc326e9b3d61"
+    },
+    "state": {
+     "path": "runs/20261022T062850Z_m06_q102_r01_e59984/state/11_99_final.json",
+     "sha256": "c2d080e53e64ea4cb206326ed435507e9942229407b4e5231e40c439c96ec8e6"
+    }
+   },
+   "graph_sha256": "f310616f2c5a6352f32332659e0efedf5f9b20440e378313bb5225e7936dcf48",
+   "item": "s2_10",
+   "run_id": "20261022T062850Z_m06_q102_r01_e59984",
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "seconds": 642.6,
+    "usd": 0.4885
+   },
+   "files": {
+    "meta": {
+     "path": "runs/20261022T064001Z_m06_q103_r01_c39ef8/meta.json",
+     "sha256": "6f6806657cc9e5a057d51a61dd8ac6afa4ca03c0201800fddc6d51070aadda81"
+    },
+    "state": {
+     "path": "runs/20261022T064001Z_m06_q103_r01_c39ef8/state/11_99_at_failure.json",
+     "sha256": "9229b642f7ee262f61f3edba5dc104705d9b050d9141b890b8bf15d18a939fd0"
+    }
+   },
+   "graph_sha256": null,
+   "item": "s2_10",
+   "run_id": "20261022T064001Z_m06_q103_r01_c39ef8",
+   "status": "failed"
+  }
+ ],
+ "runs_manifest_sha256": "6602629edb5dba69cf130024be35cb6a893e25a41799dfc90556338f3af32d37",
+ "spec": {
+  "adapter_kw": {
+   "source": "main"
+  },
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "q1s2",
+  "extra": {
+   "name_metric": "dir_f1@committed",
+   "name_source": "S3",
+   "stage_names": [
+    "S0",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ]
+  },
+  "round": null,
+  "runs_date": "2026-10-21",
+  "system": "causal_copilot"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": false,
+   "cost": "llm",
+   "edge_source": false,
+   "glass_box": {
+    "entry": "main:main (harness/run_traced.py, harness/cc_trace.py hooks)",
+    "stages": [
+     "S0",
+     "S1",
+     "S2",
+     "S3",
+     "S4"
+    ]
+   },
+   "marks": [
+    "--",
+    "->",
+    "<->",
+    "mixed",
+    "o-",
+    "o->",
+    "o-o",
+    "~"
+   ],
+   "modes": [
+    "live",
+    "recorded"
+   ],
+   "takes": [
+    "context",
+    "data",
+    "names"
+   ],
+   "variants": {
+    "data_only": "S0"
+   }
+  },
+  "id": "causal_copilot@main",
+  "identity": {
+   "adapter": "causal_copilot",
+   "adapter_file_sha256": "878db870ba98a42eae5054aa3419de0d83bd81613de57784ab052cc553fcf5e0",
+   "adapter_version": "1",
+   "image": "rebuilt image (21 Oct)",
+   "model": "gpt-4o",
+   "source": "main",
+   "source_file": "plans/results/fork_bld06_live_main.capped.json",
+   "source_sha256": "7f9a7d80063470f0b993f01bb6de6d8099488d0957d7a8ea32794dc9514dd5d8",
+   "system_commit": "a31aa7c (fork main)",
+   "system_repo": "https://github.com/uzairgheewala/Causal-Copilot"
+  }
+ }
+}

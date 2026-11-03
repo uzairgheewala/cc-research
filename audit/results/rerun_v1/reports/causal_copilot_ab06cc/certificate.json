@@ -1,0 +1,1806 @@
+{
+ "body": {
+  "audit": "causal_copilot@ab06cc",
+  "battery": {
+   "about": "datasets/suite_q1s2 (frozen 10 Oct): 10 CausalArena semantic scenarios x real/neutral/swapped names, byte-identical numbers, shuffled columns, opaque paths; T1 by data, T4 label-implied",
+   "clusters": 10,
+   "hash": "540a0d89b2a44eb388f176cf57d141532d9aa4388411e97d6ebd2e92c990dac9",
+   "id": "q1s2",
+   "items": 10,
+   "version": "1",
+   "visibility": "development"
+  },
+  "certificate_format": "audit-certificate/1",
+  "environment": {
+   "cpu_flags": "avx2 fma",
+   "machine": "x86_64",
+   "numpy": "2.2.6",
+   "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+   "python": "3.10.12"
+  },
+  "evidence_rule": "every number is recomputed from the files in runs[] by `rerun`; numbers are keyed by their JSON pointer in report.json",
+  "findings": [
+   {
+    "hi": 0.2132345836261692,
+    "id": "K01",
+    "kind": "crash",
+    "label": "exploratory (threshold set after the data)",
+    "lo": 0.018477023791270378,
+    "point": 0.06666666666666667,
+    "reason": null,
+    "verdict": "fires"
+   },
+   {
+    "hi": null,
+    "id": "K02",
+    "kind": "no_better_than_null",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "no released intervention targets in this battery",
+    "verdict": "not_checkable"
+   },
+   {
+    "hi": null,
+    "id": "K03",
+    "kind": "cost_outlier",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "needs a round of at least 3 LLM systems on the same battery",
+    "verdict": "not_run"
+   },
+   {
+    "hi": 0.1449991712407779,
+    "id": "K04",
+    "kind": "name_reliance",
+    "label": "exploratory (threshold set after the data)",
+    "lo": 0.04206677104191875,
+    "point": 0.09365063677963548,
+    "reason": null,
+    "verdict": "clear"
+   },
+   {
+    "hi": 0.08375974908657809,
+    "id": "K05",
+    "kind": "wrong_knowledge_harm",
+    "label": "exploratory (threshold set after the data)",
+    "lo": -0.019485100461332505,
+    "point": 0.029616005844551145,
+    "reason": null,
+    "verdict": "clear"
+   },
+   {
+    "hi": null,
+    "id": "K06",
+    "kind": "layout_reliance",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "battery has no layout arms (columns were always shuffled)",
+    "verdict": "not_run"
+   },
+   {
+    "hi": null,
+    "id": "K07",
+    "kind": "knowledge_degrades_data",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "no ok run exposes the data-only variant with DV-1 targets",
+    "verdict": "not_checkable"
+   },
+   {
+    "hi": null,
+    "id": "K08",
+    "kind": "robustness_drop",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+    "verdict": "not_run"
+   },
+   {
+    "hi": null,
+    "id": "K09",
+    "kind": "knowledge_ignored",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "oracle and wrong suppliers are defined; not run in v1",
+    "verdict": "not_run"
+   },
+   {
+    "hi": -0.21879064574569582,
+    "id": "K10",
+    "kind": "stage_deletes_supported_links",
+    "label": "exploratory (threshold set after the data)",
+    "lo": -0.3410044277367252,
+    "point": -0.28180991537896144,
+    "reason": null,
+    "verdict": "fires"
+   },
+   {
+    "hi": null,
+    "id": "K11",
+    "kind": "stage_follows_names",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": null,
+    "verdict": "fires"
+   },
+   {
+    "hi": null,
+    "id": "K12",
+    "kind": "stage_flips_data_direction",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": null,
+    "verdict": "fires"
+   },
+   {
+    "hi": null,
+    "id": "K13",
+    "kind": "unsourced_claims",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "the system exposes no per-edge source (L2 attribution is K10-K12)",
+    "verdict": "not_checkable"
+   },
+   {
+    "hi": null,
+    "id": "K14",
+    "kind": "overconfident",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "the system states no confidence",
+    "verdict": "not_checkable"
+   },
+   {
+    "hi": null,
+    "id": "K15",
+    "kind": "never_abstains",
+    "label": "exploratory (threshold set after the data)",
+    "lo": null,
+    "point": null,
+    "reason": "no DV-1 targets in this battery",
+    "verdict": "not_checkable"
+   }
+  ],
+  "numbers": {
+   "/findings/0/effect/hi": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.2132345836261692
+   },
+   "/findings/0/effect/infrastructure": {
+    "derivation": "audit.findings.evaluate",
+    "value": 1
+   },
+   "/findings/0/effect/k": {
+    "derivation": "audit.findings.evaluate",
+    "value": 2
+   },
+   "/findings/0/effect/lo": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.018477023791270378
+   },
+   "/findings/0/effect/n": {
+    "derivation": "audit.findings.evaluate",
+    "value": 30
+   },
+   "/findings/0/effect/point": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.06666666666666667
+   },
+   "/findings/10/effect/binom_q05": {
+    "derivation": "audit.findings.evaluate",
+    "value": 86
+   },
+   "/findings/10/effect/both": {
+    "derivation": "audit.findings.evaluate",
+    "value": 1
+   },
+   "/findings/10/effect/data_only": {
+    "derivation": "audit.findings.evaluate",
+    "value": 57
+   },
+   "/findings/10/effect/labels_only": {
+    "derivation": "audit.findings.evaluate",
+    "value": 141
+   },
+   "/findings/10/effect/n": {
+    "derivation": "audit.findings.evaluate",
+    "value": 198
+   },
+   "/findings/10/effect/neither": {
+    "derivation": "audit.findings.evaluate",
+    "value": 225
+   },
+   "/findings/10/effect/share_following_labels": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.7121212121212122
+   },
+   "/findings/10/effect/units": {
+    "derivation": "audit.findings.evaluate",
+    "value": 198
+   },
+   "/findings/11/effect/net": {
+    "derivation": "audit.findings.evaluate",
+    "value": 13
+   },
+   "/findings/11/effect/right_to_wrong": {
+    "derivation": "audit.findings.evaluate",
+    "value": 14
+   },
+   "/findings/11/effect/sign_p": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.00048828125
+   },
+   "/findings/11/effect/units": {
+    "derivation": "audit.findings.evaluate",
+    "value": 15
+   },
+   "/findings/11/effect/wrong_to_right": {
+    "derivation": "audit.findings.evaluate",
+    "value": 1
+   },
+   "/findings/3/effect/B": {
+    "derivation": "audit.findings.evaluate",
+    "value": 2000
+   },
+   "/findings/3/effect/clusters": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/findings/3/effect/hi": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.1449991712407779
+   },
+   "/findings/3/effect/lo": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.04206677104191875
+   },
+   "/findings/3/effect/point": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.09365063677963548
+   },
+   "/findings/3/effect/seed": {
+    "derivation": "audit.findings.evaluate",
+    "value": 20261014
+   },
+   "/findings/3/effect/units": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/findings/4/effect/B": {
+    "derivation": "audit.findings.evaluate",
+    "value": 2000
+   },
+   "/findings/4/effect/clusters": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/findings/4/effect/hi": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.08375974908657809
+   },
+   "/findings/4/effect/lo": {
+    "derivation": "audit.findings.evaluate",
+    "value": -0.019485100461332505
+   },
+   "/findings/4/effect/point": {
+    "derivation": "audit.findings.evaluate",
+    "value": 0.029616005844551145
+   },
+   "/findings/4/effect/seed": {
+    "derivation": "audit.findings.evaluate",
+    "value": 20261014
+   },
+   "/findings/4/effect/units": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/findings/9/effect/B": {
+    "derivation": "audit.findings.evaluate",
+    "value": 2000
+   },
+   "/findings/9/effect/clusters": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/findings/9/effect/hi": {
+    "derivation": "audit.findings.evaluate",
+    "value": -0.21879064574569582
+   },
+   "/findings/9/effect/lo": {
+    "derivation": "audit.findings.evaluate",
+    "value": -0.3410044277367252
+   },
+   "/findings/9/effect/point": {
+    "derivation": "audit.findings.evaluate",
+    "value": -0.28180991537896144
+   },
+   "/findings/9/effect/seed": {
+    "derivation": "audit.findings.evaluate",
+    "value": 20261014
+   },
+   "/findings/9/effect/units": {
+    "derivation": "audit.findings.evaluate",
+    "value": 10
+   },
+   "/l0/neutral/S": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.2959907346447318
+   },
+   "/l0/neutral/a": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.6776190476190476
+   },
+   "/l0/neutral/adj_f1": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.2959907346447318
+   },
+   "/l0/neutral/c": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.5565873015873016
+   },
+   "/l0/neutral/completion": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 1.0
+   },
+   "/l0/neutral/dir_f1@committed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.14389830016239002
+   },
+   "/l0/neutral/dir_f1@expect": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.19212166470119066
+   },
+   "/l0/neutral/dir_f1@expect_delivered": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.19212166470119066
+   },
+   "/l0/neutral/executed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/neutral/infrastructure": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/neutral/not_run": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/neutral/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/neutral/q": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.7857142857142856
+   },
+   "/l0/neutral/runs": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/neutral/statuses/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/neutral/usd": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.0
+   },
+   "/l0/real/S": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.38169280832017183
+   },
+   "/l0/real/a": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.5223296579310595
+   },
+   "/l0/real/adj_f1": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.38169280832017183
+   },
+   "/l0/real/c": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.9916666666666667
+   },
+   "/l0/real/completion": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.8
+   },
+   "/l0/real/dir_f1@committed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.1939365910821989
+   },
+   "/l0/real/dir_f1@expect": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.1967846923480217
+   },
+   "/l0/real/dir_f1@expect_delivered": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.15742775387841737
+   },
+   "/l0/real/executed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/real/infrastructure": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/real/not_run": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/real/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 8
+   },
+   "/l0/real/q": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.5223296579310595
+   },
+   "/l0/real/runs": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/real/statuses/failed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 2
+   },
+   "/l0/real/statuses/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 8
+   },
+   "/l0/real/usd": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.0
+   },
+   "/l0/swapped/S": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.18378966437057465
+   },
+   "/l0/swapped/a": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.61875
+   },
+   "/l0/swapped/adj_f1": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.18378966437057465
+   },
+   "/l0/swapped/c": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.9875
+   },
+   "/l0/swapped/completion": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 1.0
+   },
+   "/l0/swapped/dir_f1@committed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.11428229431783887
+   },
+   "/l0/swapped/dir_f1@expect": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.11619942480639793
+   },
+   "/l0/swapped/dir_f1@expect_delivered": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.11619942480639793
+   },
+   "/l0/swapped/executed": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/swapped/infrastructure": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/swapped/not_run": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0
+   },
+   "/l0/swapped/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/swapped/q": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.6214285714285714
+   },
+   "/l0/swapped/runs": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/swapped/statuses/ok": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 10
+   },
+   "/l0/swapped/usd": {
+    "derivation": "audit.metrics.l0.summarise_arm (via audit.collect.l0_table)",
+    "value": 0.0
+   },
+   "/l1/data_only/units": {
+    "derivation": "audit.controls.l1.data_only_effect",
+    "value": 0
+   },
+   "/l1/names/K04/B": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 2000
+   },
+   "/l1/names/K04/clusters": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l1/names/K04/hi": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.1449991712407779
+   },
+   "/l1/names/K04/lo": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.04206677104191875
+   },
+   "/l1/names/K04/point": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.09365063677963548
+   },
+   "/l1/names/K04/seed": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 20261014
+   },
+   "/l1/names/K04/units": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l1/names/K05/B": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 2000
+   },
+   "/l1/names/K05/clusters": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l1/names/K05/hi": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.08375974908657809
+   },
+   "/l1/names/K05/lo": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": -0.019485100461332505
+   },
+   "/l1/names/K05/point": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.029616005844551145
+   },
+   "/l1/names/K05/seed": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 20261014
+   },
+   "/l1/names/K05/units": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l1/names/real_minus_neutral/B": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 2000
+   },
+   "/l1/names/real_minus_neutral/clusters": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l1/names/real_minus_neutral/hi": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.1063776043448344
+   },
+   "/l1/names/real_minus_neutral/lo": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.018285859079598493
+   },
+   "/l1/names/real_minus_neutral/point": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 0.06403463093508432
+   },
+   "/l1/names/real_minus_neutral/seed": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 20261014
+   },
+   "/l1/names/real_minus_neutral/units": {
+    "derivation": "audit.controls.l1.name_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/0/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/neutral/0/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/0/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.22662860236115856
+   },
+   "/l2/transitions/neutral/0/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.3162358924945831
+   },
+   "/l2/transitions/neutral/0/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.2740773127935938
+   },
+   "/l2/transitions/neutral/0/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/neutral/0/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/0/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/neutral/0/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/neutral/1/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/neutral/1/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/1/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.006606528349152568
+   },
+   "/l2/transitions/neutral/1/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.02631930383275965
+   },
+   "/l2/transitions/neutral/1/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.016152842243936087
+   },
+   "/l2/transitions/neutral/1/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/neutral/1/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/1/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 6
+   },
+   "/l2/transitions/neutral/1/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 3
+   },
+   "/l2/transitions/neutral/2/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/neutral/2/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/2/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/2/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/2/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/2/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/neutral/2/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/2/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/neutral/2/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/neutral/3/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/neutral/3/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/3/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/3/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/3/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/neutral/3/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/neutral/3/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/neutral/3/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/neutral/3/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/0/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/real/0/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/0/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.21879064574569582
+   },
+   "/l2/transitions/real/0/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.3410044277367252
+   },
+   "/l2/transitions/real/0/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.28180991537896144
+   },
+   "/l2/transitions/real/0/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/real/0/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/0/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/0/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/1/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/real/1/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/1/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.15697491990710286
+   },
+   "/l2/transitions/real/1/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.0015475328062310976
+   },
+   "/l2/transitions/real/1/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0771975002962074
+   },
+   "/l2/transitions/real/1/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/real/1/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/1/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 14
+   },
+   "/l2/transitions/real/1/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 1
+   },
+   "/l2/transitions/real/2/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/real/2/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/2/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.003002075064309131
+   },
+   "/l2/transitions/real/2/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.00045756119881033565
+   },
+   "/l2/transitions/real/2/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.00163367341611248
+   },
+   "/l2/transitions/real/2/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/real/2/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/real/2/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/2/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/3/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/real/3/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 8
+   },
+   "/l2/transitions/real/3/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.001397298556124811
+   },
+   "/l2/transitions/real/3/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/real/3/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.000465766185374937
+   },
+   "/l2/transitions/real/3/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/real/3/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 8
+   },
+   "/l2/transitions/real/3/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/real/3/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/0/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/swapped/0/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/0/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.21088244191415936
+   },
+   "/l2/transitions/swapped/0/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.34524563072649544
+   },
+   "/l2/transitions/swapped/0/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.2789864849512696
+   },
+   "/l2/transitions/swapped/0/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/swapped/0/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/0/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/0/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/1/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/swapped/1/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/1/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.04519150318333682
+   },
+   "/l2/transitions/swapped/1/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.1886405476093809
+   },
+   "/l2/transitions/swapped/1/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.11996003816368687
+   },
+   "/l2/transitions/swapped/1/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/swapped/1/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/1/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 8
+   },
+   "/l2/transitions/swapped/1/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2
+   },
+   "/l2/transitions/swapped/2/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/swapped/2/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/2/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0021390374331550915
+   },
+   "/l2/transitions/swapped/2/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.00637605427209387
+   },
+   "/l2/transitions/swapped/2/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": -0.0012803257449927941
+   },
+   "/l2/transitions/swapped/2/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/swapped/2/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/2/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/2/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/3/adj/B": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 2000
+   },
+   "/l2/transitions/swapped/3/adj/clusters": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/3/adj/hi": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/swapped/3/adj/lo": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/swapped/3/adj/point": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0.0
+   },
+   "/l2/transitions/swapped/3/adj/seed": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 20261014
+   },
+   "/l2/transitions/swapped/3/adj/units": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 10
+   },
+   "/l2/transitions/swapped/3/flips/right_to_wrong": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   },
+   "/l2/transitions/swapped/3/flips/wrong_to_right": {
+    "derivation": "audit.findings.stage_effects",
+    "value": 0
+   }
+  },
+  "protocol": {
+   "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+   "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+   "thresholds_version": "1.0",
+   "version": "1.0"
+  },
+  "regimes": {
+   "neutral": {
+    "k_source": "none",
+    "regime": "D"
+   },
+   "real": {
+    "k_source": "names_real",
+    "regime": "D+K"
+   },
+   "swapped": {
+    "k_source": "names_swapped",
+    "regime": "D+K"
+   }
+  },
+  "rerun": "python -m audit verify <this folder>/certificate.json",
+  "runs": [
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 1171.3,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T202506Z_ab06cc_q011_r01_6abb80/meta.json",
+      "sha256": "a8c3fff50755e11382452392c8d496c18b8660bc913bd88b9cad7f11350cda70"
+     },
+     "state": {
+      "path": "runs/20261013T202506Z_ab06cc_q011_r01_6abb80/state/11_99_final.json",
+      "sha256": "40cca21143929512aad0d32878b2c1129ed507684f80671424f49d65c6b1e347"
+     }
+    },
+    "graph_sha256": "8b5cb8c2024bd4905dda10837d24a297b727d0a6c4fec607570d034a13d69012",
+    "item": "s2_01",
+    "run_id": "20261013T202506Z_ab06cc_q011_r01_6abb80",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 1059.1,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T204445Z_ab06cc_q012_r01_596d4d/meta.json",
+      "sha256": "2831b920735d8c13236deb221570e58b6b237aa4beb12381721d6c92d95b4f28"
+     },
+     "state": {
+      "path": "runs/20261013T204445Z_ab06cc_q012_r01_596d4d/state/11_99_final.json",
+      "sha256": "923e0edb7e961f4cf3e4fa3a1443ffe76c300808bc0e15a0b77d804aa4e12aeb"
+     }
+    },
+    "graph_sha256": "4c3a96623e687d6e8cf727fbb9c61b1f97ebe76061ebc5ca3a7ac80ec3e5226e",
+    "item": "s2_01",
+    "run_id": "20261013T204445Z_ab06cc_q012_r01_596d4d",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 1095.6,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T210232Z_ab06cc_q013_r01_110428/meta.json",
+      "sha256": "0875f84dd3befb5b2ff5b93f9056893667483c99453ae4a694c6c728f56c1f46"
+     },
+     "state": {
+      "path": "runs/20261013T210232Z_ab06cc_q013_r01_110428/state/11_99_final.json",
+      "sha256": "d86f20d1aecf5755166936c5bc8d792250900416128eb6a1bf9a1d974f76ad0e"
+     }
+    },
+    "graph_sha256": "3c386e6abad1a7ee053ca0eed477ee503f798928b6d2994cd79aafbdab4a91d9",
+    "item": "s2_01",
+    "run_id": "20261013T210232Z_ab06cc_q013_r01_110428",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 1009.7,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T212054Z_ab06cc_q021_r01_86d9c4/meta.json",
+      "sha256": "74c66c56961235931bec80a5cca5f196aaed60c28c6b3d33dd55194e65724f8d"
+     },
+     "state": {
+      "path": "runs/20261013T212054Z_ab06cc_q021_r01_86d9c4/state/11_99_final.json",
+      "sha256": "9f6422ede4736ec0f599df179638694c7f4117f799d95c87c49f9bcb22ff8376"
+     }
+    },
+    "graph_sha256": "760b85324ded3bf2b34d23376bea34f12dd7cc13fbc3371e63a14624bcade335",
+    "item": "s2_02",
+    "run_id": "20261013T212054Z_ab06cc_q021_r01_86d9c4",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 1644.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T213848Z_ab06cc_q022_r01_eda1bc/meta.json",
+      "sha256": "1ce601ff713bc128491974b8c306f2933728baf89fdacdc5f2ea79b683681477"
+     },
+     "state": {
+      "path": "runs/20261013T213848Z_ab06cc_q022_r01_eda1bc/state/11_99_final.json",
+      "sha256": "2952c616c9a8d641e8a1096df1f3acb03dc4d1c793422b71c611bc37e8f67621"
+     }
+    },
+    "graph_sha256": "ff9370a6a3a7bf0c69be93d36b23410dc29d7162937dc3c445be15ad3c62534a",
+    "item": "s2_02",
+    "run_id": "20261013T213848Z_ab06cc_q022_r01_eda1bc",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 567.1,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T220624Z_ab06cc_q023_r01_7ba3a2/meta.json",
+      "sha256": "be976bdc54007bbfa4a7ee525a5e12bb48370cc478b4e87255729e5097f74d0c"
+     },
+     "state": {
+      "path": "runs/20261013T220624Z_ab06cc_q023_r01_7ba3a2/state/11_99_final.json",
+      "sha256": "c229c307a919b062e11c03738405477d1ece530d3b81a28f5baee1bfe1a2f2de"
+     }
+    },
+    "graph_sha256": "c722570202a498c0d95468949d719fa5fcd09486a91fca3a3865a2494b71e0cb",
+    "item": "s2_02",
+    "run_id": "20261013T220624Z_ab06cc_q023_r01_7ba3a2",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 2305.9,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T221557Z_ab06cc_q031_r01_bf1b9e/meta.json",
+      "sha256": "130587202b0074be84749eeaf4011f080af9af3a218f50b4a3231fce72eebc3c"
+     },
+     "state": {
+      "path": "runs/20261013T221557Z_ab06cc_q031_r01_bf1b9e/state/11_99_final.json",
+      "sha256": "1a2fcd166a50645328675bdae43bce07a3ab61c3f976be5afed1949c0c67deb4"
+     }
+    },
+    "graph_sha256": "6bfd45316bc7badffbc62085de79825883f25c5659d88911ecfa41e250ef4e3e",
+    "item": "s2_03",
+    "run_id": "20261013T221557Z_ab06cc_q031_r01_bf1b9e",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 2400.6,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T225429Z_ab06cc_q032_r01_46aba0/meta.json",
+      "sha256": "db79a9b402576c07f4eac6fff7cda0c1e14a6ead148c3e7828511035997baa75"
+     },
+     "state": {
+      "path": "runs/20261013T225429Z_ab06cc_q032_r01_46aba0/state/11_99_final.json",
+      "sha256": "e750acf8dfa82032fe403ff2fd89751f6a9dab4995a4f1028940a0c9f19204c9"
+     }
+    },
+    "graph_sha256": "e498312c57850fe7342cadfe9485857ab1fe7a5affacc78af90aef2407c2349a",
+    "item": "s2_03",
+    "run_id": "20261013T225429Z_ab06cc_q032_r01_46aba0",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 1947.7,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261013T233504Z_ab06cc_q033_r01_c2c4b7/meta.json",
+      "sha256": "bf37e325365e83b92a0e6f0669836bfac27db291f7246a141726e99ce65ce6fb"
+     },
+     "state": {
+      "path": "runs/20261013T233504Z_ab06cc_q033_r01_c2c4b7/state/11_99_final.json",
+      "sha256": "1cc1a60baeb38de43a93e7fb24db43541d74252a7c736e3922d72788da5b4210"
+     }
+    },
+    "graph_sha256": "cd5e0cbf45a93c85ca9b1900eabe63171c63b44bd271d976441c62ed1882915b",
+    "item": "s2_03",
+    "run_id": "20261013T233504Z_ab06cc_q033_r01_c2c4b7",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 863.1,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T000740Z_ab06cc_q041_r01_dd05cd/meta.json",
+      "sha256": "a650899bff03e11f005150e7b48afcb8bc9f49d5f736e636c5ce5a84fd2f40db"
+     },
+     "state": {
+      "path": "runs/20261014T000740Z_ab06cc_q041_r01_dd05cd/state/11_99_final.json",
+      "sha256": "ab60b76377bd7b9b2dfbd5581a9af3f7bbd44ed36a059a5efcfc7f92dde57732"
+     }
+    },
+    "graph_sha256": "8d75d5512a7bc8e6d95af4342afbaedb0931c8004626e2eb777cf62ae706a223",
+    "item": "s2_04",
+    "run_id": "20261014T000740Z_ab06cc_q041_r01_dd05cd",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 164.7,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T002211Z_ab06cc_q042_r01_4ad45c/meta.json",
+      "sha256": "243d953ffcc95fb4364c04cfecab5a923f8ed532986dc81306433e6504d22e07"
+     },
+     "state": {
+      "path": "runs/20261014T002211Z_ab06cc_q042_r01_4ad45c/state/06_06a_filter.json",
+      "sha256": "ddab78b79c5a770e2f23d0350172fb6f4b54b4a408cfdedebfb36ba187e8400d"
+     }
+    },
+    "graph_sha256": null,
+    "item": "s2_04",
+    "run_id": "20261014T002211Z_ab06cc_q042_r01_4ad45c",
+    "status": "host_error"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 1373.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T064022Z_ab06cc_q042_r01_bca118/meta.json",
+      "sha256": "308fb4d6f95159c9a251f468b221ffcb118d57f3b359bb10d91ce7e3fc4da1ca"
+     },
+     "state": {
+      "path": "runs/20261014T064022Z_ab06cc_q042_r01_bca118/state/11_99_final.json",
+      "sha256": "3d19063b773480ceada192c0053667f5bedd4f24bc706bbb1b92f7996bed2ff2"
+     }
+    },
+    "graph_sha256": "7c50ca2a1bc4f73b5d5ff500806395a4eb26173341fa5250cf6560c35cc38414",
+    "item": "s2_04",
+    "run_id": "20261014T064022Z_ab06cc_q042_r01_bca118",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 1132.5,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T002506Z_ab06cc_q043_r01_0906ff/meta.json",
+      "sha256": "75bbacb1fa60533941e6db239cb7fd03cd6ea39e3f2ab954fee468eb2e198c7a"
+     },
+     "state": {
+      "path": "runs/20261014T002506Z_ab06cc_q043_r01_0906ff/state/11_99_final.json",
+      "sha256": "f51060e6cb0e4aa8a9885dda819739b1cccf0198e1d4b52d3619a2f847f6a14a"
+     }
+    },
+    "graph_sha256": "5c736ebb711a1f346330e85f2aa91d620f2fc9f733b684f19e6a67abd71c6ecd",
+    "item": "s2_04",
+    "run_id": "20261014T002506Z_ab06cc_q043_r01_0906ff",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 1708.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T004405Z_ab06cc_q051_r01_e50f09/meta.json",
+      "sha256": "cbd2f0983a1fb8f9b0ee3b6098400618c0d80838dfb30a054942d57483e5d592"
+     },
+     "state": {
+      "path": "runs/20261014T004405Z_ab06cc_q051_r01_e50f09/state/11_99_final.json",
+      "sha256": "97e151498daa94e8159a55cc86619eda786a39b9fa99b50a493f9ef45ab1c75f"
+     }
+    },
+    "graph_sha256": "d0c57b55dc8858578f1f639da9cb11a4768a2bf23dfe2c8d15b2e86ebcc019e5",
+    "item": "s2_05",
+    "run_id": "20261014T004405Z_ab06cc_q051_r01_e50f09",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 914.6,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T011246Z_ab06cc_q052_r01_4d1722/meta.json",
+      "sha256": "12c2ece9a3d4c2e4014bdc91945868135b811e0b7b15ba45587826aebb60886c"
+     },
+     "state": {
+      "path": "runs/20261014T011246Z_ab06cc_q052_r01_4d1722/state/11_99_final.json",
+      "sha256": "ddbbc80baf25d1ea28b8817f20177ddafa542e0eb768905a5e2df28b0b697c3a"
+     }
+    },
+    "graph_sha256": "6e451ef930870cb49301540087dccd662583f76297bfcded8e359708c2e26ccd",
+    "item": "s2_05",
+    "run_id": "20261014T011246Z_ab06cc_q052_r01_4d1722",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 657.0,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T012809Z_ab06cc_q053_r01_cf49b8/meta.json",
+      "sha256": "2174562d8d9643c939dbe251708e5b4c1b900ff589f8931e73687bfe089b4df3"
+     },
+     "state": {
+      "path": "runs/20261014T012809Z_ab06cc_q053_r01_cf49b8/state/11_99_final.json",
+      "sha256": "93c4d7cbfce7022f809e006fd41615ba11b8a41691cfeca9e21f1bdb11927183"
+     }
+    },
+    "graph_sha256": "8b02a702f45dbf37e0144ccf6557816ec71b6a34c55a60d63eb47cd7d6d7e2f6",
+    "item": "s2_05",
+    "run_id": "20261014T012809Z_ab06cc_q053_r01_cf49b8",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 859.2,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T013914Z_ab06cc_q061_r01_491bb6/meta.json",
+      "sha256": "54ef9069691c331027166533b58bfca89f66c4b66eaa4ade2c9e4491756b21a9"
+     },
+     "state": {
+      "path": "runs/20261014T013914Z_ab06cc_q061_r01_491bb6/state/11_99_final.json",
+      "sha256": "21d3275371e3a851c7ebf3ab0515021c14afa2793fc2e5020e97db798a813b55"
+     }
+    },
+    "graph_sha256": "862396e898756b5fb75ece2abe606a7f99b71ed9bc05bed481dc55c94846b8a8",
+    "item": "s2_06",
+    "run_id": "20261014T013914Z_ab06cc_q061_r01_491bb6",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 679.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T015338Z_ab06cc_q062_r01_84b6d7/meta.json",
+      "sha256": "5e38ed7f87503f443115974a758d396d13e185c8b9c399bbce565461464291ba"
+     },
+     "state": {
+      "path": "runs/20261014T015338Z_ab06cc_q062_r01_84b6d7/state/11_99_final.json",
+      "sha256": "400f2d8591aabd11bcfdc2126e485dfe03bd11f655819d7a8a791585c5a6ad47"
+     }
+    },
+    "graph_sha256": "c912b063e666565a12da6c10bf2be43e5ae71445ba9530a7f902ae980a552b5d",
+    "item": "s2_06",
+    "run_id": "20261014T015338Z_ab06cc_q062_r01_84b6d7",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 709.0,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T020501Z_ab06cc_q063_r01_d4f951/meta.json",
+      "sha256": "b4e45f303e10451f5eb2e549194a283db0af99d08dae205705ab109a89b7a410"
+     },
+     "state": {
+      "path": "runs/20261014T020501Z_ab06cc_q063_r01_d4f951/state/11_99_final.json",
+      "sha256": "b40324d65af983ac9b49e65d91f6c347a19e570f900cd4ad66b3d4f4ecebf554"
+     }
+    },
+    "graph_sha256": "e30d2278c92c4b47c1494e0aa2d843ae048b88472e26992d470767b96c4eff19",
+    "item": "s2_06",
+    "run_id": "20261014T020501Z_ab06cc_q063_r01_d4f951",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 533.2,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T021653Z_ab06cc_q071_r01_65042f/meta.json",
+      "sha256": "39c48ab9d9ba5780701e75fb0b66bbd647df2761f05e1fb77268c83ca3c2f545"
+     },
+     "state": {
+      "path": "runs/20261014T021653Z_ab06cc_q071_r01_65042f/state/11_99_at_failure.json",
+      "sha256": "7c1d5020d0b86f7cc06855c331a44bb1fc7be007ff47891b58497bfdaf212d85"
+     }
+    },
+    "graph_sha256": null,
+    "item": "s2_07",
+    "run_id": "20261014T021653Z_ab06cc_q071_r01_65042f",
+    "status": "failed"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 584.1,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T022551Z_ab06cc_q072_r01_56d1bc/meta.json",
+      "sha256": "25eadaa2c2d3fe8feb1fbcc7ae7662a37f0d10e642fd4dcbd6f7687eca4d8a5c"
+     },
+     "state": {
+      "path": "runs/20261014T022551Z_ab06cc_q072_r01_56d1bc/state/11_99_final.json",
+      "sha256": "9fb94f24abb7cfe5d648ef6de2eaa43349250dc6e25c549ef7775d2af7eb84fd"
+     }
+    },
+    "graph_sha256": "2db4c77aa8a1b5f5276361aee9407fd410d6597546912e2dd465e74190e12218",
+    "item": "s2_07",
+    "run_id": "20261014T022551Z_ab06cc_q072_r01_56d1bc",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 638.9,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T023540Z_ab06cc_q073_r01_d5159e/meta.json",
+      "sha256": "a9f13ece262f1667609fa659c57ad73e3c09eff51ec8830a86a498bcf229aeca"
+     },
+     "state": {
+      "path": "runs/20261014T023540Z_ab06cc_q073_r01_d5159e/state/11_99_final.json",
+      "sha256": "257f4e1ecc923cdb71f658ad9ff44886c40594de8f8ab1b1526ef2f8ecaccca7"
+     }
+    },
+    "graph_sha256": "a3bc7376b13aedace718256f3eaf73bfd64379d8b49ab845e9313a6894f88fee",
+    "item": "s2_07",
+    "run_id": "20261014T023540Z_ab06cc_q073_r01_d5159e",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 798.2,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T024623Z_ab06cc_q081_r01_111804/meta.json",
+      "sha256": "b878446dc48deeb6cc690c8330d2a9bd0a6e57e6dcaa7eb8eaac9ec137278d2d"
+     },
+     "state": {
+      "path": "runs/20261014T024623Z_ab06cc_q081_r01_111804/state/11_99_final.json",
+      "sha256": "86d1626e60b8be3fc2b9b36c49d9127c22123243875da61512f61a535a8d6a46"
+     }
+    },
+    "graph_sha256": "c73110a9c456fb2074e120eab5f6b8da481acc797e08b94a2e8d97979d2b0292",
+    "item": "s2_08",
+    "run_id": "20261014T024623Z_ab06cc_q081_r01_111804",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 760.3,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T025945Z_ab06cc_q082_r01_2f77d1/meta.json",
+      "sha256": "916c721faa87fe90fed7d1739d4680427634de4e79e12c224d8df9b4c8b13c31"
+     },
+     "state": {
+      "path": "runs/20261014T025945Z_ab06cc_q082_r01_2f77d1/state/11_99_final.json",
+      "sha256": "4eba39084bf369c027ff69b95f4ce10d84362d529247ec463bae4b76332f8a83"
+     }
+    },
+    "graph_sha256": "5d0ca09bcb78461b1d5feb65f3ae4657f42426f99a0c366adb20a0b0b8cd55fb",
+    "item": "s2_08",
+    "run_id": "20261014T025945Z_ab06cc_q082_r01_2f77d1",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 814.6,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T031229Z_ab06cc_q083_r01_040d6f/meta.json",
+      "sha256": "982af2114bd5b8a51aee6c5ca856a9337942c65bb115d290e63d19f68ea74ba9"
+     },
+     "state": {
+      "path": "runs/20261014T031229Z_ab06cc_q083_r01_040d6f/state/11_99_final.json",
+      "sha256": "6e99d915c67fb55f45c903db1aaa09d1295dd95a1c939f030d4d84a8ec6746de"
+     }
+    },
+    "graph_sha256": "3814ea292dc7b2239aa5f49493d633c367847426b1fa6c09e117e801f286a4b3",
+    "item": "s2_08",
+    "run_id": "20261014T031229Z_ab06cc_q083_r01_040d6f",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 639.6,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T032607Z_ab06cc_q091_r01_ccda4e/meta.json",
+      "sha256": "7465bc3a7cef8ce22add5b7e2a04dbc47525180a0437bca63bf99fbd597ca957"
+     },
+     "state": {
+      "path": "runs/20261014T032607Z_ab06cc_q091_r01_ccda4e/state/11_99_final.json",
+      "sha256": "f76df9192aa4d8a42fde3f666e6f38bb5e1d360a59b6cdd71d165ddd2c97e254"
+     }
+    },
+    "graph_sha256": "8ca028ca50e3b45952c1864c5507a35bf4cd834ea0108346d003617cd92841d8",
+    "item": "s2_09",
+    "run_id": "20261014T032607Z_ab06cc_q091_r01_ccda4e",
+    "status": "ok"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 552.5,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T033650Z_ab06cc_q092_r01_06cc95/meta.json",
+      "sha256": "bcd370ef86fb78568e0a735cbd78d70f69a98c38e539a50002bd6401a5270e4f"
+     },
+     "state": {
+      "path": "runs/20261014T033650Z_ab06cc_q092_r01_06cc95/state/11_99_final.json",
+      "sha256": "ebb75d2e2d0bd44afff7b7f447fb0b2c32338c2790ced4adb515c5530e83d643"
+     }
+    },
+    "graph_sha256": "4f57e3bb4911a98c401f2a5f273ec56133f8ddc9583fcdf0d1db638a8bd1dcea",
+    "item": "s2_09",
+    "run_id": "20261014T033650Z_ab06cc_q092_r01_06cc95",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 614.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T034606Z_ab06cc_q093_r01_b44fcc/meta.json",
+      "sha256": "8615732932c2d884507434ab30b7ea4aeb81d82f52a9970f00c46d04d0f7d79d"
+     },
+     "state": {
+      "path": "runs/20261014T034606Z_ab06cc_q093_r01_b44fcc/state/11_99_final.json",
+      "sha256": "49198231c9027f08a25ca1677c94a3504e7134b22b3e83b693c7ceb0b6002832"
+     }
+    },
+    "graph_sha256": "8f797605f6bfd9d7c3d4354158fa4f89d3b3800d928a436c4193abfcd6b2dbba",
+    "item": "s2_09",
+    "run_id": "20261014T034606Z_ab06cc_q093_r01_b44fcc",
+    "status": "ok"
+   },
+   {
+    "arm": "real",
+    "cost": {
+     "seconds": 723.9,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T035624Z_ab06cc_q101_r01_fdd5d4/meta.json",
+      "sha256": "91dd6ea0f79725a14e8d8ccf499b9643455cb50ab89b8525b49a679cdb54a89e"
+     },
+     "state": {
+      "path": "runs/20261014T035624Z_ab06cc_q101_r01_fdd5d4/state/11_99_at_failure.json",
+      "sha256": "342bcad9598bee1c2ba99c22dcf0709912a359801fc0b724689472fba20227d0"
+     }
+    },
+    "graph_sha256": null,
+    "item": "s2_10",
+    "run_id": "20261014T035624Z_ab06cc_q101_r01_fdd5d4",
+    "status": "failed"
+   },
+   {
+    "arm": "neutral",
+    "cost": {
+     "seconds": 803.5,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T040832Z_ab06cc_q102_r01_3d8144/meta.json",
+      "sha256": "78bb45f0659f28a06ae3890f6534703ad40299aea35d7f483503111da1431580"
+     },
+     "state": {
+      "path": "runs/20261014T040832Z_ab06cc_q102_r01_3d8144/state/11_99_final.json",
+      "sha256": "84dc0f5045a95e5ee67bbc206a4c14d6d2ca9c3c6acec74f33115decb539aa1b"
+     }
+    },
+    "graph_sha256": "a44f37d5df96affc107031c4703ec05ce979a7b75f89ba4eddda6a5f0be996db",
+    "item": "s2_10",
+    "run_id": "20261014T040832Z_ab06cc_q102_r01_3d8144",
+    "status": "ok"
+   },
+   {
+    "arm": "swapped",
+    "cost": {
+     "seconds": 872.4,
+     "usd": null
+    },
+    "files": {
+     "meta": {
+      "path": "runs/20261014T042200Z_ab06cc_q103_r01_3b125f/meta.json",
+      "sha256": "188c46e30836a62f3a9b5406f3843af6e530c344586478e181976eb999b5c919"
+     },
+     "state": {
+      "path": "runs/20261014T042200Z_ab06cc_q103_r01_3b125f/state/11_99_final.json",
+      "sha256": "1b4cc703f25ff5e09e0810972e9ab5a742a93d0eb780433673cde77478bda9c6"
+     }
+    },
+    "graph_sha256": "3b36d38da771a9b34a0477e44269aab2cb61258d2a87985c000f6cb8e07f4260",
+    "item": "s2_10",
+    "run_id": "20261014T042200Z_ab06cc_q103_r01_3b125f",
+    "status": "ok"
+   }
+  ],
+  "runs_manifest_sha256": "647f83030c72074fb5c07c055ce2fea56896a246bceb7f9f0d4874969e9df513",
+  "spec": {
+   "adapter_kw": {
+    "source": "ab06cc"
+   },
+   "arms": [
+    "real",
+    "neutral",
+    "swapped"
+   ],
+   "battery": "q1s2",
+   "extra": {
+    "name_metric": "dir_f1@committed",
+    "name_source": "S3",
+    "stage_names": [
+     "S0",
+     "S1",
+     "S2",
+     "S3",
+     "S4"
+    ]
+   },
+   "round": null,
+   "runs_date": "2026-10-13",
+   "system": "causal_copilot"
+  },
+  "system": {
+   "capabilities": {
+    "confidence": false,
+    "cost": "llm",
+    "edge_source": false,
+    "glass_box": {
+     "entry": "main:main (harness/run_traced.py, harness/cc_trace.py hooks)",
+     "stages": [
+      "S0",
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+     ]
+    },
+    "marks": [
+     "--",
+     "->",
+     "<->",
+     "mixed",
+     "o-",
+     "o->",
+     "o-o",
+     "~"
+    ],
+    "modes": [
+     "live",
+     "recorded"
+    ],
+    "takes": [
+     "context",
+     "data",
+     "names"
+    ],
+    "variants": {
+     "data_only": "S0"
+    }
+   },
+   "id": "causal_copilot@ab06cc",
+   "identity": {
+    "adapter": "causal_copilot",
+    "adapter_file_sha256": "878db870ba98a42eae5054aa3419de0d83bd81613de57784ab052cc553fcf5e0",
+    "adapter_version": "1",
+    "image": "first image (13 Oct)",
+    "model": "gpt-4o-mini",
+    "source": "ab06cc",
+    "source_file": "analysis/results/ab06_cc/partial_stages.json",
+    "source_sha256": "1f399dae76ea92b142aebd1c57e3c8caadfea0daafe6626a47a66b25d660f1a3",
+    "system_commit": "a31aa7c",
+    "system_repo": "https://github.com/uzairgheewala/Causal-Copilot"
+   }
+  }
+ },
+ "sha256": "6a06105394465fb26dce2a09b9756cec22eefd054ec88f59e7c901c9f78f3753"
+}
