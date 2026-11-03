@@ -1,0 +1,137 @@
+{
+ "cc_research_head": "cf536c12df7fad928a3c7e76b51f2d441cf7efb8",
+ "sources": {
+  "analysis/results/ab06/ab06.json": {
+   "git": "tracked-clean",
+   "sha256": "37bb5c30761dd0f45d6360c446239dcb0bb02ba27d8217ef31a5f37e87ac460c"
+  },
+  "analysis/results/ben13/summary.json": {
+   "git": "tracked-clean",
+   "sha256": "459c17294e2c9b804381e3ebdd4d033ea8357509c8915c177e41045c2696c1c1"
+  },
+  "analysis/results/fork/bld06_cycles.json": {
+   "git": "tracked-clean",
+   "sha256": "b686794ce6ca87d925cca2b6d2f7cd86cef1fbd719ef73da46e7b77e50cc57b9"
+  },
+  "analysis/results/fork/bld06_live_compare.json": {
+   "git": "tracked-clean",
+   "sha256": "2016c56048e5a5fd1c6c5050a71c2e3a01e6be2b68474b9fb3ea464c5ebaab19"
+  },
+  "analysis/results/reference_reliability/reliability.json": {
+   "git": "tracked-clean",
+   "sha256": "429bafc560b4ff01a3bbf26f16994675fb4afaffde2460992c606435917e32e2"
+  },
+  "analysis/results/rescore_v2/leaderboard_controlled.json": {
+   "git": "tracked-clean",
+   "sha256": "0d392eb626197587d5bde71191362a9da4a6814ff8e817452653dfdb3fde6657"
+  },
+  "analysis/results/stability_s2/bnd08_summary.json": {
+   "git": "tracked-clean",
+   "sha256": "56d23bcff5742d5ce79b55a2a0e83e170fdd29b4f076861338f3b0220d6d425b"
+  },
+  "datasets/MAPPING.json": {
+   "git": "tracked-clean",
+   "sha256": "b24797befe7f82bc95229e1214b48e63b986775699241336722cab32234ad5d1"
+  },
+  "datasets/suite_b1/MAPPING.json": {
+   "git": "tracked-clean",
+   "sha256": "b6525de8fce4505384a39296d175f03282ea6802adeb2aa9a497f299a6fe33bd"
+  },
+  "datasets/suite_q1s2/MAPPING.json": {
+   "git": "tracked-clean",
+   "sha256": "30d1617c9ac868d40a26a7b7d06aa7906fd0288f51ac6edb2d859e3ba82eb092"
+  },
+  "external/causalbench/dataset_k562_filtered.npz.json": {
+   "git": "excluded",
+   "sha256": "9ff2c83af347f9f6333de8ac261a4cd7c37a83b1968657459334e3cab0f2e8d1"
+  },
+  "external/causalbench/dataset_rpe1_filtered.npz.json": {
+   "git": "excluded",
+   "sha256": "22507d85863934009c2a6630e9a482cddce847c77583e9542be2641def10b888"
+  },
+  "plans/ab06_prereg.json": {
+   "git": "tracked-clean",
+   "sha256": "18bebc150f23d31823bf4c327c479e969ce25fbe990c80b4f7fb90351859e8b4"
+  }
+ },
+ "values": {
+  "ab01.fci.authors": "0.578",
+  "ab01.fci.expect": "0.357",
+  "ab01.fci.gain": "0.221",
+  "ab01.files.formula": "250",
+  "ab01.files.semantic": "250",
+  "ab01.files.synthetic": "100",
+  "ab01.pc.published": "0.333",
+  "ab01.pcmaxp.controlled": "0.463",
+  "ab06.agents": "4",
+  "ab06.causaliq.drop": "0.251",
+  "ab06.cc-entered": "1",
+  "ab06.cc.drop": "0.167",
+  "ab06.matmcd.drop": "0.122",
+  "ab06.matmcd.dv1": "0.6855",
+  "ab06.matmcd.dv1-data": "0.7199",
+  "ab06.p9.entered": "4",
+  "ab06.p9.losing": "3",
+  "ab06.p9.min-scen": "5",
+  "ab06.p9.threshold": "0.10",
+  "ab06.systems": "5",
+  "ab06.vashishtha.drop": "0.020",
+  "ben13.cells": "4",
+  "ben13.echo.max": "0.95",
+  "ben13.echo.min": "0.90",
+  "ben13.for.random-level": "3",
+  "ben13.reproduced": "4",
+  "bnd08.m3.data": "20",
+  "bnd08.m3.labels": "81",
+  "bnd08.m3.n": "101",
+  "bnd08.model": "gpt-4o-2024-08-06",
+  "bnd08.runs": "30",
+  "cb.k562.cells": "162,751",
+  "cb.k562.controls": "10,691",
+  "cb.k562.genes": "622",
+  "cb.rpe1.cells": "162,733",
+  "cb.rpe1.controls": "11,485",
+  "cb.rpe1.genes": "383",
+  "cc.arms": "30",
+  "cc.completed": "22",
+  "cc.cyc.entered": "8",
+  "cc.cyc.keyerr": "8",
+  "cc.final-adj": "0.321",
+  "cc.s0-adj": "0.584",
+  "cc.usd": "\\$12.57",
+  "s1.abalone.edges": "7",
+  "s1.abalone.rows": "4,177",
+  "s1.abalone.vars": "8",
+  "s1.autompg.arena.edges": "3",
+  "s1.autompg.arena.rows": "398",
+  "s1.autompg.arena.vars": "4",
+  "s1.autompg.edges": "5",
+  "s1.autompg.rows": "392",
+  "s1.autompg.vars": "5",
+  "s1.concrete.edges": "8",
+  "s1.concrete.rows": "1,030",
+  "s1.concrete.vars": "9",
+  "s1.dwd.edges": "4",
+  "s1.dwd.rows": "349",
+  "s1.dwd.vars": "5",
+  "s1.named": "4",
+  "s1.named.arms-per": "3",
+  "s1.named.tables": "12",
+  "s1.sachs.arena": "20",
+  "s1.sachs.arms": "4",
+  "s1.sachs.bnlearn": "17",
+  "s1.sachs.edges": "19",
+  "s1.sachs.reversed": "1",
+  "s1.sachs.rows": "853",
+  "s1.sachs.shared": "16",
+  "s1.sachs.vars": "11",
+  "s2.arms-per": "3",
+  "s2.edges.max": "58",
+  "s2.edges.min": "35",
+  "s2.families": "10",
+  "s2.rows": "1,000",
+  "s2.tables": "30",
+  "s2.vars.max": "25",
+  "s2.vars.min": "20"
+ }
+}

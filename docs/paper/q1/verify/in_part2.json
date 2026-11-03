@@ -1,0 +1,74 @@
+[
+ {
+  "id": "C11",
+  "keys": [
+   "long2023causal"
+  ],
+  "ref": "Long, Piche, Zantedeschi, Schuster, Drouin. Causal Discovery with Language Models as Imperfect Experts. arXiv 2307.02390, 2023",
+  "claim": "Treating a language model as an imperfect expert gives a guarantee that the true graph stays in the returned set of graphs only under an assumed expert-error model, and the authors' own language-model experiment violated that model."
+ },
+ {
+  "id": "C12",
+  "keys": [
+   "vashishtha2025causal"
+  ],
+  "ref": "Vashishtha, Reddy, Kumar, Bachu, Balasubramanian, Sharma. Causal Order: The Key to Leveraging Imperfect Experts in Causal Inference. arXiv 2310.15117 (ICLR 2025?)",
+  "claim": "Pairwise edge questions to an expert confuse direct with indirect causation; the authors propose eliciting a causal order instead, which is then used together with a discovery algorithm such as PC."
+ },
+ {
+  "id": "C13",
+  "keys": [
+   "zecevic2023causal"
+  ],
+  "ref": "Zecevic, Willig, Dhami, Kersting. Causal Parrots: Large Language Models May Talk Causality But Are Not Causal. TMLR 2023 (arXiv 2308.13067)",
+  "claim": "Language models may repeat causal facts found in their training text without performing causal inference."
+ },
+ {
+  "id": "C14",
+  "keys": [
+   "srivastava2025llm"
+  ],
+  "ref": "Srivastava et al. arXiv 2510.16530, 2025 (title to confirm)",
+  "claim": "Language models reconstruct well-known benchmark graphs (bnlearn networks) from the variable names alone, but not graphs published after their training cutoff."
+ },
+ {
+  "id": "C15",
+  "keys": [
+   "dong2025care"
+  ],
+  "ref": "Dong, Liu, Aloui, Tarokh, Carlson. CARE. arXiv 2511.16016, 2025 (title to confirm)",
+  "claim": "CARE evaluates language models on causal discovery with original, anonymised and permuted variable names (names moved onto the wrong columns while the data are unchanged), and the models' accuracy collapses under the permuted names."
+ },
+ {
+  "id": "C16",
+  "keys": [
+   "kitson2026llm"
+  ],
+  "ref": "Kitson, Constantinou. LLM-Augmented Causal Discovery: Probabilistic Fusion of Edge Existence and Orientation. arXiv 2608.27472, 2026",
+  "claim": "Fusing per-pair probabilities from a language model and from data with obfuscated variable names, the authors note that benchmark recognition cannot be ruled out."
+ },
+ {
+  "id": "C17",
+  "keys": [
+   "li2026llm"
+  ],
+  "ref": "Li, Russo. UAI 2026, PMLR 337 (arXiv 2602.16481; title to confirm)",
+  "claim": "Language-model constraints are kept only when repeated queries agree and enter as defeasible assumptions that data can override, and the evaluation uses random graphs mapped onto real concept names (CauseNet) to resist memorisation."
+ },
+ {
+  "id": "C18",
+  "keys": [
+   "wang2025causalcopilot"
+  ],
+  "ref": "Wang et al. Causal-Copilot: An Autonomous Causal Analysis Agent. arXiv 2504.13263, 2025",
+  "claim": "Causal-Copilot is an LLM agent that runs causal analysis end to end: it inspects the data, selects and configures an algorithm, refines the graph with bootstrap statistics and LLM review, and writes a report; the paper states that LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions."
+ },
+ {
+  "id": "C19",
+  "keys": [
+   "shen2024matmcd"
+  ],
+  "ref": "MATMCD, arXiv 2412.13667 (authors and title to confirm)",
+  "claim": "MATMCD uses multiple LLM agents with tools to supply constraints to a data-driven discovery algorithm, and reports gains over the algorithm alone on named benchmarks."
+ }
+]

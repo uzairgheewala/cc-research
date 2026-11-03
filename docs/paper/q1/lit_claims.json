@@ -1,0 +1,674 @@
+{
+ "about": "Every citation in the Q1 paper (DLV-05): the claim made, the checker's verdict, the passage read. 'corrected-applied' means the report.tex sentence uses the checked wording or narrower.",
+ "claims": [
+  {
+   "id": "C01",
+   "keys": [
+    "spirtes2000causation"
+   ],
+   "draft": "Constraint-based algorithms such as PC and FCI recover causal structure from conditional-independence tests only up to an equivalence class, and only under assumptions such as faithfulness (and, for PC, causal sufficiency); FCI drops causal sufficiency and outputs a partial ancestral graph.",
+   "checked_claim": "Constraint-based algorithms such as PC and FCI recover causal structure from conditional-independence tests only up to an equivalence class, and only under assumptions such as faithfulness (and, for PC, causal sufficiency); FCI drops causal sufficiency and outputs a partially oriented inducing path graph.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Preface to the Second Edition (on Ch. 6); Sec. 2.1; Sec. 3.4.3; table of contents (Ch. 5 'Discovery Algorithms for Causally Sufficient Structures', Ch. 6 'Discovery Algorithms without Causal Sufficiency')",
+   "quote": "\"Partially oriented inducing path graphs and their uses are explained in detail in chapter 6.\" | \"Faithfulness turns out to be important to discovering causal structure.\"",
+   "url": "https://mitpress.mit.edu/9780262527927/causation-prediction-and-search/",
+   "notes": "Read the 2nd-edition (MIT Press, 2000) front matter and Chs. 1-3 via a copy hosted at ics.uci.edu (https://ics.uci.edu/~dechter/courses/ics-295cr/spring-2021/reading/Causation_Prediction_and_Search.pdf). The phrase 'partial ancestral graph'/'PAG' does not appear in the readable text; the book's term for the latent-variable output is 'partially oriented inducing path graph' (Ch. 6), so the claim was changed to match. PAG is later terminology (e.g., Zhang 2008 / Richardson & Spirtes 2002); if you want to keep 'partial ancestral graph', cite one of those as well. Chs. 5-6 (where PC and FCI are defined) could NOT be read: the algorithm names and the per-algorithm assumptions are verified only indirectly (ToC chapter titles, Preface, Sec. 2.1, Sec. 3.4.3). Treat this as partly verified. MIT Press URL is the book's publisher page as listed by search (ISBN 9780262527927, paperback); not fetched directly.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C02",
+   "keys": [
+    "chickering2002optimal"
+   ],
+   "draft": "Greedy Equivalence Search (GES) searches over Markov equivalence classes with a score and is consistent in the large-sample limit.",
+   "checked_claim": "Greedy Equivalence Search (GES) searches over Markov equivalence classes with a score and, given a consistent scoring criterion and a generative distribution that has a DAG perfect map, identifies that structure in the large-sample limit.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Abstract; Sec. 4 (Assumption 1); Sec. 4.2; Sec. 5",
+   "quote": "\"the states of the search are equivalence classes of DAGs\" | \"provably identifies a perfect map of the generative distribution if that perfect map is a DAG\"",
+   "url": "https://www.jmlr.org/papers/v3/chickering02b.html",
+   "notes": "The large-sample guarantee is conditional: Assumption 1 requires iid samples from a DAG-perfect distribution, and the score must be consistent (Definition 5). The original 'is consistent in the large-sample limit' states the result without these conditions, so the conditions were added. The paper credits the name GES to Meek (1997) ('called Greedy Equivalence Search or GES by Meek (1997)').",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C03",
+   "keys": [
+    "reisach2021beware"
+   ],
+   "draft": "In commonly used simulated benchmarks the marginal variance tends to increase along the causal order (varsortability), so a baseline that sorts variables by variance and regresses matches continuous-optimisation methods on raw data, while those methods fail after standardisation.",
+   "checked_claim": "In commonly used simulated benchmarks the marginal variance tends to increase along the causal order (varsortability), so a baseline that sorts variables by variance and regresses matches continuous-optimisation methods on raw data, while those methods fail after standardisation.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Sec. 3.5 (sortnregress); Sec. 4.3",
+   "quote": "\"On standardized data, the same algorithms fail to identify the ground-truth DAG or its Markov equivalence class.\"",
+   "url": "https://proceedings.neurips.cc/paper/2021/hash/e987eff4a7c7b7e580d659feb6f60c1a-Abstract.html",
+   "notes": "The abstract also says 'marginal variance tends to increase along the causal order for generically sampled additive noise models'. The finding holds for 'some' continuous methods (NOTEARS, MSE-GDS, GOLEM-EV are named as most affected); GOLEM-NV gets better after standardization (Sec. 4.3). The wording is fine if 'continuous-optimisation methods' is read as those methods. arXiv: 2102.13647.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C04",
+   "keys": [
+    "reisach2023scale"
+   ],
+   "draft": "A scale-invariant analogue, R2-sortability (sorting by the coefficient of determination), is also high in default simulation settings and can be exploited by a simple baseline.",
+   "checked_claim": "A scale-invariant analogue, R2-sortability (sorting by the coefficient of determination), is also high in common simulation settings and can be exploited by a simple baseline.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Abstract; Sec. 3.1",
+   "quote": "\"find high values in common settings\" | baseline \"can match and exceed the performance of established causal discovery algorithms\"",
+   "url": "https://neurips.cc/virtual/2023/poster/70483",
+   "notes": "Wording change only: the paper says 'common settings', not 'default' settings. Sec. 3.1 calls R2 'known as the coefficient of determination'. The baseline is R2-SortnRegress. NeurIPS 2023 (vol. 36) confirmed via the NeurIPS virtual poster page and the Maastricht University CRIS record; proceedings page numbers not confirmed, so they are left out. arXiv: 2303.18211.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C05",
+   "keys": [
+    "kitson2024impact"
+   ],
+   "draft": "The order of the columns in the input file alone changes the graph that score-based hill climbing learns, by more than a large increase in sample size does.",
+   "checked_claim": "The order of the columns in the input data alone changes the graph that score-based hill climbing learns, typically by more than a change in sample size does, though not in low-dimensional settings.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Sec. 1.4; Sec. 3.2; Sec. 4 (Conclusions)",
+   "quote": "\"For HC, variable ordering is found to typically have a larger effect than sample size\" | \"sample size has more impact than variable ordering in low-dimensional settings\"",
+   "url": "https://link.springer.com/article/10.1007/s10618-024-01044-9",
+   "notes": "Sec. 1.4 defines variable ordering as 'the order that the variables appear as columns in the tabular data structure', which supports 'order of the columns'. The original 'by more than a large increase in sample size does' overstates the paper: ordering 'typically' matters more than sample size for HC, but sample size matters more in low-dimensional settings, and the paper does not single out 'large' increases. Metadata from Crossref; text read from arXiv 2206.08952v2.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C06",
+   "keys": [
+    "brouillard2025landscape"
+   ],
+   "draft": "A review of causal-discovery papers finds that the Sachs protein-signalling data is the only real dataset in a large share of real-data evaluations, that its ground truth is not definitive, and recommends evaluation on interventional data.",
+   "checked_claim": "A review of causal-discovery papers finds that the Sachs protein-signalling data is the only real dataset in a large share of real-data evaluations, that its ground truth is not definitive, and recommends evaluation on interventional data.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Sec. 4 (Sachs statistic, ground truth, interventional metrics); Sec. 3.2",
+   "quote": "\"It is the only real-world dataset considered for 35% of all the papers relying on real-world datasets.\" | \"the ground truth provided is not definitive\"",
+   "url": "https://proceedings.mlr.press/v275/brouillard25a.html",
+   "notes": "The recommendation is phrased as interventional metrics: the community should use 'interventional metrics as they assess the outcomes we truly care about' (Sec. 4); Sec. 3.2 says quantitative evaluation is possible via interventional metrics 'when interventional data are available'. 'Large share' means 35%. Author name 'Kording' is written in ASCII (Kording/Koerding). arXiv: 2412.01953. Editors: Biwei Huang, Mathias Drton.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C07",
+   "keys": [
+    "li2026causalarena"
+   ],
+   "draft": "CausalArena is a benchmark of synthetic, semantic (named, story-based) and formula-grounded structural causal models with observational and interventional exports and a public leaderboard of causal-discovery methods.",
+   "checked_claim": "CausalArena is a benchmark of synthetic, semantic (named, story-based) and formula-grounded structural causal models with observational and interventional exports and a public leaderboard of causal-discovery methods.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Sec. 4.2; Sec. 4.3; Sec. 4.5; footnote 1",
+   "quote": "exports \"two matched tables from the same graph: an observation-only split\" and an \"observation-plus-intervention split\"",
+   "url": "https://arxiv.org/abs/2609.11897",
+   "notes": "The paper calls the semantic family 'semantic operational SCMs': scenario-based, with nodes 'labeled by what they mean in that process' (Sec. 4.2). Formula-grounded SCMs use 'named scientific or engineering equations' (Sec. 4.3). Leaderboard: https://huggingface.co/spaces/LAMDA-Tabular/CausalArena-leaderboard. Half of the audited SCMs are held out for leaderboard evaluation, and public real-world datasets are used as an extra check. No venue listed (v1, 2026-09-10).",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C08",
+   "keys": [
+    "chevalley2025causalbench"
+   ],
+   "draft": "CausalBench evaluates gene-network inference on genome-scale Perturb-seq data from the K562 and RPE1 cell lines, scoring predicted edges on held-out interventional data with a mean Wasserstein distance and a false omission rate.",
+   "checked_claim": "CausalBench evaluates gene-network inference on large-scale CRISPRi Perturb-seq data from the K562 and RPE1 cell lines, scoring predicted edges on held-out interventional data with a mean Wasserstein distance and a false omission rate.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Sec. 4 (Benchmarking Setup); Table 1; Sec. 5.2 (Statistical evaluation)",
+   "quote": "\"we propose using the mean Wasserstein distance\" | \"estimate the false omission rate (FOR)\" | \"We hold out 20% of the data for evaluation\"",
+   "url": "https://doi.org/10.1038/s42003-025-07764-y",
+   "notes": "Changed 'genome-scale' to 'large-scale CRISPRi'. The datasets come from Replogle et al. 2022 (Table 1), but the only RPE1 screen there targets essential genes (plus some non-essential genes), not the whole genome, and CausalBench's tables have only 622 (K562) and 383 (RPE1) gene interventions. The CausalBench text does not call its data genome-scale. Content was checked against arXiv 2210.17283v2 because the nature.com page could not be fetched; journal metadata comes from Crossref. Wording may differ slightly in the journal version.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C09",
+   "keys": [
+    "replogle2022mapping"
+   ],
+   "draft": "The CausalBench data come from genome-scale CRISPRi Perturb-seq screens.",
+   "checked_claim": "The CausalBench data come from the CRISPRi Perturb-seq screens of Replogle et al. in K562 and RPE1 cells.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Main text, opening section (bioRxiv preprint of the same paper)",
+   "quote": "\"compact, multiplexed CRISPR interference (CRISPRi) library\" | \"Here we perform the first genome-scale Perturb-seq screens\"",
+   "url": "https://doi.org/10.1016/j.cell.2022.05.013",
+   "notes": "Replogle et al. ran one genome-wide K562 screen (all expressed genes) and two essential-gene screens (K562 day 6; RPE1 day 7, common essential genes plus some non-essential genes). CausalBench uses K562 and RPE1 data with a few hundred interventions, so at least the RPE1 data come from an essential-gene screen, and 'genome-scale screens' overstates it. CausalBench cites Replogle et al. 2022 for both datasets (Table 1) and says the perturbations are CRISPRi knockdowns. Cell metadata comes from Crossref. The text was read from the bioRxiv preprint (10.1101/2021.12.16.473013) because cell.com, PubMed and Europe PMC blocked or rate-limited the fetches.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C10",
+   "keys": [
+    "kiciman2023causal"
+   ],
+   "draft": "Large language models answer pairwise causal-direction questions about named variables with high accuracy on existing benchmarks, and part of that benchmark is memorised by the models.",
+   "checked_claim": "Large language models answer pairwise causal-direction questions about named variables with high accuracy on existing benchmarks, and part of that benchmark is memorised by the models.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Sec. 3.1.1 (Tubingen cause-effect pairs); Sec. 3.3 (memorization test)",
+   "quote": "\"These results indicate that the Tubingen dataset is certainly in GPT's training set.\"",
+   "url": "https://arxiv.org/abs/2305.00050",
+   "notes": "The abstract reports that GPT-3.5/4-based algorithms beat existing algorithms on pairwise causal discovery, and Sec. 3.1.1 gives GPT-4 a weighted accuracy of 97% on Tubingen. The memorization probe (Sec. 3.3) found partial recall of the Tubingen rows and cells. The abstract adds that 'the capabilities cannot be explained by dataset memorization alone', so 'part of' is the right phrasing. Venue: TMLR publication is confirmed by the Microsoft Research page ('Selected for presentation at ICLR 2025') and the NSF PAR record (journal TMLR, ISSN 2835-8856), but no source gave the TMLR year or month, so the entry cites the arXiv version. If you switch to TMLR, confirm the year on OpenReview (forum id mqoxLkX210), which blocked automated access. In the quote, 'Tubingen' is written without the umlaut.",
+   "checker": "independent agent, part 1"
+  },
+  {
+   "id": "C11",
+   "keys": [
+    "long2023causal"
+   ],
+   "draft": "Treating a language model as an imperfect expert gives a guarantee that the true graph stays in the returned set of graphs only under an assumed expert-error model, and the authors' own language-model experiment violated that model.",
+   "checked_claim": "Treating a language model as an imperfect expert gives a guarantee that the true graph stays in the returned set of graphs with high probability only under an assumed expert-error model, and in the authors' own language-model case study the model was poorly calibrated and the true graph was excluded on one benchmark.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Section 4 (noise model); Section 5 (Results for the LLM-expert); Section 6 (Conclusion)",
+   "quote": "For ALARM, we observe that G* is excluded from M^{E,S}, even for small tolerance eta.",
+   "url": "https://arxiv.org/abs/2307.02390",
+   "notes": "The guarantee (G* in the class with prob >= 1-eta) rests on the epsilon-expert noise model ('incorrect with constant probability epsilon', Sec. 4). The paper never says the LLM 'violated' the model (no occurrence of 'violat'); it reports text-davinci-003 is 'often over-confident' with 'poor uncertainty calibration', G* excluded for ALARM (attributed to metadata ambiguity), and calls for 'noise models better-suited for LLMs'. Original claim overstated. Paper front matter: accepted to ICML 2023 workshop on Structured Probabilistic Inference & Generative Modeling (non-archival); cited as arXiv preprint.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C12",
+   "keys": [
+    "vashishtha2025causal"
+   ],
+   "draft": "Pairwise edge questions to an expert confuse direct with indirect causation; the authors propose eliciting a causal order instead, which is then used together with a discovery algorithm such as PC.",
+   "checked_claim": "Pairwise edge questions to an expert confuse direct with indirect causation; the authors propose eliciting a causal order instead, which is then used together with a discovery algorithm such as PC.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 3.2 (Using causal order with constraint-based discovery methods); Section 5.2 (PC+LLM, PC+Human)",
+   "quote": "cannot distinguish between direct and indirect effects given a pairwise prompt",
+   "url": "https://openreview.net/forum?id=9juyeCqL0u",
+   "notes": "ICLR 2025 poster confirmed via iclr.cc/virtual/2025/poster/30671. Sec. 3.2: 'Given a CPDAG from a constraint-based algorithm like PC ... we use the causal order' to orient edges; also used as a level-order prior for CaMML (score-based).",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C13",
+   "keys": [
+    "zecevic2023causal"
+   ],
+   "draft": "Language models may repeat causal facts found in their training text without performing causal inference.",
+   "checked_claim": "Language models may repeat causal facts found in their training text without performing causal inference.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract",
+   "quote": "LLMs are like parrots in that they simply recite the causal knowledge embedded in the data",
+   "url": "https://openreview.net/forum?id=tv46tCzs83",
+   "notes": "TMLR 2023 confirmed via ML Anthology (mlanthology.org/tmlr/2023/zecevic2023tmlr-causal) with OpenReview id tv46tCzs83; arXiv 2308.13067. The paper frames this as a conjecture with 'favoring evidence', matching the claim's 'may'.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C14",
+   "keys": [
+    "srivastava2025llm"
+   ],
+   "draft": "Language models reconstruct well-known benchmark graphs (bnlearn networks) from the variable names alone, but not graphs published after their training cutoff.",
+   "checked_claim": "Language models reconstruct well-known benchmark graphs (bnlearn networks) from the dataset name and node list alone, but perform far worse on graphs taken from publications released after their training cutoff.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Abstract; Section 2.1 (memorization test M2, Table 1); Section 3.1 (Table 4)",
+   "quote": "LLMs can accurately reconstruct edge structures when provided only with the node list.",
+   "url": "https://arxiv.org/abs/2510.16530",
+   "notes": "Title confirmed: 'Realizing LLMs' Causal Potential Requires Science-Grounded, Novel Benchmarks' (position paper, v1 2025-10-18). Test M2 gives the dataset name plus full node list (not names alone); near-perfect F1 on several bnlearn graphs (e.g. Asia, Cancer, Earthquake). On post-cutoff graphs LLMs do not fail outright but 'perform far worse' (abstract), so 'but not' was softened.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C15",
+   "keys": [
+    "dong2025care"
+   ],
+   "draft": "CARE evaluates language models on causal discovery with original, anonymised and permuted variable names (names moved onto the wrong columns while the data are unchanged), and the models' accuracy collapses under the permuted names.",
+   "checked_claim": "CARE evaluates language models on causal discovery with original, anonymised and permuted variable names (names moved onto the wrong columns while the data are unchanged), and the models' accuracy collapses under both permuted and anonymised names, particularly when no algorithm output is supplied.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Section 4 (Controlling for Prior Knowledge in Variable Semantics; result O2 'Performance collapse without semantic hints', Table 1)",
+   "quote": "either via permuted variable names or non-semantic random names in Table 1, LLM performance plummets",
+   "url": "https://arxiv.org/abs/2511.16016",
+   "notes": "Title confirmed: 'CARE: Turning LLMs Into Causal Reasoning Expert' (Dong and Liu equal contribution). Permuted condition 'shuffles variable names while leaving the underlying dataset matrix untouched' (Appendix C.4 adds that columns are also reordered). Collapse applies to both permuted and random names, strongest without algorithm outputs; original claim singled out permuted names only. CARE's main contribution is a fine-tuning method; this evaluation is its motivating study. arxiv.org/html was rate-limited; Section 4 read via alphaxiv.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C16",
+   "keys": [
+    "kitson2026llm"
+   ],
+   "draft": "Fusing per-pair probabilities from a language model and from data with obfuscated variable names, the authors note that benchmark recognition cannot be ruled out.",
+   "checked_claim": "Fusing per-pair probabilities from data and from a language model queried with obfuscated variable names, the authors note that benchmark recognition cannot be ruled out.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Section 2.1-2.3 (PDG fusion, neutral aliases); Section 3.4 (Post-hoc Information Leakage Analysis)",
+   "quote": "While benchmark recognition cannot be ruled out, these analyses provide no evidence that benchmark recognisability ... explains",
+   "url": "https://arxiv.org/abs/2608.27472",
+   "notes": "Substance supported; reworded only because the original phrasing ('from data with obfuscated variable names') suggests the data are obfuscated, whereas the aliases are used when querying the LLM: 'variable names are replaced with neutral aliases before querying the LLM' (Sec. 2.2). Per-edge fusion via MergeGraphs (Algorithm 1). If the author prefers, the original wording is acceptable with that reading. v1 2026-08-19.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C17",
+   "keys": [
+    "li2026llm"
+   ],
+   "draft": "Language-model constraints are kept only when repeated queries agree and enter as defeasible assumptions that data can override, and the evaluation uses random graphs mapped onto real concept names (CauseNet) to resist memorisation.",
+   "checked_claim": "Language-model constraints are kept only when repeated queries agree; although the paper frames them as defeasible, its implementation treats a consensus direction as a hard fact that data can defeat only by removing the adjacency, and the evaluation uses random graphs mapped onto real concept names (CauseNet) to reduce memorisation.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Section 1 (Introduction); Section 4.1 (Consensus for High Precision); Section 4.2 (Integration into Causal ABA); Section 5 (CauseNet Synthetic DAGs); Section 6.2",
+   "quote": "a consensus LLM direction that enters the framework is treated as a hard directional fact",
+   "url": "https://proceedings.mlr.press/v337/li26e.html",
+   "notes": "Title confirmed. Consensus: five independent queries, constraint sets are the intersection (Sec. 4.1). Intro says 'statistical evidence can overrule LLM-derived constraints through defeasible reasoning', but Sec. 4.2 treats consensus directions as hard facts; Sec. 6.2 says an LLM direction 'can be defeated when its adjacency has been removed' and is not calibrated against CI confidence (future work). So 'defeasible assumptions that data can override' overstates the implementation. CauseNet: 'We therefore ground randomly generated structures in real concepts via CauseNet'; authors caution individual relations may be seen, so 'reduce' rather than 'resist'. arXiv 2602.16481v2.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C18",
+   "keys": [
+    "wang2025causalcopilot"
+   ],
+   "draft": "Causal-Copilot is an LLM agent that runs causal analysis end to end: it inspects the data, selects and configures an algorithm, refines the graph with bootstrap statistics and LLM review, and writes a report; the paper states that LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions.",
+   "checked_claim": "Causal-Copilot is an LLM agent that runs causal analysis end to end: it inspects the data, selects and configures an algorithm, refines the graph with bootstrap statistics and LLM review, and writes a report; the paper states that LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Section 2.4 (Postprocessing Module, 'LLM-Guided Graph Refinement'); pipeline in Sections 2.2-2.5",
+   "quote": "LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions made by the bootstrap procedure.",
+   "url": "https://arxiv.org/abs/2504.13263",
+   "notes": "Exact sentence found in Section 2.4 (Postprocessing Module), under LLM-Guided Graph Refinement; it ends 'made by the bootstrap procedure' (quote is 21 words, one over the limit, kept whole because it was specifically requested). Pipeline: Preprocessing Module (2.2, statistical diagnostics), Algorithm Selection Module (2.3, selection plus hyperparameters), Postprocessing (2.4, bootstrap edge confidence, moderate-confidence edges sent to LLM), Report Generation (2.5). 13 authors, v2 2025-04-21.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C19",
+   "keys": [
+    "shen2024matmcd"
+   ],
+   "draft": "MATMCD uses multiple LLM agents with tools to supply constraints to a data-driven discovery algorithm, and reports gains over the algorithm alone on named benchmarks.",
+   "checked_claim": "MATMCD uses multiple LLM agents with tools to supply constraints to a data-driven discovery algorithm, and reports gains over the algorithm alone on named benchmarks.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 3.4 (Causal Graph Refiner); Section 4.1-4.2, Table 1",
+   "quote": "MATMCD, a multi-agent system powered by tool-augmented LLMs",
+   "url": "https://aclanthology.org/2025.findings-acl.36/",
+   "notes": "First author is ChengAo Shen (key guess correct). Published version is Findings of ACL 2025 (year 2025, though key says 2024; arXiv 2412.13667 submitted Dec 2024). Two key agents (Data Augmentation, Causal Constraint); constraint matrix fed to PC, ES or DirectLiNGAM which 'is rerun with these constraints imposed' (Sec. 3.4). Benchmarks: AutoMPG, DWDClimate, SachsProtein, Asia, Child plus two AIOps datasets. Gains are large for PC but only 'slightly enhanced' for ES and DirectLiNGAM (Sec. 4.2), so avoid implying uniformly large gains. Emphasis of the paper is multi-modal (text) evidence retrieval.",
+   "checker": "independent agent, part 2"
+  },
+  {
+   "id": "C20",
+   "keys": [
+    "khatibi2024alcm"
+   ],
+   "draft": "ALCM refines a data-driven graph with an LLM and reports improvement over PC on named benchmark networks.",
+   "checked_claim": "ALCM refines a data-driven graph with an LLM and reports improvement over PC on named benchmark networks.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Sections 3.3, 4.1, 5.1, 5.3 (Table 3)",
+   "quote": "ALCM-PC and ALCM-Hybrid consistently outperform other methods in precision, recall, F1-score, and accuracy",
+   "url": "https://arxiv.org/abs/2405.01744",
+   "notes": "Benchmarks: Asia, Cancer, Child, Insurance, Sachs, Sangiovese (BN repository) plus Neuropathic. ALCM-PC uses PC as backbone; LLM refiner keeps, reorients, removes or adds edges. Table 3 shows ALCM-PC above PC on every dataset (authors' own results, no variance reported). Read v2 (2025-04-16); v1 submitted 2024-05-02.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C21",
+   "keys": [
+    "abdulaal2024causal"
+   ],
+   "draft": "Causal Modelling Agents let an LLM propose a graph from metadata and amend it in a loop with a data-driven model.",
+   "checked_claim": "Causal Modelling Agents let an LLM propose a graph from metadata and amend it in a loop with a data-driven model.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Section 3 (Hypothesis generation; Model fitting; Hypothesis amendment), Algorithm 1",
+   "quote": "the function LLM acts as a critic which proposes a set of amendments",
+   "url": "https://openreview.net/forum?id=pAoqRlTBtY",
+   "notes": "Initial graph: 'the language model function LLM acts as a prior which proposes a representation of a causal graph'. Data-driven model is a Deep Structural Causal Model (DSCM) fitted to data; loop iterates with LLM-written memories. OpenReview forum page blocked by browser check; read via OpenReview PDF and ML Anthology record.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C22",
+   "keys": [
+    "tagliapietra2026causalsteward"
+   ],
+   "draft": "CausalSteward evaluates Causal-Copilot as a baseline on high-dimensional datasets and reports that Causal-Copilot had to be steered towards XGES because it often preferred intractable methods such as FCI.",
+   "checked_claim": "CausalSteward evaluates Causal-Copilot as a baseline on high-dimensional datasets and reports that Causal-Copilot was, when necessary, steered towards XGES because it often preferred intractable methods such as FCI.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Appendix B.4, Table 6 caption (Neuropathic Pain dataset); also Table 1 caption and Appendix B.2-B.3",
+   "quote": "When necessary, CausalCopilot was steered towards XGES, as it often preferred intractable methods such as FCI.",
+   "url": "https://arxiv.org/abs/2607.01936",
+   "notes": "Original 'had to be steered' implied always; source says 'when necessary'. Steering statement is only in an appendix table caption (Table 6, Neuropathic Pain, 222 nodes). Main text Table 1: 'CausalCopilot executed FCI on Small and XGES on Medium' (CausalMan Small 53 nodes, Medium 186 nodes). Full title confirmed from v1 (2026-07-02). HTML version truncates after Appendix A.2; appendix read from PDF.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C23",
+   "keys": [
+    "zheng2026causal"
+   ],
+   "draft": "A position paper argues that agents should not supply edges, orientations, priors, constraints or causal conclusions, and calls for audit trails that separate data, assumptions, agent recommendations, user decisions and algorithmic outputs.",
+   "checked_claim": "A position paper argues that agents should not supply edges, orientations, priors, constraints or causal conclusions, and calls for audit trails that separate data, assumptions, agent recommendations, user decisions and algorithmic outputs.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 6 (Discussion)",
+   "quote": "they should not supply edges, orientations, priors, constraints or causal conclusions",
+   "url": "https://arxiv.org/abs/2606.23608",
+   "notes": "Discussion text: 'audit trails that separate data, assumptions, agent recommendations, user decisions and algorithmic outputs;' framed as future work/direction. Paper also presents the causal-learn+ platform, so it is a position paper with a system illustration; abstract: 'We argue for a different role for agents in causal discovery'.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C24",
+   "keys": [
+    "causaliq_knowledge"
+   ],
+   "draft": "causaliq-knowledge is an open-source package that queries LLMs for causal knowledge about named variables.",
+   "checked_claim": "causaliq-knowledge is an open-source package that queries LLMs for causal knowledge about named variables.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "GitHub README (Quick Start; Current features), repository licence",
+   "quote": "# Query an LLM about a potential causal relationship ... knowledge.query_edge(\"smoking\", \"lung_cancer\")",
+   "url": "https://github.com/causaliq/causaliq-knowledge",
+   "notes": "MIT licence; organisation 'causaliq', no individual authors listed. Features include querying LLMs about possible causal edges (existence, direction, confidence, reasoning) and LLM-generated graphs. Latest release v0.6.0 'PDG Generation' (April 2026); last push 2026-10-28. Quote combines a README comment and the code line beneath it.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C25",
+   "keys": [
+    "pywhy_llm"
+   ],
+   "draft": "PyWhy-LLM is an experimental library of LLM suggesters for causal modelling, identification and validation in the PyWhy ecosystem.",
+   "checked_claim": "PyWhy-LLM is an experimental library of LLM suggesters for causal modelling, identification and validation in the PyWhy ecosystem.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "GitHub repository description (About); README sections Modeler, Identifier, Validator",
+   "quote": "Experimental library integrating LLM capabilities to support causal analyses",
+   "url": "https://github.com/py-why/pywhyllm",
+   "notes": "Canonical repo is py-why/pywhyllm (pywhy-llm redirects). 'Experimental' is in the repo description, not the README; README calls itself part of the DoWhy community, hosted in the py-why organisation. Suggesters: ModelSuggester, IdentificationSuggester, ValidationSuggester. No releases; year 2026 is the last push (2026-09-03). MIT licence.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C26",
+   "keys": [
+    "mehta2026agents"
+   ],
+   "draft": "LLM agents give different answers and action sequences across repeated runs of the same task, so single-run evaluations can misrank systems.",
+   "checked_claim": "LLM agents give different answers and action sequences across repeated runs of the same task, so single-run evaluations can misrank systems.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Sections 3.3, 4.5, 4.8",
+   "quote": "Running the same LLM agent on identical inputs yields 2.3-4.2 distinct action sequences per 10 runs",
+   "url": "https://arxiv.org/abs/2602.11619",
+   "notes": "Abstract also: 'bootstrap analysis shows single-run evaluations misrank models'. What is ranked are models (four LLMs). Answer-level variation is shown through the answer-consistency metric (Section 3.3, 4.5) rather than a headline rate. Single author. Read v2 (2026-07-15); v1 2026-02-12.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C27",
+   "keys": [
+    "friedman1999data"
+   ],
+   "draft": "Bootstrap resampling gives confidence measures for features of a learned network structure, such as the presence of an edge.",
+   "checked_claim": "Bootstrap resampling gives confidence measures for features of a learned network structure, such as the presence of an edge.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract",
+   "quote": "We need to provide confidence measures on features of these networks: Is the existence of an edge between two nodes warranted?",
+   "url": "https://ai.stanford.edu/~nir/Abstracts/FGW2.html",
+   "notes": "Abstract proposes 'Efron's Bootstrap as a computationally efficient approach' for these confidence measures. arXiv 1301.6695 (posted 2013-01-23) is the UAI reprint: same title/authors, running page headers 196-205; arXiv page itself lists no comments/journal ref. Venue from first author's page (UAI 1999). Quote spans two abstract sentences joined by a colon in the source.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C28",
+   "keys": [
+    "kummerfeld2019simulations"
+   ],
+   "draft": "Simulations show that bootstrap edge frequencies from causal discovery can be miscalibrated, under- or over-confident depending on the setting.",
+   "checked_claim": "Simulations with GES show that bootstrap edge frequencies can be miscalibrated, under- or over-confident depending on the setting.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Sections 4.1, 4.2, 5.2",
+   "quote": "Both methods were typically overestimating the likelihood of edges being correct",
+   "url": "https://arxiv.org/abs/1910.02047",
+   "notes": "Only GES was tested (authors note results may not carry to PC/FCI), so 'from causal discovery' narrowed to GES. Section 4.1 linear Gaussian: 'Forecasts from the bootstrap procedure appear to underestimate the actual frequency' (yet overall judged well calibrated); Hepar2/Child: over-estimation. Abstract itself is upbeat (resampling 'performed well'), so do not cite as showing poor calibration in general.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C29",
+   "keys": [
+    "banerjee2025calibrated"
+   ],
+   "draft": "Plain bootstrap edge frequencies are miscalibrated as edge probabilities, and an adjustment improves their calibration.",
+   "checked_claim": "Plain bootstrap edge frequencies are miscalibrated as edge probabilities, and an adjustment improves their calibration.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Sections 2.5.1, 3.3.3, 3.3.4, 4 (Discussion)",
+   "quote": "the bootstrap with original sample size shows persistent miscalibration that cannot be fully compensated",
+   "url": "https://arxiv.org/abs/2503.15436",
+   "notes": "Title confirmed (not about 'calibrated' in title). Evidence is simulation-based (mostly ER graphs, 100 variables). Adjustments: effective-sample-size (ESS) adjusted bootstrap ('yields the lowest Brier scores' at small n) and 90% subsampling ('achieves the lowest ECE scores among all tested methods'); not a dedicated post-hoc calibration method. Consider wording 'a sample-size adjustment' and adding 'in simulations'. Calibration is not mentioned in the abstract.",
+   "checker": "independent agent, part 3"
+  },
+  {
+   "id": "C30",
+   "keys": [
+    "kumar2026plausibility"
+   ],
+   "draft": "Measured on direct-edge questions, language models' verbalised confidence is poorly calibrated, while agreement across prompts is much better calibrated.",
+   "checked_claim": "Measured on direct-edge questions, language models give high verbalised confidence to most of their false-positive edges, while agreement across prompts is better calibrated, although that advantage is not statistically significant.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Abstract; Section 4.2.1",
+   "quote": "cross-prompt and cross-model agreement achieve better mean calibration and discrimination ... not statistically significant after Holm correction",
+   "url": "https://arxiv.org/abs/2608.23660",
+   "notes": "Full title has subtitle 'Evaluating LLMs as Calibrated Direct Causal-Edge Classifiers'; 7 authors, submitted 24 Aug 2026 (v1). 'Much better calibrated' overstates: agreement methods have lower mean ECE/Brier than verbalized and logit-based confidence (Sec 4.2.1), but the paper says the advantage is not significant after Holm adjustment. Abstract also says 80.8% and 84.6% of indirect/reversed false positives receive verbalized confidence >= 80%; logit-based confidence is concentrated near 1.0 regardless of correctness. Cross-model agreement also does better, so the claim could mention it.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C31",
+   "keys": [
+    "chen1998metamorphic"
+   ],
+   "draft": "Metamorphic testing checks a program without an oracle for each output by checking relations that must hold between the outputs of related inputs.",
+   "checked_claim": "Metamorphic testing checks a program without an oracle for each output by checking relations that must hold between the outputs of related inputs.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Sections 3.3-3.4 (shortest path and Gaussian elimination examples)",
+   "quote": "The expected output x' of the new input pair (A', b') should be equal to x.",
+   "url": "https://arxiv.org/abs/2002.12543",
+   "notes": "Used the arXiv reprint 2002.12543 (submitted 28 Feb 2020); its front matter reads 'Published as Technical Report HKUST-CS98-01, Department of Computer Science, The Hong Kong University of Science and Technology, 1998', so both exist and the arXiv copy is the readable record. Abstract: technique 'can be used in the absence of test oracles'. The 1998 report does not yet use the term 'metamorphic relation'; it states expected relations between original and follow-up outputs in worked examples. Claim wording is fine.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C32",
+   "keys": [
+    "segura2016survey"
+   ],
+   "draft": "A survey of metamorphic testing covers its use across many domains, including machine-learning systems.",
+   "checked_claim": "A survey of metamorphic testing covers its use across many domains, including machine-learning systems.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 5.1.5 (Machine learning)",
+   "quote": "the technique has seen successful applications in a variety of domains, ranging from web services to computer graphics",
+   "url": "https://doi.org/10.1109/TSE.2016.2532875",
+   "notes": "Metadata from Crossref; content read from the White Rose eprint (https://eprints.whiterose.ac.uk/110335/). Section 5.1.5 'Machine learning' reviews MT for ML applications and supervised classifiers (Murphy et al.; Xie et al.).",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C33",
+   "keys": [
+    "ribeiro2020beyond"
+   ],
+   "draft": "CheckList tests NLP models with capability tests including invariance tests (label-preserving perturbations) and finds failures that held-out accuracy hides.",
+   "checked_claim": "CheckList tests NLP models against a matrix of linguistic capabilities and test types, including invariance tests (label-preserving perturbations), and finds critical failures that held-out accuracy hides.",
+   "verdict": "corrected-applied",
+   "checker_verdict": "corrected",
+   "location": "Abstract; Section 2.2 (Test Types)",
+   "quote": "An Invariance test (INV) is when we apply label-preserving perturbations to inputs",
+   "url": "https://aclanthology.org/2020.acl-main.442/",
+   "notes": "Minor correction: in CheckList, invariance (INV) is a test type crossed with capabilities, not itself a capability test; the original wording conflated the two axes. Abstract: held-out accuracy 'often overestimates the performance of NLP models'; CheckList identifies 'critical failures in both commercial and state-of-art models'.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C34",
+   "keys": [
+    "mitchell2019model"
+   ],
+   "draft": "Model cards document a trained model's intended use and its evaluation, including results disaggregated across conditions.",
+   "checked_claim": "Model cards document a trained model's intended use and its evaluation, including results disaggregated across conditions.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 4.7 (Quantitative Analyses)",
+   "quote": "Quantitative analyses should be disaggregated, that is, broken down by the chosen factors.",
+   "url": "https://doi.org/10.1145/3287560.3287596",
+   "notes": "Metadata from Crossref; text read from arXiv 1810.03993. Abstract: model cards 'provide benchmarked evaluation in a variety of conditions' and 'disclose the context in which models are intended to be used'. Card sections include Intended Use and Quantitative Analyses.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C35",
+   "keys": [
+    "gebru2021datasheets"
+   ],
+   "draft": "Datasheets document how a dataset was created, its composition and its intended uses.",
+   "checked_claim": "Datasheets document how a dataset was created, its composition and its intended uses.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Introduction (CACM version); Abstract (arXiv 1803.09010)",
+   "quote": "a datasheet that documents its motivation, composition, collection process, recommended uses, and so on",
+   "url": "https://doi.org/10.1145/3458723",
+   "notes": "Metadata from Crossref (7 authors, CACM 64(12):86-92, Dec 2021). Quote appears in the CACM Introduction (cacm.acm.org) and the arXiv abstract. 'Intended uses' paraphrases the paper's 'recommended uses'; 'how a dataset was created' covers motivation and collection process.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C36",
+   "keys": [
+    "raji2020closing"
+   ],
+   "draft": "An end-to-end framework for internal algorithmic auditing defines staged audit artefacts that are produced during development.",
+   "checked_claim": "An end-to-end framework for internal algorithmic auditing defines staged audit artefacts that are produced during development.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Figure 1 caption; Section 4 (SMACTR stages)",
+   "quote": "Each stage of the audit yields a set of documents that together form an overall audit report.",
+   "url": "https://doi.org/10.1145/3351095.3372873",
+   "notes": "Metadata from Crossref; text read from arXiv 2001.00973. Stages: Scoping, Mapping, Artifact Collection, Testing, Reflection (SMACTR). Figure 1 caption: 'The audit is conducted during product development and prior to launch.'",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C37",
+   "keys": [
+    "moreau2013prov"
+   ],
+   "draft": "PROV-DM is a W3C data model that records the entities, activities and agents involved in producing a piece of data.",
+   "checked_claim": "PROV-DM is a W3C data model that records the entities, activities and agents involved in producing a piece of data.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Abstract; Section 2.1 (PROV Core Structures)",
+   "quote": "Provenance is information about entities, activities, and people involved in producing a piece of data or thing.",
+   "url": "https://www.w3.org/TR/2013/REC-prov-dm-20130430/",
+   "notes": "W3C Recommendation dated 30 April 2013; editors Luc Moreau (Southampton) and Paolo Missier (Newcastle), with many listed contributors. Abstract says 'people'; the core structures in Section 2.1 are Entity, Activity and Agent, so 'agents' is accurate. Abstract also: 'PROV-DM is the conceptual data model that forms a basis for the W3C provenance (PROV) family of specifications.'",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "C38",
+   "keys": [
+    "mooij2016distinguishing"
+   ],
+   "draft": "The Tuebingen cause-effect pairs include DWD climate data (altitude, longitude, temperature, precipitation, sunshine) from German weather stations.",
+   "checked_claim": "The Tuebingen cause-effect pairs include DWD climate data (altitude, longitude, temperature, precipitation, sunshine) from German weather stations.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Benchmark pair descriptions pair0001-pair0004 (webdav.tuebingen.mpg.de/cause-effect); paper Abstract",
+   "quote": "DWD data (Deutscher Wetterdienst) data was taken at 349 stations",
+   "url": "https://jmlr.org/papers/v17/14-518.html",
+   "notes": "Title was missing from ref; confirmed above. The paper's Appendix D (per-pair descriptions) could not be read: JMLR, arXiv and ar5iv text extraction all truncated before the appendices. Verified instead from the official benchmark pages that the paper releases (webdav.tuebingen.mpg.de/cause-effect/, which names Mooij et al. 2016 as the citation): pair0001 altitude->temperature, pair0002 altitude->precipitation, pair0003 longitude->temperature, pair0004 altitude->sunshine, all DWD data from 349 stations, 1961-1990 averages. Paper abstract: benchmark of '100 different cause-effect pairs selected from 37 data sets' including meteorology. If the paper must show the DWD detail in its own text, the author should check Appendix D by hand.",
+   "checker": "independent agent, part 4"
+  },
+  {
+   "id": "D01",
+   "keys": [
+    "li2026causalarena"
+   ],
+   "checked_claim": "CausalArena's dataset card states licence CC BY 4.0; the semantic pool is 100 scenarios (half public) with 1,000 observational rows per run.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://huggingface.co/datasets/LAMDA-Tabular/CausalArena/raw/main/README.md",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D02",
+   "keys": [
+    "chevalley2025causalbench"
+   ],
+   "checked_claim": "CausalBench code is Apache 2.0; its README gives the Replogle data as CC-BY-4.0; Table 1 gives K562 162,751 / 10,691 / 622 and RPE1 162,733 / 11,485 / 383.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://github.com/causalbench/causalbench",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D03",
+   "keys": [
+    "replogle2022mapping"
+   ],
+   "checked_claim": "Replogle et al. 2022, Cell 185(14); figshare+ deposit licensed CC BY 4.0.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://api.figshare.com/v2/articles/20029387",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D04",
+   "keys": [
+    "sachs2005causal"
+   ],
+   "checked_claim": "Sachs et al. 2005, Science 308(5721):523-529; no licence stated for the data.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://api.crossref.org/works/10.1126/science.1105809",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D05",
+   "keys": [
+    "nash1994abalone"
+   ],
+   "checked_claim": "UCI Abalone: CC BY 4.0, 4,177 instances.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://archive.ics.uci.edu/dataset/1/abalone",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D06",
+   "keys": [
+    "quinlan1993autompg"
+   ],
+   "checked_claim": "UCI Auto MPG: CC BY 4.0, 398 instances.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://archive.ics.uci.edu/dataset/9/auto+mpg",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D07",
+   "keys": [
+    "yeh1998concrete"
+   ],
+   "checked_claim": "UCI Concrete Compressive Strength: CC BY 4.0, 1,030 instances.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D08",
+   "keys": [
+    "mooij2016distinguishing"
+   ],
+   "checked_claim": "Tuebingen pairs 0001-0004 are DWD data from 349 stations; DWD open data are CC BY 4.0 (opendata.dwd.de Terms_of_use.pdf).",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://webdav.tuebingen.mpg.de/cause-effect/",
+   "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "D09",
+   "keys": [
+    "wang2025causalcopilot"
+   ],
+   "checked_claim": "Causal-Copilot: arXiv 2504.13263 (v2 21 Apr 2025), 13 authors, Biwei Huang last; repository MIT-licensed.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "url": "https://arxiv.org/abs/2504.13263",
+   "checker": "independent agent, data facts (data_facts.md)"
+  }
+ ]
+}

@@ -1,0 +1,132 @@
+[
+ {
+  "id": "C01",
+  "keys": [
+   "spirtes2000causation"
+  ],
+  "verdict": "corrected",
+  "claim": "Constraint-based algorithms such as PC and FCI recover causal structure from conditional-independence tests only up to an equivalence class, and only under assumptions such as faithfulness (and, for PC, causal sufficiency); FCI drops causal sufficiency and outputs a partially oriented inducing path graph.",
+  "location": "Preface to the Second Edition (on Ch. 6); Sec. 2.1; Sec. 3.4.3; table of contents (Ch. 5 'Discovery Algorithms for Causally Sufficient Structures', Ch. 6 'Discovery Algorithms without Causal Sufficiency')",
+  "quote": "\"Partially oriented inducing path graphs and their uses are explained in detail in chapter 6.\" | \"Faithfulness turns out to be important to discovering causal structure.\"",
+  "url": "https://mitpress.mit.edu/9780262527927/causation-prediction-and-search/",
+  "bibtex": "@book{spirtes2000causation,\n  title={Causation, Prediction, and Search},\n  author={Spirtes, Peter and Glymour, Clark and Scheines, Richard},\n  edition={2},\n  publisher={MIT Press},\n  address={Cambridge, MA},\n  year={2000}\n}",
+  "notes": "Read the 2nd-edition (MIT Press, 2000) front matter and Chs. 1-3 via a copy hosted at ics.uci.edu (https://ics.uci.edu/~dechter/courses/ics-295cr/spring-2021/reading/Causation_Prediction_and_Search.pdf). The phrase 'partial ancestral graph'/'PAG' does not appear in the readable text; the book's term for the latent-variable output is 'partially oriented inducing path graph' (Ch. 6), so the claim was changed to match. PAG is later terminology (e.g., Zhang 2008 / Richardson & Spirtes 2002); if you want to keep 'partial ancestral graph', cite one of those as well. Chs. 5-6 (where PC and FCI are defined) could NOT be read: the algorithm names and the per-algorithm assumptions are verified only indirectly (ToC chapter titles, Preface, Sec. 2.1, Sec. 3.4.3). Treat this as partly verified. MIT Press URL is the book's publisher page as listed by search (ISBN 9780262527927, paperback); not fetched directly."
+ },
+ {
+  "id": "C02",
+  "keys": [
+   "chickering2002optimal"
+  ],
+  "verdict": "corrected",
+  "claim": "Greedy Equivalence Search (GES) searches over Markov equivalence classes with a score and, given a consistent scoring criterion and a generative distribution that has a DAG perfect map, identifies that structure in the large-sample limit.",
+  "location": "Abstract; Sec. 4 (Assumption 1); Sec. 4.2; Sec. 5",
+  "quote": "\"the states of the search are equivalence classes of DAGs\" | \"provably identifies a perfect map of the generative distribution if that perfect map is a DAG\"",
+  "url": "https://www.jmlr.org/papers/v3/chickering02b.html",
+  "bibtex": "@article{chickering2002optimal,\n  title={Optimal Structure Identification With Greedy Search},\n  author={Chickering, David Maxwell},\n  journal={Journal of Machine Learning Research},\n  volume={3},\n  pages={507--554},\n  year={2002}\n}",
+  "notes": "The large-sample guarantee is conditional: Assumption 1 requires iid samples from a DAG-perfect distribution, and the score must be consistent (Definition 5). The original 'is consistent in the large-sample limit' states the result without these conditions, so the conditions were added. The paper credits the name GES to Meek (1997) ('called Greedy Equivalence Search or GES by Meek (1997)')."
+ },
+ {
+  "id": "C03",
+  "keys": [
+   "reisach2021beware"
+  ],
+  "verdict": "confirmed",
+  "claim": "In commonly used simulated benchmarks the marginal variance tends to increase along the causal order (varsortability), so a baseline that sorts variables by variance and regresses matches continuous-optimisation methods on raw data, while those methods fail after standardisation.",
+  "location": "Abstract; Sec. 3.5 (sortnregress); Sec. 4.3",
+  "quote": "\"On standardized data, the same algorithms fail to identify the ground-truth DAG or its Markov equivalence class.\"",
+  "url": "https://proceedings.neurips.cc/paper/2021/hash/e987eff4a7c7b7e580d659feb6f60c1a-Abstract.html",
+  "bibtex": "@inproceedings{reisach2021beware,\n  title={Beware of the Simulated {DAG}! Causal Discovery Benchmarks May Be Easy To Game},\n  author={Reisach, Alexander G. and Seiler, Christof and Weichwald, Sebastian},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={34},\n  pages={27772--27784},\n  year={2021}\n}",
+  "notes": "The abstract also says 'marginal variance tends to increase along the causal order for generically sampled additive noise models'. The finding holds for 'some' continuous methods (NOTEARS, MSE-GDS, GOLEM-EV are named as most affected); GOLEM-NV gets better after standardization (Sec. 4.3). The wording is fine if 'continuous-optimisation methods' is read as those methods. arXiv: 2102.13647."
+ },
+ {
+  "id": "C04",
+  "keys": [
+   "reisach2023scale"
+  ],
+  "verdict": "corrected",
+  "claim": "A scale-invariant analogue, R2-sortability (sorting by the coefficient of determination), is also high in common simulation settings and can be exploited by a simple baseline.",
+  "location": "Abstract; Sec. 3.1",
+  "quote": "\"find high values in common settings\" | baseline \"can match and exceed the performance of established causal discovery algorithms\"",
+  "url": "https://neurips.cc/virtual/2023/poster/70483",
+  "bibtex": "@inproceedings{reisach2023scale,\n  title={A Scale-Invariant Sorting Criterion to Find a Causal Order in Additive Noise Models},\n  author={Reisach, Alexander G. and Tami, Myriam and Seiler, Christof and Chambaz, Antoine and Weichwald, Sebastian},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}",
+  "notes": "Wording change only: the paper says 'common settings', not 'default' settings. Sec. 3.1 calls R2 'known as the coefficient of determination'. The baseline is R2-SortnRegress. NeurIPS 2023 (vol. 36) confirmed via the NeurIPS virtual poster page and the Maastricht University CRIS record; proceedings page numbers not confirmed, so they are left out. arXiv: 2303.18211."
+ },
+ {
+  "id": "C05",
+  "keys": [
+   "kitson2024impact"
+  ],
+  "verdict": "corrected",
+  "claim": "The order of the columns in the input data alone changes the graph that score-based hill climbing learns, typically by more than a change in sample size does, though not in low-dimensional settings.",
+  "location": "Sec. 1.4; Sec. 3.2; Sec. 4 (Conclusions)",
+  "quote": "\"For HC, variable ordering is found to typically have a larger effect than sample size\" | \"sample size has more impact than variable ordering in low-dimensional settings\"",
+  "url": "https://link.springer.com/article/10.1007/s10618-024-01044-9",
+  "bibtex": "@article{kitson2024impact,\n  title={The impact of variable ordering on {B}ayesian network structure learning},\n  author={Kitson, Neville K. and Constantinou, Anthony C.},\n  journal={Data Mining and Knowledge Discovery},\n  volume={38},\n  number={4},\n  pages={2545--2569},\n  year={2024},\n  doi={10.1007/s10618-024-01044-9}\n}",
+  "notes": "Sec. 1.4 defines variable ordering as 'the order that the variables appear as columns in the tabular data structure', which supports 'order of the columns'. The original 'by more than a large increase in sample size does' overstates the paper: ordering 'typically' matters more than sample size for HC, but sample size matters more in low-dimensional settings, and the paper does not single out 'large' increases. Metadata from Crossref; text read from arXiv 2206.08952v2."
+ },
+ {
+  "id": "C06",
+  "keys": [
+   "brouillard2025landscape"
+  ],
+  "verdict": "confirmed",
+  "claim": "A review of causal-discovery papers finds that the Sachs protein-signalling data is the only real dataset in a large share of real-data evaluations, that its ground truth is not definitive, and recommends evaluation on interventional data.",
+  "location": "Sec. 4 (Sachs statistic, ground truth, interventional metrics); Sec. 3.2",
+  "quote": "\"It is the only real-world dataset considered for 35% of all the papers relying on real-world datasets.\" | \"the ground truth provided is not definitive\"",
+  "url": "https://proceedings.mlr.press/v275/brouillard25a.html",
+  "bibtex": "@inproceedings{brouillard2025landscape,\n  title={The Landscape of Causal Discovery Data: Grounding Causal Discovery in Real-World Applications},\n  author={Brouillard, Philippe and Squires, Chandler and Wahl, Jonas and Kording, Konrad P. and Sachs, Karen and Drouin, Alexandre and Sridhar, Dhanya},\n  booktitle={Proceedings of the Fourth Conference on Causal Learning and Reasoning},\n  series={Proceedings of Machine Learning Research},\n  volume={275},\n  pages={834--873},\n  publisher={PMLR},\n  year={2025}\n}",
+  "notes": "The recommendation is phrased as interventional metrics: the community should use 'interventional metrics as they assess the outcomes we truly care about' (Sec. 4); Sec. 3.2 says quantitative evaluation is possible via interventional metrics 'when interventional data are available'. 'Large share' means 35%. Author name 'Kording' is written in ASCII (Kording/Koerding). arXiv: 2412.01953. Editors: Biwei Huang, Mathias Drton."
+ },
+ {
+  "id": "C07",
+  "keys": [
+   "li2026causalarena"
+  ],
+  "verdict": "confirmed",
+  "claim": "CausalArena is a benchmark of synthetic, semantic (named, story-based) and formula-grounded structural causal models with observational and interventional exports and a public leaderboard of causal-discovery methods.",
+  "location": "Abstract; Sec. 4.2; Sec. 4.3; Sec. 4.5; footnote 1",
+  "quote": "exports \"two matched tables from the same graph: an observation-only split\" and an \"observation-plus-intervention split\"",
+  "url": "https://arxiv.org/abs/2609.11897",
+  "bibtex": "@article{li2026causalarena,\n  title={CausalArena: Benchmarking Causal Discovery in the Foundation Model Era},\n  author={Li, Zi-Rong and Liu, Si-Yang and Wang, Tian-Zuo and Ye, Han-Jia},\n  journal={arXiv preprint arXiv:2609.11897},\n  year={2026}\n}",
+  "notes": "The paper calls the semantic family 'semantic operational SCMs': scenario-based, with nodes 'labeled by what they mean in that process' (Sec. 4.2). Formula-grounded SCMs use 'named scientific or engineering equations' (Sec. 4.3). Leaderboard: https://huggingface.co/spaces/LAMDA-Tabular/CausalArena-leaderboard. Half of the audited SCMs are held out for leaderboard evaluation, and public real-world datasets are used as an extra check. No venue listed (v1, 2026-09-10)."
+ },
+ {
+  "id": "C08",
+  "keys": [
+   "chevalley2025causalbench"
+  ],
+  "verdict": "corrected",
+  "claim": "CausalBench evaluates gene-network inference on large-scale CRISPRi Perturb-seq data from the K562 and RPE1 cell lines, scoring predicted edges on held-out interventional data with a mean Wasserstein distance and a false omission rate.",
+  "location": "Sec. 4 (Benchmarking Setup); Table 1; Sec. 5.2 (Statistical evaluation)",
+  "quote": "\"we propose using the mean Wasserstein distance\" | \"estimate the false omission rate (FOR)\" | \"We hold out 20% of the data for evaluation\"",
+  "url": "https://doi.org/10.1038/s42003-025-07764-y",
+  "bibtex": "@article{chevalley2025causalbench,\n  title={A large-scale benchmark for network inference from single-cell perturbation data},\n  author={Chevalley, Mathieu and Roohani, Yusuf H. and Mehrjou, Arash and Leskovec, Jure and Schwab, Patrick},\n  journal={Communications Biology},\n  volume={8},\n  number={1},\n  pages={412},\n  year={2025},\n  doi={10.1038/s42003-025-07764-y}\n}",
+  "notes": "Changed 'genome-scale' to 'large-scale CRISPRi'. The datasets come from Replogle et al. 2022 (Table 1), but the only RPE1 screen there targets essential genes (plus some non-essential genes), not the whole genome, and CausalBench's tables have only 622 (K562) and 383 (RPE1) gene interventions. The CausalBench text does not call its data genome-scale. Content was checked against arXiv 2210.17283v2 because the nature.com page could not be fetched; journal metadata comes from Crossref. Wording may differ slightly in the journal version."
+ },
+ {
+  "id": "C09",
+  "keys": [
+   "replogle2022mapping"
+  ],
+  "verdict": "corrected",
+  "claim": "The CausalBench data come from the CRISPRi Perturb-seq screens of Replogle et al. in K562 and RPE1 cells.",
+  "location": "Main text, opening section (bioRxiv preprint of the same paper)",
+  "quote": "\"compact, multiplexed CRISPR interference (CRISPRi) library\" | \"Here we perform the first genome-scale Perturb-seq screens\"",
+  "url": "https://doi.org/10.1016/j.cell.2022.05.013",
+  "bibtex": "@article{replogle2022mapping,\n  title={Mapping information-rich genotype-phenotype landscapes with genome-scale {Perturb-seq}},\n  author={Replogle, Joseph M. and Saunders, Reuben A. and Pogson, Angela N. and Hussmann, Jeffrey A. and Lenail, Alexander and Guna, Alina and Mascibroda, Lauren and Wagner, Eric J. and Adelman, Karen and Lithwick-Yanai, Gila and Iremadze, Nika and Oberstrass, Florian and Lipson, Doron and Bonnar, Jessica L. and Jost, Marco and Norman, Thomas M. and Weissman, Jonathan S.},\n  journal={Cell},\n  volume={185},\n  number={14},\n  pages={2559--2575.e28},\n  year={2022},\n  doi={10.1016/j.cell.2022.05.013}\n}",
+  "notes": "Replogle et al. ran one genome-wide K562 screen (all expressed genes) and two essential-gene screens (K562 day 6; RPE1 day 7, common essential genes plus some non-essential genes). CausalBench uses K562 and RPE1 data with a few hundred interventions, so at least the RPE1 data come from an essential-gene screen, and 'genome-scale screens' overstates it. CausalBench cites Replogle et al. 2022 for both datasets (Table 1) and says the perturbations are CRISPRi knockdowns. Cell metadata comes from Crossref. The text was read from the bioRxiv preprint (10.1101/2021.12.16.473013) because cell.com, PubMed and Europe PMC blocked or rate-limited the fetches."
+ },
+ {
+  "id": "C10",
+  "keys": [
+   "kiciman2023causal"
+  ],
+  "verdict": "confirmed",
+  "claim": "Large language models answer pairwise causal-direction questions about named variables with high accuracy on existing benchmarks, and part of that benchmark is memorised by the models.",
+  "location": "Abstract; Sec. 3.1.1 (Tubingen cause-effect pairs); Sec. 3.3 (memorization test)",
+  "quote": "\"These results indicate that the Tubingen dataset is certainly in GPT's training set.\"",
+  "url": "https://arxiv.org/abs/2305.00050",
+  "bibtex": "@article{kiciman2023causal,\n  title={Causal Reasoning and Large Language Models: Opening a New Frontier for Causality},\n  author={Kiciman, Emre and Ness, Robert Osazuwa and Sharma, Amit and Tan, Chenhao},\n  journal={arXiv preprint arXiv:2305.00050},\n  year={2023}\n}",
+  "notes": "The abstract reports that GPT-3.5/4-based algorithms beat existing algorithms on pairwise causal discovery, and Sec. 3.1.1 gives GPT-4 a weighted accuracy of 97% on Tubingen. The memorization probe (Sec. 3.3) found partial recall of the Tubingen rows and cells. The abstract adds that 'the capabilities cannot be explained by dataset memorization alone', so 'part of' is the right phrasing. Venue: TMLR publication is confirmed by the Microsoft Research page ('Selected for presentation at ICLR 2025') and the NSF PAR record (journal TMLR, ISSN 2835-8856), but no source gave the TMLR year or month, so the entry cites the arXiv version. If you switch to TMLR, confirm the year on OpenReview (forum id mqoxLkX210), which blocked automated access. In the quote, 'Tubingen' is written without the umlaut."
+ }
+]

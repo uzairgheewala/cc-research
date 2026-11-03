@@ -1,0 +1,1527 @@
+{
+ "audit": "matmcd",
+ "battery": {
+  "about": "AB-06 grid: 10 CausalArena semantic scenarios, rep000, obs_only (+ obs_int for released targets)",
+  "clusters": 10,
+  "hash": "561af73ae72f0d5282b7e85fa7cf60249f6d18b861b0aea0274bf6636b73f285",
+  "id": "ca-ab06",
+  "items": 10,
+  "version": "1",
+  "visibility": "development"
+ },
+ "environment": {
+  "cpu_flags": "avx2 fma",
+  "machine": "x86_64",
+  "numpy": "2.2.6",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12"
+ },
+ "findings": [
+  {
+   "control": "none",
+   "effect": {
+    "hi": 0.11351339317396876,
+    "infrastructure": 0,
+    "k": 0,
+    "kind": "crash",
+    "lo": 0.0,
+    "n": 30,
+    "point": 0.0,
+    "where": []
+   },
+   "id": "K01",
+   "kind": "crash",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "failed runs / executed runs (infrastructure statuses excluded), Wilson 95% interval",
+   "threshold": {
+    "fires_if": "failed >= 1",
+    "min_executed": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "system vs the empty graph on the same files",
+   "effect": {
+    "B": 2000,
+    "arm": "real",
+    "clusters": 10,
+    "hi": 0.04039065308894406,
+    "lo": -0.009070031373294703,
+    "point": 0.015404364569961526,
+    "seed": 20261014,
+    "units": 10
+   },
+   "id": "K02",
+   "kind": "no_better_than_null",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "paired difference in DV-1 precision (system - empty graph), scenario-cluster bootstrap",
+   "threshold": {
+    "fires_if": "lo <= 0",
+    "min_clusters": 5
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "systems of one round, same battery and regime",
+   "effect": {
+    "ratio": 0.479439888586461,
+    "round_median": 0.6544626499999999,
+    "systems": 4,
+    "usd_per_run": 0.3137755
+   },
+   "id": "K03",
+   "kind": "cost_outlier",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "USD per executed run / median USD per executed run of the round's LLM systems",
+   "threshold": {
+    "fires_if": "ratio >= 10",
+    "min_systems": 3
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "names real vs swapped, same data",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.18929950645520166,
+    "kind": "name_reliance",
+    "lo": 0.04832580248818288,
+    "metric": "dir_f1@expect",
+    "point": 0.12170100879962908,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "id": "K04",
+   "kind": "name_reliance",
+   "label": "confirmatory",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(real) - F1(swapped) by scenario (P9's statistic)",
+   "threshold": {
+    "fires_if": "point >= 0.10",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5,
+    "source": "P9, plans/ab06_prereg.json (hashed 2026-10-14): MIN_PAIRS_P9 = 5, loss >= 0.10"
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "names neutral vs swapped",
+   "effect": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.03801263272181115,
+    "kind": "wrong_knowledge_harm",
+    "lo": -0.06376701188960139,
+    "metric": "dir_f1@expect",
+    "point": -0.007362522294423857,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "id": "K05",
+   "kind": "wrong_knowledge_harm",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "measured_on": "final",
+   "reason": null,
+   "statistic": "paired mean F1(neutral) - F1(swapped) by scenario",
+   "threshold": {
+    "fires_if": "point >= 0.05 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "columns released vs shuffled; path plain vs opaque",
+   "effect": null,
+   "id": "K06",
+   "kind": "layout_reliance",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "battery has no layout arms (columns were always shuffled)",
+   "statistic": "paired mean difference (released - shuffled) of the metric by scenario cluster",
+   "threshold": {
+    "fires_if": "abs(point) >= 0.05 and (lo > 0 or hi < 0)",
+    "metric": "dir_f1@expect",
+    "min_clusters": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "final graph vs the system's own data-only variant (black box: the knowledge-off arm)",
+   "effect": {
+    "B": 2000,
+    "checkable": true,
+    "clusters": 10,
+    "dv1_precision_data_only": 0.7198917456021651,
+    "dv1_precision_final": 0.6854942233632862,
+    "f1_data_only": 0.38099328785687236,
+    "f1_final": 0.38026385813836794,
+    "hi": 0.0005500844065564382,
+    "kind": "knowledge_degrades_data",
+    "lo": -0.0657920942654966,
+    "metric": "dv1_precision",
+    "point": -0.03439752223887882,
+    "seed": 20261014,
+    "units": 10,
+    "variant": "pc_only_initial"
+   },
+   "id": "K07",
+   "kind": "knowledge_degrades_data",
+   "label": "confirmatory",
+   "level": "L1",
+   "reason": null,
+   "statistic": "pooled DV-1 precision final - data-only, real names (P10's statistic); rows: B5 classes I5/I3",
+   "threshold": {
+    "fires_if": "point < 0",
+    "metric": "dv1_precision",
+    "min_items": 5,
+    "source": "P10, plans/ab06_prereg.json (hashed 2026-10-14): final below the agent's own data-only output"
+   },
+   "verdict": "fires"
+  },
+  {
+   "control": "sample size / noise / mechanism family transform",
+   "effect": null,
+   "id": "K08",
+   "kind": "robustness_drop",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "robustness transforms are defined (controls/transforms.py); not run in v1",
+   "statistic": "paired mean F1(base) - F1(transformed)",
+   "threshold": {
+    "fires_if": "point >= 0.10 and lo > 0",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "oracle supplier vs none",
+   "effect": null,
+   "id": "K09",
+   "kind": "knowledge_ignored",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L1",
+   "reason": "oracle and wrong suppliers are defined; not run in v1",
+   "statistic": "paired mean F1(oracle) - F1(none)",
+   "threshold": {
+    "fires_if": "point < 0.05",
+    "metric": "dir_f1@expect",
+    "min_pairs": 5
+   },
+   "verdict": "not_run"
+  },
+  {
+   "control": "a stage's output vs its input",
+   "effect": {
+    "B": 2000,
+    "clusters": 10,
+    "hi": 0.005213122457307512,
+    "lo": -0.007524157914505664,
+    "point": -0.0010044686525457146,
+    "seed": 20261014,
+    "units": 10
+   },
+   "id": "K10",
+   "judged_on": "real",
+   "kind": "stage_deletes_supported_links",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": -0.012248800327458976,
+      "right_to_wrong": 81,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 35
+     }
+    ],
+    "real": [
+     {
+      "adj_point": -0.0010044686525457146,
+      "right_to_wrong": 45,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 34
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": -0.016497985010909683,
+      "right_to_wrong": 71,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 29
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.005213122457307512,
+      "lo": -0.007524157914505664,
+      "point": -0.0010044686525457146,
+      "seed": 20261014,
+      "units": 10
+     },
+     "stage": "pc_only_initial -> final"
+    }
+   ],
+   "reason": null,
+   "stage": "pc_only_initial -> final",
+   "statistic": "paired mean adjacency F1 (stage out - stage in) over runs, per stage",
+   "threshold": {
+    "fires_if": "point <= -0.10 and hi < 0",
+    "metric": "adj_f1",
+    "min_runs": 5
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "swapped names: pairs a stage set, against the T1 reference (data) and the T4 reference (labels)",
+   "effect": null,
+   "id": "K11",
+   "kind": "stage_follows_names",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "reason": "needs stage traces and a T4 label reference for the swapped arm",
+   "statistic": "distinct (family, edge) adjacent only in the label reference vs only in the data reference",
+   "threshold": {
+    "fires_if": "data_only <= binom_q05(n, 0.5)",
+    "min_decided": 20
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "a stage's input vs output on true adjacencies the input had committed",
+   "effect": {
+    "net": 11,
+    "right_to_wrong": 45,
+    "sign_p": 0.13021276294862172,
+    "units": 79,
+    "wrong_to_right": 34
+   },
+   "id": "K12",
+   "judged_on": "real",
+   "kind": "stage_flips_data_direction",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L2",
+   "per_arm": {
+    "neutral": [
+     {
+      "adj_point": -0.012248800327458976,
+      "right_to_wrong": 81,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 35
+     }
+    ],
+    "real": [
+     {
+      "adj_point": -0.0010044686525457146,
+      "right_to_wrong": 45,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 34
+     }
+    ],
+    "swapped": [
+     {
+      "adj_point": -0.016497985010909683,
+      "right_to_wrong": 71,
+      "stage": "pc_only_initial -> final",
+      "wrong_to_right": 29
+     }
+    ]
+   },
+   "per_stage": [
+    {
+     "right_to_wrong": 45,
+     "stage": "pc_only_initial -> final",
+     "wrong_to_right": 34
+    }
+   ],
+   "reason": null,
+   "stage": "pc_only_initial -> final",
+   "statistic": "right-to-wrong minus wrong-to-right direction flips, sign test",
+   "threshold": {
+    "fires_if": "net > 0 and sign_p < 0.05",
+    "min_flips": 10
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "committed": 762,
+    "share": 0.0,
+    "units": 762,
+    "unsourced": 0
+   },
+   "id": "K13",
+   "kind": "unsourced_claims",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L3-lite",
+   "reason": null,
+   "statistic": "committed arrows with no exposed source / committed arrows (B5 class G4)",
+   "threshold": {
+    "applies_to": "systems that declare edge_source",
+    "fires_if": "share > 0",
+    "min_runs": 1
+   },
+   "verdict": "clear"
+  },
+  {
+   "control": "stated confidence vs realised precision",
+   "effect": null,
+   "id": "K14",
+   "kind": "overconfident",
+   "label": "exploratory (threshold set after the data)",
+   "level": "calibration",
+   "reason": "the system states no confidence",
+   "statistic": "expected calibration error (10 equal-width bins) and mean confidence - precision",
+   "threshold": {
+    "fires_if": "ece > 0.05 or gap > 0.05",
+    "min_claims": 100
+   },
+   "verdict": "not_checkable"
+  },
+  {
+   "control": "none",
+   "effect": {
+    "arm": "real",
+    "committed": 779,
+    "correct": 534,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6854942233632862,
+    "units": 10
+   },
+   "id": "K15",
+   "kind": "never_abstains",
+   "label": "exploratory (threshold set after the data)",
+   "level": "L0",
+   "reason": null,
+   "statistic": "DV-1 coverage and DV-1 precision, pooled",
+   "threshold": {
+    "fires_if": "coverage >= 0.99 and precision < 0.90",
+    "min_items": 5
+   },
+   "verdict": "fires"
+  }
+ ],
+ "l0": {
+  "neutral": {
+   "S": 0.5691048206620521,
+   "a": 0.43944837180363494,
+   "adj_f1": 0.5691048206620521,
+   "c": 1.0,
+   "completion": 1.0,
+   "dir_f1@committed": 0.25120032704431505,
+   "dir_f1@expect": 0.25120032704431505,
+   "dir_f1@expect_delivered": 0.25120032704431505,
+   "direction_sources": {
+    "llm": 254
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 516,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6623876765083441
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.43944837180363494,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 2.952774,
+   "word": "accuracy"
+  },
+  "real": {
+   "S": 0.5803491523369655,
+   "a": 0.6574225945305499,
+   "adj_f1": 0.5803491523369655,
+   "c": 1.0,
+   "completion": 1.0,
+   "dir_f1@committed": 0.380263858138368,
+   "dir_f1@expect": 0.380263858138368,
+   "dir_f1@expect_delivered": 0.380263858138368,
+   "direction_sources": {
+    "llm": 253
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 534,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6854942233632862
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.6574225945305499,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 3.230758,
+   "word": "accuracy"
+  },
+  "swapped": {
+   "S": 0.5648556359786017,
+   "a": 0.45550348611544605,
+   "adj_f1": 0.5648556359786017,
+   "c": 1.0,
+   "completion": 1.0,
+   "dir_f1@committed": 0.25856284933873885,
+   "dir_f1@expect": 0.25856284933873885,
+   "dir_f1@expect_delivered": 0.25856284933873885,
+   "direction_sources": {
+    "llm": 255
+   },
+   "dv1": {
+    "committed": 779,
+    "correct": 513,
+    "coverage": 1.0,
+    "pairs": 779,
+    "precision": 0.6585365853658537
+   },
+   "executed": 10,
+   "infrastructure": 0,
+   "not_run": 0,
+   "ok": 10,
+   "q": 0.45550348611544605,
+   "runs": 10,
+   "statuses": {
+    "ok": 10
+   },
+   "usd": 3.229733,
+   "word": "accuracy"
+  }
+ },
+ "l1": {
+  "data_only": {
+   "B": 2000,
+   "checkable": true,
+   "clusters": 10,
+   "dv1_precision_data_only": 0.7198917456021651,
+   "dv1_precision_final": 0.6854942233632862,
+   "f1_data_only": 0.38099328785687236,
+   "f1_final": 0.38026385813836794,
+   "hi": 0.0005500844065564382,
+   "kind": "knowledge_degrades_data",
+   "lo": -0.0657920942654966,
+   "metric": "dv1_precision",
+   "point": -0.03439752223887882,
+   "seed": 20261014,
+   "units": 10,
+   "variant": "pc_only_initial"
+  },
+  "names": {
+   "K04": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.18929950645520166,
+    "kind": "name_reliance",
+    "lo": 0.04832580248818288,
+    "metric": "dir_f1@expect",
+    "point": 0.12170100879962908,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "K05": {
+    "B": 2000,
+    "arms": [
+     "neutral",
+     "swapped"
+    ],
+    "clusters": 10,
+    "hi": 0.03801263272181115,
+    "kind": "wrong_knowledge_harm",
+    "lo": -0.06376701188960139,
+    "metric": "dir_f1@expect",
+    "point": -0.007362522294423857,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   },
+   "real_minus_neutral": {
+    "B": 2000,
+    "arms": [
+     "real",
+     "neutral"
+    ],
+    "clusters": 10,
+    "hi": 0.17992982944710592,
+    "lo": 0.07910346736461706,
+    "metric": "dir_f1@expect",
+    "point": 0.12906353109405294,
+    "seed": 20261014,
+    "source": "final",
+    "units": 10
+   }
+  }
+ },
+ "l2": {
+  "stages": [
+   "pc_only_initial",
+   "final"
+  ],
+  "transitions": {
+   "neutral": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.0028253185190543987,
+      "lo": -0.020295989841782724,
+      "point": -0.012248800327458976,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 81,
+      "wrong_to_right": 35
+     },
+     "stage": "pc_only_initial -> final"
+    }
+   ],
+   "real": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": 0.005213122457307512,
+      "lo": -0.007524157914505664,
+      "point": -0.0010044686525457146,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 45,
+      "wrong_to_right": 34
+     },
+     "stage": "pc_only_initial -> final"
+    }
+   ],
+   "swapped": [
+    {
+     "adj": {
+      "B": 2000,
+      "clusters": 10,
+      "hi": -0.005738318342296672,
+      "lo": -0.02771338756413763,
+      "point": -0.016497985010909683,
+      "seed": 20261014,
+      "units": 10
+     },
+     "flips": {
+      "right_to_wrong": 71,
+      "wrong_to_right": 29
+     },
+     "stage": "pc_only_initial -> final"
+    }
+   ]
+  }
+ },
+ "protocol": {
+  "kinds_sha256": "c64f1820119e3b56ab92d141f903582a78e3836e8cfdcd70f26be7ae5c9248df",
+  "thresholds_sha256": "6fbded46952afb3f7955e4cd265fec531a60355e61368b297d54283c3dd874f9",
+  "thresholds_version": "1.0",
+  "version": "1.0"
+ },
+ "regimes": {
+  "neutral": {
+   "k_source": "none",
+   "regime": "D"
+  },
+  "real": {
+   "k_source": "names_real",
+   "regime": "D+K"
+  },
+  "swapped": {
+   "k_source": "names_swapped",
+   "regime": "D+K"
+  }
+ },
+ "rerun": "python -m audit verify <this folder>/certificate.json",
+ "runs": [
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 544,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 544
+    },
+    "new_api_calls": 544,
+    "seconds": 2033.1,
+    "usd": 0.185023
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/real/result.json",
+     "sha256": "f2481286bcbf39c6caaa4d5aa3d37c8881f0c24bb6c1ebeeaa4593a231ce73cf"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/real/summary.json",
+     "sha256": "40638cd8a245a48ed29139079f753ff12f68001d89cfcf41fafabeb502fe374a"
+    }
+   },
+   "graph_sha256": "ba112e0b37c315a682ca10274954ed6d3d0f459218b7ff8b32432726245eff8b",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 544,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 544
+    },
+    "new_api_calls": 544,
+    "seconds": 2036.75,
+    "usd": 0.160324
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/neutral/result.json",
+     "sha256": "074ed0ff5ae4f9f489d0d0e8b367a1c85eeda90a0b19cc76b350bc1d45e9f5b7"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/neutral/summary.json",
+     "sha256": "59378dc3006ee76108506e2ccacdbff90de20e623290c972bf8fedcb297cfe6b"
+    }
+   },
+   "graph_sha256": "4c24e76362684680c0f1c0e014b8bbc0fea5b5c19cab0eef7696c975faae2005",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 544,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 544
+    },
+    "new_api_calls": 544,
+    "seconds": 2645.29,
+    "usd": 0.187094
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/swapped/result.json",
+     "sha256": "4961ee032c8366cb19bb881953be79c95a053c64af5d7585d7bcdefc82ab0599"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/apartment_heat_exposure_shading_ac/swapped/summary.json",
+     "sha256": "a8218abc8aa43f0ca51f8dce4a90f5e1a08853c3760a79b6bdb602c49db90158"
+    }
+   },
+   "graph_sha256": "4cad54044a29032ed2884e5ef50a7f05087bb980b5d05b982ddb5f7439125445",
+   "item": "semantic_housing_and_real_estate_apartment_heat_exposure_shading_ac__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 977,
+    "seconds": 2901.7,
+    "usd": 0.401269
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/real/result.json",
+     "sha256": "7f2bd54bc9ed152aa68f46f57f2515b10cffb76c1243ad637b40e5921c1f72f7"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/real/summary.json",
+     "sha256": "459d5be884a360c213a0cd71b653dcf72f134aaf5e40dbe07f0d51922fb40671"
+    }
+   },
+   "graph_sha256": "b861926b1cb5c5eea7df5eba3f9e0c8aa44287530af81556f9f1d2adc24e2de7",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 698,
+    "seconds": 1038.2,
+    "usd": 0.366782
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/neutral/result.json",
+     "sha256": "9b8ba91be4993aa6a19b0d30e4b243d6c845562f43a116da3798572f84f11ae1"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/neutral/summary.json",
+     "sha256": "c537a1995579a73f8e22993b5ecdd9dc1fcf3f831a40377f51da78b48db53771"
+    }
+   },
+   "graph_sha256": "21737df198854e4aca179455e5b3295e04a147497efda285d7c66b3479bf9f8b",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 1005,
+    "seconds": 2720.71,
+    "usd": 0.38501
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/swapped/result.json",
+     "sha256": "93fabd9ba76bfa0c5f9e89c51ffa09d4e748f9f5a7b410e1fc819fe093b012fa"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/backup_frequency_ransomware_loss/swapped/summary.json",
+     "sha256": "0b7ab1508da904b0b1c3277d862d220f04aaa828f030a6dfda30d0d7cde27d68"
+    }
+   },
+   "graph_sha256": "2893c991ef20f91db3720a29f85b428c0064363aab431e48efee815aaf184224",
+   "item": "semantic_cybersecurity_and_it_operations_backup_frequency_ransomware_loss__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1012,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1012
+    },
+    "new_api_calls": 1012,
+    "seconds": 3603.81,
+    "usd": 0.319949
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/real/result.json",
+     "sha256": "435fd39a9b6ed7db97e5600044e20fa9f5cd034e5879ab67aee59b066b4d9050"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/real/summary.json",
+     "sha256": "4575f984a42f547c928fc434200097e4a3d896927238a9cf2ebc920a653fbafe"
+    }
+   },
+   "graph_sha256": "3f36108ab27042098181bceb84d03241acde2a68e6426e256afa2e1c7a697515",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1012,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1012
+    },
+    "new_api_calls": 1012,
+    "seconds": 3854.93,
+    "usd": 0.291153
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/neutral/result.json",
+     "sha256": "0780636975c2c28779570f2da57f8e4e9056e7fe7c19c0c04b38d5cd45e62d59"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/neutral/summary.json",
+     "sha256": "d836b0b73f300ce14b8aa21aca2d195709a050fe86b0f9fb540fdbe4e8b141f8"
+    }
+   },
+   "graph_sha256": "086833eef6503f046a02eef47a28c30664cdf6229a94d6733af0b9ac6228d220",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1014,
+    "models": {
+     "gpt-4o-mini": 1,
+     "gpt-4o-mini-2024-07-18": 1012
+    },
+    "new_api_calls": 1014,
+    "seconds": 3093.37,
+    "usd": 0.314615
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/swapped/result.json",
+     "sha256": "70489535ff0a25a3bc5d9370824f7bf3099595df4e0bf3d8585dbeb9b0922563"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/bike_share_rebalancing_spatial_demand/swapped/summary.json",
+     "sha256": "34f8374327e0ca080fc0a5bf7df1986ef17e9db073786cd85622740fd6ccce19"
+    }
+   },
+   "graph_sha256": "889414f41392fcfcb803adf2ec43d494b771947529f46d9856d5ee4c545ef24c",
+   "item": "semantic_urban_transportation_bike_share_rebalancing_spatial_demand__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3240.92,
+    "usd": 0.34971
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/real/result.json",
+     "sha256": "d35b882eb8664449c34f69c32de8eeeb57fe397cdeadbd3e9d291de411a43b71"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/real/summary.json",
+     "sha256": "9bb3226b9c444af78f38eb7f9235a9b2c45cb57dc8b7a1ef25f5a88926874ba5"
+    }
+   },
+   "graph_sha256": "eaefcaffa7d6aa66bb3d03161a911782d1e808c3160f7e2d649f8cc5aac9fb14",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3160.18,
+    "usd": 0.316553
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/neutral/result.json",
+     "sha256": "ce46e8aad539b94f408e7812791b130d7ce9014f24d92257a60aeba1718ea387"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/neutral/summary.json",
+     "sha256": "1254a10f79f846aa4a4736cf92a74e7a43a75a1c8473ccbaacffd706b8597692"
+    }
+   },
+   "graph_sha256": "8c9efc1b5587cd58e804c4203e1a23a6e8b099ce48f47557de80ec4a15db1865",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3527.52,
+    "usd": 0.352082
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/swapped/result.json",
+     "sha256": "a7fc9b91101ffb89338c0074955a8ed1d1f4e892ae363f99e0b5ba1670e5f310"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/conveyor_vibration_package_damage/swapped/summary.json",
+     "sha256": "b5f126f21fb7d1bd58ede8261179fd3f1362cf7312b9acd2f294eb76e15c651b"
+    }
+   },
+   "graph_sha256": "3dedf837f903db065466ce1ac3d32e9804de10e94204c9fe0bf5a8f0607ee6cf",
+   "item": "semantic_manufacturing_conveyor_vibration_package_damage__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 684,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 684
+    },
+    "new_api_calls": 684,
+    "seconds": 2457.32,
+    "usd": 0.20736
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/real/result.json",
+     "sha256": "6e56338f06bce9cc382f8ba76f936113bdfb2c4a9a9a0f7ac6ae45c051678a50"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/real/summary.json",
+     "sha256": "2c7c512cc49a7015b97a3866f4fb15bbf0b642850726fe5f7c12d5f83f70f6d4"
+    }
+   },
+   "graph_sha256": "72e5e67e0547f0010562d22a08618732737e0ca31bced2fc68731aeaabb1892b",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 684,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 684
+    },
+    "new_api_calls": 684,
+    "seconds": 2194.53,
+    "usd": 0.20197
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/neutral/result.json",
+     "sha256": "a3f5696857f450637aecfcba19aa693f017e5a4ad9a539e58e6c56e77dced58d"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/neutral/summary.json",
+     "sha256": "68e036ee14289a9ea914e69e61e541b6872bfac5cbced1e6a4eb11ee7ebf752f"
+    }
+   },
+   "graph_sha256": "25a98e994dab4763e7d105d4f919f0031441a9e2727985fe7bac4b732636f86b",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 684,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 684
+    },
+    "new_api_calls": 684,
+    "seconds": 1932.59,
+    "usd": 0.211035
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/swapped/result.json",
+     "sha256": "17c9a9c2e4fe0387cc4d989e59a6219772d542bb2765785a54e2d5a8c3b7d1b4"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/curb_pricing_delivery_dwell/swapped/summary.json",
+     "sha256": "e5ec0d86fd91df6b01ab62f285c8d41573609e8d1afc30cefd0929118887d2e6"
+    }
+   },
+   "graph_sha256": "57f45f50f9f080074d96750c8d11bee019d95e03808969dcd40ca2cfec6df911",
+   "item": "semantic_urban_transportation_curb_pricing_delivery_dwell__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3431.76,
+    "usd": 0.38651
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/real/result.json",
+     "sha256": "e7e2c2a533f86c8a55bbde2bf8772a95c4022bc2d5dcb653261e54469b1329c1"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/real/summary.json",
+     "sha256": "af35687eb7c7f81534ae7730cc96a09bbd9527321b95687e4f5b9958af9d95ea"
+    }
+   },
+   "graph_sha256": "cbf1e0f3c82fde3191163d2b874f441253dd639d53298077469b813dec530b4f",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3433.31,
+    "usd": 0.336592
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/neutral/result.json",
+     "sha256": "2656e58b69f18b5aa9d2eeca18652bd15b42cb913f564fa85fc8c6eb491f9dcf"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/neutral/summary.json",
+     "sha256": "7722273454014a1ca4dc5b3dfee83eae64488db665dfcd48ea35134347eb05ff"
+    }
+   },
+   "graph_sha256": "03b6bb862fef39b65b3cf15080120533fdb792796d9fabe4e2268d28edd5db8b",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3672.26,
+    "usd": 0.388365
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/swapped/result.json",
+     "sha256": "48a1587e08ba5bad390097c3157b9d84b8dafcd82d0f1875969c8cc4c1b5c70d"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/green_roof_runoff_retention/swapped/summary.json",
+     "sha256": "65921b8b25c945fb22692105a45c0434831d17aa374b63291ee2fe3804bc145d"
+    }
+   },
+   "graph_sha256": "8e89172cf316c33c08d162c70e0d57286ecf7753edbd17f95f7fac81a0c2fb2f",
+   "item": "semantic_water_and_sanitation_green_roof_runoff_retention__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3302.75,
+    "usd": 0.361683
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/real/result.json",
+     "sha256": "7e165179e8b4470b6ade22c7475a623f0dd0553b4314040c523c389b46d7e6d9"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/real/summary.json",
+     "sha256": "bb0ac39b67fe44a0d15453db0edbf19d37ed62580cee6610f5cc0226f628e7ba"
+    }
+   },
+   "graph_sha256": "8be5da37fdf95a5269d1cee10173e894da38f455ec19ce751fde9412b081f409",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3428.02,
+    "usd": 0.320862
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/neutral/result.json",
+     "sha256": "2b2fc8d6d1f4e31cfde74abc8aab4696416151d936bc89a52b09067bd63960d8"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/neutral/summary.json",
+     "sha256": "518abee96db86bc56b8c5ca17aa106a75be4d1b1fc180ed5e99a190017d4deb0"
+    }
+   },
+   "graph_sha256": "ffbfb0c7ea9eac3b338630db2f2dd79487e721c6a60e27a3a6d16a1b1db5a9b0",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3330.14,
+    "usd": 0.359076
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/swapped/result.json",
+     "sha256": "7e63353334a6024dd1d11373bb403ce15e92645b223124594a4409ab623c9a6b"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/injection_molding_cooling_warp/swapped/summary.json",
+     "sha256": "e4c841702968c1827bcf9047d5f9a764d30f1eac11b429d1497001a5971b7346"
+    }
+   },
+   "graph_sha256": "8e47bbd6edbcb0aa31973b2952dd5ac48c138ee194261b87d8f465a6c4e17742",
+   "item": "semantic_manufacturing_injection_molding_cooling_warp__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 1200,
+    "seconds": 3967.66,
+    "usd": 0.383757
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/real/result.json",
+     "sha256": "7a4e16d175c80e507e29668d5719b52edab561bdbffb58e613d5e1b72dc90c13"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/real/summary.json",
+     "sha256": "0aac2841358d0fab8ed952887bfb76729b218ec488d3c5b5d7298c26931ec420"
+    }
+   },
+   "graph_sha256": "5e5c281acaed8320845b596b34c70222de3c59ae764c6f7efd61a59fc006b583",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 1200,
+    "seconds": 3848.99,
+    "usd": 0.359003
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/neutral/result.json",
+     "sha256": "ebcba3b0676d10d705e5173bee7303e63d5d7ba35aa245b246efdd25681acef4"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/neutral/summary.json",
+     "sha256": "cac6f4cc5da3ae5a564f4555b1fda574b0429d20f65b63ff0ef55bf62d95221d"
+    }
+   },
+   "graph_sha256": "48ec58723bf867f7764783eb8390d5b03faabcc2cb4bbcfaf172fb5481a0360a",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1200,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1200
+    },
+    "new_api_calls": 1200,
+    "seconds": 3715.11,
+    "usd": 0.391348
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/swapped/result.json",
+     "sha256": "f0bc3bc7b84345e859f61c9191fc229122759fe6bb791474d6b31c503f6b2bf0"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/insurance_deductible_claim_reporting/swapped/summary.json",
+     "sha256": "eebd7219a889699454c528eb8970560132e6fe0f8b9171527b4164a31ea53f36"
+    }
+   },
+   "graph_sha256": "a5d64f9783f4f190e33aa06acfcefaf5e5843afd62e3f34673eb1990eb82fbf8",
+   "item": "semantic_finance_and_credit_insurance_deductible_claim_reporting__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3487.94,
+    "usd": 0.343295
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/real/result.json",
+     "sha256": "2d6efadaaf23a6a562db4fc517084cf493c0a7e147ac7eab96738c7d138ae9c9"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/real/summary.json",
+     "sha256": "0d31eff9c2ec2e4d08ee59659c4fdf66c615a32dc34a090ea2ff301b1a040362"
+    }
+   },
+   "graph_sha256": "40d467a30132ea5d8840a60513c2542a271045fb7b83bdc68ab8caa4f6db53bc",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3338.23,
+    "usd": 0.329905
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/neutral/result.json",
+     "sha256": "83a1a7f5fce220e5c819ae66534ac9656afd9d0ea660614adbe223242842a3e2"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/neutral/summary.json",
+     "sha256": "7a27eb6be003636a5ca86c4a5052208d57ffdb9d0564ee5bda01e61afefc484f"
+    }
+   },
+   "graph_sha256": "99df108b3476196cf5f86dfe0ba3b10ba97bb9e1591cd732260ffbf75f9dc52d",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 1104,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 1104
+    },
+    "new_api_calls": 1104,
+    "seconds": 3466.84,
+    "usd": 0.341139
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/swapped/result.json",
+     "sha256": "e04b8c596f31ae713b7ddbf267718ba407dd87a1f237a8fbb3978b14f8d93882"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/library_fine_elimination_returns/swapped/summary.json",
+     "sha256": "7f52ef0ebe6b2c4b014e9aee390e0008cbf2aa3e2ebc5c04b1eaf1b6ee24401b"
+    }
+   },
+   "graph_sha256": "0696ba3edc806ad0ca9dca1d95592662329bdac980eb815f4d6a02a7d812a951",
+   "item": "semantic_government_services_and_policy_implementation_library_fine_elimination_returns__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "real",
+   "cost": {
+    "calls": 924,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 924
+    },
+    "new_api_calls": 924,
+    "seconds": 2867.85,
+    "usd": 0.292202
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/real/result.json",
+     "sha256": "1bde0c46c854deb7e6d8ae740ed5788a06d30f8638fcbb6f8583fdbc83d16939"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/real/summary.json",
+     "sha256": "c10127e8e5292e80228a0a876a4b6fa21a0a05e85e7101b535071c8a123d0fb2"
+    }
+   },
+   "graph_sha256": "4b16fdc80a896c5155220d7f32b5e921e87d5236403adc7b8621fc87ac1e99b9",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "neutral",
+   "cost": {
+    "calls": 924,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 924
+    },
+    "new_api_calls": 924,
+    "seconds": 2833.93,
+    "usd": 0.26963
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/neutral/result.json",
+     "sha256": "938bcc9cfc60c79f07919a9adfc9fe45a27de90509ed038772e0dd3e0631e9cb"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/neutral/summary.json",
+     "sha256": "47ebf535240515726e392535dabd1478bb27ccda3cd863ad2864e69f758e392a"
+    }
+   },
+   "graph_sha256": "168b555c36e3a3cee6624fffdb1f391557fa6ef14f7ec038b12c51a47c3a1439",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  },
+  {
+   "arm": "swapped",
+   "cost": {
+    "calls": 924,
+    "models": {
+     "gpt-4o-mini-2024-07-18": 924
+    },
+    "new_api_calls": 924,
+    "seconds": 3413.75,
+    "usd": 0.299969
+   },
+   "files": {
+    "result": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/swapped/result.json",
+     "sha256": "210551e77f121a86141bea288951c0004de3c8b8d2f2331a876e3688a06e862d"
+    },
+    "summary": {
+     "path": "runs/ab06/matmcd/medication_titration_cgm_meal_timing/swapped/summary.json",
+     "sha256": "8398f03d6c7b43509923f89f04dc642ca35186bc4cb8376831b4df0782bf86c6"
+    }
+   },
+   "graph_sha256": "16520f52cc49da3e2f09af6b97774ff2c9a48fec3c0de75fc921f2c584062cea",
+   "item": "semantic_healthcare_delivery_medication_titration_cgm_meal_timing__semantic_obs_only__rep000.npz",
+   "run_id": null,
+   "status": "ok"
+  }
+ ],
+ "runs_manifest_sha256": "8a4d9e0703eb111fd8c89109476a7cf667915ad0f26cfac47ddea38777c499d4",
+ "spec": {
+  "arms": [
+   "real",
+   "neutral",
+   "swapped"
+  ],
+  "battery": "ca-ab06",
+  "round": {
+   "battery": "ca-ab06",
+   "usd_per_run": {
+    "causaliq": 0.0052418000000000005,
+    "matmcd": 0.3137755,
+    "pywhyllm": 0.9951497999999999,
+    "vashishtha": 1.259005
+   }
+  },
+  "runs_date": "2026-10-14",
+  "system": "matmcd"
+ },
+ "system": {
+  "capabilities": {
+   "confidence": false,
+   "cost": "llm",
+   "edge_source": true,
+   "glass_box": {
+    "entry": "ConstrainAgent.ConstrainAgent:ConstrainNormalAgent.run",
+    "stages": [
+     "pc_only_initial",
+     "constraint_matrix",
+     "final"
+    ]
+   },
+   "marks": [
+    "--",
+    "->"
+   ],
+   "modes": [
+    "live",
+    "recorded",
+    "replay"
+   ],
+   "takes": [
+    "context",
+    "data",
+    "names"
+   ],
+   "variants": {
+    "data_only": "pc_only_initial"
+   }
+  },
+  "id": "matmcd",
+  "identity": {
+   "adapter": "matmcd",
+   "adapter_file_sha256": "628d703e8e1ab92bc1b6cb969f73058a372741d3054c3abf3ff9ff01871f2be8",
+   "adapter_version": "1",
+   "licence": "MIT",
+   "runner_sha256": {
+    "agent_probe.py": "cd858501f784319047f1e71e342706d064b5917fa8b76b93833be6abd06552dc",
+    "agents/matmcd.py": "369090552b59f5a6d04836239458924a80ef74efb70a9b6853ec769699a72cb6",
+    "probe_io.py": "45559af04b84455dc81519823642c2c540fe5c334a5e61389354aebbbb7facd0",
+    "probe_llm.py": "57710006d9d8b093e70ffa90e409c57f2b62e06f69b4dfa22ba4e2c95f31f87b"
+   },
+   "system_commit_pinned": "ef2c3ecad0f5ddb9c3d20a8523c2c1043d213190",
+   "system_repo": "https://github.com/D2I-Group/matmcd"
+  }
+ }
+}

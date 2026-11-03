@@ -1,0 +1,39 @@
+# Requests from W1 (Q1 paper) to W5 (tickets, contract, site), 31 Oct 2026
+
+Tickets: DLV-05, DLV-07, DLV-11, BND-13, BEN-13, PRG-01
+
+1. **DLV-05 evidence and check.** Proposed closing evidence: `docs/paper/q1/report.tex`, `docs/paper/q1/build/report.pdf`,
+   `docs/paper/q1/numbers.lock.json`, `docs/paper/q1/lit_claims.json`. Proposed checks: `lint_report.py` exits 0 and
+   `build_numbers.py --check` exits 0. Close only after submission on Gradescope (Uzair).
+2. **BND-13** still says "(2 Nov)" and pins only the skeleton; the skeleton was re-cut and BND-13 repinned (w1-01). Its due
+   date move to 6 Nov is yours (s36 noted it).
+3. **Program v3 section 2.3, item 1 wording.** It says CausalBench's "edge placement carries about 7-14% of the above-random
+   score". In `analysis/reports/ben13_s1_s2.md` the 0.07-0.14 "placement share" is the part that choosing strongly
+   perturbing *parents* alone earns (children rewired): P1 (>= 0.5) fails, so parent choice is not the shortcut. The
+   paper instead cites P3 (MeanDifference reaches 0.90-0.95 of the test split's own total-effect ceiling) and the FOR
+   result. Suggest rewording the program doc.
+4. **Export allowlist (W2 owns it).** The paper's numbers also come from `analysis/results/ab06/ab06.json`,
+   `analysis/results/rescore_v2/leaderboard_controlled.json`, `analysis/results/ben13/summary.json`,
+   `analysis/results/reference_reliability/reliability.json`, `analysis/results/fork/bld06_cycles.json`,
+   `plans/ab06_prereg.json`, `datasets/MAPPING.json`, `datasets/suite_b1/MAPPING.json`. The paper links them in cc-research
+   (public); adding them and `docs/paper/q1/` to the Q1 repo would make the checkpoint self-contained there.
+5. **refinement_r3 score contract.** `tests/test_core.py::ScoreContract` fails on `analysis/results/refinement_r3`
+   (created 31 Oct 04:29-04:37, W3's folder).
+6. **The template's bibliography style.** `docs/paper/q1/style/dsc180bibstyle.bst` is absent (the Overleaf project could
+   be read but that file not copied byte-exactly); make.sh uses CTAN's econ.bst. Uzair can drop the template's file in
+   from Overleaf's "Download source".
+7. **Adopted checkpoint boundary, 3 Nov (organization stage 1).** Uzair selected **Crucis** and authorized freezing
+   `CHECKPOINT_CONTRACT.md` / `checkpoint_contract.json`. The new `check_checkpoint_contract.py` checks 78 keys,
+   13 numerical sources and 19 frozen files. Keep this check in the subsequent commit/CI workflow; do not add it
+   to pinned shared policy files until the repository-separation stage reviews their changes. Preserve all current
+   numerical source paths and the two external metadata files. The paper is not ported during extraction.
+8. **Ownership/inventory for the split.** The active subsystem workstream retains ownership of current `audit/`
+   files and `tests/test_audit_*`; this checkpoint freeze does not lock that work tree. Stage 2 must capture and
+   recheck an owned-file inventory before moving it. The paper's `checkpoint_evidence/` snapshots survive moves.
+9. **Publication scope and receipt reconciliation.** The public Q1 export currently reproduces the companion
+   comparison; reconcile its README and broader paper evidence coverage before claiming full reproduction.
+   The 31 Oct UTC prod digest was posted at `1793412937.228969` but remains draft-only locally. Preserve the
+   actual edited message and record its receipt before regenerating the public feed; do not repost it.
+
+Items 7–9 are coordination handoffs, not changes to ticket status or evidence pins. DLV-05 remains open until the
+actual submission criterion is met. Known prose/citation corrections remain in HANDOFF §5.

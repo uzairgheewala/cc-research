@@ -1,0 +1,119 @@
+[
+ {
+  "id": "C30",
+  "keys": [
+   "kumar2026plausibility"
+  ],
+  "verdict": "corrected",
+  "claim": "Measured on direct-edge questions, language models give high verbalised confidence to most of their false-positive edges, while agreement across prompts is better calibrated, although that advantage is not statistically significant.",
+  "location": "Abstract; Section 4.2.1",
+  "quote": "cross-prompt and cross-model agreement achieve better mean calibration and discrimination ... not statistically significant after Holm correction",
+  "url": "https://arxiv.org/abs/2608.23660",
+  "bibtex": "@article{kumar2026plausibility,\n  title={From Causal Plausibility to Causal Reliability: Evaluating {LLMs} as Calibrated Direct Causal-Edge Classifiers},\n  author={Kumar, Amit and Zarabi, Elnur Adl and Trivedy, Suranjana and Chen, Zhiqian and Zhang, Lei and Fu, Kaiqun and Ji, Taoran},\n  journal={arXiv preprint arXiv:2608.23660},\n  year={2026},\n  url={https://arxiv.org/abs/2608.23660}\n}",
+  "notes": "Full title has subtitle 'Evaluating LLMs as Calibrated Direct Causal-Edge Classifiers'; 7 authors, submitted 24 Aug 2026 (v1). 'Much better calibrated' overstates: agreement methods have lower mean ECE/Brier than verbalized and logit-based confidence (Sec 4.2.1), but the paper says the advantage is not significant after Holm adjustment. Abstract also says 80.8% and 84.6% of indirect/reversed false positives receive verbalized confidence >= 80%; logit-based confidence is concentrated near 1.0 regardless of correctness. Cross-model agreement also does better, so the claim could mention it."
+ },
+ {
+  "id": "C31",
+  "keys": [
+   "chen1998metamorphic"
+  ],
+  "verdict": "confirmed",
+  "claim": "Metamorphic testing checks a program without an oracle for each output by checking relations that must hold between the outputs of related inputs.",
+  "location": "Abstract; Sections 3.3-3.4 (shortest path and Gaussian elimination examples)",
+  "quote": "The expected output x' of the new input pair (A', b') should be equal to x.",
+  "url": "https://arxiv.org/abs/2002.12543",
+  "bibtex": "@techreport{chen1998metamorphic,\n  title={Metamorphic Testing: A New Approach for Generating Next Test Cases},\n  author={Chen, T. Y. and Cheung, S. C. and Yiu, S. M.},\n  institution={Department of Computer Science, The Hong Kong University of Science and Technology},\n  number={HKUST-CS98-01},\n  year={1998},\n  note={Reprinted as arXiv:2002.12543},\n  url={https://arxiv.org/abs/2002.12543}\n}",
+  "notes": "Used the arXiv reprint 2002.12543 (submitted 28 Feb 2020); its front matter reads 'Published as Technical Report HKUST-CS98-01, Department of Computer Science, The Hong Kong University of Science and Technology, 1998', so both exist and the arXiv copy is the readable record. Abstract: technique 'can be used in the absence of test oracles'. The 1998 report does not yet use the term 'metamorphic relation'; it states expected relations between original and follow-up outputs in worked examples. Claim wording is fine."
+ },
+ {
+  "id": "C32",
+  "keys": [
+   "segura2016survey"
+  ],
+  "verdict": "confirmed",
+  "claim": "A survey of metamorphic testing covers its use across many domains, including machine-learning systems.",
+  "location": "Abstract; Section 5.1.5 (Machine learning)",
+  "quote": "the technique has seen successful applications in a variety of domains, ranging from web services to computer graphics",
+  "url": "https://doi.org/10.1109/TSE.2016.2532875",
+  "bibtex": "@article{segura2016survey,\n  title={A Survey on Metamorphic Testing},\n  author={Segura, Sergio and Fraser, Gordon and Sanchez, Ana B. and Ruiz-Cort{\\'e}s, Antonio},\n  journal={IEEE Transactions on Software Engineering},\n  volume={42},\n  number={9},\n  pages={805--824},\n  year={2016},\n  doi={10.1109/TSE.2016.2532875}\n}",
+  "notes": "Metadata from Crossref; content read from the White Rose eprint (https://eprints.whiterose.ac.uk/110335/). Section 5.1.5 'Machine learning' reviews MT for ML applications and supervised classifiers (Murphy et al.; Xie et al.)."
+ },
+ {
+  "id": "C33",
+  "keys": [
+   "ribeiro2020beyond"
+  ],
+  "verdict": "corrected",
+  "claim": "CheckList tests NLP models against a matrix of linguistic capabilities and test types, including invariance tests (label-preserving perturbations), and finds critical failures that held-out accuracy hides.",
+  "location": "Abstract; Section 2.2 (Test Types)",
+  "quote": "An Invariance test (INV) is when we apply label-preserving perturbations to inputs",
+  "url": "https://aclanthology.org/2020.acl-main.442/",
+  "bibtex": "@inproceedings{ribeiro2020beyond,\n  title={Beyond Accuracy: Behavioral Testing of {NLP} Models with {CheckList}},\n  author={Ribeiro, Marco Tulio and Wu, Tongshuang and Guestrin, Carlos and Singh, Sameer},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={4902--4912},\n  year={2020},\n  address={Online},\n  publisher={Association for Computational Linguistics},\n  doi={10.18653/v1/2020.acl-main.442},\n  url={https://aclanthology.org/2020.acl-main.442/}\n}",
+  "notes": "Minor correction: in CheckList, invariance (INV) is a test type crossed with capabilities, not itself a capability test; the original wording conflated the two axes. Abstract: held-out accuracy 'often overestimates the performance of NLP models'; CheckList identifies 'critical failures in both commercial and state-of-art models'."
+ },
+ {
+  "id": "C34",
+  "keys": [
+   "mitchell2019model"
+  ],
+  "verdict": "confirmed",
+  "claim": "Model cards document a trained model's intended use and its evaluation, including results disaggregated across conditions.",
+  "location": "Abstract; Section 4.7 (Quantitative Analyses)",
+  "quote": "Quantitative analyses should be disaggregated, that is, broken down by the chosen factors.",
+  "url": "https://doi.org/10.1145/3287560.3287596",
+  "bibtex": "@inproceedings{mitchell2019model,\n  title={Model Cards for Model Reporting},\n  author={Mitchell, Margaret and Wu, Simone and Zaldivar, Andrew and Barnes, Parker and Vasserman, Lucy and Hutchinson, Ben and Spitzer, Elena and Raji, Inioluwa Deborah and Gebru, Timnit},\n  booktitle={Proceedings of the Conference on Fairness, Accountability, and Transparency},\n  series={FAT* '19},\n  pages={220--229},\n  year={2019},\n  address={Atlanta, GA, USA},\n  publisher={ACM},\n  doi={10.1145/3287560.3287596}\n}",
+  "notes": "Metadata from Crossref; text read from arXiv 1810.03993. Abstract: model cards 'provide benchmarked evaluation in a variety of conditions' and 'disclose the context in which models are intended to be used'. Card sections include Intended Use and Quantitative Analyses."
+ },
+ {
+  "id": "C35",
+  "keys": [
+   "gebru2021datasheets"
+  ],
+  "verdict": "confirmed",
+  "claim": "Datasheets document how a dataset was created, its composition and its intended uses.",
+  "location": "Introduction (CACM version); Abstract (arXiv 1803.09010)",
+  "quote": "a datasheet that documents its motivation, composition, collection process, recommended uses, and so on",
+  "url": "https://doi.org/10.1145/3458723",
+  "bibtex": "@article{gebru2021datasheets,\n  title={Datasheets for Datasets},\n  author={Gebru, Timnit and Morgenstern, Jamie and Vecchione, Briana and Vaughan, Jennifer Wortman and Wallach, Hanna and Daum{\\'e} III, Hal and Crawford, Kate},\n  journal={Communications of the ACM},\n  volume={64},\n  number={12},\n  pages={86--92},\n  year={2021},\n  doi={10.1145/3458723}\n}",
+  "notes": "Metadata from Crossref (7 authors, CACM 64(12):86-92, Dec 2021). Quote appears in the CACM Introduction (cacm.acm.org) and the arXiv abstract. 'Intended uses' paraphrases the paper's 'recommended uses'; 'how a dataset was created' covers motivation and collection process."
+ },
+ {
+  "id": "C36",
+  "keys": [
+   "raji2020closing"
+  ],
+  "verdict": "confirmed",
+  "claim": "An end-to-end framework for internal algorithmic auditing defines staged audit artefacts that are produced during development.",
+  "location": "Abstract; Figure 1 caption; Section 4 (SMACTR stages)",
+  "quote": "Each stage of the audit yields a set of documents that together form an overall audit report.",
+  "url": "https://doi.org/10.1145/3351095.3372873",
+  "bibtex": "@inproceedings{raji2020closing,\n  title={Closing the {AI} Accountability Gap: Defining an End-to-End Framework for Internal Algorithmic Auditing},\n  author={Raji, Inioluwa Deborah and Smart, Andrew and White, Rebecca N. and Mitchell, Margaret and Gebru, Timnit and Hutchinson, Ben and Smith-Loud, Jamila and Theron, Daniel and Barnes, Parker},\n  booktitle={Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency},\n  series={FAT* '20},\n  pages={33--44},\n  year={2020},\n  address={Barcelona, Spain},\n  publisher={ACM},\n  doi={10.1145/3351095.3372873}\n}",
+  "notes": "Metadata from Crossref; text read from arXiv 2001.00973. Stages: Scoping, Mapping, Artifact Collection, Testing, Reflection (SMACTR). Figure 1 caption: 'The audit is conducted during product development and prior to launch.'"
+ },
+ {
+  "id": "C37",
+  "keys": [
+   "moreau2013prov"
+  ],
+  "verdict": "confirmed",
+  "claim": "PROV-DM is a W3C data model that records the entities, activities and agents involved in producing a piece of data.",
+  "location": "Abstract; Section 2.1 (PROV Core Structures)",
+  "quote": "Provenance is information about entities, activities, and people involved in producing a piece of data or thing.",
+  "url": "https://www.w3.org/TR/2013/REC-prov-dm-20130430/",
+  "bibtex": "@misc{moreau2013prov,\n  title={{PROV-DM}: The {PROV} Data Model},\n  author={Moreau, Luc and Missier, Paolo},\n  note={Editors},\n  howpublished={W3C Recommendation},\n  month={apr},\n  year={2013},\n  url={https://www.w3.org/TR/2013/REC-prov-dm-20130430/}\n}",
+  "notes": "W3C Recommendation dated 30 April 2013; editors Luc Moreau (Southampton) and Paolo Missier (Newcastle), with many listed contributors. Abstract says 'people'; the core structures in Section 2.1 are Entity, Activity and Agent, so 'agents' is accurate. Abstract also: 'PROV-DM is the conceptual data model that forms a basis for the W3C provenance (PROV) family of specifications.'"
+ },
+ {
+  "id": "C38",
+  "keys": [
+   "mooij2016distinguishing"
+  ],
+  "verdict": "confirmed",
+  "claim": "The Tuebingen cause-effect pairs include DWD climate data (altitude, longitude, temperature, precipitation, sunshine) from German weather stations.",
+  "location": "Benchmark pair descriptions pair0001-pair0004 (webdav.tuebingen.mpg.de/cause-effect); paper Abstract",
+  "quote": "DWD data (Deutscher Wetterdienst) data was taken at 349 stations",
+  "url": "https://jmlr.org/papers/v17/14-518.html",
+  "bibtex": "@article{mooij2016distinguishing,\n  title={Distinguishing Cause from Effect Using Observational Data: Methods and Benchmarks},\n  author={Mooij, Joris M. and Peters, Jonas and Janzing, Dominik and Zscheischler, Jakob and Sch{\\\"o}lkopf, Bernhard},\n  journal={Journal of Machine Learning Research},\n  volume={17},\n  number={32},\n  pages={1--102},\n  year={2016},\n  url={http://jmlr.org/papers/v17/14-518.html}\n}",
+  "notes": "Title was missing from ref; confirmed above. The paper's Appendix D (per-pair descriptions) could not be read: JMLR, arXiv and ar5iv text extraction all truncated before the appendices. Verified instead from the official benchmark pages that the paper releases (webdav.tuebingen.mpg.de/cause-effect/, which names Mooij et al. 2016 as the citation): pair0001 altitude->temperature, pair0002 altitude->precipitation, pair0003 longitude->temperature, pair0004 altitude->sunshine, all DWD data from 349 stations, 1961-1990 averages. Paper abstract: benchmark of '100 different cause-effect pairs selected from 37 data sets' including meteorology. If the paper must show the DWD detail in its own text, the author should check Appendix D by hand."
+ }
+]

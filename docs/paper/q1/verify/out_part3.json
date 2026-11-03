@@ -1,0 +1,132 @@
+[
+ {
+  "id": "C20",
+  "keys": [
+   "khatibi2024alcm"
+  ],
+  "verdict": "confirmed",
+  "claim": "ALCM refines a data-driven graph with an LLM and reports improvement over PC on named benchmark networks.",
+  "location": "Sections 3.3, 4.1, 5.1, 5.3 (Table 3)",
+  "quote": "ALCM-PC and ALCM-Hybrid consistently outperform other methods in precision, recall, F1-score, and accuracy",
+  "url": "https://arxiv.org/abs/2405.01744",
+  "bibtex": "@article{khatibi2024alcm,\n  title={{ALCM}: Autonomous {LLM}-Augmented Causal Discovery Framework},\n  author={Khatibi, Elahe and Abbasian, Mahyar and Yang, Zhongqi and Azimi, Iman and Rahmani, Amir M.},\n  journal={arXiv preprint arXiv:2405.01744},\n  year={2024},\n  url={https://arxiv.org/abs/2405.01744}\n}",
+  "notes": "Benchmarks: Asia, Cancer, Child, Insurance, Sachs, Sangiovese (BN repository) plus Neuropathic. ALCM-PC uses PC as backbone; LLM refiner keeps, reorients, removes or adds edges. Table 3 shows ALCM-PC above PC on every dataset (authors' own results, no variance reported). Read v2 (2025-04-16); v1 submitted 2024-05-02."
+ },
+ {
+  "id": "C21",
+  "keys": [
+   "abdulaal2024causal"
+  ],
+  "verdict": "confirmed",
+  "claim": "Causal Modelling Agents let an LLM propose a graph from metadata and amend it in a loop with a data-driven model.",
+  "location": "Section 3 (Hypothesis generation; Model fitting; Hypothesis amendment), Algorithm 1",
+  "quote": "the function LLM acts as a critic which proposes a set of amendments",
+  "url": "https://openreview.net/forum?id=pAoqRlTBtY",
+  "bibtex": "@inproceedings{abdulaal2024causal,\n  title={Causal Modelling Agents: Causal Graph Discovery through Synergising Metadata- and Data-driven Reasoning},\n  author={Abdulaal, Ahmed and Hadjivasiliou, Adamos and Monta{\\~n}a-Brown, Nina and He, Tiantian and Ijishakin, Ayodeji and Drobnjak, Ivana and Castro, Daniel C. and Alexander, Daniel C.},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://openreview.net/forum?id=pAoqRlTBtY}\n}",
+  "notes": "Initial graph: 'the language model function LLM acts as a prior which proposes a representation of a causal graph'. Data-driven model is a Deep Structural Causal Model (DSCM) fitted to data; loop iterates with LLM-written memories. OpenReview forum page blocked by browser check; read via OpenReview PDF and ML Anthology record."
+ },
+ {
+  "id": "C22",
+  "keys": [
+   "tagliapietra2026causalsteward"
+  ],
+  "verdict": "corrected",
+  "claim": "CausalSteward evaluates Causal-Copilot as a baseline on high-dimensional datasets and reports that Causal-Copilot was, when necessary, steered towards XGES because it often preferred intractable methods such as FCI.",
+  "location": "Appendix B.4, Table 6 caption (Neuropathic Pain dataset); also Table 1 caption and Appendix B.2-B.3",
+  "quote": "When necessary, CausalCopilot was steered towards XGES, as it often preferred intractable methods such as FCI.",
+  "url": "https://arxiv.org/abs/2607.01936",
+  "bibtex": "@article{tagliapietra2026causalsteward,\n  title={CausalSteward: An Agentic Divide-Conquer-Combine Copilot for Causal Discovery},\n  author={Tagliapietra, Nicholas and Marchioni, Gian Lorenzo and Willig, Moritz and Luettin, Juergen and Halilaj, Lavdim and Kersting, Kristian},\n  journal={arXiv preprint arXiv:2607.01936},\n  year={2026},\n  url={https://arxiv.org/abs/2607.01936}\n}",
+  "notes": "Original 'had to be steered' implied always; source says 'when necessary'. Steering statement is only in an appendix table caption (Table 6, Neuropathic Pain, 222 nodes). Main text Table 1: 'CausalCopilot executed FCI on Small and XGES on Medium' (CausalMan Small 53 nodes, Medium 186 nodes). Full title confirmed from v1 (2026-07-02). HTML version truncates after Appendix A.2; appendix read from PDF."
+ },
+ {
+  "id": "C23",
+  "keys": [
+   "zheng2026causal"
+  ],
+  "verdict": "confirmed",
+  "claim": "A position paper argues that agents should not supply edges, orientations, priors, constraints or causal conclusions, and calls for audit trails that separate data, assumptions, agent recommendations, user decisions and algorithmic outputs.",
+  "location": "Abstract; Section 6 (Discussion)",
+  "quote": "they should not supply edges, orientations, priors, constraints or causal conclusions",
+  "url": "https://arxiv.org/abs/2606.23608",
+  "bibtex": "@article{zheng2026causal,\n  title={Causal Discovery in the Era of Agents},\n  author={Zheng, Yujia and Verma, Vishal and Gill, Mantej and Dai, Haoyue and Spirtes, Peter and Zhang, Kun},\n  journal={arXiv preprint arXiv:2606.23608},\n  year={2026},\n  url={https://arxiv.org/abs/2606.23608}\n}",
+  "notes": "Discussion text: 'audit trails that separate data, assumptions, agent recommendations, user decisions and algorithmic outputs;' framed as future work/direction. Paper also presents the causal-learn+ platform, so it is a position paper with a system illustration; abstract: 'We argue for a different role for agents in causal discovery'."
+ },
+ {
+  "id": "C24",
+  "keys": [
+   "causaliq_knowledge"
+  ],
+  "verdict": "confirmed",
+  "claim": "causaliq-knowledge is an open-source package that queries LLMs for causal knowledge about named variables.",
+  "location": "GitHub README (Quick Start; Current features), repository licence",
+  "quote": "# Query an LLM about a potential causal relationship ... knowledge.query_edge(\"smoking\", \"lung_cancer\")",
+  "url": "https://github.com/causaliq/causaliq-knowledge",
+  "bibtex": "@misc{causaliq_knowledge,\n  author={{CausalIQ}},\n  title={causaliq-knowledge},\n  howpublished={GitHub repository},\n  url={https://github.com/causaliq/causaliq-knowledge},\n  year={2026}\n}",
+  "notes": "MIT licence; organisation 'causaliq', no individual authors listed. Features include querying LLMs about possible causal edges (existence, direction, confidence, reasoning) and LLM-generated graphs. Latest release v0.6.0 'PDG Generation' (April 2026); last push 2026-10-28. Quote combines a README comment and the code line beneath it."
+ },
+ {
+  "id": "C25",
+  "keys": [
+   "pywhy_llm"
+  ],
+  "verdict": "confirmed",
+  "claim": "PyWhy-LLM is an experimental library of LLM suggesters for causal modelling, identification and validation in the PyWhy ecosystem.",
+  "location": "GitHub repository description (About); README sections Modeler, Identifier, Validator",
+  "quote": "Experimental library integrating LLM capabilities to support causal analyses",
+  "url": "https://github.com/py-why/pywhyllm",
+  "bibtex": "@misc{pywhy_llm,\n  author={{PyWhy}},\n  title={{PyWhy-LLM}: Leveraging Large Language Models for Causal Analysis},\n  howpublished={GitHub repository},\n  url={https://github.com/py-why/pywhyllm},\n  year={2026}\n}",
+  "notes": "Canonical repo is py-why/pywhyllm (pywhy-llm redirects). 'Experimental' is in the repo description, not the README; README calls itself part of the DoWhy community, hosted in the py-why organisation. Suggesters: ModelSuggester, IdentificationSuggester, ValidationSuggester. No releases; year 2026 is the last push (2026-09-03). MIT licence."
+ },
+ {
+  "id": "C26",
+  "keys": [
+   "mehta2026agents"
+  ],
+  "verdict": "confirmed",
+  "claim": "LLM agents give different answers and action sequences across repeated runs of the same task, so single-run evaluations can misrank systems.",
+  "location": "Abstract; Sections 3.3, 4.5, 4.8",
+  "quote": "Running the same LLM agent on identical inputs yields 2.3-4.2 distinct action sequences per 10 runs",
+  "url": "https://arxiv.org/abs/2602.11619",
+  "bibtex": "@article{mehta2026agents,\n  title={When Agents Disagree With Themselves: Behavioral Consistency as an Uncertainty Signal for {LLM} Agents},\n  author={Mehta, Aman},\n  journal={arXiv preprint arXiv:2602.11619},\n  year={2026},\n  url={https://arxiv.org/abs/2602.11619}\n}",
+  "notes": "Abstract also: 'bootstrap analysis shows single-run evaluations misrank models'. What is ranked are models (four LLMs). Answer-level variation is shown through the answer-consistency metric (Section 3.3, 4.5) rather than a headline rate. Single author. Read v2 (2026-07-15); v1 2026-02-12."
+ },
+ {
+  "id": "C27",
+  "keys": [
+   "friedman1999data"
+  ],
+  "verdict": "confirmed",
+  "claim": "Bootstrap resampling gives confidence measures for features of a learned network structure, such as the presence of an edge.",
+  "location": "Abstract",
+  "quote": "We need to provide confidence measures on features of these networks: Is the existence of an edge between two nodes warranted?",
+  "url": "https://ai.stanford.edu/~nir/Abstracts/FGW2.html",
+  "bibtex": "@inproceedings{friedman1999data,\n  title={Data Analysis with {Bayesian} Networks: A Bootstrap Approach},\n  author={Friedman, Nir and Goldszmidt, Moises and Wyner, Abraham},\n  booktitle={Proceedings of the Fifteenth Conference on Uncertainty in Artificial Intelligence (UAI)},\n  pages={196--205},\n  year={1999},\n  url={https://arxiv.org/abs/1301.6695}\n}",
+  "notes": "Abstract proposes 'Efron's Bootstrap as a computationally efficient approach' for these confidence measures. arXiv 1301.6695 (posted 2013-01-23) is the UAI reprint: same title/authors, running page headers 196-205; arXiv page itself lists no comments/journal ref. Venue from first author's page (UAI 1999). Quote spans two abstract sentences joined by a colon in the source."
+ },
+ {
+  "id": "C28",
+  "keys": [
+   "kummerfeld2019simulations"
+  ],
+  "verdict": "corrected",
+  "claim": "Simulations with GES show that bootstrap edge frequencies can be miscalibrated, under- or over-confident depending on the setting.",
+  "location": "Sections 4.1, 4.2, 5.2",
+  "quote": "Both methods were typically overestimating the likelihood of edges being correct",
+  "url": "https://arxiv.org/abs/1910.02047",
+  "bibtex": "@article{kummerfeld2019simulations,\n  title={Simulations evaluating resampling methods for causal discovery: ensemble performance and calibration},\n  author={Kummerfeld, Erich and Rix, Alexander},\n  journal={arXiv preprint arXiv:1910.02047},\n  year={2019},\n  url={https://arxiv.org/abs/1910.02047}\n}",
+  "notes": "Only GES was tested (authors note results may not carry to PC/FCI), so 'from causal discovery' narrowed to GES. Section 4.1 linear Gaussian: 'Forecasts from the bootstrap procedure appear to underestimate the actual frequency' (yet overall judged well calibrated); Hepar2/Child: over-estimation. Abstract itself is upbeat (resampling 'performed well'), so do not cite as showing poor calibration in general."
+ },
+ {
+  "id": "C29",
+  "keys": [
+   "banerjee2025calibrated"
+  ],
+  "verdict": "confirmed",
+  "claim": "Plain bootstrap edge frequencies are miscalibrated as edge probabilities, and an adjustment improves their calibration.",
+  "location": "Sections 2.5.1, 3.3.3, 3.3.4, 4 (Discussion)",
+  "quote": "the bootstrap with original sample size shows persistent miscalibration that cannot be fully compensated",
+  "url": "https://arxiv.org/abs/2503.15436",
+  "bibtex": "@article{banerjee2025calibrated,\n  title={An extensive simulation study evaluating the interaction of resampling techniques across multiple causal discovery contexts},\n  author={Banerjee, Ritwick and Andrews, Bryan and Kummerfeld, Erich},\n  journal={arXiv preprint arXiv:2503.15436},\n  year={2025},\n  url={https://arxiv.org/abs/2503.15436}\n}",
+  "notes": "Title confirmed (not about 'calibrated' in title). Evidence is simulation-based (mostly ER graphs, 100 variables). Adjustments: effective-sample-size (ESS) adjusted bootstrap ('yields the lowest Brier scores' at small n) and 90% subsampling ('achieves the lowest ECE scores among all tested methods'); not a dedicated post-hoc calibration method. Consider wording 'a sample-size adjustment' and adding 'in simulations'. Calibration is not mentioned in the abstract."
+ }
+]

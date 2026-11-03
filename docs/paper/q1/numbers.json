@@ -1,0 +1,725 @@
+{
+ "about": "Every number the Q1 paper prints (DLV-05). Built by build_numbers.py; see DESIGN.md section 3.",
+ "entries": [
+  {
+   "key": "cc.arms",
+   "file": "analysis/results/fork/bld06_live_compare.json",
+   "ptr": "/arms",
+   "fmt": "{:d}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.completed",
+   "file": "analysis/results/fork/bld06_live_compare.json",
+   "ptr": "/completed/main",
+   "fmt": "{:d}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.s0-adj",
+   "file": "analysis/results/fork/bld06_live_compare.json",
+   "ptr": "/means/main/S0_adj_f1",
+   "fmt": "{:.3f}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.final-adj",
+   "file": "analysis/results/fork/bld06_live_compare.json",
+   "ptr": "/means/main/final_adj_f1",
+   "fmt": "{:.3f}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.usd",
+   "file": "analysis/results/fork/bld06_live_compare.json",
+   "ptr": "/usd/main",
+   "fmt": "${:.2f}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.cyc.entered",
+   "file": "analysis/results/fork/bld06_cycles.json",
+   "ptr": "/arms/main/runs_entering_cycle_step",
+   "fmt": "{:d}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "cc.cyc.keyerr",
+   "file": "analysis/results/fork/bld06_cycles.json",
+   "ptr": "/arms/main/cycle_step_keyerrors",
+   "fmt": "{:d}",
+   "ticket": "BLD-06"
+  },
+  {
+   "key": "bnd08.runs",
+   "op": "len",
+   "args": [
+    {
+     "file": "analysis/results/stability_s2/bnd08_summary.json",
+     "ptr": "/runs"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "BND-08"
+  },
+  {
+   "key": "bnd08.m3.labels",
+   "file": "analysis/results/stability_s2/bnd08_summary.json",
+   "ptr": "/M3/labels_only",
+   "fmt": "{:d}",
+   "ticket": "BND-08"
+  },
+  {
+   "key": "bnd08.m3.data",
+   "file": "analysis/results/stability_s2/bnd08_summary.json",
+   "ptr": "/M3/data_only",
+   "fmt": "{:d}",
+   "ticket": "BND-08"
+  },
+  {
+   "key": "bnd08.m3.n",
+   "file": "analysis/results/stability_s2/bnd08_summary.json",
+   "ptr": "/M3/n",
+   "fmt": "{:d}",
+   "ticket": "BND-08"
+  },
+  {
+   "key": "bnd08.model",
+   "file": "analysis/results/stability_s2/bnd08_summary.json",
+   "ptr": "/snapshots/0",
+   "fmt": "raw",
+   "ticket": "BND-08"
+  },
+  {
+   "key": "ab06.agents",
+   "op": "len",
+   "args": [
+    {
+     "file": "analysis/results/ab06/ab06.json",
+     "ptr": "/agents"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.cc-entered",
+   "op": "count_true",
+   "args": [
+    {
+     "file": "analysis/results/ab06/ab06.json",
+     "ptr": "/causal_copilot/*/counted_in_P9"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.systems",
+   "op": "add",
+   "args": [
+    {
+     "key": "ab06.agents"
+    },
+    {
+     "key": "ab06.cc-entered"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.p9.entered",
+   "op": "len",
+   "args": [
+    {
+     "file": "analysis/results/ab06/ab06.json",
+     "ptr": "/P9/systems_entered"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.p9.losing",
+   "op": "len",
+   "args": [
+    {
+     "file": "analysis/results/ab06/ab06.json",
+     "ptr": "/P9/losing_ge_0.10"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.p9.min-scen",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/P9/min_paired_scenarios",
+   "fmt": "{:d}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.p9.threshold",
+   "file": "plans/ab06_prereg.json",
+   "ptr": "/predictions/P9/supported",
+   "re": "lose >= ([0-9.]+)",
+   "fmt": "{:.2f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.causaliq.drop",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/agents/causaliq/name_reliance_real_minus_swapped/mean",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.cc.drop",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/causal_copilot/causal_copilot_gpt4o/name_reliance_real_minus_swapped/mean",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.matmcd.drop",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/agents/matmcd/name_reliance_real_minus_swapped/mean",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.vashishtha.drop",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/agents/vashishtha/name_reliance_real_minus_swapped/mean",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.matmcd.dv1",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/agents/matmcd/data_only_floor_real_arm/dv1_precision_final",
+   "fmt": "{:.4f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab06.matmcd.dv1-data",
+   "file": "analysis/results/ab06/ab06.json",
+   "ptr": "/agents/matmcd/data_only_floor_real_arm/dv1_precision_data_only",
+   "fmt": "{:.4f}",
+   "ticket": "AUD-38"
+  },
+  {
+   "key": "ab01.pc.published",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=PC (upstream, default rule);family=semantic]/published",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.pcmaxp.controlled",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=PC (upstream, maxP);family=semantic]/ours_shuffled_expectation",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.fci.authors",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=FCI;family=semantic]/ours_released_authors_rule",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.fci.expect",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=FCI;family=semantic]/ours_released_expectation",
+   "fmt": "{:.3f}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.fci.gain",
+   "op": "sub",
+   "args": [
+    {
+     "key": "ab01.fci.authors"
+    },
+    {
+     "key": "ab01.fci.expect"
+    }
+   ],
+   "fmt": "{:.3f}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.files.semantic",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=DirectLiNGAM;family=semantic]/files",
+   "fmt": "{:d}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.files.formula",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=DirectLiNGAM;family=formula]/files",
+   "fmt": "{:d}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ab01.files.synthetic",
+   "file": "analysis/results/rescore_v2/leaderboard_controlled.json",
+   "ptr": "/table/[method=DirectLiNGAM;family=synthetic]/files",
+   "fmt": "{:d}",
+   "ticket": "AUD-33"
+  },
+  {
+   "key": "ben13.reproduced",
+   "file": "analysis/results/ben13/summary.json",
+   "ptr": "/reproduced_rows",
+   "fmt": "{:d}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "ben13.cells",
+   "op": "count_notnull",
+   "args": [
+    {
+     "file": "analysis/results/ben13/summary.json",
+     "ptr": "/lines/*/controls/*/placement_share_wasserstein"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "ben13.for.random-level",
+   "op": "count_notnull",
+   "args": [
+    {
+     "file": "analysis/results/ben13/summary.json",
+     "ptr": "/lines/*/controls/*/?placement_share_for_note"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "ben13.echo.min",
+   "op": "min",
+   "args": [
+    {
+     "file": "analysis/results/ben13/summary.json",
+     "ptr": "/predictions/P3/values/*"
+    }
+   ],
+   "fmt": "{:.2f}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "ben13.echo.max",
+   "op": "max",
+   "args": [
+    {
+     "file": "analysis/results/ben13/summary.json",
+     "ptr": "/predictions/P3/values/*"
+    }
+   ],
+   "fmt": "{:.2f}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "s2.families",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.tables",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/arms"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.arms-per",
+   "op": "div",
+   "args": [
+    {
+     "key": "s2.tables"
+    },
+    {
+     "key": "s2.families"
+    }
+   ],
+   "fmt": "{:.0f}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.rows",
+   "op": "max",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families/*/rows"
+    }
+   ],
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.vars.min",
+   "op": "min",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families/*/variables"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.vars.max",
+   "op": "max",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families/*/variables"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.edges.min",
+   "op": "min",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families/*/edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s2.edges.max",
+   "op": "max",
+   "args": [
+    {
+     "file": "datasets/suite_q1s2/MAPPING.json",
+     "ptr": "/families/*/edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.rows",
+   "file": "datasets/MAPPING.json",
+   "ptr": "/source/rows",
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.vars",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/MAPPING.json",
+     "ptr": "/source/columns"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.edges",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/MAPPING.json",
+     "ptr": "/source/reference_edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.arms",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/MAPPING.json",
+     "ptr": "/arms"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.bnlearn",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/sachs/repo_vs_bnlearn/edges_b",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.shared",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/sachs/repo_vs_bnlearn/shared_adjacencies",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.reversed",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/sachs/repo_vs_bnlearn/reversed",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.sachs.arena",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/sachs/causalarena_version/edges",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.abalone.rows",
+   "file": "datasets/suite_b1/MAPPING.json",
+   "ptr": "/families/abalone/rows",
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.abalone.vars",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/abalone/columns"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.abalone.edges",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/abalone/reference_edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.rows",
+   "file": "datasets/suite_b1/MAPPING.json",
+   "ptr": "/families/autompg/rows",
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.vars",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/autompg/columns"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.edges",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/autompg/reference_edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.concrete.rows",
+   "file": "datasets/suite_b1/MAPPING.json",
+   "ptr": "/families/concrete/rows",
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.concrete.vars",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/concrete/columns"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.concrete.edges",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/concrete/reference_edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.dwd.rows",
+   "file": "datasets/suite_b1/MAPPING.json",
+   "ptr": "/families/dwd/rows",
+   "fmt": "{:,}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.dwd.vars",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/dwd/columns"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.dwd.edges",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families/dwd/reference_edges"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.arena.vars",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/autompg/causalarena_vars_edges_rows/0",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.arena.edges",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/autompg/causalarena_vars_edges_rows/1",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.autompg.arena.rows",
+   "file": "analysis/results/reference_reliability/reliability.json",
+   "ptr": "/families/autompg/causalarena_vars_edges_rows/2",
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.named.tables",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/arms"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.named",
+   "op": "len",
+   "args": [
+    {
+     "file": "datasets/suite_b1/MAPPING.json",
+     "ptr": "/families"
+    }
+   ],
+   "fmt": "{:d}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "s1.named.arms-per",
+   "op": "div",
+   "args": [
+    {
+     "key": "s1.named.tables"
+    },
+    {
+     "key": "s1.named"
+    }
+   ],
+   "fmt": "{:.0f}",
+   "ticket": "DLV-01"
+  },
+  {
+   "key": "cb.k562.cells",
+   "file": "external/causalbench/dataset_k562_filtered.npz.json",
+   "ptr": "/cells_out",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "cb.k562.genes",
+   "file": "external/causalbench/dataset_k562_filtered.npz.json",
+   "ptr": "/genes_out",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "cb.k562.controls",
+   "file": "external/causalbench/dataset_k562_filtered.npz.json",
+   "ptr": "/controls",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "cb.rpe1.cells",
+   "file": "external/causalbench/dataset_rpe1_filtered.npz.json",
+   "ptr": "/cells_out",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "cb.rpe1.genes",
+   "file": "external/causalbench/dataset_rpe1_filtered.npz.json",
+   "ptr": "/genes_out",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  },
+  {
+   "key": "cb.rpe1.controls",
+   "file": "external/causalbench/dataset_rpe1_filtered.npz.json",
+   "ptr": "/controls",
+   "fmt": "{:,}",
+   "ticket": "BEN-13"
+  }
+ ]
+}

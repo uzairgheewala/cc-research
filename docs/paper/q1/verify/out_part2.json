@@ -1,0 +1,119 @@
+[
+ {
+  "id": "C11",
+  "keys": [
+   "long2023causal"
+  ],
+  "verdict": "corrected",
+  "claim": "Treating a language model as an imperfect expert gives a guarantee that the true graph stays in the returned set of graphs with high probability only under an assumed expert-error model, and in the authors' own language-model case study the model was poorly calibrated and the true graph was excluded on one benchmark.",
+  "location": "Section 4 (noise model); Section 5 (Results for the LLM-expert); Section 6 (Conclusion)",
+  "quote": "For ALARM, we observe that G* is excluded from M^{E,S}, even for small tolerance eta.",
+  "url": "https://arxiv.org/abs/2307.02390",
+  "bibtex": "@article{long2023causal,\n  title={Causal Discovery with Language Models as Imperfect Experts},\n  author={Long, Stephanie and Pich{\\'e}, Alexandre and Zantedeschi, Valentina and Schuster, Tibor and Drouin, Alexandre},\n  journal={arXiv preprint arXiv:2307.02390},\n  year={2023},\n  url={https://arxiv.org/abs/2307.02390}\n}",
+  "notes": "The guarantee (G* in the class with prob >= 1-eta) rests on the epsilon-expert noise model ('incorrect with constant probability epsilon', Sec. 4). The paper never says the LLM 'violated' the model (no occurrence of 'violat'); it reports text-davinci-003 is 'often over-confident' with 'poor uncertainty calibration', G* excluded for ALARM (attributed to metadata ambiguity), and calls for 'noise models better-suited for LLMs'. Original claim overstated. Paper front matter: accepted to ICML 2023 workshop on Structured Probabilistic Inference & Generative Modeling (non-archival); cited as arXiv preprint."
+ },
+ {
+  "id": "C12",
+  "keys": [
+   "vashishtha2025causal"
+  ],
+  "verdict": "confirmed",
+  "claim": "Pairwise edge questions to an expert confuse direct with indirect causation; the authors propose eliciting a causal order instead, which is then used together with a discovery algorithm such as PC.",
+  "location": "Abstract; Section 3.2 (Using causal order with constraint-based discovery methods); Section 5.2 (PC+LLM, PC+Human)",
+  "quote": "cannot distinguish between direct and indirect effects given a pairwise prompt",
+  "url": "https://openreview.net/forum?id=9juyeCqL0u",
+  "bibtex": "@inproceedings{vashishtha2025causal,\n  title={Causal Order: The Key to Leveraging Imperfect Experts in Causal Inference},\n  author={Vashishtha, Aniket and Reddy, Abbavaram Gowtham and Kumar, Abhinav and Bachu, Saketh and Balasubramanian, Vineeth N and Sharma, Amit},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://openreview.net/forum?id=9juyeCqL0u},\n  note={arXiv:2310.15117}\n}",
+  "notes": "ICLR 2025 poster confirmed via iclr.cc/virtual/2025/poster/30671. Sec. 3.2: 'Given a CPDAG from a constraint-based algorithm like PC ... we use the causal order' to orient edges; also used as a level-order prior for CaMML (score-based)."
+ },
+ {
+  "id": "C13",
+  "keys": [
+   "zecevic2023causal"
+  ],
+  "verdict": "confirmed",
+  "claim": "Language models may repeat causal facts found in their training text without performing causal inference.",
+  "location": "Abstract",
+  "quote": "LLMs are like parrots in that they simply recite the causal knowledge embedded in the data",
+  "url": "https://openreview.net/forum?id=tv46tCzs83",
+  "bibtex": "@article{zecevic2023causal,\n  title={Causal Parrots: Large Language Models May Talk Causality But Are Not Causal},\n  author={Ze{\\v{c}}evi{\\'c}, Matej and Willig, Moritz and Dhami, Devendra Singh and Kersting, Kristian},\n  journal={Transactions on Machine Learning Research},\n  year={2023},\n  url={https://openreview.net/forum?id=tv46tCzs83}\n}",
+  "notes": "TMLR 2023 confirmed via ML Anthology (mlanthology.org/tmlr/2023/zecevic2023tmlr-causal) with OpenReview id tv46tCzs83; arXiv 2308.13067. The paper frames this as a conjecture with 'favoring evidence', matching the claim's 'may'."
+ },
+ {
+  "id": "C14",
+  "keys": [
+   "srivastava2025llm"
+  ],
+  "verdict": "corrected",
+  "claim": "Language models reconstruct well-known benchmark graphs (bnlearn networks) from the dataset name and node list alone, but perform far worse on graphs taken from publications released after their training cutoff.",
+  "location": "Abstract; Section 2.1 (memorization test M2, Table 1); Section 3.1 (Table 4)",
+  "quote": "LLMs can accurately reconstruct edge structures when provided only with the node list.",
+  "url": "https://arxiv.org/abs/2510.16530",
+  "bibtex": "@article{srivastava2025llm,\n  title={Realizing {LLMs}' Causal Potential Requires Science-Grounded, Novel Benchmarks},\n  author={Srivastava, Ashutosh and Nagalapatti, Lokesh and Jajoo, Gautam and Vashishtha, Aniket and Krishnamurthy, Parameswari and Sharma, Amit},\n  journal={arXiv preprint arXiv:2510.16530},\n  year={2025},\n  url={https://arxiv.org/abs/2510.16530}\n}",
+  "notes": "Title confirmed: 'Realizing LLMs' Causal Potential Requires Science-Grounded, Novel Benchmarks' (position paper, v1 2025-10-18). Test M2 gives the dataset name plus full node list (not names alone); near-perfect F1 on several bnlearn graphs (e.g. Asia, Cancer, Earthquake). On post-cutoff graphs LLMs do not fail outright but 'perform far worse' (abstract), so 'but not' was softened."
+ },
+ {
+  "id": "C15",
+  "keys": [
+   "dong2025care"
+  ],
+  "verdict": "corrected",
+  "claim": "CARE evaluates language models on causal discovery with original, anonymised and permuted variable names (names moved onto the wrong columns while the data are unchanged), and the models' accuracy collapses under both permuted and anonymised names, particularly when no algorithm output is supplied.",
+  "location": "Section 4 (Controlling for Prior Knowledge in Variable Semantics; result O2 'Performance collapse without semantic hints', Table 1)",
+  "quote": "either via permuted variable names or non-semantic random names in Table 1, LLM performance plummets",
+  "url": "https://arxiv.org/abs/2511.16016",
+  "bibtex": "@article{dong2025care,\n  title={{CARE}: Turning {LLMs} Into Causal Reasoning Expert},\n  author={Dong, Juncheng and Liu, Yiling and Aloui, Ahmed and Tarokh, Vahid and Carlson, David},\n  journal={arXiv preprint arXiv:2511.16016},\n  year={2025},\n  url={https://arxiv.org/abs/2511.16016}\n}",
+  "notes": "Title confirmed: 'CARE: Turning LLMs Into Causal Reasoning Expert' (Dong and Liu equal contribution). Permuted condition 'shuffles variable names while leaving the underlying dataset matrix untouched' (Appendix C.4 adds that columns are also reordered). Collapse applies to both permuted and random names, strongest without algorithm outputs; original claim singled out permuted names only. CARE's main contribution is a fine-tuning method; this evaluation is its motivating study. arxiv.org/html was rate-limited; Section 4 read via alphaxiv."
+ },
+ {
+  "id": "C16",
+  "keys": [
+   "kitson2026llm"
+  ],
+  "verdict": "corrected",
+  "claim": "Fusing per-pair probabilities from data and from a language model queried with obfuscated variable names, the authors note that benchmark recognition cannot be ruled out.",
+  "location": "Section 2.1-2.3 (PDG fusion, neutral aliases); Section 3.4 (Post-hoc Information Leakage Analysis)",
+  "quote": "While benchmark recognition cannot be ruled out, these analyses provide no evidence that benchmark recognisability ... explains",
+  "url": "https://arxiv.org/abs/2608.27472",
+  "bibtex": "@article{kitson2026llm,\n  title={{LLM}-Augmented Causal Discovery: Probabilistic Fusion of Edge Existence and Orientation},\n  author={Kitson, Neville K. and Constantinou, Anthony},\n  journal={arXiv preprint arXiv:2608.27472},\n  year={2026},\n  url={https://arxiv.org/abs/2608.27472}\n}",
+  "notes": "Substance supported; reworded only because the original phrasing ('from data with obfuscated variable names') suggests the data are obfuscated, whereas the aliases are used when querying the LLM: 'variable names are replaced with neutral aliases before querying the LLM' (Sec. 2.2). Per-edge fusion via MergeGraphs (Algorithm 1). If the author prefers, the original wording is acceptable with that reading. v1 2026-08-19."
+ },
+ {
+  "id": "C17",
+  "keys": [
+   "li2026llm"
+  ],
+  "verdict": "corrected",
+  "claim": "Language-model constraints are kept only when repeated queries agree; although the paper frames them as defeasible, its implementation treats a consensus direction as a hard fact that data can defeat only by removing the adjacency, and the evaluation uses random graphs mapped onto real concept names (CauseNet) to reduce memorisation.",
+  "location": "Section 1 (Introduction); Section 4.1 (Consensus for High Precision); Section 4.2 (Integration into Causal ABA); Section 5 (CauseNet Synthetic DAGs); Section 6.2",
+  "quote": "a consensus LLM direction that enters the framework is treated as a hard directional fact",
+  "url": "https://proceedings.mlr.press/v337/li26e.html",
+  "bibtex": "@inproceedings{li2026llm,\n  title={Leveraging Large Language Models for Causal Discovery: a Constraint-based, Argumentation-driven Approach},\n  author={Li, Zihao and Russo, Fabrizio},\n  booktitle={Proceedings of the 42nd Conference on Uncertainty in Artificial Intelligence},\n  series={Proceedings of Machine Learning Research},\n  volume={337},\n  pages={3631--3667},\n  editor={Perkovi{\\'c}, Emilija and Malinsky, Daniel},\n  publisher={PMLR},\n  year={2026},\n  url={https://proceedings.mlr.press/v337/li26e.html}\n}",
+  "notes": "Title confirmed. Consensus: five independent queries, constraint sets are the intersection (Sec. 4.1). Intro says 'statistical evidence can overrule LLM-derived constraints through defeasible reasoning', but Sec. 4.2 treats consensus directions as hard facts; Sec. 6.2 says an LLM direction 'can be defeated when its adjacency has been removed' and is not calibrated against CI confidence (future work). So 'defeasible assumptions that data can override' overstates the implementation. CauseNet: 'We therefore ground randomly generated structures in real concepts via CauseNet'; authors caution individual relations may be seen, so 'reduce' rather than 'resist'. arXiv 2602.16481v2."
+ },
+ {
+  "id": "C18",
+  "keys": [
+   "wang2025causalcopilot"
+  ],
+  "verdict": "confirmed",
+  "claim": "Causal-Copilot is an LLM agent that runs causal analysis end to end: it inspects the data, selects and configures an algorithm, refines the graph with bootstrap statistics and LLM review, and writes a report; the paper states that LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions.",
+  "location": "Section 2.4 (Postprocessing Module, 'LLM-Guided Graph Refinement'); pipeline in Sections 2.2-2.5",
+  "quote": "LLM recommendations are treated as soft suggestions and are not permitted to override high-confidence decisions made by the bootstrap procedure.",
+  "url": "https://arxiv.org/abs/2504.13263",
+  "bibtex": "@article{wang2025causalcopilot,\n  title={Causal-Copilot: An Autonomous Causal Analysis Agent},\n  author={Wang, Xinyue and Zhou, Kun and Wu, Wenyi and Singh, Har Simrat and Nan, Fang and Jin, Songyao and Philip, Aryan and Patnaik, Saloni and Zhu, Hou and Singh, Shivam and Prashant, Parjanya and Shen, Qian and Huang, Biwei},\n  journal={arXiv preprint arXiv:2504.13263},\n  year={2025},\n  url={https://arxiv.org/abs/2504.13263}\n}",
+  "notes": "Exact sentence found in Section 2.4 (Postprocessing Module), under LLM-Guided Graph Refinement; it ends 'made by the bootstrap procedure' (quote is 21 words, one over the limit, kept whole because it was specifically requested). Pipeline: Preprocessing Module (2.2, statistical diagnostics), Algorithm Selection Module (2.3, selection plus hyperparameters), Postprocessing (2.4, bootstrap edge confidence, moderate-confidence edges sent to LLM), Report Generation (2.5). 13 authors, v2 2025-04-21."
+ },
+ {
+  "id": "C19",
+  "keys": [
+   "shen2024matmcd"
+  ],
+  "verdict": "confirmed",
+  "claim": "MATMCD uses multiple LLM agents with tools to supply constraints to a data-driven discovery algorithm, and reports gains over the algorithm alone on named benchmarks.",
+  "location": "Abstract; Section 3.4 (Causal Graph Refiner); Section 4.1-4.2, Table 1",
+  "quote": "MATMCD, a multi-agent system powered by tool-augmented LLMs",
+  "url": "https://aclanthology.org/2025.findings-acl.36/",
+  "bibtex": "@inproceedings{shen2024matmcd,\n  title={Exploring Multi-Modal Data with Tool-Augmented {LLM} Agents for Precise Causal Discovery},\n  author={Shen, ChengAo and Chen, Zhengzhang and Luo, Dongsheng and Xu, Dongkuan and Chen, Haifeng and Ni, Jingchao},\n  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},\n  editor={Che, Wanxiang and Nabende, Joyce and Shutova, Ekaterina and Pilehvar, Mohammad Taher},\n  pages={636--660},\n  address={Vienna, Austria},\n  publisher={Association for Computational Linguistics},\n  month=jul,\n  year={2025},\n  doi={10.18653/v1/2025.findings-acl.36},\n  url={https://aclanthology.org/2025.findings-acl.36/}\n}",
+  "notes": "First author is ChengAo Shen (key guess correct). Published version is Findings of ACL 2025 (year 2025, though key says 2024; arXiv 2412.13667 submitted Dec 2024). Two key agents (Data Augmentation, Causal Constraint); constraint matrix fed to PC, ES or DirectLiNGAM which 'is rerun with these constraints imposed' (Sec. 3.4). Benchmarks: AutoMPG, DWDClimate, SachsProtein, Asia, Child plus two AIOps datasets. Gains are large for PC but only 'slightly enhanced' for ES and DirectLiNGAM (Sec. 4.2), so avoid implying uniformly large gains. Emphasis of the paper is multi-modal (text) evidence retrieval."
+ }
+]

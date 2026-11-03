@@ -1,0 +1,82 @@
+[
+ {
+  "id": "C01",
+  "keys": [
+   "spirtes2000causation"
+  ],
+  "ref": "Spirtes, Glymour, Scheines. Causation, Prediction, and Search, 2nd ed., MIT Press, 2000",
+  "claim": "Constraint-based algorithms such as PC and FCI recover causal structure from conditional-independence tests only up to an equivalence class, and only under assumptions such as faithfulness (and, for PC, causal sufficiency); FCI drops causal sufficiency and outputs a partial ancestral graph."
+ },
+ {
+  "id": "C02",
+  "keys": [
+   "chickering2002optimal"
+  ],
+  "ref": "Chickering. Optimal structure identification with greedy search. JMLR 3, 2002",
+  "claim": "Greedy Equivalence Search (GES) searches over Markov equivalence classes with a score and is consistent in the large-sample limit."
+ },
+ {
+  "id": "C03",
+  "keys": [
+   "reisach2021beware"
+  ],
+  "ref": "Reisach, Seiler, Weichwald. Beware of the Simulated DAG! Causal Discovery Benchmarks May Be Easy To Game. NeurIPS 2021 (arXiv 2102.13647)",
+  "claim": "In commonly used simulated benchmarks the marginal variance tends to increase along the causal order (varsortability), so a baseline that sorts variables by variance and regresses matches continuous-optimisation methods on raw data, while those methods fail after standardisation."
+ },
+ {
+  "id": "C04",
+  "keys": [
+   "reisach2023scale"
+  ],
+  "ref": "Reisach, Tami, Seiler, Chambaz, Weichwald. A Scale-Invariant Sorting Criterion to Find a Causal Order in Additive Noise Models. NeurIPS 2023 (arXiv 2303.18211)",
+  "claim": "A scale-invariant analogue, R2-sortability (sorting by the coefficient of determination), is also high in default simulation settings and can be exploited by a simple baseline."
+ },
+ {
+  "id": "C05",
+  "keys": [
+   "kitson2024impact"
+  ],
+  "ref": "Kitson, Constantinou. The impact of variable ordering on Bayesian network structure learning. Data Mining and Knowledge Discovery 2024 (arXiv 2206.08952)",
+  "claim": "The order of the columns in the input file alone changes the graph that score-based hill climbing learns, by more than a large increase in sample size does."
+ },
+ {
+  "id": "C06",
+  "keys": [
+   "brouillard2025landscape"
+  ],
+  "ref": "Brouillard, Squires, Wahl, Kording, Sachs, Drouin, Sridhar. The Landscape of Causal Discovery Data: Grounding Causal Discovery in Real-World Applications. CLeaR 2025 (arXiv 2412.01953)",
+  "claim": "A review of causal-discovery papers finds that the Sachs protein-signalling data is the only real dataset in a large share of real-data evaluations, that its ground truth is not definitive, and recommends evaluation on interventional data."
+ },
+ {
+  "id": "C07",
+  "keys": [
+   "li2026causalarena"
+  ],
+  "ref": "Li, Liu, Wang, Ye. CausalArena: Benchmarking Causal Discovery in the Foundation Model Era. arXiv 2609.11897, 2026",
+  "claim": "CausalArena is a benchmark of synthetic, semantic (named, story-based) and formula-grounded structural causal models with observational and interventional exports and a public leaderboard of causal-discovery methods."
+ },
+ {
+  "id": "C08",
+  "keys": [
+   "chevalley2025causalbench"
+  ],
+  "ref": "Chevalley, Roohani, Mehrjou, Leskovec, Schwab. A large-scale benchmark for network inference from single-cell perturbation data. Communications Biology 8, 412, 2025 (arXiv 2210.17283)",
+  "claim": "CausalBench evaluates gene-network inference on genome-scale Perturb-seq data from the K562 and RPE1 cell lines, scoring predicted edges on held-out interventional data with a mean Wasserstein distance and a false omission rate."
+ },
+ {
+  "id": "C09",
+  "keys": [
+   "replogle2022mapping"
+  ],
+  "ref": "Replogle et al. Mapping information-rich genotype-phenotype landscapes with genome-scale Perturb-seq. Cell 185(14), 2022",
+  "claim": "The CausalBench data come from genome-scale CRISPRi Perturb-seq screens."
+ },
+ {
+  "id": "C10",
+  "keys": [
+   "kiciman2023causal"
+  ],
+  "ref": "Kiciman, Ness, Sharma, Tan. Causal Reasoning and Large Language Models: Opening a New Frontier for Causality. arXiv 2305.00050 (TMLR 2024?)",
+  "claim": "Large language models answer pairwise causal-direction questions about named variables with high accuracy on existing benchmarks, and part of that benchmark is memorised by the models."
+ }
+]

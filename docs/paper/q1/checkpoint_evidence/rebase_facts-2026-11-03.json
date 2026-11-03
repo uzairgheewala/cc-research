@@ -1,0 +1,217 @@
+{
+ "rerun": {
+  "compared": 1298,
+  "passed": 1298,
+  "max_abs_diff": 9.1483427284475e-05,
+  "pass": true
+ },
+ "grid": {
+  "cells": 210,
+  "verdicts": {
+   "clear": 43,
+   "fires": 30,
+   "not_run": 58,
+   "not_checkable": 73,
+   "inconclusive": 6
+  },
+  "measured": 79,
+  "gap_reasons": [
+   {
+    "kind": "K02",
+    "verdict": "not_checkable",
+    "reason": "no released intervention targets in this battery",
+    "cells": 4
+   },
+   {
+    "kind": "K03",
+    "verdict": "not_run",
+    "reason": "needs a round of at least 3 LLM systems on the same battery",
+    "cells": 10
+   },
+   {
+    "kind": "K04",
+    "verdict": "not_run",
+    "reason": "battery has no names arms",
+    "cells": 6
+   },
+   {
+    "kind": "K05",
+    "verdict": "not_checkable",
+    "reason": "names-only system: neutral names offer it nothing (regime none)",
+    "cells": 2
+   },
+   {
+    "kind": "K05",
+    "verdict": "not_run",
+    "reason": "battery has no names arms",
+    "cells": 6
+   },
+   {
+    "kind": "K06",
+    "verdict": "not_run",
+    "reason": "battery has no layout arms (columns were always shuffled)",
+    "cells": 8
+   },
+   {
+    "kind": "K07",
+    "verdict": "not_checkable",
+    "reason": "no data-only variant exposed, or not a hybrid of data and names",
+    "cells": 8
+   },
+   {
+    "kind": "K07",
+    "verdict": "not_checkable",
+    "reason": "no ok run exposes the data-only variant with DV-1 targets",
+    "cells": 4
+   },
+   {
+    "kind": "K08",
+    "verdict": "not_run",
+    "reason": "robustness transforms are defined (controls/transforms.py); not run in",
+    "cells": 14
+   },
+   {
+    "kind": "K09",
+    "verdict": "not_run",
+    "reason": "oracle and wrong suppliers are defined; not run in v1",
+    "cells": 14
+   },
+   {
+    "kind": "K10",
+    "verdict": "not_checkable",
+    "reason": "no stage graphs (black box with no intermediate graph)",
+    "cells": 8
+   },
+   {
+    "kind": "K11",
+    "verdict": "not_checkable",
+    "reason": "needs stage traces and a T4 label reference for the swapped arm",
+    "cells": 11
+   },
+   {
+    "kind": "K12",
+    "verdict": "not_checkable",
+    "reason": "no stage graphs",
+    "cells": 8
+   },
+   {
+    "kind": "K13",
+    "verdict": "not_checkable",
+    "reason": "the system exposes no per-edge source (L2 attribution is K10-K12)",
+    "cells": 10
+   },
+   {
+    "kind": "K14",
+    "verdict": "not_checkable",
+    "reason": "the system states no confidence",
+    "cells": 13
+   },
+   {
+    "kind": "K14",
+    "verdict": "not_checkable",
+    "reason": "the system states probabilities, but the recorded runs keep only the d",
+    "cells": 1
+   },
+   {
+    "kind": "K15",
+    "verdict": "not_checkable",
+    "reason": "no DV-1 targets in this battery",
+    "cells": 4
+   }
+  ]
+ },
+ "stages": {
+  "main": {
+   "runs": 30,
+   "completed": 22,
+   "S0_adj_all_runs": 0.584,
+   "final_adj_completed": 0.321,
+   "transitions": [
+    {
+     "stage": "S0->S1",
+     "point": -0.27,
+     "lo": -0.327,
+     "hi": -0.2,
+     "n": 22
+    },
+    {
+     "stage": "S1->S2",
+     "point": 0.007,
+     "lo": -0.027,
+     "hi": 0.042,
+     "n": 22
+    },
+    {
+     "stage": "S2->S3",
+     "point": -0.0,
+     "lo": -0.004,
+     "hi": 0.004,
+     "n": 22
+    },
+    {
+     "stage": "S3->S4",
+     "point": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 22
+    }
+   ],
+   "cycle_step": {
+    "entering": 8,
+    "crashed_there": 8,
+    "entering_and_completed": 0
+   }
+  },
+  "bnd08": {
+   "runs": 30,
+   "completed": 24,
+   "S0_adj_all_runs": 0.579,
+   "final_adj_completed": 0.302,
+   "transitions": [
+    {
+     "stage": "S0->S1",
+     "point": -0.281,
+     "lo": -0.333,
+     "hi": -0.24,
+     "n": 24
+    },
+    {
+     "stage": "S1->S2",
+     "point": -0.003,
+     "lo": -0.036,
+     "hi": 0.024,
+     "n": 24
+    },
+    {
+     "stage": "S2->S3",
+     "point": 0.005,
+     "lo": 0.003,
+     "hi": 0.008,
+     "n": 24
+    },
+    {
+     "stage": "S3->S4",
+     "point": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n": 24
+    }
+   ],
+   "cycle_step": {
+    "entering": 6,
+    "crashed_there": 6,
+    "entering_and_completed": 0
+   }
+  }
+ },
+ "overlap": {
+  "q1s2_scenarios": 10,
+  "ab06_scenarios": 10,
+  "shared": 0,
+  "q1s2_with_obs_int_twin": 10
+ },
+ "causaliq_probabilities": {
+  "checked": 10,
+  "with_probabilities": 10
+ }
+}
