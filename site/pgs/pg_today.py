@@ -82,11 +82,18 @@ if lag.get("dev_since_last_prod"):
 
 BODY = "\n".join([
     G.CSS,
-    P("Causal discovery recovers which variables drive which from data. This project audits how well today's tools do it and "
-      "builds a claim ledger: every claim keeps its source, says how sure it is, and declines when the data cannot decide. "
-      "This page is rebuilt from the result files.", 17),
+    P("Crucis is an independent framework for auditing causal-discovery systems and their claims. "
+      "This research record presents the questions, methods, evidence and limitations behind it. "
+      "The framework, its own validation and a bounded multi-system empirical study form the current quarter's research; "
+      "the companion reconstruction is a separate workstream.", 17),
+    P('<a href="https://github.com/crucis-lab/crucis">Crucis source and documentation</a> · '
+      '<a href="https://crucis-lab.github.io/crucis/">Framework site</a> · '
+      '<a href="https://github.com/uzairgheewala/cc-research/blob/main/docs/paper/q1/CHECKPOINT_CONTRACT.md">Checkpoint scope and evidence contract</a>', 15),
+    P("The checkpoint draft and numerical evidence basis are preserved. Scientific wording, citation and PDF work remain open. "
+      "The proposed final study and funding still require mentor review. The historical ledger landmarks below describe "
+      "the earlier research programme; they are not a declaration that the Crucis framework or current checkpoint is complete.", 15),
     cards,
-    H2("Landmarks set in advance"),
+    H2("Historical research landmarks"),
     f'<div style="display: flex; flex-direction: column">{rows}</div>',
     G.legend_types(short=True),
     H2("What stands in the way"),
@@ -94,13 +101,9 @@ BODY = "\n".join([
     G.staircase("causalarena-semantic", compact=True),
     H2("What this means for the deliverables"),
     grid([dcard(D[k]) for k in ("paper", "product", "ta", "checkpoint")], min_w=260),
-    H2("How well the errors are understood"),
-    f'<div style="display: flex; flex-direction: column">{"".join(G.understood_row(g) for g in ("sem-missed", "sem-false", "sem-reversed"))}</div>',
-    G.legend_states(only=sorted({s for g in ("sem-missed", "sem-false", "sem-reversed") for s, v in G.shares(g)["by"].items() if v},
-                                key=G.STATES.index)),
     H2("What moved"),
     P(moved + f' {link("changes", "What changed")}.', 15),
-    P(f'<b>{link("q1", "Quarter 1: fixing the review step")}</b> · '  # S35 (q1 page)
+    P(f'<b>{link("q1", "Companion study: fixing the refinement step")}</b> · '  # S35 (q1 page)
       f'{link("gaps", "Every gap in detail")} · {link("explore", "the research explorer")} · {link("primer", "the story from the start")}'
       ' · <a href="copilot/">how Causal-Copilot works, read from its code</a>', 15),  # S29 (TEAM-13); site/copilot/build.py checks it
 ])

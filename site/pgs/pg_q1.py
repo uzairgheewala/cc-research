@@ -31,7 +31,8 @@ BODY = "\n".join([
     P(f'After Causal-Copilot runs a discovery algorithm, a review step refines the graph: it resamples the data, sorts every link '
       f'by how often it reappears, has the model review the doubtful ones, prunes with an independence test and breaks cycles. '
       f'<a href="copilot/step-refinement.html">Inside Causal-Copilot</a> walks through that step in its code. This page '
-      f'is the Quarter 1 result: what the step does on tables whose true graph is known, and what our replacement changes.'),
+      f'is the companion refinement study: what the step does on tables whose true graph is known, and what our replacement changes. '
+      f'The current Quarter 1 auditor framework is <a href="https://github.com/crucis-lab/crucis">Crucis</a>.'),
     H2("The comparison"),
     ul(["The same 30 tables: 10 benchmark scenarios, each with real, neutral and swapped column names on identical numbers, "
         "columns shuffled.",

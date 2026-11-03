@@ -1,44 +1,40 @@
-# Publish the Causal Atlas from main. The page is built only from the committed snapshot; if the snapshot is stale
-# the build stops before anything is published.
+# Deploy only the artifact produced by successful full CI at its exact commit.
 name: pages
 on:
-  push:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
     branches: [main]
-  workflow_dispatch:
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 concurrency:
   group: pages
   cancel-in-progress: false
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: cc-research
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          path: cc-research
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install -r requirements-ci.txt
-      - run: python tracker/snapshot.py --check
-      - run: python site/build.py
-      - run: python site/copilot/build.py
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: cc-research/site/_build
   deploy:
-    needs: build
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: site
+          path: site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Record the validated source commit
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          SOURCE_RUN: ${{ github.event.workflow_run.id }}
+        run: python -c "import json,os,pathlib; pathlib.Path('site/deployment.json').write_text(json.dumps({'source_commit':os.environ['SOURCE_SHA'],'ci_run_id':os.environ['SOURCE_RUN']})+'\\n')"
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: site
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

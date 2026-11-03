@@ -1,6 +1,6 @@
-# Trace check (2026-11-03T21:06:57Z)
+# Trace check (2026-11-03T23:46:55Z)
 
-status.json verified 2026-11-03T21:06:52Z. Dev tickets 259; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-11-03T23:46:45Z. Dev tickets 259; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -13,16 +13,15 @@ status.json verified 2026-11-03T21:06:52Z. Dev tickets 259; prod rows 67 (7 grou
 | evidences | catalogue | 967 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 907 |
+| mentions | scan | 910 |
 | mirrors | mirrors.json | 326 |
 | parent_of | links.txt | 27 |
-| published_at | links.txt | 287 |
+| published_at | links.txt | 293 |
 | relates | links.txt | 4 |
 
-## Findings: 0 errors, 2 warnings
+## Findings: 0 errors, 0 warnings
 
-- **WARN R3** tracker/relay_out/20261031T020833Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)
-- **WARN R5** last prod digest was 2026-10-15; one is due
+none
 
 ## Prod rows
 

@@ -983,6 +983,24 @@
  "changes": [
   {
    "channel": "prod",
+   "done": [],
+   "points": [
+    "Causal-Copilot fork, live (BLD-06, DLV-04): with our refinement step in place of the original, 30 of 30 runs completed against 22 of 30 for the unmodified pipeline on the same setup, at $4.84 against $12.57. On the 22 tables both finished, link recovery (adjacency F1) is 0.596 against 0.321. Direction accuracy did not move measurably (+0.014, interval -0.017 to 0.038).",
+    "Claim ledger on a second held-out family (CAP-07, CAP-11): precision 0.795 (0.777 to 0.811) at half coverage and calibration error 0.042 (0.030 to 0.053). The targets (0.80 and 0.05) sit inside both intervals, so neither is met yet.",
+    "Quarter 1 (DLV-05, DLV-06): after the TA check-in on 29 Oct, Q1 and Q2 are separate papers and repositories. The Q1 paper is an open protocol for auditing causal-discovery systems, with Causal-Copilot as the worked case; the checkpoint is due Fri 6 Nov. The code is public at github.com/uzairgheewala/causal-copilot-q1, and one command reproduces the fork comparison exactly with no API key."
+   ],
+   "posted_utc": "2026-10-31T02:15:37Z",
+   "tickets": [
+    "BLD-06",
+    "CAP-07",
+    "CAP-11",
+    "DLV-04",
+    "DLV-05",
+    "DLV-06"
+   ]
+  },
+  {
+   "channel": "prod",
    "done": [
     "BLD-02 B1 data-only claim ledger with invariants I1-I4, I7",
     "BLD-03 B2 interventions as order evidence",
@@ -1138,11 +1156,11 @@
   }
  ],
  "changes_lag": {
-  "dev_since_last_prod": 3,
-  "last_prod_utc": "2026-10-15T15:27:27Z"
+  "dev_since_last_prod": 0,
+  "last_prod_utc": "2026-10-31T02:15:37Z"
  },
- "generated_utc": "2026-11-03T21:06:58Z",
- "hash": "57b1db9a6090e1f754da41cd3b21cb8a7a28cd55264eb94d5b4ed76f5d71dd15",
+ "generated_utc": "2026-11-03T23:48:31Z",
+ "hash": "a51be894672618d2bcba4d3b3f4a8796adc9be19dd521a791ca404a51ab2135a",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -6542,7 +6560,7 @@
   "docs/design/q2_lever_map.md": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "docs/project_snapshots/2026-10-19/benchmark-targets.md": "611f98766333c8e740f459c225f1f6e097b342b133112f59bdd2f9de78773029",
   "plans/ben13_prereg.json": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
-  "tracker/status.json": "d5a261c10b953ab5f7b8b858267bd5f10c194bd0b29ffe9543d6c26624165f41"
+  "tracker/status.json": "b404dce3d1c89abd455d003c14adf3bed4607c7c5ae3a5c905e7859e18bdee30"
  },
- "status_verified_utc": "2026-11-03T21:06:52Z"
+ "status_verified_utc": "2026-11-03T23:48:27Z"
 }

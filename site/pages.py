@@ -51,8 +51,8 @@ PAGES = [
          tickets=["TGT-18", "TGT-19", "CAP-07", "BLD-16", "BEN-13", "INF-06", "INF-10"]),
     dict(slug="changes", act="IV", n=12, short="What changed recently", module="pg_changes",
          title="What changed recently", question="What moved since I last looked?", tickets=[]),
-    dict(slug="q1", act="R", n=17, short="Q1: the review fix", module="pg_q1", words=1800,  # S35 (q1 page)
-         title="Quarter 1: fixing Causal-Copilot's review step",
+    dict(slug="q1", act="R", n=17, short="Companion refinement study", module="pg_q1", words=1800,  # S35 (q1 page)
+         title="Companion study: Causal-Copilot's refinement step",
          question="What does Causal-Copilot's review step do to the graph, and does our replacement do better?",
          tickets=["BLD-06", "EXT-03", "DLV-04", "DLV-07"]),
     dict(slug="explore", act="R", n=16, short="Explore", module="pg_explore", words=20000,

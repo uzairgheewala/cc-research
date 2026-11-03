@@ -30,6 +30,8 @@ jobs:
         run: python tracker/snapshot.py --check
       - name: Evidence pins
         run: python tools/ci_check.py
+      - name: Frozen checkpoint sources and manuscript lint
+        run: python -B tools/check_checkpoint_ci.py
       - name: Unit tests
         run: python tests/run_tests.py
       - name: Tracker consistency

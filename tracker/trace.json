@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-11-03T21:06:57Z",
- "status_verified_utc": "2026-11-03T21:06:52Z",
+ "generated_utc": "2026-11-03T23:46:55Z",
+ "status_verified_utc": "2026-11-03T23:46:45Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -2897,7 +2897,7 @@
    "category": "12 Team and communication",
    "status": "in_progress",
    "effective_status": "in_progress",
-   "level": "V2",
+   "level": "V1",
    "in_prod": false
   },
   "TEAM-12": {
@@ -3344,6 +3344,9 @@
    "kind": "slack"
   },
   "slack:C0C7Q2CA2G7/1793412474.583979": {
+   "kind": "slack"
+  },
+  "slack:C0C8CQK1XME/1793412937.228969": {
    "kind": "slack"
   },
   "file:docs/q1/datasets.md": {
@@ -6538,6 +6541,9 @@
   "file:docs/REPO.md": {
    "kind": "file"
   },
+  "file:docs/commit_msgs/README.md": {
+   "kind": "file"
+  },
   "file:docs/decisions/2026-10-14_q2_landmarks.md": {
    "kind": "file"
   },
@@ -9296,6 +9302,48 @@
    "dst": "slack:C0C7Q2CA2G7/1793412474.583979",
    "note": "digest",
    "origin": "links.txt:373"
+  },
+  {
+   "src": "BLD-06",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:374"
+  },
+  {
+   "src": "CAP-07",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:375"
+  },
+  {
+   "src": "CAP-11",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:376"
+  },
+  {
+   "src": "DLV-04",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:377"
+  },
+  {
+   "src": "DLV-05",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:378"
+  },
+  {
+   "src": "DLV-06",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793412937.228969",
+   "note": "digest",
+   "origin": "links.txt:379"
   },
   {
    "src": "file:docs/q1/datasets.md",
@@ -24124,6 +24172,27 @@
    "origin": "scan"
   },
   {
+   "src": "file:docs/commit_msgs/README.md",
+   "rel": "mentions",
+   "dst": "BLD-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/commit_msgs/README.md",
+   "rel": "mentions",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/commit_msgs/README.md",
+   "rel": "mentions",
+   "dst": "PRG-01",
+   "note": "",
+   "origin": "scan"
+  },
+  {
    "src": "file:docs/decisions/2026-10-12_audit_dag.md",
    "rel": "mentions",
    "dst": "AUD-32",
@@ -25279,16 +25348,5 @@
    "origin": "scan"
   }
  ],
- "findings": [
-  {
-   "severity": "WARN",
-   "code": "R3",
-   "message": "tracker/relay_out/20261031T020833Z_digest_prod.json is a draft that was never sent (send and record it, or move it to relay_out/discarded/)"
-  },
-  {
-   "severity": "WARN",
-   "code": "R5",
-   "message": "last prod digest was 2026-10-15; one is due"
-  }
- ]
+ "findings": []
 }

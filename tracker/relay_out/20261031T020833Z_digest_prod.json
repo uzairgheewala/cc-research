@@ -81,6 +81,14 @@
   "EVL-06": "done",
   "EVL-07": "done"
  },
- "text": "**Digest 2026-10-31 UTC** · CD Tracker (67 rows) · since 2026-10-15\n\n**Summary**\n• Causal-Copilot fork, live (BLD-06, DLV-04): with our refinement step in place of the original, 30 of 30 runs completed against 22 of 30 for the unmodified pipeline on the same setup, at $4.84 against $12.57. On the 22 tables both finished, link recovery (adjacency F1) is 0.596 against 0.321. Direction accuracy did not move measurably (+0.014, interval -0.017 to 0.038).\n• Claim ledger on a second held-out family (CAP-07, CAP-11): precision 0.795 (0.777 to 0.811) at half coverage and calibration error 0.042 (0.030 to 0.053). The targets (0.80 and 0.05) sit inside both intervals, so neither is met yet. The same claims come out on every machine; exact hashes match only within one CPU family.\n• Quarter 1 (DLV-05, DLV-06): after the TA check-in on 29 Oct, Q1 and Q2 are separate papers and repositories. The Q1 paper is an open protocol for auditing causal-discovery systems, with Causal-Copilot as the worked case; the checkpoint is due Fri 6 Nov. The code is public at github.com/uzairgheewala/causal-copilot-q1, and one command reproduces the fork comparison exactly with no API key.\n\n**Due in the next 14 days**\n• 2026-11-06 DLV-05 A1 checkpoint: the Q1 paper (the auditor) title, abstract, introduction with…\n\nTotals: ✅ 41 · 👀 7 · ⏳ 13 · 🔴 0 · 🔵 6",
- "text_sha": "8379525a5110dab2"
+ "text": "*Digest 2026-10-31 UTC* · CD Tracker (67 rows) · since 2026-10-15\n\n*Summary*\n• Causal-Copilot fork, live (BLD-06, DLV-04): with our refinement step in place of the original, 30 of 30 runs completed against 22 of 30 for the unmodified pipeline on the same setup, at $4.84 against $12.57. On the 22 tables both finished, link recovery (adjacency F1) is 0.596 against 0.321. Direction accuracy did not move measurably (+0.014, interval -0.017 to 0.038).\n• Claim ledger on a second held-out family (CAP-07, CAP-11): precision 0.795 (0.777 to 0.811) at half coverage and calibration error 0.042 (0.030 to 0.053). The targets (0.80 and 0.05) sit inside both intervals, so neither is met yet.\n• Quarter 1 (DLV-05, DLV-06): after the TA check-in on 29 Oct, Q1 and Q2 are separate papers and repositories. The Q1 paper is an open protocol for auditing causal-discovery systems, with Causal-Copilot as the worked case; the checkpoint is due Fri 6 Nov. The code is public at github.com/uzairgheewala/causal-copilot-q1, and one command reproduces the fork comparison exactly with no API key.\n*Due in the next 14 days*\n• 2026-11-06 DLV-05 A1 checkpoint: the Q1 paper (the auditor) title, abstract, introduction with…\nTotals: :white_check_mark: 41 · :eyes: 7 · :hourglass_flowing_sand: 13 · :red_circle: 0 · :large_blue_circle: 6\n*Sent using* Claude",
+ "text_sha": "2735aab46aea1a2e",
+ "reconciliation": {
+  "utc": "2026-11-03T23:45:27.289982+00:00",
+  "basis": "Slack connector rendered message text; not a byte-for-byte native API export",
+  "original_prepared_archive": "docs/migrations/slack-prepared-originals/20261031T020833Z_digest_prod.json",
+  "original_prepared_sha256": "8fdcf65d5f6ce13403eb7fded10337b4e6a8e1989995ae89bc5d0a1d8109c226",
+  "message_ts": "1793412937.228969",
+  "note": "Original draft preserved byte-for-byte; body is connector-observed sent text, not a native API byte export."
+ }
 }
