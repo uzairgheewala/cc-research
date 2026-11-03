@@ -1,0 +1,18 @@
+docs(audit): propose S2 wire, handoff and legacy contracts
+
+Tickets: DLV-08, DLV-09; related DLV-10, DLV-06/07 and ADV-01.
+
+Draft a separate SC-2 scientific package with 40 core payload kinds, explicit
+reference/knowledge semantics, bounded resolution and immutable snapshot rules.
+Propose 16 metadata entry points, S1 field/port boundaries and source-scoped
+legacy interpretation with explicit projection losses. Update the design rebase
+and methodology index without adopting a public protocol or changing runtime code.
+
+Exact parameter-role/service protocols and A-H wire/API specimens remain before
+freeze, final design review and bundle planning. No S2 implementation go exists.
+
+Validation: documentation links, JSON index, core/reference catalog, inspected
+S1 port signatures and source-backed legacy seams; named-file secret scan.
+Receipt: ../_w2_checks/2026-11-02_s2_wire_interface_review/documentation-validation.json
+These checks validate documentation, not an implemented SC-2 codec or native system.
+No runtime test rerun, API spend, protected-store access or git/tracker writes.

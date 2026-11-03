@@ -1,0 +1,19 @@
+Add opt-in SC-1 system connections and gated legacy bridge (DLV-08, DLV-09)
+
+Preserve native causal discovery evidence and richer outputs through explicit
+identity, domains/mappings, scoped outcomes, immutable snapshots/publication,
+history/recovery/replay/accounting and optional granted adapter ports. Keep the
+existing audit/scoring/certificate path authoritative; add recorded import/echo,
+explicit partial legacy projection, an opt-in CLI and exact synthetic wire fixtures.
+
+Validation: S1-A..G gates passed. Final suite: 139 passed, one dependency skip;
+all 85 new tests pass. All 1,298 comparisons pass (max diff 0.000091483427284475),
+exact keys/counts/verdicts match, and 14 stored plus 14 fresh certificates verify.
+Four new recorded package publication paths and all eight adapter echo paths pass.
+Original 64-file identity is unchanged; external compilation/source manifests pass.
+
+Owner review: public adoption and ticket closure are separate. Existing DLV-07
+exporter pin needs review. An unintended tracker/trace.py check regenerated the
+two trace exports; exact prior bytes were unavailable. Review that incident and
+those outputs separately, as documented in audit/docs/subsystem1-trace-incident-2026-11-01.md.
+No API spend, git write, result migration, port map or protected scientific-code edit.

@@ -1,0 +1,31 @@
+W4 product path: pharma bars (PRD-01) and IP/licence questions (PRD-02)
+
+Desk research only: no model calls, no API spend, no runs, no edits to existing files.
+
+New files:
+- analysis/reports/product_pharma_bars.md (PRD-01): buyer, job, evidence demanded (ICH M14,
+  FDA RWD/RWE guidance, Perturb-seq validation practice), numeric bars, distance from
+  measured results, and the cheapest next experiments, for P1 (perturbation target
+  prioritisation) and P2 (RWE assumption ledger). Every figure labelled; every regulatory
+  claim linked. ICH M14 mapped to ledger v0.2: 4 of 17 rows recorded, 8 partial, 5 gaps.
+- docs/decisions/2026-10-30_product_ip_questions.md (PRD-02): what UC/UCSD student IP pages
+  and Causal-Copilot's licence say, the project facts they turn on, questions for
+  Prof. Umesh and Prof. Huang, and what needs an expert. Not legal advice.
+
+Findings that change program v3 section 5 (proposed to W5, not applied):
+- C1: the P1 bar's "edge-placement share" clause cannot bind another method; replace with
+  held-out-knockdown claim precision.
+- C2: Causal-Copilot is MIT, but its tree vendors a GPLv2-marked file (pyCausalFS g2test.py)
+  and imports tigramite (GPL-3.0).
+- C5: README affiliation "UCSD, Abel.ai"; Prof. Huang is named founder of Aether AI.
+
+Bar anchors (pre-registration of the bars; a later change needs a new dated report):
+sha256(analysis/reports/product_pharma_bars.md) = d7fe695c12ee24bc38b2415c90eba32bcfe7c0f953a6381a0188e9f26e75a109
+sha256(docs/decisions/2026-10-30_product_ip_questions.md) = a409dff7190b13f1a31b0730a8e2ccb94ec9e94ad8105be210ac452dfc16405c
+  (updated 31 Oct with Uzair's answers to section 2: no UC job, no acknowledgment, no UCSD compute,
+  no funding or aid, no course IP terms)
+
+Tickets: PRD-01, PRD-02, PRG-01, CRS-09
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01P6WxGTRUdkSKcva3ycduBE

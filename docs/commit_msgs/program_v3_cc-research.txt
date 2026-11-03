@@ -1,0 +1,22 @@
+Program v3 tickets, the move to the second laptop, cc.ps1 build keeps the image record, tracking restarted
+
+Tickets: PRG-01, DLV-05, DLV-06, DLV-08, DLV-09, DLV-10, DLV-11, DLV-12, BLD-19, BLD-20, BLD-21, BLD-22, BLD-23, BLD-24,
+ADV-01, PRD-01, PRD-02, CRS-01, CRS-09, INF-11, INF-01, INF-04, INF-06, INF-10, BLD-06
+
+- s36: program v3 (project doc claude/program-v3-2026-10-29.md) as tickets. New prefixes PRG, ADV, PRD under existing
+  categories (15 Decisions, 9 Evaluation protocol, 14 Stretch), so no Slack select option was added. A1 = DLV-05 / DLV-06
+  re-cut to the auditor paper; A2-A6 = DLV-08..12; R0-R5 = BLD-19..24; ADV-01; PRD-01/02. Prof. Umesh's written
+  confirmation is CRS-09 (CRS-06 already names the Q2 deliverables). CRS-01 done (TA check-in held 29 Oct). INF-11: the move.
+- s36: cc.ps1 build overwrote manifests/image_ids.json without keeping the earlier record (ensureimage kept it). It now keeps
+  it as image_ids_before_<stamp>.json and names it in previous_record. The 21 Oct record that the 31 Oct rebuild overwrote
+  is restored from git as manifests/image_ids_before_20261031T012646Z.json. Repinned INF-01, INF-04, INF-06 after review.
+- s36: WAVE_STATE.md "Current" re-cut to program v3 and the move; s37: two BLD-06 interval ends as the result file rounds
+  them (0.110, 0.038; notes said 0.111, 0.039). Repinned INF-10 after review.
+- docs/hosts.md and tools/host_probe.ps1 (new): the host record for sizing wave sheets; manifests/hosts/laptop2.json comes
+  from the probe after the image builds.
+- Slack: Dev CD Tracker synced (19 rows updated, 26 added; record IDs in
+  tracker/mirror_inputs/dev_record_ids_2026-10-31.csv, assembled from mirrors.json and the add responses, not an export);
+  CD Tracker synced (7 rows, text only). Dev digest posted in #cd-tracker and recorded; prod digest prepared as a draft.
+  The 15 Oct 14:19 prod digest had been sent and is now recorded (ts 1792078047.131679); the 14 Oct and 15 Oct 22:04
+  drafts were superseded and moved to relay_out/discarded/.
+- Checks: verify 0 problems; trace 0 errors (1 warning: the prod digest waits on the draft); ci_check 0 errors; snapshot last.

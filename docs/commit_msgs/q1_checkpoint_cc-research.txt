@@ -1,0 +1,40 @@
+DLV-05: Q1 checkpoint as the auditor paper, every number from a file, every citation checked
+
+Tickets: DLV-05, DLV-07, DLV-11, BND-13, PRG-01
+
+docs/paper/q1/ (new, chat W1):
+- report.tex in the course's Overleaf template (style/dsc180reportstyle.sty copied verbatim, sha256 8b6a2455...):
+  title, abstract, introduction, prior work, data, code link, appendix A (where every number comes from).
+- numbers.json -> build_numbers.py -> numbers.tex, numbers_table.tex, numbers.lock.json: 78 entries from 13 result
+  files, each a file + JSON pointer (or a sub/div/len/min/max/count of such); sources tracked-clean at cf536c1, except the
+  two CausalBench shape files in external/ (excluded by design, hashed in manifests/excluded).
+- lint_report.py: 0 bare numerals, 0 prior-work sentences without \cite or \ours, every cited key checked.
+- lit_claims.json, verify/, reference.bib: 38 literature claims read against their papers by checkers who did not draft
+  them (23 confirmed, 15 corrected and applied, 0 unsupported) plus 9 data facts (data_facts.md); 42 bib entries.
+- make.sh (bash) and build_paper.py (any OS; --overleaf writes the upload bundle); build/report.pdf (15 pages; XeLaTeX; CTAN
+  econ.bst stands in for the template's bibliography style).
+- HANDOFF.md (the workstream's resume point, 3 Nov) and CODEX_KICKOFF.md (the prompt that resumes it in Codex).
+- DESIGN.md: axes, binding times, failure modes, bundles and must-show lists.
+
+docs/q1/checkpoint_skeleton.md re-cut to the auditor framing (patch jobs/patches/w1_01_q1_checkpoint.py; BND-13 repinned
+after review). Final-report outline re-cut to protocol / package / results / benchmark appendix (DLV-06, DLV-08..11).
+
+Checks: verify 0 problems; trace 0 errors (R5 warning: prod digest due); ci_check 0 errors; site build 0 errors;
+targeted secret scan of the new files clean; snapshot regenerated last (b5e791f81407). Tests test_core, test_site_v3,
+test_site_s23: 39 of 40 pass; the failure is analysis/results/refinement_r3 (another chat's new folder) not conforming
+to the score contract, unrelated to this change.
+
+Q1 repo (DLV-07): a dry-run export from cf536c1 to a scratch folder reproduced exactly and differs from the pushed
+repo (43d0c75, CI green) only in the README's commit line and export time. Re-export after this commit.
+
+3 Nov organization stage 1 (DLV-05, DLV-07, PRG-01):
+- Select Crucis and adopt CHECKPOINT_CONTRACT.md / checkpoint_contract.json: freeze checkpoint scope and the
+  existing 78 keys / 13 sources without constraining the broader framework or ongoing subsystem work.
+- Add check_checkpoint_contract.py for frozen-byte, registry/claim coverage, source-set and value checks;
+  allow legitimate HEAD/Git-metadata changes after separation. No silent re-freeze or incidental paper port.
+- Preserve the recomputed stage/cohort receipt and existing MATMCD diagnostic report in checkpoint_evidence/,
+  with origin hashes/status. These are interpretive evidence, not new registry inputs or freshly executed systems.
+- Update HANDOFF, CODEX_KICKOFF and coordination requests; retain the pending scientific corrections and
+  public code/evidence coverage issue. No paper prose/number/protocol changes in this stage.
+- No commit until the audit package is separated, as explicitly required by Uzair. Historical checks above
+  describe the earlier W1 draft; current stage-1 checks are recorded in the migration verification receipt.

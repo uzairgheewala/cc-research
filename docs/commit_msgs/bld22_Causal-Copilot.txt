@@ -1,0 +1,7 @@
+BLD-22: commit an arrow only when at least 15 of 20 resamples give it (95% Wilson bound above 1/2); otherwise leave the direction open. CC_DIRECTION=plurality restores bld-06
+
+Patch: cc-research/jobs/fork/bld-22-direction-sufficiency.patch (branch bld-22-direction-sufficiency, on bld-06-refinement-v2 at 55a490a).
+make_bld22.ps1 makes this commit with this message; push the branch yourself. Never on main.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01P6WxGPn7FW9pxha7bcmgxt

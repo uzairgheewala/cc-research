@@ -1,0 +1,21 @@
+BLD-22 (R3): direction-sufficiency rule on saved dev cases, frozen before any held-out read; R0 and R1 designed
+
+- analysis/refinement_r3.py: r3s keeps an arrow of refinement v2's data part (v2d) only when at least 15 of the 20 resamples
+  give it (two-sided 95% Wilson lower bound above 1/2); otherwise the pair stays linked with its direction open. Links never
+  change. Modes dev / freeze / heldout H1-H3 / regress.
+- Dev battery (CausalArena dev replays, 35 files, exact references): v2d 443 right, 116 wrong, 108 open (precision 0.793);
+  r3s 295 right, 38 wrong, 334 open (0.886); paired precision gain +0.093 [+0.063, +0.125]; arrows on false links 250 -> 58;
+  links identical in every file (analysis/results/refinement_r3/dev.json).
+- Frozen: RULE.json composite sha256 80c2ee4ec73a39fb6df64d0ead73a5f61cb801727e269af35abdcd9baa403daf (rule file
+  022696870a8d..., plans/r3_prereg.json b2d48ccde894...). No held-out read yet; gas/void regression check passes (o-o, 8 of 20).
+- analysis/refinement_r3_test.py (8 tests), analysis/refinement_r3_replay.py and jobs/r3_heldout_{semantic,formula}_rep1.json
+  (held-out H3: CausalArena test split, replicate 1; free compute jobs, not run).
+- Fork: jobs/fork/bld-22-direction-sufficiency.{patch,json,sha256}, jobs/fork/bld-22/, jobs/fork/make_bld22.ps1 (branch
+  stacked on bld-06-refinement-v2; CC_DIRECTION=plurality restores bld-06).
+- plans/r3_design.md (R3 result, R0 contract proposal for W2/W5, R1 branch plan, run sheet), plans/r3_live_proposal.json and
+  plans/r3_live.json, r3_live_main.json, r3_stub.json: a live series proposed (about $18-21, cap $30), not run.
+
+Tickets: BLD-22, BLD-19, BLD-20, ADV-01, BLD-06
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01P6WxGPn7FW9pxha7bcmgxt

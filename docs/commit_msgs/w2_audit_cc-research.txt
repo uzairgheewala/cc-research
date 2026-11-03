@@ -1,0 +1,31 @@
+audit: protocol v1 and the audit package; existing audits rerun through it (W2)
+
+Tickets: DLV-08, DLV-09, DLV-10, DLV-07
+
+Protocol v1 (audit/PROTOCOL.md, audit/protocol/): a closed list of 15 finding kinds with hashed thresholds, regimes
+(D, D+I, D+K, D+I+K, plus K and none for names-only systems), truth tiers T1-T4, development and sealed batteries, the
+certificate. Proposed to W5 for adoption into the program doc.
+
+The package beside the unchanged B5 claim checker in audit/: adapters for PC, GES, GIES, MATMCD, Vashishtha et al.,
+PyWhy-LLM, causaliq and Causal-Copilot (recorded mode; live for PC/GES; live LLM runs refused without a go); L0 scoring
+through score/ and analysis/cc_graph.py; L1 controls (names, layout, knowledge, robustness transforms; paired effects with
+the score/paired.py cluster bootstrap); L2 tracing (observation-only recorder for Python entry points; per-edge lineage;
+Causal-Copilot S0-S4 rebuilt from artifacts with a restricted unpickler); typed findings; report.json, report.md and a
+certificate that `python -m audit verify` recomputes from the raw files; the sealed battery's commit/check/read-log code.
+
+Rerun (audit/results/rerun_v1/, `python -m audit rerun`): 1298 stored numbers from AB-06, AB-01, AB-04, BLD-06 and
+BND-08 recomputed from raw outputs, all within 0.001 (max 9.1e-05); 14 audits with reports and certificates, all verified.
+No API spend.
+
+Patch w2-01: audit/__init__.py docstring; tools/export_q1.py gains ALLOW_AUDIT behind --with-audit (off by default, so
+the 6 Nov checkpoint export is unchanged). Repin after review: DLV-07 (tools/export_q1.py).
+Tests: tests/test_audit_*.py (55 tests; run on the VM with --out outside the repo; 53 run there, the live-PC test and
+the full-rerun test skip or were run as commands).
+
+Handover (31 Oct, W2 moves to Codex): audit/AGENTS.md (folder rules) and audit/docs/ (STATE.md, the read-first state
+file; CODEX_KICKOFF.md; copies of the W2 and W1 project docs and program excerpts; checks/rebase_facts.py, which
+recomputes the rebase's facts read-only). Protocol v1.1 is proposed in audit/docs/project/w2-rebase-2026-10-31.md, not
+built.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01P6WxGSPwpyzpdJuXtHjmFU
