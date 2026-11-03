@@ -1,0 +1,32 @@
+{
+    "name":  "laptop2",
+    "recorded_utc":  "2026-10-31T02:28:05.0013923Z",
+    "cpu":  "Intel(R) Core(TM) Ultra 7 155U",
+    "cores":  12,
+    "logical_processors":  14,
+    "ram_gb":  15.4,
+    "os":  "Microsoft Windows 11 Home 10.0.26300",
+    "disk_free_gb":  346.6,
+    "wslconfig":  "none (WSL2 default: half the RAM)",
+    "docker_mem_gb":  8,
+    "docker_cpus":  14,
+    "images":  [
+                   "cc-probes:ab05-1 4db47379742c 2026-10-30 19:26:17 -0700 PDT",
+                   "cc-x5:wave-a 99c736d81b2b 2026-10-30 19:22:33 -0700 PDT",
+                   "cc-bench:wave-a a2317ac4d5cc 2026-10-30 19:20:26 -0700 PDT",
+                   "cc-kernel:wave-a 663da50e2a29 2026-10-30 19:18:30 -0700 PDT",
+                   "cc-research:a31aa7c-1 bebaa7bf3ff3 2026-10-30 18:26:44 -0700 PDT",
+                   "causal-copilot-cpu:a31aa7c 4f9ba5417b5b 2026-10-30 18:24:04 -0700 PDT"
+               ],
+    "kernel_image":  {
+                         "numpy":  "1.26.4",
+                         "avx2":  true,
+                         "avx512f":  false,
+                         "blas":  [
+                                      [
+                                          "openblas",
+                                          "Haswell"
+                                      ]
+                                  ]
+                     }
+}

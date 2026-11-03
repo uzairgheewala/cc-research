@@ -984,6 +984,43 @@
   {
    "channel": "prod",
    "done": [
+    "BLD-02 B1 data-only claim ledger with invariants I1-I4, I7",
+    "BLD-03 B2 interventions as order evidence",
+    "BLD-04 B3 declared knowledge as tiers",
+    "BLD-05 B4 confidence, calibration, selective output",
+    "CAP-03 Use intervention data",
+    "CAP-04 Declared knowledge as tiers, never edges",
+    "CAP-05 Invariance to column order",
+    "CAP-08 Abstention / selective claims",
+    "CAP-09 Provenance per edge with an independent checker",
+    "CAP-11 Determinism (same inputs, same ledger hash)"
+   ],
+   "points": [
+    "The claim ledger is built (BLD-02, BLD-03, BLD-04, BLD-05): data-only kernel, interventions, knowledge as tiers and calibrated confidence, each tested on held-out scenarios only after its rules were frozen",
+    "Held out, the ledger beats plain PC on directed F1 (+0.053 semantic, +0.115 formula) and its claims are more often right than GES's; it ties GES on F1 (BLD-02)",
+    "Provenance holds on every held-out file: neutral names change nothing, wrong names cost at most the proven bound, every claim re-derives from its evidence (BLD-04, CAP-09)",
+    "Calibrated confidence beats raw bootstrap frequencies by a wide margin; the 0.05 calibration gate is missed on one family (CAP-07)",
+    "Still open (TGT-17): accuracy above GES, half-coverage precision on the semantic family, and RCA at 0.90 with enough issues; next step is choosing which a second kernel version chases"
+   ],
+   "posted_utc": "2026-10-15T15:27:27Z",
+   "tickets": [
+    "BLD-02",
+    "BLD-03",
+    "BLD-04",
+    "BLD-05",
+    "CAP-03",
+    "CAP-04",
+    "CAP-05",
+    "CAP-07",
+    "CAP-08",
+    "CAP-09",
+    "CAP-11",
+    "TGT-17"
+   ]
+  },
+  {
+   "channel": "prod",
+   "done": [
     "BLD-06 Drop-in replacement for Causal-Copilot's refinement stage",
     "CAP-10 Robustness to malformed model output",
     "DLV-02 Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully…",
@@ -1102,10 +1139,10 @@
  ],
  "changes_lag": {
   "dev_since_last_prod": 3,
-  "last_prod_utc": "2026-10-15T04:26:17Z"
+  "last_prod_utc": "2026-10-15T15:27:27Z"
  },
- "generated_utc": "2026-10-27T23:11:33Z",
- "hash": "226c2969ab7a58d30bcdeb459c4d7e25c9cd16069bd574a7eaa5ee0d2d4d6410",
+ "generated_utc": "2026-11-03T21:06:58Z",
+ "hash": "57b1db9a6090e1f754da41cd3b21cb8a7a28cd55264eb94d5b4ed76f5d71dd15",
  "items": [
   {
    "category": "0 Quarter 1 deliverables",
@@ -1157,10 +1194,10 @@
    "id": "DLV-05",
    "kind": "deadline",
    "level": "V0",
-   "note_sha": "a04ec718543d",
+   "note_sha": "a77f299e218b",
    "pillar": "spine",
    "status": "todo",
-   "title": "Q1 checkpoint (Fri 6 Nov)"
+   "title": "A1 checkpoint: the Q1 paper (the auditor) title, abstract, introduction with literature review, data, public code link (Fri 6 Nov)"
   },
   {
    "category": "0 Quarter 1 deliverables",
@@ -1168,10 +1205,10 @@
    "id": "DLV-06",
    "kind": "deadline",
    "level": "V0",
-   "note_sha": "e3b0c44298fc",
+   "note_sha": "277a962dc604",
    "pillar": "spine",
    "status": "todo",
-   "title": "Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec)"
+   "title": "A1 Q1 final paper: the auditor, its protocol, the audits, results and limits (Fri 4 Dec)"
   },
   {
    "category": "1 Replication",
@@ -2719,7 +2756,7 @@
    "id": "BLD-06",
    "kind": "task",
    "level": "V3",
-   "note_sha": "1ebed405bb0b",
+   "note_sha": "8f34d0b83e4c",
    "pillar": "P2",
    "status": "done",
    "title": "Drop-in replacement for Causal-Copilot's refinement stage"
@@ -2968,13 +3005,13 @@
   },
   {
    "category": "11 Course",
-   "evidence_n": 1,
+   "evidence_n": 2,
    "id": "CRS-01",
    "kind": "deadline",
    "level": "V2",
-   "note_sha": "04c3fb227ad8",
+   "note_sha": "5be67a5a6894",
    "pillar": "spine",
-   "status": "todo",
+   "status": "done",
    "title": "TA check-in 1 (TA: Nate)"
   },
   {
@@ -3768,21 +3805,208 @@
    "pillar": "spine",
    "status": "in_progress",
    "title": "Public Q1 code repository: a curated, reproducible export of cc-research"
+  },
+  {
+   "category": "15 Decisions",
+   "evidence_n": 2,
+   "id": "PRG-01",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "e9ca198ec682",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Program v3: two papers and two repos (Q1 the auditor, Q2 the system), with the adversary loop between them"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "evidence_n": 1,
+   "id": "DLV-08",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "d0f6227d0986",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "A2 Audit protocol spec v1: finding kinds (closed list), regimes, truth tiers, development and sealed batteries, certificate"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "evidence_n": 2,
+   "id": "DLV-09",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "4ebbf00424d7",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "A3 audit package: adapter interface, controls L0-L2, report generator; one command audits a system end to end"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "evidence_n": 1,
+   "id": "DLV-10",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "222c044c11ea",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "A4 Audit results rerun through the package: per-system tables L0-L2 and provenance by arm difference (L3-lite)"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "evidence_n": 1,
+   "id": "DLV-11",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "e47922f72549",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "A5 Benchmark shortcut audits as the paper's appendix: CausalArena layout (AB-01) and the CausalBench metric (BEN-13)"
+  },
+  {
+   "category": "0 Quarter 1 deliverables",
+   "evidence_n": 1,
+   "id": "DLV-12",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "4f35f232093f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "A6 Public scorecards: one page per audited system, generated from the audit reports"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-19",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R0 The contract: the claim-ledger format and a ledger writer in the agent"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-20",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R1 Correctness fixes: the 16 code notes plus the cycle fix, live, one fork branch per ticket"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-21",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R2 Typed state and per-edge provenance in the agent"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-22",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R3 The direction rule (commit an arrow only on sufficient evidence, else name the next experiment) and knowledge as orient-only tiers"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-23",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R4 The engine slot: kernel v3, the v4 candidates and interventions behind one interface"
+  },
+  {
+   "category": "8 Build",
+   "evidence_n": 2,
+   "id": "BLD-24",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "9b29ae1bb47f",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "R5 A report rendered from the ledger"
+  },
+  {
+   "category": "9 Evaluation protocol",
+   "evidence_n": 1,
+   "id": "ADV-01",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "d6ac1d46251d",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Adversary loop log: B (the system) against A (the auditor), round by round"
+  },
+  {
+   "category": "14 Stretch",
+   "evidence_n": 1,
+   "id": "PRD-01",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "180c50538f09",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "Pharma bars: P1 perturbation-data target prioritisation and P2 RWE assumption ledger"
+  },
+  {
+   "category": "14 Stretch",
+   "evidence_n": 1,
+   "id": "PRD-02",
+   "kind": "task",
+   "level": "V1",
+   "note_sha": "5a515e0d9a41",
+   "pillar": "spine",
+   "status": "todo",
+   "title": "IP and licence check before any commercial step: UCSD student IP policy, Causal-Copilot's MIT licence, the mentor's authorship"
+  },
+  {
+   "category": "11 Course",
+   "evidence_n": 1,
+   "id": "CRS-09",
+   "kind": "deadline",
+   "level": "V1",
+   "note_sha": "3eaa2de15c9d",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Written confirmation from Prof. Umesh (course professor) of the one-person group the TA approved on 29 Oct"
+  },
+  {
+   "category": "10 Infrastructure",
+   "evidence_n": 3,
+   "id": "INF-11",
+   "kind": "task",
+   "level": "V2",
+   "note_sha": "4b805eb866d1",
+   "pillar": "spine",
+   "status": "in_progress",
+   "title": "Move to the second laptop (30 Oct): migration checks and the host record used to size wave sheets"
   }
  ],
  "lists": {
   "dev": {
    "pending_removals": 0,
    "pending_updates": 1,
-   "rows": 233,
-   "rows_sha256": "bf547520b23c3e31855cff1a79f0fd95fe99cc5c26cd21ebd9553b9839023233",
+   "rows": 259,
+   "rows_sha256": "18ff1123fba65f168cbdcb763270735d0f0285d08d6cf8dc171a218e06460b71",
    "slack_list": "F0C869P25NE"
   },
   "prod": {
    "pending_removals": 0,
    "pending_updates": 0,
    "rows": 67,
-   "rows_sha256": "ef5987a386fa3f2c5cfd183cca36553b967f7de809ee22eebf47acdc6a57be7f",
+   "rows_sha256": "aa4b8e96c23c58aeb0f1ee0ad3275a4f6fa8af4bf6c19fc6963266282436377d",
    "slack_list": "F0C8ADF3DNG"
   }
  },
@@ -6318,7 +6542,7 @@
   "docs/design/q2_lever_map.md": "7a33e27256ecbbae3c57b95a251a44f303d019899c1ed1e232b513de427558b2",
   "docs/project_snapshots/2026-10-19/benchmark-targets.md": "611f98766333c8e740f459c225f1f6e097b342b133112f59bdd2f9de78773029",
   "plans/ben13_prereg.json": "d2fe1e68c866e94c5f4513d8f3b29f058469ec20f95d463886cf2b52c28afd73",
-  "tracker/status.json": "ada576b963fdeca11897eb1e39606b2a1c1ff50abcd93d98c95e51cfcdee39ac"
+  "tracker/status.json": "d5a261c10b953ab5f7b8b858267bd5f10c194bd0b29ffe9543d6c26624165f41"
  },
- "status_verified_utc": "2026-10-27T23:10:53Z"
+ "status_verified_utc": "2026-11-03T21:06:52Z"
 }

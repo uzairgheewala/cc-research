@@ -15,9 +15,12 @@ UCSD DSC 180A. Everything we claim must be checkable from the files in this fold
    baseline (checked against `manifests/baseline_a31aa7c.sha256` before every run). Changes live only on ticket branches,
    written by the agent as patch files in `jobs/fork/` and applied by Uzair (`jobs/fork/make_branches.ps1`, docs/FORK.md);
    a branch run sets `CC_BRANCH` and is checked against `jobs/fork/<branch>.json`.
-4. Never run git write operations on Uzair's repositories.
+4. Local commits in cc-research and the standalone audit repository are authorized. Follow the milestone workflow below.
+   Do not push, publish, merge, rewrite history, or alter other repositories without authorization for that action.
 5. Never start anything that spends API credit (`cc.ps1 golden`, `cc.ps1 plan ...`, the queue runner). Write the plan; Uzair runs it.
-6. Analysis code and results go in `analysis/`; plans in `plans/`; nothing outside `cc-research/`.
+6. Research analysis/results go in `analysis/`; plans in `plans/`. The reusable auditor belongs in its own sibling
+   repository. Migration backups/checks and the local Python environment may live in `_repo_migration/` and `.tooling/`
+   beside this repository. Preserve recorded evidence paths during extraction.
 7. Slack has two lists and two channels (tracker/LINKS.md section 1, tracker/RELAY.md).
    Dev: #cd-tracker (C0C7Q2CA2G7) and the list "Dev CD Tracker" (F0C869P25NE): write freely.
    Prod: #causal-discovery (C0C8CQK1XME) and the list "CD Tracker" (F0C8ADF3DNG). Which rows are in prod is Uzair's call
@@ -65,8 +68,19 @@ Never set a prod status by hand, never claim "done" in a summary for something `
 
 ## Repository, CI and the site
 
-This folder is a git repository (layout and reasons: `docs/REPO.md`). Uzair makes every commit and push; agents write the
-commit message to `docs/commit_msgs/<execution>_cc-research.txt`. Before handing over a commit:
+This folder is a git repository (layout and reasons: `docs/REPO.md`). Uzair authorized automatic local milestone commits
+on 3 Nov 2026. Read `tools/skills/milestone-commit/SKILL.md` at the start of development work and follow it after every
+small coherent, validated milestone, including documentation and design milestones. Check again before ending the turn.
+Stage explicit owned paths or hunks, preserve other workstreams' changes, and report each commit hash. Prepared commit
+messages in `docs/commit_msgs/` remain useful inputs; writing a message is not a substitute for committing.
+
+**Crucis separation (3 Nov 2026):** the reusable auditor is in the sibling `../crucis` repository.
+The separation receipt records the installed-wheel, recorded-data and certificate checks. The user-required
+migration hold is lifted by that verified cutover; make automatic local milestone commits from then on.
+Research evidence, the paper, and the historical B5 modules remain here. Current instructions supersede
+older no-git/Uzair-commits and pre-extraction paths in historical handoffs. No remote publication is implied.
+
+Before committing evidence or ticket changes:
 
     python tracker/verify.py && python tracker/trace.py check
     python tracker/snapshot.py          # site/snapshot.json: every ticket, bundle, list state and site number
@@ -76,7 +90,9 @@ commit message to `docs/commit_msgs/<execution>_cc-research.txt`. Before handing
 `tracker/snapshot.py` copies `tracker/status.json`, so it runs after the last `verify.py` (including `--repin`) and the
 last catalogue patch, and `site/snapshot.json` goes in the same commit as the change that moved the status. A repin or
 patch after the snapshot leaves it stale: CI fails (20 Oct, commit 1a2c631, after p30). The pre-commit hook runs
-`tracker/snapshot.py --check` and stops a stale snapshot on disk; it cannot see a regenerated snapshot that was not staged.
+`tools/commit_gate.py`, which exports the exact staged tree into an isolated directory and runs the checks in the staged
+`.commit-policy.json`. It catches a refreshed snapshot left unstaged and refuses the commit if the index or HEAD changes
+during validation. Run external-data checks separately when needed; a skipped test is not a completed reproduction.
 
 The site (`site/`) may print a number only through `site/registry.py` (file + JSON pointer, or a literal checked in the
 cited report). Never type a result into a level's text. New data kept outside git (`external/`, `runs/`) must be hashed

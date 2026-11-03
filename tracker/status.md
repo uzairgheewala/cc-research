@@ -1,4 +1,4 @@
-# Tracker status (verified 2026-10-27T23:10:53Z)
+# Tracker status (verified 2026-11-03T21:06:52Z)
 
 Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked · 🔵 open. Evidence levels V0-V4: see README.md.
 
@@ -11,8 +11,8 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | DLV-02 | ✅ | Q1 runs: Causal-Copilot run unmodified on every suite dataset under name controls, fully recorded | V3 |  |
 | DLV-03 | 👀 | Q1 exploration: what Causal-Copilot does to the graph on these datasets, stage by stage | V2 |  |
 | DLV-04 | ✅ | Q1 refinement research: a refinement step that never falls below its own algorithm on these datasets | V3 |  |
-| DLV-05 | ⏳ | Q1 checkpoint (Fri 6 Nov) | V0 |  |
-| DLV-06 | ⏳ | Q1 final: replication-style report on Causal-Copilot over the Q1 datasets (Fri 4 Dec) | V0 |  |
+| DLV-05 | ⏳ | A1 checkpoint: the Q1 paper (the auditor) title, abstract, introduction with literature review, data, public code link (Fri 6 Nov) | V0 |  |
+| DLV-06 | ⏳ | A1 Q1 final paper: the auditor, its protocol, the audits, results and limits (Fri 4 Dec) | V0 |  |
 
 ## 1 Replication
 
@@ -236,7 +236,7 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
-| CRS-01 | ⏳ | TA check-in 1 (TA: Nate) | V2 |  |
+| CRS-01 | ✅ | TA check-in 1 (TA: Nate) | V2 |  |
 | CRS-02 | ⏳ | Quarter 1 checkpoint | V0 |  |
 | CRS-03 | ⏳ | TA check-in 2 | V0 |  |
 | CRS-04 | ⏳ | Quarter 1 final (50%) | V0 |  |
@@ -414,3 +414,55 @@ Legend: ✅ done · 👀 in progress (or reopened) · ⏳ to-do · 🔴 blocked 
 | ID | | Item | Level | Problems |
 |---|---|---|---|---|
 | DLV-07 | 👀 | Public Q1 code repository: a curated, reproducible export of cc-research | V3 |  |
+
+## 15 Decisions
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| PRG-01 | 👀 | Program v3: two papers and two repos (Q1 the auditor, Q2 the system), with the adversary loop between them | V1 |  |
+
+## 0 Quarter 1 deliverables
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| DLV-08 | ⏳ | A2 Audit protocol spec v1: finding kinds (closed list), regimes, truth tiers, development and sealed batteries, certificate | V1 |  |
+| DLV-09 | ⏳ | A3 audit package: adapter interface, controls L0-L2, report generator; one command audits a system end to end | V1 |  |
+| DLV-10 | ⏳ | A4 Audit results rerun through the package: per-system tables L0-L2 and provenance by arm difference (L3-lite) | V1 |  |
+| DLV-11 | ⏳ | A5 Benchmark shortcut audits as the paper's appendix: CausalArena layout (AB-01) and the CausalBench metric (BEN-13) | V1 |  |
+| DLV-12 | ⏳ | A6 Public scorecards: one page per audited system, generated from the audit reports | V1 |  |
+
+## 8 Build
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| BLD-19 | ⏳ | R0 The contract: the claim-ledger format and a ledger writer in the agent | V1 |  |
+| BLD-20 | ⏳ | R1 Correctness fixes: the 16 code notes plus the cycle fix, live, one fork branch per ticket | V1 |  |
+| BLD-21 | ⏳ | R2 Typed state and per-edge provenance in the agent | V1 |  |
+| BLD-22 | ⏳ | R3 The direction rule (commit an arrow only on sufficient evidence, else name the next experiment) and knowledge as orient-only tiers | V1 |  |
+| BLD-23 | ⏳ | R4 The engine slot: kernel v3, the v4 candidates and interventions behind one interface | V1 |  |
+| BLD-24 | ⏳ | R5 A report rendered from the ledger | V1 |  |
+
+## 9 Evaluation protocol
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| ADV-01 | 👀 | Adversary loop log: B (the system) against A (the auditor), round by round | V1 |  |
+
+## 14 Stretch
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| PRD-01 | ⏳ | Pharma bars: P1 perturbation-data target prioritisation and P2 RWE assumption ledger | V1 |  |
+| PRD-02 | ⏳ | IP and licence check before any commercial step: UCSD student IP policy, Causal-Copilot's MIT licence, the mentor's authorship | V1 |  |
+
+## 11 Course
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| CRS-09 | 👀 | Written confirmation from Prof. Umesh (course professor) of the one-person group the TA approved on 29 Oct | V1 |  |
+
+## 10 Infrastructure
+
+| ID | | Item | Level | Problems |
+|---|---|---|---|---|
+| INF-11 | 👀 | Move to the second laptop (30 Oct): migration checks and the host record used to size wave sheets | V2 |  |

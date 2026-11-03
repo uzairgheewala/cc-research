@@ -41,6 +41,7 @@ for fam in ("semantic", "formula"):
     for r in dev:
         out["families"][fam]["dev_by_domain"].setdefault(r["domain"], []).append(r["slug"])
     assert not set(out["families"][fam]["dev"]) & set(out["families"][fam]["test"])
-json.dump(out, open(a.out, "w", encoding="utf-8"), indent=1, sort_keys=True)
+with open(a.out, "w", encoding="utf-8", newline="\n") as stream:
+    json.dump(out, stream, indent=1, sort_keys=True)
 for fam, v in out["families"].items():
     print(fam, "dev", len(v["dev"]), "test", len(v["test"]), "S2", v["s2_test_scenarios"])

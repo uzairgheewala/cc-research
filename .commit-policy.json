@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "checks": [
+    [
+      "{python}",
+      "-B",
+      "tools/secret_scan.py"
+    ],
+    [
+      "{python}",
+      "-B",
+      "tools/hooks/ci_check_portable.py"
+    ],
+    [
+      "{python}",
+      "-B",
+      "tracker/snapshot.py",
+      "--check"
+    ],
+    [
+      "{python}",
+      "-B",
+      "tools/check_checkpoint_ci.py"
+    ]
+  ],
+  "full_checks": [
+    [
+      "{python}",
+      "-B",
+      "tests/run_tests.py",
+      "--out",
+      "{scratch}/tests.json"
+    ],
+    [
+      "{python}",
+      "-B",
+      "tracker/trace.py",
+      "check"
+    ],
+    [
+      "{python}",
+      "-B",
+      "site/build.py"
+    ],
+    [
+      "{python}",
+      "-B",
+      "site/copilot/build.py"
+    ]
+  ]
+}

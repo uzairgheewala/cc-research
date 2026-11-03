@@ -74,10 +74,19 @@ switch ($Command.ToLower()) {
         Write-Host "[cc] building $Image (thin runtime layer)"
         & docker build --build-arg "BASE=$BaseImage" -f (Join-Path $Research "docker\Dockerfile.overlay") -t $Image (Join-Path $Research "docker")
         if ($LASTEXITCODE -ne 0) { Fail "runtime layer build failed" }
-        $baseId = & docker image inspect $BaseImage --format "{{.Id}}"
-        $runId  = & docker image inspect $Image --format "{{.Id}}"
-        $info = @{ base_image = $BaseImage; base_id = "$baseId"; runtime_image = $Image; runtime_id = "$runId"; built_utc = (Get-Date).ToUniversalTime().ToString("o") }
-        $info | ConvertTo-Json | Out-File -Encoding ascii (Join-Path $Research "manifests\image_ids.json")
+        $baseId = (& docker image inspect $BaseImage --format "{{.Id}}" | Out-String).Trim()
+        $runId  = (& docker image inspect $Image --format "{{.Id}}" | Out-String).Trim()
+        $recPath = Join-Path $Research "manifests\image_ids.json"
+        $nowUtc = (Get-Date).ToUniversalTime()
+        $info = [ordered]@{ base_image = $BaseImage; base_id = $baseId; runtime_image = $Image; runtime_id = $runId;
+                            built_utc = $nowUtc.ToString("o"); rebuilt = "base+overlay" }
+        # INF-11 (30 Oct): keep the earlier record, as ensureimage does (a rebuild on the new laptop overwrote it once)
+        if (Test-Path $recPath) {
+            $keep = Join-Path $Research ("manifests\image_ids_before_" + $nowUtc.ToString("yyyyMMddTHHmmssZ") + ".json")
+            Copy-Item $recPath $keep
+            $info["previous_record"] = (Split-Path -Leaf $keep)
+        }
+        $info | ConvertTo-Json | Out-File -Encoding ascii $recPath
         Write-Host "[cc] build complete. Next: powershell -ExecutionPolicy Bypass -File .\cc.ps1 preflight"
     }
 

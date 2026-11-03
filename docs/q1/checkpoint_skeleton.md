@@ -1,166 +1,125 @@
-# Quarter 1 checkpoint (due Fri 6 Nov 2026): title, abstract, introduction, and the public code link
+# Quarter 1 checkpoint (due Fri 6 Nov 2026): the auditor paper's title, abstract, introduction and code link
 
-Tickets: DLV-05, CRS-02, DLV-07, BND-13, DLV-01. Re-cut 27 Oct by the agent to the course page
-(dsc-capstone.org/2026-27/assignments/projects/q1, read 27 Oct). Status: **outline**.
+Tickets: DLV-05 (checkpoint, W1), DLV-07 (public Q1 repository), DLV-11 (benchmark audits, cited), DLV-06 (final, 4 Dec),
+PRG-01 (framing). Re-cut 31 Oct by W1 to program v3 (`claude/program-v3-2026-10-29.md`, section 2): the Q1 paper is the
+auditor paper. The earlier outline (27 Oct) framed Q1 as a controlled replication of Causal-Copilot's review step; that
+framing now appears as the worked case inside the audit, and refinement v2 belongs to the Q2 paper.
 
-What the course asks for:
-- **Report, graded by the mentor:** the title, abstract and introduction sections, written in the course's LaTeX template
-  on Overleaf. The introduction is an introductory paragraph, a literature review and discussion of prior work, and a
-  description of the relevant data.
-- **Code, graded by the TA:** a link to a public GitHub repository with the code so far (DLV-07, `tools/export_q1.py`).
+Status: **drafted and compiled.** The source of truth is `docs/paper/q1/` (design: `docs/paper/q1/DESIGN.md`):
 
-Rules for filling this outline:
-- Every number names its source file.
-- A placeholder `[[name: source]]` is filled from that source only, never typed by hand.
-- The results sections of the earlier outline moved unchanged to the final-report outline at the end; the checkpoint quotes
-  at most the one result the introduction needs.
+| File | What it is |
+|---|---|
+| `report.tex` | the checkpoint in the course template (title, abstract, introduction, prior work, data, code link, appendix A) |
+| `numbers.json` → `numbers.tex`, `numbers_table.tex`, `numbers.lock.json` | every number, with its result file and JSON pointer (`build_numbers.py`) |
+| `lit_claims.json`, `reference.bib`, `verify/` | every citation: the claim, the passage read, the verdict of a checker who did not write it |
+| `data_facts.md` | licences and citations of the data, checked on the licensor's page |
+| `lint_report.py` | fails on any numeral not printed through `\nm{key}`, and on any prior-work sentence without `\cite` or `\ours` |
+| `build/report.pdf` | the compiled PDF (XeLaTeX; CTAN `econ.bst` stands in for the template's `dsc180bibstyle.bst`) |
 
-## Title (pick one; about 12 words)
-- "Causal-Copilot, Step by Step: Where an LLM Agent's Causal Graph Comes From"
-- "Links Kept, Arrows Unsettled: A Controlled Replication of Causal-Copilot's Review Step"
+What the course asks for (dsc-capstone.org/2026-27/assignments/projects/q1, read 27 and 30 Oct):
+- **Report, graded by the mentor:** title, abstract and introduction (an introductory paragraph, a literature review and
+  discussion of prior work, a description of the relevant data), in LaTeX on the course's Overleaf template, as a PDF on
+  Gradescope.
+- **Code, graded by the TA:** a link to a public GitHub repository with the code so far (DLV-07).
 
-## Abstract (150-200 words; five sentences)
-1. **Problem.** LLM agents now run causal discovery end to end, but which part of their answer comes from the data, the
-   variable names or their own rules is not measured.
-2. **What we do.** Run Causal-Copilot (commit a31aa7c, GPT-4o) unmodified on tables with known graphs. Hold the numbers fixed
-   while the names change (real, neutral, swapped), and record every intermediate graph and model call.
-3. **Finding.** Its review step removes most links the algorithm found and crashes on [[8 of 30: bld06_live_compare.json
-   completed.main]] runs.
-4. **Improvement.** A replacement review keeps them: adjacency F1 [[0.596 vs 0.321: same, means.*.final_adj_f1]]; it finishes
-   every run at [[$4.84 vs $12.57: same, usd]]. Directed accuracy does not improve measurably
-   ([[+0.014, -0.017 to +0.038: same, paired_branch_minus_main.L2_dir]]).
-5. **Next.** When to commit to an arrow, and when to leave it open.
+Rules (unchanged): every number comes from a result file named next to it, now enforced by the registry and the lint;
+prior work comes from the literature clusters, each claim checked against its paper; results sections wait for the final
+report.
 
-## 1. Introduction (about one page)
-1. **Why causal structure matters.** Decisions need "what if we change X"; experiments are often impossible, so structure is
-   learned from observational data. Algorithms carry assumptions an expert must match.
-2. **What agents promise.** Causal-Copilot automates the expert: data inspection, algorithm choice, a model review of the
-   graph, a report. Its paper claims the review respects high-confidence bootstrap decisions and checks moderate ones.
-   Recorded runs show otherwise (paper-vs-code D1-D2, `claude/causal-copilot-research-ledger.md`; site page
-   copilot/step-refinement.html).
-3. **The question and the controls.** Stated as in the abstract. Name arms, shuffled columns, code identity,
-   pre-registration (`docs/q1_repo/docs/method.md`).
-4. **Contribution so far.**
-   - A recorded, reproducible replication.
-   - A stage-by-stage diagnosis.
-   - A drop-in replacement for the review step, measured against the original on the same image.
-   - One traced case, showing the defect in each.
+## Title
+Chosen: **"Auditing Causal-Discovery Systems: An Open Protocol and a First Audit of the Field"**.
+Alternative: "Where Do the Arrows Come From? An Open Protocol for Auditing Causal-Discovery Systems".
 
-## 2. Prior work (about one page; sources: `analysis/literature/agent_reports/`)
-- **LLM-assisted causal discovery.** Models used as experts on variable names: pairwise direction queries, orders and tiers,
-  full graphs. Cluster 1.
-- **Causal agents and how they are evaluated.** Causal-Copilot and the systems in our field audit: causaliq-knowledge,
-  MATMCD, PyWhy-LLM, Vashishtha et al. Cluster 2.
-  - The audit's finding to cite: swapped names cost three of five systems ≥ 0.10 directed F1.
-  - The one that resists is the one whose data decide the graph (`analysis/reports/ab06*`; site page `names`).
-- **Benchmarks and their shortcuts.**
-  - CausalArena: published scores read the column layout (`analysis/reports/ab01_controlled_scoreboard.md`).
-  - Memorisation and leakage: CARE already used moved-name controls. Cluster 8.
-- **Bootstrap support and reliability of discovered edges.** Clusters 3-4.
-- **What we add:** a stage-level account of one widely used agent, under controls, with recorded evidence for every step.
+## Abstract (as drafted; numbers are registry keys)
+1. **Problem.** Systems are judged by one benchmark score; agents run the whole analysis; neither says where an answer
+   comes from (numbers, names, layout, the system's own rules).
+2. **What we do.** An open audit protocol: names and column order change while the numbers stay fixed, every intermediate
+   graph is traced, failures are typed, scores are reported within a regime and against a reference of stated tier.
+3. **Findings, one per level.** Benchmarks reward layout (`ab01.fci.gain`); agents read names (`ab06.p9.losing` of
+   `ab06.p9.entered` lose at least `ab06.p9.threshold`); an agent's steps undo its data (`cc.s0-adj` → `cc.final-adj`;
+   `cc.cyc.entered` of `cc.cyc.entered` runs reaching the cycle step crash).
+4. **Release.** Protocol, recorded runs and scripts are public.
 
-## 3. Data (half a page; source: `docs/q1/datasets.md`, frozen 10 Oct, manifest `manifests/evidence/suite_q1_2026-10-10.sha256`)
-- **S2, the main suite:**
-  - 10 CausalArena semantic test scenarios (Hugging Face `LAMDA-Tabular/CausalArena`, CC BY 4.0), each written three times
-    with byte-identical numbers (real, neutral, swapped names);
-  - columns shuffled, opaque paths;
-  - the true graph is the simulating graph.
-- **S1:** Sachs (protein signalling; the reference is contested, with at least three published versions) and four named
-  real datasets (abalone, Auto MPG, concrete, DWD), each with real, neutral and moved names.
-- **Recorded runs:** what one run contains (model calls, state after each stage, refinement sub-steps). How many: S1 84, S2
-  30 + 30 + 30.
-- **Limits:**
-  - semantic scenarios are simulated;
-  - one run per arm;
-  - one model.
+## 1. Introduction
+1. Why causal structure matters, and what agents promise (Causal-Copilot and the systems of the field audit).
+2. The gap: a score does not say where an answer came from; known shortcuts (varsortability, column order, memorised
+   graphs); the call for audit trails.
+3. The protocol in one paragraph: levels L0-L2 now (L3 claim provenance and L4 adversarial search designed, later), typed
+   findings from a closed list, regimes, truth tiers, pre-registered thresholds, the certificate. This is the A2 outline;
+   the full specification goes to the final report (DLV-08).
+4. The first audit, three bullets: benchmarks reward shortcuts (AB-01, BEN-13), agents read names (AB-06, BND-08), an
+   agent's own steps undo its data (AB-06 P10, BLD-06 main control).
+5. The bar the audit sets (AB-14: no vendor publishes precision or abstention for causal claims).
+6. Contributions; the companion Q2 system is audited through the same interface and not reported here.
+
+## 2. Prior work (section label `sec:prior`; 38 checked claims plus 9 data facts)
+1. How causal discovery is evaluated, and what benchmarks reward (PC/FCI, GES, varsortability, R2-sortability, column
+   order, Sachs as ground truth, CausalArena, CausalBench).
+2. Language models as a source of causal knowledge, and memorisation controls (Kiciman, Causal Parrots, imperfect
+   experts, causal order, Kitson and Constantinou, Srivastava, Li and Russo, CARE). The last is the name control we use;
+   what we add is layout controls and application to deployed agents and benchmarks.
+3. Causal agents and how they are evaluated (Causal-Copilot, ALCM, MATMCD, Causal Modelling Agents, causaliq-knowledge,
+   PyWhy-LLM, CausalSteward, behavioural consistency, the position paper).
+4. How much an edge can be trusted (bootstrap, its calibration, LLM edge confidence).
+5. Auditing practice the protocol borrows (metamorphic testing, CheckList, model cards, datasheets, internal audits,
+   PROV-DM).
+
+Checker corrections applied (15 of 38; `lit_claims.json`): GES's large-sample result is conditional; R2-sortability is
+"common settings"; column order matters more than sample size only typically; CausalBench's screens are not genome-scale
+for RPE1; Long et al. do not say the model "violated" the error model; Srivastava's models were given dataset and node
+names; CARE's collapse is under both permuted and anonymised names; Li and Russo treat consensus directions as hard facts
+in practice; CausalSteward steered Causal-Copilot "when necessary"; Kummerfeld and Rix tested GES only; Kumar et al.'s
+agreement advantage is not significant; CheckList's invariance tests are a test type.
+
+## 3. Data
+- **CausalArena semantic suite (S2):** `s2.families` test scenarios × `s2.arms-per` name arms = `s2.tables` tables,
+  `s2.rows` rows, `s2.vars.min`-`s2.vars.max` variables, `s2.edges.min`-`s2.edges.max` edges; exact tier; CC BY 4.0.
+  Public files used by the layout audit: `ab01.files.*`.
+- **Named datasets (S1):** Sachs (contested: 19 / 17 / 20-edge versions) and the four UCI/DWD tables (provenance;
+  Auto MPG mismatched with CausalArena's version). Licences: UCI and DWD CC BY 4.0; Sachs none stated.
+- **CausalBench:** K562 and RPE1 after CausalBench's filtering (cells, controls, perturbed genes from
+  `external/causalbench/*.npz.json`, which match CausalBench's Table 1); data CC BY 4.0, code Apache 2.0. BEN-13 cited.
+- **Recorded runs:** what a run keeps; BND-08 and the BLD-06 main control.
+- **Limits:** simulated scenarios, one run per arm, one model family, expert references.
 
 ## 4. Code link (DLV-07)
-- The public Q1 repository's URL goes here once Uzair has created it and CI is green.
-- Before submission: re-run `py -3 tools\export_q1.py` so the repo matches the cc-research commit the report quotes.
+- `https://github.com/uzairgheewala/causal-copilot-q1`: public; CI "reproduce" green on 43d0c75 (27 Oct).
+- A dry-run export from cc-research `cf536c1` (31 Oct, to a scratch folder) reproduced exactly and differs from the
+  pushed repo only in the README's commit line and export time.
+- Before submission: commit cc-research (the commit that adds `docs/paper/q1/`), re-run `py -3 tools\export_q1.py`,
+  commit and push the Q1 repo, check CI is green.
+
+## 5. Submission steps (Uzair)
+1. Commit cc-research with `docs/commit_msgs/q1_checkpoint_cc-research.txt`.
+2. Re-export the Q1 repo, push, CI green.
+3. Overleaf: copy the course template; replace `report.tex` and `reference.bib`; add `numbers.tex` and
+   `numbers_table.tex`; fill the two email macros; recompile; compare with `docs/paper/q1/build/report.pdf`.
+4. Gradescope: the PDF and the repo link.
 
 ---
 
-# Outline for the final report (Fri 4 Dec): results sections, carried over from the 22 Oct outline
+# Outline for the final report (Fri 4 Dec, DLV-06; parent of DLV-08..11)
 
-## 1. Question and setup (half a page)
+## 1. Introduction and prior work
+From the checkpoint, tightened after the mentor's feedback.
 
-- **Question:** what does Causal-Copilot (Lancelot39/Causal-Copilot, commit a31aa7c, GPT-4o) do to a causal graph, step by
-  step? How much of its answer comes from the data, and how much from the variable names?
-- **Control:** the same numbers are given under real, neutral and swapped column names. The columns are shuffled. The
-  pipeline's code tree is checked before and after every run.
-- **Suite (DLV-01, frozen 10 Oct):** `docs/q1/datasets.md`.
-  - S1: Sachs plus four named real datasets.
-  - S2: 10 CausalArena semantic test scenarios × 3 name arms, 30 tables.
+## 2. The audit protocol v1 (DLV-08, W2)
+Finding kinds (closed list), regimes, truth tiers, development and sealed batteries, pre-registration, the certificate.
 
-## 2. Runs (DLV-02)
+## 3. The audit package (DLV-09, W2)
+Adapter interface (designed against the five audited systems plus PC and GES), controls L0-L2, report generator; one
+command per system.
 
-- S1: 84 live runs. S2: 30 live runs (BND-08, 11-12 Oct). Source: tracker DLV-02 note and `analysis/results/stability_s2/bnd08_summary.json`.
-- The open gap: 6 S2 arms have no completed unmodified run. Their only run crashed in the cycle step and is scored at S3.
-- The 22 Oct main-control series (`plans/results/fork_bld06_live_main.capped.json`, rebuilt image) reproduces BND-08:
-  - 8 of 30 crashed, the same crash;
-  - $12.57 against $12.68.
+## 4. Results: the field under the protocol (DLV-10)
+Per system: L0 scores, L1 name and layout reliance with intervals, L2 stage traces where code is open, L3-lite provenance
+by arm differences. Sources today: `analysis/results/ab06/ab06.json`, `analysis/results/stability_s2/bnd08_summary.json`,
+`analysis/results/fork/bld06_live_compare.json` (main control only), reruns through the package (W2).
 
-## 3. What each step does (DLV-03)
+## 5. Benchmarks audited (DLV-11, appendix)
+CausalArena layout channels (`analysis/results/rescore_v2/`), CausalBench metric audit (`analysis/results/ben13/summary.json`).
 
-From `analysis/reports/bnd08_s2_results.md` and `analysis/reports/bundle1_results.md`:
+## 6. Limits and what comes next
+Single runs per arm; one model family; rebuilt images (comparisons within one image); hashes per CPU family; the adversary
+loop with the Q2 system (ADV-01) as the next source of findings.
 
-| Finding | Number | Source |
-|---|---|---|
-| The bootstrap step lowers PC's adjacency F1 (M1) | 19 of 23 dev replay files | bnd08_s2_results.md |
-| Real names lift S3 directed F1 by ≥ 0.10 over neutral (M2) | 5 of 10 families: refuted | bnd08_s2_results.md |
-| LLM-set edges follow swapped labels (M3) | 81 of 101 distinct edges | bnd08_s2_results.md |
-| Without names, below plain PC on the same file (M4) | 8 of 10 | bnd08_s2_results.md |
-| Final adjacency F1, unmodified pipeline: algorithm output → final | 0.584 → 0.321 (22 completed runs, 22 Oct) | analysis/results/fork/bld06_live_compare.json |
-
-## 4. A refinement that does not fall below its algorithm (DLV-04, live confirmation on S2)
-
-Refinement v2 (branch `bld-06-refinement-v2` of our fork; `docs/FORK.md`) was run on the same 30 S2 tables, on the same image
-as the main control (`analysis/results/fork/bld06_live_compare.json`, pre-registration `plans/bld06_live_prereg.json`):
-
-- completed runs: 30 of 30, against 22 of 30;
-- cost: $4.84 against $12.57;
-- final adjacency F1, on the 22 tables where both completed: 0.596 against 0.321 (paired +0.276, interval 0.206 to 0.335);
-- directed F1, the same tables: +0.014 (interval −0.017 to +0.038);
-- final adjacency F1 below its own algorithm's output: 1 of 30 runs (by 0.006), against 22 of 22 for the unmodified pipeline;
-- pre-registered rule outcome: **drop-in**.
-
-Limit: one run per arm. Only the 10 S2 families are covered, not S1.
-
-## 5. Benchmarks we use, audited (context, one paragraph each)
-
-- **CausalArena:** published scores read the column layout (`analysis/reports/ab01_controlled_scoreboard.md`).
-- **CausalBench:**
-  - reproduced, all four MeanDifference rows (`analysis/results/ben13/summary.json`);
-  - share table in `analysis/reports/ben13_s1_s2.md`: edge placement carries 0.07-0.14 of MeanDifference's above-random score
-    (P1 fails); permuted labels fall to random level (P2 holds); 0.90 / 0.95 of the total-effect ceiling (P3 holds);
-    STRING networks above same-size random networks (P4 holds).
-
-## 6. Our own system so far (Quarter 2 preview, one paragraph)
-
-- Kernel v3, the claim ledger.
-- CausalArena held out (`analysis/results/q2_v3/v3_test.json`, regime D): semantic precision at half coverage 0.830
-  [0.783, 0.874], ER-2 not met; formula 0.908 [0.876, 0.942], ER-2 met; ER-3 not met in either.
-- Second family, held out (`analysis/results/q2_v3/family2_read.json`):
-  - precision at half coverage 0.795 (0.777 to 0.811);
-  - ECE 0.042;
-  - target 0.80 not met.
-- Next candidate: none adopted (`analysis/results/v4/decision.json`): three nonlinear GES scores gain +0.015 to +0.040
-  in semantic dev precision, no interval excludes zero; v3 stays, the sealed held-out family is unread.
-
-## 7. Limits and what is next
-
-- Single runs per arm; one LLM (gpt-4o-2024-08-06).
-- Rebuilt image: comparisons are made within one image.
-- Results are hashed per CPU family; claim structure is checked across hosts (CAP-11, CAP-19).
-- Next: DLV-04 on S1, the Quarter 1 final report (4 Dec).
-
-## Number-to-ticket table
-
-| Number | Ticket | Source file | Check |
-|---|---|---|---|
-| 30 / 30 vs 22 / 30 completed | BLD-06 | analysis/results/fork/bld06_live_compare.json `completed` | tracker check (p32) |
-| 0.596 vs 0.321 final adjacency F1 | BLD-06, DLV-04 | same, `means.*.final_adj_f1` | tracker check (p32) |
-| 0.795 [0.777, 0.811] | TGT-18 | analysis/results/q2_v3/family2_read.json `subsets.all` | TGT-18 checks (p31) |
-| four MeanDifference rows reproduced | BEN-13 | analysis/results/ben13/summary.json `reproduction_all` | BEN-13 check (p31) |
-| no v4 knob adopted; A1 +0.040 [-0.011, 0.094] | BLD-18 | analysis/results/v4/decision.json | BLD-18 check (p33) |
-| P1 fails, P4 holds | BEN-13 | analysis/results/ben13/summary.json `predictions` | BEN-13 checks (p33) |
+Every number in the final report goes through `docs/paper/q1/numbers.json`.

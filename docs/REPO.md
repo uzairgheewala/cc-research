@@ -4,6 +4,21 @@ Tickets: INF-06, INF-07, BLD-10, BLD-11
 
 What goes in git, what stays out, how CI keeps the evidence honest, and how the site is published.
 
+## Current direction (3 Nov 2026)
+
+cc-research is the research record and interactive presentation of the questions,
+methodology, results and limitations that will support the paper. Uzair authorized
+extracting the supported audit package into an independent repository, with its
+own tests, protocol, benchmark definitions and documentation. Preserve existing
+research evidence and stable result pointers during the migration. The chosen name is Crucis; its independent runtime is in `../crucis`. The competitor review is in
+`docs/research/causal-auditing-landscape-2026-11-03.md`.
+
+Agents now make automatic **local** commits after coherent, validated milestones.
+The active workflow is `tools/skills/milestone-commit/SKILL.md`, required by root
+AGENTS.md. This supersedes older instructions reserving commits for Uzair. No
+further extraction hold applies after the verified Crucis cutover. Pushing,
+publishing, merging and history rewriting require authorization for those actions.
+
 ## Layout
 
 | Path | In git | What |
@@ -49,7 +64,17 @@ The checkout folder must be called `cc-research` (pins of file sets include it);
     python tracker/snapshot.py            # refresh site/snapshot.json
     python site/build.py                  # optional: look at site/_build/index.html locally
 
-The pre-commit hook (`git config core.hooksPath tools/hooks`, once per clone) runs the secret scan on staged files.
+The pre-commit hook (`git config core.hooksPath tools/hooks`, once per clone) runs
+`tools/commit_gate.py`. It exports the exact index and runs the staged
+`.commit-policy.json` checks there, including secrets, pins, snapshot, offline
+tests, tracker consistency and site builds. Unstaged fixes cannot satisfy these
+checks. The index and HEAD must stay unchanged throughout validation. Full tests
+with omitted external datasets remain distinct from a data-backed reproduction.
+
+On Windows, use `tools/python.ps1` to select the project environment or the
+workspace-local `.tooling/venv` interpreter. It also enables UTF-8 output. For
+example: `./tools/python.ps1 -B tools/commit_gate.py`. The old `py -3` command may
+not exist in the current host session.
 
 ## The site
 
@@ -71,7 +96,11 @@ names the agent under audit and our unpublished numbers.
 `runs/` is the evidence for every live claim; archive it per label as a GitHub release asset
 (`runs_<label>.tar.gz`) and record the asset's sha256 next to the manifest when the repository is created.
 
-## Creating the repository (once; Uzair runs these, PowerShell in `...\DSC 180A\cc-research`)
+## Original repository creation (historical, already completed)
+
+cc-research and its GitHub remote already exist. The commands below document the
+initial setup, not an instruction to initialize, stage the entire current tree,
+or push during ordinary milestone work.
 
     git init -b main
     git config core.hooksPath tools/hooks
@@ -87,3 +116,12 @@ names the agent under audit and our unpublished numbers.
 
 The first push runs both workflows. If `ci` fails on `Evidence pins`, a pinned file differs between this machine and the
 commit (usually a line-ending conversion): check `git config core.autocrlf` is `false` and that `.gitattributes` is committed.
+
+## Crucis extraction and checkpoint inputs (3 Nov)
+
+Crucis owns the framework runtime and its tests; `audit/` here retains B5 and historical audit results.
+The namespace is `crucis`, with an explicit `CRUCIS_DATA_ROOT` for recorded research inputs.
+The extraction inventory and cutover receipt are under `docs/migrations/`.
+`tools/check_checkpoint_ci.py` validates the frozen paper contract in the exact staged/CI tree,
+materializing only two hash-checked data-shape metadata summaries from `docs/migrations/checkpoint-metadata/`.
+This does not reproduce excluded raw experiments. The paper stays on its pre-package source paths.

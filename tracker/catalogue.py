@@ -2059,3 +2059,113 @@ for _i in ITEMS:
     if _i["id"] == "DLV-05":
         _i["criterion"] = ("Title, abstract and introduction (intro paragraph, prior work, data description) submitted in the course "
                            "LaTeX template, with a link to the public Q1 repository (DLV-07)")
+
+# ---- overrides s36 (2026-10-30): program v3 (claude/program-v3-2026-10-29.md) as tickets; the move to the second laptop
+CATS.update({"PRG": "15 Decisions", "ADV": "9 Evaluation protocol", "PRD": "14 Stretch"})
+_P3 = "project:claude/program-v3-2026-10-29.md"
+_P3K = "project:claude/program-v3-kickoffs-2026-10-29.md"
+ITEMS.append(item("PRG-01", "PRG", "Program v3: two papers and two repos (Q1 the auditor, Q2 the system), with the adversary loop between them",
+                  "in_progress",
+                  criterion=("The program doc (sections 0-11, decisions P3-1..P3-6 with defaults) and the kickoff prompts for chats W1-W5 are "
+                             "written; P3-4 (private engine core) is answered by Prof. Umesh; the five chats are open and each owns its files"),
+                  evidence=[_P3, _P3K],
+                  note=("29 Oct, after the TA check-in. Defaults in brackets in section 10; P3-4 is an ask (CRS-09, PRD-02). "
+                        "This chat (W5) keeps the program doc, the tracker and the site; changes to the ledger format or audit protocol go through it.")))
+ITEMS.append(item("DLV-08", "DLV", "A2 Audit protocol spec v1: finding kinds (closed list), regimes, truth tiers, development and sealed batteries, certificate",
+                  "todo", kind="deadline", due="2026-12-04",
+                  criterion=("A versioned spec in the Q1 repo: each finding kind with its control, effect size with interval and evidence files; "
+                             "the four regimes; the truth tiers (exact, contested, provenance-only, mismatched); a public development battery and a "
+                             "hashed sealed battery read once per declared version; the certificate (system identity, battery hash, every number with "
+                             "its source, the rerun command)"),
+                  evidence=[_P3 + " (section 2.2)"], note="Program v3 A2; chat W2. Outlined in the checkpoint's introduction (DLV-05)."))
+ITEMS.append(item("DLV-09", "DLV", "A3 audit package: adapter interface, controls L0-L2, report generator; one command audits a system end to end",
+                  "todo", kind="deadline", due="2026-12-04",
+                  criterion=("audit/ package with tests: the adapter interface designed against the five audited systems plus PC and GES before it is "
+                             "frozen; L0 scoring, L1 metamorphic controls, L2 stage tracing for Python systems; reports and certificates; each bundle "
+                             "audits one system end to end and equals the existing audit results to 0.001"),
+                  evidence=[_P3 + " (section 2.4)", _P3K + " (W2)"], note="Program v3 A3; chat W2. The Q1 repo is renamed to the audit repo when this lands (P3-3)."))
+ITEMS.append(item("DLV-10", "DLV", "A4 Audit results rerun through the package: per-system tables L0-L2 and provenance by arm difference (L3-lite)",
+                  "todo", kind="deadline", due="2026-12-04", blocked_by="DLV-09",
+                  criterion="Every audit in the Q1 paper is produced by the package; no new API spend except a rerun Uzair approves",
+                  evidence=[_P3 + " (section 2.4)"], note="Program v3 A4; chat W2 bundle 5."))
+ITEMS.append(item("DLV-11", "DLV", "A5 Benchmark shortcut audits as the paper's appendix: CausalArena layout (AB-01) and the CausalBench metric (BEN-13)",
+                  "todo", kind="deadline", due="2026-12-04",
+                  criterion="The two benchmark audits re-stated under the protocol (finding kinds, truth tiers), numbers from their result files",
+                  evidence=[_P3 + " (section 2.3)"], note="Program v3 A5; chat W1 (cited at the checkpoint), W2 (rerun)."))
+ITEMS.append(item("DLV-12", "DLV", "A6 Public scorecards: one page per audited system, generated from the audit reports",
+                  "todo", kind="deadline", due="2026-12-04", blocked_by="DLV-10",
+                  criterion="One site page per audited system, every number read from a report through site/registry.py",
+                  evidence=[_P3 + " (section 2.4)"], note="Program v3 A6; chat W5 (site v4 routes after 6 Nov)."))
+_R = [("BLD-19", "R0 The contract: the claim-ledger format and a ledger writer in the agent",
+       "The ledger format agreed by W2, W3 and W5 and written into the program doc; the agent writes one ledger per run on a fork branch", "2026-12-04", None),
+      ("BLD-20", "R1 Correctness fixes: the 16 code notes plus the cycle fix, live, one fork branch per ticket",
+       "Each fix from analysis/reports/copilot_code_notes.md on its own branch with a stub run; the live run is proposed with its cost and run by Uzair", "2026-12-04", None),
+      ("BLD-21", "R2 Typed state and per-edge provenance in the agent",
+       "Every edge in the agent's output carries its source (data, interventions, declared knowledge, model call) in the ledger", "2026-12-04", "BLD-19"),
+      ("BLD-22", "R3 The direction rule (commit an arrow only on sufficient evidence, else name the next experiment) and knowledge as orient-only tiers",
+       "On saved development cases: wrong, right and open directions and links reported separately for the current and the new rule; the rule "
+       "pre-registered and hashed before any held-out read; gas/void a regression check only", None, None),
+      ("BLD-23", "R4 The engine slot: kernel v3, the v4 candidates and interventions behind one interface",
+       "The agent calls the engine through the ledger contract; swapping engines changes no agent code", None, "BLD-19"),
+      ("BLD-24", "R5 A report rendered from the ledger",
+       "The user-facing report is generated from the ledger alone; every sentence traces to a claim", None, "BLD-21")]
+for _id, _t, _cr, _due, _bb in _R:
+    ITEMS.append(item(_id, "BLD", _t, "todo", criterion=_cr, due=_due, blocked_by=_bb,
+                      evidence=[_P3 + " (section 3)", "project:claude/rebase-2026-10-24.md (section 5)"],
+                      note="Program v3 system phase; chat W3. Never on the fork's main; B tunes on A's development battery only."))
+ITEMS.append(item("ADV-01", "ADV", "Adversary loop log: B (the system) against A (the auditor), round by round", "in_progress",
+                  criterion=("One row per round: A version, B version, battery hash, findings opened, findings closed, regressions; a finding "
+                             "closes only by a sealed read; new finding kinds pre-registered before they run on B; the table appears in both papers"),
+                  evidence=[_P3 + " (section 4)"],
+                  note=("Round 0 is recorded in program v3 section 4 (review step deleting links, cycle crash, names driving direction; "
+                        "refinement v2 closed links and crashes, not direction). Round 1: the direction rule (BLD-22) against a plurality-trap probe "
+                        "and a direction battery (A, L4 seed).")))
+ITEMS.append(item("PRD-01", "PRD", "Pharma bars: P1 perturbation-data target prioritisation and P2 RWE assumption ledger", "todo",
+                  criterion=("One table per shape: buyer, job to be done, evidence demanded (primary sources: ICH M14, FDA RWE guidance, "
+                             "published Perturb-seq validation), a numeric bar, the distance from today's measured results, the cheapest next "
+                             "experiments; every figure labelled primary, second-hand, vendor claim, analyst claim or estimate"),
+                  evidence=[_P3 + " (section 5)"], note="Program v3 section 5; chat W4. Targets to validate, not facts; nothing is called sellable before a sealed read meets them."))
+ITEMS.append(item("PRD-02", "PRD", "IP and licence check before any commercial step: UCSD student IP policy, Causal-Copilot's MIT licence, the mentor's authorship",
+                  "todo",
+                  criterion=("Questions for Prof. Huang and Prof. Umesh written from UCSD's actual policy page; the private-core proposal (P3-4) put "
+                             "to Prof. Umesh; what needs an expert flagged (not legal advice)"),
+                  evidence=[_P3 + " (sections 5-6)"], note="Program v3 sections 5-6; chat W4."))
+ITEMS.append(item("CRS-09", "CRS", "Written confirmation from Prof. Umesh (course professor) of the one-person group the TA approved on 29 Oct",
+                  "in_progress", kind="deadline",
+                  criterion="A written reply from Prof. Umesh, saved without contact details under docs/course/ and named here",
+                  note=("30 Oct: Uzair sent the emails; awaiting replies. The program doc called this CRS-06, which already names the Q2 "
+                        "deliverables; CRS-08 is the PA ticket named in WAVE_STATE (wave B)."), evidence=[_P3 + " (section 0)"]))
+ITEMS.append(item("INF-11", "INF", "Move to the second laptop (30 Oct): migration checks and the host record used to size wave sheets",
+                  "in_progress",
+                  criterion=("Migration doc step 4 passes on the new laptop: every file outside git matches manifests/excluded/ (data_manifest "
+                             "--check), the three repos are clean at the GitHub heads, ci_check_portable and snapshot --check pass, the Q1 "
+                             "repo reproduces, the hooks path is set, and preflight nollm passes on the rebuilt images; docs/hosts.md records "
+                             "CPU family, AVX-512, cores, RAM and Docker memory, with manifests/hosts/laptop2.json from tools/host_probe.ps1"),
+                  evidence=["docs/hosts.md", "tools/host_probe.ps1", "project:claude/migration-2026-10-30.md"],
+                  note=("30 Oct (W5, from the device shell): 31,824 of 31,826 excluded files re-hashed equal, none missing or added, all sizes "
+                        "equal (the two CausalBench .h5ad files, 19.4 GB, are left to the native --check); repos at cf536c1 / a31aa7c "
+                        "(55a490a, da55264) / 43d0c75 as on GitHub; ci_check 0 errors; snapshot ok; Q1 reproduce exact; hooksPath tools/hooks. "
+                        "Images rebuilt by Uzair from 31 Oct 01:26 UTC; preflight held until he says.")))
+for _i in ITEMS:
+    if _i["id"] == "DLV-05":
+        _i["title"] = "A1 checkpoint: the Q1 paper (the auditor) title, abstract, introduction with literature review, data, public code link (Fri 6 Nov)"
+        _i["criterion"] += "; framed as the auditor paper (program v3 section 2, PRG-01), with Causal-Copilot as the worked case"
+        _i["note"] = ((_i.get("note") or "") + " 30 Oct: program v3 A1 checkpoint; chat W1 has priority until 6 Nov.").strip()
+    if _i["id"] == "DLV-06":
+        _i["title"] = "A1 Q1 final paper: the auditor, its protocol, the audits, results and limits (Fri 4 Dec)"
+        _i["note"] = ((_i.get("note") or "") + " 30 Oct (program v3): re-cut from a replication-style report to the auditor paper; the "
+                      "earlier criterion was: " + _i["criterion"]).strip()
+        _i["criterion"] = ("The full Q1 paper (program v3 A1): the audit protocol (DLV-08), the package (DLV-09), the audits under it (DLV-10), "
+                           "the benchmark appendix (DLV-11) and limits, with Causal-Copilot as the worked case (DLV-01 to DLV-04); every number "
+                           "reproducible from the Q1 repo with the command named next to it")
+    if _i["id"] == "CRS-01":
+        _i["status"] = "done"
+        _i["criterion"] = _i.get("criterion") or "The TA check-in is held and its outcomes are recorded"
+        _i["evidence"] = list(_i.get("evidence") or []) + [_P3 + " (section 0)"]
+        _i["note"] = ((_i.get("note") or "") + " 30 Oct: held Thu 29 Oct 10:45. Outcomes (program v3 section 0): one-person group approved by "
+                      "the TA (written confirmation: CRS-09); Q1 and Q2 as separate papers and repos; next deadline Fri 6 Nov.").strip()
+
+# ---- overrides s37 (2026-10-30): BLD-06 interval ends as the result file rounds them (0.11048 -> 0.110, 0.03847 -> 0.038)
+for _i in ITEMS:
+    if _i["id"] == "BLD-06":
+        _i["note"] = _i["note"].replace("+0.071 [0.035, 0.111]", "+0.071 [0.035, 0.110]").replace("+0.014 [-0.017, 0.039]", "+0.014 [-0.017, 0.038]")

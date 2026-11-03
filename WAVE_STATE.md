@@ -3,10 +3,17 @@
 Updated 2026-10-22 (wave B readback) by the agent. Tickets: INF-10, INF-06, TGT-18, CAP-07, BEN-13, BLD-06, EXT-03, CAP-11
 
 ## Current
-- Waves A and B: **complete** (readbacks below). Wave C: planned, waits for Uzair's choice D-11.
-- Waiting commit messages: `docs/commit_msgs/q2_l16_l5_cc-research.txt`, `waves_adopted_cc-research.txt`,
-  `wave_a_cc-research.txt`, `wave_a_fork_cc-research.txt`, `wave_a_rerun2_cc-research.txt`, `wave_a_rerun3_cc-research.txt`,
-  `wave_a_readback_cc-research.txt`, `wave_b_build_cc-research.txt`, `wave_b_readback_cc-research.txt` (check which are already in git).
+Updated 2026-10-30 (W5, the program chat). Tickets: PRG-01, INF-11, CRS-09, DLV-05
+- **Program v3** (29 Oct, project doc `claude/program-v3-2026-10-29.md`, PRG-01) replaces the wave-C menu (D-11). Q1 is the
+  auditor (DLV-05 checkpoint 6 Nov and DLV-06 final 4 Dec, plus DLV-08..12); Q2 is the system (BLD-19..24, R0-R5); the
+  adversary loop is ADV-01; the product bars and IP check are PRD-01/02. C-a became the checkpoint (chat W1); C-b and C-c
+  wait for program v3's order of work. Waves A and B: complete (readbacks below).
+- **Moved to the second laptop 30 Oct** (INF-11, `docs/hosts.md`): Intel Core Ultra 7 155U, AVX2, no AVX-512, so the same
+  BLAS family (HASWELL) as the first laptop; numbers read as before, and the canary confirms on the first sheet. The images
+  were rebuilt there from 31 Oct 01:26 UTC (`manifests/image_ids.json`; the earlier record is
+  `image_ids_before_20261031T012646Z.json`). The Causal-Copilot base is a new build again: a live comparison needs its own
+  main control on this image (as LIVE_06M was).
+- Waiting commit message: `docs/commit_msgs/program_v3_cc-research.txt` (the 27 Oct commits carried the wave A-B messages).
 - Engine cache: `jobs/transfer/cache_engines_2026-10-19.tgz` (500 CausalArena dev entries); family-2 entries filled on the sheet (done).
 - Defaults taken (20 Oct): D-1 plan yes; D-2 second family = our labelled generator (500 files), Causal Chambers wt
   report-only; D-3 BEN-13 names-only LLM arm no; D-4 public feed = dev digests; D-5 gaps page = new Act IV page (wave B);
@@ -150,9 +157,9 @@ X4 (back from sheet A, dev): KCI detects the nonlinear-only missed links 45.5% (
 ## Wave B (built 22 Oct; sheet B)
 Done in the build (no sheet needed): BLD-06 graph quality, pre-registered and scored on Uzair's machine through the bridge
 (`analysis/results/fork/bld06_live_compare.json`): rule **drop_in**. Branch vs main on one image: completed 30 / 22;
-delivered directed F1 +0.071 [0.035, 0.111]; final adjacency F1 0.596 vs 0.321 on the 22 tables both completed (main's
+delivered directed F1 +0.071 [0.035, 0.110]; final adjacency F1 0.596 vs 0.321 on the 22 tables both completed (main's
 refinement lowers its own algorithm's adjacency F1 in 22 of 22 runs, the branch in 1 of 30, by 0.006); directed F1 +0.014
-[-0.017, 0.039]. EXT-03 upstream draft; TA agenda; Q1 checkpoint outline; explanation ledger code; CAP-19.
+[-0.017, 0.038]. EXT-03 upstream draft; TA agenda; Q1 checkpoint outline; explanation ledger code; CAP-19.
 On sheet B: v4 score grid on dev and the pre-registered decision; the sealed v4 held-out family; BEN-13 refill, P2 / P4,
 report; data manifest. Details: `jobs/waves/B/plan.md`.
 

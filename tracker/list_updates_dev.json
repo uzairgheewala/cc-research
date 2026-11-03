@@ -1,19 +1,11 @@
 {
  "list": "F0C869P25NE",
  "updates": {
-  "INF-10": {
-   "record_id": null,
+  "BLD-06": {
+   "record_id": "Rec0C90SNN2NL",
    "cells": {
-    "Item": "INF-10  Wave runner and kit builder: one run sheet per wave (preflight, canaries, gates, caps, resume, RETURN.json)",
-    "ID": "INF-10",
-    "Category": "10 Infrastructure",
-    "Status": "⏳ To-do",
-    "Kind": "task",
-    "Evidence level": "V2",
-    "Closing criterion": "cc.ps1 wave <id> runs a sheet on Uzair's machine: preflight checks code identity, disk, RAM and files; one canary per job runs first; gated jobs are skipped when their gate fails; a failing job stops only itself; RETURN.json is written incrementally with status, exit, code identity, output hashes, cost and wall time; the kit builder ships code, the engine cache and needed data to the agent's sandbox; unit tests",
-    "Evidence": "docs/WAVES.md\nWAVE_STATE.md",
-    "Note": "Adopted 19 Oct (docs/WAVES.md). Built in wave A; must show: a 3-job demo sheet with one gated skip and one failing canary.",
-    "Verified": "2026-10-20"
+    "Note": "v2 is the drop-in replacement: it never falls below the algorithm on held-out data (formula test 22/22) and sources every edge; names add little (R6 refuted) and wrong names cost nothing measurable (R5). 22 Oct, live on the fork (branch bld-06-refinement-v2, 30 BND-08 tables, gpt-4o): 30 of 30 runs completed against 22 of 30 for unmodified main on the same rebuilt image (8 crashes in the cycle step; BND-08 had 6 of 30 on the old image); $4.84 against $12.57; refinement v2 ran in all 30. Graph quality against the data reference is scored on sheet B. 22 Oct, pre-registered comparison (plans/bld06_live_prereg.json; analysis/results/fork/bld06_live_compare.json): rule 'drop_in'. Delivered directed F1 +0.071 [0.035, 0.110] over main; on the 22 tables both completed, final adjacency F1 0.596 vs 0.321 (+0.276 [0.206, 0.335]) and directed F1 +0.014 [-0.017, 0.038]; S0 adjacency F1 within 0.01 (the two series ran comparable algorithms).",
+    "Verified": "2026-10-31"
    }
   }
  },
