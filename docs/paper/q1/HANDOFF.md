@@ -13,7 +13,7 @@ implied. This adopted checkpoint contract takes precedence over older port
 examples and provisional naming in the historical handoffs it references.
 
 **Stage-2 cutover, 3 Nov:** Crucis now lives in the sibling `../crucis` repository,
-under the Python namespace `crucis`. `docs/migrations/crucis-separation.json`
+under the Python namespace `crucis_causal` (distribution/command `crucis-causal`). `docs/migrations/crucis-separation.json`
 records the verified extraction and lifts the initial commit hold. References
 below to that hold describe the earlier handoff; current root AGENTS.md governs
 automatic local commits. Historical audit results remain at their research paths;
@@ -34,7 +34,17 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 - **Deadlines:** checkpoint Fri **6 Nov 2026** (title, abstract, introduction = intro paragraph + literature review + data;
   LaTeX on the course's Overleaf template; PDF on Gradescope; plus the public code-repo link). Final report Fri 4 Dec.
 
-## 2. State on 3 Nov 2026 (verified from the device shell at 12:15 PT)
+## 2. State on 3 Nov 2026
+
+**Latest:** the initial table below is historical. Repositories and sites are now
+public, with local milestone commits enabled. The current branch
+`paper/q1-checkpoint-corrections` holds a provisional interpretation correction
+draft. Uzair asked to stop further paper work until he introduces his structured
+approach. This takes precedence over the old P0 task ordering. Biwei Huang has
+been removed from the author block at his instruction. No new mentor identity is
+implied. The paper is not submission-ready.
+
+### Historical baseline (12:15 PT)
 | Item | State |
 |---|---|
 | cc-research HEAD | `cf536c1` (27 Oct). **Nothing committed since**; W1's files are untracked/modified in the work tree |
@@ -208,3 +218,25 @@ and never on its null twin). DLV-07 final export with the package included (deci
   lifts the commit hold. Added a CI/staged-tree route for the two pinned data-shape summaries without changing the
   frozen registry or numerical sources. The manuscript corrections and PDF remain pending; source/commit receipts
   are in the migration log. Root policy now authorizes automatic local commits after ready milestones.
+
+- **3 Nov (Codex, post-publication preparation):** verified manually sent Slack
+  announcements and saved a subsystem rehearsal sheet. On local branch
+  `paper/q1-checkpoint-corrections`, prepared provisional Crucis framing and
+  interpretation fixes: bootstrap versus model review; unmatched name-control
+  cohorts and exploratory Causal-Copilot status; MATMCD point estimate and interval;
+  BND-08 pre-registration; implemented versus proposed scope and repository roles.
+  Removed unsupported global-first claims. No frozen registry/source/value changed.
+  Lint passed with 0 errors/warnings (74 used keys, 42 citations); all 78 numbers
+  and the checkpoint contract passed. Heuresis was re-read at the primary v1 paper
+  (https://arxiv.org/html/2610.22846v1); no new citation entered the bibliography
+  because its independent-reader gate remains pending.
+  A local PDF attempt failed before XeLaTeX at the missing-template bibliography
+  fallback: kpsewhich's output did not resolve to a usable econ.bst path. No fresh
+  PDF was produced. The historical tracked PDF and generated number artifacts were
+  restored byte-for-byte; the attempted build inputs/bundle are archived outside
+  the repository under `_repo_migration/2026-11-03/paper-build-attempt/` and must not
+  be treated as a current PDF or submission bundle.
+  Uzair then requested a new structured paper workflow and removal of Biwei Huang
+  from the author block. Applied the author change, kept this correction draft
+  local for review, and stopped further paper development. No submission, new paid
+  campaign or paper publication occurred. Await Uzair's approach before continuing.
