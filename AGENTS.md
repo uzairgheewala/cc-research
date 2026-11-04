@@ -33,6 +33,13 @@ UCSD DSC 180A. Everything we claim must be checkable from the files in this fold
    A select column's options are stored as slug values ("0 Quarter 1 deliverables" is stored as `0_quarter_1_deliverables`).
    When adding an option, resend every existing option with its slug value and its label; sending label text as the value
    detaches every existing row from its option (seen 10 Oct on the Dev list's Category; fixed by resending the slugs).
+   Text written through Slack rich-text parsing must escape literal `&`, `<` and `>`
+   as `&amp;`, `&lt;` and `&gt;`, then be read back. A successful update response is not
+   proof of preserved scientific notation: the unescaped AUD-12 note lost part of
+   `<-> and o->` during the 3 Nov parity repair; the escaped write read back correctly.
+   A zero `list-diff` compares with the last local synced copy, not live Slack.
+   Claim parity only after a fresh readback. Keep expected date lag separate:
+   Verified dates are sent only with another changed field, not as mass date-only updates.
 8. Do not rely on answers from Prof. Huang's group.
 
 ## Tickets and links (the tracker)
@@ -79,6 +86,13 @@ The separation receipt records the installed-wheel, recorded-data and certificat
 migration hold is lifted by that verified cutover; make automatic local milestone commits from then on.
 Research evidence, the paper, and the historical B5 modules remain here. Current instructions supersede
 older no-git/Uzair-commits and pre-extraction paths in historical handoffs. No remote publication is implied.
+
+Crucis is now public at https://github.com/crucis-lab/crucis. Its approved
+distribution/command is `crucis-causal`; Python imports use `crucis_causal`.
+Read `../crucis/README.md` and `../crucis/provenance/publication.json` before
+resuming subsystem work; current design notes are under `../crucis/crucis_causal/docs/`.
+The original four extraction milestones were backed up and cleaned before their
+first push. Never reintroduce archived funding/correspondence files or old history.
 
 Before committing evidence or ticket changes:
 

@@ -13,6 +13,12 @@ own tests, protocol, benchmark definitions and documentation. Preserve existing
 research evidence and stable result pointers during the migration. The chosen name is Crucis; its independent runtime is in `../crucis`. The competitor review is in
 `docs/research/causal-auditing-landscape-2026-11-03.md`.
 
+Public framework: https://github.com/crucis-lab/crucis ; documentation:
+https://crucis-lab.github.io/crucis/ . Install the `crucis-causal` distribution
+from that checkout and import `crucis_causal`; the bare PyPI name `crucis`
+belongs to another project. Historical extraction paths/hashes are preserved;
+Crucis's publication provenance records the namespace move and cleaned history.
+
 Agents now make automatic **local** commits after coherent, validated milestones.
 The active workflow is `tools/skills/milestone-commit/SKILL.md`, required by root
 AGENTS.md. This supersedes older instructions reserving commits for Uzair. No

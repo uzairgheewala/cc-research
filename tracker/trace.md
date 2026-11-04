@@ -1,6 +1,6 @@
-# Trace check (2026-11-03T23:46:55Z)
+# Trace check (2026-11-04T00:26:22Z)
 
-status.json verified 2026-11-03T23:46:45Z. Dev tickets 259; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
+status.json verified 2026-11-04T00:26:14Z. Dev tickets 259; prod rows 67 (7 groups, 60 pass-through). IDs newly locked: 0.
 
 ## Links
 
@@ -13,10 +13,10 @@ status.json verified 2026-11-03T23:46:45Z. Dev tickets 259; prod rows 67 (7 grou
 | evidences | catalogue | 967 |
 | implements | links.txt | 2 |
 | implements | plan | 52 |
-| mentions | scan | 910 |
+| mentions | scan | 927 |
 | mirrors | mirrors.json | 326 |
 | parent_of | links.txt | 27 |
-| published_at | links.txt | 293 |
+| published_at | links.txt | 299 |
 | relates | links.txt | 4 |
 
 ## Findings: 0 errors, 0 warnings

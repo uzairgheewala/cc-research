@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-11-03T23:46:55Z",
- "status_verified_utc": "2026-11-03T23:46:45Z",
+ "generated_utc": "2026-11-04T00:26:22Z",
+ "status_verified_utc": "2026-11-04T00:26:14Z",
  "lists": {
   "dev": "F0C869P25NE",
   "prod": "F0C8ADF3DNG"
@@ -2057,7 +2057,7 @@
     "published_status": "done",
     "min_level": "V3",
     "suspect": [],
-    "last_review": "2026-11-03T21:00:31Z"
+    "last_review": "2026-11-04T00:14:36Z"
    }
   },
   "BLD-12": {
@@ -2897,7 +2897,7 @@
    "category": "12 Team and communication",
    "status": "in_progress",
    "effective_status": "in_progress",
-   "level": "V1",
+   "level": "V2",
    "in_prod": false
   },
   "TEAM-12": {
@@ -3347,6 +3347,12 @@
    "kind": "slack"
   },
   "slack:C0C8CQK1XME/1793412937.228969": {
+   "kind": "slack"
+  },
+  "slack:C0C8CQK1XME/1793751394.325679": {
+   "kind": "slack"
+  },
+  "slack:C0C7Q2CA2G7/1793751438.010819": {
    "kind": "slack"
   },
   "file:docs/q1/datasets.md": {
@@ -6568,6 +6574,12 @@
   "file:docs/market/README.md": {
    "kind": "file"
   },
+  "file:docs/migrations/publication-lifecycle-2026-11-03.md": {
+   "kind": "file"
+  },
+  "file:docs/migrations/slack-parity-2026-11-03.md": {
+   "kind": "file"
+  },
   "file:docs/paper/q1/CHECKPOINT_CONTRACT.md": {
    "kind": "file"
   },
@@ -9344,6 +9356,48 @@
    "dst": "slack:C0C8CQK1XME/1793412937.228969",
    "note": "digest",
    "origin": "links.txt:379"
+  },
+  {
+   "src": "BLD-11",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793751394.325679",
+   "note": "milestone",
+   "origin": "links.txt:380"
+  },
+  {
+   "src": "DLV-05",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793751394.325679",
+   "note": "milestone",
+   "origin": "links.txt:381"
+  },
+  {
+   "src": "DLV-06",
+   "rel": "published_at",
+   "dst": "slack:C0C8CQK1XME/1793751394.325679",
+   "note": "milestone",
+   "origin": "links.txt:382"
+  },
+  {
+   "src": "BLD-11",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1793751438.010819",
+   "note": "milestone",
+   "origin": "links.txt:383"
+  },
+  {
+   "src": "DLV-05",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1793751438.010819",
+   "note": "milestone",
+   "origin": "links.txt:384"
+  },
+  {
+   "src": "DLV-06",
+   "rel": "published_at",
+   "dst": "slack:C0C7Q2CA2G7/1793751438.010819",
+   "note": "milestone",
+   "origin": "links.txt:385"
   },
   {
    "src": "file:docs/q1/datasets.md",
@@ -18980,6 +19034,13 @@
   {
    "src": "file:AGENTS.md",
    "rel": "mentions",
+   "dst": "AUD-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:AGENTS.md",
+   "rel": "mentions",
    "dst": "BEN-03",
    "note": "",
    "origin": "scan"
@@ -24868,6 +24929,118 @@
    "src": "file:docs/meetings/2026-10-29_ta_checkin_agenda.md",
    "rel": "mentions",
    "dst": "DLV-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "BLD-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "DLV-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "DLV-07",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "TEAM-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "TEAM-09",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/publication-lifecycle-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "TEAM-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "AUD-12",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "BLD-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "BLD-11",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "DLV-05",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "DLV-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "INF-03",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "INF-06",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "TEAM-08",
+   "note": "",
+   "origin": "scan"
+  },
+  {
+   "src": "file:docs/migrations/slack-parity-2026-11-03.md",
+   "rel": "mentions",
+   "dst": "TEAM-11",
    "note": "",
    "origin": "scan"
   },

@@ -75,7 +75,7 @@ def dcard(d):
 
 lag = SNAP.get("changes_lag") or {}
 latest = (SNAP.get("changes") or [{}])[0]
-moved = (f'The last team post was on {_date(latest["posted_utc"][:10])}, with {len(latest.get("points", []))} updates.'
+moved = (f'The last team post was on {_date(latest["posted_utc"][:10])} UTC, with {len(latest.get("points", []))} updates.'
          if latest.get("posted_utc") else "No team post yet.")
 if lag.get("dev_since_last_prod"):
     moved += f' {lag["dev_since_last_prod"]} working updates since; they appear here once posted.'

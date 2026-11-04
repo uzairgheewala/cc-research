@@ -880,7 +880,7 @@ def cmd_list_diff(a):
     G = build()
     which = a.which
     rows = {t: dev_row_cells(t, G) for t in G["dev"]} if which == "dev" else {p: prod_row_cells(p, G) for p in prod_order(G)}
-    json.dump(list(rows.values()), open(HERE / ("%s_rows.json" % which), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    json.dump(list(rows.values()), open(HERE / ("%s_rows.json" % which), "w", encoding="utf-8", newline="\n"), indent=1, ensure_ascii=False)
     synced_f = SYNCED / ("%s.json" % which)
     old = json.load(open(synced_f, encoding="utf-8")) if synced_f.exists() else {}
     recs = G["mirrors"].get("lists", {}).get(LISTS[which], {})
@@ -897,7 +897,7 @@ def cmd_list_diff(a):
             upd[t] = {"record_id": recs.get(t), "cells": ch}
     gone = sorted(set(old) - set(rows))
     json.dump({"list": LISTS[which], "updates": upd, "rows_no_longer_in_files": gone},
-              open(HERE / ("list_updates_%s.json" % which), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+              open(HERE / ("list_updates_%s.json" % which), "w", encoding="utf-8", newline="\n"), indent=1, ensure_ascii=False)
     print("%s list: %d rows to update (%d new, need add_list_record), %d rows no longer in the files %s" % (
         which, len(upd), sum(1 for u in upd.values() if not u["record_id"]), len(gone), gone[:10]))
 
