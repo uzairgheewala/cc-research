@@ -1,0 +1,73 @@
+{
+  "tickets": [
+    "DLV-05",
+    "DLV-06",
+    "DLV-07",
+    "BND-08",
+    "PRG-01"
+  ],
+  "state": "locally validated checkpoint; not human-approved, published or submitted",
+  "source_base_commit": "aef649241abed84577af7443c8481aab5420b9fd",
+  "manuscript_sha256": "4f9d2cd783d626da69fe3c37aa273f572f0472d16ce155cfa1f687fa472247c0",
+  "pdf_sha256": "55b41a2ba70b0ec5c7b5157ecc26107fbd76c997f27ff5246fc1d92d51ce9e7c",
+  "overleaf_bundle_sha256": "77ac284e7476c8dfd9cc841f4d7a4051f5ad5b40f50f0c2dc30acc67031327f4",
+  "pages": 16,
+  "typed_release_ref": "5c90efd582b7574adf3834c37ae80d4d7f5b943bf1e5f11640750e98486cd97a",
+  "typed_draft_ref": "11ff8e1c4478174db5210ab3e34584059462458e35c55da59030f4f13fb33f2e",
+  "review_scope": {
+    "fresh_initial_reviewers": 3,
+    "roles": [
+      "domain correctness",
+      "statistics and causal identification",
+      "experimental design",
+      "closest prior work",
+      "reproducible software/evidence",
+      "significance",
+      "exposition",
+      "skeptical synthesis"
+    ],
+    "major_claim_map_entries": 9,
+    "reporting_findings": 6,
+    "dispositions": "6 fixed by scope/wording/source corrections, independently rechecked; underlying M3 historical mismatch remains open",
+    "raw_packets_and_reviews": "Preserved outside publishable research source; no raw private packets committed.",
+    "correlation": "Same parent in-app model; exact IDs unavailable; fresh initial contexts, later own-finding rechecks; no acceptance prediction.",
+    "final_typesetting": "Scientific body exactly identical to independently rechecked source SHA69e1ea438b7b7241e7267cfe27f531529bedf1438a28be64db57ba755d45c93d. Root separately checked final preamble-only widow/orphan changes and all-page renders."
+  },
+  "checks": {
+    "checkpoint_contract": "78 keys,13 numerical sources,19 frozen files: passed",
+    "number_resolver": "78 entries match; independent supplied-byte reproduction passed",
+    "lint": "0 errors,0 warnings;74 number keys,44 citation keys",
+    "build": "Actual course template .sty/.bst; bounded cross-reference convergence; no unresolved cites/refs or overfull boxes",
+    "visual": "All 16 rendered pages inspected, with full-size data table/bibliography/final registry checks",
+    "builder_transaction": "Failure injection preserves old outputs; success keeps history; single-writer crash/rollback-I/O limits remain",
+    "bibliography_warnings": "17 missing volume/number/pages warnings for preprint, report and unpaginated entries; no missing citation keys. No bibliographic fields invented.",
+    "font_warning": "Inherited template setup attempts TU/mdbch before main font selection; actual XCharter/Fira Code visible glyphs inspected."
+  },
+  "template": {
+    "source": "https://www.overleaf.com/read/swwcqhtsdwbg",
+    "project": "6556cf1443f932295cf9d008",
+    "style_sha256": "8b6a24551500813f874ca797ffdd16426d1b00725cbed3b87d2667a96e2597f7",
+    "bibliography_sha256": "1c9e8a1567018e60360c9eb7ce1036bf9a9e551931112cdb742471212d8f9953"
+  },
+  "frozen_change_review": "No registry/source/selector/operation/format/value changes. Generated HEAD provenance advanced to the build base; generated line endings reflect Windows writer.",
+  "human_decisions_pending": [
+    "Review substantive framing and submission package.",
+    "Verify Gradescope exact submission time after UCSD login.",
+    "Confirm mentor-specific assignment requirements; no replacement mentor/author inferred.",
+    "Resolve historical BND-08 endpoint discrepancy before any confirmatory final-study claim; no protocol revision adopted.",
+    "Authorize any later push/publication/submission separately."
+  ],
+  "public_reproduction_scope": "Companion covers recorded Causal-Copilot stage comparison, not whole paper. No new native or raw-run reproduction claimed.",
+  "course": {
+    "url": "https://dsc-capstone.org/2026-27/assignments/projects/q1/",
+    "checkpoint_date": "2026-11-06",
+    "final_date": "2026-12-04",
+    "exact_times": "Unverified: public page omits times; Gradescope requires UCSD authentication."
+  },
+  "release_flags": {
+    "human_approved": false,
+    "published": false,
+    "submitted": false,
+    "scientific_truth_certified": false
+  }
+}

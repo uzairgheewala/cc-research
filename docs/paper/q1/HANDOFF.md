@@ -36,7 +36,16 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 
 ## 2. State on 3 Nov 2026
 
-**Latest:** the initial table below is historical. Repositories and sites are now
+**Latest, structured-workflow continuation (3 Nov 2026):** a locally validated,
+independently reviewed checkpoint is now built: `build/report.pdf`, 16 pages,
+SHA-256 `55b41a2ba70b0ec5c7b5157ecc26107fbd76c997f27ff5246fc1d92d51ce9e7c`.
+`verify/research-workbench-review-2026-11-03.json` binds source, PDF, Overleaf
+bundle, findings, checks and remaining decisions. It is not human-approved,
+published or submitted. The reusable system is in the separate research-workbench
+project; canonical manuscript ownership remains here. No registry/source/value or
+protocol threshold changed. This authorized kickoff supersedes the earlier wait.
+
+**Previous preparation state:** the initial table below is historical. Repositories and sites are now
 public, with local milestone commits enabled. The current branch
 `paper/q1-checkpoint-corrections` holds a provisional interpretation correction
 draft. Uzair asked to stop further paper work until he introduces his structured
@@ -240,3 +249,52 @@ and never on its null twin). DLV-07 final export with the package included (deci
   from the author block. Applied the author change, kept this correction draft
   local for review, and stopped further paper development. No submission, new paid
   campaign or paper publication occurred. Await Uzair's approach before continuing.
+
+- **3 Nov (Codex, structured workflow, DLV-05/DLV-06):** built the separate generic
+  evidence/argument/review system and exercised fresh-context reviewer calibration
+  before applying it here. Initial scientific reviewers covered correctness,
+  identification/statistics, experimental design, closest work, reproducibility,
+  significance, exposition and skeptical synthesis. Same-model correlation and
+  actual access limits are recorded. Independent supplied-byte reproduction
+  resolved all 78 numeric entries; no fresh raw-run/native campaign was run.
+  Six reporting/scope findings were dispositioned and rechecked: conditional M3
+  denominator, M3 endpoint mismatch, reference-overlap optimality wording, omitted
+  Heuresis comparison and abstract coverage. Overlapping findings are retained.
+  Added independently primary-read Heuresis and Causal-Audit references (C39/C40),
+  a connected contribution argument and interpretation appendix.
+
+  **New scientific boundary:** the BND-08 pre-run header describes S3, but the
+  M3 calculation consumes completed final-output stability N1 counts and classifies
+  adjacency, not directional agreement. The text now reports the informative
+  subset and retained post-review pair state, discloses the mismatch and treats
+  the counts descriptively. This fixes the reporting claim; it does not repair or
+  amend the historical implementation/protocol. Any confirmatory endpoint claim
+  requires separate authorized reconciliation. W5 request 10 records the handoff.
+
+  Downloaded the actual course template source through its read-only Overleaf
+  link. Existing .sty matches; actual .bst now retained with original notices.
+  Replaced destructive/fallback building with scratch generation, strict template
+  hashes, bounded reference convergence and rollback on late output failure.
+  Independent failure injection found and verified a promotion-consistency fix;
+  `verify/test_build_transaction.py` passes. MiKTeX dependencies and the official
+  Fira Code face were installed locally; no template font substitution was used.
+  PDF and self-contained Overleaf bundle use identical six input files; all 16
+  pages rendered and inspected, no overfull boxes or unresolved cites/references.
+  Preprint/unpaginated bibliography warnings and inherited template setup warning
+  are recorded rather than filled with invented metadata. Historical PDF retained.
+
+  Final scientific body is byte-identical to the source independently rechecked
+  at SHA-256 `69e1ea438b7b7241e7267cfe27f531529bedf1438a28be64db57ba755d45c93d`;
+  root separately verified preamble-only widow/orphan changes and rendered output.
+  The project-local typed release preserves all reviews/dispositions and explicit
+  limits; private packets remain outside this publishable source tree. The full
+  legacy citation corpus was not freshly reread; existing verification records
+  and their access limitations remain authoritative for those reads.
+
+  Frozen checks pass: 78 keys, 13 number sources, 19 files; number values match;
+  lint 0 errors/0 warnings, 74 used keys and 44 citation keys. Generated changes
+  are HEAD provenance from historical cf536c1 to build base aef6492 plus platform
+  line endings. Course dates confirmed publicly (6 Nov checkpoint, 4 Dec final);
+  exact times remain unverified because Gradescope redirects to UCSD login.
+  Author block remains Uzair only; no replacement mentor inferred. No tracker,
+  site, Slack, protocol or remote publication/submission changed.

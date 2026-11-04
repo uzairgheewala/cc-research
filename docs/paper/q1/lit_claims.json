@@ -669,6 +669,34 @@
    "checker_verdict": "confirmed",
    "url": "https://arxiv.org/abs/2504.13263",
    "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "C39",
+   "keys": [
+    "ma2026heuresis"
+   ],
+   "checked_claim": "Heuresis combines anonymous simulated mechanisms, an interactive tool harness, algorithmic references and PC-centred trace decomposition; multiple algorithms, probes, graph edits and instrument verification are supported in its reported scope.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "arXiv v1 sections 4.1-4.3; Appendix B; Appendices C-H",
+   "quote": "each edge of a submitted graph can thus be traced",
+   "url": "https://arxiv.org/html/2610.22846v1",
+   "checker": "Fresh-context in-app primary reader /root/heuresis_primary; independent of sentence drafting; same parent model, exact model ID unavailable",
+   "notes": "Primary substantive HTML and appendices read; selective PDF text cross-check. No code execution or universal interoperability assessment. Second blind synthesis reviewer independently identified overlapping tracing/instrument checks. External-system distinction is scoped project interpretation, not a global-first claim. Accessed 2026-11-03 America/Los_Angeles."
+  },
+  {
+   "id": "C40",
+   "keys": [
+    "ruiz2026causalaudit"
+   ],
+   "checked_claim": "Causal-Audit uses time-series assumption diagnostics, calibrated risk and uncertainty for method recommendation or abstention before discovery.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "arXiv v1 sections 4, 4.2, 4.3; limitations section 7",
+   "quote": "The current decision pipeline supports PCMCI+ and VAR-based Granger tests.",
+   "url": "https://arxiv.org/html/2604.02488v1",
+   "checker": "In-app primary reader /root/heuresis_primary in separate pre-drafting source task; same parent model, exact model ID unavailable",
+   "notes": "Relevant methods and limitations read directly, four web calls. Nonlinearity diagnostic only; confounding proxies are not direct latent-confounder tests; external consistency is not external calibration. Metadata verified at arXiv. Accessed 2026-11-03 America/Los_Angeles."
   }
  ]
 }
