@@ -36,6 +36,26 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 
 ## 2. State on 3 Nov 2026
 
+**5 Nov course checkpoint fast track.** The latest locally reviewed package
+is `build/report.pdf` (16 pages), with a matching `build/overleaf_upload.zip`.
+`verify/research-workbench-checkpoint-2026-11-05.json` binds source, evidence,
+review history and artifacts. The earlier reviewed package remains in build
+history. The designated DLV-07 course code link remains
+https://github.com/uzairgheewala/causal-copilot-q1. Its offline retained-graph
+comparison was rerun successfully. The framework is at
+https://github.com/crucis-lab/crucis. Stage-specific attribution uses separate
+research evidence. Exact Gradescope time, any additional mentor requirements
+and submission remain owner actions.
+
+The abstract now reports the paired bootstrap finding on completions.
+The paper scopes the name-control tally and benchmark scores to their
+observed settings, distinguishes recorded capture from causal attribution,
+and credits overlapping controls and measurement in Heuresis, Causal-Audit,
+ACDB and TCD-Arena. BND-08 stays descriptive because the specified pre-cycle
+endpoint and the implemented completed-final calculation differ. The number
+registry, input bytes and thresholds remain frozen.
+
+
 **Latest, structured-workflow continuation (3 Nov 2026):** a locally validated,
 independently reviewed checkpoint is now built: `build/report.pdf`, 16 pages,
 SHA-256 `55b41a2ba70b0ec5c7b5157ecc26107fbd76c997f27ff5246fc1d92d51ce9e7c`.
@@ -298,3 +318,12 @@ and never on its null twin). DLV-07 final export with the package included (deci
   exact times remain unverified because Gradescope redirects to UCSD login.
   Author block remains Uzair only; no replacement mentor inferred. No tracker,
   site, Slack, protocol or remote publication/submission changed.
+
+- **5 Nov (Codex, checkpoint fast track, DLV-05/DLV-07):** reconciled the
+  checkpoint assertion inventory and material literature comparisons, ran
+  three fresh scoped reviews and two separate exposed rechecks, then narrowed
+  the remaining wording and inspected the actual course PDF. Original
+  reviews, dispositions and detailed packets remain project-local. The
+  research verification receipt binds the final candidate and specifies
+  coverage, independence and scientific limits. No live run, protocol
+  amendment, change to frozen evidence, remote publication or submission.
