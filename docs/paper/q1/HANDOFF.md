@@ -36,7 +36,17 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 
 ## 2. State on 3 Nov 2026
 
-**5 Nov course checkpoint fast track.** The latest locally reviewed package
+**5 Nov author readability revision.** The next local candidate is
+`build/report.pdf` (16 pages) and its matching `build/overleaf_upload.zip`.
+It starts from Uzair's Overleaf export, keeps the course author–year style,
+and reorganizes the introduction and appendix around the audit questions.
+`verify/checkpoint-editorial-review-2026-11-05.json` binds both assessments and
+the exact revised artifacts. The new rubric covers the mentor's four questions
+and the reader's job in each section. The earlier fast-track receipt below
+identifies the historical PDF in Git. Use XeLaTeX with `report.tex` in Overleaf.
+The current candidate is for author review.
+
+**5 Nov course checkpoint fast track.** The preceding locally reviewed package
 is `build/report.pdf` (16 pages), with a matching `build/overleaf_upload.zip`.
 `verify/research-workbench-checkpoint-2026-11-05.json` binds source, evidence,
 review history and artifacts. The earlier reviewed package remains in build
@@ -327,3 +337,12 @@ and never on its null twin). DLV-07 final export with the package included (deci
   research verification receipt binds the final candidate and specifies
   coverage, independence and scientific limits. No live run, protocol
   amendment, change to frozen evidence, remote publication or submission.
+
+- **5 Nov (Codex, author readability revision, DLV-05/DLV-07):** built the
+  Overleaf export and used the same versioned reading rubric on it and the
+  revision. The paper now gives readers named questions, a compact level list,
+  an appendix route and a stage locator. The evidence freeze and the number
+  lock pass. The revised package was built locally with XeLaTeX and BibTeX.
+  All pages were inspected and the six ZIP inputs match the PDF build.
+  The judgment is an exposed editorial recheck. The literature paragraph
+  about language models is the remaining readability finding.
