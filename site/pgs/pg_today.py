@@ -3,11 +3,20 @@ way, what it means for the deliverables, how well the gaps are understood, and w
 site/gaps_spec.json and site/deliverables.json; 600 words at most; no ticket ids or metric acronyms in the text (site/build.py
 checks both). Design: project doc claude/site-v3-design-2026-10-20.md section 4."""
 from pagekit import *  # noqa: F401,F403
+import json
+from pathlib import Path
+
 import common
 import gapkit as G
 
 SNAP = common.SNAP
 TODAY = (SNAP.get("generated_utc") or "")[:10]
+PAPER_URL = "https://github.com/uzairgheewala/cc-research/blob/main/docs/paper/q1/"
+SUBMISSION_PATH = Path(__file__).resolve().parents[2] / "docs/paper/q1/verify/submission-status-2026-11-06.json"
+SUBMISSION = json.loads(SUBMISSION_PATH.read_text(encoding="utf-8")) if SUBMISSION_PATH.exists() else {}
+CHECKPOINT_SUBMITTED = all(
+    SUBMISSION.get(part, {}).get("state") == "submitted, author-reported" for part in ("report", "code")
+)
 
 
 def card(label, big, sub):
@@ -30,7 +39,10 @@ open_ = [lid for lid in need_any if types[lid] != "met"]
 meas = [lid for lid in open_ if types[lid] == "measurement"]
 _, pc = G.deliverable_status(D["paper"])
 _, prc = G.deliverable_status(D["product"])
-upcoming = sorted((G.due_of(d), d) for d in G.DELIV["deliverables"] if G.due_of(d) and G.due_of(d) >= TODAY)
+upcoming = sorted(
+    (G.due_of(d), d) for d in G.DELIV["deliverables"]
+    if G.due_of(d) and G.due_of(d) >= TODAY and not (CHECKPOINT_SUBMITTED and d["id"] == "checkpoint")
+)
 nxt = upcoming[0] if upcoming else None
 
 cards = grid([
@@ -60,7 +72,9 @@ def lower1(x):
 
 
 def dcard(d):
-    if d.get("needs"):
+    if d["id"] == "checkpoint" and CHECKPOINT_SUBMITTED:
+        body = "The author confirmed submission of the report and the code ZIP."
+    elif d.get("needs"):
         _, c = G.deliverable_status(d)
         bits = [f'{c[t]} {COUNT_WORD[t]}' for t in ("met", "measurement", "method", "comparability", "reach") if c[t]]
         blockers = [lower1(G.LM[lid]["plain"]) for lid in d["needs"] if G.derive(lid)["type"] == "method"]
@@ -89,9 +103,12 @@ BODY = "\n".join([
     P('<a href="https://github.com/crucis-lab/crucis">Crucis source and documentation</a> · '
       '<a href="https://crucis-lab.github.io/crucis/">Framework site</a> · '
       '<a href="https://github.com/uzairgheewala/cc-research/blob/main/docs/paper/q1/CHECKPOINT_CONTRACT.md">Checkpoint scope and evidence contract</a>', 15),
-    P("The checkpoint draft and numerical evidence basis are preserved. Scientific wording, citation and PDF work remain open. "
-      "The proposed final study and funding still require mentor review. The historical ledger landmarks below describe "
-      "the earlier research programme; they are not a declaration that the Crucis framework or current checkpoint is complete.", 15),
+    P(f'<a href="{PAPER_URL}releases/checkpoint-2026-11-06/README.md">Checkpoint report and source</a> · '
+      f'<a href="{PAPER_URL}audit/2026-11-06/FOLLOWUP.md">Reproduce the checkpoint findings</a> · '
+      '<a href="https://github.com/uzairgheewala/cc-research/blob/main/AI_USE.md">AI-use disclosure</a>', 15),
+    P(("The author confirmed submission of the checkpoint report and code ZIP. " if CHECKPOINT_SUBMITTED else "")
+      + "The checkpoint draws on historical recorded audits. The landmarks below describe the earlier research programme. "
+      "The framework and final empirical study are still in development.", 15),
     cards,
     H2("Historical research landmarks"),
     f'<div style="display: flex; flex-direction: column">{rows}</div>',

@@ -1,4 +1,4 @@
-"""Quarter 1: fixing Causal-Copilot's review step (S35, 27 Oct; BLD-06, EXT-03, DLV-04, DLV-07). The live comparison of
+"""Quarter 1: testing Causal-Copilot refinement (S35, 27 Oct; BLD-06, EXT-03, DLV-04, DLV-07). The live comparison of
 refinement v2 against the unmodified pipeline on the 30 Quarter 1 tables, why the original loses links and crashes, how cycles
 are handled now, one link traced through both versions, and what is not established yet. Every number comes from the
 registry (q1.*); the reproduction is the public Quarter 1 repository."""
@@ -27,12 +27,15 @@ TABLE = table(["", "Unmodified", "Refinement v2", "Paired difference"], [
            "10 scenarios.")
 
 BODY = "\n".join([
-    question("What does Causal-Copilot's review step do to the graph its algorithm found, and does our replacement do better?"),
-    P(f'After Causal-Copilot runs a discovery algorithm, a review step refines the graph: it resamples the data, sorts every link '
+    question("How does Causal-Copilot refine its initial graph, and what changed under the replacement?"),
+    P(f'After Causal-Copilot runs a discovery algorithm, refinement proceeds in stages: it resamples the data, sorts every link '
       f'by how often it reappears, has the model review the doubtful ones, prunes with an independence test and breaks cycles. '
       f'<a href="copilot/step-refinement.html">Inside Causal-Copilot</a> walks through that step in its code. This page '
       f'is the companion refinement study: what the step does on tables whose true graph is known, and what our replacement changes. '
-      f'The current Quarter 1 auditor framework is <a href="https://github.com/crucis-lab/crucis">Crucis</a>.'),
+      f'The reusable auditor is <a href="https://github.com/crucis-lab/crucis">Crucis</a>. '
+      f'The <a href="https://github.com/uzairgheewala/cc-research/blob/main/docs/paper/q1/audit/2026-11-06/FOLLOWUP.md">'
+      f'checkpoint reproduction guide</a> covers the separate stage replay, including the paired bootstrap loss, '
+      f'and explains the inputs required for each check.'),
     H2("The comparison"),
     ul(["The same 30 tables: 10 benchmark scenarios, each with real, neutral and swapped column names on identical numbers, "
         "columns shuffled.",
@@ -58,7 +61,7 @@ BODY = "\n".join([
         f'two files). It never deletes a link the algorithm found; it adds a link only if at least 90% of resamples have it; each '
         f'pair takes its commonest mark. The model is asked only about pairs the data leave without a direction, three '
         f'phrasings, used only if all three agree.',
-        f'<b>Cycles.</b> Refinement v2 replaces the whole original sequence, cycle step included, so the crash cannot happen: '
+        f'<b>Cycles.</b> Refinement v2 replaces the whole original sequence, cycle step included, so none of the recorded runs took that path: '
         f'{n("q1.cyc.branch.entered")} runs entered the cycle step. The model may not set a direction that would close a cycle. '
         f'The data part has no such guard: {n("q1.cyc.branch.cyclic")} of {n("q1.cyc.branch.done")} delivered graphs contain a '
         f'directed cycle, a measured result, not a guarantee (checked after the series, not pre-registered).',

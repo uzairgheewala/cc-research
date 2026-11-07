@@ -85,3 +85,11 @@ actual submission criterion is met. Known prose/citation corrections remain in H
     pin on `site/pgs/pg_today.py`. Review this as a site-owner change and repin
     via the tracker workflow before deploying it. The scientific evidence pins
     and tracker statuses were excluded from the checkpoint audit milestone.
+
+15. **TEAM-11 homepage repin.** The existing verifier regenerated TEAM-11's
+    site evidence pins in an isolated checkout after the homepage patch review.
+    The homepage digest changed. The other four TEAM-11 records changed only
+    their pin timestamps. The TEAM-11 status record matched exactly.
+    The generated pins and site sources are the owned changes. The isolated
+    verifier's unrelated status results and log are local scratch outputs.
+    The committed snapshot must pass its existing freshness check.
