@@ -1,0 +1,261 @@
+{
+  "tickets": [
+    "DLV-05",
+    "DLV-07"
+  ],
+  "state": "locally validated editorial candidate for author review",
+  "reviewed_parent": "59bb0efc8430286d934d81c786ebcfc8598ccb2b",
+  "incoming_export_sha256": "921bb833b9c05915b48a6e727ef99b835decdfb941b0cc7b285cff5a22af8def",
+  "assessment": {
+    "profile": "a27b0a69f614ad64279dfadd50eb6bf5708830c984a1a815a0cdfa9f74fe65fc",
+    "stage": "author-exposed editorial assessment",
+    "baseline": {
+      "source": {
+        "path": "baseline-build/report.tex",
+        "sha256": "9c7c843b157c2679fb0d3dca0aae0bb4c3aa7c059a90a00c16f8f0da5e2c1443"
+      },
+      "pdf": {
+        "path": "baseline-build/report.pdf",
+        "sha256": "d4b661ba53e719476e9e360030563b92f76746b78fae41101eae41b7083e19cc"
+      },
+      "counts": {
+        "needs-work": 8,
+        "clear": 3
+      },
+      "judgments": [
+        {
+          "criterion": "background",
+          "level": "whole-paper",
+          "rating": "needs-work",
+          "source_line": 38,
+          "anchor": "As the progression",
+          "reason": "The score limitation is recoverable after an unsupported trend and a long opening clause."
+        },
+        {
+          "criterion": "goal",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 78,
+          "anchor": "Our goal is a reusable",
+          "reason": "External auditing is explicit and the worked case is identifiable."
+        },
+        {
+          "criterion": "method",
+          "level": "whole-paper",
+          "rating": "needs-work",
+          "source_line": 82,
+          "anchor": "continuous-integration check",
+          "reason": "The level descriptions are findable. Implementation status follows a long catalogue of outcomes, and the analogy can imply a more complete tool."
+        },
+        {
+          "criterion": "results",
+          "level": "whole-paper",
+          "rating": "needs-work",
+          "source_line": 119,
+          "anchor": "Names can influence agents",
+          "reason": "The data are there, but each answer arrives with its lookup values and caveats before a reader can see the three distinct questions."
+        },
+        {
+          "criterion": "synthesis",
+          "level": "whole-paper",
+          "rating": "needs-work",
+          "source_line": 166,
+          "anchor": "These contributions address linked evidentiary problems",
+          "reason": "The contribution list and fragmented follow-on repeat roles. Their logical dependence arrives late."
+        },
+        {
+          "criterion": "abstract",
+          "level": "section",
+          "rating": "needs-work",
+          "source_line": 38,
+          "anchor": "As the progression",
+          "reason": "There is a compact set of results, but metric jargon and no implementation distinction obscure the route."
+        },
+        {
+          "criterion": "introduction",
+          "level": "section",
+          "rating": "needs-work",
+          "source_line": 87,
+          "anchor": "L0 scores",
+          "reason": "The level breaks help. The findings list still reads like a compact report inside the introduction."
+        },
+        {
+          "criterion": "prior-work",
+          "level": "section",
+          "rating": "needs-work",
+          "source_line": 227,
+          "anchor": "Related benchmarks and auditing frameworks",
+          "reason": "The nearest works are visible. The PC/FCI sentence lacks direct attribution and repeated neighboring citations interrupt the thread."
+        },
+        {
+          "criterion": "data",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 333,
+          "anchor": "Limits of the data",
+          "reason": "The main source groups and reference limits are recoverable. Some row-level detail competes with the purpose of each source."
+        },
+        {
+          "criterion": "appendix",
+          "level": "section",
+          "rating": "needs-work",
+          "source_line": 392,
+          "anchor": "Where every number comes from",
+          "reason": "The evidence lookup is present, but there is no diagnostic route into the prose and table."
+        },
+        {
+          "criterion": "availability",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 340,
+          "anchor": "The companion repository",
+          "reason": "The companion has a distinct, bounded replay and the framework link is explicit."
+        }
+      ]
+    },
+    "revised": {
+      "source": {
+        "path": "final-build/candidate-1py2i09q/report.tex",
+        "sha256": "ddeab5edb974492e634e050afbdd529fad08de52522411b0eb00f8f0553f3243"
+      },
+      "pdf": {
+        "path": "final-build/report.pdf",
+        "sha256": "6582c8391024e6c96b5a9377e166a9bfb0f3af204cd4534fa3b07872e49f8bfb"
+      },
+      "counts": {
+        "clear": 10,
+        "needs-work": 1
+      },
+      "judgments": [
+        {
+          "criterion": "background",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 79,
+          "anchor": "The same score can reflect patterns",
+          "reason": "The opening motivates auditing through concrete examples of information the score alone cannot distinguish."
+        },
+        {
+          "criterion": "goal",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 83,
+          "anchor": "Crucis is designed to do that across",
+          "reason": "The text identifies independent auditing of external systems and distinguishes Causal-Copilot as the worked example."
+        },
+        {
+          "criterion": "method",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 88,
+          "anchor": "A connection records what a system receives",
+          "reason": "The reader can reconstruct connection, controlled comparison and trace, and find implementation and study status together."
+        },
+        {
+          "criterion": "results",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 117,
+          "anchor": "What have the recorded audits shown?",
+          "reason": "Three questions lead directly to the current observations. The headline magnitudes and cohort caveats are recoverable, with further detail linked."
+        },
+        {
+          "criterion": "synthesis",
+          "level": "whole-paper",
+          "rating": "clear",
+          "source_line": 137,
+          "anchor": "These results show why the pieces",
+          "reason": "One paragraph connects the fixed graph, fixed data and paired stage examples to their distinct evidence requirements."
+        },
+        {
+          "criterion": "abstract",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 39,
+          "anchor": "A causal discovery system may use numerical patterns",
+          "reason": "The paragraph states the motivating gap, scope, method and evidence in sequence. Exact values and formal scoring terms are in the body."
+        },
+        {
+          "criterion": "introduction",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 94,
+          "anchor": "Score the graph.",
+          "reason": "The level list and question headings provide a visible route. The results each have a short answer and a diagnostic destination."
+        },
+        {
+          "criterion": "prior-work",
+          "level": "section",
+          "rating": "needs-work",
+          "source_line": 161,
+          "anchor": "Language models as a source of causal knowledge",
+          "reason": "The Heuresis comparison now explains a design choice and the loose PC/FCI attribution is gone. The language-model subsection still packs several distinct threads and citations into one paragraph."
+        },
+        {
+          "criterion": "data",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 292,
+          "anchor": "Limits of the data.",
+          "reason": "The table introduction tells the reader what to look for and the reference limits are recoverable. The named-dataset paragraph remains dense."
+        },
+        {
+          "criterion": "appendix",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 324,
+          "anchor": "Use this appendix to follow an audit",
+          "reason": "Readers can start from a question, find its observation and scope, and then consult the exact lookup table. The stage locator distinguishes bootstrap from later model review."
+        },
+        {
+          "criterion": "availability",
+          "level": "section",
+          "rating": "clear",
+          "source_line": 299,
+          "anchor": "The companion repository",
+          "reason": "The three repository roles and limited scope of the retained-graph replay are explicit."
+        }
+      ]
+    },
+    "remaining_friction": "The literature subsection about language models remains dense."
+  },
+  "frozen_contract": {
+    "registry_keys": 78,
+    "numerical_sources": 13,
+    "frozen_files": 19
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0,
+    "used_number_keys": 74,
+    "citation_keys": 45
+  },
+  "scientific_delta_check": [
+    "FCI uses identical graphs on the evaluated semantic subset. The released column-order rule and expectation scoring differ.",
+    "The name-control tally uses distinct cohorts, endpoint rules and scoring. The earlier Causal-Copilot row remains exploratory.",
+    "The largest paired adjacency loss on completed main-control runs remains at bootstrap within refinement. The diagram encodes order only.",
+    "The MATMCD estimate remains below its data-only comparison and its difference interval includes zero.",
+    "BND-08 remains descriptive given its pre-cycle specification and completed-output calculation.",
+    "The L2 relation credits the checked Heuresis trace precedent. The unused PC/FCI equivalence claim and book citation were removed."
+  ],
+  "artifacts": {
+    "inputs": {
+      "report.tex": "ddeab5edb974492e634e050afbdd529fad08de52522411b0eb00f8f0553f3243",
+      "reference.bib": "10dd937eed9262329d47580a09727a9ebddd1895b53cbd4ee3fd0ba8c9e8ca88",
+      "numbers.tex": "ac3c44edaab684af21c183c93842eccea1cb177b2f88e98b8142548884786ecd",
+      "numbers_table.tex": "43a0c888f57debaa05037aecc5cc941d5c10ca5ea2f20f7ec1478aa07e24d1e4",
+      "style/dsc180reportstyle.sty": "8b6a24551500813f874ca797ffdd16426d1b00725cbed3b87d2667a96e2597f7",
+      "style/dsc180bibstyle.bst": "1c9e8a1567018e60360c9eb7ce1036bf9a9e551931112cdb742471212d8f9953"
+    },
+    "pdf_sha256": "6582c8391024e6c96b5a9377e166a9bfb0f3af204cd4534fa3b07872e49f8bfb",
+    "zip_sha256": "82972d448f5188360539771c05a7bf4c0afbd5a5fa5ed96179241803edfab0de",
+    "pages": 16,
+    "all_pages_visually_inspected": true,
+    "unresolved_references": 0,
+    "overfull_boxes": 0,
+    "bibliography_metadata_warnings": 17,
+    "compiler": "local MiKTeX XeLaTeX and BibTeX",
+    "overleaf_project_compile": "unverified for this candidate"
+  },
+  "code_url": "https://github.com/uzairgheewala/causal-copilot-q1"
+}

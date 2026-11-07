@@ -13,7 +13,7 @@ implied. This adopted checkpoint contract takes precedence over older port
 examples and provisional naming in the historical handoffs it references.
 
 **Stage-2 cutover, 3 Nov:** Crucis now lives in the sibling `../crucis` repository,
-under the Python namespace `crucis`. `docs/migrations/crucis-separation.json`
+under the Python namespace `crucis_causal` (distribution/command `crucis-causal`). `docs/migrations/crucis-separation.json`
 records the verified extraction and lifts the initial commit hold. References
 below to that hold describe the earlier handoff; current root AGENTS.md governs
 automatic local commits. Historical audit results remain at their research paths;
@@ -34,7 +34,137 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 - **Deadlines:** checkpoint Fri **6 Nov 2026** (title, abstract, introduction = intro paragraph + literature review + data;
   LaTeX on the course's Overleaf template; PDF on Gradescope; plus the public code-repo link). Final report Fri 4 Dec.
 
-## 2. State on 3 Nov 2026 (verified from the device shell at 12:15 PT)
+## 2. State on 3 Nov 2026
+
+**Current, 6 Nov after report submission:** Uzair directly confirmed submitting
+the archived PDF identified below. `verify/submission-status-2026-11-06.json`
+records this as author-reported, with no invented upload timestamp or authenticated
+Gradescope receipt. The archived source, PDF and original release manifest are
+unchanged. Code upload is not yet confirmed.
+
+The post-submission audit is in `audit/2026-11-06/REPORT.md` and its versioned
+coverage/observation receipts. It checked all frozen numerical sources, independently
+re-scored retained FCI edges against public references, reaggregated name-control
+scores, re-merged retained CausalBench cells and reran the companion in isolation.
+It did not rerun raw/native campaigns or resolve the historical endpoint gap.
+Both website roots and their 21 selected same-origin endpoints opened, but their
+status wording lags current implementation/report state. Requests are routed to W5.
+
+`AI_USE.md`, README statements and important prompt summaries disclose extensive
+AI assistance while excluding private tooling and unrelated records. The author
+confirmed the important task families; exact historical transcript/model recovery
+remains incomplete. The course ZIP and disclosure clarifications are recorded
+with their actual supplied authority. Companion disclosure and README changes
+were locally committed. The existing exporter/template pins prevented adopting
+the proposed matching changes in the research tree; the patch is retained for
+owner review, and both exporter copies preserve the pinned historical bytes.
+
+**Framework validation gap:** a documentation-only worktree from public Crucis
+`827b43c` passed three metadata/package checks, but its full gate stalled in an
+existing cursor-isolation test and was stopped. A fresh 45-second probe also
+timed out, with a stack at the owner SQLite commit. See the bounded receipt;
+root cause is unresolved. Its two staged documentation files remain uncommitted.
+Active S5 work in the normal Crucis checkout was not modified or absorbed.
+The combined ZIP uses that public runtime/test source plus an explicit two-file
+disclosure overlay sourced from this research commit. Do not call it a validated
+new Crucis commit or silently waive the incomplete gate. `CODE_SUBMISSION.md`
+defines the layout, commands, overlay and remaining reproduction gaps.
+
+Automatic approval review rejected process-command-line inspection because it
+could expose credentials. Metadata-only parent/path/time checks safely identified
+the audit's own test process before cleanup. No unrelated process was stopped.
+The first research staged gate failed on the two pinned export files. The proposed
+diff and failed log were retained; no tracker pin or site snapshot was changed.
+
+**Current, 6 Nov: post-submission reproduction follow-up.** The author
+confirmed both submissions. The archived artifacts and numerical contract bind
+the original checkpoint. Start with the
+[reproduction guide](audit/2026-11-06/FOLLOWUP.md) and its recorded stage and
+CausalBench replays. BND-08's all-reached pre-cycle diagnostic falls below the
+historical point threshold. The completed subset gives the same counts at
+pre-cycle and final endpoints. The disclosure now cites important excerpts
+from both named DSC 180A chats and records the older W2 access limit.
+
+**Historical, 6 Nov: final author export archived locally.** The canonical six
+inputs are byte-identical to Uzair's final Overleaf export (archive SHA-256
+`d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257`).
+`releases/checkpoint-2026-11-06/` holds that exact source ZIP, the inspected
+16-page PDF and a portable manifest. The PDF is also at `build/report.pdf`,
+SHA-256 `81568c73a8a6478df916c4298bcec0f0a1d44245cb3cbcba3b2ea6d165bc841d`.
+The source and actual course styles compile with XeLaTeX/BibTeX. All pages
+were rendered and inspected; no overfull boxes or unresolved references/cites.
+The 78-entry / 13-source / 19-file frozen contract and number check pass.
+There are 31 printed references and 14 unused, unprinted library entries.
+
+Six exact-version editorial lint dispositions are explicit, with reasons:
+four grouped paragraph attributions and two structural prose counts. Source
+edits invalidate them; undefined numbers and unchecked citation keys cannot
+be waived. Lint reports zero remaining errors/warnings. Twelve focused
+tests pass, including stale bindings, unexpected ZIP members, source/PDF
+tampering, disposition limits and build rollback. `verify/` retains the
+unmodified compiler receipt, final exposed review and earlier reviews.
+This is an exposed integration/layout check, not a new blind scientific
+panel or whole-corpus primary-source review. Historical scientific limits
+remain in the paper. Local milestone gate results belong in the commit message.
+
+The report is ready for the author's checkpoint submission within that
+review scope. No push, publication or course submission has occurred.
+The DLV-07 link remains the separately scoped companion repository below.
+After Uzair confirms submission, follow `POST_SUBMISSION_AUDIT.md`: inventory
+all findings and reader routes across the three repositories and sites,
+independently check reproducibility at each available evidence level, then
+repair READMEs/docs through existing ownership and publication controls.
+Keep unavailable raw/native evidence visible. Do not begin paid/new native
+experiments or publish sites from this follow-up plan alone.
+
+**Historical, 5 Nov author readability revision.** The then-current candidate was
+`build/report.pdf` (16 pages) and its matching `build/overleaf_upload.zip`.
+It starts from Uzair's Overleaf export, keeps the course author–year style,
+and reorganizes the introduction and appendix around the audit questions.
+`verify/checkpoint-editorial-review-2026-11-05.json` binds both assessments and
+the exact revised artifacts. The new rubric covers the mentor's four questions
+and the reader's job in each section. The earlier fast-track receipt below
+identifies the historical PDF in Git. Use XeLaTeX with `report.tex` in Overleaf.
+The current candidate is for author review.
+
+**Historical, 5 Nov course checkpoint fast track.** The preceding locally reviewed package
+is `build/report.pdf` (16 pages), with a matching `build/overleaf_upload.zip`.
+`verify/research-workbench-checkpoint-2026-11-05.json` binds source, evidence,
+review history and artifacts. The earlier reviewed package remains in build
+history. The designated DLV-07 course code link remains
+https://github.com/uzairgheewala/causal-copilot-q1. Its offline retained-graph
+comparison was rerun successfully. The framework is at
+https://github.com/crucis-lab/crucis. Stage-specific attribution uses separate
+research evidence. Exact Gradescope time, any additional mentor requirements
+and submission remain owner actions.
+
+The abstract now reports the paired bootstrap finding on completions.
+The paper scopes the name-control tally and benchmark scores to their
+observed settings, distinguishes recorded capture from causal attribution,
+and credits overlapping controls and measurement in Heuresis, Causal-Audit,
+ACDB and TCD-Arena. BND-08 stays descriptive because the specified pre-cycle
+endpoint and the implemented completed-final calculation differ. The number
+registry, input bytes and thresholds remain frozen.
+
+
+**Latest, structured-workflow continuation (3 Nov 2026):** a locally validated,
+independently reviewed checkpoint is now built: `build/report.pdf`, 16 pages,
+SHA-256 `55b41a2ba70b0ec5c7b5157ecc26107fbd76c997f27ff5246fc1d92d51ce9e7c`.
+`verify/research-workbench-review-2026-11-03.json` binds source, PDF, Overleaf
+bundle, findings, checks and remaining decisions. It is not human-approved,
+published or submitted. The reusable system is in the separate research-workbench
+project; canonical manuscript ownership remains here. No registry/source/value or
+protocol threshold changed. This authorized kickoff supersedes the earlier wait.
+
+**Previous preparation state:** the initial table below is historical. Repositories and sites are now
+public, with local milestone commits enabled. The current branch
+`paper/q1-checkpoint-corrections` holds a provisional interpretation correction
+draft. Uzair asked to stop further paper work until he introduces his structured
+approach. This takes precedence over the old P0 task ordering. Biwei Huang has
+been removed from the author block at his instruction. No new mentor identity is
+implied. The paper is not submission-ready.
+
+### Historical baseline (12:15 PT)
 | Item | State |
 |---|---|
 | cc-research HEAD | `cf536c1` (27 Oct). **Nothing committed since**; W1's files are untracked/modified in the work tree |
@@ -208,3 +338,109 @@ and never on its null twin). DLV-07 final export with the package included (deci
   lifts the commit hold. Added a CI/staged-tree route for the two pinned data-shape summaries without changing the
   frozen registry or numerical sources. The manuscript corrections and PDF remain pending; source/commit receipts
   are in the migration log. Root policy now authorizes automatic local commits after ready milestones.
+
+- **3 Nov (Codex, post-publication preparation):** verified manually sent Slack
+  announcements and saved a subsystem rehearsal sheet. On local branch
+  `paper/q1-checkpoint-corrections`, prepared provisional Crucis framing and
+  interpretation fixes: bootstrap versus model review; unmatched name-control
+  cohorts and exploratory Causal-Copilot status; MATMCD point estimate and interval;
+  BND-08 pre-registration; implemented versus proposed scope and repository roles.
+  Removed unsupported global-first claims. No frozen registry/source/value changed.
+  Lint passed with 0 errors/warnings (74 used keys, 42 citations); all 78 numbers
+  and the checkpoint contract passed. Heuresis was re-read at the primary v1 paper
+  (https://arxiv.org/html/2610.22846v1); no new citation entered the bibliography
+  because its independent-reader gate remains pending.
+  A local PDF attempt failed before XeLaTeX at the missing-template bibliography
+  fallback: kpsewhich's output did not resolve to a usable econ.bst path. No fresh
+  PDF was produced. The historical tracked PDF and generated number artifacts were
+  restored byte-for-byte; the attempted build inputs/bundle are archived outside
+  the repository under `_repo_migration/2026-11-03/paper-build-attempt/` and must not
+  be treated as a current PDF or submission bundle.
+  Uzair then requested a new structured paper workflow and removal of Biwei Huang
+  from the author block. Applied the author change, kept this correction draft
+  local for review, and stopped further paper development. No submission, new paid
+  campaign or paper publication occurred. Await Uzair's approach before continuing.
+
+- **3 Nov (Codex, structured workflow, DLV-05/DLV-06):** built the separate generic
+  evidence/argument/review system and exercised fresh-context reviewer calibration
+  before applying it here. Initial scientific reviewers covered correctness,
+  identification/statistics, experimental design, closest work, reproducibility,
+  significance, exposition and skeptical synthesis. Same-model correlation and
+  actual access limits are recorded. Independent supplied-byte reproduction
+  resolved all 78 numeric entries; no fresh raw-run/native campaign was run.
+  Six reporting/scope findings were dispositioned and rechecked: conditional M3
+  denominator, M3 endpoint mismatch, reference-overlap optimality wording, omitted
+  Heuresis comparison and abstract coverage. Overlapping findings are retained.
+  Added independently primary-read Heuresis and Causal-Audit references (C39/C40),
+  a connected contribution argument and interpretation appendix.
+
+  **New scientific boundary:** the BND-08 pre-run header describes S3, but the
+  M3 calculation consumes completed final-output stability N1 counts and classifies
+  adjacency, not directional agreement. The text now reports the informative
+  subset and retained post-review pair state, discloses the mismatch and treats
+  the counts descriptively. This fixes the reporting claim; it does not repair or
+  amend the historical implementation/protocol. Any confirmatory endpoint claim
+  requires separate authorized reconciliation. W5 request 10 records the handoff.
+
+  Downloaded the actual course template source through its read-only Overleaf
+  link. Existing .sty matches; actual .bst now retained with original notices.
+  Replaced destructive/fallback building with scratch generation, strict template
+  hashes, bounded reference convergence and rollback on late output failure.
+  Independent failure injection found and verified a promotion-consistency fix;
+  `verify/test_build_transaction.py` passes. MiKTeX dependencies and the official
+  Fira Code face were installed locally; no template font substitution was used.
+  PDF and self-contained Overleaf bundle use identical six input files; all 16
+  pages rendered and inspected, no overfull boxes or unresolved cites/references.
+  Preprint/unpaginated bibliography warnings and inherited template setup warning
+  are recorded rather than filled with invented metadata. Historical PDF retained.
+
+  Final scientific body is byte-identical to the source independently rechecked
+  at SHA-256 `69e1ea438b7b7241e7267cfe27f531529bedf1438a28be64db57ba755d45c93d`;
+  root separately verified preamble-only widow/orphan changes and rendered output.
+  The project-local typed release preserves all reviews/dispositions and explicit
+  limits; private packets remain outside this publishable source tree. The full
+  legacy citation corpus was not freshly reread; existing verification records
+  and their access limitations remain authoritative for those reads.
+
+  Frozen checks pass: 78 keys, 13 number sources, 19 files; number values match;
+  lint 0 errors/0 warnings, 74 used keys and 44 citation keys. Generated changes
+  are HEAD provenance from historical cf536c1 to build base aef6492 plus platform
+  line endings. Course dates confirmed publicly (6 Nov checkpoint, 4 Dec final);
+  exact times remain unverified because Gradescope redirects to UCSD login.
+  Author block remains Uzair only; no replacement mentor inferred. No tracker,
+  site, Slack, protocol or remote publication/submission changed.
+
+- **5 Nov (Codex, checkpoint fast track, DLV-05/DLV-07):** reconciled the
+  checkpoint assertion inventory and material literature comparisons, ran
+  three fresh scoped reviews and two separate exposed rechecks, then narrowed
+  the remaining wording and inspected the actual course PDF. Original
+  reviews, dispositions and detailed packets remain project-local. The
+  research verification receipt binds the final candidate and specifies
+  coverage, independence and scientific limits. No live run, protocol
+  amendment, change to frozen evidence, remote publication or submission.
+
+- **5 Nov (Codex, author readability revision, DLV-05/DLV-07):** built the
+  Overleaf export and used the same versioned reading rubric on it and the
+  revision. The paper now gives readers named questions, a compact level list,
+  an appendix route and a stage locator. The evidence freeze and the number
+  lock pass. The revised package was built locally with XeLaTeX and BibTeX.
+  All pages were inspected and the six ZIP inputs match the PDF build.
+  The judgment is an exposed editorial recheck. The literature paragraph
+  about language models is the remaining readability finding.
+
+- **6 Nov (Codex, final Overleaf archive, DLV-05/DLV-07):** adopted all six
+  exact author-export inputs without rewriting the paper; retained the original
+  ZIP and inspected PDF in the checkpoint archive. The only change from the
+  immediately preceding reviewed export is the shorter CausalArena hyperlink,
+  which removes the overflow. Frozen sources, registry values and scientific
+  protocols are unchanged. Generated number-file differences are newline-only.
+  Compiled with the actual course styles, inspected all 16 pages, checked all
+  citation/reference resolution, and verified source/archive/PDF bindings.
+  Preserved six explicit editorial lint dispositions rather than mislabeling
+  transition sentences or adding gratuitous citations; twelve focused tests
+  pass. Prior review access limits remain authoritative. Added a bounded,
+  ordered post-submission audit plan for reproducibility and reader-facing
+  documentation across the repositories/sites. No trackers, sites, active
+  Crucis subsystems, remote publication or submission changed. Earlier local
+  outputs remain in Git history and builder history. Read the milestone commit
+  message for the exact staged-tree gate result before treating it as committed.

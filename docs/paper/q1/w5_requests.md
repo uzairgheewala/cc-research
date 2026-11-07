@@ -37,3 +37,51 @@ Tickets: DLV-05, DLV-07, DLV-11, BND-13, BEN-13, PRG-01
 
 Items 7–9 are coordination handoffs, not changes to ticket status or evidence pins. DLV-05 remains open until the
 actual submission criterion is met. Known prose/citation corrections remain in HANDOFF §5.
+
+10. **BND-08 M3 endpoint reconciliation (3 Nov structured review).** Independent
+    source-code review found that `analysis/s2_analysis.py`'s pre-run header names
+    S3, while the calculation reads `stability.py` N1 from completed final outputs.
+    Its denominator includes only distinct scenario/directed-edge pairs adjacent
+    in exactly one reference; classification is by adjacency, not correct direction.
+    The paper now reports the counts descriptively and discloses the discrepancy.
+    No source, threshold, count, endpoint or evidence pin was changed. Please route
+    any protocol/implementation reconciliation to its owners under a separate
+    reviewed authorization; do not repin merely to make this disappear.
+11. **Checkpoint local build/review state.** Actual template bibliography obtained;
+    source and 16-page inspected PDF/bundle are bound in
+    `verify/research-workbench-review-2026-11-03.json`. Items 1/6 now have local
+    validation evidence; submission and any remote publication remain separate.
+    The companion still covers its scoped comparison, not whole-paper reproduction.
+    Exact Gradescope deadline times and mentor-specific requirements need human
+    verification after UCSD sign-in. No shared ticket/site/status changes made.
+
+12. **6 Nov post-submission reader-route audit (DLV-05/DLV-07).** The author
+    confirmed submitting the archived PDF; exact upload time/receipt remain
+    unavailable. Please reconcile the research site's checkpoint-open/next-
+    deliverable text with the confirmed report state after reviewing the additive
+    status receipt. The framework site still describes execution/collection as
+    in design, while its public default includes scoped S3/S4 implementations.
+    Route that source/site change to the framework owner. The audit report and
+    public observation receipts are in `audit/2026-11-06/`. Both homepages and all
+    21 selected same-origin endpoints returned 200; content currency is separate.
+    No public site, shared tracker, snapshot, Slack message or deployment was
+    modified by the paper workstream. The stable framework full gate was
+    incomplete and a bounded test probe timed out; preserve this qualification.
+
+13. **Companion export disclosure (DLV-07).** Existing DLV-07 evidence pins
+    cover `docs/q1_repo/README.md` and `tools/export_q1.py`; the staged gate
+    rejected changes to both. Their exact bytes were restored without a repin.
+    Review `audit/2026-11-06/companion-export-disclosure.patch` and its additive
+    `docs/q1_repo/AI_USE.md` template before adopting an updated export contract.
+    Deliberately repin through the owner process if adopted. The current code ZIP
+    reads the reviewed companion commit directly and does not depend on rerunning
+    the historical exporter or silently changing these pins.
+
+14. **6 Nov follow-up for TEAM-11.** The author confirmed both checkpoint
+    submissions. A reviewed landing-page patch uses the additive receipt to
+    remove the checkpoint from the upcoming list and links the report, source,
+    reproduction guide and AI disclosure. The local research site built with
+    zero errors and warnings. The staged gate identified the existing TEAM-11
+    pin on `site/pgs/pg_today.py`. Review this as a site-owner change and repin
+    via the tracker workflow before deploying it. The scientific evidence pins
+    and tracker statuses were excluded from the checkpoint audit milestone.

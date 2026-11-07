@@ -1,0 +1,77 @@
+{
+  "tickets": [
+    "DLV-05",
+    "DLV-07",
+    "PRG-01",
+    "BND-08"
+  ],
+  "state": "locally validated course checkpoint, ready for user approval and submission",
+  "parent_commit": "9ab11851994c8a0e2fd98cab5ab1ed5f84567152",
+  "manuscript_sha256": "bdd05501759eb7c7ba7bd3411f9913cafc9125151e4ac40502efeef7f3156736",
+  "pdf_sha256": "1ce2fedc9edd7844e2f712978920ca98ef8eb77c974efb7f9f5176d70ec70b12",
+  "overleaf_bundle_sha256": "17b18b21f99a6c8e80cf1982ba89830f5ef81ecd4269575b86106977e5cbe1f8",
+  "pages": 16,
+  "bundle_members": {
+    "report.tex": "bdd05501759eb7c7ba7bd3411f9913cafc9125151e4ac40502efeef7f3156736",
+    "reference.bib": "e9e7d9789d0f8014f1d361b1725da2aafc3833027328e3b6d1f4dab698028f5d",
+    "numbers.tex": "ac3c44edaab684af21c183c93842eccea1cb177b2f88e98b8142548884786ecd",
+    "numbers_table.tex": "43a0c888f57debaa05037aecc5cc941d5c10ca5ea2f20f7ec1478aa07e24d1e4",
+    "style/dsc180reportstyle.sty": "8b6a24551500813f874ca797ffdd16426d1b00725cbed3b87d2667a96e2597f7",
+    "style/dsc180bibstyle.bst": "1c9e8a1567018e60360c9eb7ce1036bf9a9e551931112cdb742471212d8f9953"
+  },
+  "literature_record_sha256": "0b656fcc5a5921a691447d5a720a5539f46e8d611c4e34e58e9446cd04096f2d",
+  "claim_coverage": {
+    "author_groups": 18,
+    "substantive_blocks": 29,
+    "generated_registry_rows": 78,
+    "citation_keys_with_records": 46,
+    "final_anchor_sha256": "4318bdac8c547559120177165cb62aea1af9adca459e11005aa840503ab2a5e4",
+    "meaning": "Exact anchor and inventory coverage plus scoped scientific reviews; historical citation access limits retained."
+  },
+  "review_scope": {
+    "fresh_jobs": 3,
+    "recheck_jobs": 2,
+    "reported_tool_calls": 42,
+    "initial_findings": 24,
+    "overlapping_findings_grouped": true,
+    "original_packet_sha256": "e482198d3092a29582aa2acc052ed936204e75648b58eae5c62356b708d1198e",
+    "reviewed_amendment_sha256": "b7200c30c598eda7c0ea9e2d83af2ad8b5c68e35d1cc27fd4d8c555c20182ce1",
+    "review_report_sha256": {
+      "review-corpus.md": "2e5517be968d19553d801450842dfbf41cf2d20a08190ae20fb61acbfdca974d",
+      "review-evidence-recheck.md": "c43da8a50807b032b8db8f71ef67ec418ae6c459abe7659e1998a8096a60459e",
+      "review-evidence.md": "9caa1525fe615786397a98b8f8ebc0a38482d06722ca4cea848b094778880ba0",
+      "review-synthesis-recheck.md": "d4bd434b47111bc3a246f2132e0b371fe94716787211501683070020a3a0cd81",
+      "review-synthesis.md": "2c7bc64313be178bc81c2bdd5a5f33d78237367fbe44d39ae8f528035a7b0885"
+    },
+    "disposition_sha256": "4fa72b0f3c72b3a034e21ce4e4f16350b0e978a15cd8c456c8fd8fa995e04bf8",
+    "assessment_sha256": "bbed15598ab9a530bc04cc5b40f56a664735e75e4d0c74cdc1cb716ce0c0659b",
+    "assessment": "declared-plan-complete for three preassigned initial jobs; schema translation written after dispatch",
+    "limits": "Shared model family and scoped access. Final author narrowing and bibliography spacing verified by exact diff and rebuild. No calibrated overall grade."
+  },
+  "checks": {
+    "frozen_contract": "78 registry entries, 13 sources, 19 frozen files",
+    "numbers": "78 match lock",
+    "lint": "0 errors, 0 warnings, 74 number keys and 46 citation keys",
+    "build": "Actual course template; no unresolved citations/references or overfull boxes",
+    "visual": "All final pages inspected; inherited template setup warning and unpaginated reference warnings retained"
+  },
+  "code": {
+    "visibility_checked": "public",
+    "research": "https://github.com/uzairgheewala/cc-research",
+    "companion": "https://github.com/uzairgheewala/causal-copilot-q1",
+    "companion_check": "Offline run.py reproduce matched its committed retained-graph comparison. Stage diagnostics are separate.",
+    "framework": "https://github.com/crucis-lab/crucis",
+    "course_submission": "https://github.com/uzairgheewala/causal-copilot-q1",
+    "tested_companion_commit": "43d0c751c275889b71191ffb942126af26b7cff3",
+    "readme_limit": "The public companion README attributes the loss to review broadly. The checkpoint distinguishes the bootstrap transition."
+  },
+  "course": {
+    "date": "2026-11-06",
+    "exact_gradescope_time": "unverified",
+    "mentor_specific_additions": "unverified"
+  },
+  "scientific_limit": "BND-08 is descriptive at the observed completed-final endpoint. Broader instrument validation and new empirical execution remain future work.",
+  "human_approved": false,
+  "published": false,
+  "submitted": false
+}

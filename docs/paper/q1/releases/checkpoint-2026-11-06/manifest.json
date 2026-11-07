@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "tickets": [
+    "DLV-05",
+    "DLV-07"
+  ],
+  "created_at": "2026-11-07T04:42:40.721530+00:00",
+  "state": "locally built and visually reviewed; awaiting author submission",
+  "parent_commit": "171bcab5cc009cd285ebab96377192796d573f4a",
+  "inputs": {
+    "report.tex": "59898a48fcc5b6006fcb8be739dd92e314faa55edc002a2000161a1ace7709cf",
+    "reference.bib": "f8541a0883b8cc8d9d668154d1d91e1ef13a841bae549f9f749b8922dbc0b850",
+    "numbers.tex": "5a28f91933be3b655463501546b2ab93b017cbf01c2467c823332d46eac5e094",
+    "numbers_table.tex": "b9e079d11bb3313ba1077a349439ac0058f665358cf6ea066d18933743f3ace0",
+    "style/dsc180reportstyle.sty": "8b6a24551500813f874ca797ffdd16426d1b00725cbed3b87d2667a96e2597f7",
+    "style/dsc180bibstyle.bst": "1c9e8a1567018e60360c9eb7ce1036bf9a9e551931112cdb742471212d8f9953"
+  },
+  "artifacts": {
+    "build/report.pdf": "81568c73a8a6478df916c4298bcec0f0a1d44245cb3cbcba3b2ea6d165bc841d",
+    "releases/checkpoint-2026-11-06/report.pdf": "81568c73a8a6478df916c4298bcec0f0a1d44245cb3cbcba3b2ea6d165bc841d",
+    "releases/checkpoint-2026-11-06/overleaf-source.zip": "d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257"
+  },
+  "review_bindings": {
+    "verify/checkpoint-build-2026-11-06.json": "d6bfaefb7ef0030b93ef750dd22276fc35a24a754246af1be7d88c9f2d785aac",
+    "verify/checkpoint-final-review-2026-11-06.json": "6e2a795f251a37afae481c131a1c2e5c01a5b7d9dbb1506709d821551d90939c",
+    "verify/checkpoint-lint-dispositions-2026-11-06.json": "b0294385d0c1faa3526b19f775d0f0b8785e52dcf1e1f2faa7efcefc5e935731",
+    "verify/verify_checkpoint_release.py": "74ba45814d1e6fb86dd058b72c0cf5d198936ab499025efb3931166ab508ecc2",
+    "lint_report.py": "ee6df4b1526742283661b97170101715c8093d1bbe2d50c35ad34f9d76c66995",
+    "verify/research-workbench-checkpoint-2026-11-05.json": "970762ba599f3e98c763ead4f8c34665b07763fdb2aae5978273ee561e8376f8",
+    "verify/checkpoint-editorial-review-2026-11-05.json": "d29163a642a5d0e186f9a29ca21abd9bb56ea21ac8278d58bf1d2cb1ee28e495",
+    "checkpoint_contract.json": "058a8f786c46bce597e7f5c098483cf44043ae8e1b769230ca3ef1acaf18be53",
+    "lit_claims.json": "0b656fcc5a5921a691447d5a720a5539f46e8d611c4e34e58e9446cd04096f2d",
+    "numbers.json": "7af73fdfefa530dc945e8aef78fb058cf9cf4f593196b6a3a15a6f3fef5c0bd4",
+    "numbers.lock.json": "7b93a682f57c84e2cd7ec839037b4f76e9eaef83b0e4adb06e4b249d0c734530"
+  },
+  "compiler": "XeLaTeX with BibTeX, actual course styles; no template substitution",
+  "pages": 16,
+  "frozen_evidence_commit": "cf536c12df7fad928a3c7e76b51f2d441cf7efb8",
+  "number_build_source_base": "aef649241abe",
+  "code_deliverable": {
+    "url": "https://github.com/uzairgheewala/causal-copilot-q1",
+    "scope": "companion retained-graph Causal-Copilot run comparison; does not reproduce the entire paper"
+  },
+  "framework": "https://github.com/crucis-lab/crucis",
+  "research_evidence": "https://github.com/uzairgheewala/cc-research",
+  "published": false,
+  "submitted": false,
+  "limitations": "Hash bindings establish exact local artifacts and reviews, not truth, a remote timestamp, whole-paper native reproduction or submission. Local gate completion is recorded in the milestone commit message."
+}

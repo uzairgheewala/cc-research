@@ -1,0 +1,130 @@
+{
+  "stages": {
+    "main": {
+      "runs": 30,
+      "completed": 22,
+      "S0_adj_all_runs": 0.584,
+      "final_adj_completed": 0.321,
+      "transitions": [
+        {
+          "stage": "S0->S1",
+          "point": -0.27,
+          "lo": -0.327,
+          "hi": -0.2,
+          "n": 22
+        },
+        {
+          "stage": "S1->S2",
+          "point": 0.007,
+          "lo": -0.027,
+          "hi": 0.042,
+          "n": 22
+        },
+        {
+          "stage": "S2->S3",
+          "point": -0.0,
+          "lo": -0.004,
+          "hi": 0.004,
+          "n": 22
+        },
+        {
+          "stage": "S3->S4",
+          "point": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "n": 22
+        }
+      ],
+      "cycle_step": {
+        "entering": 8,
+        "crashed_there": 8,
+        "entering_and_completed": 0
+      }
+    },
+    "bnd08": {
+      "runs": 30,
+      "completed": 24,
+      "S0_adj_all_runs": 0.579,
+      "final_adj_completed": 0.302,
+      "transitions": [
+        {
+          "stage": "S0->S1",
+          "point": -0.281,
+          "lo": -0.333,
+          "hi": -0.24,
+          "n": 24
+        },
+        {
+          "stage": "S1->S2",
+          "point": -0.003,
+          "lo": -0.036,
+          "hi": 0.024,
+          "n": 24
+        },
+        {
+          "stage": "S2->S3",
+          "point": 0.005,
+          "lo": 0.003,
+          "hi": 0.008,
+          "n": 24
+        },
+        {
+          "stage": "S3->S4",
+          "point": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "n": 24
+        }
+      ],
+      "cycle_step": {
+        "entering": 6,
+        "crashed_there": 6,
+        "entering_and_completed": 0
+      }
+    }
+  },
+  "bnd08_endpoints": {
+    "pre_cycle_all": {
+      "stage": "S2",
+      "labels_only": 86,
+      "data_only": 23,
+      "neither": 77,
+      "both": 0,
+      "n": 109,
+      "share_following_labels": 0.7889908256880734,
+      "units": 109,
+      "q95_data_only": 63,
+      "swapped_runs": 10
+    },
+    "pre_cycle_completed": {
+      "stage": "S2",
+      "labels_only": 81,
+      "data_only": 20,
+      "neither": 74,
+      "both": 0,
+      "n": 101,
+      "share_following_labels": 0.801980198019802,
+      "units": 101,
+      "q95_data_only": 59,
+      "swapped_runs": 9
+    },
+    "final_completed": {
+      "stage": "S2",
+      "labels_only": 81,
+      "data_only": 20,
+      "neither": 74,
+      "both": 0,
+      "n": 101,
+      "share_following_labels": 0.801980198019802,
+      "units": 101,
+      "q95_data_only": 59,
+      "swapped_runs": 9
+    }
+  },
+  "ticket": "DLV-07",
+  "script_sha256": "0d83949ffaa1cd79f0fdd912b2ff5c8ebbaf0f9a11ddc25c2e38a21fbb0c1be5",
+  "crucis_source_commit": "827b43cfd02dc9037c074adeda6512ade5d402a6",
+  "research_checkout_baseline": "e5264a6b5a60168403b4a2c10cdc04813e5f5b15",
+  "input_scope": "Locally retained stage records and reference arrays, see manifests/excluded/",
+  "native_model_calls": 0
+}

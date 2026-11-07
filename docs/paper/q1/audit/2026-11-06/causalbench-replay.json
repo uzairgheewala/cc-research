@@ -1,0 +1,349 @@
+{
+  "ticket": "DLV-07",
+  "python": "3.12.13",
+  "packages": {
+    "causalbench": "1.1.2",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "rows": [
+    {
+      "line": "k562",
+      "cell": "md_k1000",
+      "array_sha256": "513d763a466efcbeb9cdd30f219c6162e857035d3af1e7f574dbb7103764c57a",
+      "network_sha256": "29cde1a4432c0591a7c9c00df095a2029e7e5f90f19480812641c1df6de0058a",
+      "scores": {
+        "tp": {
+          "expected": 994,
+          "actual": 994
+        },
+        "fp": {
+          "expected": 6,
+          "actual": 6
+        },
+        "edges": {
+          "expected": 1000,
+          "actual": 1000
+        },
+        "wasserstein": {
+          "expected": 0.5898651278515121,
+          "actual": 0.5898651278515121
+        },
+        "for": {
+          "expected": 0.176,
+          "actual": 0.176
+        },
+        "negative_wasserstein": {
+          "expected": 0.11227911369468824,
+          "actual": 0.11227911369468822
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "k562",
+      "cell": "md_k5000",
+      "array_sha256": "513d763a466efcbeb9cdd30f219c6162e857035d3af1e7f574dbb7103764c57a",
+      "network_sha256": "be5a8795e8fa338dd141bec81b1cb59d27fe9d231473f32ded402699b8465bf8",
+      "scores": {
+        "tp": {
+          "expected": 4809,
+          "actual": 4809
+        },
+        "fp": {
+          "expected": 191,
+          "actual": 191
+        },
+        "edges": {
+          "expected": 5000,
+          "actual": 5000
+        },
+        "wasserstein": {
+          "expected": 0.442401384551515,
+          "actual": 0.442401384551515
+        },
+        "for": {
+          "expected": 0.128,
+          "actual": 0.128
+        },
+        "negative_wasserstein": {
+          "expected": 0.09858999429299276,
+          "actual": 0.09858999429299274
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "k562",
+      "cell": "random_k1000",
+      "array_sha256": "513d763a466efcbeb9cdd30f219c6162e857035d3af1e7f574dbb7103764c57a",
+      "network_sha256": "b7f6cea4ce4074692e4a933924878617a2adddb9b10a24d51aaa615ad13fdb23",
+      "scores": {
+        "tp": {
+          "expected": 185,
+          "actual": 185
+        },
+        "fp": {
+          "expected": 815,
+          "actual": 815
+        },
+        "edges": {
+          "expected": 1000,
+          "actual": 1000
+        },
+        "wasserstein": {
+          "expected": 0.11131669132127815,
+          "actual": 0.11131669132127814
+        },
+        "for": {
+          "expected": 0.166,
+          "actual": 0.166
+        },
+        "negative_wasserstein": {
+          "expected": 0.1148282289501137,
+          "actual": 0.1148282289501137
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "k562",
+      "cell": "random_k5000",
+      "array_sha256": "513d763a466efcbeb9cdd30f219c6162e857035d3af1e7f574dbb7103764c57a",
+      "network_sha256": "cdcfec00d869f97ac97fbf9965dcad602226290f296e5b8d09cdd409dd422ff2",
+      "scores": {
+        "tp": {
+          "expected": 905,
+          "actual": 905
+        },
+        "fp": {
+          "expected": 4095,
+          "actual": 4095
+        },
+        "edges": {
+          "expected": 5000,
+          "actual": 5000
+        },
+        "wasserstein": {
+          "expected": 0.11192027783631929,
+          "actual": 0.11192027783631932
+        },
+        "for": {
+          "expected": null,
+          "actual": null
+        },
+        "negative_wasserstein": {
+          "expected": null,
+          "actual": null
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "rpe1",
+      "cell": "md_k1000",
+      "array_sha256": "a1f728261be13972e6739345dc70db6dde10e6248aef04fa3b2261ffec18d9ba",
+      "network_sha256": "647e6829cc7518d4bd1ff3233c95d47d94e0010255f4dc7f9cd97c67828fd884",
+      "scores": {
+        "tp": {
+          "expected": 974,
+          "actual": 974
+        },
+        "fp": {
+          "expected": 26,
+          "actual": 26
+        },
+        "edges": {
+          "expected": 1000,
+          "actual": 1000
+        },
+        "wasserstein": {
+          "expected": 0.7115836155270772,
+          "actual": 0.711583615527077
+        },
+        "for": {
+          "expected": 0.136,
+          "actual": 0.136
+        },
+        "negative_wasserstein": {
+          "expected": 0.09083621999655161,
+          "actual": 0.09083621999655161
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "rpe1",
+      "cell": "md_k5000",
+      "array_sha256": "a1f728261be13972e6739345dc70db6dde10e6248aef04fa3b2261ffec18d9ba",
+      "network_sha256": "0fc33f60c70fbc32c96caff3189ef00c645ebff30215fe2d500bab730454c12c",
+      "scores": {
+        "tp": {
+          "expected": 4014,
+          "actual": 4014
+        },
+        "fp": {
+          "expected": 986,
+          "actual": 986
+        },
+        "edges": {
+          "expected": 5000,
+          "actual": 5000
+        },
+        "wasserstein": {
+          "expected": 0.38398282649101617,
+          "actual": 0.38398282649101617
+        },
+        "for": {
+          "expected": 0.076,
+          "actual": 0.076
+        },
+        "negative_wasserstein": {
+          "expected": 0.07022262454241526,
+          "actual": 0.07022262454241528
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "rpe1",
+      "cell": "random_k1000",
+      "array_sha256": "a1f728261be13972e6739345dc70db6dde10e6248aef04fa3b2261ffec18d9ba",
+      "network_sha256": "85f4598628e86fe407ee27452d81ac50b5dca031fba6af03ec9bed8b1242e5ba",
+      "scores": {
+        "tp": {
+          "expected": 121,
+          "actual": 121
+        },
+        "fp": {
+          "expected": 879,
+          "actual": 879
+        },
+        "edges": {
+          "expected": 1000,
+          "actual": 1000
+        },
+        "wasserstein": {
+          "expected": 0.09626883172800621,
+          "actual": 0.09626883172800621
+        },
+        "for": {
+          "expected": 0.124,
+          "actual": 0.124
+        },
+        "negative_wasserstein": {
+          "expected": 0.09390014226196672,
+          "actual": 0.09390014226196672
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    },
+    {
+      "line": "rpe1",
+      "cell": "random_k5000",
+      "array_sha256": "a1f728261be13972e6739345dc70db6dde10e6248aef04fa3b2261ffec18d9ba",
+      "network_sha256": "adb259ca065829b6878120bbd461c7390ad5383593b1d200318f316a2d50f451",
+      "scores": {
+        "tp": {
+          "expected": 597,
+          "actual": 597
+        },
+        "fp": {
+          "expected": 4403,
+          "actual": 4403
+        },
+        "edges": {
+          "expected": 5000,
+          "actual": 5000
+        },
+        "wasserstein": {
+          "expected": 0.09377975885957744,
+          "actual": 0.09377975885957744
+        },
+        "for": {
+          "expected": null,
+          "actual": null
+        },
+        "negative_wasserstein": {
+          "expected": null,
+          "actual": null
+        }
+      },
+      "checks": {
+        "network_sha256": true,
+        "tp": true,
+        "fp": true,
+        "edges": true,
+        "wasserstein": true,
+        "for": true,
+        "negative_wasserstein": true
+      }
+    }
+  ],
+  "pass": true,
+  "script_sha256": "50f0ad44b2060bf6f3f24cbd83c6685ae456835f1d248eb0e8324e3cfd72500c",
+  "method": "Line.score using CausalBench splitter and fast statistical evaluator",
+  "absolute_tolerance_for_distances": 1e-10,
+  "other_checks": "exact",
+  "scope": "Eight selected statistical cells from hash-verified filtered NPZ archives",
+  "biological_scores_compared": false,
+  "raw_h5ad_preprocessing_replayed": false,
+  "native_model_calls": 0
+}

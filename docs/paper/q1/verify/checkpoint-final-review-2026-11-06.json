@@ -1,0 +1,57 @@
+{
+  "tickets": [
+    "DLV-05",
+    "DLV-07"
+  ],
+  "reviewed_at": "2026-11-07T04:42:40.717530+00:00",
+  "stage": "author-exposed final export integration and visual review; no new independent panel",
+  "manuscript_sha256": "59898a48fcc5b6006fcb8be739dd92e314faa55edc002a2000161a1ace7709cf",
+  "pdf_sha256": "81568c73a8a6478df916c4298bcec0f0a1d44245cb3cbcba3b2ea6d165bc841d",
+  "input_archive_sha256": "d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257",
+  "previous_export_sha256": "3995ebc1e319006298676dd39643dfc27c615a1eafb88c7ebe045df91a8ba7c3",
+  "delta_from_previous_review": "One displayed CausalArena identifier replaced with a short Hugging Face hyperlink; other source members unchanged.",
+  "canonical_input_parity": "All six canonical inputs are byte-identical to the supplied archive. Generated number files changed only CRLF to LF from the previous checkout.",
+  "checks": {
+    "pages_rendered_and_visually_inspected": 16,
+    "undefined_citations_or_references": 0,
+    "overfull_boxes": 0,
+    "printed_bibliography_entries": 31,
+    "unused_library_entries_not_printed": 14,
+    "missing_or_duplicate_cited_keys": 0,
+    "frozen_entries": 78,
+    "frozen_number_sources": 13,
+    "frozen_files": 19,
+    "number_keys_used": 74,
+    "active_lint_errors": 0,
+    "active_lint_warnings": 0,
+    "reviewed_lint_dispositions": 6
+  },
+  "visual_judgment": "All sixteen rendered pages inspected, including the repaired A.4 link, references, stage diagram and every lookup-table page; no visible clipping or overlapping text.",
+  "retained_warnings": {
+    "bibliography": [
+      "Warning--there is no volume, number, and pages in dong2025care",
+      "Warning--there is no volume, number, and pages in khatibi2024alcm",
+      "Warning--there is no volume, number, and pages in kiciman2023causal",
+      "Warning--there is no volume, number, and pages in kumar2026plausibility",
+      "Warning--there is no volume, number, and pages in li2026causalarena",
+      "Warning--there is no volume, number, and pages in ma2026heuresis",
+      "Warning--there is no volume, number, and pages in ruiz2026causalaudit",
+      "Warning--there is no volume, number, and pages in srivastava2025llm",
+      "Warning--there is no volume, number, and pages in wang2025causalcopilot",
+      "Warning--there is no volume, number, and pages in zheng2026causal"
+    ],
+    "tex": [],
+    "underfull_box_count": 84
+  },
+  "scope_limits": [
+    "Prior scientific and bibliographic review is inherited with its actual access limits; this is not a fresh full primary-source corpus review.",
+    "The six editorial dispositions cover only exact anchored transition/structural-count errors; they do not waive frozen numbers or citation-key verification.",
+    "No new raw/native campaign, scientific protocol amendment, statistical confirmation or external submission occurred.",
+    "Historical BND-08 endpoint mismatch and heterogeneous name-control measurements remain explicitly qualified."
+  ],
+  "publication": {
+    "pushed": false,
+    "published": false,
+    "submitted": false
+  }
+}

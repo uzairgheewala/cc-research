@@ -669,6 +669,60 @@
    "checker_verdict": "confirmed",
    "url": "https://arxiv.org/abs/2504.13263",
    "checker": "independent agent, data facts (data_facts.md)"
+  },
+  {
+   "id": "C39",
+   "keys": [
+    "ma2026heuresis"
+   ],
+   "checked_claim": "Heuresis combines anonymous simulated mechanisms, an interactive tool harness, algorithmic references and PC-centred trace decomposition; multiple algorithms, probes, graph edits and instrument verification are supported in its reported scope.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "arXiv v1 sections 4.1-4.3; Appendix B; Appendices C-H",
+   "quote": "each edge of a submitted graph can thus be traced",
+   "url": "https://arxiv.org/html/2610.22846v1",
+   "checker": "Fresh-context in-app primary reader /root/heuresis_primary; independent of sentence drafting; same parent model, exact model ID unavailable",
+   "notes": "Primary substantive HTML and appendices read; selective PDF text cross-check. No code execution or universal interoperability assessment. Second blind synthesis reviewer independently identified overlapping tracing/instrument checks. External-system distinction is scoped project interpretation, not a global-first claim. Accessed 2026-11-03 America/Los_Angeles."
+  },
+  {
+   "id": "C40",
+   "keys": [
+    "ruiz2026causalaudit"
+   ],
+   "checked_claim": "Causal-Audit uses time-series assumption diagnostics, calibrated risk and uncertainty for method recommendation or abstention before discovery.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "arXiv v1 sections 4, 4.2, 4.3; limitations section 7",
+   "quote": "The current decision pipeline supports PCMCI+ and VAR-based Granger tests.",
+   "url": "https://arxiv.org/html/2604.02488v1",
+   "checker": "In-app primary reader /root/heuresis_primary in separate pre-drafting source task; same parent model, exact model ID unavailable",
+   "notes": "Relevant methods and limitations read directly, four web calls. Nonlinearity diagnostic only; confounding proxies are not direct latent-confounder tests; external consistency is not external calibration. Metadata verified at arXiv. Accessed 2026-11-03 America/Los_Angeles."
+  },
+  {
+   "id": "C41",
+   "keys": [
+    "deb2026acdb"
+   ],
+   "checked_claim": "ACDB separates observational recovery, DAG recovery and intervention efficiency in a benchmark with budgeted interventions, and probes density effects on a structure-blind baseline.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "arXiv v1 abstract and sections 3.1–3.3, 3.5 and 5.3",
+   "url": "https://arxiv.org/html/2609.31675v1",
+   "checker": "Checkpoint author primary-source inspection",
+   "notes": "Observed 5 November 2026. Primary HTML. Reviewers received a bounded source-access summary."
+  },
+  {
+   "id": "C42",
+   "keys": [
+    "stein2026tcdarena"
+   ],
+   "checked_claim": "TCD-Arena provides a modular test kit for robustness to controlled time-series assumption violations.",
+   "verdict": "confirmed",
+   "checker_verdict": "confirmed",
+   "location": "Author project page, Abstract and Current Benchmarking Results",
+   "url": "https://tcd-arena.github.io/",
+   "checker": "Checkpoint author primary project-page inspection",
+   "notes": "Observed 5 November 2026. The page supplies the ICLR citation. The paper and implementation were not opened."
   }
  ]
 }

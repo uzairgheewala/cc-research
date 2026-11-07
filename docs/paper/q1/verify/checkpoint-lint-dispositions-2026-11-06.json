@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "tickets": [
+    "DLV-05",
+    "DLV-07"
+  ],
+  "source_sha256_utf8_lf": "59898a48fcc5b6006fcb8be739dd92e314faa55edc002a2000161a1ace7709cf",
+  "review_stage": "author-exposed editorial reconciliation; not fresh independent source review",
+  "dispositions": [
+    {
+      "error": "line 123: number word 'two' (use \\nm or rephrase): CausalArena's public inventory comprises \\nm{ab01.files.semantic} semantic, \\nm{ab01.files.formula} formula, a",
+      "kind": "structural-count",
+      "reason": "The word two counts the adjacent, separately linked PC rows, not an additional measured result.",
+      "evidence": [
+        "report.tex Appendix A.1",
+        "numbers.json: ab01.pc.published, ab01.pcmaxp.controlled"
+      ]
+    },
+    {
+      "error": "line 134: number word 'three' (use \\nm or rephrase): Inside Causal-Copilot, our edge-level label-following diagnostic (\\texttt{BND-08}) examines how completed outp",
+      "kind": "structural-count",
+      "reason": "The word three counts the immediately following Selection, Count and Interpretation list items.",
+      "evidence": [
+        "report.tex Appendix A.2: Selection / Count / Interpretation"
+      ]
+    },
+    {
+      "error": "prior-work sentence without \\cite or \\ours: While a reference graph gives us a baseline to score against, the benchmark itself can inadvertently contain clues about the answer.",
+      "kind": "grouped-attribution",
+      "reason": "Opening synthesis is substantiated by the immediately following cited variance and predictability examples.",
+      "evidence": [
+        "lit_claims.json: reisach2021beware, reisach2023scale"
+      ]
+    },
+    {
+      "error": "prior-work sentence without \\cite or \\ours: This evaluation fragility is compounded when language models enter the pipeline.",
+      "kind": "grouped-attribution",
+      "reason": "Transition frames the name-reliance examples cited in this paragraph; it introduces no separate quantitative result.",
+      "evidence": [
+        "lit_claims.json: kiciman2023causal, srivastava2025llm, dong2025care"
+      ]
+    },
+    {
+      "error": "prior-work sentence without \\cite or \\ours: Evaluating LLMs becomes even more complex when they operate as multi-stage agents.",
+      "kind": "grouped-attribution",
+      "reason": "Transition is illustrated by the immediately following cited Causal-Copilot stage order and later audit-trail discussion.",
+      "evidence": [
+        "lit_claims.json: wang2025causalcopilot, zheng2026causal"
+      ]
+    },
+    {
+      "error": "prior-work sentence without \\cite or \\ours: Several frameworks offer precedents for isolating these vulnerabilities.",
+      "kind": "grouped-attribution",
+      "reason": "Topic sentence is substantiated by the immediately following named and cited frameworks.",
+      "evidence": [
+        "lit_claims.json: ma2026heuresis, deb2026acdb, stein2026tcdarena, ruiz2026causalaudit"
+      ]
+    }
+  ]
+}

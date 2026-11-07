@@ -29,3 +29,6 @@ for name,digest in contract['number_source_sha256'].items():
         target.write_bytes(source.read_bytes())
 subprocess.run([sys.executable,'-B',str(PAPER/'check_checkpoint_contract.py')],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'-B',str(PAPER/'lint_report.py')],cwd=ROOT,check=True)
+if (PAPER/'releases/checkpoint-2026-11-06/manifest.json').exists():
+    subprocess.run([sys.executable,'-B',str(PAPER/'verify/verify_checkpoint_release.py')],cwd=ROOT,check=True)
+    subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',str(PAPER/'verify'),'-p','test_*.py'],cwd=ROOT,check=True)
