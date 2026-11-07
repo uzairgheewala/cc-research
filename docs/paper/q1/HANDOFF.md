@@ -36,7 +36,39 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 
 ## 2. State on 3 Nov 2026
 
-**5 Nov author readability revision.** The next local candidate is
+**Current, 6 Nov: final author export archived locally.** The canonical six
+inputs are byte-identical to Uzair's final Overleaf export (archive SHA-256
+`d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257`).
+`releases/checkpoint-2026-11-06/` holds that exact source ZIP, the inspected
+16-page PDF and a portable manifest. The PDF is also at `build/report.pdf`,
+SHA-256 `81568c73a8a6478df916c4298bcec0f0a1d44245cb3cbcba3b2ea6d165bc841d`.
+The source and actual course styles compile with XeLaTeX/BibTeX. All pages
+were rendered and inspected; no overfull boxes or unresolved references/cites.
+The 78-entry / 13-source / 19-file frozen contract and number check pass.
+There are 31 printed references and 14 unused, unprinted library entries.
+
+Six exact-version editorial lint dispositions are explicit, with reasons:
+four grouped paragraph attributions and two structural prose counts. Source
+edits invalidate them; undefined numbers and unchecked citation keys cannot
+be waived. Lint reports zero remaining errors/warnings. Twelve focused
+tests pass, including stale bindings, unexpected ZIP members, source/PDF
+tampering, disposition limits and build rollback. `verify/` retains the
+unmodified compiler receipt, final exposed review and earlier reviews.
+This is an exposed integration/layout check, not a new blind scientific
+panel or whole-corpus primary-source review. Historical scientific limits
+remain in the paper. Local milestone gate results belong in the commit message.
+
+The report is ready for the author's checkpoint submission within that
+review scope. No push, publication or course submission has occurred.
+The DLV-07 link remains the separately scoped companion repository below.
+After Uzair confirms submission, follow `POST_SUBMISSION_AUDIT.md`: inventory
+all findings and reader routes across the three repositories and sites,
+independently check reproducibility at each available evidence level, then
+repair READMEs/docs through existing ownership and publication controls.
+Keep unavailable raw/native evidence visible. Do not begin paid/new native
+experiments or publish sites from this follow-up plan alone.
+
+**Historical, 5 Nov author readability revision.** The then-current candidate was
 `build/report.pdf` (16 pages) and its matching `build/overleaf_upload.zip`.
 It starts from Uzair's Overleaf export, keeps the course author–year style,
 and reorganizes the introduction and appendix around the audit questions.
@@ -46,7 +78,7 @@ and the reader's job in each section. The earlier fast-track receipt below
 identifies the historical PDF in Git. Use XeLaTeX with `report.tex` in Overleaf.
 The current candidate is for author review.
 
-**5 Nov course checkpoint fast track.** The preceding locally reviewed package
+**Historical, 5 Nov course checkpoint fast track.** The preceding locally reviewed package
 is `build/report.pdf` (16 pages), with a matching `build/overleaf_upload.zip`.
 `verify/research-workbench-checkpoint-2026-11-05.json` binds source, evidence,
 review history and artifacts. The earlier reviewed package remains in build
@@ -346,3 +378,20 @@ and never on its null twin). DLV-07 final export with the package included (deci
   All pages were inspected and the six ZIP inputs match the PDF build.
   The judgment is an exposed editorial recheck. The literature paragraph
   about language models is the remaining readability finding.
+
+- **6 Nov (Codex, final Overleaf archive, DLV-05/DLV-07):** adopted all six
+  exact author-export inputs without rewriting the paper; retained the original
+  ZIP and inspected PDF in the checkpoint archive. The only change from the
+  immediately preceding reviewed export is the shorter CausalArena hyperlink,
+  which removes the overflow. Frozen sources, registry values and scientific
+  protocols are unchanged. Generated number-file differences are newline-only.
+  Compiled with the actual course styles, inspected all 16 pages, checked all
+  citation/reference resolution, and verified source/archive/PDF bindings.
+  Preserved six explicit editorial lint dispositions rather than mislabeling
+  transition sentences or adding gratuitous citations; twelve focused tests
+  pass. Prior review access limits remain authoritative. Added a bounded,
+  ordered post-submission audit plan for reproducibility and reader-facing
+  documentation across the repositories/sites. No trackers, sites, active
+  Crucis subsystems, remote publication or submission changed. Earlier local
+  outputs remain in Git history and builder history. Read the milestone commit
+  message for the exact staged-tree gate result before treating it as committed.

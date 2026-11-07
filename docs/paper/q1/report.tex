@@ -36,25 +36,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-A causal discovery system may use numerical patterns, variable names, or both to decide
-which arrows to draw. A final benchmark score tells us little about how it reached those
-decisions. We introduce Crucis, an independent framework for auditing externally developed
-systems by changing one source of information at a time where the comparison permits,
-and following changes through recorded stages. The contracts for connecting systems and
-defining experiments are implemented and tested. Recorded audits illustrate what the
-approach can reveal. On the CausalArena semantic cases we examined, using column order
-to settle uncertain arrow directions raised the Fast Causal Inference algorithm's
-score on identical graphs. Changing
-variable names while keeping the data fixed lowered direction scores in several recorded
-comparisons. These used different measurement setups, and the Causal-Copilot result was
-exploratory. In a separate analysis of completed Causal-Copilot runs, the largest paired
-drop in the score for which variables were connected occurred during bootstrap refinement,
-before language-model review.
+Causal discovery systems such as Causal-Copilot use language models to help choose an algorithm and review the resulting graph \citep{wang2025causalcopilot}. However, evaluating these systems solely based on a final benchmark score leaves critical questions unanswered: how much does the result depend on the numerical data versus semantic context (like variable names) or evaluation choices (like scoring rules)? And where exactly in the pipeline does performance change? To systematically answer these questions, we introduce Crucis, an independent framework for auditing externally developed causal discovery systems through controlled comparisons and analysis of recorded stages.
+
+Our recorded audits demonstrate how to isolate these sensitivities across benchmarks, agents, and individual pipeline stages. On the CausalArena semantic scenarios we examined, using just column order to settle uncertain arrow directions raised the Fast Causal Inference (FCI) algorithm's directed F1 by \nm{ab01.fci.gain} relative to a seeded random orientation of uncertain pairs on the same graphs. Furthermore, swapping variable names while holding the data fixed lowered directed F1 by at least \nm{ab06.p9.threshold} in \nm{ab06.p9.losing} of \nm{ab06.p9.entered} eligible comparisons across entries using different cohorts, scoring rules, and output stages, including an earlier exploratory Causal-Copilot comparison. Finally, in a separate analysis of completed Causal-Copilot runs, we found that the largest paired drop in adjacency F1 occurred during bootstrap refinement, prior to language-model review.
 \end{abstract}
 
 \begin{center}
 Framework: \url{https://github.com/crucis-lab/crucis}\\
-Research evidence: \url{https://github.com/uzairgheewala/cc-research}
+Findings: \url{https://github.com/uzairgheewala/cc-research}
 \end{center}
 
 \maketoc
@@ -67,240 +56,76 @@ Research evidence: \url{https://github.com/uzairgheewala/cc-research}
 \section{Introduction}
 \label{sec:intro}
 
-If we change one variable, what else moves? When an experiment is impractical,
-causal discovery can propose a graph from the available data. Language models can
-now participate in building that graph. Causal-Copilot uses one to inspect data,
-help select and configure an algorithm, review the graph, and report the result
-\citep{wang2025causalcopilot}. Other systems use a model to propose constraints,
-a causal order, or edits to a data-driven graph
-\citep{khatibi2024alcm,shen2024matmcd,vashishtha2025causal}.
+When randomized experiments are impractical, causal discovery systems work to infer causal graphs from observational data under appropriate assumptions about how the data were generated. Increasingly, these pipelines are incorporating large language models (LLMs) to guide the discovery process. For instance, Causal-Copilot uses an LLM to inspect data, select and configure an underlying algorithm, refine the resulting graph, and report the final output \citep{wang2025causalcopilot}. Other systems have used models to propose structural constraints, suggest a causal order, or directly edit a graph learned from the data \citep{khatibi2024alcm,shen2024matmcd,vashishtha2025causal}.
 
-\subsection{What should an audit tell us?}
-The same score can reflect patterns in the data or reliance on clues in the input. Variable scales can reveal causal order
-in simulated benchmarks \citep{reisach2021beware}. Column order can affect a search
-algorithm's output \citep{kitson2024impact}, and language models can reconstruct
-familiar graphs from names alone \citep{srivastava2025llm}. An independent audit
-should make these sources distinguishable. Crucis is designed to do that across
-externally developed systems. Causal-Copilot is the worked example for tracing
-changes inside one system.
+However, as these pipelines grow more complex, standard end-to-end benchmarking obscures exactly why a given system succeeds. A final benchmark score only tells us how closely a graph matches a reference; it leaves open what the system relied on and where in the process the graph changed. Previous work has demonstrated how sensitive these algorithms can be to specific inputs: differences in variable scales can leak causal order in simulated benchmarks \citep{reisach2021beware}, column order can change the graph a search algorithm returns \citep{kitson2024impact}, and LLMs can reconstruct familiar graphs based purely on dataset and variable names alone \citep{srivastava2025llm}. These examples motivate the need for independent auditing mechanisms capable of distinguishing which specific input changes affect the reported result and tracing where those changes appear when intermediate outputs are available.
 
-\subsection{How does Crucis examine a result?}
-A connection records what a system receives and returns. An experiment then states
-what changes, what stays fixed, and how outputs will be compared. If intermediate
-records are available, the audit can locate where a change appeared. Each level
-answers a different question.
+\paragraph{The Crucis Framework.} We introduce Crucis, an independent framework for auditing externally developed causal discovery systems. An audit can start with the final output (\textbf{L0}) and score it against a stated reference. It can then test how the result responds to a controlled change (\textbf{L1}), such as swapping variable names while keeping the numerical values fixed. Where intermediate graphs are available, it can compare successive stages (\textbf{L2}) to locate observed transitions between available records and see which edges were added, removed, or reversed. The recorded audits in this report illustrate these approaches, with Causal-Copilot as the worked example for stage tracing.
+
+Crucis currently features components for connecting systems, defining experiments, executing and recording runs under specified conditions, and measuring selected outcomes. The results below come from earlier recorded audits.
+
+\paragraph{Recorded Audits.} The audits cover \nm{ab06.systems} language-model systems and the CausalArena and CausalBench benchmarks. Each example below answers a different question.
 
 \begin{description}
-  \item[L0 \enspace Score the graph.] Compare the output with the stated reference.
-  \item[L1 \enspace Change the input clues.] Keep the numbers fixed while changing
-    names, column order, or file paths under the specified controls.
-  \item[L2 \enspace Trace the changes.] Use available stage records to locate added,
-    removed, or reversed links. Link them to logged operations where the record permits.
-  \item[L3 \enspace Trace claims.] The design calls for tracing individual claims
-    back to their sources.
-  \item[L4 \enspace Search for failures.] The design calls for adversarial tests of
-    where a system's claims break down.
+  \item[Can the scoring rule change the result?] On the evaluated CausalArena semantic subset, using column order to settle uncertain directions raised the directed F1 score of Fast Causal Inference (FCI) by \nm{ab01.fci.gain} relative to a seeded random orientation of uncertain pairs on the same graphs. See Appendix~\ref{app:scoring} for the scoring comparison.
+  \item[Can the names change the result?] With numerical data fixed, swapping names lowered directed F1 by at least \nm{ab06.p9.threshold} in \nm{ab06.p9.losing} of \nm{ab06.p9.entered} eligible entries. The entries use different cohorts, scoring rules, and output stages, including an earlier exploratory Causal-Copilot comparison. Appendix~\ref{app:names} explains how to read the tally.
+  \item[Where did the graph change?] In the completed Causal-Copilot main-control runs, the largest paired loss in adjacency F1 occurred during bootstrap refinement, before language-model review. Appendix~\ref{app:stages} follows the relevant stages and accounts for crashes.
 \end{description}
 
-The system connection and experiment definition contracts are implemented and
-tested. Execution and collection remain in design, as do the L3 and L4 capabilities
-described here. The recorded audits exercise parts of the design on retained
-evidence. Native execution across systems, validation of the auditor, and the
-broader multi-system study remain ahead.
+\paragraph{Contributions.} This checkpoint presents Crucis's audit design and shows what it can reveal through earlier recorded audits. Rescoring the same graphs isolates a change in how the benchmark awards credit. Swapping names with the data fixed tests whether the system's output is sensitive to the labels. Comparing successive graphs from the same completed runs shows where performance changed. Together, these comparisons explain why an audit needs to record what a system received, what it returned, and how its output was scored. We document the evidence and limits of each comparison so readers can see which conclusions it supports.
 
-An audit reports what information the system had, such as data alone or data
-with interventions. It also reports what the comparison can establish. A graph
-used to simulate data can support an accuracy comparison. When published
-reference graphs disagree, the score measures agreement with the specified
-version. Section~\ref{sec:data} explains which reference each audit uses.
-
-\subsection{What have the recorded audits shown?}
-The audits cover \nm{ab06.systems} language-model systems and the CausalArena
-and CausalBench benchmarks. Each example below answers a different question.
-
-\begin{description}
-  \item[Can the scoring rule change the result?] On the evaluated CausalArena
-    semantic subset, using column order to settle uncertain directions raised the directed F1 score of Fast
-    Causal Inference (FCI) by \nm{ab01.fci.gain} relative to averaging over those directions
-    on the same graphs. See Appendix~\ref{app:scoring} for the scoring comparison.
-  \item[Can the names change the result?] With numerical data fixed, swapping names
-    lowered directed F1 by at least \nm{ab06.p9.threshold} in \nm{ab06.p9.losing} of
-    \nm{ab06.p9.entered} eligible entries. The entries use different cohorts,
-    scoring rules, and output stages, including an earlier exploratory
-    Causal-Copilot comparison. Appendix~\ref{app:names} explains how to read the tally.
-  \item[Where did the graph change?] In the completed Causal-Copilot main-control
-    runs, the largest paired loss in adjacency F1 occurred during bootstrap
-    refinement, before language-model review. Appendix~\ref{app:stages} follows
-    the relevant stages and accounts for crashes.
-\end{description}
-
-These results show why the pieces of an audit belong together. The scoring example
-depends on holding the graphs fixed. The name comparison depends on holding the data
-fixed and knowing which output was measured. The bootstrap result depends on
-following the same completed runs through their intermediate graphs. A final score
-alone cannot make those distinctions.
+The next work will connect each finding explicitly to the evidence and rule that justifies it, paving the way for verifiable and testable reports of the given systems and of the auditor itself. The longer-term roadmap extends to tracing provenance for individual claims (\textbf{L3}) and adversarial tests that search for failure conditions (\textbf{L4}).
 
 \section{Prior work}
 \label{sec:prior}
 
-\subsection{How causal discovery is evaluated, and what benchmarks reward}
+\paragraph{What benchmark scores capture.} While a reference graph gives us a baseline to score against, the benchmark itself can inadvertently contain clues about the answer. In common simulation settings, simple baselines can recover much of the causal order simply by exploiting patterns in marginal variance or in how well other variables predict each variable \citep{reisach2021beware,reisach2023scale}. Similarly, even the column order of the input data can change the graph returned by a search algorithm \citep{kitson2024impact}. Beyond simulated artefacts, real datasets pose a different problem: the reference graph itself can be highly uncertain, as seen with the widely used Sachs protein-signalling data \citep{brouillard2025landscape,sachs2005causal}. Newer platforms offer alternative approaches: CausalArena \citep{li2026causalarena} broadens the range of reference scenarios, while CausalBench \citep{chevalley2025causalbench,replogle2022mapping} evaluates predictions using held-out interventions. These differences matter when interpreting a score: what exactly does it measure, and what reference supports that interpretation?\ours
 
-Greedy Equivalence Search compares classes of graphs using a score and can identify
-the generating structure under the conditions of its large-sample result
-\citep{chickering2002optimal}.
-Benchmarks with known graphs provide a way to check recovery, but the inputs
-can reveal features of the reference graph \citep{reisach2021beware,kitson2024impact}. In common simulated settings the variance of the variables grows along the causal order, so sorting by variance matches
-continuous-optimisation methods \citep{reisach2021beware}, and a scale-invariant version of the same artefact is also high in common settings
-and can be exploited \citep{reisach2023scale}. The order of the columns in the input data alone changes the graph that hill-climbing search
-learns, typically more than a change in sample size does \citep{kitson2024impact}. Real-data evaluation leans on very few datasets, above all the Sachs
-protein-signalling data, whose reference graph is not definitive \citep{brouillard2025landscape,sachs2005causal}.
-CausalArena collects synthetic, semantic and formula-grounded models with a public leaderboard
-\citep{li2026causalarena}, and CausalBench scores gene-network inference on held-out perturbation data
-\citep{chevalley2025causalbench,replogle2022mapping}.
+\paragraph{Language models in the discovery pipeline.} This evaluation fragility is compounded when language models enter the pipeline. A variable name can give an LLM useful domain context, but it can also allow the model to reconstruct an answer from familiar dataset and variable names \citep{kiciman2023causal,srivastava2025llm}. To test this reliance, frameworks like CARE permute variable names while holding the numerical data fixed, revealing lower accuracy in those tested settings \citep{dong2025care}. Internal confidence metrics offer little protection here, as language models often report high confidence even on false-positive edges \citep{kumar2026plausibility}. Evaluating LLMs becomes even more complex when they operate as multi-stage agents. Causal-Copilot, for example, places its language-model graph review after bootstrap refinement \citep{wang2025causalcopilot}. In such multi-stage systems, a change in the final graph raises the critical question of exactly where the change first appeared\ours. Because these pipelines obscure the origin of causal decisions, Zheng et al.\ call for explicit audit trails that distinguish the data, assumptions, algorithmic outputs, and agent recommendations \citep{zheng2026causal}.
 
-\subsection{Language models as a source of causal knowledge}
-
-Language models answer pairwise causal questions about named variables well, and part of that skill is memorised
-\citep{kiciman2023causal}; they may repeat causal statements without performing causal inference
-\citep{zecevic2023causal}. When a model is treated as an imperfect expert, the guarantee that the true graph is kept holds
-only under an assumed error model, and in the authors' own case study the model was poorly calibrated and the true
-graph was excluded on one benchmark \citep{long2023causal}. Asking for a causal order instead of individual edges avoids
-confusing direct with indirect effects \citep{vashishtha2025causal}. Controls for memorisation now exist: neutral aliases in
-the model's queries \citep{kitson2026llm}, graphs published after a model's training cut-off \citep{srivastava2025llm},
-random graphs carrying real concept names \citep{li2026llm}, and names moved onto the wrong columns with the data
-unchanged, under which models' accuracy collapses \citep{dong2025care}. Our audit battery uses wrong-name reassignment alongside separate layout controls where the recorded evidence
-supports those comparisons\ours.
-
-\subsection{Causal agents and how they are evaluated}
-
-Causal-Copilot automates the whole analysis and states that the model's recommendations are soft suggestions that may not
-override the high-confidence decisions of its bootstrap procedure \citep{wang2025causalcopilot}. ALCM, MATMCD and Causal Modelling Agents let a model refine or
-constrain a data-driven graph \citep{khatibi2024alcm,shen2024matmcd,abdulaal2024causal}, and open libraries expose
-model-based causal suggestions \citep{causaliq_knowledge,pywhy_llm}. CausalSteward evaluates Causal-Copilot as a baseline \citep{tagliapietra2026causalsteward}. Repeated runs of
-the same agent can disagree, so single-run comparisons can misrank systems \citep{mehta2026agents}. A position paper
-argues that agents should not supply edges or causal conclusions at all and asks for audit trails
-\citep{zheng2026causal}.
-
-\paragraph{Related benchmarks and auditing frameworks.}
-Heuresis's PC-centred trace decomposition offers a precedent for L2, alongside
-instrument checks and a name-only leakage probe in its interactive evaluation
-on anonymous, randomly ordered simulations \citep{ma2026heuresis}.
-ACDB separates observational recovery, DAG recovery and intervention efficiency in a benchmark
-with budgeted interventions, and tests how graph density affects a structure-blind
-baseline \citep{deb2026acdb}.
-TCD-Arena provides a modular test kit for robustness to controlled time-series assumption violations
-\citep{stein2026tcdarena}. Causal-Audit uses time-series assumption diagnostics and calibrated risk to recommend a
-method or abstain before discovery within its evaluated decision pipeline \citep{ruiz2026causalaudit}.
-The design question for Crucis is how to use the records an external system can
-supply to make a stage comparison, and how to report where those records leave
-the comparison unresolved\ours.
-
-\subsection{How much an edge can be trusted}
-
-Bootstrap resampling gives confidence measures for features of a learned network \citep{friedman1999data}, but the
-resulting edge frequencies can be miscalibrated \citep{kummerfeld2019simulations,banerjee2025calibrated}. Language
-models asked about direct edges give high stated confidence to most of their false-positive edges; agreement across
-prompts is better calibrated, though not significantly so \citep{kumar2026plausibility}. An audit therefore has to test whether a system's confidence means anything, not assume
-it\ours.
-
-\subsection{Auditing practice the protocol borrows}
-
-Metamorphic testing checks a program that has no oracle for each output by checking relations between the outputs of
-related inputs \citep{chen1998metamorphic,segura2016survey}; renaming or reordering columns while holding the numbers
-fixed is such a relation\ours. Behavioural testing of language-processing models crosses capabilities with test types that
-include invariance tests, and finds failures that held-out accuracy hides \citep{ribeiro2020beyond}. Model cards and datasheets document a model's
-evaluation and a dataset's origin \citep{mitchell2019model,gebru2021datasheets}, internal algorithmic audits define
-staged audit artefacts \citep{raji2020closing}, and PROV-DM records which agent and activity produced a piece of data
-\citep{moreau2013prov}. Our certificate combines these ideas for causal claims: system identity, battery hash, every
-number with its source, and the command that reruns it\ours.
+\paragraph{Precedents for independent audits.} Several frameworks offer precedents for isolating these vulnerabilities. Heuresis traces agent edits within its own evaluation harness and specifically checks the instruments that produce those traces \citep{ma2026heuresis}. Other frameworks target distinct failure modes: ACDB separates recovery tasks and tests a structure-blind baseline, TCD-Arena varies time-series assumptions, and Causal-Audit uses diagnostics and estimated risk to recommend a method or abstain \citep{deb2026acdb,stein2026tcdarena,ruiz2026causalaudit}. However, for Crucis, the outstanding design question is which of these comparisons can be supported by the records supplied by externally developed systems with different levels of visibility, and how to explicitly report what remains unresolved when those records are missing\ours. To probe such systems, we turn to metamorphic testing, which checks whether outputs follow an expected relationship under a controlled input change \citep{chen1998metamorphic,segura2016survey,ribeiro2020beyond}. We combine this with provenance standards that explicitly record where the resulting evidence came from \citep{moreau2013prov}. Together, these disciplines motivate an audit record that transparently identifies the control, the scoring rule, and the exact evidence behind each reported comparison\ours.
 
 \section{Data}
 \label{sec:data}
 
-The audit draws on a suite built from CausalArena's semantic scenarios, Sachs and
-\nm{s1.named} other named datasets that ship with Causal-Copilot, and CausalBench's perturbation data. Table~\ref{tab:data}
-shows what each audit uses as a reference, from a known simulated graph to held-out interventions. Shapes come from suite manifests and
-retained CausalBench filtering metadata (Appendix~\ref{app:numbers}). The checkpoint binds these sources by hash.
+To execute these comparisons, the audit draws on a suite built from CausalArena's semantic scenarios, named datasets provided by Causal-Copilot, and CausalBench's perturbation data. Table~\ref{tab:data} summarizes what each audit uses as a reference, ranging from known simulated graphs to held-out interventions. The checkpoint records source hashes so the exact evidence used can be identified, with exact dataset dimensions, edge counts, and licences deferred to Appendix~\ref{app:numbers}.
 
 \begin{table}[htbp]
-\caption{Selected inputs by audit. The semantic rows describe the Causal-Copilot name battery. For CausalBench, cells
-and perturbed genes are counted after filtering; held-out interventions provide an evaluation regime without a
-reference graph. Other tiers describe graph reliability (Section~\ref{sec:intro}).}
+\caption{Selected inputs by audit. The evaluation reference indicates what a score actually measures: accuracy against a simulated graph, agreement with an expert reference, or prediction of held-out interventions. Exact dimensions, edge counts, and licences are deferred to Appendix~\ref{app:numbers}.}
 \label{tab:data}
 \centering
-{\footnotesize\setlength{\tabcolsep}{3pt}
-\begin{tabular}{llrrrll}
+\begin{tabular}{lll}
 \toprule
-Group & Dataset & Rows & Variables & Ref.\ edges & Tier & Licence \\
+Group & Dataset & Evaluation reference \\
 \midrule
-CausalArena & \nm{s2.families} semantic scenarios & \nm{s2.rows} & \nm{s2.vars.min}--\nm{s2.vars.max} & \nm{s2.edges.min}--\nm{s2.edges.max} & exact & CC BY 4.0 \\
+CausalArena & Semantic scenarios & exact \\
 \midrule
-Named & Sachs & \nm{s1.sachs.rows} & \nm{s1.sachs.vars} & \nm{s1.sachs.edges} & contested & none stated \\
- & Abalone & \nm{s1.abalone.rows} & \nm{s1.abalone.vars} & \nm{s1.abalone.edges} & provenance & CC BY 4.0 \\
- & Auto MPG & \nm{s1.autompg.rows} & \nm{s1.autompg.vars} & \nm{s1.autompg.edges} & mismatched & CC BY 4.0 \\
- & Concrete strength & \nm{s1.concrete.rows} & \nm{s1.concrete.vars} & \nm{s1.concrete.edges} & provenance & CC BY 4.0 \\
- & DWD climate & \nm{s1.dwd.rows} & \nm{s1.dwd.vars} & \nm{s1.dwd.edges} & provenance & see text \\
+Named & Sachs & contested \\
+      & Abalone & provenance \\
+      & Auto MPG & mismatched \\
+      & Concrete strength & provenance \\
+      & DWD climate & provenance \\
 \midrule
-CausalBench & K562 & \nm{cb.k562.cells} & \nm{cb.k562.genes} & -- & held-out interventions & CC BY 4.0 \\
- & RPE1 & \nm{cb.rpe1.cells} & \nm{cb.rpe1.genes} & -- & held-out interventions & CC BY 4.0 \\
+CausalBench & K562 & held-out interventions \\
+      & RPE1 & held-out interventions \\
 \bottomrule
-\end{tabular}}
+\end{tabular}
 \end{table}
 
-\paragraph{CausalArena semantic suite.} CausalArena releases structural causal models whose variables carry names from
-a written scenario, with observational exports \citep{li2026causalarena}. We take the \nm{s2.families} semantic
-scenarios of our test split, the first replicate of the observational-only release, \nm{s2.rows} rows each. Each scenario is
-written \nm{s2.arms-per} times with byte-identical numbers: under its real names, under neutral names, and under its
-own names moved onto the wrong columns by a derangement chosen to reduce pairs adjacent under both readings
-(\nm{s2.tables} tables). Because the released column order is a causal order, the columns are shuffled with a fixed
-seed, and the file paths are opaque codes. The reference is the graph the data were simulated from, so scores are
-accuracy. The layout audit of the public leaderboard uses CausalArena's public files instead (\nm{ab01.files.semantic}
-semantic, \nm{ab01.files.formula} formula and \nm{ab01.files.synthetic} synthetic). The dataset is released under
-CC BY 4.0 on Hugging Face (\texttt{LAMDA-Tabular/CausalArena}).
+\paragraph{Simulated graphs with exact references.}
+CausalArena provides simulated structural causal models where variables carry names from written scenarios \citep{li2026causalarena}. Unlike real-world datasets, the underlying structure of these simulations is perfectly known, allowing scores to measure accuracy against the generating graph. To support our name-swapping controls, we change the labels while preserving numerical values across \nm{s2.arms-per} distinct contexts: real names, neutral names, and mismatched names. A separate layout audit uses CausalArena's public files (semantic, formula, and synthetic) to explicitly examine the effects of column order and scoring rules.
 
-\paragraph{Named datasets.} Causal-Copilot ships Sachs and \nm{s1.named} other tables with reference graphs, and we use
-its copies \citep{wang2025causalcopilot}. Sachs \citep{sachs2005causal} has \nm{s1.sachs.arms} arms (the original, a copy under
-another path, neutral names, and moved names). Its reference is contested: the repository's graph has
-\nm{s1.sachs.edges} edges, the bnlearn version \nm{s1.sachs.bnlearn}, sharing \nm{s1.sachs.shared} adjacencies with
-\nm{s1.sachs.reversed} reversed, and CausalArena uses a version with \nm{s1.sachs.arena} edges, so a score on Sachs is
-agreement with one version, not accuracy. Abalone \citep{nash1994abalone}, Auto MPG \citep{quinlan1993autompg} and
-Concrete compressive strength \citep{yeh1998concrete} come from the UCI repository under CC BY 4.0, and the climate
-table matches the Deutscher Wetterdienst pairs of the T\"ubingen cause-effect benchmark \citep{mooij2016distinguishing}.
-The DWD open-data terms are CC BY 4.0; the copy's lineage is inferred from its match to the benchmark pairs. Each has \nm{s1.named.arms-per} arms (real, neutral, swapped). Their
-reference graphs are expert graphs with nothing to compare against (provenance tier), except Auto MPG, whose reference
-differs from CausalArena's version (\nm{s1.autompg.arena.vars} variables, \nm{s1.autompg.arena.edges} edges,
-\nm{s1.autompg.arena.rows} rows), so its scores must not be set beside CausalArena's row. The checked sources did not identify a licence for the Sachs data.
+\paragraph{Named datasets with qualified references.}
+To audit real-world datasets, we utilize the exact copies of Sachs and other named tables that ship directly with Causal-Copilot \citep{wang2025causalcopilot,sachs2005causal}. Crucially, the reference graphs for these datasets require qualification: some have documented provenance without an independently established ground truth, while others differ across published versions. For example, the selected Sachs reference graph differs significantly from its bnlearn and CausalArena counterparts. Similarly, Auto MPG \citep{quinlan1993autompg} uses a reference that mismatches CausalArena's version. Consequently, a score on these datasets strictly measures agreement with one selected reference.
 
-\paragraph{CausalBench.} CausalBench uses the CRISPRi Perturb-seq screens of \citet{replogle2022mapping} in the
-K562 and RPE1 cell lines and scores a predicted network on held-out interventions by a mean Wasserstein distance
-and a false omission rate \citep{chevalley2025causalbench}. In the retained metadata for CausalBench's filtering, the
-K562 data have \nm{cb.k562.cells} cells (\nm{cb.k562.controls} unperturbed controls) and \nm{cb.k562.genes} perturbed
-genes, and RPE1 \nm{cb.rpe1.cells} cells (\nm{cb.rpe1.controls} controls) and \nm{cb.rpe1.genes} genes. The screens are
-released under CC BY 4.0 and the benchmark code under Apache 2.0. Our audit of this benchmark is cited from its result
-file. All \nm{ben13.reproduced} published MeanDifference rows match within the recorded tolerances.
-At the smaller evaluated edge budget, MeanDifference reaches \nm{ben13.echo.min}--\nm{ben13.echo.max} of a
-test-informed reference that ranks pairs by knockdown effects measured on the test split. Its false omission
-rate stays within the audit's declared margin of the matched random-network mean in \nm{ben13.for.random-level} of the \nm{ben13.cells} cells. The random-network comparison was unavailable in the other cell.
+\paragraph{Held-out interventions without reference graphs.}
+For evaluations lacking a predefined reference graph, CausalBench uses CRISPRi Perturb-seq screens in K562 and RPE1 cell lines \citep{chevalley2025causalbench,replogle2022mapping}. This dataset provides an alternative evaluation regime: rather than comparing predictions against a static graph, it scores them directly against held-out interventions. This lets us examine what the benchmark's metrics reward when a reference graph is unavailable.
 
-\paragraph{Recorded runs.} The instrumented Causal-Copilot series records code identity, the model snapshot,
-model requests and replies, and stage graphs and refinement steps as captured by the run.
-Causal-Copilot was run unmodified (upstream commit \texttt{a31aa7c}) with \nm{bnd08.model}: \nm{bnd08.runs} runs on the
-semantic suite in the name-arm study, and a main-control series of \nm{cc.arms} runs on the same tables (API cost
-\nm{cc.usd}). The other systems' name-control results use a different semantic cohort and their own declared output/scoring
-contracts. Their results are not paired scenario-for-scenario with the Causal-Copilot collection.
-
-\paragraph{Limits of the data.} The semantic scenarios are simulated, so their exactness comes with simulation's
-artefacts; each table and arm was run once; one model family was used; and the named datasets' references are expert
-graphs. The protocol treats each of these as a declared regime or tier rather than hiding it\ours.
+\paragraph{Available records and scoped limits.}
+Beyond static datasets, stage comparisons rely on the intermediate records captured during historical runs. The instrumented Causal-Copilot series logs code identity, API requests, intermediate stage graphs, and refinement steps, which directly support our pipeline tracing. By contrast, the name-control results for other systems use a different semantic cohort and rely on their own output contracts, meaning they cannot be paired scenario-for-scenario with the Causal-Copilot traces. Finally, the limits of these historical runs must be explicitly bounded: the semantic scenarios contain simulation artefacts, each table arm was run once within each Causal-Copilot series, and the Causal-Copilot collection used a single model family. The Crucis protocol records these constraints as the declared evaluation regime, explicitly stating the limits on interpreting these historical runs\ours.
 
 \section*{Code}
-The reusable framework is published at \url{https://github.com/crucis-lab/crucis}, with documentation at
-\url{https://crucis-lab.github.io/crucis/}.
-The companion repository (\url{https://github.com/uzairgheewala/causal-copilot-q1}) uses retained graphs to
-recompute its Causal-Copilot run comparison with one command and no API key. The stage-specific attribution uses
-separate evidence in the research repository (\url{https://github.com/uzairgheewala/cc-research}).
-Appendix~\ref{app:numbers} maps reported values to result files, retained diagnostic snapshots and separately
-preserved CausalBench metadata. The numerical evidence is pinned to \texttt{\nm{cc.head}}.
+The \href{https://github.com/crucis-lab/crucis}{Crucis repository} contains the reusable auditing framework and its documentation. The \href{https://github.com/uzairgheewala/cc-research}{research repository} holds the paper, supporting analyses, and stage-specific attribution records. The number build records source-base commit \texttt{\nm{cc.head}}, while the underlying scientific evidence is bound by frozen manifests, file hashes, and separately preserved CausalBench metadata (Appendix~\ref{app:numbers}). A separate \href{https://github.com/uzairgheewala/causal-copilot-q1}{companion reproduction} recomputes the recorded Causal-Copilot run comparison from retained graphs with a single command and no API keys. Finally, Appendix~\ref{app:numbers} explicitly maps every reported value to its corresponding result file, diagnostic snapshot, or benchmark metadata.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Reference / Bibliography
@@ -321,69 +146,31 @@ preserved CausalBench metadata. The numerical evidence is pinned to \texttt{\nm{
 \clearpage
 \makeappendix
 
-Use this appendix to follow an audit from its question to the evidence behind the
-answer. Start with scoring (Appendix~\ref{app:scoring}), names
-(Appendix~\ref{app:names}), or pipeline stages (Appendix~\ref{app:stages}).
-Appendix~\ref{app:numbers} is the lookup for exact values and their sources.
+Use this appendix to follow an audit from its question to the evidence behind the answer. Start with scoring (Appendix~\ref{app:scoring}), names (Appendix~\ref{app:names}), or pipeline stages (Appendix~\ref{app:stages}). Appendix~\ref{app:numbers} is the lookup for exact values, dataset provenance, licences, and their sources.
 
 \subsection{Scoring the same graphs}
 \label{app:scoring}
-CausalArena's released files list the variables in causal order. The scoring rule
-uses column position to settle directions the algorithm left uncertain. On the evaluated semantic subset, FCI gains
-\nm{ab01.fci.gain} directed F1 under that rule relative to expectation scoring on the same graphs.
-The published PC row is \nm{ab01.pc.published}; a distinct PC maxP variant scores \nm{ab01.pcmaxp.controlled}
-on shuffled columns under expectation scoring. The FCI and maxP rows cover subsets
-of the public inventory described in Section~\ref{sec:data}.
+CausalArena's public inventory comprises \nm{ab01.files.semantic} semantic, \nm{ab01.files.formula} formula, and \nm{ab01.files.synthetic} synthetic files. The released files list variables in causal order, and the audited scoring rule uses column position to settle arrow directions left uncertain by the discovery algorithm. On the evaluated semantic subset, Fast Causal Inference (FCI) gains \nm{ab01.fci.gain} directed F1 under that column-order rule relative to a seeded random orientation of uncertain pairs per file on the same graphs ($F1\_random$). Also on the semantic subset, the published PC row is \nm{ab01.pc.published}, while a separate PC maxP variant scores \nm{ab01.pcmaxp.controlled} on shuffled columns under seeded random orientation of uncertain pairs. Because those two PC rows differ in algorithm configuration as well as column order and scoring rule, their difference does not isolate layout and scoring alone.
 
-The separate CausalBench comparison in Section~\ref{sec:data} asks what the metrics
-reward when a reference graph is unavailable. Its smaller edge budget, test-informed
-reference and unavailable random-network comparison limit what can be inferred.
+The separate CausalBench audit results show what the benchmark's metrics reward when a reference graph is unavailable. All \nm{ben13.reproduced} published MeanDifference rows reproduce within recorded tolerances. At the smaller evaluated edge budget, MeanDifference reaches \nm{ben13.echo.min}--\nm{ben13.echo.max} of a test-informed reference that ranks pairs by knockdown effects measured on the test split. Its false omission rate stays within the audit's declared margin of the matched random-network mean in \nm{ben13.for.random-level} of the \nm{ben13.cells} evaluated cell-line and edge-budget combinations, noting that the random-network comparison was unavailable in the remaining combination.
 
 \subsection{Changing names while holding the data fixed}
 \label{app:names}
-The name control pairs graphs produced from the same numerical table under real
-and swapped variable names. The AB-06 tally applies a \nm{ab06.p9.min-scen}-pair
-entry floor to each system's declared output stage. PyWhy-LLM falls below that floor.
+The cross-system name-control tally (audit \texttt{AB-06}) pairs graphs produced from the same numerical table under real and swapped variable names. The tally applies a \nm{ab06.p9.min-scen}-pair entry floor to each system's declared output stage. PyWhy-LLM \citep{pywhy_llm} falls below that floor.
 
-Swapping names lowers directed F1 by at least \nm{ab06.p9.threshold} in
-\nm{ab06.p9.losing} of \nm{ab06.p9.entered} entries. The drops are
-\nm{ab06.causaliq.drop} for causaliq-knowledge, \nm{ab06.cc.drop} for Causal-Copilot,
-and \nm{ab06.matmcd.drop} for MATMCD. The pipeline of \citet{vashishtha2025causal}
-shows a drop of \nm{ab06.vashishtha.drop} under its tested conditions.
-
-The tally describes sensitivity under each entry's measurement. The earlier
-exploratory Causal-Copilot comparison scores committed marks in the graph handed
-to cycle removal. The other agents use final outputs and expectation scoring on
-a semantic cohort with no shared scenarios. The tally therefore cannot rank
-these systems under common conditions.
+Swapping names lowers directed F1 by at least \nm{ab06.p9.threshold} in \nm{ab06.p9.losing} of \nm{ab06.p9.entered} eligible entries. The drops are \nm{ab06.causaliq.drop} for causaliq-knowledge \citep{causaliq_knowledge}, \nm{ab06.cc.drop} for Causal-Copilot, and \nm{ab06.matmcd.drop} for MATMCD. The pipeline of \citet{vashishtha2025causal} shows a drop of \nm{ab06.vashishtha.drop} under its tested conditions. The tally describes sensitivity under each entry's measurement: the earlier exploratory Causal-Copilot comparison scores committed marks in the graph handed to cycle removal, whereas the other agents use final outputs and seeded random orientation of uncertain pairs on a semantic cohort with no shared scenarios. The tally therefore cannot rank these systems under common conditions.
 
 \paragraph{Which reading do the retained changes follow?}
-Inside Causal-Copilot, BND-08's recorded label-following calculation counts distinct
-(scenario, directed-edge) pairs retained in completed swapped-name outputs, changed from bootstrap and matching
-their post-review pair state at final output, and adjacent in exactly one reference reading.
-Among these \nm{bnd08.m3.n} informative pairs, \nm{bnd08.m3.labels} are adjacent under the label reading and
-\nm{bnd08.m3.data} under the data reading. This classification tests adjacency, not agreement of edge direction;
-edges adjacent in both references or neither are outside this denominator. The recorded decision rule comes from BND-08's
-pre-run specification, not a later finding threshold. However, that specification describes a pre-cycle endpoint
-while the recorded calculation consumes completed final outputs. We retain the counts as a descriptive diagnostic,
-without claiming confirmation of the specified endpoint.
-Failed swapped runs cannot enter this completed-output calculation. Edges from
-the same scenario are dependent. The preserved manifest binds the rule's bytes.
-It does not establish when the rule became public or reconcile the different
-endpoints.
+Inside Causal-Copilot, our edge-level label-following diagnostic (\texttt{BND-08}) examines how completed outputs respond to label changes across three elements:
+\begin{enumerate}
+    \item \textbf{Selection:} We count distinct $(\text{scenario}, \text{directed-edge})$ pairs retained in completed swapped-name outputs, where the pair state differs from the bootstrap graph, matches its post-review state at final output, and is adjacent in exactly one reference reading (either the true data graph or the mismatched label graph; pairs adjacent in both or neither are outside this denominator).
+    \item \textbf{Count:} Among these \nm{bnd08.m3.n} informative pairs, \nm{bnd08.m3.labels} are adjacent under the label reading and \nm{bnd08.m3.data} under the data reading. This classification tests adjacency, not agreement of edge direction.
+    \item \textbf{Interpretation limits:} The recorded decision rule comes from \texttt{BND-08}'s pre-run specification (with its bytes bound by the preserved manifest, which does not establish when the rule became public). However, that specification describes a pre-cycle endpoint while the recorded calculation consumes completed final outputs. Failed swapped runs cannot enter this completed-output calculation; edges from the same scenario are dependent, and the counts remain descriptive, without claiming confirmation of the specified endpoint.
+\end{enumerate}
 
 \subsection{Locating a change inside a pipeline}
 \label{app:stages}
-Causal-Copilot's main-control initial mean adjacency F1 is \nm{cc.s0-adj} across all \nm{cc.arms} tables.
-Its final mean is \nm{cc.final-adj} among the \nm{cc.completed} completions. In paired diagnostics on those
-completions, the largest observed stage loss occurs at bootstrap within refinement, before model review.
-The initial and final means above describe different populations. The stage
-comparison instead follows the same completed runs through successive graphs.
-A real-arm-only effect answers a different question and is not substituted here.
-
-The completed-run comparison leaves out a separate failure mode. All
-\nm{cc.cyc.entered} runs that reached cycle removal crashed there. The logs
-record a key error in \nm{cc.cyc.keyerr} of those entrants.
+In paired stage diagnostics across the \nm{cc.completed} completed Causal-Copilot main-control runs, the largest observed stage loss in adjacency F1 occurs during bootstrap refinement, before language-model review, as located in Figure~\ref{fig:stage-locator}. Tracking the same completed runs keeps the run set consistent across stage comparisons: across all \nm{cc.arms} initial tables, the mean initial adjacency F1 is \nm{cc.s0-adj}, whereas the final mean is \nm{cc.final-adj} among the \nm{cc.completed} completions. Those initial and final means describe different populations, and a real-arm-only effect answers a separate question not substituted here. Finally, the completed-run comparison leaves out a separate failure mode: all \nm{cc.cyc.entered} runs that reached cycle removal crashed there, with logs recording a key error in \nm{cc.cyc.keyerr} of those entrants.
 
 \begin{figure}[htbp]
 \centering
@@ -393,26 +180,27 @@ record a key error in \nm{cc.cyc.keyerr} of those entrants.
 \colorbox{StageHighlight}{\textbf{Bootstrap refinement}}
 \quad\textgreater\quad
 \fbox{Language-model review}
-\caption{The bootstrap transition had the largest paired drop in adjacency F1
-among the completed Causal-Copilot main-control runs. The shaded stage
-locates that transition before language-model review.}
+\caption{The bootstrap transition had the largest paired drop in adjacency F1 among the completed Causal-Copilot main-control runs. The shaded stage locates that transition before language-model review.}
 \label{fig:stage-locator}
 \end{figure}
 
 \paragraph{A separate comparison against a data-only graph.}
-In the real-name MATMCD runs,
-pooled precision among committed claims on the released intervention targets is lower for the final output than
-for the data-only variant on the point estimate (\nm{ab06.matmcd.dv1} against \nm{ab06.matmcd.dv1-data}); the
-interval for the difference includes zero. The pre-registered point rule
-applies to the estimate.
+When internal stage logs are not decomposed step-by-step, an audit can compare an agent's final LLM-refined output against its own data-only baseline. In the real-name MATMCD runs, pooled precision among committed claims on the released intervention targets is lower for the final output than for the data-only variant on the point estimate (\nm{ab06.matmcd.dv1} against \nm{ab06.matmcd.dv1-data}); the interval for the difference includes zero. The pre-registered point rule applies to the estimate.
 
 \subsection{Where every number comes from}
 \label{app:numbers}
-Generated by \texttt{docs/paper/q1/build\_numbers.py} from \texttt{numbers.json}. Paths are relative to the root of
-cc-research. Selectors extend JSON pointers: \texttt{*} takes every child and \texttt{[k=v]} selects the first
-matching list item. Source flags identify inputs outside the tracked build base or with differences from it.
-The CausalBench filtering metadata are separately preserved and hashed. The table locates evidence for each value;
-the companion replay covers only its stated comparison.
+Generated by \texttt{docs/paper/q1/build\_numbers.py} from \texttt{numbers.json} at build-base commit \texttt{\nm{cc.head}}. Paths are relative to the root of \texttt{cc-research}. Selectors extend JSON pointers: \texttt{*} takes every child and \texttt{[k=v]} selects the first matching list item. Source flags identify inputs outside the tracked build base or with differences from it. The CausalBench filtering metadata are separately preserved and hashed. The table locates evidence for each value; the companion replay covers only its stated comparison.
+
+\paragraph{Dataset provenance, reference counts, and licences.}
+The evaluation suite draws on the following sources and terms:
+\begin{description}
+    \item[CausalArena semantic suite:] Released under CC BY 4.0 on \href{https://huggingface.co/datasets/LAMDA-Tabular/CausalArena}{Hugging Face} \citep{li2026causalarena}. Our test split uses \nm{s2.families} semantic scenarios from the first replicate of the observational-only release (\nm{s2.rows} rows each, \nm{s2.vars.min}--\nm{s2.vars.max} variables, \nm{s2.edges.min}--\nm{s2.edges.max} reference edges). Each scenario is written \nm{s2.arms-per} times (real, neutral, and mismatched names) for \nm{s2.tables} tables total, with columns shuffled using a fixed seed and opaque file paths.
+    \item[Sachs:] Taken from the copies shipped with Causal-Copilot \citep{wang2025causalcopilot,sachs2005causal} (\nm{s1.sachs.rows} rows, \nm{s1.sachs.vars} variables) across \nm{s1.sachs.arms} arms: the original, a copy under another path, neutral names, and swapped names. The repository's reference graph has \nm{s1.sachs.edges} edges, whereas the bnlearn version has \nm{s1.sachs.bnlearn} (sharing \nm{s1.sachs.shared} adjacencies with \nm{s1.sachs.reversed} reversed) and CausalArena's version has \nm{s1.sachs.arena} edges. Checked sources did not identify a licence for the Sachs data.
+    \item[Abalone, Auto MPG, and Concrete strength:] Shipped with Causal-Copilot (\nm{s1.named} non-Sachs named tables total, each evaluated across \nm{s1.named.arms-per} arms: real, neutral, and swapped) and originating from the UCI repository under CC BY 4.0. Abalone \citep{nash1994abalone} has \nm{s1.abalone.rows} rows, \nm{s1.abalone.vars} variables, and \nm{s1.abalone.edges} expert reference edges (provenance tier). Concrete compressive strength \citep{yeh1998concrete} has \nm{s1.concrete.rows} rows, \nm{s1.concrete.vars} variables, and \nm{s1.concrete.edges} expert reference edges (provenance tier). Auto MPG \citep{quinlan1993autompg} has \nm{s1.autompg.rows} rows, \nm{s1.autompg.vars} variables, and \nm{s1.autompg.edges} reference edges, which differs from CausalArena's version (\nm{s1.autompg.arena.rows} rows, \nm{s1.autompg.arena.vars} variables, \nm{s1.autompg.arena.edges} edges; mismatched tier).
+    \item[DWD climate:] Shipped with Causal-Copilot (\nm{s1.dwd.rows} rows, \nm{s1.dwd.vars} variables, \nm{s1.dwd.edges} expert reference edges, \nm{s1.named.arms-per} arms; provenance tier). The copy's lineage is inferred from its match to the Deutscher Wetterdienst pairs in the T\"ubingen cause-effect benchmark \citep{mooij2016distinguishing}; DWD open-data terms state CC BY 4.0.
+    \item[CausalBench perturbation screens:] Uses the CRISPRi Perturb-seq screens of \citet{replogle2022mapping} released under CC BY 4.0, with CausalBench benchmark code under Apache 2.0 \citep{chevalley2025causalbench}. Retained filtering metadata record \nm{cb.k562.cells} cells (\nm{cb.k562.controls} unperturbed controls) and \nm{cb.k562.genes} perturbed genes in K562, and \nm{cb.rpe1.cells} cells (\nm{cb.rpe1.controls} controls) and \nm{cb.rpe1.genes} genes in RPE1.
+    \item[Recorded Causal-Copilot runs:] Executed unmodified (upstream commit \texttt{a31aa7c}) with \nm{bnd08.model}, comprising \nm{bnd08.runs} runs on the semantic suite in \texttt{BND-08} and \nm{cc.arms} main-control runs on the same tables (API cost \nm{cc.usd}).
+\end{description}
 
 \begingroup
 \let\small\footnotesize

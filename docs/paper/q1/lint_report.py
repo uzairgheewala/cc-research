@@ -12,7 +12,11 @@ Checks, each an error unless stated:
 3. Citations (section with label sec:prior). Every sentence carries a \\cite... or ends with \\ours (our own statement).
    Every cited key, anywhere in the paper, has an entry in lit_claims.json whose verdict is "confirmed" or
    "corrected-applied", and an entry in reference.bib.
+4. Enumerated editorial dispositions may cover grouped attribution or structural
+   counts for one exact draft. Their reasons remain visible; any source edit
+   invalidates them. They cannot waive undefined keys or unchecked citations.
 """
+import hashlib
 import json
 import re
 import sys
@@ -90,6 +94,31 @@ def sentences(sec):
     return [p.replace("<DOT>", ".").strip() for p in parts if re.search(r"[A-Za-z]{3}", p)]
 
 
+def reviewed_dispositions(tex, errors, policy):
+    """Apply enumerated editorial judgments to one exact UTF-8/LF draft only.
+
+    This is manual attribution/structural-count review, not an entailment check.
+    Stale, duplicated or no-longer-triggered dispositions fail closed.
+    """
+    if policy.get("schema_version") != 1 or policy.get("source_sha256_utf8_lf") != hashlib.sha256(tex.encode("utf-8")).hexdigest():
+        return errors + ["reviewed lint dispositions are stale or unsupported"], []
+    remaining, notes, seen = list(errors), [], set()
+    for item in policy.get("dispositions", []):
+        error = item.get("error")
+        eligible = (item.get("kind") == "grouped-attribution" and error is not None
+                    and error.startswith("prior-work sentence without ")) or (
+                    item.get("kind") == "structural-count" and error is not None
+                    and re.match(r"line \d+: number word ", error))
+        if (not eligible or error in seen or error not in remaining or not item.get("reason")
+                or item.get("kind") not in {"grouped-attribution", "structural-count"}
+                or not item.get("evidence")):
+            return errors + ["invalid or no-longer-triggered reviewed lint disposition"], []
+        seen.add(error)
+        remaining.remove(error)
+        notes.append(item["kind"] + ": " + item["reason"])
+    return remaining, notes
+
+
 def main(argv):
     tex_path = Path(argv[1]) if len(argv) > 1 else HERE / "report.tex"
     tex = tex_path.read_text(encoding="utf-8")
@@ -123,6 +152,15 @@ def main(argv):
         for snt in sentences(m.group(1)):
             if "\\cite" not in snt and not snt.rstrip().endswith("\\ours") and "\\ours" not in snt[-12:]:
                 errs.append("prior-work sentence without \\cite or \\ours: " + re.sub(r"\s+", " ", snt)[:140])
+    policy_path = HERE / "verify" / "checkpoint-lint-dispositions-2026-11-06.json"
+    if tex_path.resolve() == (HERE / "report.tex").resolve() and policy_path.exists():
+        try:
+            errs, notes = reviewed_dispositions(tex, errs, json.loads(policy_path.read_text(encoding="utf-8")))
+        except (ValueError, TypeError, KeyError) as exc:
+            errs.append("invalid reviewed lint dispositions: " + str(exc))
+            notes = []
+        for note in notes:
+            print("reviewed disposition: " + note)
     for w in warns:
         print("warning: " + w)
     for e in errs:
