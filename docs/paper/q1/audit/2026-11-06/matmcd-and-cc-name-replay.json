@@ -1,0 +1,51 @@
+{
+  "matmcd_dv1": {
+    "point": -0.03439752223887882,
+    "lo": -0.0657920942654966,
+    "hi": 0.0005500844065564382,
+    "units": 10,
+    "clusters": 10,
+    "B": 2000,
+    "seed": 20261014,
+    "kind": "knowledge_degrades_data",
+    "metric": "dv1_precision",
+    "variant": "pc_only_initial",
+    "checkable": true,
+    "dv1_precision_final": 0.6854942233632862,
+    "dv1_precision_data_only": 0.7198917456021651,
+    "f1_final": 0.38026385813836794,
+    "f1_data_only": 0.38099328785687236
+  },
+  "cc_name_control": {
+    "point": 0.1667920377351994,
+    "lo": 0.0976165770153351,
+    "hi": 0.2299819304869185,
+    "units": 10,
+    "clusters": 10,
+    "B": 2000,
+    "seed": 20261014,
+    "kind": "name_reliance",
+    "metric": "dir_f1@committed",
+    "arms": [
+      "real",
+      "swapped"
+    ],
+    "source": "S3"
+  },
+  "ticket": "DLV-07",
+  "crucis_source_commit": "827b43cfd02dc9037c074adeda6512ade5d402a6",
+  "matmcd_crosscheck": {
+    "input": "analysis/results/ab06/ab06.json",
+    "pooled_counts_final": [
+      534,
+      779
+    ],
+    "pooled_counts_data_only": [
+      532,
+      739
+    ],
+    "interval_match_abs_tol": 1e-12,
+    "method": "Vectorized NumPy scenario bootstrap with the original seed and number of draws"
+  },
+  "native_model_calls": 0
+}

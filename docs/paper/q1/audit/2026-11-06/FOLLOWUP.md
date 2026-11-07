@@ -42,30 +42,55 @@ separate pre-cycle calculation. The all-reached diagnostic admits the pre-cycle
 graph of a run that later crashed. It leaves the historical run status, protocol,
 registry, manuscript and submitted artifacts intact.
 
-## CausalBench evaluator replay
+## MATMCD and the exploratory Causal-Copilot row
 
-The [filtered-array replay receipt](causalbench-replay.json) covers eight cells:
-MeanDifference and seeded random networks at both edge budgets in K562 and RPE1.
-The replay verified both input archive hashes and ran CausalBench's split and
-statistical evaluator. Every graph hash, edge count, true/false positive count,
-false omission rate and Wasserstein score matched the retained cells. Counts,
-graph identities and false omission rates were compared exactly. Distances used
-an absolute tolerance of `1e-10`.
+The [recorded-graph receipt](matmcd-and-cc-name-replay.json) replays MATMCD's
+real-name final and data-only graphs under the original pooled precision rule.
+A separate calculation from the committed per-scenario counts gives the same
+precision values and interval. The point difference is −0.03440 with interval
+[−0.06579, 0.00055]. The point rule fires and the interval includes zero.
+The same replay checks the Causal-Copilot name contrast from committed arrows
+in the pre-cycle graph. That earlier row remains scoped to its own cohort.
 
-Run with Python 3.12 and `causalbench==1.1.2`, NumPy, SciPy, scikit-learn and
-pandas in a separate environment. The receipt records the package versions used
-for scoring. Put both hash-matched filtered arrays and their sidecars under
-`external/causalbench/`. The hash check uses whole NPZ bytes. Keep outputs
-outside the repository's retained results.
+The MATMCD counters can be checked from a public checkout with NumPy installed.
 
 ```sh
+python -B -m docs.paper.q1.verify.replay_checkpoint_counters
+```
+
+## CausalBench evaluator replay
+
+The [full checkpoint score replay](causalbench-paper-replay.json) covers the
+four MeanDifference rows, two test-informed reference rows and all eighty
+seeded random-network rows needed for the checkpoint's comparisons. It begins
+with the two hash-verified filtered arrays. All 86 graph hashes and evaluated
+statistics matched the retained records. Every published MeanDifference row
+was within the tolerances fixed in the original plan. The smaller-budget
+test-informed ratios reappeared at approximately 0.904 and 0.947.
+
+MeanDifference's false omission rate was within the declared margin in all
+three comparable cells. The larger-budget RPE1 random comparison remains
+unavailable because none of its random networks had a defined false omission
+rate. The replay also preserves the reduced denominator at the larger K562
+budget, where only nine of twenty random networks had a defined rate.
+
+In a separate Python 3.12 environment, install the same evaluator and scoring
+dependencies used for this run. Put the hash-matched NPZ archives under
+`external/causalbench/`. The files are listed in `manifests/excluded/external.sha256`.
+
+```sh
+python -m pip install --no-deps causalbench==1.1.2
+python -m pip install numpy==2.5.4 scipy==1.18.1 scikit-learn==1.9.1
 python -B -m docs.paper.q1.verify.replay_causalbench
 ```
 
-This check begins with the frozen filtered arrays. The first audit re-merged all
-586 retained result rows. Recomputing every control and biological comparison
-from arrays and regenerating the filtered inputs from raw H5AD remain separate
-checks.
+Counts, graph identities and false omission rates are compared exactly.
+Distances use an absolute tolerance of `1e-10`. The earlier
+[eight-cell receipt](causalbench-replay.json) remains available with the
+[first replay script revision](https://github.com/uzairgheewala/cc-research/blob/1d5ac2c1b08c5fb6be3fb3e3bcb2816c3c8f16fc/docs/paper/q1/verify/replay_causalbench.py).
+The first audit re-merged all 586 retained result rows. Regenerating filtered
+inputs from raw H5AD and rerunning the additional biological and sensitivity
+controls remain separate checks.
 
 ## Crucis test timing
 
