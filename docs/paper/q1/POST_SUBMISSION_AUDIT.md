@@ -2,6 +2,9 @@
 
 Tickets: DLV-05, DLV-06, DLV-07. Recorded 6 Nov 2026.
 
+The [initial audit](audit/2026-11-06/REPORT.md) and
+[follow-up](audit/2026-11-06/FOLLOWUP.md) record the work against this plan.
+
 Start after Uzair confirms submission. First retain the actual submitted PDF hash,
 code link, submission timestamp and receipt outside the automatically publishable
 tree. Do not infer submission from a local build or a successful course-page visit.

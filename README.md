@@ -8,11 +8,11 @@ whole paper or the stage-specific bootstrap finding.
 
 ## Checkpoint: start without model calls
 
-The locally archived checkpoint is in
-[`docs/paper/q1/releases/checkpoint-2026-11-06/`](docs/paper/q1/releases/checkpoint-2026-11-06/README.md),
-with the exact source ZIP, inspected PDF and verification manifest. Local archives
-can be newer than GitHub's default branch or the deployed research site. Submission
-status and subsequent audit findings are recorded separately from publication.
+The [checkpoint archive](docs/paper/q1/releases/checkpoint-2026-11-06/README.md)
+contains the exact source ZIP, inspected PDF and verification manifest. The author
+confirmed submitting the archived report and combined code ZIP. The
+[submission record](docs/paper/q1/verify/submission-status-2026-11-06.json)
+separates those confirmations from release and deployment history.
 
 With the dependencies in `requirements-ci.txt` installed, run from this repository
 root (preserve the directory name `cc-research`):
@@ -29,10 +29,11 @@ model or rewrite the evidence contract. These commands verify frozen sources,
 number readback, citation-key checks and the archived artifacts; they do not
 reproduce all historical experiments. The ongoing
 [post-submission audit](docs/paper/q1/POST_SUBMISSION_AUDIT.md) records that distinction.
-Its [current findings](docs/paper/q1/audit/2026-11-06/REPORT.md) and
-[code submission guide](docs/paper/q1/CODE_SUBMISSION.md) distinguish checked
-recomputations, missing raw evidence, an incomplete framework gate and public
-website lag. The author confirmed submission of the archived report PDF.
+The [reproduction guide](docs/paper/q1/audit/2026-11-06/FOLLOWUP.md) lists
+the commands, inputs and coverage by result, including the stage and endpoint
+replay on locally retained records. The
+[code submission guide](docs/paper/q1/CODE_SUBMISSION.md) describes what the
+combined ZIP contains.
 
 **Human and AI contributions.** Uzair Gheewala directed the research, approved
 designs and plans, made scientific and editorial decisions, revised the manuscript

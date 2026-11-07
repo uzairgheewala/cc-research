@@ -23,7 +23,7 @@ attribute authorship or validation to a mentor or to the AI reviewers.
 
 The table summarizes important instruction families, including repeated design
 and debugging exchanges. Summaries are reconstructions, not verbatim quotations.
-Short exact excerpts that remain available follow the table. The private research
+Exact excerpts and one labeled editorial cleanup follow the table. The private research
 assistance tooling is described by its function; its implementation and unrelated
 private records are not needed to reproduce the public analyses.
 
@@ -38,18 +38,34 @@ private records are not needed to reproduce the public analyses.
 | Adversarial and editorial review | Give specialist reviewers bounded investigations and sanitized packets; retain findings, no-finding results, disagreements and adjudications. | Recorded AI reviews, author-exposed rechecks and amendments. Shared models and correlated context limit independence; agreement does not prove truth. |
 | Reproduction and delivery | Recompute available recorded results, test isolated installs/archives, inspect the PDF and prepare source-bound submission packages. | Commands and actual outcomes in repository receipts. Missing data, skipped tests and pending public updates remain visible. |
 
-Available exact excerpts from the human's paper-development instructions:
+### Important prompt excerpts
 
-> “No rewrited or anything yet just review and assessment doesn't it seem a bit bloated to you?”
+The source label identifies the conversation in which the author gave the
+instruction. Quoted snippets are verbatim unless marked edited.
 
-> “Let's do the same short pass for flow and clarity while keeping the scope and linked numbers intact.”
+| Area | Source | Excerpt |
+|---|---|---|
+| Research questions and controls | Continue W2 audit protocol | “Walk through rules fixed before exposure, threshold changes after seeing results, permitted amendments, and historical imports with uncertain timing.” |
+| Instrumentation and analysis | Continue W2 audit protocol | “including how each output links to its premises, calculation, and comparison scope.” |
+| Reusable auditing software | Continue W2 audit protocol | “Let’s choose the first S4 procedures and work through each one’s inputs, formula, when to withhold a result, and what evidence would qualify it.” |
+| Literature and evidence | Checkpoint paper and workbench conversation | “Read its primary paper before drawing the distinction from an independent external-system auditor.” |
+| Numerical integrity | Audit commit workflow and repo | “Freeze the checkpoint’s scope and evidence contract.” |
+| Drafting and presentation | Checkpoint paper and workbench conversation | “Let's do the same short pass for flow and clarity while keeping the scope and linked numbers intact.” |
+| Adversarial and editorial review | Audit commit workflow and repo | “build the reviewer system, and use the Crucis paper as the first test case” |
+| Reproduction and delivery | Continue W2 audit protocol | “Report each against its expected value. Diagnose any mismatch to the line first.” |
+| Milestone validation | Continue W2 audit protocol | “Walk through the held, inconclusive, corrected, and restricted cases end to end, then define each bundle’s acceptance and recovery gates.” |
+| Commit workflow | Audit commit workflow and repo | “Local commits should happen automatically going forward.” |
+
+Two additional paper-editing instructions shaped the balance between audit detail
+and readable prose:
+
+> “No rewriting or anything just review and assessment doesn't it seem a bit bloated to you?” (edited for spelling and concision)
 
 > “the paper is not just supposed to be like outright writings of the claims”
 
-The last excerpt motivated a distinction between internal claim/evidence ledgers
-and readable scientific presentation. It did not authorize removing support or
-qualifications. Full unrelated conversations and private tooling source are not
-included in this disclosure.
+The paper review retained the internal evidence links and checked which
+qualifications needed to appear next to the claim. The excerpts represent the
+work families and keep the disclosure focused on this project.
 
 ## How AI output was tested and challenged
 
@@ -78,7 +94,7 @@ flow, framing and the difference between a ledger and a readable argument.
 This is a structured summary, consistent with the instructor clarification
 supplied by the student that a structured summary including important prompts is
 acceptable. It draws on the paper conversation, selected design/implementation
-conversations and committed work records. It is not an exhaustive transcript.
+conversations and committed work records. The oldest segment of the W2 chat could not be retrieved in full because the chat tool could not return an oversized turn.
 On 6 November, the author confirmed that these cover the important task families
 he recalls. That confirmation does not recover missing historical message text.
 Some older exact experiment-design/debugging prompts and model versions have not
@@ -94,5 +110,5 @@ access and data restrictions. No new paid campaign was run for this disclosure.
 The post-submission audit and source ZIP do not certify universal scientific
 correctness, independence of simulated reviewers or whole-paper native replay.
 See `docs/paper/q1/POST_SUBMISSION_AUDIT.md` and the archive's review receipts for
-the precise remaining checks. The report has been submitted according to the
-author; no authenticated submission receipt is included here.
+the precise remaining checks. The author confirmed submitting the report and combined code ZIP. The
+submission record identifies the local artifacts and the level of confirmation.

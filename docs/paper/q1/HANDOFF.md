@@ -76,7 +76,16 @@ the audit's own test process before cleanup. No unrelated process was stopped.
 The first research staged gate failed on the two pinned export files. The proposed
 diff and failed log were retained; no tracker pin or site snapshot was changed.
 
-**Current, 6 Nov: final author export archived locally.** The canonical six
+**Current, 6 Nov: post-submission reproduction follow-up.** The author
+confirmed both submissions. The archived artifacts and numerical contract bind
+the original checkpoint. Start with the
+[reproduction guide](audit/2026-11-06/FOLLOWUP.md) and its recorded stage and
+CausalBench replays. BND-08's all-reached pre-cycle diagnostic falls below the
+historical point threshold. The completed subset gives the same counts at
+pre-cycle and final endpoints. The disclosure now cites important excerpts
+from both named DSC 180A chats and records the older W2 access limit.
+
+**Historical, 6 Nov: final author export archived locally.** The canonical six
 inputs are byte-identical to Uzair's final Overleaf export (archive SHA-256
 `d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257`).
 `releases/checkpoint-2026-11-06/` holds that exact source ZIP, the inspected

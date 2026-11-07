@@ -76,3 +76,12 @@ actual submission criterion is met. Known prose/citation corrections remain in H
     Deliberately repin through the owner process if adopted. The current code ZIP
     reads the reviewed companion commit directly and does not depend on rerunning
     the historical exporter or silently changing these pins.
+
+14. **6 Nov follow-up for TEAM-11.** The author confirmed both checkpoint
+    submissions. A reviewed landing-page patch uses the additive receipt to
+    remove the checkpoint from the upcoming list and links the report, source,
+    reproduction guide and AI disclosure. The local research site built with
+    zero errors and warnings. The staged gate identified the existing TEAM-11
+    pin on `site/pgs/pg_today.py`. Review this as a site-owner change and repin
+    via the tracker workflow before deploying it. The scientific evidence pins
+    and tracker statuses were excluded from the checkpoint audit milestone.
