@@ -1,0 +1,44 @@
+diff --git a/docs/q1_repo/README.md b/docs/q1_repo/README.md
+index e129efd..ff94d40 100644
+--- a/docs/q1_repo/README.md
++++ b/docs/q1_repo/README.md
+@@ -2,12 +2,26 @@
+ 
+ Uzair Gheewala · UCSD DSC 180A · domain D04 (causal discovery), mentor Prof. Biwei Huang
+ 
++**Scope.** This companion repository recomputes a retained-graph comparison of
++the original Causal-Copilot pipeline and a separate refinement branch. It is not
++the complete Crucis paper, its reusable framework, or the evidence for locating
++loss at a particular intermediate stage. The
++[research repository](https://github.com/uzairgheewala/cc-research) holds those
++separate analyses and qualifications; the framework is
++[Crucis](https://github.com/crucis-lab/crucis).
++
++**Human and AI contributions.** Uzair Gheewala directed the work, approved designs
++and run plans, and made scientific and editorial decisions. AI assisted substantial
++planning, implementation, debugging, analysis and documentation. See
++[`AI_USE.md`](AI_USE.md) for important prompt summaries, validation and historical
++coverage limits.
++
+ **Question.** [Causal-Copilot](https://github.com/Lancelot39/Causal-Copilot) is an LLM agent that runs a statistical causal
+ discovery algorithm and then has a language model review the graph. What does each step do to the graph, and where do its
+ changes come from: the numbers, the variable names, or its own decision rules? We run it unmodified on tables with known true
+ graphs, with the column names controlled, and record every intermediate graph and every model call.
+ 
+-**Q1 result so far.** On 30 tables (10 scenarios × real, neutral and swapped names), the unmodified review loses most of the
++**Q1 result so far.** On 30 tables (10 scenarios × real, neutral and swapped names), the unmodified pipeline loses most of the
+ connections the algorithm found and crashes on 8 of 30 runs. A replacement review we wrote (refinement v2, on a branch of our
+ fork) keeps them and finishes every run, at under half the cost. Whether it also gets more arrow *directions* right is not
+ established: that interval includes zero.
+diff --git a/tools/export_q1.py b/tools/export_q1.py
+index e5e6445..c4edc29 100644
+--- a/tools/export_q1.py
++++ b/tools/export_q1.py
+@@ -43,6 +43,7 @@ ALLOW = [
+     "tools/export_q1.py",
+ ]
+ TEMPLATE_MAP = {"README.md": "README.md", "run.py": "run.py", "requirements.txt": "requirements.txt",
++                "AI_USE.md": "AI_USE.md",
+                 "gitignore": ".gitignore", "gitattributes": ".gitattributes", "ci.yml": ".github/workflows/ci.yml",
+                 "docs/method.md": "docs/method.md", "docs/code_tour.md": "docs/code_tour.md",
+                 "tests/test_reproduce.py": "tests/test_reproduce.py"}

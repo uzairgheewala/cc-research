@@ -1,4 +1,47 @@
-# cc-research: out-of-repo harness for Causal-Copilot
+# cc-research: research and evidence for Crucis
+
+This repository holds the Crucis paper, historical audit evidence and analysis.
+The reusable framework lives in [crucis-lab/crucis](https://github.com/crucis-lab/crucis).
+The separate [companion reproduction](https://github.com/uzairgheewala/causal-copilot-q1)
+recomputes its retained-graph Causal-Copilot comparison; it does not reproduce the
+whole paper or the stage-specific bootstrap finding.
+
+## Checkpoint: start without model calls
+
+The locally archived checkpoint is in
+[`docs/paper/q1/releases/checkpoint-2026-11-06/`](docs/paper/q1/releases/checkpoint-2026-11-06/README.md),
+with the exact source ZIP, inspected PDF and verification manifest. Local archives
+can be newer than GitHub's default branch or the deployed research site. Submission
+status and subsequent audit findings are recorded separately from publication.
+
+With the dependencies in `requirements-ci.txt` installed, run from this repository
+root (preserve the directory name `cc-research`):
+
+```sh
+python -B tools/check_checkpoint_ci.py
+python -B docs/paper/q1/build_numbers.py --check
+python -B docs/paper/q1/verify/verify_checkpoint_release.py
+```
+
+The CI check materializes only the two pinned CausalBench metadata summaries
+from their tracked copies when absent. It does not download raw data, launch a
+model or rewrite the evidence contract. These commands verify frozen sources,
+number readback, citation-key checks and the archived artifacts; they do not
+reproduce all historical experiments. The ongoing
+[post-submission audit](docs/paper/q1/POST_SUBMISSION_AUDIT.md) records that distinction.
+Its [current findings](docs/paper/q1/audit/2026-11-06/REPORT.md) and
+[code submission guide](docs/paper/q1/CODE_SUBMISSION.md) distinguish checked
+recomputations, missing raw evidence, an incomplete framework gate and public
+website lag. The author confirmed submission of the archived report PDF.
+
+**Human and AI contributions.** Uzair Gheewala directed the research, approved
+designs and plans, made scientific and editorial decisions, revised the manuscript
+and submitted the report. AI assistance was extensive in planning, implementation,
+debugging, literature/evidence checks, drafting and simulated review. See
+[`AI_USE.md`](AI_USE.md) for important prompt summaries, available exact excerpts,
+validation and historical coverage limits.
+
+## Historical Causal-Copilot harness
 
 Everything in this folder is research tooling and evidence. Nothing here edits the `Causal-Copilot`
 source tree. The baseline is upstream commit `a31aa7c` (zip unpack); every run first checks the

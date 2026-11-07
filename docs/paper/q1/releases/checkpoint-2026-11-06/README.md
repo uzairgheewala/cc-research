@@ -8,7 +8,10 @@ inputs in `docs/paper/q1/`, the course styles, evidence freeze and review record
 The PDF in `../../build/report.pdf` is an identical convenience copy. Earlier
 sources and PDFs remain in Git history. Edit the canonical source, not this archive.
 
-The checkpoint is locally validated and awaiting the author's submission. This
+At capture the checkpoint was locally validated and awaiting submission. The
+author has since confirmed submitting this archived PDF; the additive
+`../../verify/submission-status-2026-11-06.json` records the confirmation and its
+limits. The original manifest preserves the pre-submission capture state. This
 archive is not evidence of a remote push, public release or course submission.
 The source ZIP is the original supplied export, without auxiliary files, logs,
 credentials or research datasets. Upload it to Overleaf and select **XeLaTeX**.

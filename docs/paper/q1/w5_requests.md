@@ -54,3 +54,25 @@ actual submission criterion is met. Known prose/citation corrections remain in H
     The companion still covers its scoped comparison, not whole-paper reproduction.
     Exact Gradescope deadline times and mentor-specific requirements need human
     verification after UCSD sign-in. No shared ticket/site/status changes made.
+
+12. **6 Nov post-submission reader-route audit (DLV-05/DLV-07).** The author
+    confirmed submitting the archived PDF; exact upload time/receipt remain
+    unavailable. Please reconcile the research site's checkpoint-open/next-
+    deliverable text with the confirmed report state after reviewing the additive
+    status receipt. The framework site still describes execution/collection as
+    in design, while its public default includes scoped S3/S4 implementations.
+    Route that source/site change to the framework owner. The audit report and
+    public observation receipts are in `audit/2026-11-06/`. Both homepages and all
+    21 selected same-origin endpoints returned 200; content currency is separate.
+    No public site, shared tracker, snapshot, Slack message or deployment was
+    modified by the paper workstream. The stable framework full gate was
+    incomplete and a bounded test probe timed out; preserve this qualification.
+
+13. **Companion export disclosure (DLV-07).** Existing DLV-07 evidence pins
+    cover `docs/q1_repo/README.md` and `tools/export_q1.py`; the staged gate
+    rejected changes to both. Their exact bytes were restored without a repin.
+    Review `audit/2026-11-06/companion-export-disclosure.patch` and its additive
+    `docs/q1_repo/AI_USE.md` template before adopting an updated export contract.
+    Deliberately repin through the owner process if adopted. The current code ZIP
+    reads the reviewed companion commit directly and does not depend on rerunning
+    the historical exporter or silently changing these pins.

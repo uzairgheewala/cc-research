@@ -36,6 +36,46 @@ the paper has not been ported. Current subsystem work continues in Crucis.
 
 ## 2. State on 3 Nov 2026
 
+**Current, 6 Nov after report submission:** Uzair directly confirmed submitting
+the archived PDF identified below. `verify/submission-status-2026-11-06.json`
+records this as author-reported, with no invented upload timestamp or authenticated
+Gradescope receipt. The archived source, PDF and original release manifest are
+unchanged. Code upload is not yet confirmed.
+
+The post-submission audit is in `audit/2026-11-06/REPORT.md` and its versioned
+coverage/observation receipts. It checked all frozen numerical sources, independently
+re-scored retained FCI edges against public references, reaggregated name-control
+scores, re-merged retained CausalBench cells and reran the companion in isolation.
+It did not rerun raw/native campaigns or resolve the historical endpoint gap.
+Both website roots and their 21 selected same-origin endpoints opened, but their
+status wording lags current implementation/report state. Requests are routed to W5.
+
+`AI_USE.md`, README statements and important prompt summaries disclose extensive
+AI assistance while excluding private tooling and unrelated records. The author
+confirmed the important task families; exact historical transcript/model recovery
+remains incomplete. The course ZIP and disclosure clarifications are recorded
+with their actual supplied authority. Companion disclosure and README changes
+were locally committed. The existing exporter/template pins prevented adopting
+the proposed matching changes in the research tree; the patch is retained for
+owner review, and both exporter copies preserve the pinned historical bytes.
+
+**Framework validation gap:** a documentation-only worktree from public Crucis
+`827b43c` passed three metadata/package checks, but its full gate stalled in an
+existing cursor-isolation test and was stopped. A fresh 45-second probe also
+timed out, with a stack at the owner SQLite commit. See the bounded receipt;
+root cause is unresolved. Its two staged documentation files remain uncommitted.
+Active S5 work in the normal Crucis checkout was not modified or absorbed.
+The combined ZIP uses that public runtime/test source plus an explicit two-file
+disclosure overlay sourced from this research commit. Do not call it a validated
+new Crucis commit or silently waive the incomplete gate. `CODE_SUBMISSION.md`
+defines the layout, commands, overlay and remaining reproduction gaps.
+
+Automatic approval review rejected process-command-line inspection because it
+could expose credentials. Metadata-only parent/path/time checks safely identified
+the audit's own test process before cleanup. No unrelated process was stopped.
+The first research staged gate failed on the two pinned export files. The proposed
+diff and failed log were retained; no tracker pin or site snapshot was changed.
+
 **Current, 6 Nov: final author export archived locally.** The canonical six
 inputs are byte-identical to Uzair's final Overleaf export (archive SHA-256
 `d162f44822464e6522b1305cc027e2902ad7a9f2208fe00e8548cc4c26232257`).
